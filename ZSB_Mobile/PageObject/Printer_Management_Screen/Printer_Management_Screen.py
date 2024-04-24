@@ -101,7 +101,7 @@ class Printer_Management_Screen:
         self.poco("android.view.View")[4].child().child().click()
 
     def checkBuyMoreLabelsOptionPresent(self):
-        self.poco(self.Buy_More_Labels).exists()
+        return self.poco(self.Buy_More_Labels).exists()
 
     def checkIfPrinterIsDecommissioned(self):
         printer_details = self.poco("android.widget.ScrollView").child().child().child().child()[0].get_name()
@@ -115,4 +115,6 @@ class Printer_Management_Screen:
             print("Printer not decommissioned.")
             return 1/0
 
+    def openBluetoothSettings(self):
+        os.system('adb shell am start -a android.settings.BLUETOOTH_SETTINGS')
 

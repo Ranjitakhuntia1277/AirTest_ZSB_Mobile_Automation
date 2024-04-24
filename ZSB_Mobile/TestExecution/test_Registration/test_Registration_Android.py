@@ -24,7 +24,7 @@ connect_device("Android:///")
 wake()
 # start_app("com.zebra.soho_app")
 sleep(2.0)
-common_method = Common_Method()
+common_method = Common_Method(poco)
 login_page = Login_Screen(poco)
 help_page = Help_Screen(poco)
 printer_management_page = Printer_Management_Screen(poco)
@@ -889,6 +889,7 @@ def test_Registration_TestcaseID_47930():
 def test_Registration_TestcaseID_50287():
     """""""test"""
 
+
 # login_page.click_loginBtn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
@@ -981,3 +982,5 @@ def test_Registration_TestcaseID_50287():
 #     pass
 # except:
 #     raise Exception("Showing EULA page after logging in with existing account.")
+
+registration_page.create_google_account()

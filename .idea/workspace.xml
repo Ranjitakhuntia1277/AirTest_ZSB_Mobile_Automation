@@ -4,16 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="Template Managemnet_Tarun">
-      <changelist_data name="R" email="tr5927@zebra.com" />
-      <change afterPath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/test_Android_device_networks.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/test_Android_device_networks.py" afterDir="false" />
+    <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704782766519.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704782805207.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_iOS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Printing_Android.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Notification.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Notification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printing_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printing_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_iOS_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_iOS_Smoke_Test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExportTestResults" exportFormat="Xml" outputFolder="$PROJECT_DIR$" openResultsInEditor="true" userTempatePath="" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -22,26 +35,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="R &lt;tr5927@zebra.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;tr5927&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="966c2e03-e5cb-4a92-9012-18a6436c35ce" />
-        <option name="url" value="https://github.com/zebratechnologies/DVT_SMB_Automation_MobileApp" />
-      </UrlAndAccount>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,258 +44,115 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2cazKM4Mcgj60Ae9rQP1MJA3Jpp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45793.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45794.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45795.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45796.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45797.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45798.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45800.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45801.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45802.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45803.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45807.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45872.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_45874.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_46963.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_47945.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_47946.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_47955.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_47972.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_49203.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_51703.executor": "Run",
-    "Python tests.Python tests for test_Android_Others.test_Others_TestcaseID_51704.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48464.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48465.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48466.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48467.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48468.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48469.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48470.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48473.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48474.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48475.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48476.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48479.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48480.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48481.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48482.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48483.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48485.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_48486.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_50223.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_50612.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_50613.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_50643.executor": "Run",
-    "Python tests.Python tests for test_Android_Social_Login.test_Social_Login_TestcaseID_50646.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45903.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45905.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45906.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45907.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45908.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45909.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45910.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45911.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45912.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45913.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45914.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45915.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45916.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45917.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45918.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45919.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45920.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45923.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45924.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45926.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45927.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45928.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45929.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45930.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45931.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45932.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45933.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45934.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45935.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45936.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45937.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45938.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45939.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45940.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45941.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45942.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45943.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45944.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45945.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45946.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45947.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45948.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45949.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45950.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45951.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45952.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45953.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45955.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45956.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45957.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45958.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45959.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45961.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45962.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45963.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45967.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45968.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45969.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45970.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45974.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45976.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45977.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45978.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45980.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45995.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45996.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45997.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45998.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_45999.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46000.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46001.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46003.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46004.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46006.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46007.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46008.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46009.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46011.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46012.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management.test_Template_Management_TestcaseID_46013.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45902.executor": "Run",
-    "Python tests.Python tests for test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45912.executor": "Run",
-    "Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.executor": "Run",
-    "Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45693.executor": "Run",
-    "Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45694.executor": "Run",
-    "Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45696.executor": "Run",
-    "Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45698.executor": "Run",
-    "Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45708.executor": "Run",
-    "Python tests.Python tests in test_Android_Template_Management_Exec.py.executor": "Run",
-    "Python.sphere_db.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "tr5927__Tarun"
-  },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
-    ]
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Ranjita__ZSB&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\tr5927\Desktop\ZSB_Automation\ZSB_Mobile" />
-      <recent name="C:\Users\tr5927\Desktop\ZSB_Automation\ZSB_Mobile\templates" />
+      <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\TestExecution\test_Smoke_Test" />
+      <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images" />
       <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile" />
       <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation" />
-      <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45698">
-    <configuration name="Python tests for test_Android_device_networks.Test_Android_device_networks" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest in test_Android_App_Settings.py">
+    <configuration name="pytest for test_APS_Printing_Android.test_APS_Printing_TestcaseID_49144" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Android_device_networks.Test_Android_device_networks&quot;" />
+      <option name="_new_target" value="&quot;test_APS_Printing_Android.test_APS_Printing_TestcaseID_49144&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45693" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45688" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45693&quot;" />
+      <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_45688&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45696" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45689" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45696&quot;" />
+      <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_45689&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45698" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_47918" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45698&quot;" />
+      <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_47918&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45708" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_Android_App_Settings.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45708&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45698" />
-        <item itemvalue="Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45708" />
-        <item itemvalue="Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45696" />
-        <item itemvalue="Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks.test_Device_Networks_TestcaseID_45693" />
-        <item itemvalue="Python tests.Python tests for test_Android_device_networks.Test_Android_device_networks" />
+        <item itemvalue="Python tests.pytest in test_Android_App_Settings.py" />
+        <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45688" />
+        <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_47918" />
+        <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45689" />
+        <item itemvalue="Python tests.pytest for test_APS_Printing_Android.test_APS_Printing_TestcaseID_49144" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -313,20 +164,5 @@
       <updated>1708364412178</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Template Managemnet_Tarun" />
-    <option name="LAST_COMMIT_MESSAGE" value="Template Managemnet_Tarun" />
   </component>
 </project>

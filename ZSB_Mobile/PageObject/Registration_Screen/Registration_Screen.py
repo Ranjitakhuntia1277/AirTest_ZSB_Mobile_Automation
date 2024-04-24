@@ -1,4 +1,5 @@
 import datetime
+import os
 import time
 import random
 import string
@@ -12,7 +13,7 @@ from poco.exceptions import PocoNoSuchNodeException
 from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
 
-common_method = Common_Method()
+common_method = Common_Method(poco)
 
 
 class Registration_Screen:
@@ -332,6 +333,7 @@ class Registration_Screen:
             else:
                 print("Error message not displayed for wrong password.")
                 raise Exception("Error message not displayed for wrong password.")
+        self.poco("android.widget.Button").click()
 
     def login_Apple(self, password, username=False, wrong_password=False):
         if username:
@@ -342,7 +344,7 @@ class Registration_Screen:
                 self.poco("com.android.chrome:id/coordinator").click()
         self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText")[1].set_text(password)
-        self.poco("android.widget.Button")[1].click()
+        self.poco("android.widget.Button")[0].click()#changed during datasources test id- 45731
         if wrong_password:
             self.poco("android.widget.TextView")[7].click()
             error_message = [self.poco("android.widget.TextView")[11].get_text()][0]
@@ -520,9 +522,64 @@ class Registration_Screen:
     def clickVerify(self):
         self.poco(text="VERIFY").click()
 
+    def generate_random_word(self, word_length):
+        return ''.join(random.choice(string.ascii_lowercase) for i in range(word_length))
+
     def check_Message_in_Password_Reset_Error_Page(self):
-        self.poco(text="This user cannot use the configured Password Reset process. Possible reasons:").click()
-        self.poco(text="User does not exist or is not enrolled.").click()
-        self.poco(text="User is not part of the configured password reset process.").click()
-        self.poco(text="User account is locked.").click()
-        self.poco(text="Try again later. For immediate assistance, call the service desk.").click()
+        self.poco(text="This user cannot use the configured Password Reset process. Possible reasons:").exists()
+        self.poco(text="User does not exist or is not enrolled.").exists()
+        self.poco(text="User is not part of the configured password reset process.").exists()
+        self.poco(text="User account is locked.").exists()
+        self.poco(text="Try again later. For immediate assistance, call the service desk.").exists()
+
+    def create_google_account(self):
+        os.system("adb shell am start -a android.settings.SYNC_SETTINGS")
+        while not self.poco(text="Add account").exists():
+            self.poco.scroll()
+        self.poco(text="Add account").click()
+        self.poco(text="Google").wait_for_appearance(timeout=20)
+        self.poco(text="Google").click()
+        self.poco("identifierId").wait_for_appearance(timeout=20)
+        self.poco(text="Create account").click()
+        self.poco(text="For my personal use").click()
+        name = self.generate_random_word(10)
+        print(name)
+        self.poco("firstName").wait_for_appearance(timeout=20)
+        self.poco("firstName").set_text(name)
+        self.poco(text="Next").click()
+        self.poco("month-label").wait_for_appearance(timeout=20)
+        self.poco("month-label").click()
+        self.poco("android.widget.ListView").wait_for_appearance(timeout=20)
+        month_length = len(self.poco("android.widget.ListView").child())
+        i = random.randint(0, month_length - 1)
+        self.poco("android.widget.ListView").child()[i].click()
+        day = random.randint(1, 28)
+        self.poco("day").set_text(day)
+        year = random.randint(1990, 2007)
+        self.poco("year").set_text(year)
+        self.poco("gender-label").click()
+        gender_length = len(self.poco("android.widget.ListView").child())
+        i = random.randint(0, gender_length)
+        self.poco("android.widget.ListView").child()[i].click()
+        self.poco(text="Next").click()
+        self.poco(text="Create your own Gmail address").wait_for_appearance(timeout=20)
+        self.poco(text="Create your own Gmail address").click()
+        self.poco("android.widget.EditText").set_text(name)
+        password = self.generate_random_word(10).join('@1234')
+        self.poco("android.widget.EditText").set_text(password)
+        self.poco(text="Next").click()
+        while not self.poco(text="Skip").exists():
+            self.poco.scroll()
+        self.poco(text="Skip").click()
+        username = name.join('@gmail.com')
+        # self.poco("identifierId").set_text(username)
+        self.poco(text="Next").click()
+        while not self.poco(text="I agree").exists():
+            self.poco.scroll()
+        self.poco(text="I agree").click()
+        # return username, password
+        print(username)
+        print(password)
+        return 1/0
+
+

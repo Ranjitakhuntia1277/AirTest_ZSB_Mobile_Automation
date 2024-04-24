@@ -82,9 +82,28 @@ class Add_A_Printer_Screen:
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
 
-    # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    # """"""""""""""""""""""""""""""""""""""""""""""""smoke test-need to add""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        self.FirstOne_In_MyDesign = Template(os.path.join(os.path.expanduser('~'),
+                                                          "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
+                                                          "tpl1707820626487.png"), record_pos=(-0.011, -0.003),
+                                             resolution=(1170, 2532))
 
+        self.Print_Option = "Print"
+        self.Print_Button = "Print"
+        self.Design_Preview_With_Details = Template(os.path.join(os.path.expanduser('~'),
+                                                                 "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
+                                                                 "tpl1707902210476.png"), record_pos=(0.047, 0.202),
+                                                    resolution=(1170, 2532))
+        self.Back_Icon_Of_Print_Review_Screen = "Button"
+        self.SecondOne_In_MyDesign = Template(os.path.join(os.path.expanduser('~'),
+                                                           "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
+                                                           "tpl1707902210476.png"), record_pos=(0.047, 0.202),
+                                              resolution=(1170, 2532))
+        self.Common_Design_Tab = "Common Designs"
+        self.FirstOne_Design_In_Common_Design = "Other"
+        self.FirstOne_In_Common_Design = "Other"
 
+    # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def disable_bluetooth(self):
         try:
             # Disable Bluetooth using ADB
@@ -282,6 +301,7 @@ class Add_A_Printer_Screen:
             pass
 
     def Enter_Password_To_Join_Network(self):
+        sleep(2)
         poco(text("123456789"))
 
     def click_Submit_Button_ON_Join_Network(self):
@@ -339,3 +359,50 @@ class Add_A_Printer_Screen:
         except PocoTargetTimeout:
             print("Finish button did not become visible within 10 seconds.")
             sleep(3)
+
+    def click_FirstOne_In_MyDesign(self):
+        touch(self.FirstOne_In_MyDesign)
+
+    def click_Print_Option(self):
+        print_option = self.poco(self.Print_Option)
+        print_option.click()
+        sleep(3)
+
+    def click_Print_Button(self):
+        sleep(2)
+        sleep(2)
+        start_point = (0.5, 0.7914691943127962)  # Example coordinates (x, y)
+        # Specify the vector for swiping up
+        vector = (0.5, 0.4928909952606635)  # Example vector (delta_x, delta_y)
+        # Perform the swipe action
+        swipe(start_point, vector)
+        print_button = self.poco(self.Print_Button)
+        print_button.click()
+        sleep(5)
+
+    def Verify_Design_Preview_Screen_With_Details(self):
+        sleep(3)
+        assert_exists(self.Design_Preview_With_Details, "Design Preview With Details is displaying correctly")
+
+    def click_The_Back_Icon_Of_Print_Review_Screen(self):
+        sleep(2)
+        back_button = self.poco(self.Back_Icon_Of_Print_Review_Screen)
+        back_button.click()
+
+    def click_SecondOne_In_MyDesign(self):
+        touch(self.SecondOne_In_MyDesign)
+
+    def click_Common_Design_Tab(self):
+        common_design = self.poco(self.Common_Design_Tab)
+        common_design.click()
+
+
+    def click_FirstOne_Design_In_Common_Design(self):
+        sleep(3)
+        FirstOne_Design_In_Common_Design = self.poco(self.FirstOne_Design_In_Common_Design)
+        FirstOne_Design_In_Common_Design.click()
+
+    def click_FirstOne_In_Common_Design(self):
+        sleep(5)
+        FirstOne_In_Common_Design = self.poco(self.FirstOne_In_Common_Design)
+        FirstOne_In_Common_Design.click()

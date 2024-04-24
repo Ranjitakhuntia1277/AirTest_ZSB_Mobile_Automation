@@ -13,7 +13,7 @@ from poco.exceptions import PocoNoSuchNodeException
 from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
 
-common_method = Common_Method()
+common_method = Common_Method(poco)
 
 
 class Data_Sources_Screen:
@@ -63,15 +63,15 @@ class Data_Sources_Screen:
                                                         resolution=(1080, 2340))
         self.test_45738 = Template(r"tpl1706683702494.png", record_pos=(0.0, -0.264), resolution=(1080, 2340))
         self.Sign_In_With_Google = "Sign in with Google"
-        self.Sign_In_With_Google_Template = Template(r"tpl1706511308403.png", record_pos=(-0.006, 0.017),
+        self.Sign_In_With_Google_Template = Template(r"Google_Icon.png", record_pos=(-0.006, 0.017),
                                                      resolution=(1080, 2340))
         self.Select = "Select"
         self.File_Name_Web = ""
         # self.search_File_Name = ""
         self.is_already_linked = Template(r"tpl1706012736859.png", record_pos=(-0.139, 0.898), resolution=(1080, 2340))
         self.Use_Your_Password_Instead = "idA_PWD_SwitchToPassword"
-        self.Enter_Password = Template(r"tpl1706078127145.png", record_pos=(-0.063, -0.556), resolution=(1080, 2340))
-        self.search_Files_In_Link_Files = Template(r"tpl1706078779736.png", record_pos=(-0.247, -0.567),
+        self.Enter_Password = Template(r"Password.png", record_pos=(-0.063, -0.556), resolution=(1080, 2340))
+        self.search_Files_In_Link_Files = Template(r"search_files_link_files.png", record_pos=(-0.247, -0.567),
                                                    resolution=(1080, 2340))
 
     def click_My_Data(self):
@@ -167,11 +167,16 @@ class Data_Sources_Screen:
         my_designs.click()
 
     def selectDesignCreatedAtSetUp(self):
+        self.poco(nameMatches="Showing.*").wait_for_appearance(timeout=10)
         set_up_design = self.poco("android.view.View")[5]
         set_up_design.click()
 
     def clickPrint(self):
-        print_btn = self.poco(self.Print_Btn)
+        if self.poco(self.Print_Btn).exists():
+            print_btn = self.poco(self.Print_Btn)
+        else:
+            print_btn = self.poco(text = self.Print_Btn)
+        print_btn.wait_for_appearance(timeout=10)
         print_btn.click()
 
     def verifyPhotoOptions(self):
@@ -184,10 +189,12 @@ class Data_Sources_Screen:
 
     def chooseCameraToClickPhoto(self):
         camera = self.poco(self.Camera)
+        camera.wait_for_appearance(timeout=20)
         camera.click()
 
     def clickPhoto(self):
         click_photo = self.poco(self.Camera_Shutter)
+        click_photo.wait_for_appearance(timeout=10)
         click_photo.click()
         sleep(5)
         click_photo.click()
@@ -240,20 +247,24 @@ class Data_Sources_Screen:
         self.poco("android.view.View")[16].click()
 
     def clickContinue(self):
+        self.poco(self.Continue).wait_for_appearance(timeout=10)
         self.poco(self.Continue).click()
 
     def clickContinueWeb(self):
+        self.poco(text="Continue").wait_for_appearance(timeout=10)
         self.poco(text="Continue").click()
 
     def clickAddBarcode(self):
-        self.poco("android.widget.Button")[0].click()
+        self.poco(text="Add barcode").wait_for_appearance(timeout=10)
+        self.poco(text="Add barcode").click()
 
     def placeBarcode(self):
         touch(self.Bar_Code_Location)
-        sleep(2)
-        self.poco("android.webkit.WebView").focus([0.1, 0.3]).click()
+        # sleep(2)
+        # self.poco("android.webkit.WebView").focus([0.1, 0.3]).click()
 
     def exitDesigner(self):
+        self.poco("android.widget.Button").wait_for_appearance(timeout=10)
         self.poco("android.widget.Button").click()
 
     def uploadFileWeb(self):
@@ -267,14 +278,20 @@ class Data_Sources_Screen:
         self.poco("android.widget.TextView")[1].click()
         self.poco("android.widget.EditText").set_text(name)
 
-    def getCurrCount(self, after_scroll=False):
-        if after_scroll:
-            return (len(self.poco("android.widget.HorizontalScrollView").child()) - 2) // 4
+    def getCurrCount(self, after_swipe=False, scroll_count=1):
+        if after_swipe:
+            """Change on mac"""
+            if scroll_count == 0:
+                return (len(self.poco("android.widget.HorizontalScrollView").child()) - 2) // 4
+            else:
+                return (len(self.poco("android.widget.HorizontalScrollView").child())) // 4
         else:
             if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
                 if self.poco("android.widget.HorizontalScrollView").child()[2].get_name() == "DATA SOURCE":
                     return (len(self.poco("android.widget.HorizontalScrollView").child()) - 3) // 3
                 return (len(self.poco("android.widget.HorizontalScrollView").child()) - 2) // 2
+            elif self.poco("android.widget.HorizontalScrollView").child()[0].get_name() == "DATE ADDED":
+                return (len(self.poco("android.widget.HorizontalScrollView").child()) - 2) // 4
             else:
                 return len(self.poco("android.widget.HorizontalScrollView").child()) - 1
 
@@ -300,6 +317,13 @@ class Data_Sources_Screen:
 
     def fileListDisplayed(self, no_of_swipes=False):
         File_List = []
+        if self.poco("You don’t have any files").exists():
+            return File_List
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        while not self.poco("NAME").exists():
+            scroll_view.swipe("right")
+        for i in range(5):
+            scroll_view.swipe("right")
         temp = []
         swipe_count = 0
         if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
@@ -321,7 +345,7 @@ class Data_Sources_Screen:
             else:
                 File_List.append(self.poco("android.widget.HorizontalScrollView").child()[i].get_name())
         while True:
-            common_method.swipe_screen([0.5, 0.9175213675213675], [0.5, 0.080], 1)
+            self.poco.scroll()
             swipe_count += 1
             for i in range(1, self.getCurrCount() + 1):
                 if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
@@ -345,17 +369,50 @@ class Data_Sources_Screen:
                 index_from = temp.index(current_last_child) + 1
                 for i in range(index_from, len(temp)):
                     File_List.append(temp[i])
-                break
+                if temp[-1] == current_last_child:
+                    break
             else:
                 for i in range(len(temp)):
                     File_List.append(temp[i])
                 current_last_child = new_last_child
             temp = []
-        common_method.swipe_screen([0.5, 0.080], [0.5, 0.9175213675213675], swipe_count)
+        while not self.poco("NAME").exists():
+            scroll_view = self.poco("android.view.View")
+            scroll_view.swipe("down")
         if not no_of_swipes:
             return File_List
         else:
             return File_List, swipe_count
+
+    def selectFileWithExtension(self, extension):
+        prev_last_child = None
+        start = 1
+        while True:
+            child_count = len(self.poco("android.widget.HorizontalScrollView").child())
+            curr_last_child = self.poco("android.widget.HorizontalScrollView").child()[child_count - 1].get_name()
+            if prev_last_child == curr_last_child:
+                break
+            for i in range(start, child_count):
+                if self.poco("android.widget.HorizontalScrollView").child()[i].get_name().split(".")[1] == extension:
+                    self.poco("android.widget.HorizontalScrollView").child()[i].click()
+                    return self.poco("android.widget.HorizontalScrollView").child()[i].get_name()
+            self.poco.scroll()
+            start = 0
+
+    def select_file_link_drive(self, filename):
+        prev_last_child = None
+        start = 1
+        while True:
+            child_count = len(self.poco("android.widget.HorizontalScrollView").child())
+            curr_last_child = self.poco("android.widget.HorizontalScrollView").child()[child_count - 1].get_name()
+            if prev_last_child == curr_last_child:
+                break
+            for i in range(start, child_count):
+                if self.poco("android.widget.HorizontalScrollView").child()[i].get_name() == filename:
+                    self.poco("android.widget.HorizontalScrollView").child()[i].click()
+                    return self.poco("android.widget.HorizontalScrollView").child()[i].get_name()
+            self.poco.scroll()
+            start = 0
 
     def verifyDesign(self, labelname):
         label_name_len = len(labelname)
@@ -399,9 +456,9 @@ class Data_Sources_Screen:
         if self.poco(self.List_Empty).exists():
             return True
         else:
-            print("Files are not filtered")
-            return 1 / 0
-
+            # print("Files are not filtered")
+            # return 1 / 0
+            raise Exception("List not empty")
     def searchRandomWord(self):
         random_word = self.generateRandomWord(64)
         self.searchName(random_word)
@@ -450,11 +507,10 @@ class Data_Sources_Screen:
         self.poco("android.view.View")[4].child()[1].child()[7].click()
 
     def verifyIfPreviewIsPresent(self):
-        if self.poco("android.widget.ScrollView").child()[4].get_name() == "android.widget.ImageView":
+        if self.poco("android.widget.ImageView")[1].exists():
             return
         else:
-            print("Preview not shown")
-            return 1 / 0
+            raise Exception("Preview not shown")
 
     def selectLabelRange(self, label_range):
         self.Label_Range = label_range
@@ -492,7 +548,8 @@ class Data_Sources_Screen:
         google_drive.click()
 
     def clickMicrosoftOneDrive(self):
-        one_drive = self.poco("android.view.View")[3].child()[2]
+        one_drive = self.poco(nameMatches="(?s).*Microsoft OneDrive.*")
+        one_drive.wait_for_appearance(timeout=10)
         one_drive.click()
 
     def searchTest(self, searchText, subscript_i=0):
@@ -549,6 +606,7 @@ class Data_Sources_Screen:
             sign_in_with_microsoft.click()
         else:
             touch(self.Sign_In_With_Microsoft_Template)
+        self.poco("i0116").wait_for_appearance(timeout=10)
         self.poco("i0116").click()
         # username = "zsbswdvt@gmail.com"
         self.poco("i0116").set_text(username)
@@ -571,18 +629,26 @@ class Data_Sources_Screen:
         else:
             touch(self.Sign_In_With_Google_Template)
         sleep(4)
-        self.poco("com.google.android.gms:id/add_account_chip_title").click()
+        if self.poco("com.google.android.gms:id/add_account_chip_title").exists():
+            self.poco("com.google.android.gms:id/add_account_chip_title").click()
         self.poco("android.widget.TextView").wait_for_appearance(timeout=10)
         self.poco("android.widget.TextView")[2].click()
         sleep(3)
+        if self.poco(text="Close").exists():
+            self.poco(text="Close").click()
         self.poco("identifierId").set_text(username)
         sleep(3)
-        self.poco("android.widget.Button")[1].click()
+        self.poco(text="Next").click()
         sleep(3)
         self.poco("android.widget.EditText").set_text(password)
         sleep(3)
-        self.poco("android.widget.Button").click()
-        # self.chooseAccToLinkFile()
+        self.poco(text="Next").click()
+        self.poco.scroll()
+        if self.poco(text="I agree").exists():
+            self.poco(text="I agree").click()
+        self.poco.scroll()
+        if self.poco(text="Accept").exists():
+            self.poco(text="Accept").click()
 
     def signInWithEmail(self):
         try:
@@ -616,6 +682,9 @@ class Data_Sources_Screen:
                 return
             else:
                 raise Exception(str(i) + " is not of supported format")
+
+
+
 
     def clickSelect(self):
         select = self.poco(self.Select)
@@ -661,22 +730,27 @@ class Data_Sources_Screen:
         if assert_exists(self.is_already_linked, "File already present."):
             return
         else:
-            raise Exception("File ")
+            raise Exception("File already linked pop up not present.")
 
     def searchFilesInLinkFiles(self, file_name):
-        touch(self.search_Files_In_Link_Files).click()
+        touch(self.search_Files_In_Link_Files)
         self.poco(text(file_name))
 
     def verifyFilePresentInList(self, file_name, datasource=None, data=False, verify_date=True):
         if self.poco(self.List_Empty).exists():
             raise Exception(file_name + "File not present")
         file_list = self.fileListDisplayed()
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        while not self.poco("DATA SOURCE").exists():
+            scroll_view.swipe("left")
+        for j in range(5):
+            scroll_view.swipe("left")
+        """Change on mac"""
         for i in range(len(file_list)):
             if not data:
                 if file_list[i] == file_name:
                     return
             else:
-                common_method.swipe_screen([0.9, 0.3482905982905983], [0.22037037037037038, 0.3482905982905983], 3)
                 year = datetime.date.today().year
                 date = datetime.date.today().day
                 month = self.Month[datetime.date.today().month]
@@ -685,15 +759,23 @@ class Data_Sources_Screen:
                 expected_date = str(month) + " " + str(date) + ", " + str(year)
                 name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
                 if name_app == file_name:
+                    if datasource is not None:
+                        if datasource == data_source_app:
+                            scroll_view = self.poco("android.widget.HorizontalScrollView")
+                            while not self.poco("NAME").exists():
+                                scroll_view.swipe("right")
+                            for j in range(5):
+                                scroll_view.swipe("right")
+                            return
                     if verify_date:
                         if date_app == expected_date:
                             pass
                         else:
-                            raise Exception("Date not matching")
-                    if datasource is not None:
-                        if datasource == data_source_app:
-                            return
+                            if i == len(file_list)-1:
+                                raise Exception("Date not matching")
         raise Exception(file_name + "File not present")
+
+
 
     def clickHome(self):
         home_btn = self.poco(self.Home)
@@ -707,24 +789,80 @@ class Data_Sources_Screen:
             if content == "Remove linked file\nAre you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.":
                 return
 
+    # def remove_File_Based_On_DataSource(self, datasource, filename=None, cancel=False, verify=False):
+    #     file_list, no_of_swipes = self.fileListDisplayed(True)
+    #     scroll_view = self.poco("android.widget.HorizontalScrollView")
+    #     curr_child_count = self.getCurrCount(False)
+    #     scrolled = False
+    #     while not self.poco("DATA SOURCE").exists():
+    #         scroll_view.swipe("left")
+    #     for i in range(5):
+    #         scroll_view.swipe("left")
+    #     while no_of_swipes >= 0:
+    #         for i in range(curr_child_count):
+    #             if not scrolled:
+    #                 data_source = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
+    #                 name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+    #             else:
+    #                 data_source = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+    #                 name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
+    #             if data_source == datasource:
+    #                 if filename is not None:
+    #                     if name_app == filename:
+    #                         three_dot = self.poco("android.widget.Button")[i]
+    #                         three_dot.click()
+    #                         self.clickRemove()
+    #                         if verify:
+    #                             self.verify_Remove_File_Warning()
+    #                         if not cancel:
+    #                             self.clickRemove()
+    #                         else:
+    #                             self.clickCancel()
+    #                         return
+    #                 else:
+    #                     three_dot = self.poco("android.widget.Button")[i]
+    #                     three_dot.click()
+    #                     self.clickRemove()
+    #                     if verify:
+    #                         self.verify_Remove_File_Warning()
+    #                     if not cancel:
+    #                         self.clickRemove()
+    #                     else:
+    #                         self.clickCancel()
+    #                     return name_app
+    #         self.poco.scroll()
+    #         no_of_swipes -= 1
+    #         scrolled = True
+    #         curr_child_count = self.getCurrCount(True)
+    #     raise Exception("No file with datasource " + datasource)
+
     def remove_File_Based_On_DataSource(self, datasource, filename=None, cancel=False, verify=False):
-        file_list, no_of_swipes = self.fileListDisplayed(True)
-        sleep(2)
-        if filename is None:
-            login_page = Login_Screen(self.poco)
-            sleep(5)
-            login_page.click_Menu_HamburgerICN()
-            self.clickHome()
-            sleep(2)
-            login_page.click_Menu_HamburgerICN()
-            sleep(2)
-            """Click My Data"""
-            self.click_My_Data()
-            sleep(3)
-        common_method.swipe_screen([0.9, 0.3482905982905983], [0.22037037037037038, 0.3482905982905983], 3)
-        while no_of_swipes >= 0:
-            for i in range(self.getCurrCount(True)):
-                if i == 0:
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        curr_child_count = self.getCurrCount(False)
+        scrolled = False
+        while not self.poco("DATA SOURCE").exists():
+            scroll_view.swipe("left")
+        for i in range(5):
+            scroll_view.swipe("left")
+        prev_arr = []
+        while True:
+            curr_arr = []
+            for i in range(curr_child_count):
+                if not scrolled:
+                    name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+                    curr_arr.append(name_app)
+                else:
+                    name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
+                    curr_arr.append(name_app)
+            if prev_arr == curr_arr:
+                break
+            prev_arr = curr_arr
+            self.poco.scroll()
+            scrolled = True
+
+        while not self.poco("DATA SOURCE").exists():
+            for i in range(curr_child_count):
+                if not scrolled:
                     data_source = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
                     name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
                 else:
@@ -754,8 +892,40 @@ class Data_Sources_Screen:
                         else:
                             self.clickCancel()
                         return name_app
-            common_method.swipe_screen([0.5, 0.9175213675213675], [0.5, 0.080], 1)
-            no_of_swipes -= 1
+            scroll_view.swipe("down")
+            curr_child_count = self.getCurrCount(True)
+        scrolled = False
+        for i in range(curr_child_count):
+            if not scrolled:
+                data_source = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
+                name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+            else:
+                data_source = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+                name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
+            if data_source == datasource:
+                if filename is not None:
+                    if name_app == filename:
+                        three_dot = self.poco("android.widget.Button")[i]
+                        three_dot.click()
+                        self.clickRemove()
+                        if verify:
+                            self.verify_Remove_File_Warning()
+                        if not cancel:
+                            self.clickRemove()
+                        else:
+                            self.clickCancel()
+                        return
+                else:
+                    three_dot = self.poco("android.widget.Button")[i]
+                    three_dot.click()
+                    self.clickRemove()
+                    if verify:
+                        self.verify_Remove_File_Warning()
+                    if not cancel:
+                        self.clickRemove()
+                    else:
+                        self.clickCancel()
+                    return name_app
         raise Exception("No file with datasource " + datasource)
 
     def remove_File(self, cancel=False):
@@ -800,19 +970,10 @@ class Data_Sources_Screen:
         file.click()
 
     def selectFileInLocalStorage(self):
-        file_1 = self.poco("com.google.android.documentsui:id/item_root")[0]
+        file_1 = self.poco("com.google.android.documentsui:id/preview_icon")[0].parent()
         file_1.click()
-        file_range = len(self.poco("com.google.android.documentsui:id/dir_list").child())
-        for i in range(1, file_range):
-            sleep(5)
-            self.click_Add_File()
-            sleep(2)
-            self.click_Upload_File()
-            sleep(2)
-            file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
-            file_i.click()
-
     def selectFilesInLocal(self):
+        """Change this on mac"""
         file_range = len(self.poco("com.google.android.documentsui:id/dir_list").child())
         file_list = []
         if self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
@@ -835,7 +996,7 @@ class Data_Sources_Screen:
         file_1.click()
         sleep(2)
 
-        for i in range(file_count):
+        for i in range(1, file_count):
             sleep(5)
             self.click_Add_File()
             sleep(2)
@@ -843,10 +1004,18 @@ class Data_Sources_Screen:
             sleep(2)
             file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
             file_i.click()
-
+        enter_while = True
+        scroll_count = 0
         while True:
+            sleep(5)
+            self.click_Add_File()
+            sleep(2)
+            self.click_Upload_File()
+            sleep(2)
             temp = []
-            self.poco.scroll()
+            scroll_count += 1
+            for i in range(scroll_count):
+                self.poco.scroll()
             file_range = len(self.poco("com.google.android.documentsui:id/dir_list").child())
             if self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
                 0].get_name() != "android.widget.LinearLayout":
@@ -861,54 +1030,75 @@ class Data_Sources_Screen:
                     0].child().child().get_text()
                 file_count = file_range - 1
             if new_last_child == current_last_child:
-                return
+                print("breakingggg...")
+                return file_list
             for i in range(file_count):
                 file_name = self.poco("com.google.android.documentsui:id/item_root")[i].child().child()[
                     0].child().child().get_text()
                 temp.append(file_name)
             if current_last_child in temp:
                 index_from = temp.index(current_last_child) + 1
-                for i in range(index_from, len(temp)):
-                    sleep(3)
-                    file_list.append(temp[i])
-                    sleep(5)
-                    self.click_Add_File()
-                    sleep(2)
-                    self.click_Upload_File()
-                    sleep(2)
-                    file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
-                    file_i.click()
             else:
-                for i in range(len(temp)):
-                    sleep(3)
-                    file_list.append(temp[i])
+                index_from = 0
+            for i in range(index_from, len(temp)):
+                sleep(3)
+                file_list.append(temp[i])
+                print(file_list)
+                if not enter_while:
                     sleep(5)
                     self.click_Add_File()
                     sleep(2)
                     self.click_Upload_File()
                     sleep(2)
-                    file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
-                    file_i.click()
+                    for j in range(scroll_count):
+                        self.poco.scroll()
+                file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
+                print(file_i.child().child()[0].child().child().get_text())
+                file_i.click()
+                enter_while = False
             current_last_child = new_last_child
 
-    def searchMyDesigns(self, design_name):
+    def searchMyDesigns(self, design_name, enter=True):
         self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(design_name)
-        self.clickEnter()
+        if enter:
+            self.clickEnter()
 
     def verifyPreviewShownIsCorrect(self):
         assert_exists(self.test_45738, "Preview shown is correct.")
 
-    def labelRangeSelection(self, label_range):
+    def labelRangeSelection(self, label_range, confirm=True):
         checkbox = self.poco(self.Check_Box)
-        self.poco("android.widget.ScrollView").child()[8].click()
+        self.poco("All").click()
         checkbox[0].click()
         checkbox[0].click()
+        checked_count = 0
         for i in range(label_range):
             if checkbox[3 + i].exists():
                 checkbox[3 + i].click()
-        self.clickConfirm()
-        return
+                checked_count += 1
+        if confirm:
+            self.clickConfirm()
+        return checked_count
+
+    def first_row_header(self, check=True):
+        if self.poco(self.Check_Box, checked=True):
+            if not check:
+                self.poco(self.Check_Box).click()
+        elif self.poco(self.Check_Box, checked=False):
+            if check:
+                self.poco(self.Check_Box).click()
 
     def lock_phone(self):
         os.system('adb shell input keyevent 26')
+
+    def clickGotItWeb(self):
+        if self.poco(text="Got It").exists():
+            self.poco(text="Got It").click()
+
+    def get_current_date(self):
+        year = datetime.date.today().year
+        date = datetime.date.today().day
+        month = self.Month[datetime.date.today().month]
+        current_date = str(month) + " " + str(date) + ", " + str(year)
+        return current_date

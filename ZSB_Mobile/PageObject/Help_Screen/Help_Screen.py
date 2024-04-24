@@ -42,6 +42,7 @@ class Help_Screen:
         self.Back_Arrow = "android.widget.Button"
         self.Go_To_Chat_Btn = "Go to chat"
         self.Chat_Hours = "Available 7am to 7pm ET"
+        self.EnterGooglePassword = "android.widget.EditText"
 
     def click_Help_dropdown_option(self):
         # help_dropdown_btn = self.poco(self.Dropdown_for_help)
@@ -61,17 +62,19 @@ class Help_Screen:
 
     def click_Chat(self):
         chat_btn = self.poco(self.Chat_btn)
+        chat_btn.wait_for_appearance(timeout=10)
         chat_btn.click()
 
     def clickBeginChat(self):
         begin_chat = self.poco(self.BeginChat_btn)
+        begin_chat.wait_for_appearance(timeout=10)
         begin_chat.click()
 
     def checkIfHelpIsPresent(self):
         assert_exists(self.Help_text, "Help option visible")
 
     def checkIfHelpIconIsPresent(self):
-        assert_exists(self.Help_icon, "Help option is represented by '?'.")
+        return assert_exists(self.Help_icon, "Help option is represented by '?'.")
 
     def checkIfLandedOnSupportPage(self):
         support = self.poco(text="Welcome to ZSB Series Support")
@@ -99,6 +102,7 @@ class Help_Screen:
 
     def clickBackArrow(self):
         back_arrow = self.poco(self.Back_Arrow)
+        back_arrow.wait_for_appearance(timeout=10)
         back_arrow.click()
 
     def selectDropDownForSubject(self):
@@ -126,8 +130,8 @@ class Help_Screen:
         support_btn = self.poco(self.Support_btn)
         faq_btn = self.poco(self.FAQs_btn)
         contact_us_btn = self.poco(self.Contact_Us_btn)
-        # live_chat_btn = self.poco(self.Chat_btn)
-        options = [support_btn, faq_btn, contact_us_btn]
+        live_chat_btn = self.poco(self.Chat_btn)
+        options = [support_btn, faq_btn, contact_us_btn, live_chat_btn]
         for option in options:
             if option.exists():
                 print(f"{option} button is present.")
@@ -166,12 +170,12 @@ class Help_Screen:
         self.poco(self.Start_chat).click()
 
     def verifyChatHours(self):
-        chathours = self.poco("android.view.View")[4].child()[1].get_name()
-        if chathours == "Available 7am to 7pm ET":
+        chat_hours = self.poco("android.view.View")[4].child()[1].get_name()
+        if chat_hours == "Available 7am to 7pm ET":
             return
         else:
-            print(f"Displaying --{chathours} instead of Available 7am to 7pm ET ")
-            return 1/0
+            error = f"Displaying --{chat_hours} instead of Available 7am to 7pm ET "
+            raise Exception(error)
 
 
     def goToChat(self):
@@ -190,3 +194,21 @@ class Help_Screen:
         else:
             print("Begin Chat Button not available")
             return 1 / 0
+
+    def addAccountToDevice(self):
+        if self.poco(text="Add account to device").exists():
+            self.poco(text="Add account to device").click()
+        else:
+            pass
+
+    def clickNext(self):
+        self.poco(text="Next").click()
+
+    def enter_Google_Password(self, password):
+        self.poco(self.EnterGooglePassword).set_text(password)
+
+    def Agreement_google_login(self):
+        if self.poco(text="I agree").exists():
+            self.poco(text="I agree").click()
+        if self.poco(text="Accept").exists():
+            self.poco(text="Accept").click()

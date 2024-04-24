@@ -970,10 +970,12 @@ class Common_Method():
         poco.swipe([start_point, element_pos[1]], [end_point, element_pos[1]], duration=duration)
 
     def Stop_The_App(self):
-        sleep(2)
+        sleep(3)
         stop_app("com.zebra.soho_app")
+        sleep(3)
 
     def Start_The_App(self):
+        sleep(4)
         start_app("com.zebra.soho_app")
         sleep(4)
 
@@ -1009,3 +1011,38 @@ class Common_Method():
         sleep(2)
         start_app(app_package)
         sleep(2)
+
+    def uninstall_iOS_app(self):
+        sleep(3)
+        app_package = "com.zebra.soho"
+        uninstall(app_package)
+        sleep(4)
+
+    def install_iOS_app(self):
+        sleep(2)
+        app_package = "com.zebra.soho"
+        install(app_package)
+        sleep(4)
+
+    def uninstall_app(self):
+        sleep(3)
+        app_package = "com.zebra.soho_app"
+        uninstall(app_package)
+        sleep(4)
+
+    def install_app(self):
+        sleep(2)
+        app_package = "com.zebra.soho_app"
+        install(app_package)
+        sleep(4)
+
+    # def install_app(self):
+    #     sleep(4)
+    #     # app_package = "com.zebra.soho_app"
+    #     # install(app_package)
+    #
+    #     # apk_path = "C:\Users\rk1277\Pictures\Android App\ZsbMobile-stage-NEW 4619.apk"
+    #
+    #     # Install the app
+    #     install(apk_path)
+    #     sleep(10)

@@ -375,6 +375,7 @@ common_method = Common_Method(poco)
 # app_settings_page_ios.click_Option_Icon_To_Select_ByName()
 # app_settings_page_ios.click_ByName_Option()
 # # """""click on the 1st image"""
+# app_settings_page_ios.click_On_First_Image_SearchBar()
 # app_settings_page_ios.click_First_Image()
 # sleep(2)
 # """click on the save & exit"""
@@ -1441,7 +1442,7 @@ common_method = Common_Method(poco)
 # app_settings_page_ios.click_Save_Exit_Btn()
 # """stop the app"""""
 # common_method.Stop_The_iOSApp()
-# #
+#
 # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #

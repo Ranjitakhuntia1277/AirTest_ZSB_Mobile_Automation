@@ -44,6 +44,7 @@ class Login_Screen:
 
     def click_Loginwith_Google(self):
         google_login = self.poco(self.Google_Login)
+        google_login.wait_for_appearance(timeout=10)
         google_login.click()
 
     def click_GoogleID_Field(self):

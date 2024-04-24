@@ -3,11 +3,11 @@ from airtest.core.api import *
 
 from ZSB_Mobile.PageObject.Login_Screen import *
 
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen import Add_A_Printer_Screen
+from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ZSB_Mobile.PageObject.APP_Settings_Screen import App_Settings_Screen
 from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
 from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
+from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
 from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 
 
@@ -21,7 +21,7 @@ connect_device("Android:///")
 start_app("com.zebra.soho_app")
 sleep(2.0)
 
-common_method = Common_Method()
+common_method = Common_Method(poco)
 login_page = Login_Screen(poco)
 app_settings_page = App_Settings_Screen(poco)
 add_a_printer_screen = Add_A_Printer_Screen(poco)
