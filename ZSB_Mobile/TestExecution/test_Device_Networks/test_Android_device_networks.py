@@ -36,6 +36,16 @@ class Test_Android_device_networks():
             others.click_continue_in_bluetooth_connection_required()
             common_method.wait_for_element_appearance_namematches("Apply Changes")
 
+    def t_100(self,add_network=0):
+        login_page.click_Menu_HamburgerICN()
+        others.click_Printer_Settings()
+        others.select_first_printer()
+        others.click_wifi_button()
+        if add_network:
+            others.click_manage_network_button()
+            others.click_continue_in_bluetooth_connection_required()
+            common_method.wait_for_element_appearance_namematches("Apply Changes")
+
     # def test_Device_Networks_TestcaseID_45693(self):
         # stop_app("com.zebra.soho_app")
         # start_app("com.zebra.soho_app")
