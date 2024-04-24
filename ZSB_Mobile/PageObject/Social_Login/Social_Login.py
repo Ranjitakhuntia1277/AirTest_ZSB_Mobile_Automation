@@ -121,15 +121,13 @@ class Social_Login:
     def click_on_benefits_of_zebra_account(self):
         self.poco("Benefits of a Free ZSB Account").click()
 
-
-
     def scroll_down(self,count):
 
         for i in range(count):
             self.poco.scroll()
 
     def check_the_cookie_text(self):
-        a = actual_value = self.poco("android.widget.TextView")[5].get_text()
+        a = actual_value = self.poco(textMatches=".*This site uses cookies to manage user authentication.*").get_text()
 
         print(actual_value)
 
@@ -140,22 +138,20 @@ class Social_Login:
     def check_options_under_cookie_text(self):
         a = self.poco("Zebra.com").exists()
         b = self.poco("Legal Notice").exists()
-        c = self.poco("Privacyself. Statement").exists()
+        c = self.poco("Privacy Statement").exists()
 
         return a and b and c
 
-
-
     def check_the_text_of_benefits_of_free_account_page(self):
-        a = self.poco(text="Create, design and print labels from your PC or Mac.").exists()
+        a = self.poco(textMatches=".*Create, design and print labels from your PC or Mac..*").exists()
 
-        b = self.poco(text="Design custom labels from scratch and print using the ZSB Label Designer on your PC or Mac").exists()
+        b = self.poco(textMatches=".*Design custom labels from scratch and print using the ZSB Label Designer on your PC or Mac.*").exists()
 
-        c = self.poco(text="Create a free Zebra account and register your printer for access to :").exists()
-
-        self.poco.scroll()
+        c = self.poco(textMatches=".*Create a free Zebra account and register your printer for access to :.*").exists()
 
         d = self.poco(text="Create and design labels in your own web-based custom workspace.").exists()
+        self.poco.scroll()
+        z = self.poco(text="Create and design labels in your own web-based custom workspace.").exists()
 
         e = self.poco(text="Thousands of pre-made design templates with high quality artwork perfect for home or business use.").exists()
 
@@ -163,7 +159,7 @@ class Social_Login:
 
         g = self.poco(text="And much more !").exists()
 
-        return a and b and c and d and e and f and g
+        return a and b and c and (d or z) and e and f and g
 
 
     def check_the_back_button(self):
@@ -196,8 +192,11 @@ class Social_Login:
         image_2 = Template(Basic_path("tpl1706352031764.png"), record_pos=(-0.281, 0.43), resolution=(1080, 2340))
 
         assert_exists(image_1)
-        self.poco.scroll()
-        assert_exists(image_2)
+        try:
+            assert_exists(image_2)
+        except:
+            self.poco.scroll()
+            assert_exists(image_2)
 
     def click_on_zebra_link(self):
         self.poco("Zebra.com").click()
@@ -212,19 +211,35 @@ class Social_Login:
 
         if click_back:
             keyevent("back")
-        self.poco("android.widget.EditText")[0].set_text(user_name)
+        try:
 
-        self.poco("android.widget.EditText")[1].set_text(password)
-
-        # self.poco(text="Sign In").click()
+            self.poco("android.widget.EditText")[0].set_text(user_name)
+            if self.poco(nameMatches=".*keyboard.*").exists():
+                self.go_back()
+            self.poco("android.widget.EditText")[1].set_text(password)
+        except:
+            self.poco("username").set_text(user_name)
+            if self.poco(nameMatches=".*keyboard.*").exists():
+                self.go_back()
+            self.poco("password").set_text(password)
+            keyevent("enter")
+        if self.poco(nameMatches=".*keyboard.*").exists():
+            self.go_back()
+        sleep(3)
         if click_on_sign_in:
+            self.click_on_sign_in()
+
+    def click_on_sign_in(self):
+        try:
+            self.poco("submit_id").click()
+        except:
             self.poco("android.widget.Button")[1].click()
-
-
+    def click_here_button_click(self):
+        self.poco(nameMatches=".*Click here.*").click()
 
     def click_on_submit_button(self):
         try:
-            self.poco(self.submit_button_text).click()
+            self.poco(text=self.submit_button_text).click()
         except:
             self.poco(text="Submit").click()
 
@@ -234,16 +249,15 @@ class Social_Login:
     def check_for_password_change_page(self):
         self.poco(text="Password Recovery").exists()
 
-    def enter_user_name_to_change_password(self):
+    def enter_user_name_to_change_password(self,username):
         # self.poco("android.widget.EditText").click()
 
-        self.poco("android.widget.EditText").set_text("zebra850@gmail.com")
+        self.poco("android.widget.EditText").set_text(username)
 
     def open_change_password_page(self):
         self.poco("Click here ").click()
 
-    def enter_the_new_password_with_temporary_password(self,temp,new_pass):
-        self.poco("android.widget.EditText")[0].set_text(temp)
+    def enter_the_new_password_with_temporary_password(self,new_pass):
 
         self.poco("android.widget.EditText")[1].set_text(new_pass)
 
@@ -258,11 +272,17 @@ class Social_Login:
     def click_on_sign_in_with_email(self):
         self.poco(text=self.sign_in_with_email).click()
 
+    def check_element_present_name_matches(self,elem):
+        a = self.poco(nameMatches="(?s).*"+elem+".*").exists()
+        return a
     def wait_for_element_appearance(self,element, time_out=20):
         self.poco(element).wait_for_appearance(timeout=time_out)
 
     def wait_for_element_appearance_text(self,element, time_out=25):
-        self.poco(text=element).wait_for_appearance(timeout=time_out)
+        self.poco(textMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
+
+    def wait_for_element_appearance_namematches_all(self, element, time_out=25):
+        self.poco(nameMatches="(?s).*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def check_username_and_password_feilds(self):
         a = self.poco(text="Username*").exists()
@@ -278,18 +298,18 @@ class Social_Login:
         return a
 
     def check_text_of_register_your_email(self):
-        e = self.poco(text="Don't have an account? ").exists()
+        e = self.poco(textMatches=".*Don't have an account?.*").exists()
         # e = self.poco(text="Don't have an account? ").exists()
         f = self.poco(" Register Your Email Now").exists()
 
-        return f
+        return f and e
 
     def check_reset_password_text(self):
         # g = self.poco(text="Forgot your password? ").exists()
-        g = self.poco(text="Learn more about the ").click()
+        g = self.poco(textMatches=".*Forgot your password?.*").exists()
         h = self.poco(" Reset Password").exists()
 
-        return h
+        return h and g
 
     def click_on_close_button(self):
         self.poco(text="Close", enabled=True).click()
@@ -311,7 +331,7 @@ class Social_Login:
 
     def enter_the_fields(self,firstname,lastname,password):
         temp2 = self.poco("android.widget.EditText")[0]
-        temp1 = self.poco(text="signup.zebra.com")
+        temp1 = self.poco(textMatches=".*ZSB Printer User.*")
         temp2.drag_to(temp1)
         sleep(3)
 
@@ -342,10 +362,20 @@ class Social_Login:
 
     def select_the_check_boxes(self):
 
-        self.poco("android.widget.CheckBox")[0].click()
+        self.poco("android.widget.CheckBox",focused=False).click()
 
-        self.poco("android.widget.CheckBox")[1].click()
+    def click_on_cancel_button_in_eula(self):
+        self.poco(type="android.widget.Button").click()
 
+    def click_on_cancel_button(self):
+        self.poco(type="android.widget.Button").click()
+    def click_on_exit_in_eula(self):
+        self.poco("Exit").click()
+    def click_on_allow_for_notification(self):
+        try:
+            self.poco(nameMatches=".*allow.*").click()
+        except:
+            self.poco(textMatches=".*allow.*").click()
     def click_submit_and_continue(self):
         start_point = [0.5,0.7]
         end_point = [0.5,0.4]
@@ -363,7 +393,7 @@ class Social_Login:
             self.poco(text="Continue").click()
 
     def accept_EULA_agreement(self):
-        while self.poco(name="Accept" , enabled=False):
+        while self.poco(name="Accept",enabled=False):
             start_point = [0.5,0.8]
             end_point = [0.5,0.1]
             self.poco.swipe(start_point, end_point, duration=0.1)
@@ -384,8 +414,9 @@ class Social_Login:
         self.poco(name="Decline", enabled=True).click()
 
     def check_EULA(self):
-        a = self.poco("End User\n License Agreement").exists()
-        return a
+        a = self.poco("ZSB Terms of Use and License Agreement").exists()
+        b = self.poco("Zebra's Privacy Statement.").exists()
+        return a and b
 
     def click_element_by_text(self,a):
         self.poco(text=a).click()
@@ -428,6 +459,8 @@ class Social_Login:
         return a
 
     def choose_a_google_account(self,gmail):
+        while not self.poco(text=gmail).exists():
+            self.poco.scroll()
         a = self.poco(text=gmail).click()
 
     def check_the_email_in_profile_page(self,loged_in_mail):
@@ -462,6 +495,8 @@ class Social_Login:
         keyevent("KEYCODE_APP_SWITCH")
 
     def get_the_password(self):
+        self.poco("android.widget.EditText")[1].click()
+        self.go_back()
         a = self.poco("android.widget.EditText")[1].get_text()
         return a
 
@@ -471,6 +506,8 @@ class Social_Login:
     def check_for_blank_value_error_of_both(self):
         a = self.poco(text="Please fill out username field.").exists()
 
+        self.poco("android.widget.EditText").click()
+        self.go_back()
         b = self.poco(text="Please fill out password field.").exists()
 
         return a and b
@@ -485,11 +522,17 @@ class Social_Login:
         return a
 
     def enter_user_name_in_google(self,user_name):
-        a = "zsb@gmail.com"
+
         self.poco("identifierId").set_text(user_name)
 
+    def get_one_of_the_gmail_accounts(self):
+        return self.poco(textMatches=".*@gmail.com.*").get_text()
     def sign_in_with_google(self):
+        while not self.poco(text="Use another account").exists():
+            self.poco.scroll()
         self.poco(text="Use another account").click()
+        while not self.poco(text="Add account to device").exists():
+            self.poco.scroll()
         self.poco(text="Add account to device").click()
 
     def check_for_incorrect_username_in_google(self):
@@ -505,10 +548,13 @@ class Social_Login:
             touch(temp)
             touch(temp)
         except:
-            self.poco("android.view.View")[4].focus([0.05, 0.4]).click()
-
-            self.poco("android.view.View")[4].focus([0.05, 0.3]).click()
-
+            try:
+                temp = Template(Basic_path("tpl1711017333817.png"))
+                touch(temp)
+                touch(temp)
+            except:
+                self.poco(text="Clear").parent().focus([0.1, 0.37]).click()
+                self.poco(text="Clear").parent().focus([0.1, 0.47]).click()
 
     def click_on_submit_in_facebook(self):
         self.poco(text="Submit").click()
@@ -531,7 +577,7 @@ class Social_Login:
         self.poco(text="Sign In").click()
 
     def two_factor_authentication_for_apple(self,a):
-        self.poco(text="Two-Factor Authentication").click()
+
         for i in range(6):
             self.poco("android.widget.EditText")[i].set_text(int(a[i]))
 
@@ -557,7 +603,7 @@ class Social_Login:
 
     def check_for_incorrect_error_in_apple(self):
 
-        a = self.poco(text="Your Apple\xa0ID or password was incorrect.").exists()
+        a = self.poco(textMatches="(?s).*Your Apple.*ID or password was incorrect..*").exists()
         return a
 
     def continue_in_facebook(self):
@@ -579,11 +625,11 @@ class Social_Login:
         keyevent("enter")
 
     def check_wrong_user_name_error_in_facebook(self):
-        a= self.poco(text="The email address that you've entered doesn't match any account. ")
+        a= self.poco(textMatches="The mobile number or email address that you've entered doesn't match any account..*")
         return a
 
     def check_wrong_password_error_in_facebook(self):
-        a = self.poco(text="Incorrect password. ")
+        a = self.poco(textMatches="Incorrect password..*")
         return a
 
     def selectPrinter(self, printername):
