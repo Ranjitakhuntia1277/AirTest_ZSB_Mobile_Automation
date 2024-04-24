@@ -826,34 +826,34 @@ def test_AppSettings_TestcaseID_47917():
     """Verify Printer’s name is too long which should not causes app get stuck and style error at Printer Settings page."""
 
 
-# try:
-"""start the app"""
-common_method.tearDown()
-""""verify home text is displaying on the home screen"""
-app_settings_page.Home_text_is_present_on_homepage()
-"""click on the hamburger icon"""
-login_page.click_Menu_HamburgerICN()
-""""click on printer settings tab"""""
-app_settings_page.click_Printer_Settings()
-app_settings_page.click_PrinterName_On_Printersettings()
-app_settings_page.click_Printer_Name_Text_Field()
-app_settings_page.clear_First_Name()
-"""Rename the Printer Name with a long text (more than 30 characters)"""
-app_settings_page.Rename_PrinterName_With30_Characters()
-app_settings_page.click_Back_Icon()
-app_settings_page.Verify_Exceeding_Characters_Message()
-login_page.click_Menu_HamburgerICN()
-app_settings_page.click_Printer_Settings()
-app_settings_page.click_PrinterName_On_Printersettings()
-app_settings_page.click_Printer_Name_Text_Field()
-app_settings_page.clear_First_Name()
-app_settings_page.Update_PrinterName()
-app_settings_page.click_Back_Icon()
-# common_method.savePassResult(errors, "47917")
-# except Exception as e:
-# common_method.saveError(errors, e)
-"""stop the app"""
-common_method.Stop_The_App()
+    # try:
+    """start the app"""
+    common_method.tearDown()
+    """"verify home text is displaying on the home screen"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on printer settings tab"""""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    app_settings_page.click_Printer_Name_Text_Field()
+    app_settings_page.clear_First_Name()
+    """Rename the Printer Name with a long text (more than 30 characters)"""
+    app_settings_page.Rename_PrinterName_With30_Characters()
+    app_settings_page.click_Back_Icon()
+    app_settings_page.Verify_Exceeding_Characters_Message()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    app_settings_page.click_Printer_Name_Text_Field()
+    app_settings_page.clear_First_Name()
+    app_settings_page.Update_PrinterName()
+    app_settings_page.click_Back_Icon()
+    # common_method.savePassResult(errors, "47917")
+    # except Exception as e:
+    # common_method.saveError(errors, e)
+    """stop the app"""
+    common_method.Stop_The_App()
 
 ## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
