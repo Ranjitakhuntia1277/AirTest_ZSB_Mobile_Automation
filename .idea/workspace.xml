@@ -4,6 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="Template Managemnet_Tarun">
+      <changelist_data name="R" email="tr5927@zebra.com" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/Apple_Icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/Facebook_Icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/Google_Icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/Password.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/Text_Location.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/close_notification.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/place_pic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/search_files_place_holder.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Help_Screen/Help_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Help_Screen/Help_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Printer_Management_Screen/Printer_Management_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Printer_Management_Screen/Printer_Management_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management/Template_Management_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management/Template_Management_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management_Sceen_JK/Template_Management_Sceen_JK.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management_Screen_JK/Template_Management_Screen_JK.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/tpl1705388526509.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/tpl1706164214397.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Help/test_Help_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Help/test_Help_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Printer_Management/test_Printer_Management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Printer_Management/test_Printer_Management.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/Join_Network_Password_TextBox.png" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/Join_Network_Password_TextBox.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/blank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/search_design_placeholder.png" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/search_design_placeholder.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" afterDir="false" />
+=======
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704782766519.png" beforeDir="false" />
@@ -20,15 +52,28 @@
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_iOS_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_iOS_Smoke_Test.py" afterDir="false" />
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+=======
   <component name="ExportTestResults" exportFormat="Xml" outputFolder="$PROJECT_DIR$" openResultsInEditor="true" userTempatePath="" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       <list>
         <option value="Python Script" />
       </list>
@@ -48,21 +93,90 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46018.executor": "Run",
+    "Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46020.executor": "Run",
+    "Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47791.executor": "Run",
+    "Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47792.executor": "Run",
+    "Python tests.Python tests for test_iOS_App_Settings.test_AppSettings_TestcaseID_47918.executor": "Run",
+    "Python tests.Python tests in test_Template_Management_Android_JK.py.executor": "Run",
+    "Python tests.pytest for test_Data_Sources_Android.test_DataSources_TestcaseID_45729.executor": "Run",
+    "Python tests.pytest for test_Help_Android.test_Help_TestcaseID_45789.executor": "Run",
+    "Python tests.pytest for test_Registration_Android.test_Registration_TestcaseID_45855.executor": "Run",
+    "Python tests.pytest for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45981.executor": "Run",
+    "Python tests.pytest for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45985.executor": "Run",
+    "Python tests.pytest for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45987.executor": "Run",
+    "Python tests.pytest for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45994.executor": "Run",
+    "Python tests.pytest in test_Data_Sources_Android.py.executor": "Run",
+    "Python tests.pytest in test_Help_Android.py.executor": "Run",
+    "Python tests.pytest in test_Registration_Android.py.executor": "Run",
+    "Python tests.pytest in test_Template_Management_Android_JK.py.executor": "Run",
+    "Python.ex.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "JK__ZSB",
+    "last_opened_file_path": "C:/Users/JD4936/Documents/ZSB_Automation",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
+=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Ranjita__ZSB&quot;
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JD4936\Documents\ZSB_Automation\ZSB_Mobile\TestExecution\test_Registration" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+<<<<<<< HEAD
+      <recent name="C:\Users\JD4936\Documents\ZSB_Automation\ZSB_Mobile\TestExecution\test_Template_Management_JK" />
+      <recent name="C:\Users\JD4936\Documents\ZSB_Automation\ZSB_Mobile\TestExecution\test_Registration" />
+      <recent name="C:\Users\JD4936\Documents\ZSB_Automation\ZSB_Mobile\TestExecution\test_Data_Sources" />
+=======
       <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\TestExecution\test_Smoke_Test" />
       <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images" />
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile" />
       <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation" />
     </key>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager" selected="Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46018">
+    <configuration name="ex" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Help" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Help/ex.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46018" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK" />
+=======
   <component name="RunManager" selected="Python tests.pytest in test_Android_App_Settings.py">
     <configuration name="pytest for test_APS_Printing_Android.test_APS_Printing_TestcaseID_49144" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
@@ -70,60 +184,88 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases" />
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
+      <option name="_new_target" value="&quot;test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46018&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47791" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+=======
       <option name="_new_target" value="&quot;test_APS_Printing_Android.test_APS_Printing_TestcaseID_49144&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45688" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
+      <option name="_new_target" value="&quot;test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47791&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47792" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+=======
       <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_45688&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45689" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
+      <option name="_new_target" value="&quot;test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47792&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_Help_Android.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+=======
       <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_45689&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_47918" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Help" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Help/test_Help_Android.py&quot;" />
+=======
       <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_47918&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
@@ -141,18 +283,34 @@
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py&quot;" />
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
+        <item itemvalue="Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46018" />
+        <item itemvalue="Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47792" />
+        <item itemvalue="Python tests.pytest in test_Help_Android.py" />
+        <item itemvalue="Python.ex" />
+        <item itemvalue="Python tests.Python tests for test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47791" />
+=======
         <item itemvalue="Python tests.pytest in test_Android_App_Settings.py" />
         <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45688" />
         <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_47918" />
         <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45689" />
         <item itemvalue="Python tests.pytest for test_APS_Printing_Android.test_APS_Printing_TestcaseID_49144" />
+>>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

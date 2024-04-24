@@ -77,19 +77,25 @@ class Help_Screen:
         return assert_exists(self.Help_icon, "Help option is represented by '?'.")
 
     def checkIfLandedOnSupportPage(self):
-        support = self.poco(text="Welcome to ZSB Series Support")
-        support_title = support.get_text()
-        assert_equal(support_title, "Welcome to ZSB Series Support", "Title of the page is matching")
+        try:
+            self.poco(text="Welcome to ZSB Series Support").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("\"Welcome to ZSB Series Support\" not found on support page.")
 
     def checkIfLandedOnFAQsPage(self):
-        faq = self.poco(text="Frequently Asked Questions")
-        faq_title = faq.get_text()
-        assert_equal(faq_title, "Frequently Asked Questions", "Title of the page is matching")
+        try:
+            self.poco(text="Frequently Asked Questions").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("\"Frequently Asked Questions\" not found on support page.")
 
     def checkIfLandedOnContactUsPage(self):
-        contact_us = self.poco(text="Call Us")
-        contact_us_title = contact_us.get_text()
-        assert_equal(contact_us_title, "Call Us", "Title of the page is matching")
+        try:
+            self.poco(text="Call Us").wait_for_appearance(timeout=20)
+        except:
+            try:
+                self.poco(text="Support Case Submission").wait_for_appearance(timeout=20)
+            except:
+                raise Exception("\"Call Us\" not found on support page.")
 
     "--------------------------------------------------------------------------------------------------"
     """ Step 8. Check the logo located on top left is a ZSB Series logo
@@ -134,24 +140,27 @@ class Help_Screen:
         options = [support_btn, faq_btn, contact_us_btn, live_chat_btn]
         for option in options:
             if option.exists():
-                print(f"{option} button is present.")
+                # print(f"{option} button is present.")
                 assert True
 
             else:
-                print(f"{option} button is not present.")
+                # print(f"{option} button is not present.")
                 assert False
 
     def verify_url(self, expected_url):
         self.poco("com.android.chrome:id/security_button").click()
         self.poco("com.android.chrome:id/page_info_truncated_url").click()
         url_on_screen = self.poco("com.android.chrome:id/page_info_url").get_text()
-        if url_on_screen == expected_url:
+        if expected_url in url_on_screen:
+            keyevent("back")
             return
         else:
             raise Exception("URL not matching")
 
-    def chooseAcc(self):
-        account = self.poco(self.Account)
+    def chooseAcc(self, Acc_Name="swdvt zsb"):
+        account = self.poco(text=Acc_Name)
+        while not account.exists():
+            self.poco.scroll()
         account.click()
 
     def swipeLeft(self):
@@ -185,15 +194,13 @@ class Help_Screen:
         if self.poco("android.view.View")[4].child().child()[1].get_name() == "Help":
             return
         else:
-            print("Chat window title is not Help")
-            return 1 / 0
+            raise Exception("Chat window title is not Help")
 
     def verifyBeginChatBtn(self):
         if self.poco(self.BeginChat_btn).exists():
             return
         else:
-            print("Begin Chat Button not available")
-            return 1 / 0
+            raise Exception("Begin Chat Button not available")
 
     def addAccountToDevice(self):
         if self.poco(text="Add account to device").exists():

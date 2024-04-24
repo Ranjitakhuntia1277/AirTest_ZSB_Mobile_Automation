@@ -10,6 +10,7 @@ import time
 from pipes import Template
 from platform import platform
 from time import sleep
+import traceback
 
 import package_name
 from airtest.core.api import swipe, exists, touch, keyevent, shell, start_app, stop_app, uninstall, install
@@ -1045,4 +1046,3 @@ class Common_Method():
     #
     #     # Install the app
     #     install(apk_path)
-    #     sleep(10)
