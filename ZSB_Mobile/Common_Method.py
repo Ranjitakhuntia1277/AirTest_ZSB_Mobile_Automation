@@ -2,15 +2,19 @@ import datetime
 import logging
 import os
 import re
+import requests
 import shutil
 import subprocess
 import ipaddress
 import random
 import time
+import traceback
 from pipes import Template
 from platform import platform
 from time import sleep
-
+from poco.exceptions import PocoNoSuchNodeException
+# from pocoui_lib.android.kotoComponent import poco
+# from pocoui_lib.ios.kotoComponent import poco
 import package_name
 from airtest.core.api import swipe, exists, touch, keyevent, shell, start_app, stop_app, uninstall, install
 from airtest.core.assertions import assert_true
@@ -22,12 +26,13 @@ from smb.SMBConnection import SMBConnection
 # from airtest.report.report import LogToHtml
 # from common.baseValue import *
 # from common.filepath import *
-
+from poco import poco
 from airtest.core.android.android import ADB
 import tidevice
 from airtest.core.api import *
 from airtest.core.api import device as current_device
 from poco import poco
+
 
 # from test.body import poco
 
@@ -118,23 +123,22 @@ class Common_Method():
         match = re.search(pattern, text)
         return match
 
-    def wait_for_element_appearance(self,element, time_out=10):
+    def wait_for_element_appearance(self, element, time_out=10):
         self.poco(element).wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_disappearance(self,element, time_out=20):
+    def wait_for_element_disappearance(self, element, time_out=20):
         self.poco(element).wait_for_disappearance(timeout=time_out)
 
-    def wait_for_element_appearance_enabled(self,element, time_out=10):
-        self.poco(element,enabled=True).wait_for_appearance(timeout=time_out)
+    def wait_for_element_appearance_enabled(self, element, time_out=10):
+        self.poco(element, enabled=True).wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_appearance_namematches(self,element, time_out=10):
-        self.poco(nameMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
+    def wait_for_element_appearance_namematches(self, element, time_out=10):
+        self.poco(nameMatches=".*" + element + ".*").wait_for_appearance(timeout=time_out)
 
+    def wait_for_element_appearance_textmatches(self, element, time_out=10):
+        self.poco(textMatches=".*" + element + ".*").wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_appearance_textmatches(self,element, time_out=10):
-        self.poco(textMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
-
-    def swipe_by_positions(self,start_point,end_point):
+    def swipe_by_positions(self, start_point, end_point):
 
         self.poco.swipe(start_point, end_point, duration=0.5)
 
@@ -148,7 +152,7 @@ class Common_Method():
         for i in range(number_of_swipes):
             swipe([w1, h1], [w2, h2])
 
-    def wait_for_element_appearance_text(self,element, time_out=15):
+    def wait_for_element_appearance_text(self, element, time_out=15):
         self.poco(text=element).wait_for_appearance(timeout=time_out)
 
     def Click(self, pocoElemnt, timeSleep=shortSleep, pos=[0.5, 0.5], needfresh=True):
@@ -976,10 +980,9 @@ class Common_Method():
         sleep(3)
 
     def Start_The_App(self):
-        sleep(4)
+        sleep(2)
         start_app("com.zebra.soho_app")
         sleep(4)
-
 
     def relaunch_app(self):
         app_package = "com.zebra.soho_app"
@@ -992,9 +995,9 @@ class Common_Method():
     #
     #     start_app("com.android.chrome")
     # sleep(5)
-    # touch(Template(r"tpl1706523292994.png", record_pos=(0.028, 0.918), resolution=(1080, 2400)))
+    # touch(Template(r"tpl.png", record_pos=(0.028, 0.918), resolution=(1080, 2400)))
     # sleep(4)
-    # touch(Template(r"tpl1706523705888.png", record_pos=(0.006, -0.894), resolution=(1080, 2400)))
+    # touch(Template(r"tpl.png", record_pos=(0.006, -0.894), resolution=(1080, 2400)))
     # text("https://zsbportal.zebra.com/")
     # sleep(5)
     def Start_The_iOSApp(self):
@@ -1028,22 +1031,100 @@ class Common_Method():
     def uninstall_app(self):
         sleep(3)
         app_package = "com.zebra.soho_app"
+        # if exists(Template("app_icon.png")):  # Assuming you have a template for the app icon
         uninstall(app_package)
         sleep(4)
 
     def install_app(self):
+        sleep(1)
+        apk_path = r"C:\Users\rk1277\Downloads"
+        apk_filename = "ZsbMobile-production-5399.apk"
+        packageName = "com.zebra.soho_app"
+        target_apk_path = os.path.join(apk_path, apk_filename)
+        try:
+            install(target_apk_path)
+        except Exception as e:
+            self.triggerError('Install app failed: ' + str(e))
         sleep(2)
-        app_package = "com.zebra.soho_app"
-        install(app_package)
-        sleep(4)
 
-    # def install_app(self):
-    #     sleep(4)
-    #     # app_package = "com.zebra.soho_app"
-    #     # install(app_package)
-    #
-    #     # apk_path = "C:\Users\rk1277\Pictures\Android App\ZsbMobile-stage-NEW 4619.apk"
-    #
-    #     # Install the app
-    #     install(apk_path)
-    #     sleep(10)
+    def install_Older_app(self):
+        sleep(1)
+        apk_path = r"C:\Users\rk1277\Downloads"
+        apk_filename = "ZsbMobile-production-5339.apk"
+        packageName = "com.zebra.soho_app"
+        target_apk_path = os.path.join(apk_path, apk_filename)
+        try:
+            install(target_apk_path)
+        except Exception as e:
+            self.triggerError('Install app failed: ' + str(e))
+        sleep(2)
+    def install_app_From_PlayStore(self):
+        sleep(2)
+        self.apk_path = r"C:\Users\rk1277\Downloads\ZsbMobile-production-5197.apk"  # Use 'r' before the string to treat it as a raw string
+        os.system("adb install " + self.apk_path)
+        sleep(9)
+    def tearDown(self):
+        packagename = "com.zebra.soho_app"
+        try:
+            pass
+        finally:
+            stop_app(packagename)
+            sleep(1)
+            start_app(packagename)
+            sleep(5)
+
+    def tearDown_iOS(self):
+        packagename = "com.zebra.soho"
+        try:
+            pass
+        finally:
+            stop_app(packagename)
+            sleep(1)
+            start_app(packagename)
+            sleep(1)
+
+    def Clear_App(self):
+        packagename = "com.zebra.soho_app"
+        try:
+            pass
+        finally:
+            clear_app(packagename)
+            sleep(1)
+            start_app(packagename)
+            sleep(4)
+
+    def savePassResult(self, error_array, test_number):
+        error_array.append(f"Test {test_number} passed\n")
+
+    def saveError(self, error_array, e):
+        error = "An exception occurred in test-45789: " + str(e)
+        error += "\n" + traceback.format_exc()
+        error_array.append(error)
+
+    # def saveError(error_array, error):
+    #     # Ensure error_array is properly initialized as a list
+    #     if not isinstance(error_array, list):
+    #         error_array = []
+
+        # Append the error to the error_array
+        # error_array.append(error)
+
+
+    def printExceptionIfPresent(self, error_array):
+        print("\n")
+        for error in error_array:
+            if "exception" in error:
+                print('\n'.join(map(str, error_array)))
+                raise Exception(error_array)
+
+    def disable_wifi(self):
+        try:
+            os.system('adb shell svc wifi disable')  # turn off Wi-Fi
+        except Exception as e:
+            pass
+
+    def enable_wifi(self):
+        try:
+            os.system('adb shell svc wifi enable')  # turn off Wi-Fi
+        except Exception as e:
+            pass
