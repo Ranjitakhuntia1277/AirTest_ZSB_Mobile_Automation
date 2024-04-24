@@ -19,7 +19,7 @@ class Login_Screen:
         self.poco = poco
         self.LoginAllow_Popup = "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
         self.Allow_ZSB_Series_Popup = "com.android.permissioncontroller:id/permission_allow_button"
-        self.loginBtn = "Login"
+        self.loginBtn = "Sign In"
         self.Use_Another_Account = "Use another account"
         self.Bluetooth_Allow = "android:id/button1"
         self.Google_Login = "Continue with Google"
