@@ -43,6 +43,7 @@ template_management_page = Template_Management_Screen(poco)
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
+# keyevent("back")
 # registration_page.verifyLinksInSignInPage()
 # registration_page.registerEmail()
 # try:
@@ -302,26 +303,28 @@ def test_Registration_TestcaseID_45857():
 #     """""""""test"""""
 #
 #
-# new_username = "zsbswdvt1@gmail.com"
+# new_username = "zsbswdvtsq@gmail.com"
 # common_method.Start_The_App()
 # registration_page.clickSignIn()
-# registration_page.verifyLinksInSignInPage()
 # data_sources_page.signInWithEmail()
+
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
+# keyevent("back")
+# registration_page.verifyLinksInSignInPage()
 # registration_page.registerEmail()
 # try:
 #     registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
 # except:
 #     raise Exception("register user page dint show")
 # registration_page.enter_user_email_for_registering(new_username)
-# registration_page.click_on_next()
 # try:
 #     registration_page.wait_for_element_appearance("Resend Verification Code.", 10)
 # except:
 #     raise Exception("Page to enter verification code did not appear. ")
-# sleep(20)
+#
 # """Enter verification code manually"""
+# sleep(30)
 # """Enter the User Email"""
 # registration_page.click_on_next()
 # sleep(2)
@@ -345,12 +348,9 @@ def test_Registration_TestcaseID_45857():
 # registration_page.verify_if_on_EULA_page()
 # """CANNOT DECLINE AS NO DECLINE OPTION PRESENT."""
 # try:
-#     registration_page.wait_for_element_appearance("Home", 20)
-#     x=1/0
-# except ZeroDivisionError:
+#     registration_page.wait_for_element_appearance("Welcome to ZSB Series", 20)
+# except:
 #     raise Exception("Reached Home page without accepting EULA")
-# except Exception as e:
-#     pass
 # registration_page.click_accept()
 # registration_page.clickClose()
 # registration_page.clickExit()
@@ -435,9 +435,10 @@ def test_Registration_TestcaseID_45857():
 # while not poco(text="Sign In With"):
 #     scroll_view.swipe("down")
 # registration_page.click_Google_Icon()
-# if poco(text="Choose an account").exists():
+# try:
+#     poco(text="Choose an account").wait_for_appearance(timeout=20)
 #     help_page.chooseAcc("zsbswdvt@gmail.com")
-# else:
+# except:
 #     pass
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
@@ -472,15 +473,22 @@ def test_Registration_TestcaseID_45857():
 # while not poco(text="Add account to device").exists():
 #     poco.scroll()
 # registration_page.addAccountToDevice()
-# registration_page.sign_In_With_Google("wrongloginzsb@gmail.com", "wrongloginzsb@123", True)
+# registration_page.sign_In_With_Google("wrongloginzsb@123", "wrongloginzsb@gmail.com", True)
 # registration_page.sign_In_With_Google("wrongloginzsb@1234")
 # try:
-#     registration_page.wait_for_element_appearance("Home", 20)
+#     common_method.wait_for_element_appearance_text("For the best experience, we need a couple of things from you.", 20)
+#     poco(text="For the best experience, we need a couple of things from you.").parent().child()[1].focus([0.5,0.2]).click()
+#     text("ZSB")
+#     data_sources_page.clickContinue()
+# except:
+#     pass
+# try:
+#     `registration_page.wait_for_element_appearance("Home", 20)
 # except:
 #     raise Exception("home page dint show up")
 # login_page.click_Menu_HamburgerICN()
 # name = registration_page.get_login_name_from_menu()
-# if name == "swdvt zsb":
+# if name == "wrongLoginZsb ZSB":
 #     pass
 # else:
 #     raise Exception("Login name does not match")
@@ -750,6 +758,11 @@ def test_Registration_TestcaseID_45867():
 # except:
 #     raise Exception("home page dint show up")
 # registration_page.click_Buy_More_Labels()
+# try:
+#     poco(text="Allow").wait_for_appearance(timeout=20)
+#     poco(text="Allow").click()
+# except:
+#     pass
 # help_page.verify_url("https://www.zebra.com/smb/us/en/labels.html")
 # common_method.Stop_The_App()
 
@@ -1044,12 +1057,9 @@ def test_Registration_TestcaseID_50287():
 # registration_page.verify_if_on_EULA_page()
 # """No Delcine option on EULA page"""
 # try:
-#     registration_page.wait_for_element_appearance("Home", 20)
-#     x=1/0
-# except ZeroDivisionError:
+#     registration_page.wait_for_element_appearance("Welcome to ZSB Series", 20)
+# except:
 #     raise Exception("Reached Home page without accepting EULA")
-# except Exception as e:
-#     pass
 # registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # data_sources_page.signInWithEmail()

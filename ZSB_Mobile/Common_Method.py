@@ -1014,22 +1014,6 @@ class Common_Method():
         start_app(app_package)
         sleep(2)
 
-<<<<<<< HEAD
-    def savePassResult(self, error_array, test_number):
-        error_array.append(f"Test {test_number} passed\n")
-
-    def saveError(self, error_array, e):
-        error = "An exception occurred in test-45789: " + str(e)
-        error += "\n" + traceback.format_exc()
-        error_array.append(error)
-
-    def printExceptionIfPresent(self, error_array):
-        print("\n")
-        for error in error_array:
-            if "exception" in error:
-                print('\n'.join(map(str, error_array)))
-                raise Exception(error_array)
-=======
     def uninstall_iOS_app(self):
         sleep(3)
         app_package = "com.zebra.soho"
@@ -1063,5 +1047,3 @@ class Common_Method():
     #
     #     # Install the app
     #     install(apk_path)
-    #     sleep(10)
->>>>>>> 721951240ba3cc205fcd8de796bdc9b3a12e3f63

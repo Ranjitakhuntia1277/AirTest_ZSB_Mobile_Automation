@@ -74,7 +74,9 @@ class Registration_Screen:
     def enter_user_email_for_registering(self, email):
         if self.poco(text="Cookie use").exists():
             self.poco(text="Reject All").click()
+        self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(email)
+        keyevent("Enter")
 
     def wait_for_element_appearance(self, element, time_out=10):
         self.poco(element).wait_for_appearance(timeout=time_out)
@@ -254,7 +256,7 @@ class Registration_Screen:
             keyevent("Enter")
             self.poco("android.widget.EditText")[0].wait_for_appearance(timeout=10)
             self.poco("android.widget.EditText")[0].set_text(user_name)
-            keyevent("Enter")
+            keyevent("back")
         self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText")[1].set_text(password)
         # self.poco(text="Sign In").click()
@@ -312,20 +314,21 @@ class Registration_Screen:
             except:
                 self.poco("identifierId").wait_for_appearance(timeout=10)
                 self.poco("identifierId").set_text(username)
-            keyevent("enter")
+            keyevent("Enter")
             self.poco("android.widget.Button")[-1].click()
         self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText").set_text(password)
-        keyevent("enter")
+        keyevent("Enter")
+        # self.poco("android.widget.Button")[-1].click()
         if wrong_password:
             try:
                 self.wait_for_element_appearance_text(
-                    "Wrong password. Try again or click Forgot password to reset it.")
+                    "Wrong password. Try again or click ‘Forgot password’ to reset it.")
             except:
                 raise Exception(
                     "Error message: \"Wrong password. Try again or click Forgot password to reset it.\" not displayed.")
         else:
-            self.poco("android.widget.Button")[-1].click()
+            # self.poco("android.widget.Button")[-1].click()
             try:
                 scrolls = 5
                 while scrolls!=0:
@@ -337,6 +340,11 @@ class Registration_Screen:
             while not self.poco(text="I agree").exists():
                 self.poco.scroll()
             self.poco(text="I agree").click()
+            try:
+                self.poco(text="Not now").wait_for_appearance(timeout=15)
+                self.poco(text="Not now").click()
+            except:
+                pass
 
     def get_login_name_from_menu(self):
         name = self.poco("android.view.View")[4].child().child().child().get_name().split("\n")[1]
@@ -356,9 +364,11 @@ class Registration_Screen:
                 self.wait_for_element_appearance_text("Did you forget your password?")
             except:
                 raise Exception("Error message \"Incorrect password. Did you forget your password?\"not displayed for wrong password.")
-        sleep(3)
-        if self.poco(text="Continue as Zsb").exists():
+        try:
+            self.poco(text="Continue as Zsb").wait_for_appearance(timeout=20)
             self.poco(text="Continue as Zsb").click()
+        except:
+            pass
 
     def login_Apple(self, password, username=False, wrong_password=False):
         if username:
@@ -380,6 +390,18 @@ class Registration_Screen:
             else:
                 print("Error message not displayed for wrong password.")
                 raise Exception("Error message not displayed for wrong password.")
+        "Enter OTP manually"
+        try:
+            self.poco(text="Trust").wait_for_appearance(timeout=40)
+            self.poco(text="Trust").click()
+        except:
+            pass
+        try:
+            self.poco(text="Continue").wait_for_appearance(timeout=20)
+            self.poco(text="Continue").click()
+        except:
+            pass
+
 
     def home_page_overview(self, firstname):
         self.poco(f"Hey {firstname}\nAdd a printer to get started. We’ll help you set things up.")

@@ -214,6 +214,24 @@ class Template_Management_Screen:
     def clickCommonDesigns(self):
         self.poco("Common Designs").click()
 
+    def checkIfAccPresentGoogleContacts(self, account):
+        self.poco(textMatches="Hide more account").parent()
+        parent = self.poco(textMatches=".*Hide more accounts.*").parent()
+        while 1:
+            for i in range(len(parent.child())):
+                if parent.child()[i].get_name() == "Add another account (opens a new tab)":
+                    return False
+                elif account in parent.child()[i].get_name():
+                    return True
+            self.poco.scroll()
+            keyevent('adb shell input keyevent 26')
+            wake()
+            sleep(2)
+            if self.poco(text="Contacts").exists():
+                self.poco(textMatches=".*Google Account:.*").click()
+            sleep(2)
+            parent = self.poco(nameMatches=".*Add another account.*").parent()
+
     def checkIfAccPresent(self, account):
         start = 0
         end = 1
@@ -408,11 +426,19 @@ class Template_Management_Screen:
         raise Exception("Label Range is not 'All'")
 
     def verify_label_navigation(self):
-        initial = self.poco(nameMatches="Label.*").get_name()
+        scroll_view = self.poco("android.widget.ScrollView")
+        while not self.poco(nameMatches=".*Label . of .*").exists():
+            scroll_view.swipe("down")
+        for i in range(5):
+            scroll_view.swipe("down")
+        initial = self.poco(nameMatches=".*Label . of .*").get_name()
+        print(initial)
         self.poco("Next").click()
-        navigated_next = self.poco(nameMatches="Label.*").get_name()
+        navigated_next = self.poco(nameMatches=".*Label . of .*").get_name()
+        print(navigated_next)
         self.poco("Previous").click()
-        navigated_previous = self.poco(nameMatches="Label.*").get_name()
+        navigated_previous = self.poco(nameMatches=".*Label . of .*").get_name()
+        print(navigated_previous)
         if navigated_next != initial:
             if navigated_previous == initial:
                 return
@@ -425,7 +451,7 @@ class Template_Management_Screen:
         return self.poco(nameMatches=".*Total.*").get_name().split(" ")[2]
 
     def choose_label_print_range(self):
-        self.poco("android.widget.ScrollView").child()[6].click()
+        self.poco("android.widget.ScrollView").child()[-7].click()
 
     def rename_Design(self):
         self.poco("Rename").click()
@@ -730,7 +756,7 @@ class Template_Management_Screen:
 
     def verify_only_selected_rows_displayed_in_label_range(self, number_of_selected_rows):
         print(self.poco("Print").parent().child()[-7].get_name())
-        if self.poco("Print").parent().child()[-7].get_name() == "1-" + number_of_selected_rows:
+        if self.poco("Print").parent().child()[-7].get_name() == "1-" + str(number_of_selected_rows):
             pass
         else:
             raise Exception("rows displayed on the label range field not matching with the selected number of rows")
@@ -821,8 +847,200 @@ class Template_Management_Screen:
     def getDesignInfo(self, design_name):
         return self.poco(nameMatches="(?s).*"+design_name+".*").get_name()
 
+    def changeAccInAddContacts(self, account):
+        self.poco(textMatches=".*Google Account:.*").click()
+        self.checkIfAccPresentGoogleContacts(account)
+        self.poco(text=account).click()
+        if self.poco(text="Close menu").exists():
+            self.poco(text="Close menu").click()
 
+    def generateRandomPhoneNumber(self):
+        areaCode = random.randint(100, 999)
+        prefix = random.randint(100, 999)
+        lineNumber = random.randint(1000, 9999)
+        return f"{areaCode}{prefix}{lineNumber}"
 
+    def createContact(self, firstName, lastName):
+        streets = ["Main St", "Oak St", "Elm St", "Maple Ave", "Cedar Ln", "High Street", "Market Square",
+                   "Park Avenue", "Broadway", "Abbey Road"]
+        po_boxes = ["PO Box 123", "PO Box 456", "PO Box 789", "PO Box 1011", "PO Box 1212"]
+        cities = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "London", "Manchester", "Edinburgh",
+                  "Toronto", "Sydney"]
+        zip_codes = ["10001", "90001", "60601", "77001", "85001", "SW1A 1AA", "M1 1AB", "EH1 1AA", "M5V 2G9", "2000"]
+        prefix = ["Mr", "Ms", "Mrs"]
+        suffix = ["Sr", "Jr"]
+        address = ["66", "1", "74"]
+        department = ["IT", "Testing", "SDE", "SDE-1", "SDET", "Firmware Test", "Frontend", "App Dev", "Devops", "Cloud Technician", "CloudDB"]
 
+        self.poco(text="Add new contact").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Create a contact").click()
+        sleep(3)
+        keyevent("back")
+        sleep(3)
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="First name").parent().child()[1].set_text(firstName.upper())
+        self.poco(text="Show more").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        Prefix = random.choice(prefix)
+        self.poco(text="Prefix").parent().parent().child()[1].set_text(Prefix)
+        self.poco(text="Middle name").parent().parent().child()[1].set_text(firstName)
+        try:
+            self.poco(text="Last name").parent().parent().child()[1].set_text("1")
+        except:
+            self.poco(text="Surname").parent().parent().child()[1].set_text("1")
+        Suffix = random.choice(suffix)
+        self.poco(text="Suffix").parent().parent().child()[1].set_text(Suffix)
+        self.poco.scroll()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        nick_name = firstName.upper() + firstName
+        self.poco(text="Nickname").parent().parent().child()[1].set_text(nick_name)
+        self.poco(text="Company").parent().parent().child()[1].set_text("Zebra")
+        self.poco(text="Job title").parent().parent().child()[1].set_text("SDE")
+        self.poco(text="Show more").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        dept = random.choice(department)
+        self.poco(text="Department").parent().parent().child()[1].set_text(dept)
+        email = firstName + lastName + "@gmail.com"
+        self.poco(text="Email")[0].parent().parent().child()[1].set_text(email)
+        self.poco.scroll()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Label").parent().parent().child()[1].set_text("work")
+        phone_no = self.generateRandomPhoneNumber()
+        self.poco(text="Phone")[0].parent().child()[1].set_text(phone_no)
+        keyevent("back")
+        self.poco(text="Label")[-1].parent().parent().child()[1].set_text("mobile")
+        self.poco(text="Add phone").click()
+        phone_no = self.generateRandomPhoneNumber()
+        self.poco(text="Phone")[-1].parent().child()[1].set_text(phone_no)
+        keyevent("back")
+        self.poco(text="Label")[-1].parent().parent().child()[1].set_text("work")
+        self.poco(text="Add phone").click()
+        phone_no = self.generateRandomPhoneNumber()
+        self.poco(text="Phone")[-1].parent().child()[1].set_text(phone_no)
+        keyevent("back")
+        self.poco(text="Label")[-1].parent().parent().child()[1].set_text("home")
+        self.poco.swipe([0.5, 0.9], [0.5, 0.5])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Add phone").click()
+        phone_no = self.generateRandomPhoneNumber()
+        self.poco(text="Phone")[-1].parent().child()[1].set_text(phone_no)
+        keyevent("back")
+        self.poco(text="Label")[-1].parent().parent().child()[1].set_text("main")
+        self.poco(text="Add address").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        address1, address2, address3 = random.choices(address, k=3)
+        self.poco(text="Street address").parent().parent().child()[1].click()
+        self.poco(text="Street address").parent().child()[1].set_text(address1)
+        keyevent("back")
+        self.poco(textMatches=f".*{address1}.*")[-1].click()
+        self.poco.swipe([0.5, 0.9], [0.5, 0.5])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        # pincode1, pincode2, pincode3 = random.choices(zip_codes, k=3)
+        # self.poco(text="Pincode").parent().parent().child()[1].set_text(pincode1)
+        po_box1, po_box2, po_box3 = random.choices(po_boxes, k=3)
+        try:
+            self.poco(text="PO Box").parent().parent().child()[1].set_text(po_box1)
+        except:
+            self.poco(text="PO box").parent().parent().child()[1].set_text(po_box1)
+        self.poco(text="Label")[-1].parent().parent().child()[1].set_text("home")
 
+        self.poco.scroll()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Add address").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Street address").parent().parent().child()[1].click()
+        self.poco(text="Street address").parent().child()[1].set_text(address2)
+        keyevent("back")
+        self.poco(textMatches=f".*{address2}.*")[-1].click()
+        self.poco.scroll()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        # self.poco(text="Pincode").parent().parent().child()[1].set_text(pincode2)
+        try:
+            self.poco(text="PO Box").parent().parent().child()[1].set_text(po_box2)
+        except:
+            self.poco(text="PO box").parent().parent().child()[1].set_text(po_box2)
+        self.poco(text="Label")[-1].parent().parent().child()[1].set_text("work")
+        self.poco(text="Add address").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Street address").parent().parent().child()[1].click()
+        self.poco(text="Street address").parent().child()[1].set_text(address3)
+        keyevent("back")
+        self.poco(textMatches=f".*{address3}.*")[-1].click()
+        self.poco.scroll()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        # self.poco(text="Pincode").parent().parent().child()[1].set_text(pincode3)
+        try:
+            self.poco(text="PO Box").parent().parent().child()[1].set_text(po_box3)
+        except:
+            self.poco(text="PO box").parent().parent().child()[1].set_text(po_box3)
+        self.poco(text="Label")[-1].parent().parent().child()[1].set_text("other")
+        self.poco("android.widget.Spinner")[-1].click()
+        self.poco.swipe([0.9, 0.9], [0.9, 0.1])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        choices = len(self.poco(text="July").parent().child()) // 2
+        i = random.randint(0, choices)
+        print(i, choices)
+        self.poco(text="July").parent().child()[i].click()
+        self.poco(text="Day").parent().parent().child()[1].set_text(random.randint(0, 29))
+        self.poco(text="Year (optional)").parent().parent().child()[1].set_text(random.randint(1990, 2003))
+        self.poco(text="Notes")[1].parent().parent().child()[1].set_text("Hi I am " + firstName + lastName)
+        self.poco(text="Save").click()
+        sleep(3)
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Contact details").wait_for_appearance(timeout=20)
+        keyevent("back")
 
+    def delectContactGoogleContacts(self):
+        keyevent('adb shell input keyevent 26')
+        wake()
+        self.poco("android.widget.CheckBox").click()
+        self.poco(text="List settings").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        self.poco(text="Delete").click()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        try:
+            self.poco(text="Move to trash").click()
+        except:
+            self.poco(text="Move to the bin").click()
+    def clickGotIt(self):
+        self.poco(text="Got It").click()
+        if self.poco(text="Welcome to your new ZSB Series Printer").exists():
+            self.poco(text="Welcome to your new ZSB Series Printer").parent().child()[0].click()
+
+    def selectRoundLabelInCreate(self):
+        self.poco(text="Round").click()
