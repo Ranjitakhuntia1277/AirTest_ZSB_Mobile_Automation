@@ -127,7 +127,7 @@ class Common_Method():
     def wait_for_element_appearance_enabled(self,element, time_out=10):
         self.poco(element,enabled=True).wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_appearance_namematches(self,element, time_out=10):
+    def wait_for_element_appearance_namematches(self,element, time_out=15):
         self.poco(nameMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
 
 
@@ -135,7 +135,6 @@ class Common_Method():
         self.poco(textMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
 
     def swipe_by_positions(self,start_point,end_point):
-
         self.poco.swipe(start_point, end_point, duration=0.5)
 
     def swipe_screen(self, point1, point2, number_of_swipes):

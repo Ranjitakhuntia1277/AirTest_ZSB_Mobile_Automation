@@ -28,8 +28,7 @@ class Others:
         self.Printer_Settings_Btn = "Printer Settings"
         self.Label_alignment_demo = "Label Alignment Demo"
         self.android_widget_button = "android.widget.Button"
-        # self.three_dots = Template(r"tpl1704949114184.png", record_pos=(0.398, -0.695), resolution=(1080, 2340))
-        # self.three_dots = Template(r"C:\Users\tr5927\Desktop\ZSB_Automation\ZSB_Mobile\templates\tpl1704949114184.png", record_pos=(0.398, -0.695), resolution=(1080, 2340))
+
         self.three_dots = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",
                                                 "tpl1704949114184.png"), record_pos=(0.398, -0.695),
                                    resolution=(1080, 2340))
@@ -44,19 +43,13 @@ class Others:
                                               resolution=(1080, 2340))
         self.notifications_button = "Notifications"
         self.seekbar_path = "android.widget.SeekBar"
-        #self.down_arrow_button = Template(r"tpl1705053444096.png", record_pos=(0.407, -0.425), resolution=(1080, 2340))
-        self.down_arrow_button = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates","tpl1705053444096.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
+        self.down_arrow_button = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates","down_arrow_notification_page.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
 
         self.dismiss_button = "Dismiss"
         self.photo_upload = "Upload Photo"
         self.photo_gallery = "Photo Gallery"
         self.upload_via_gallery_dir = "com.google.android.documentsui:id/dir_list"
         self.remove_image_button = "Remove Image"
-        #self.default_image_avtar = Template(r"tpl1705409483217.png", record_pos=(-0.358, -0.654),resolution=(1080, 2340))
-        self.default_image_avtar = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile"
-                                                                                  "\\templates",
-                                                         "tpl1705409483217.png"), record_pos=(-0.358, -0.654),
-                                            resolution = (1080, 2340))
         self.profile_edit = "android.widget.Button"
         self.camera_button = "Camera"
         self.check_permission_text_for_camera = "com.android.permissioncontroller:id/permission_message"
@@ -76,9 +69,7 @@ class Others:
         self.common_designs_button = "Common Designs"
         self.my_designs_button = "My Designs"
         self.copy_to_my_designs = "Copy to My Designs"
-        self.zsb_app_icon = Template(
-            os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",
-                         "tpl1706000380672.png"), record_pos=(-0.36, -0.59), resolution=(720, 1280))
+
         self.my_data_button = "My Data"
     def start_google(self):
         start_app("com.google.android.googlequicksearchbox")
@@ -90,20 +81,23 @@ class Others:
         printer_settings.click()
 
     def click_Printer_Settings_in_google(self):
-        left_scroll_position = self.poco("My Designs").get_position()
 
-        # Define the target position on the left side where you want to scroll
-        target_position = [left_scroll_position[0], left_scroll_position[1] - 0.2]  # Adjust the Y coordinate as needed
+        if self.poco(nameMatches=".*Printer Settings.*").exists() or self.poco(textMatches=".*Printer Settings.*").exists():
+            self.poco(self.Printer_Settings_Btn).click()
+        else:
+            left_scroll_position = self.poco("My Designs").get_position()
 
-        # Perform the swipe or scroll action
-        self.poco.swipe(left_scroll_position, target_position, duration=1)
+            # Define the target position on the left side where you want to scroll
+            target_position = [left_scroll_position[0], left_scroll_position[1] - 0.2]  # Adjust the Y coordinate as needed
 
-        printer_settings = self.poco(self.Printer_Settings_Btn)
-        printer_settings.click()
+            # Perform the swipe or scroll action
+            self.poco.swipe(left_scroll_position, target_position, duration=1)
+
+            printer_settings = self.poco(self.Printer_Settings_Btn)
+            printer_settings.click()
 
     def check_text_history(self):
         return self.poco(text="History").exists()
-
 
     def click_selected_printer(self):
         zsb_printer = self.poco(self.ZSB_DP12_1)
@@ -138,13 +132,23 @@ class Others:
         icon.click()
 
     def click_demo_video(self):
-        alignment_demo = self.poco(self.Label_alignment_demo)
-        alignment_demo.click()
+        # alignment_demo = self.poco(self.Label_alignment_demo)
+        # alignment_demo.click()
+        try:
+            touch(Template(Basic_path(r"tpl1710829861070.png"), record_pos=(0.117, 0.244), resolution=(1080, 2400)))
+        except:
+            self.poco(nameMatches="(?s).*Label Alignment Demo.*").focus([0.5,0.71]).click()
+
 
     def close_demo_video(self):
-        # close_video = self.poco(self.Close_demo_video)
-        # close_video.click()
-        keyevent("back")
+        self.poco("Dismiss").focus([0.5,0.3]).click()
+
+    def check_demo_video_closed(self):
+        a = self.poco(nameMatches="(?s).*Automatic Label Feed.*").exists()
+        return a
+
+    def click_on_the_vedio_while_playing(self):
+        self.poco("android.view.View").focus([0.5, 0.5]).click()
 
     def click_three_dots(self):
 
@@ -191,6 +195,9 @@ class Others:
 
         return 1 if previous - count == current else 0
 
+    def wait_for_appearance_all(self,elem,time_out=20):
+        self.poco(nameMatches="(?s).*"+elem+".*").wait_for_appearance(timeout=time_out)
+
     def click_google_search_bar(self):
 
         google_search_bar = self.poco(self.google_search_feild)
@@ -215,7 +222,8 @@ class Others:
         # hamburger_icon = self.poco("android.widget.FrameLayout").child("android.widget.LinearLayout").child("android.widget.FrameLayout").offspring("com.android.chrome:id/compositor_view_holder").offspring("root")[1].child("android.view.View")[0].child("android.view.View").click()
         # hamburger_icon.click()
 
-        touch(self.google_hamburger_menu)
+        self.poco("zsbportal.zebra").click()
+
 
     def google_scroll_down(self):
         self.poco("android.widget.FrameLayout").child("android.widget.LinearLayout").child(
@@ -236,6 +244,9 @@ class Others:
     def click_selected_printer_in_google(self):
         self.poco(text=self.Google_ZSB_DP12_1).click()
 
+    def click_on_printer_name_in_google(self,name):
+        self.poco(text=name).click()
+
     def change_Darkness_level_in_google(self, new_value):
         seekbar = self.poco(self.seekbar_path)
         percentage = new_value / 100.0
@@ -254,15 +265,9 @@ class Others:
         notification_btn.click()
 
     def get_notification_text_in_google(self):
-        temp = []
-
-        elem_count = len(self.poco("android.widget.TextView"))
-
-        for i in range(6,elem_count,2):
-            store = self.poco("android.widget.TextView")[i]
-            temp.append(store.get_text())
-
+        temp = [child.get_text() for child in self.poco(textMatches=".*Print complete.*")]
         return temp
+
 
     def scroll_up(self,count):
         start_point = [0.5, 0.2]
@@ -274,42 +279,36 @@ class Others:
             self.poco.swipe(start_point, end_point, duration=0.1)
 
     def get_notification_text_in_Android(self):
-        temp = []
+        try:
+            temp = [child.get_name() for child in self.poco(nameMatches="(?s).*Print complete.*")]
 
-        # t = len(self.poco("android.widget.FrameLayout").child("android.widget.LinearLayout").child(
-        #     "android.widget.FrameLayout").offspring("com.android.chrome:id/compositor_view_holder").offspring(
-        #     "root").child("android.view.View")[1].children())
-        # for i in range(t - 3):
-        #     store = self.poco("android.widget.FrameLayout").child("android.widget.LinearLayout").child(
-        #         "android.widget.FrameLayout").offspring("com.android.chrome:id/compositor_view_holder").offspring(
-        #         "root").child("android.view.View")[1].child("android.view.View")[i + 1].child(
-        #         "android.view.View").child("android.widget.TextView")[0]
-        #     temp.append(store.get_text())
+            for i in range(len(temp)):
+                a = temp[i].split("\n")
+                temp[i] = a[0]
 
-        t = len(self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child(
-            "android.view.View").child("android.view.View").child("android.view.View").child("android.view.View").child(
-            "android.view.View")[1].offspring(
-            "Below is the historical view of the notifications you have received.").child("android.view.View").child(
-            "android.view.View").children())
-        for i in range(t):
-            store = [self.poco("Below is the historical view of the notifications you have received.").child(
-                "android.view.View").child("android.view.View").child("android.view.View")[i].children().get_name()]
-            store_1 = [item.split('\n') for item in store]
-            temp.append(store_1[0][0])
+            return temp
+        except:
+            return []
 
-        return temp
+    def choose_google_account(self,email):
+        try:
+            self.poco(text=email).click()
+        except:
+            self.poco.scroll()
+            self.poco(text=email).click()
 
-    """Function Should be updated again once the bug is resolved"""
+    def get_notifications_in_first_page_android(self):
+        temp = [child.get_name() for child in self.poco(type="android.widget.Button")]
 
+        for i in range(len(temp)):
+            a = temp[i].split("\n")
+            temp[i] = a[0]
+        return temp[1:]
     def verify_notifications(self, google, android):
-        txt = "Print complete"
-        a = google.count(txt)
-        b = android.count(txt)
-
-        if a == b:
-            return True
+        if len(google) == len(android):
+            return 1
         else:
-            return False
+            return 0
 
     def click_down_arrow_button(self):
         touch(self.down_arrow_button)
@@ -332,9 +331,11 @@ class Others:
         return a
 
     def select_first_image_from_gallery(self):
-
-        click_first_img = self.poco(self.upload_via_gallery_dir).child()[0]
-        click_first_img.click()
+        try:
+            click_first_img = self.poco(self.upload_via_gallery_dir).child()[0]
+            click_first_img.click()
+        except:
+            self.poco(nameMatches=".*Photo taken.*")[0].click()
 
     def click_remove_image_button(self):
             click_remove_btn = self.poco(self.remove_image_button)
@@ -342,13 +343,19 @@ class Others:
 
 
     def verify_default_image(self):
-        #res = self.get_avatar_image()
-        try:
-            res = assert_exists(self.default_image_avtar, "existes")
-            return res
+        temp = [child.get_text() for child in self.poco(nameMatches="(?s).*Avatar.*").child(type="android.widget.EditText")]
 
-        except:
+        f_n = temp[0].upper()
+        l_n = temp[1].upper()
+
+        a = f_n[0] + l_n[0]
+
+        res = self.poco(nameMatches="(?s).*Avatar.*").get_name()
+        if a in res:
+            return 1
+        else:
             return 0
+
 
     def get_avatar_image(self):
         f_n = self.get_first_name()
@@ -397,15 +404,17 @@ class Others:
             retake_btn = self.poco(self.retake_image_button)
             retake_btn.click()
         except:
-            self.poco("org.codeaurora.snapcam:id/preview_btn_retake").click()
+            self.poco(nameMatches=".*retake.*").click()
 
     def use_the_image_button(self):
         try:
             ok_image = self.poco(self.use_image_button)
             ok_image.click()
         except:
-            self.poco("org.codeaurora.snapcam:id/done_button").click()
-
+            try:
+                self.poco(nameMatches=".*done.*").click()
+            except:
+                self.poco(desc="Done").click()
 
     def get_the_version_no(self):
         version_name = self.poco("android.view.View").child("android.view.View").child("android.view.View").child(
@@ -413,8 +422,15 @@ class Others:
         temp = version_name.split()
         return temp[1]
 
+    def dont_allow_permission(self):
+        try:
+            self.poco(nameMatches=".*deny.*").click()
+        except:
+            self.poco(nameMatches=".*dont.*").click()
+
+
     def get_printer_names(self):
-        child_names = [child.get_name() for child in self.poco("android.widget.HorizontalScrollView").children()]
+        child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*Common.*").parent().children()]
 
         modified_list = [item.split('\n')[0] for item in child_names]
         return modified_list, child_names
@@ -424,21 +440,12 @@ class Others:
         printer1_rename.click()
         printer1_rename.set_text(printer2_name)
 
-    def verify_text_update_printer_name(self):
-        a = [self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child(
-            "android.view.View").child("android.view.View").child("android.view.View").child(
-            "android.view.View").offspring()[1].get_name()]
-        a = a[0].split('\n')
-        a = " ".join(a)
-        try:
-            res = assert_equal(a[0], "this name is duplicated with another printer, update fail", "Ok")
-            return res
-        except:
-            return False
+    def verify_text_update_printer_name_fail(self):
+        a = self.poco("Printer Update Failed\nThe printer name failed to update. The following are allowed characters for renaming your printer: A-Z a-z 0-9 ! $ * ( ) _ + - ' and .\nPlease remove any invalid characters to update your printer name.").exists()
+        return a
 
     def select_printer_1(self, printer1):
-        res,printer = self.get_printer_names()
-        self.poco(printer[0]).click()
+        self.poco(printer1).click()
 
     def go_back(self):
         keyevent("back")
@@ -456,6 +463,9 @@ class Others:
         except:
             return 0
 
+    def select_first_printer(self):
+        self.poco(nameMatches="(?s).*Common.*").parent().child()[1].click()
+
     def click_edit_profile_in_google(self):
 
         self.poco("root").child("android.view.View")[2].child("android.view.View")[0].offspring(
@@ -466,6 +476,7 @@ class Others:
         return res
 
     def click_log_out_button(self):
+
         log_out_btn = self.poco(self.log_out_button)
         log_out_btn.click()
 
@@ -547,6 +558,7 @@ class Others:
         first_label.click()
 
     def click_left_arrow(self):
+        self.poco("android.widget.Button").wait_for_appearance(timeout=10)
         self.poco("android.widget.Button").click()
 
     def click_wifi_button(self):
@@ -568,8 +580,38 @@ class Others:
         self.poco(self.continue_button).click()
 
     def click_add_network_button(self):
+        while not self.poco("Add Network").exists():
+            self.poco.scroll()
         add_network = self.poco(self.add_network_button)
         add_network.click()
+
+    def select_network_and_enter_password(self,name,password):
+
+        flag=0
+        while not self.poco(name).exists():
+            self.poco.scroll()
+
+        if self.poco(name).exists():
+            self.poco(name).click()
+
+            self.poco("android.widget.EditText").focus([0.5, 0.6]).click()
+            text(password)
+            self.poco("Submit").click()
+            sleep(1)
+            flag=1
+
+        if not flag:
+            count = 0
+            while not self.poco("Enter Network Manually...").exists() and count<10:
+                self.poco.scroll()
+                count += 1
+
+    def click_an_google_account(self,name):
+        try:
+            self.poco(name).click()
+        except:
+            self.poco(text=name).click()
+
 
     def click_on_sign_in_with_email(self):
         self.poco("android.widget.Button").click()
@@ -620,13 +662,13 @@ class Others:
 
         res = dict(zip(temp, original_names))
 
-        return res
+        return res,original_names
 
     def swap_two_networks(self, nw_1, nw_2):
 
-        temp2 = self.poco(nw_2)
+        temp2 = self.poco(nameMatches=".*"+nw_2+".*")
 
-        temp1 = self.poco(nw_1).focus('center')
+        temp1 = self.poco(nameMatches=".*"+nw_1+".*").focus('center')
         temp2.drag_to(temp1)
 
     def delete_one_network(self,network_name):
@@ -672,6 +714,10 @@ class Others:
         a = self.poco("com.touchtype.swiftkey:id/keyboard_frame").exists()
         return a
 
+    def check_for_keyboard(self):
+        a = self.poco(nameMatches=".*keyboard.*").exists()
+        return a
+
     def enter_data_for_design(self, str):
 
         a = self.poco("android.widget.EditText")[0]
@@ -683,34 +729,80 @@ class Others:
 
     def install_zsb_series_on_google_play(self):
         start_app("com.android.vending")
-
+        sleep(3)
         self.poco("Search Google Play").click()
         self.poco("android.widget.EditText").set_text("zsb series")
-        keyevent("enter")
-        self.poco("ZSB Series\nZebra Technologies\n").click()
+        sleep(1)
+        keyevent("Enter")
+        sleep(1)
+        try:
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
+        except:
+            self.poco("Search Google Play").click()
+            self.poco("android.widget.EditText").set_text("zsb series")
+            sleep(1)
+            self.poco(nameMatches=".*zsb series.*").click()
+            sleep(1)
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
         self.poco("Install").click()
 
     def uninstall_zsb_series_on_google_play(self):
         stop_app("com.android.vending")
 
         start_app("com.android.vending")
-
+        sleep(3)
         self.poco("Search Google Play").click()
         self.poco("android.widget.EditText").set_text("zsb series")
-        keyevent("enter")
-        self.poco("ZSB Series\nInstalled\n").click()
+        sleep(1)
+        keyevent("Enter")
+        try:
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
+        except:
+            self.poco("Search Google Play").click()
+            self.poco("android.widget.EditText").set_text("zsb series")
+            sleep(1)
+            self.poco(nameMatches=".*zsb series.*").click()
+            sleep(1)
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
         self.poco("Uninstall").click()
         self.poco("Uninstall").click()
 
     def uninstall_and_install_zsb_series_on_google_play(self):
         stop_app("com.android.vending")
-
+        sleep(1)
         start_app("com.android.vending")
-
+        sleep(3)
         self.poco("Search Google Play").click()
         self.poco("android.widget.EditText").set_text("zsb series")
-        keyevent("enter")
-        self.poco("ZSB Series\nInstalled\n").click()
+        sleep(1)
+        keyevent("Enter")
+        try:
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
+        except:
+            self.poco("Search Google Play").click()
+            self.poco("android.widget.EditText").set_text("zsb series")
+            sleep(1)
+            self.poco(nameMatches=".*zsb series.*").click()
+            sleep(1)
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
         self.poco("Uninstall").click()
         self.poco("Uninstall").click()
         self.poco("Install").wait_for_appearance(timeout=10)
@@ -720,7 +812,7 @@ class Others:
         self.poco(element).wait_for_appearance(timeout=time_out)
 
     def wait_for_element_appearance_text(self,element, time_out):
-        self.poco(text=element).wait_for_appearance(timeout=time_out)
+        self.poco(textMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
 
 
 
@@ -736,20 +828,20 @@ class Others:
         self.poco("Update").click()
 
     def click_zsb_app_icon(self):
-        try:
-            touch(self.zsb_app_icon)
-        except:
-            self.zsb_app_icon = Template(
-                os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",
-                             "tpl1706012780496.png"), record_pos=(-0.36, -0.59), resolution=(720, 1280))
-            touch(self.zsb_app_icon)
+        self.poco(textMatches=".*ZSB Series,*").click()
+
+    def click_on_older_login(self):
+        self.poco("Login").click()
 
     def check_allow_permission_for_location(self):
         a = self.poco("com.android.permissioncontroller:id/permission_allow_foreground_only_button")
         if a:
             a.click()
         else:
-            pass
+            try:
+                self.poco(nameMatches=".*allow.*").click()
+            except:
+                pass
 
     def open_the_zsb_series_app_in_play_store(self):
 
@@ -759,6 +851,9 @@ class Others:
     def click_Open_in_playstore(self):
         self.poco("Open").click()
 
+    def check_continue_button_and_click_enter(self):
+        if self.poco("Continue").exists():
+            self.poco("Continue").click()
 
     def check_home_page(self):
         a = self.poco("Home").exists()
@@ -772,19 +867,12 @@ class Others:
         return a
 
     def check_zsb_app_icon(self):
-        try:
-            try:
-                assert_exists(self.zsb_app_icon)
-                return 1
-            except:
-                self.zsb_app_icon = Template(
-                    os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",
-                                 "tpl1706012780496.png"), record_pos=(-0.36, -0.59), resolution=(720, 1280))
-                assert_exists(self.zsb_app_icon)
-                return 1
 
-        except:
-            return 0
+        if self.poco(textMatches=".*ZSB Series,*").exists():
+            return 1
+
+        return 0
+
 
     def install_the_zsb_apk_in_files_android_8(self):
         self.poco(text="ZsbMobile-stage 4619.apk").click()
@@ -818,16 +906,28 @@ class Others:
             self.poco("Change").click()
 
     def enter_user_name_for_change_password(self,user_name):
-        self.poco("android.widget.EditText").set_text(user_name)
+        try:
+            self.poco("android.widget.EditText").set_text(user_name)
+        except:
+            self.poco(type="android.widget.EditText").set_text(user_name)
 
     def click_on_submit(self):
         self.poco(text="SUBMIT").click()
 
     def change_old_password_to_new_password(self, old_password, new_password):
 
-        self.poco("android.widget.EditText")[0].set_text(old_password)
-        self.poco("android.widget.EditText")[1].set_text(new_password)
-        self.poco("android.widget.EditText")[2].set_text(new_password)
+        if self.poco(name="android.widget.EditText",focused=True).exists():
+            self.go_back()
+        try:
+            self.poco("android.widget.EditText")[0].set_text(old_password)
+            self.poco("android.widget.EditText")[1].set_text(new_password)
+            self.poco("android.widget.EditText")[2].set_text(new_password)
+        except:
+            self.poco(type="android.widget.EditText")[0].set_text(old_password)
+            self.poco(type="android.widget.EditText")[1].set_text(new_password)
+            self.poco(type="android.widget.EditText")[2].set_text(new_password)
+
+
 
     def check_password_changed_successfully(self):
         a = self.poco(text="Password changed successfully.").exists()
@@ -864,20 +964,30 @@ class Others:
     def open_wifi_settings(self):
         cmd = "adb shell am start -a android.settings.SETTINGS"
         self.run_the_command(cmd)
+        sleep(2)
         try:
-            self.poco(text="Search settings").click()
+            self.poco(text="Wi-Fi").click()
+            return
+        except:
+            pass
+        try:
+            try:
+                self.poco(text="Search settings").click()
+            except:
+                self.poco(textMatches="Search").click()
             text("wifi")
             keyevent("enter")
             sleep(1)
-            self.poco(text="Wi-Fi").click()
 
+            self.poco(text="Wi-Fi").click()
         except:
             pass
 
+    def click_on_allow(self):
+        self.poco(nameMatches=".*allow.*").click()
 
     def get_recently_printed_labels(self):
-        child_names = [child.get_name() for child in self.poco("android.widget.ScrollView").child("android.view.View")[1].child(
-            "android.view.View").child().children()]
+        child_names = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
 
         return child_names
 
@@ -903,6 +1013,14 @@ class Others:
                 return 0
         return 1
 
+    def check_google_home_pop_up(self):
+        if self.poco(textMatches=".*Welcome to your new ZSB Series Printer.*").exists():
+            self.poco(textMatches=".*Welcome to your new ZSB Series Printer.*").parent().child(
+                "android.widget.Button").click()
+
+    def select_first_printer_in_google(self):
+        self.poco(text="Common").parent().parent().child()[1].child().click()
+
     def check_google_pop_up_for_printer_drivers(self):
         a=self.poco(text="Got It").exists()
         if a:
@@ -915,23 +1033,6 @@ class Others:
             self.poco("android.widget.Button").click()
         except:
             pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

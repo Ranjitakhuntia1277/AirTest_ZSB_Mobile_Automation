@@ -45,7 +45,7 @@ class Others:
         self.notifications_button = "Notifications"
         self.seekbar_path = "android.widget.SeekBar"
         #self.down_arrow_button = Template(r"tpl1705053444096.png", record_pos=(0.407, -0.425), resolution=(1080, 2340))
-        self.down_arrow_button = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates","tpl1705053444096.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
+        self.down_arrow_button = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates","down_arrow_notification_page.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
 
         self.dismiss_button = "Dismiss"
         self.photo_upload = "Upload Photo"
