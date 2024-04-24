@@ -1,3 +1,4 @@
+import pytest
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 
@@ -6,6 +7,7 @@ from ZSB_Mobile.PageObject.Login_Screen import *
 from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
 from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
+from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 
 
 class Android_App_Help:
@@ -17,10 +19,12 @@ poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=Fa
 connect_device("Android:///")
 # start_app("com.zebra.soho_app")
 sleep(2.0)
-
+wake()
 common_method = Common_Method(poco)
 login_page = Login_Screen(poco)
 help_page = Help_Screen(poco)
+registration_page = Registration_Screen(poco)
+errors = []
 
 
 def test_Help_TestcaseID_45789():
@@ -29,28 +33,24 @@ def test_Help_TestcaseID_45789():
 
 common_method.Start_The_App()
 """""""""click on the login button"""""""""""
-login_page.click_loginBtn()
-sleep(2)
-"""""""select the login with google option"""""""""
-login_page.click_Loginwith_Google()
-sleep(2)
-login_page.click_GooglemailId()
-sleep(5)
-help_page.addAccountToDevice()
-sleep(10)
-login_page.Enter_Google_UserID("zsbswdvt@gmail.com")
-sleep(2)
-help_page.clickNext()
-sleep(4)
-""""To enter password need to use the 2nd method """
-help_page.enter_Google_Password("zsbswdvt@1234")
-# poco(text("Swdvt@#123"))
-sleep(2)
-help_page.clickNext()
-sleep(4)
-help_page.Agreement_google_login()
-common_method.wait_for_element_appearance("Home", 30)
-# help_page.chooseAcc()
+# registration_page.clickSignIn()
+# registration_page.click_Google_Icon()
+# try:
+#     registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+# except:
+#     raise Exception("Did not navigate to Sign In with google page")
+# while not poco(text="Use another account").exists():
+#     poco.scroll()
+# login_page.click_GooglemailId()
+# while not poco(text="Add account to device").exists():
+#     poco.scroll()
+# registration_page.addAccountToDevice()
+# registration_page.sign_In_With_Google("wrongloginzsb@gmail.com", "wrongloginzsb@123", True)
+# registration_page.sign_In_With_Google("wrongloginzsb@1234")
+# try:
+#     registration_page.wait_for_element_appearance("Home", 20)
+# except:
+#     common_method.wait_for_element_appearance("Home", 30)
 """Click hamburger icon to expand menu"""
 login_page.click_Menu_HamburgerICN()
 """Swipe up"""
@@ -62,44 +62,44 @@ help_page.checkIfHelpIconIsPresent()
 help_page.click_Help_dropdown_option()
 sleep(2)
 """Check Help has Support, FAQs, Contact Us and Live Chat Options"""
-# help_page.verify_text("Live Chat", help_page.Chat_btn)
 help_page.Test_Support_faq_Contactus__Livechat_is_present()
 """Click Support to open support page"""
 help_page.click_Support()
-sleep(5)
 """Check if we are redirected to support page"""
 help_page.checkIfLandedOnSupportPage()
 sleep(5)
 help_page.verify_url("https://zsbsupport.zebra.com/s/")
-sleep(5)
-for i in range(2):
+keyevent("back")
+try:
+    help_page.checkIfLandedOnSupportPage()
     keyevent("back")
-    sleep(3)
+except:
+    pass
 """Click FAQs to see FAQ on the web"""
 sleep(5)
 help_page.click_FAQs()
-sleep(5)
 """Check if we are redirected to FAQs page"""
 help_page.checkIfLandedOnFAQsPage()
 sleep(5)
 help_page.verify_url("https://zsbsupport.zebra.com/s/faqs")
-sleep(5)
-for i in range(2):
+keyevent("back")
+try:
+    help_page.checkIfLandedOnFAQsPage()
     keyevent("back")
-    sleep(3)
-sleep(5)
+except:
+    pass
 """Click Contact US to view contact options"""
 help_page.click_ContactUs()
-sleep(5)
 """Check if we are redirected to Contact Us page"""
 help_page.checkIfLandedOnContactUsPage()
 sleep(5)
 help_page.verify_url("https://zsbsupport.zebra.com/s/contactsupport")
-sleep(5)
-for i in range(2):
+keyevent("back")
+try:
+    help_page.checkIfLandedOnContactUsPage()
     keyevent("back")
-    sleep(3)
-sleep(5)
+except:
+    pass
 """Click chat to """
 help_page.click_Chat()
 sleep(5)
@@ -117,7 +117,6 @@ def test_Help_TestcaseID_47788():
 
 
 common_method.Start_The_App()
-sleep(3)
 login_page.click_Menu_HamburgerICN()
 """Swipe up"""
 poco.scroll()
@@ -142,12 +141,12 @@ sleep(2)
 help_page.verifyChatHours()
 common_method.Stop_The_App()
 
+
 def test_Help_TestcaseID_47919():
     """""""""test"""""
 
 
 common_method.Start_The_App()
-sleep(3)
 """Click hamburger icon to expand menu"""
 login_page.click_Menu_HamburgerICN()
 """Swipe up"""
@@ -183,3 +182,5 @@ help_page.goToChat()
 """Check if chat bubble does not appear"""
 """Cannot check since chat bubble does not appear"""
 common_method.Stop_The_App()
+
+# common_method.printExceptionIfPresent(errors)

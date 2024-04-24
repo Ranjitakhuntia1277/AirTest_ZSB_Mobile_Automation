@@ -12,6 +12,7 @@ from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
 from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
 
 
 class Android_App_Registration:
@@ -22,8 +23,6 @@ poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=Fa
 
 connect_device("Android:///")
 wake()
-# start_app("com.zebra.soho_app")
-sleep(2.0)
 common_method = Common_Method(poco)
 login_page = Login_Screen(poco)
 help_page = Help_Screen(poco)
@@ -32,24 +31,28 @@ data_sources_page = Data_Sources_Screen(poco)
 add_a_printer_page = Add_A_Printer_Screen(poco)
 registration_page = Registration_Screen(poco)
 others_page = Others(poco)
+template_management_page = Template_Management_Screen(poco)
 
 
-def test_Registration_TestcaseID_45855():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45855():
+#     """""""""test"""""
+#
+#
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
+# keyevent("back")
+# registration_page.verifyLinksInSignInPage()
 # registration_page.registerEmail()
-# sleep(2)
-# a = registration_page.check_registration_of_email()
-# if not a:
+# try:
+#     registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+# except:
 #     raise Exception("register user page dint show")
 #
 # """Enter the User Email"""
-# registration_page.enter_user_email_for_registering("zebraswtest2@gmail.com")
+# registration_page.enter_user_email_for_registering("zsbswdvt@gmail.com")
 # registration_page.click_on_next()
 # """header \"This email already exist\" and message \"It looks like this email has already been registered. Please try logging in with your credentials. not matching with displayed text"""
 # """Verify Account already exists page title"""
@@ -59,56 +62,58 @@ def test_Registration_TestcaseID_45855():
 # """No RETURN TO LOGIN button."""
 # """Click Continue"""
 # data_sources_page.clickContinue()
-# if registration_page.check_if_in_login_page():
-#     pass
-# else:
+# try:
+#     registration_page.wait_for_element_appearance("Sign In", 10)
+# except:
 #     raise Exception("Did not return to login page.")
+# common_method.Stop_The_App()
 
 
-def test_Registration_TestcaseID_45856():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45856():
+#     """""""""test"""""
+#
+#
+# """Create new email before running"""
+# """Click signin"""
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
+# registration_page.verifyLinksInSignInPage()
 # registration_page.registerEmail()
-# sleep(5)
-# a = registration_page.check_registration_of_email()
-# if not a:
+# try:
+#     registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+# except:
 #     raise Exception("register user page dint show")
-#
-# """Enter the User Email"""
+# help_page.verify_url("signup.zebra.com/content/userreg/us/en/register.html?appId=ZEMB")
+# """Enter zebra Email"""
 # registration_page.enter_user_email_for_registering("test123@zebra.com")
 # registration_page.click_on_next()
-# if registration_page.check_zebra_mail_registration_error():
-#     pass
-# else:
-#     raise Exception("NO error when trying to register with zebra mail id.")
+# registration_page.check_zebra_mail_registration_error()
 # help_page.closeTab()
 # data_sources_page.clickCancel()
 # sleep(3)
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
+# registration_page.verifyLinksInSignInPage()
 # registration_page.registerEmail()
-# sleep(5)
-# a = registration_page.check_registration_of_email()
-# if not a:
+# try:
+#     registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+# except:
 #     raise Exception("register user page dint show")
 #
-# """Enter the User Email"""
-# registration_page.enter_user_email_for_registering("smbzsb7@gmail.com")
+# """Manually create a new google account and enter the mail-id"""
+# registration_page.enter_user_email_for_registering("zsbswdvt2@gmail.com")
 # registration_page.click_on_next()
-# poco(text="Return to Previous Step").wait_for_appearance(timeout=10)
-# if registration_page.check_email_verification_page_message():
-#     pass
-# else:
-#     raise Exception("Email verification page message not matching.")
-# verification_code = "asdtfdsa"
-# registration_page.enter_the_verification_code(verification_code)
+# poco(text="Return to Previous Step").wait_for_appearance(timeout=20)
+# registration_page.check_email_verification_page_message()
+# sleep(600)
+# """Wait for 10 min"""
+# sleep(30)
+# """Enter verification code manually"""
 # registration_page.click_on_next()
 # if registration_page.verify_verification_code_expired_error():
 #     pass
@@ -119,15 +124,10 @@ def test_Registration_TestcaseID_45856():
 # else:
 #     raise Exception("Resend verification code button not present.")
 # registration_page.click_resend_verification_code_btn()
-# verification_code = "CLG67B"
-# registration_page.enter_the_verification_code(verification_code)
+# sleep(30)
+# """Enter verification code manually"""
 # registration_page.click_on_next()
-# sleep(5)
-# if registration_page.verify_user_information_and_account_security_page():
-#     pass
-# else:
-#     raise Exception("Did not navigate to 'ZSB Printer User Information and Account Security' page.")
-#
+# registration_page.verify_user_information_and_account_security_page()
 # """Enter the first Name last name and the password"""
 # first_name = "John"
 # last_name = "Wick"
@@ -139,18 +139,21 @@ def test_Registration_TestcaseID_45856():
 # sleep(4)
 # registration_page.check_sign_up_successful()
 # registration_page.click_continue_registration_page()
-# poco("Login").wait_for_appearance(timeout=10)
-# login_page.click_loginBtn()
+# try:
+#     registration_page.wait_for_element_appearance("Sign In", 10)
+# except:
+#     raise Exception("Did not return to login page.")
+# registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # registration_page.click_on_sign_in_with_email()
 #
 # """Provide the email and password"""
-# email = "smbzsb7@gmail.com"
+# email = "zsbswdvt2@gmail.com"
 # password = "Zebra#123456789"
 # registration_page.complete_sign_in_with_email(email, password, 1, 0)
-# while not poco(name="Accept", enabeled=True).exists():
-#     poco.scroll()
 # registration_page.click_accept()
+# registration_page.clickClose()
+# registration_page.clickExit()
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
 # except:
@@ -161,29 +164,32 @@ def test_Registration_TestcaseID_45856():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
+# common_method.Stop_The_App()
 
 
 def test_Registration_TestcaseID_45857():
     """""""""test"""""
 
 
-# login_page.click_loginBtn()
+# """Run testcase on stage build"""
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
 # registration_page.registerEmail()
-# poco("android.widget.EditText").wait_for_appearance(timeout=20)
-# a = registration_page.check_registration_of_email()
-# if not a:
+# try:
+#     registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+# except:
 #     raise Exception("register user page dint show")
-# registration_page.enter_user_email_for_registering("smbmbzsb@gmail.com")
+# registration_page.enter_user_email_for_registering("zsbswdvt1@gmail.com")
 # registration_page.click_on_next()
 # poco(text="Return to Previous Step").wait_for_appearance(timeout=10)
-# verification_code = "1B6D0R"
-# registration_page.enter_the_verification_code(verification_code)
+# sleep(20)
+# """Wait for 10 min"""
+# """Enter verification code manually"""
 # registration_page.click_on_next()
 # sleep(5)
 # if registration_page.check_email_verified_successfully_message():
@@ -250,23 +256,25 @@ def test_Registration_TestcaseID_45857():
 # sleep(4)
 # registration_page.check_sign_up_successful()
 # registration_page.click_continue_registration_page()
-# poco("Login").wait_for_appearance(timeout=10)
-# login_page.click_loginBtn()
+# try:
+#     registration_page.wait_for_element_appearance("Sign In", 10)
+# except:
+#     raise Exception("Did not return to login page.")# registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # data_sources_page.signInWithEmail()
 # """Provide the email and password"""
-# email = "smbmbzsb@gmail.com"
+# email = "zsbswdvt1@gmail.com"
 # password = "Zebratest123?"
 # registration_page.complete_sign_in_with_email(email, password, 1, 0 )
 # while not poco("http://www.zebra.com").exists():
 #     poco.scroll()
 # registration_page.click_decline()
 # sleep(2)
-# if registration_page.check_if_in_login_page():
-#     pass
-# else:
+# try:
+#     registration_page.wait_for_element_appearance("Sign In", 5)
+# except:
 #     raise Exception("Logged in successfully even though declined EULA")
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # data_sources_page.signInWithEmail()
 # email = "smbmbzsb@gmail.com"
@@ -286,36 +294,38 @@ def test_Registration_TestcaseID_45857():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
 
 
-def test_Registration_TestcaseID_45858():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45858():
+#     """""""""test"""""
+#
+#
+# new_username = "zsbswdvtsq@gmail.com"
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
+
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
+# keyevent("back")
+# registration_page.verifyLinksInSignInPage()
 # registration_page.registerEmail()
-# poco("android.widget.EditText").wait_for_appearance(timeout=10)
-# a = registration_page.check_registration_of_email()
-# if not a:
+# try:
+#     registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+# except:
 #     raise Exception("register user page dint show")
-#
-# """Enter the User Email"""
-# registration_page.enter_user_email_for_registering("smbmzsb7@gmail.com")
-# registration_page.click_on_next()
-#
+# registration_page.enter_user_email_for_registering(new_username)
 # try:
 #     registration_page.wait_for_element_appearance("Resend Verification Code.", 10)
 # except:
-#     raise Exception("Second step dint work")
+#     raise Exception("Page to enter verification code did not appear. ")
 #
-# verification_code = "SLS9820000"
-# registration_page.enter_the_verification_code(verification_code)
+# """Enter verification code manually"""
+# sleep(30)
+# """Enter the User Email"""
 # registration_page.click_on_next()
 # sleep(2)
 # """Enter the first Name last name and the password"""
@@ -329,18 +339,21 @@ def test_Registration_TestcaseID_45858():
 # sleep(2)
 # registration_page.check_sign_up_successful()
 # registration_page.click_continue_registration_page()
-# poco("Login").wait_for_appearance(timeout=10)
-#
-# login_page.click_loginBtn()
+# common_method.Start_The_App()
+# registration_page.wait_for_element_appearance("Sign In")
+# registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # data_sources_page.signInWithEmail()
-# """Provide the email and password"""
-# email = "zebra852@gmail.com"
-# password = "Zebra#123456789"
-# registration_page.complete_sign_in_with_email(email, password)
-"""step 11 et to do"""
-
-
+# registration_page.complete_sign_in_with_email(new_username, password, 1, 0)
+# registration_page.verify_if_on_EULA_page()
+# """CANNOT DECLINE AS NO DECLINE OPTION PRESENT."""
+# try:
+#     registration_page.wait_for_element_appearance("Welcome to ZSB Series", 20)
+# except:
+#     raise Exception("Reached Home page without accepting EULA")
+# registration_page.click_accept()
+# registration_page.clickClose()
+# registration_page.clickExit()
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
 # except:
@@ -351,33 +364,50 @@ def test_Registration_TestcaseID_45858():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
 
 
-def test_Registration_TestcaseID_45859():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45859():
+#     """""""""test"""""
+#
+#
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # registration_page.complete_sign_in_with_email("soho_dvtxxxxx@hotmail.com", "soho_dvtxxxxx@hotmail.com", 1, 0, True)
-# if poco("android.widget.TextView")[3].get_text() == "Username*":
-#     print("Page stays at Login with username.")
-# else:
+# try:
+#     registration_page.wait_for_element_appearance_text("We didn't recognize the username or password you entered. Please try again.")
+# except:
+#     raise Exception("\"We didn't recognize the username or password you entered. Please try again.\" message did not appear.")
+# try:
+#     registration_page.wait_for_element_appearance_text("Sign In With")
+# except:
 #     raise Exception("Page not at Login with username.")
+# common_method.Stop_The_App()
 
 
-def test_Registration_TestcaseID_45860():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45860():
+#     """""""""test"""""
+#
+#
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
-# registration_page.complete_sign_in_with_email("zebra852@gmail.comm", "Zebra#1234567890", 1, 0, True)
+# registration_page.complete_sign_in_with_email("jd4936", "Zebra#1234567890", 1, 0, True)
+# try:
+#     registration_page.wait_for_element_appearance_text("We didn't recognize the username or password you entered. Please try again.")
+# except:
+#     raise Exception("Error message : \"We didn't recognize the username or password you entered. Please try again.\" not shown")
 # data_sources_page.signInWithEmail()
-# registration_page.complete_sign_in_with_email("zebra852@gmail.comm", "Zebra#123456789", 1, 0, False, True)
+# registration_page.complete_sign_in_with_email("jd4936", "Vl@d#vost0k008", 1, 0, False, True)
+# # sleep(20)
+# try:
+#     registration_page.wait_for_element_appearance_text("Continue")
+#     data_sources_page.clickContinue()
+# except:
+#     pass
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
 # except:
@@ -387,45 +417,78 @@ def test_Registration_TestcaseID_45860():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
-
-def test_Registration_TestcaseID_45861():
-    """""""""test"""""
+# common_method.Stop_The_App()
 
 
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45861():
+#     """""""""test"""""
+#
+#
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # sleep(2)
+# registration_page.verifyLinksInSignInPage()
+# scroll_view = poco("android.view.View")
+# while not poco(text="Sign In With"):
+#     scroll_view.swipe("down")
 # registration_page.click_Google_Icon()
+# try:
+#     poco(text="Choose an account").wait_for_appearance(timeout=20)
+#     help_page.chooseAcc("zsbswdvt@gmail.com")
+# except:
+#     pass
+# try:
+#     registration_page.wait_for_element_appearance("Home", 20)
+# except:
+#     raise Exception("home page dint show up")
 # login_page.click_Menu_HamburgerICN()
 # registration_page.click_on_profile_edit()
 # poco.scroll()
 # sleep(2)
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 10)
 # except:
 #     raise Exception("Did not redirect to the login page")
+# common_method.Stop_The_App()
 
 
-def test_Registration_TestcaseID_45862():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45862():
+#     """""""""test"""""
+#
+#
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # registration_page.click_Google_Icon()
-# sleep(3)
-# registration_page.verify_Sign_In_With_Google_Page()
-# registration_page.sign_In_With_Google("zsbswdvt@123", "zsbswdvt@gmail.com", True)
-# registration_page.sign_In_With_Google("zsbswdvt@1234")
 # try:
-#     registration_page.wait_for_element_appearance("Home", 20)
+#     registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+# except:
+#     raise Exception("Did not navigate to Sign In with google page")
+# while not poco(text="Use another account").exists():
+#     poco.scroll()
+# login_page.click_GooglemailId()
+# while not poco(text="Add account to device").exists():
+#     poco.scroll()
+# registration_page.addAccountToDevice()
+# registration_page.sign_In_With_Google("wrongloginzsb@123", "wrongloginzsb@gmail.com", True)
+# registration_page.sign_In_With_Google("wrongloginzsb@1234")
+# try:
+#     common_method.wait_for_element_appearance_text("For the best experience, we need a couple of things from you.", 20)
+#     poco(text="For the best experience, we need a couple of things from you.").parent().child()[1].focus([0.5,0.2]).click()
+#     text("ZSB")
+#     data_sources_page.clickContinue()
+# except:
+#     pass
+# try:
+#     `registration_page.wait_for_element_appearance("Home", 20)
 # except:
 #     raise Exception("home page dint show up")
 # login_page.click_Menu_HamburgerICN()
 # name = registration_page.get_login_name_from_menu()
-# if name == "swdvt zsb":
+# if name == "wrongLoginZsb ZSB":
 #     pass
 # else:
 #     raise Exception("Login name does not match")
@@ -433,16 +496,18 @@ def test_Registration_TestcaseID_45862():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
+# common_method.Stop_The_App()
 
 
 def test_Registration_TestcaseID_45863():
     """""""""test"""""
 
 
-# login_page.click_loginBtn()
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # registration_page.click_Facebook_Icon()
 # registration_page.login_Facebook("zsbswdvt@123", "zsbswdvt@gmail.com", True)
 # registration_page.login_Facebook("zsbswdvt@1234")
@@ -460,18 +525,17 @@ def test_Registration_TestcaseID_45863():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
-
-# data_sources_page.signInWithEmail()
+# common_method.Stop_The_App()
 
 
 def test_Registration_TestcaseID_45864():
     """""""""test"""""
 
 
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
 # registration_page.complete_sign_in_with_email("smbmbzsb@gmail.com", "ZebraTest#1234", 1, 0 )
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
@@ -482,7 +546,7 @@ def test_Registration_TestcaseID_45864():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
 
@@ -491,7 +555,7 @@ def test_Registration_TestcaseID_45865():
     """""""""test"""""
 
 
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
 # # registration_page.complete_sign_in_with_email("smbmbzsb@gmail.com", "ZebraTest#1234", 1, 0 )
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
@@ -506,57 +570,57 @@ def test_Registration_TestcaseID_45865():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
 
 
-def test_Registration_TestcaseID_45866():
-    """""""""test"""""
-
-
-# start_app("com.zebra.soho_app")
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45866():
+#     pass
+#
+#
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
 # registration_page.click_on_reset_password()
 # sleep(5)
-# if registration_page.check_if_in_password_recovery_page():
-#     pass
-# else:
+# try:
+#     registration_page.check_if_in_password_recovery_page()
+# except:
 #     raise Exception("Did not navigate to 'Password Recovery' Page")
-# registration_page.Enter_Username_password_recovery_page("a1@gmail.com")
+# registration_page.Enter_Username_password_recovery_page("testing123@gmail.com")
 # registration_page.click_SUBMIT()
 # sleep(3)
 # if registration_page.check_user_does_not_exist_error():
 #     pass
 # else:
 #     raise Exception("'User does not exist' error did not show up even after entering a non registered email.")
-# stop_app("com.zebra.soho_app")
-# start_app("com.zebra.soho_app")
-# login_page.click_loginBtn()
-# login_page.click_loginBtn()
+# common_method.Stop_The_App()
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
 # registration_page.click_on_reset_password()
 # sleep(5)
-# if registration_page.check_if_in_password_recovery_page():
-#     pass
-# else:
+# try:
+#     registration_page.check_if_in_password_recovery_page()
+# except:
 #     raise Exception("Did not navigate to 'Password Recovery' Page")
-# registration_page.Enter_Username_password_recovery_page("smbmbzsb@gmail.com")
+# registration_page.Enter_Username_password_recovery_page("zsbswdvt@gmail.com")
 # registration_page.click_SUBMIT()
 # registration_page.wait_for_element_appearance_text("Success!", 10)
 # if registration_page.check_message_on_success_page():
 #     pass
 # else:
 #     raise Exception("Expected message not on success page.")
+# """An email with a Password Reset Code has been sent to your email address. The OTP will expired in 10 minutes.- cannot be automated."""
 # registration_page.click_on_Click_here()
-# if registration_page.check_if_on_Reset_Password_page():
-#     pass
-# else:
+# try:
+#     registration_page.check_if_on_Reset_Password_page()
+# except:
 #     raise Exception("Did not navigate to password reset page.")
 # registration_page.check_fields_on_Reset_Password_page()
 # registration_page.click_SUBMIT()
@@ -564,17 +628,19 @@ def test_Registration_TestcaseID_45866():
 #     pass
 # else:
 #     raise Exception("Error messages not as expected.")
-# otp = "gqocrd0a"
-# registration_page.fillPasswordResetCode(otp)
+# """Enter otp manually"""
+# sleep(30)
 # registration_page.fillNewPassword("ZebraTest#1234")
 # registration_page.fillConfirmPassword("ZebraTest#123")
 # registration_page.click_SUBMIT()
 # if registration_page.checkWrongConfirmPasswordErrorMessage():
 #     pass
 # else:
-#     raise Exception("\"Password and Confirm Password must match\" not displayed when entered different 'New Password' and 'Confirm Password'")
-# """Wait for 10 minutes """
+#     raise Exception(
+#         "\"Fields do not match.\" not displayed when entered different 'New Password' and 'Confirm Password'")
 # registration_page.fillConfirmPassword("ZebraTest#1234")
+# """Wait for 10 minutes """
+# sleep(600)
 # registration_page.click_SUBMIT()
 # sleep(5)
 # if registration_page.check_OTExpiredMessage():
@@ -585,8 +651,8 @@ def test_Registration_TestcaseID_45866():
 # """Step 18. Click on Click here to login with your temporary password in Success! page not present"""
 # registration_page.click_on_Click_here()
 # registration_page.wait_for_element_appearance_text("Reset Password", 10)
-# otp = "nbv474tm"
-# registration_page.fillPasswordResetCode(otp)
+# """Enter OTP manually"""
+# sleep(30)
 # registration_page.fillNewPassword("ZebraTest#1234")
 # registration_page.fillConfirmPassword("ZebraTest#1234")
 # registration_page.click_SUBMIT()
@@ -598,7 +664,7 @@ def test_Registration_TestcaseID_45866():
 # except:
 #     raise Exception("Did not reach Sign in page")
 # data_sources_page.signInWithEmail()
-# registration_page.complete_sign_in_with_email("smbmbzsb@gmail.com", "ZebraTest#1234", 1, 0 )
+# registration_page.complete_sign_in_with_email("zsbswdvt@gmail.com", "ZebraTest#1234", 1, 0)
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
 # except:
@@ -609,7 +675,7 @@ def test_Registration_TestcaseID_45867():
     """""""""test"""""
 
 
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
@@ -629,8 +695,8 @@ def test_Registration_TestcaseID_45867():
 #     raise Exception("Did not redirected to a page \"Password Reset Error\" page.")
 # stop_app("com.zebra.soho_app")
 # start_app("com.zebra.soho_app")
-# login_page.click_loginBtn()
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
@@ -653,48 +719,68 @@ def test_Registration_TestcaseID_45867():
 # registration_page.click_on_next()
 
 
-def test_Registration_TestcaseID_45868():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45868():
+#     """""""""test"""""
+#
+#
+# """Test on stage build"""
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
+# poco.scroll()
 # registration_page.click_on_reset_password()
-# sleep(5)
-# if registration_page.check_if_in_password_recovery_page():
+# try:
+#     registration_page.check_if_in_password_recovery_page()
+# except:
+#     raise Exception("Did not navigate to 'Password Recovery' Page")
+# help_page.verify_url("https://stagec-signup.zebra.com/content/userreg/reset-password-landing.html")
+# registration_page.Enter_Username_password_recovery_page("zsbswdvt1@gmail.com")
+# if registration_page.check_submit_is_clickable():
 #     pass
 # else:
-#     raise Exception("Did not navigate to 'Password Recovery' Page")
-# registration_page.Enter_Username_password_recovery_page("smbmbzsb@gmail.com")
+#     raise Exception("Submit is not clickable.")
 # registration_page.click_SUBMIT()
-# if registration_page.check_submit_is_clickable():
-#     raise Exception("Submit is clickable.")
-# else:
-#     print("Submit is not clickable.")
+# common_method.Stop_The_App()
 
 
-def test_Registration_TestcaseID_45869():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45869():
+#     """""""""test"""""
+#
+#
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # login_page.click_Loginwith_Google()
+# help_page.chooseAcc("zsbswdvt@gmail.com")
+# try:
+#     registration_page.wait_for_element_appearance("Home", 20)
+# except:
+#     raise Exception("home page dint show up")
 # registration_page.click_Buy_More_Labels()
+# try:
+#     poco(text="Allow").wait_for_appearance(timeout=20)
+#     poco(text="Allow").click()
+# except:
+#     pass
 # help_page.verify_url("https://www.zebra.com/smb/us/en/labels.html")
-# keyevent("back")
-# keyevent("back")
+# common_method.Stop_The_App()
 
 
 def test_Registration_TestcaseID_45870():
     """""""""test"""""
 
 
-# login_page.click_loginBtn()
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # registration_page.click_Google_Icon()
-# sleep(3)
-# registration_page.verify_Sign_In_With_Google_Page()
+# try:
+#     registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+# except:
+#     raise Exception("Did not navigate to Sign In with google page")
+# login_page.click_GooglemailId()
+# registration_page.wait_for_element_appearance_text("Add account to device")
+# registration_page.addAccountToDevice()
 # registration_page.sign_In_With_Google("zsbswdvt@123", "zsbswdvt@gmail.com", True)
 # registration_page.sign_In_With_Google("zsbswdvt@1234")
 # try:
@@ -703,14 +789,21 @@ def test_Registration_TestcaseID_45870():
 #     raise Exception("home page dint show up")
 
 
-def test_Registration_TestcaseID_45871():
-    """""""""test"""""
-
-
-# login_page.click_loginBtn()
+# def test_Registration_TestcaseID_45871():
+#     """""""""test"""""
+#
+#
+# registration_page.clickSignIn()
 # registration_page.click_Apple_Icon()
 # registration_page.login_Apple("zDLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com", True)
 # registration_page.login_Apple("DLpwhvr@JCQ5Gkx")
+# """Enter OTP manually."""
+# sleep(30)
+# if poco(text="Trust").exists():
+#     poco(text="Trust").click()
+# sleep(3)
+# if poco(text="Continue").exists():
+#     data_sources_page.clickContinueWeb()
 # try:
 #     registration_page.wait_for_element_appearance("Home", 20)
 # except:
@@ -725,7 +818,7 @@ def test_Registration_TestcaseID_45871():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
 
@@ -734,12 +827,13 @@ def test_Registration_TestcaseID_46303():
     """""""""test"""""
 
 
+# common_method.Start_The_App()
 # login_page.click_Menu_HamburgerICN()
 # add_a_printer_page.click_Add_A_Printer()
 # add_a_printer_page.click_Start_Button()
 # add_a_printer_page.click_Show_All_Printers()
 # sleep(3)
-# registration_page.selectPrinter("ZSB-DP12\nC66871")
+# registration_page.selectPrinter("ZSB-DP12\n99D1CB")
 # data_sources_page.clickSelect()
 # add_a_printer_page.click_Bluetooth_pairing_Popup1()
 # add_a_printer_page.click_Bluetooth_pairing_Popup2()
@@ -747,10 +841,13 @@ def test_Registration_TestcaseID_46303():
 # sleep(3)
 # registration_page.Enter_Password_Join_Network()
 # sleep(2)
-# poco(text("123456789"))
+# poco("android.widget.EditText").set_text("123456789")
+# keyevent("Enter")
+# sleep(2)
 # registration_page.clickSubmit()
 # time_taken = registration_page.timeTillWiFiGreen()
 # print(time_taken)
+# common_method.Stop_The_App()
 
 
 def test_Registration_TestcaseID_46304():
@@ -811,12 +908,13 @@ def test_Registration_TestcaseID_46306():
     """""""""test"""""
 
 
+# common_method.Start_The_App()
 # login_page.click_Menu_HamburgerICN()
 # add_a_printer_page.click_Add_A_Printer()
 # add_a_printer_page.click_Start_Button()
 # add_a_printer_page.click_Show_All_Printers()
 # sleep(3)
-# registration_page.selectPrinter("ZSB-DP12\nC66871")
+# registration_page.selectPrinter("ZSB-DP12\nCA0379")
 # data_sources_page.clickSelect()
 # add_a_printer_page.click_Bluetooth_pairing_Popup1()
 # add_a_printer_page.click_Bluetooth_pairing_Popup2()
@@ -824,6 +922,7 @@ def test_Registration_TestcaseID_46306():
 #     registration_page.wait_for_element_appearance("Searching for Wi-Fi Networks", 50)
 # except:
 #     raise Exception("Bluetooth connection unsuccessful")
+# common_method.Stop_The_App()
 
 
 def test_Registration_TestcaseID_46307():
@@ -845,23 +944,36 @@ def test_Registration_TestcaseID_46307():
 # registration_page.clickFinishSetup()
 
 
-def test_Registration_TestcaseID_47786():
-    """""""""test"""""
-
-
-# """Tell Tarun to change """
+# def test_Registration_TestcaseID_47786():
+#     """""""""test"""""
+#
+#
 # others_page.uninstall_and_install_zsb_series_on_google_play(True)
 # sleep(2)
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
+# if poco(text="Allow").exists():
+#     poco(text="Allow").click()
 # poco("Continue with Google").wait_for_appearance(timeout=10)
 # login_page.click_Loginwith_Google()
 # sleep(2)
+# help_page.chooseAcc("zsbswdvt@gmail.com")
+# try:
+#     registration_page.wait_for_element_appearance("Home", 20)
+# except:
+#     raise Exception("home page dint show up")
 # others_page.uninstall_and_install_zsb_series_on_google_play(True, True)
 # sleep(2)
-# login_page.click_loginBtn()
+# registration_page.clickSignIn()
+# if poco(text="Allow").exists():
+#     poco(text="Allow").click()
 # poco("Continue with Google").wait_for_appearance(timeout=10)
 # login_page.click_Loginwith_Google()
 # sleep(2)
+# help_page.chooseAcc("zsbswdvt@gmail.com")
+# try:
+#     registration_page.wait_for_element_appearance("Home", 20)
+# except:
+#     raise Exception("home page dint show up")
 # """Token verification pending"""
 
 
@@ -890,20 +1002,21 @@ def test_Registration_TestcaseID_50287():
     """""""test"""
 
 
-# login_page.click_loginBtn()
+# common_method.Start_The_App()
+# registration_page.clickSignIn()
 # data_sources_page.signInWithEmail()
 # if poco("com.android.chrome:id/coordinator").exists():
 #     poco("com.android.chrome:id/coordinator").click()
 # registration_page.registerEmail()
-# poco("android.widget.EditText").wait_for_appearance(timeout=20)
-# a = registration_page.check_registration_of_email()
-# if not a:
+# try:
+#     registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+# except:
 #     raise Exception("register user page dint show")
 # registration_page.enter_user_email_for_registering("smbzsbmb@gmail.com")
 # registration_page.click_on_next()
 # poco(text="Return to Previous Step").wait_for_appearance(timeout=20)
-# verification_code = "3U8H92"
-# registration_page.enter_the_verification_code(verification_code)
+# """Enter verification code manually"""
+# sleep(30)
 # registration_page.click_on_next()
 # sleep(5)
 # if registration_page.check_email_verified_successfully_message():
@@ -930,30 +1043,31 @@ def test_Registration_TestcaseID_50287():
 # sleep(4)
 # registration_page.check_sign_up_successful()
 # registration_page.click_continue_registration_page()
-# poco("Login").wait_for_appearance(timeout=10)
-# login_page.click_loginBtn()
+# try:
+#     registration_page.wait_for_element_appearance("Sign In", 10)
+# except:
+#     raise Exception("Did not return to login page.")
+# registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # data_sources_page.signInWithEmail()
 # """Provide the email and password"""
 # email = "smbzsbmb@gmail.com"
 # password = "Smbzsbmb@1234"
 # registration_page.complete_sign_in_with_email(email, password, 1, 0 )
-# while not poco(name="Accept", enabeled=True).exists():
-#     poco.scroll()
-# registration_page.click_decline()
-# sleep(2)
-# if registration_page.check_if_in_login_page():
-#     pass
-# else:
-#     raise Exception("Logged in successfully even though declined EULA")
-# login_page.click_loginBtn()
+# registration_page.verify_if_on_EULA_page()
+# """No Delcine option on EULA page"""
+# try:
+#     registration_page.wait_for_element_appearance("Welcome to ZSB Series", 20)
+# except:
+#     raise Exception("Reached Home page without accepting EULA")
+# registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # data_sources_page.signInWithEmail()
 # email = "smbmbzsb@gmail.com"
 # password = "Zebratest123?"
 # registration_page.complete_sign_in_with_email(email, password, 1, 0 )
 # try:
-#     registration_page.wait_for_element_appearance("End User\n License Agreement", 20)
+#     registration_page.wait_for_element_appearance("Click ‘Accept’ to indicate that you have read and agree to the ", 20)
 #     raise Exception("Showing EULA page after logging in with existing account.")
 # except:
 #     pass
@@ -966,11 +1080,13 @@ def test_Registration_TestcaseID_50287():
 # poco.scroll()
 # registration_page.click_log_out_button()
 # try:
-#     registration_page.wait_for_element_appearance("Login", 5)
+#     registration_page.wait_for_element_appearance("Sign In", 5)
 # except:
 #     raise Exception("Did not redirect to the login page")
-# poco("Login").wait_for_appearance(timeout=10)
-# login_page.click_loginBtn()
+# try:
+#     registration_page.wait_for_element_appearance("Sign In", 10)
+# except:
+#     raise Exception("Did not return to login page.")# registration_page.clickSignIn()
 # registration_page.wait_for_element_appearance_text("Continue with Google", 10)
 # data_sources_page.signInWithEmail()
 # """Provide the email and password"""
@@ -982,5 +1098,3 @@ def test_Registration_TestcaseID_50287():
 #     pass
 # except:
 #     raise Exception("Showing EULA page after logging in with existing account.")
-
-registration_page.create_google_account()
