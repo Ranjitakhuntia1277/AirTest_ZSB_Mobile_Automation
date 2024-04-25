@@ -15,22 +15,14 @@ class Smoke_Test_iOS:
         self.Continue_With_Facebook_Option = "Continue with Facebook"
         self.Continue_With_Apple_Option = "Continue with Apple"
         self.home_Text_IS_Present = "Home"
-        self.Facebook_UserName = Template(os.path.join(os.path.expanduser('~'),
-                                                       "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\PageObject\Images",
-                                                       "tpl1707806465367.png"), record_pos=(-0.169, -0.869),
-                                          resolution=(1170, 2532))
+        self.Facebook_UserName = Template(r"tpl1707806465367.png", record_pos=(-0.169, -0.869), resolution=(1170, 2532))
         self.Continue_With_Password_ForApple_Login = "Continue with Password"
         self.click_On_Password_Text_field = "SecureTextField"
         self.Sign_In_Option = "Sign In"
-        self.Apple_UserName = Template(os.path.join(os.path.expanduser('~'),
-                                                    "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\PageObject\Images",
-                                                    "tpl1707817586300.png"), record_pos=(-0.191, -0.867),
+        self.Apple_UserName = Template(r"tpl1707817586300.png", record_pos=(-0.191, -0.867),
                                        resolution=(1170, 2532))
 
-        self.Google_UserName = Template(os.path.join(os.path.expanduser('~'),
-                                                     "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\PageObject\Images",
-                                                     "tpl1707818376117.png"), record_pos=(-0.174, -0.867),
-                                        resolution=(1170, 2532))
+        self.Google_UserName = Template(r"tpl1707818376117.png", record_pos=(-0.174, -0.867), resolution=(1170, 2532))
 
         self.MyData_Tab = "My Data"
         self.Plus_Icon = "android.widget.Button"

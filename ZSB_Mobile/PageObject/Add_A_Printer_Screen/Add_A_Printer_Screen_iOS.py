@@ -43,8 +43,7 @@ class Add_A_Printer_Screen_iOS:
 
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
-        self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44),
-                                                       resolution=(1080, 2400))
+        self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44), resolution=(1080, 2400))
 
         self.Submit_Button_ON_Join_Network = "Submit"
         self.Registering_your_Printer_Text = "Registering your Printer"
@@ -54,10 +53,7 @@ class Add_A_Printer_Screen_iOS:
 
         self.Print_Option = "Print"
         self.Print_Button = "Print"
-        self.Design_Preview_With_Details = Template(os.path.join(os.path.expanduser('~'),
-                                                                 "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                                 "tpl1707902210476.png"), record_pos=(0.047, 0.202),
-                                                    resolution=(1170, 2532))
+        self.Design_Preview_With_Details = Template(r"tpl1707902210476.png", record_pos=(0.047, 0.202), resolution=(1170, 2532))
         self.Back_Icon_Of_Print_Review_Screen = "android.widget.Button"
         self.Common_Design_Tab = "Common Designs"
 

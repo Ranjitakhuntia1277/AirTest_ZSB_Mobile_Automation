@@ -145,7 +145,7 @@ class Login_Screen_iOS:
             print("Next button is not present, proceeding with the next part of the code.")
 
     def click_Menu_HamburgerICN(self):
-        sleep(4)
+        sleep(7)
         hamburgerIcn = self.poco(self.Menu_Hamburger_Icn)
         hamburgerIcn.click()
 

@@ -6,6 +6,8 @@ from pywinauto.mouse import scroll
 from urllib3.util import url
 from airtest.core.api import sleep
 from poco import poco
+
+
 # from pocoui_lib.ios.kotoComponent import poco
 
 class App_Settings_Screen_iOS:
@@ -21,9 +23,7 @@ class App_Settings_Screen_iOS:
         self.Current_Network_Txt = "Current Networks"
         self.Network_Name_Txt = "NESTWIFI"
         self.ZEBRA_Network = "Zebra"
-        self.Network_Password_Field = Template(os.path.join(os.path.expanduser('~'),
-                                                            "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                            "tpl1706704195474.png"), record_pos=(0.009, 0.083),
+        self.Network_Password_Field = Template(r"tpl1706704195474.png", record_pos=(0.009, 0.083),
                                                resolution=(1080, 2400))
 
         self.Network_Status_Txt = "Network Status"
@@ -36,9 +36,7 @@ class App_Settings_Screen_iOS:
         self.Continue_Btn_on_Bluetooth_Connection_Failed_popup = "Continue"
         self.Cancel_Btn_n_Bluetooth_Connection_Failed_Popup = "Cancel"
 
-        self.Red_Icon_to_remove_network = Template(os.path.join(os.path.expanduser('~'),
-                                                                "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                                "tpl1704879780106.png"), record_pos=(0.424, 0.164),
+        self.Red_Icon_to_remove_network = Template(r"tpl1704879780106.png", record_pos=(0.424, 0.164),
                                                    resolution=(1080, 2400))
         self.Add_Network = "Add Network"
         self.Add_Network_Txt = "Add Network"
@@ -88,41 +86,26 @@ class App_Settings_Screen_iOS:
         self.Delete_Account_Checkbox3_with_Text = "Ensure your printer is ON to factory reset your ZSB printer."
         self.Cancel_Delete_account = "Cancel"
         self.Security_Message_Txt = "For your security, you must immediately sign back in one last time to finalize and confirm the deletion of your account. Select ‘Continue’ to sign out."
-        # self.Zebra_Logo_In_Login_Screen = Template(os.path.join(os.path.expanduser('~'),
-        #                                                         "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-        #                                                         "tpl1705569188191.png"), record_pos=(0.016, -0.798),
-        #                                            resolution=(1080, 2400))
-
-        # self.ZSB_Printer_Icon_In_Login_Screen = Template(os.path.join(os.path.expanduser('~'),
-        #                                                               "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-        #                                                               "tpl1705569305111.png"),
-        #                                                  record_pos=(0.025, -0.151), resolution=(1080, 2400))
 
         self.Important_Message_In_Login_Page = "Important:For security purposes, please login one last time to finalize the deletion of your account. Failure to do so will result in your account still being active."
         self.Delete_Account_Popup = "Delete"
 
         self.Cancel_on_Delete_Account_Popup = "Cancel"
 
-        self.ThreeDot_On_Added_Printer_On_HomePage = Template(os.path.join(os.path.expanduser('~'),
-                                                                           "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                                           "tpl1705915293017.png"),
-                                                              record_pos=(0.402, -0.553), resolution=(1080, 2400))
+        self.ThreeDot_On_Added_Printer_On_HomePage = Template(r"tpl1705915293017.png", record_pos=(0.402, -0.553),
+                                                              resolution=(1080, 2400))
 
         self.Delete_Printer_Button = "Delete"
 
         self.Yes_Delete_Button = "Yes, Delete"
-        self.Unpair_Bluetooth_dropdown_list = Template(os.path.join(os.path.expanduser('~'),
-                                                                    "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                                    "tpl1706788194403.png"), record_pos=(0.329, 0.09),
+        self.Unpair_Bluetooth_dropdown_list = Template(r"tpl1706788194403.png", record_pos=(0.329, 0.09),
                                                        resolution=(1080, 2400))
 
         self.Printer_Name_Text = "Printer Name"
         self.Darkness_Level_Bar = "64%"
         self.Updated_Darkness_Level_Bar = "99%"
         self.Darkness_Updated_Message = "Printer darkness updated"
-
         self.Toggle_Button = "Switch"
-
         self.Printer_Name_Text_Field = "TextField"
         self.Exceeding_Characters_Message = "Your printer name can't exceed 30 characters."
         self.Test_Print_Button = "Test Print"
@@ -135,19 +118,12 @@ class App_Settings_Screen_iOS:
         self.Allow_Popup = "Allow"
         self.Picture = "PhotoCapture"
         self.Photo_Uploaded_Message = "Avatar changed successfully"
-
         self.Continue_Btn_on_Bluetooth_Connection_Required = "Continue"
         self.Nework_Submit_Btn = "Submit"
 
         self.Enter_Network_Manually = "Enter Network Manually..."
         self.Network_UserName = " "
         self.Join_Btn = "Join"
-        self.UI_Of_Unpair_Bluetooth_dropdown_list = Template(os.path.join(os.path.expanduser('~'),
-                                                                          "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                                          "tpl1706789579755.png"),
-                                                             record_pos=(0.002, 0.0),
-                                                             resolution=(1080, 2400))
-
         self.Cancel_Btn_on_Other_Network_Popup = "Cancel"
         self.Security_Open = "Open"
         self.WPA_PSK = "WPA PSK"
@@ -158,7 +134,7 @@ class App_Settings_Screen_iOS:
         self.Apply_Changes = "Apply Changes"
         self.Invalid_Network_Error_Message = ""
 
-        self.Email_TextField_On_Password_Recovery_Screen = ""
+        self.Email_TextField_On_Password_Recovery_Screen = "TextField"
         self.Cancel_Button = "Cancel"
 
     ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -302,12 +278,10 @@ class App_Settings_Screen_iOS:
     #     return Bluetooth_connection_required_Txt
 
     def get_text_Bluetooth_connection_required_Txt(self):
-        sleep(18)
-        Bluetooth_connection_required_Txt = self.poco(
-            text="You are about to connect to the printer using Bluetooth. If you have not connected to the printer from this device before, please set the printer into \"pairing mode\" by holding the power button for 3 seconds. If you have connected to this printer from another mobile device in the past, please remove this bond in the devices bluetooth settings or power off the device.")
-        text = Bluetooth_connection_required_Txt.get_text()
-        sleep(1)
-        return text
+        sleep(9)
+        a = self.poco(nameMatches="(?s).*Bluetooth Connection Required.*").get_name()
+        a = a.split("\n")
+        print(a)
 
     def accept_Continue_popup(self):
         sleep(3)
@@ -465,7 +439,7 @@ class App_Settings_Screen_iOS:
         save_exit.click()
 
     def Home_text_is_present_on_homepage(self):
-        sleep(4)
+        sleep(9)
         home_text = self.poco(self.Home_text_on_homepage)
         home_text.get_text()
         print("Home Text is present on home page:", home_text)
@@ -574,7 +548,6 @@ class App_Settings_Screen_iOS:
             # Handle the case when the element is not found
             print("Maker theme RadioButton not found. Test continues...")
 
-
     def check_Change_Modern_Theme(self):
         sleep(2)
         Modern_theme = self.poco(name="Modern")
@@ -603,24 +576,20 @@ class App_Settings_Screen_iOS:
 
     def check_If_Units_of_Measurements_Is_Present(self):
         sleep(1)
-        self.poco(nameMatches="(?s).*Units of Measurement.*").get_name()
-
-
+        a=self.poco(nameMatches="(?s).*Units of Measurement.*").get_name()
+        print(a)
     def Inches_is_displaying(self):
-        self.poco(nameMatches="(?s).*Inches.*").get_name()
-
-
-
-
+        sleep(1)
+        a=self.poco(nameMatches="(?s).*Inches.*").get_name()
+        print(a)
     def click_Units_of_Measurements(self):
         sleep(1)
-        a=self.poco(nameMatches="(?s).*Centimetres.*")
-        b=self.poco(nameMatches="(?s).*Inches.*")
+        a = self.poco(nameMatches="(?s).*Centimetres.*")
+        b = self.poco(nameMatches="(?s).*Inches.*")
         if a.exists():
             a.click()
         else:
             b.click()
-
 
     def verify_Milimetres_Is_Present(self):
         milimetres_text = self.poco(self.Milimetres_Text)
@@ -661,7 +630,6 @@ class App_Settings_Screen_iOS:
         a = a.split("\n")
         print(a)
 
-
     def click_My_Design(self):
         my_design = self.poco(self.My_Design)
         my_design.click()
@@ -670,7 +638,6 @@ class App_Settings_Screen_iOS:
         a = self.poco(nameMatches="(?s).*cm.*").get_name()
         a = a.split("\n")
         print(a)
-
 
     def click_Inches(self):
         inches_Text = self.poco(self.Inches_Text)
@@ -732,7 +699,6 @@ class App_Settings_Screen_iOS:
         a = a.split("\n")
         print(a)
 
-
     def click_Back_Icon(self):
         sleep(2)
         back_icon_position = (50, 50)  # Example coordinates (x, y)
@@ -751,7 +717,6 @@ class App_Settings_Screen_iOS:
         sleep(2)
         self.poco(type="TextField").click()
 
-
     def Clear_Workspace_Name(self):
         workspace_name = self.poco(self.Workspace_Name_Text_Field)
         workspace_name.click()
@@ -761,12 +726,9 @@ class App_Settings_Screen_iOS:
         self.poco("delete").click()
         sleep(1)
 
-
-
-
     def click_Keyboard_back_Icon(self):
         sleep(1)
-        a=self.poco(name="Done")
+        a = self.poco(name="Done")
         if a.exists():
             a.click()
         else:
@@ -777,15 +739,11 @@ class App_Settings_Screen_iOS:
         sleep(1)
         self.poco(nameMatches="(?s).*Done.*").click()
 
-
-
-
     def Verify_SaveExit_Option_Is_Not_There(self):
         sleep(2)
         if not self.poco(self.Save_Exit_Btn).exists():
             return "Save & Exit button is not present"
         return "Save & Exit button is present"
-
 
     def click_back_Icon_On_Edit_Workspace(self):
         sleep(1)
@@ -794,10 +752,8 @@ class App_Settings_Screen_iOS:
 
     def Is_Present_Workspace_Name(self):
         sleep(2)
-        a=self.poco(nameMatches="(?s).*My First Workspace.*").get_name()
+        a = self.poco(nameMatches="(?s).*My First Workspace.*").get_name()
         print(a)
-
-
 
     def Update_Workspace_Name_With_Space(self):
         # workspace_name = self.poco(self.Workspace_Name_Text_Field)
@@ -806,7 +762,6 @@ class App_Settings_Screen_iOS:
         self.poco(text("  "))
         # self.poco.keyevent(" ")
         sleep(1)
-
 
         # for _ in range(2):  # Enter two space characters
         #     self.poco.keyevent(" ")
@@ -820,6 +775,7 @@ class App_Settings_Screen_iOS:
         sleep(1)
         self.poco(text("@abcdefghijklmn!@#abcdefghijklmn"))
         sleep(1)
+
     def Verify_Updated_Name(self):
         sleep(1)
         a = self.poco("TextField").get_name()
@@ -841,7 +797,6 @@ class App_Settings_Screen_iOS:
         a = self.poco(nameMatches="(?s).*First Name.*").get_name()
         a = a.split("\n")
         print(a)
-
 
     def Is_Present_Last_Name_Text(self):
         sleep(1)
@@ -866,7 +821,6 @@ class App_Settings_Screen_iOS:
         First_Name = self.poco(self.First_Name)
         First_Name.click()
 
-
     def clear_First_Name(self):
         sleep(1)
         First_Name = self.poco(self.First_Name)
@@ -882,13 +836,13 @@ class App_Settings_Screen_iOS:
 
     def Is_Present_Firstone_In_Recently_Printed_Label(self):
         sleep(1)
-        self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child("Other")[
+        self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child(
+            "Other")[
             1].child("Other")[1].child("Other")[2].child("Other")[2].child("Other")[1].child("Other")[2].get_name()
-
 
     def Verify_Printer_is_already_added(self):
         sleep(5)
-        a=self.poco(nameMatches="(?s).*ZSB-DP12.*").get_name()
+        a = self.poco(nameMatches="(?s).*ZSB-DP12.*").get_name()
         a = a.split("\n")
         print(a)
 
@@ -914,14 +868,14 @@ class App_Settings_Screen_iOS:
 
     def click_Firstone_In_Recently_Prtinted_Label(self):
         sleep(1)
-        self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child("Other")[
+        self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child(
+            "Other")[
             1].child("Other")[1].child("Other")[2].child("Other")[2].child("Other")[1].child("Other")[2].click()
 
     def Update_First_Name_With_Special_Characters_with_30_characters(self):
         sleep(1)
         self.poco(text("@abcdefghijklmn!@#abcdefghijklmn"))
         sleep(1)
-
 
     def click_Last_Name_Text_Field(self):
         sleep(2)
@@ -931,7 +885,6 @@ class App_Settings_Screen_iOS:
         # # Perform the swipe action
         # swipe(start_point, vector)
         self.poco(name="TextField")[1].click()
-
 
     def clear_Last_Name(self):
         sleep(1)
@@ -945,7 +898,6 @@ class App_Settings_Screen_iOS:
         sleep(1)
         self.poco(text("@abcdefghijklmn!@#abcdefghijklml"))
         sleep(1)
-
 
     def verify_Your_changes_have_been_saved_Message(self):
         name_updated_message = self.poco(self.Name_Updated_Message)
@@ -962,12 +914,10 @@ class App_Settings_Screen_iOS:
         self.poco(text("SohoApp"))
         sleep(2)
 
-
     def Update_Default_Last_Name(self):
         sleep(1)
         self.poco(text("Testing"))
         sleep(2)
-
 
     def Is_Present_Buy_More_Labels(self):
         buy_more_labels = self.poco(self.Buy_More_Labels)
@@ -981,7 +931,6 @@ class App_Settings_Screen_iOS:
         user_settings.get_text()
         print(" User Settings text is displaying:", user_settings)
         return user_settings
-
 
     def Scroll_till_Delete_Account(self):
         sleep(2)
@@ -1117,7 +1066,7 @@ class App_Settings_Screen_iOS:
         sleep(3)
         Cancel_on_Delete_Account_Popup = self.poco(self.Cancel_on_Delete_Account_Popup)
         if Cancel_on_Delete_Account_Popup.exists():
-           Cancel_on_Delete_Account_Popup.click()
+            Cancel_on_Delete_Account_Popup.click()
         else:
             print("Cancel button is not displaying")
 
@@ -1148,9 +1097,10 @@ class App_Settings_Screen_iOS:
         touch(self.Unpair_Bluetooth_dropdown_list)
 
     def Verify_UI_Of_Unpair_Bluetooth_dropdown_list(self):
-        sleep(2)
-        assert_exists(self.UI_Of_Unpair_Bluetooth_dropdown_list,
-                      "UI Of Unpair Bluetooth dropdown list is displaying correctly")
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Unpair Bluetooth From Printer.*").get_name()
+        a = a.split("\n")
+        print(a)
 
     def Verify_General_Tab_Text(self):
         sleep(2)
@@ -1166,7 +1116,10 @@ class App_Settings_Screen_iOS:
 
     def Verify_Darkness_Level_Bar(self):
 
-        seekbar = self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child("Other")[1].child("Other")[1].child("Other")[3].child("Other")[1].child("Other")[1].child("Other")[1].child("Other")[1].child("Other")[1].child("Other")[1].child("Other")
+        seekbar = \
+        self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child(
+            "Other")[1].child("Other")[1].child("Other")[3].child("Other")[1].child("Other")[1].child("Other")[1].child(
+            "Other")[1].child("Other")[1].child("Other")[1].child("Other")
 
         # Set the new value and calculate the percentage
         newvalue = 30
@@ -1183,14 +1136,12 @@ class App_Settings_Screen_iOS:
         seekbar.click([click_x, click_y])
         # ----------------------------------------------
 
-
     def Verify_Darkness_Updated_Message(self):
         message = self.poco(self.Darkness_Updated_Message)
         text = "Printer darkness updated"  # Initialize text variable with an empty string
         if message.exists():
             text = message.get_text()
         return text
-
 
     def Check_toggle_button(self):
         sleep(2)
@@ -1203,9 +1154,10 @@ class App_Settings_Screen_iOS:
 
     def Change_Darkness_Level_Bar(self):
         seekbar = \
-        self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child(
-            "Other")[1].child("Other")[1].child("Other")[3].child("Other")[1].child("Other")[1].child("Other")[1].child(
-            "Other")[1].child("Other")[1].child("Other")[1].child("Other")
+            self.poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child(
+                "Other")[1].child("Other")[1].child("Other")[3].child("Other")[1].child("Other")[1].child("Other")[
+                1].child(
+                "Other")[1].child("Other")[1].child("Other")[1].child("Other")
 
         newvalue = 50
         percentage = newvalue / 100.0
@@ -1256,12 +1208,20 @@ class App_Settings_Screen_iOS:
 
     def Verify_Printed_Successfully_Text(self):
         sleep(1)
-        a=self.poco(nameMatches=".*Printed succesfully..*")
-        print(a)
+        a = self.poco(nameMatches=".*Printed successfully..*").get_name()
+        if not a:
+            assert False, "Error message not found on the screen"
+        else:
+            print(a)
 
     def Verify_ErrorMessage_Text(self):
-        a = self.poco(nameMatches=".*Printer is offline. Please check the printer connection and try again..*")
-        print(a)
+        a = self.poco(
+            nameMatches=".*Printer is offline. Please check the printer connection and try again..*").get_name()
+        if not a:
+            # If 'a' is empty, meaning the error message is not present, fail the test
+            assert False, "Error message not found on the screen"
+        else:
+            print(a)
 
     def Verify_Bluetooth_Connection_Failed_Popup(self):
         sleep(23)
@@ -1282,7 +1242,7 @@ class App_Settings_Screen_iOS:
         notifications_tab = self.poco(self.Notifications_Tab)
         notifications_tab.click()
 
-    def Scroll_Till_Notification_Settings_Tab(self):
+    def Scroll_Till_Next_Tab(self):
         sleep(2)
         scroll_view = self.poco("ScrollView")
         # Set the maximum number of swipes to avoid an infinite loop
@@ -1396,7 +1356,7 @@ class App_Settings_Screen_iOS:
 
     def Scroll_Right(self):
         sleep(2)
-        scroll_view = poco("ScrollView")
+        scroll_view = self.poco("ScrollView")
         # Set the maximum number of swipes to avoid an infinite loop
         max_swipes = 3
         for _ in range(max_swipes):
@@ -1432,10 +1392,10 @@ class App_Settings_Screen_iOS:
         picture = self.poco(name="Use Photo")
         picture.click()
 
-
     def click_User_upload_photo(self):
         sleep(2)
         self.poco(nameMatches="(?s).*Upload Photo.*").click()
+
     def Verify_Photo_Uploaded_Message(self):
         photo_uploaded_message = self.poco(self.Photo_Uploaded_Message)
         if photo_uploaded_message.exists():
@@ -1501,10 +1461,6 @@ class App_Settings_Screen_iOS:
             return "NESTWIFI is not found in the network list. Printer might be removed."
         else:
             return "NESTWIFI is still present in the network list. Printer is still connected."
-
-
-
-
 
     def Check_no_of_left_cartridge(self):
         child_names = [child.get_name() for child in
@@ -1622,7 +1578,7 @@ class App_Settings_Screen_iOS:
         sleep(3)
         apply_changes = self.poco(self.Apply_Changes)
         if apply_changes.exists():
-           apply_changes.click()
+            apply_changes.click()
         else:
             pass
 
@@ -1633,7 +1589,7 @@ class App_Settings_Screen_iOS:
 
     def click_Change_Password_Btn(self):
         sleep(3)
-        self.poco(name="Change").click()
+        self.poco(nameMatches="(?s).*Change.*")[1].click()
         sleep(20)
 
     def Verify_The_Change_Password_URL(self):
@@ -1649,16 +1605,22 @@ class App_Settings_Screen_iOS:
             print(f"An error occurred while fetching URL: {url}. Error: {e}")
             return None
 
-    def Verify_Change_Password_PageURL_Is_Displaying(self):
+    def click_Cookies_Close_Icon(self):
         sleep(20)
-        Change_Password_PageURL = self.poco(text="signup.zebra.com")
-        if Change_Password_PageURL.exists():
-            Change_Password_PageURL.get_text()
-        return Change_Password_PageURL
+        a = self.poco(name="Close")
+        if a.exists():
+            a.click()
+        else:
+            print("Close icon is not present")
+
+    def Verify_Change_Password_PageURL_Is_Displaying(self):
+        sleep(7)
+        a = self.poco(valueMatches="(?s).*signup.zebra.com.*").get_name()
+        print(a)
 
     def Verify_Password_Recovery_Text_Is_Displaying(self):
         sleep(3)
-        Password_Recovery_Text = self.poco(text="Password Recovery")
+        Password_Recovery_Text = self.poco(name="Password Recovery")
         if Password_Recovery_Text.exists():
             Password_Recovery_Text.get_text()
         return Password_Recovery_Text
@@ -1666,10 +1628,12 @@ class App_Settings_Screen_iOS:
     def click_Password_Recovery_Email_TextField(self):
         email_field = self.poco(self.Email_TextField_On_Password_Recovery_Screen)
         email_field.click()
-        email_field.set_text("Zebra01.swdvt@icloud.com")
+        sleep(1)
+        self.poco(text("Zebra01.swdvt@icloud.com"))
 
     def click_Submit_On_Password_Recovery_Screen(self):
-        submit_btn = self.poco(text="SUBMIT")
+        sleep(1)
+        submit_btn = self.poco(name="SUBMIT")
         submit_btn.click()
 
     def Update_PrinterName_With_Different_Valid_Name(self):
@@ -1689,7 +1653,7 @@ class App_Settings_Screen_iOS:
 
     def Verify_Printer_Text(self):
         sleep(2)
-        a= self.poco(nameMatches="(?s).*ZSB-DP12.*").get_name()
+        a = self.poco(nameMatches="(?s).*ZSB-DP12.*").get_name()
         print(a)
 
     def Click_Cancel_On_Delete_Printer_Page(self):
@@ -1701,15 +1665,9 @@ class App_Settings_Screen_iOS:
             raise Exception("Cancel Button is not present")
 
     def Verify_Delete_Printer_Page(self):
-        Delete_Printer_Page = self.poco(
-            desc="Delete Printer Please acknowledge the following to continue: This action cannot be undone. Deleting your printer will: • Permanently remove it from your workspace • Factory reset your printer After deleting your printer, proceed to the Bluetooth settings on your device to remove the existing Bluetooth bond.")
-
-        if Delete_Printer_Page.exists():
-            text = Delete_Printer_Page.get_text()
-            print("Delete Printer Popup is displaying:", text)
-            return Delete_Printer_Page
-        else:
-            raise Exception("Delete Printer Popup is not found")
+        a = self.poco(nameMatches="(?s).*Delete Printer.*").get_name()
+        a = a.split("\n")
+        print(a)
 
     def click_Bluetooth(self):
         sleep(1)
@@ -1732,16 +1690,14 @@ class App_Settings_Screen_iOS:
         unpair = self.poco(name="Done")
         unpair.click()
 
-
     def Scroll_Till_Next_Tab(self):
         sleep(2)
-        scroll_view = poco("ScrollView")
+        scroll_view = self.poco("ScrollView")
         # Set the maximum number of swipes to avoid an infinite loop
         max_swipes = 7
         for _ in range(max_swipes):
-         # Swipe up on the ScrollView
-         scroll_view.swipe("left", duration=0.9)
-
+            # Swipe up on the ScrollView
+            scroll_view.swipe("left", duration=0.9)
 
     def Stop_iOS_App(self):
         sleep(4)
@@ -1750,8 +1706,37 @@ class App_Settings_Screen_iOS:
 
     def click_ZSB_Series_Popup(self):
         sleep(1)
-        a=self.poco(name="Allow Once")
+        a = self.poco(name="Allow Once")
         if a.exists():
-           a.click()
+            a.click()
         else:
             print("Pop up is not present")
+
+    def click_Mobile_SearchBar(self):
+        Mobile_SearchBar = self.poco(self.Mobile_SearchBar)
+        Mobile_SearchBar.click()
+        sleep(3)
+
+    def click_On_Searchbar2(self):
+        sleep(2)
+        SearchBar2 = self.poco(self.Searchbar2)
+        SearchBar2.click()
+        sleep(3)
+
+    def Enter_Settings_Text_On_SearchBar(self):
+        sleep(2)
+        SearchBar2 = self.poco(self.Searchbar2)
+        SearchBar2.set_text(" ")
+        sleep(2)
+        SearchBar2.set_text("Settings")
+        sleep(3)
+        self.poco(self.Settings).click()
+
+    def click_Settings(self):
+        sleep(2)
+        Settings = self.poco(self.Settings)
+        if Settings.exists():
+            Settings.click()
+            sleep(2)
+        else:
+            print("Settings text is not there")

@@ -36,7 +36,7 @@ class Add_A_Printer_Screen:
         self.Start_Btn = "Start Setup"
         self.Lets_Make_Sure_Text = "Let's make sure the printer is in Bluetooth pairing mode."
         self.Searching_For_Your_Printer_Tex = "Searching for your printer"
-        self.Next_Button= "Next"
+        self.Next_Button = "Next"
         self.Printer_LED_Not_Flashing_Text = "My Printer’s LED is Not Flashing Blue What Does The LED Light Indicator Mean"
         self.Blue_Left_LED = "Blue Left LED"
         self.To_Find_Your_Printer_Text = "To find your printer, please ensure your printer’s LED is flashing blue like the example below."
@@ -57,13 +57,10 @@ class Add_A_Printer_Screen:
         self.Added_Printer = "ZSB-DP12C710B9"
         self.Second_Printer_Name = "android.widget.RadioButton"
         self.Connect_Wifi_Network_Text = "Connect Wi-Fi Network"
-
-
-
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
-        self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44), resolution=(1080, 2400))
-
+        self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44),
+                                                       resolution=(1080, 2400))
         self.Submit_Button_ON_Join_Network = "Submit"
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
@@ -72,7 +69,8 @@ class Add_A_Printer_Screen:
 
         self.Print_Option = "Print"
         self.Print_Button = "Print"
-        self.Design_Preview_With_Details = Template(r"tpl1707902210476.png", record_pos=(0.047, 0.202), resolution=(1170, 2532))
+        self.Design_Preview_With_Details = Template(r"tpl1707902210476.png", record_pos=(0.047, 0.202),
+                                                    resolution=(1170, 2532))
         self.Back_Icon_Of_Print_Review_Screen = "android.widget.Button"
         self.Common_Design_Tab = "Common Designs"
 
@@ -142,10 +140,9 @@ class Add_A_Printer_Screen:
             pass
 
     def Verify_Printer_LED_Not_Flashing_Text(self):
-        led_not_flashing_text= self.poco(self.Printer_LED_Not_Flashing_Text)
+        led_not_flashing_text = self.poco(self.Printer_LED_Not_Flashing_Text)
         text = led_not_flashing_text.get_text()
         return text
-
 
     def Verify_To_Find_Your_Printer_Text(self):
         To_Find_Your_Printer_text = self.poco(self.To_Find_Your_Printer_Text)
@@ -154,7 +151,7 @@ class Add_A_Printer_Screen:
         return To_Find_Your_Printer_text
 
     def Verify_Printer_LED_Image(self):
-        assert_exists(self. Printer_LED_Image, "Printer LED Image is present")
+        assert_exists(self.Printer_LED_Image, "Printer LED Image is present")
 
     def click_Printer_LED_Not_Flashing_Link(self):
         sleep(2)
@@ -165,10 +162,10 @@ class Add_A_Printer_Screen:
         sleep(2)
         Blue_Left_LED_Text_And_Expand = self.poco(self.Blue_Left_LED)
         if Blue_Left_LED_Text_And_Expand.exists():
-           Blue_Left_LED_Text_And_Expand.click()
-           sleep(1)
-           Blue_Left_LED_Text_And_Expand.click()
-           sleep(1)
+            Blue_Left_LED_Text_And_Expand.click()
+            sleep(1)
+            Blue_Left_LED_Text_And_Expand.click()
+            sleep(1)
 
     def Verify_Red_Right_LED_Text_And_Expand(self):
         sleep(2)
@@ -204,7 +201,7 @@ class Add_A_Printer_Screen:
         sleep(2)
         pairing_Your_Printer_Text = self.poco(self.Pairing_Your_Printer_Text)
         if pairing_Your_Printer_Text.exists():
-           pairing_Your_Printer_Text.get_text()
+            pairing_Your_Printer_Text.get_text()
         else:
             pass
 
@@ -247,22 +244,11 @@ class Add_A_Printer_Screen:
         print(" Discovered Devices Text is displaying:", discovered_devices_Text)
         return discovered_devices_Text
 
-    # def Verify_same_ZSB_image_for_all_items(self):
-    #
-    #     # if assert_exists(self.ZSB_Printer_images, "Only ZSB Printers are present"):
-    #     if (self.ZSB_Printer_images, "Only ZSB Printers are present").exists():
-    #         print("ZSB Printers are present for all items.")
-    #     else:
-    #         print("ZSB Printers are not present for all items.")
-
     def Verify_same_ZSB_image_for_all_items(self):
         sleep(1)
         a = self.poco(nameMatches="(?s).*ZSB-DP12.*").get_name()
         a = a.split("\n")
         print(a)
-
-
-
 
     def Verify_Already_Added_Printer_IS_Not_Displaying(self):
         sleep(5)
@@ -278,8 +264,6 @@ class Add_A_Printer_Screen:
         second_printer = self.poco(name="android.widget.RadioButton")
         second_printer.click()
 
-
-
     # def Accept_Bluetooth_pairing_Popup1(self):
     #     while wait:
     #
@@ -290,7 +274,7 @@ class Add_A_Printer_Screen:
         sleep(2)
         bluetooth_popup1 = self.poco(self.Bluetooth_pairing_Popup1)
         if bluetooth_popup1.exists():
-           bluetooth_popup1.click()
+            bluetooth_popup1.click()
         else:
             pass
 
@@ -298,9 +282,9 @@ class Add_A_Printer_Screen:
         sleep(2)
         bluetooth_popup2 = self.poco(self.Bluetooth_pairing_Popup2)
         if bluetooth_popup2.exists():
-           bluetooth_popup2.click()
+            bluetooth_popup2.click()
         else:
-           pass
+            pass
 
     def Verify_Connect_Wifi_Network_Text(self):
         sleep(7)
@@ -309,7 +293,6 @@ class Add_A_Printer_Screen:
             connect_wifi.get_text()
         else:
             pass
-
 
     def click_Connect_Btn_On_Connect_Wifi_Network_Screen(self):
         sleep(7)
@@ -328,9 +311,6 @@ class Add_A_Printer_Screen:
         sleep(2)
         poco(text("123456789"))
 
-
-
-
     def Enter_Password_To_Join_Network(self):
         sleep(2)
         poco(text("123456789"))
@@ -345,9 +325,9 @@ class Add_A_Printer_Screen:
 
     def Verify_Connecting_to_WiFi_Network_Text(self):
         sleep(3)
-        Connecting_to_WiFi_Network_Text= self.poco(name="Connecting to Wi-Fi Network")
+        Connecting_to_WiFi_Network_Text = self.poco(name="Connecting to Wi-Fi Network")
         if Connecting_to_WiFi_Network_Text.exists():
-           print("Connecting to Wi-Fi Network Text is present.")
+            print("Connecting to Wi-Fi Network Text is present.")
         else:
             pass
 
@@ -361,7 +341,6 @@ class Add_A_Printer_Screen:
         else:
             print("Need the printer driver text is not displaying.")
 
-
     def Verify_Registering_your_Printer_Text(self):
         sleep(2)
 
@@ -372,7 +351,6 @@ class Add_A_Printer_Screen:
 
         else:
             print("Registering your Printer Text is not present.")
-
 
     def Verify_Connected_Text(self):
         sleep(7)
@@ -398,8 +376,8 @@ class Add_A_Printer_Screen:
         sleep(25)
         finish_btn = self.poco(self.Finish_Setup_Button)
         if finish_btn.exists():
-           finish_btn.click()
-           sleep(5)
+            finish_btn.click()
+            sleep(5)
         else:
             stop_app("com.zebra.soho_app")
             sleep(1)
@@ -407,15 +385,11 @@ class Add_A_Printer_Screen:
             sleep(6)
             print("Finish button did not become visible within 20 seconds.")
 
-
-
-
-
     def click_FirstOne_In_MyDesign(self):
-            sleep(1)
-            # a = self.poco("android.view.View").child(type="android.widget.ImageView")[0].get_name()
-            # return a
-            self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
+        sleep(1)
+        # a = self.poco("android.view.View").child(type="android.widget.ImageView")[0].get_name()
+        # return a
+        self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
 
     def click_Print_Option(self):
         sleep(2)
@@ -428,7 +402,7 @@ class Add_A_Printer_Screen:
         sleep(4)
         print_button = self.poco(self.Print_Button)
         if print_button.exists():
-           print_button.click()
+            print_button.click()
         else:
             #     start_point = (0.5, 0.7914691943127962)  # Example coordinates (x, y)
             # # Specify the vector for swiping up
@@ -459,15 +433,12 @@ class Add_A_Printer_Screen:
         common_design.click()
 
     def click_FirstOne_Design_In_Common_Design(self):
-            sleep(3)
-            self.poco(nameMatches="(?s).*Address.*").click()
-
-
+        sleep(3)
+        self.poco(nameMatches="(?s).*Address.*").click()
 
     def click_FirstOne_In_Common_Design(self):
         sleep(5)
         self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
-
 
     def Click_Next_Button(self):
         sleep(1)
