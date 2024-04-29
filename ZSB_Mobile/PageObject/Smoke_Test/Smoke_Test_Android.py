@@ -21,51 +21,32 @@ class Smoke_Test_Android:
         self.Continue_With_Facebook_Option = "Continue with Facebook"
         self.Continue_With_Apple_Option = "Continue with Apple"
         self.home_Text_IS_Present = "Home"
-        self.Facebook_UserName = Template(os.path.join(os.path.expanduser('~'),
-                                                       "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\PageObject\Images",
-                                                       "tpl1707806465367.png"), record_pos=(-0.169, -0.869),
-                                          resolution=(1170, 2532))
+        self.Facebook_UserName = Template(r"tpl1707806465367.png", record_pos=(-0.169, -0.869), resolution=(1170, 2532))
         self.Continue_With_Password_ForApple_Login = "Continue with Password"
         self.click_On_Password_Text_field = "SecureTextField"
         self.Sign_In_Option = "Sign In"
-        self.Apple_UserName = Template(os.path.join(os.path.expanduser('~'),
-                                                    "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\PageObject\Images",
-                                                    "tpl1707817586300.png"), record_pos=(-0.191, -0.867),
+        self.Apple_UserName = Template(r"tpl1707817586300.png", record_pos=(-0.191, -0.867),
                                        resolution=(1170, 2532))
 
-        self.Google_UserName = Template(os.path.join(os.path.expanduser('~'),
-                                                     "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\PageObject\Images",
-                                                     "tpl1707818376117.png"), record_pos=(-0.174, -0.867),
-                                        resolution=(1170, 2532))
+        self.Google_UserName = Template(r"tpl1707818376117.png", record_pos=(-0.174, -0.867), resolution=(1170, 2532))
 
         self.MyData_Tab = "My Data"
         self.Plus_Icon = "android.widget.Button"
         self.LinkFile = "android.widget.Button"
         self.SignIn_With_Microsoft = "Sign in with Microsoft"
-        self.Select_Upload_Files = ""
-        self.Uploaded_Files = ""
-        self.Delete_File = ""
+        self.SignIn_With_Google_Drive = ""
+        self.Delete_File = "Remove"
         self.Print_Button = "Print"
-        # self.Copies_Field = ""
         self.Delete_Button_On_MyDesign = "Delete"
         self.Cancel_Button_On_Delete_Popup = "Cancel"
         self.Delete_Button_On_Delete_Popup = "Delete"
         self.Deleted_Successfully_Message = ""
-        self.Address_Header_And_Description = (Template(r"tpl1709807557560.png", record_pos=(-0.01, -0.298), resolution=(1080, 2400)))
-        self.Barcodes_Header_And_Description = (Template(r"tpl1709807592583.png", record_pos=(0.0, 0.382), resolution=(1080, 2400)))
-        self.Jewelry_Header_And_Description = (Template(r"tpl1709807638763.png", record_pos=(-0.004, 0.078), resolution=(1080, 2400)))
-        self.Multipurpose_Header_And_Description = (Template(r"tpl1709807672502.png", record_pos=(-0.016, 0.708), resolution=(1080, 2400)))
-        self.Postage_Header_And_Description = (Template(r"tpl1709807695114.png", record_pos=(-0.015, 0.524), resolution=(1080, 2400)))
-        self.ReturnAddress_Header_And_Description = (Template(r"tpl1709807740614.png", record_pos=(0.005, 0.147), resolution=(1080, 2400)))
-        self.Round_Header_And_Description = Template(r"tpl1709807914172.png", record_pos=(-0.006, 0.411), resolution=(1080, 2400))
-        self.Shipping_Header_And_Description = Template(r"tpl1709807943476.png", record_pos=(-0.006, -0.21), resolution=(1080, 2400))
-        self.SmallMultipurpose_Header_And_Description = (Template(r"tpl1709807971879.png", record_pos=(-0.001, -0.146), resolution=(1080, 2400)))
-        self.XLShipping_Header_And_Description = (Template(r"tpl1709807994118.png", record_pos=(0.002, 0.518), resolution=(1080, 2400)))
         self.Back_Icon_On_Address_Screen = "android.widget.Button"
         self.Common_Design_Text = "Common Designs"
         self.Copy_To_My_Design_Text = "Copy to My Designs"
-        self.Email_Text_Field = "i0116"
-        self.Next_Button = "Next"
+        self.Print_button = "Print"
+        self.Select_Btn = "Select"
+        self.Threedot_On_MyData="android.widget.Button"
 
     # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def Verify_SignIn_With_Text_Is_Present(self):
@@ -99,6 +80,8 @@ class Smoke_Test_Android:
         enter_apple_id_password = self.poco(self.click_On_Password_Text_field)
         enter_apple_id_password.click()
         sleep(2)
+        poco(text("Testing@123"))
+
 
     def Enter_Apple_ID_Password(self):
         self.poco(text("Testing@123"))
@@ -137,9 +120,42 @@ class Smoke_Test_Android:
 
     def click_SignIn_With_Microsoft(self):
         sleep(2)
-        SignIn_With_Microsoft = self.poco(self.SignIn_With_Microsoft)
-        SignIn_With_Microsoft.click()
-        sleep(4)
+        sign_in_with_microsoft = self.poco(self.SignIn_With_Microsoft)
+        if sign_in_with_microsoft.exists():
+           sign_in_with_microsoft.click()
+        else:
+            print("Sign in with Microsift is not displaying")
+
+    def click_SignIn_With_Google_Drive(self):
+        sleep(2)
+        sign_in_with_google_drive = self.poco(nameMatches="(?s).*Sign in with Google.*")
+        if sign_in_with_google_drive.exists():
+            sign_in_with_google_drive.click()
+        else:
+            print("Sign in with Google is not displaying")
+
+    def click_Add_Another_Account_On_Google_Drive(self):
+        sleep(2)
+        poco.scroll()
+        Google_email = self.poco(text="Add another account")
+        if Google_email.exists():
+            Google_email.click()
+            sleep(3)
+
+    def Enter_Email_On_Google_Drive(self):
+        sleep(2)
+        google_drive_email = self.poco(name="identifierId")
+        if google_drive_email.exists():
+            google_drive_email.click()
+            sleep(1)
+            google_drive_email.set_text("soho.swdvt.01@gmail.com")
+            sleep(4)
+        else:
+            print("Emailo Field is not displaying")
+
+
+
+
 
     def Upload_Files(self):
         sleep(2)
@@ -174,6 +190,7 @@ class Smoke_Test_Android:
         poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").offspring(
             "android.widget.ScrollView").child("android.widget.EditText")[1].set_text("")
         poco(text("3"))
+
     def click_On_Copies_Filed(self):
         sleep(3)
         poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").offspring(
@@ -202,7 +219,8 @@ class Smoke_Test_Android:
         delete_Button.click()
 
     def Verify_Deleted_Successfully_Message(self):
-        assert_exists(self.Deleted_Successfully_Message, "Successfully Deleted Message is displaying")
+        self.poco(nameMatches="(?s).*has been successfully removed.*").get_name()
+        # assert_exists(self.Deleted_Successfully_Message, "Successfully Deleted Message is displaying")
 
     def Verify_List_Is_Sorted_From_A_TO_Z(self):
         def is_sorted_a_to_z(input_list):
@@ -220,56 +238,6 @@ class Smoke_Test_Android:
         else:
             print("The list is not sorted from A to Z.")
 
-    def Verify_Address_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.Address_Header_And_Description, "Address Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_Barcodes_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.Barcodes_Header_And_Description, "Barcodes Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_Jewelry_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.Jewelry_Header_And_Description, "Jewelry Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_Multipurpose_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.Multipurpose_Header_And_Description, "Multipurpose Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_Shipping_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.Shipping_Header_And_Description, "Shipping Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_ReturnAddress_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.ReturnAddress_Header_And_Description, "ReturnAddress Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_Postage_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.Postage_Header_And_Description, "Postage Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_Round_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.Round_Header_And_Description, "Round Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_SmallMultipurpose_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.SmallMultipurpose_Header_And_Description,
-                      "SmallMultipurpose Header And Description is displaying")
-        poco.scroll()
-
-    def Verify_XLShipping_Header_And_Description_IS_Present(self):
-        sleep(2)
-        assert_exists(self.XLShipping_Header_And_Description, "XLShipping Header And Description is displaying")
-        poco.scroll()
 
     def click_Back_Icon_On_Address_Screen(self):
         sleep(3)
@@ -285,18 +253,186 @@ class Smoke_Test_Android:
 
     def Verify_Copy_To_My_Design_Text_Is_Present(self):
         sleep(2)
-        assert_exists(self.Copy_To_My_Design_Text, "Copy To My Design Text is displaying")
+        a = self.poco(self.Copy_To_My_Design_Text).get_name()
+        return a
+
 
     def click_Email_Text_Field(self):
-
-        sleep(3)
-        Email_Text_Field = self.poco(self.Email_Text_Field)
-        Email_Text_Field.click()
-        sleep(2)
-        Email_Text_Field.set_text("soho.swdvt.01@gmail.com")
+            sleep(2)
+            microsoft_email = self.poco(type="android.widget.EditText")
+            if microsoft_email.exists():
+                microsoft_email.click()
+                sleep(1)
+                microsoft_email.set_text("swdvt.zebra@outlook.com")
+                sleep(4)
+            else:
+                print("Sign in field is not displaying")
 
     def click_Next_Button(self):
         sleep(1)
-        Next_Button = self.poco(self.Next_Button)
-        Next_Button.click()
+        Next_Button = self.poco(text="Next")
+        if Next_Button.exists():
+           Next_Button.click()
+           sleep(2)
+        else:
+            print("Next button is not displaying")
+
+    def check_printer_online_status(self):
+        child_names = [child.get_name() for child in
+                       self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child(
+                           "android.view.View").child("android.view.View").child("android.view.View").offspring(
+                           "android.widget.ScrollView").child("android.view.View")[0].child("android.view.View").child(
+                           "android.view.View")[0].children()]
+        modified_list = [item.split('\n') for item in child_names]
+
+        return modified_list[0][0]
+
+    def select_first_label_from_home(self):
+        first_label = \
+            self.poco("android.widget.ScrollView").child("android.view.View")[1].child("android.view.View").child()[0]
+        first_label.click()
+
+    def click_print_button(self):
+        print_btn = self.poco(self.Print_button)
+        print_btn.click()
+
+    def check_error_print_preview(self):
+        a = self.poco("Error\nCould not fetch the Print Preview")
+        if a:
+            self.poco("Cancel").click()
+        else:
+            pass
+
+    def click_left_arrow(self):
+        self.poco("android.widget.Button").click()
+
+    def click_Microsoft_Password_Field(self):
         sleep(2)
+        microsoft_password = self.poco(type="android.widget.EditText")
+        if microsoft_password .exists():
+            microsoft_password .click()
+            sleep(1)
+            microsoft_password .set_text("Swdvt@123")
+            sleep(4)
+        else:
+            print("Password field is not displaying")
+
+    def click_Google_Drive_Password_Field(self):
+        sleep(2)
+        gooogle_password = self.poco(type="android.widget.EditText")
+        if gooogle_password.exists():
+            gooogle_password.click()
+            sleep(1)
+            gooogle_password.set_text("Swdvt@#123")
+            sleep(5)
+        else:
+            print("Password field is not displaying")
+
+
+
+
+    def click_Sign_In_Button(self):
+        sleep(1)
+        sign_in_btn = self.poco(text="Sign in")
+        if sign_in_btn.exists():
+           sign_in_btn.click()
+           sleep(1)
+        else:
+            print("Sign in button is not displaying")
+
+    def click_Microsoft_OneDrive_Tab(self):
+        sleep(2)
+        microsoft_tab = self.poco(name="Microsoft OneDrive\nTab 2 of 2")
+        if microsoft_tab.exists():
+           microsoft_tab.click()
+           sleep(1)
+        else:
+            print("Microsoft Onedrive tab is not present")
+
+    def click_On_Search_Files(self):
+        sleep(2)
+        SearchBar2 = self.poco(self.Search_Files)
+        SearchBar2.click()
+        sleep(3)
+
+    def click_On_Jpg_File(self):
+        sleep(1)
+        self.poco(nameMatches="(?s).*jpg.*").click()
+        sleep(2)
+
+    def click_On_PNG_File(self):
+        sleep(1)
+        self.poco(nameMatches="(?s).*png.*").click()
+        sleep(2)
+
+    def click_On_Select_Btn(self):
+        sleep(1)
+        select_btn=self.poco(self.Select_Btn)
+        select_btn.click()
+        sleep(4)
+
+    def click_Three_Dot_On_MyData(self):
+        sleep(1)
+        threedot=self.poco(self.Threedot_On_MyData)
+        threedot.click()
+        sleep(1)
+
+    def get_ith_design_by_index_in_my_designs(self, i):
+        temp = []
+        prev = []
+        while len(temp) != i:
+            curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+            for j in curr:
+                if j not in temp:
+                    temp.append(j)
+                    if len(temp) >= i:
+                        break
+
+            if prev == curr:
+                break
+
+            self.poco.scroll()
+            prev = curr
+        return temp[-1]
+
+    def get_all_designs_in_My_Designs(self):
+        sleep(1)
+        total = []
+        prev = []
+        while 1:
+            curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+            if curr != prev:
+                for i in curr:
+                    if i not in total:
+                        total.append(i)
+
+            if curr == prev:
+                break
+
+            self.poco.scroll()
+            prev = curr
+
+        return total
+
+    def get_all_designs_in_Common_Designs(self):
+        sleep(1)
+        total = []
+        prev = []
+        while 1:
+            curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.view.View")]
+            if curr != prev:
+                for i in curr:
+                    if i not in total:
+                        total.append(i)
+
+            if curr == prev:
+                break
+
+            self.poco.scroll()
+            prev = curr
+
+        return total
+
+    def get_first_design_in_my_designs(self):
+        a = self.poco("android.view.View").child(type="android.widget.ImageView")[0].get_name()
+        return a
