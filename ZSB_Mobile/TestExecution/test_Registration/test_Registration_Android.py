@@ -7,13 +7,13 @@ from ZSB_Mobile.PageObject.Login_Screen import *
 
 from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
 from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
+from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
 from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
-
+from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 
 class Android_App_Registration:
     pass
@@ -32,6 +32,7 @@ add_a_printer_page = Add_A_Printer_Screen(poco)
 registration_page = Registration_Screen(poco)
 others_page = Others(poco)
 template_management_page = Template_Management_Screen(poco)
+app_settings_page = App_Settings_Screen(poco)
 
 
 # def test_Registration_TestcaseID_45855():
@@ -828,25 +829,42 @@ def test_Registration_TestcaseID_46303():
 
 
 # common_method.Start_The_App()
+# """click on the hamburger icon"""
 # login_page.click_Menu_HamburgerICN()
+# """"click on Add printer tab"""""
 # add_a_printer_page.click_Add_A_Printer()
+# """"click on the start button"""
 # add_a_printer_page.click_Start_Button()
-# add_a_printer_page.click_Show_All_Printers()
-# sleep(3)
-# registration_page.selectPrinter("ZSB-DP12\n99D1CB")
-# data_sources_page.clickSelect()
-# add_a_printer_page.click_Bluetooth_pairing_Popup1()
-# add_a_printer_page.click_Bluetooth_pairing_Popup2()
-# registration_page.clickConnect()
-# sleep(3)
-# registration_page.Enter_Password_Join_Network()
-# sleep(2)
-# poco("android.widget.EditText").set_text("123456789")
-# keyevent("Enter")
-# sleep(2)
-# registration_page.clickSubmit()
+# login_page.click_Allow_ZSB_Series_Popup()
+# add_a_printer_page.Click_Next_Button()
+# """"Verify searching for your printer text"""
+# add_a_printer_page.Verify_Searching_for_your_printer_Text()
+# """"verify select your printer text"""
+# add_a_printer_page.Verify_Select_your_printer_Text()
+# """"select 2nd printer which you want to add"""
+# add_a_printer_page.click_2nd_Printer_Details_To_Add()
+# """""click on select button"""
+# add_a_printer_page.Click_Next_Button()
+# """"accept Bluetooth pairing popup 2"""
+# add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# """"accept Bluetooth pairing popup 2"""
+# try:
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# except:
+#     pass
+# """Verify Connect Wi-fi Network Text"""
+# common_method.wait_for_element_appearance("Connect to a Wi-Fi Network", 20)
+# """"click on connect button on connect wi-fi network screen"""
+# registration_page.connectToWIfi()
+# registration_page.enterPasswordWifi()
 # time_taken = registration_page.timeTillWiFiGreen()
 # print(time_taken)
+# """"verify need the printer driver text"""
+# add_a_printer_page.Verify_Need_the_Printer_Driver_Text()
+# """""verify registering your printer text"""
+# add_a_printer_page.Verify_Registering_your_Printer_Text()
+# """"click on finish setup button"""
+# add_a_printer_page.click_Finish_Setup_Button()
 # common_method.Stop_The_App()
 
 
@@ -854,22 +872,30 @@ def test_Registration_TestcaseID_46304():
     """""""""test"""""
 
 
+# common_method.Start_The_App()
+# """click on the hamburger icon"""
 # login_page.click_Menu_HamburgerICN()
-# add_a_printer_page.disable_bluetooth()
-# if poco("android:id/message").exists():
-#     add_a_printer_page.click_Bluetooth_pairing_Popup2()
+# """"click on Add printer tab"""""
 # add_a_printer_page.click_Add_A_Printer()
-# registration_page.verifyTurnOnBluetoothPopUp()
-# add_a_printer_page.enable_bluetooth()
-# sleep(2)
-# if poco("android:id/message").exists():
-#     add_a_printer_page.click_Bluetooth_pairing_Popup2()
-#     data_sources_page.clickCancel()
+# """"click on the start button"""
 # add_a_printer_page.click_Start_Button()
-# add_a_printer_page.click_Show_All_Printers()
-# sleep(5)
-# registration_page.selectPrinter("ZSB-DP12\n879647")
-# data_sources_page.clickSelect()
+# login_page.click_Allow_ZSB_Series_Popup()
+# add_a_printer_page.Click_Next_Button()
+# """"Verify searching for your printer text"""
+# add_a_printer_page.Verify_Searching_for_your_printer_Text()
+# """"verify select your printer text"""
+# add_a_printer_page.Verify_Select_your_printer_Text()
+# """"select 2nd printer which you want to add"""
+# add_a_printer_page.click_2nd_Printer_Details_To_Add()
+# """""click on select button"""
+# add_a_printer_page.Click_Next_Button()
+# """"accept Bluetooth pairing popup 2"""
+# add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# """"accept Bluetooth pairing popup 2"""
+# try:
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# except:
+#     pass
 # """Cannot automate walking 10 m"""
 # try:
 #     registration_page.wait_for_element_appearance("Searching for Wi-Fi Networks", 50)
@@ -881,22 +907,30 @@ def test_Registration_TestcaseID_46305():
     """""""""test"""""
 
 
+# common_method.Start_The_App()
+# """click on the hamburger icon"""
 # login_page.click_Menu_HamburgerICN()
-# add_a_printer_page.disable_bluetooth()
-# if poco("android:id/message").exists():
-#     add_a_printer_page.click_Bluetooth_pairing_Popup2()
+# """"click on Add printer tab"""""
 # add_a_printer_page.click_Add_A_Printer()
-# registration_page.verifyTurnOnBluetoothPopUp()
-# add_a_printer_page.enable_bluetooth()
-# sleep(2)
-# if poco("android:id/message").exists():
-#     add_a_printer_page.click_Bluetooth_pairing_Popup2()
-#     data_sources_page.clickCancel()
+# """"click on the start button"""
 # add_a_printer_page.click_Start_Button()
-# add_a_printer_page.click_Show_All_Printers()
-# sleep(5)
-# registration_page.selectPrinter("ZSB-DP12\n879647")
-# data_sources_page.clickSelect()
+# login_page.click_Allow_ZSB_Series_Popup()
+# add_a_printer_page.Click_Next_Button()
+# """"Verify searching for your printer text"""
+# add_a_printer_page.Verify_Searching_for_your_printer_Text()
+# """"verify select your printer text"""
+# add_a_printer_page.Verify_Select_your_printer_Text()
+# """"select 2nd printer which you want to add"""
+# add_a_printer_page.click_2nd_Printer_Details_To_Add()
+# """""click on select button"""
+# add_a_printer_page.Click_Next_Button()
+# """"accept Bluetooth pairing popup 2"""
+# add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# """"accept Bluetooth pairing popup 2"""
+# try:
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# except:
+#     pass
 # """Cannot automate walking 10 m"""
 # if registration_page.unableToPairPrinterError():
 #     print("Bluetooth process interrupted because bluetooth device out of range.")
@@ -909,19 +943,34 @@ def test_Registration_TestcaseID_46306():
 
 
 # common_method.Start_The_App()
+# """click on the hamburger icon"""
 # login_page.click_Menu_HamburgerICN()
+# """"click on Add printer tab"""""
 # add_a_printer_page.click_Add_A_Printer()
+# """"click on the start button"""
 # add_a_printer_page.click_Start_Button()
-# add_a_printer_page.click_Show_All_Printers()
-# sleep(3)
-# registration_page.selectPrinter("ZSB-DP12\nCA0379")
-# data_sources_page.clickSelect()
-# add_a_printer_page.click_Bluetooth_pairing_Popup1()
-# add_a_printer_page.click_Bluetooth_pairing_Popup2()
+# login_page.click_Allow_ZSB_Series_Popup()
+# add_a_printer_page.Click_Next_Button()
+# """"Verify searching for your printer text"""
+# add_a_printer_page.Verify_Searching_for_your_printer_Text()
+# """"verify select your printer text"""
+# add_a_printer_page.Verify_Select_your_printer_Text()
+# """"select 2nd printer which you want to add"""
+# add_a_printer_page.click_2nd_Printer_Details_To_Add()
+# """""click on select button"""
+# add_a_printer_page.Click_Next_Button()
+# """"accept Bluetooth pairing popup 2"""
+# add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# """"accept Bluetooth pairing popup 2"""
+# try:
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+# except:
+#     pass
 # try:
 #     registration_page.wait_for_element_appearance("Searching for Wi-Fi Networks", 50)
 # except:
 #     raise Exception("Bluetooth connection unsuccessful")
+# """Connecting to a wi-fi without internet has to be done manually."""
 # common_method.Stop_The_App()
 
 
@@ -1098,3 +1147,4 @@ def test_Registration_TestcaseID_50287():
 #     pass
 # except:
 #     raise Exception("Showing EULA page after logging in with existing account.")
+"""UP -TO DATE"""
