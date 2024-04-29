@@ -404,11 +404,56 @@ class Template_Management_Screen:
         self.poco("android.widget.TextView")[7].focus([0.1, 0.5]).click()
         self.poco("android.widget.TextView")[9].focus([0.1, 0.5]).click()
 
+    def get_child_count_file_update_data_connections(self):
+        if self.poco(type="android.view.View", nameMatches=".*(Local File).*").exists():
+            child_count = len(self.poco(type="android.view.View", nameMatches=".*(Local File).*").parent().child())
+        elif self.poco(type="android.view.View", nameMatches=".*(OneDrive).*").exists():
+            child_count = len(self.poco(type="android.view.View", nameMatches=".*(OneDrive).*").parent().child())
+        else:
+            child_count = len(self.poco(type="android.view.View", nameMatches=".*(Google Drive).*").parent().child())
+        return child_count
+
+    def get_child_file_update_data_connections(self, index):
+        try:
+            child = self.poco(type="android.view.View", nameMatches=".*(Local File).*").parent().child()[index].get_name()
+        except:
+            try:
+                child = self.poco(type="android.view.View", nameMatches=".*(OneDrive).*").parent().child()[index].get_name()
+            except:
+                child = self.poco(type="android.view.View", nameMatches=".*(Google Drive).*").parent().child()[index].get_name()
+        return child
+
+    def select_child_file_update_data_connections(self, index):
+        try:
+            self.poco(type="android.view.View", nameMatches=".*(Local File).*").parent().child()[index].click()
+        except:
+            try:
+                self.poco(type="android.view.View", nameMatches=".*(OneDrive).*").parent().child()[index].click()
+            except:
+                self.poco(type="android.view.View", nameMatches=".*(Google Drive).*").parent().child()[index].click()
+
+    def choose_file_update_data_connections(self, filename):
+        child_count = self.get_child_count_file_update_data_connections()
+        last_child = self.get_child_file_update_data_connections(child_count - 1)
+        while 1:
+            for i in range(child_count):
+                if self.get_child_file_update_data_connections(i) == filename:
+                    self.select_child_file_update_data_connections(i)
+                    return
+            self.poco.scroll()
+            new_child_count = self.get_child_count_file_update_data_connections()
+            new_last_child = self.get_child_file_update_data_connections(new_child_count - 1)
+            if new_last_child == last_child:
+                raise Exception("Did not find file")
+            last_child = new_last_child
+            child_count = new_child_count
+
     def selectChooseAnOption(self, option_count=1, option_name=None, click=True):
         try:
             self.poco(nameMatches="(?s).*Choose an option.*").wait_for_appearance(timeout=20)
         except:
             sleep(3)
+
         for i in range(1, option_count + 1):
             try:
                 self.poco(nameMatches="(?s).*Choose an option.*").click()
@@ -418,7 +463,7 @@ class Template_Management_Screen:
                 if option_name is None:
                     self.poco("android.view.View")[6].child()[option_count - i].click()
                 else:
-                    self.poco(option_name).click()
+                    self.choose_file_update_data_connections(option_name)
 
     def verify_label_range_is_All(self):
         if self.poco("All").exists():
@@ -1023,7 +1068,97 @@ class Template_Management_Screen:
         self.poco(text="Contact details").wait_for_appearance(timeout=20)
         keyevent("back")
 
-    def delectContactGoogleContacts(self):
+    def createContactOffice365(self, first_name, last_name):
+        streets = ["Main St", "Oak St", "Elm St", "Maple Ave", "Cedar Ln", "High Street", "Market Square",
+                   "Park Avenue", "Broadway", "Abbey Road"]
+        cities = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "London", "Manchester", "Edinburgh",
+                  "Toronto", "Sydney"]
+        states = ["NY", "CA", "IL", "TX", "Ontario", "New South Wales", "Scotland", "Queensland"]
+        zip_codes = ["10001", "90001", "60601", "77001", "85001", "SW1A 1AA", "M1 1AB", "EH1 1AA", "M5V 2G9", "2000"]
+        countries = ["United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Japan", "India",
+                     "Brazil", "Italy"]
+        prefix = ["Mr", "Ms", "Mrs"]
+        suffix = ["Sr", "Jr"]
+
+        street = random.choice(streets)
+        city = random.choice(cities)
+        state = random.choice(states)
+        pin_code = random.choice(zip_codes)
+        country = random.choice(countries)
+        Prefix = random.choice(prefix)
+        Suffix = random.choice(suffix)
+        nick_name = first_name.upper() + first_name
+        email = first_name + last_name + "@gmail.com"
+        phone_no = self.generateRandomPhoneNumber()
+        self.poco(text="Create new contact").click()
+        self.poco(text="Add name")[1].click()
+        self.poco("android.widget.EditText")[0].set_text(Prefix)
+        self.poco("android.widget.EditText")[1].set_text(first_name.upper())
+        self.poco("android.widget.EditText")[2].set_text(first_name)
+        self.poco("android.widget.EditText")[3].set_text(last_name)
+        self.poco("android.widget.EditText")[4].set_text(Suffix)
+        self.poco("android.widget.EditText")[5].set_text(nick_name)
+        self.poco(text="Back").click()
+        self.poco.swipe([0.5, 0.9], [0.5, 0.5])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        sleep(2)
+        self.poco(text="Contact")[0].parent().child()[1].child()[1].child().set_text(email)
+        self.poco(text="Contact")[0].parent().child()[2].child()[1].child().set_text(phone_no)
+        self.poco.swipe([0.5, 0.9], [0.5, 0.5])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        self.poco(text="Work")[0].parent().child()[1].child()[1].child().set_text("Zebra")
+        self.poco.scroll()
+        keyevent('adb shell input keyevent 26')
+        wake()
+        self.poco("android.widget.Spinner").click()
+        self.poco(text="SET").click()
+        self.poco("android.widget.EditText")[-1].set_text("Hi I am " + first_name + last_name)
+        self.poco(text="Add address").click()
+        self.poco(text="Business address")[0].parent().child()[1].child()[1].child().set_text(street)
+        self.poco(text="Business address")[0].parent().child()[2].child()[1].child().set_text(city)
+        self.poco(text="Business address")[0].parent().child()[3].child()[1].child().set_text(state)
+        self.poco(text="Business address")[0].parent().child()[4].child()[1].child().set_text(pin_code)
+        self.poco(text="Business address")[0].parent().child()[5].child()[1].child().set_text(country)
+        self.poco.swipe([0.5, 0.9], [0.5, 0.5])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        street = random.choice(streets)
+        city = random.choice(cities)
+        state = random.choice(states)
+        pin_code = random.choice(zip_codes)
+        country = random.choice(countries)
+        self.poco(text="Home address")[0].parent().child()[1].child()[1].child().set_text(street)
+        self.poco(text="Home address")[0].parent().child()[2].child()[1].child().set_text(city)
+        self.poco(text="Home address")[0].parent().child()[3].child()[1].child().set_text(state)
+        self.poco(text="Home address")[0].parent().child()[4].child()[1].child().set_text(pin_code)
+        self.poco(text="Home address")[0].parent().child()[5].child()[1].child().set_text(country)
+        self.poco.swipe([0.5, 0.9], [0.5, 0.5])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        street = random.choice(streets)
+        city = random.choice(cities)
+        state = random.choice(states)
+        pin_code = random.choice(zip_codes)
+        country = random.choice(countries)
+        self.poco(text="Other address")[0].parent().child()[1].child()[1].child().set_text(street)
+        self.poco(text="Other address")[0].parent().child()[2].child()[1].child().set_text(city)
+        self.poco(text="Other address")[0].parent().child()[3].child()[1].child().set_text(state)
+        self.poco(text="Other address")[0].parent().child()[4].child()[1].child().set_text(pin_code)
+        self.poco(text="Other address")[0].parent().child()[5].child()[1].child().set_text(country)
+        self.poco.swipe([0.5, 0.9], [0.5, 0.5])
+        keyevent('adb shell input keyevent 26')
+        wake()
+        self.poco(text="Back").click()
+        self.poco(text="Save contact").click()
+
+    def deleteOffice365Contact(self):
+        self.poco("android.widget.Button")[-5].click()
+        self.poco.scroll()
+        self.poco(text="Delete contact").click()
+
+    def deleteContactGoogleContacts(self):
         keyevent('adb shell input keyevent 26')
         wake()
         self.poco("android.widget.CheckBox").click()

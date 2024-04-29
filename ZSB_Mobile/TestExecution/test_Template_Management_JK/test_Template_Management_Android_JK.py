@@ -345,6 +345,7 @@ def test_Template_Management_TestcaseID_45987():
 # else:
 #     raise Exception("Default filter is not \"All sizes\"")
 # template_management_page.click_filter_common_designs()
+"nnnnnn"
 # if template_management_page.filter_options(True) > 1:
 #     pass
 # else:
@@ -362,12 +363,13 @@ def test_Template_Management_TestcaseID_45987():
 # label_size = template_management_page.select_label_size()
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
 # design_size = template_management_page.get_all_designs_size_in_my_designs()
-# try:
-#     if len(design_size) == 1:
-#         if design_size[0] == label_size:
-#             pass
-# except:
-#     raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# if len(design_size) == 1:
+#     if design_size.pop() == label_size:
+#         pass
+#     else:
+#         raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# else:
+#     raise Exception("There is more than 1 label size in the filtered results")
 # template_management_page.click_sort_common_designs()
 # template_management_page.select_sort_order("A-Z")
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
@@ -422,12 +424,13 @@ def test_Template_Management_TestcaseID_45988():
 # label_size = template_management_page.select_label_size()
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
 # design_size = template_management_page.get_all_designs_size_in_my_designs()
-# try:
-#     if len(design_size) == 1:
-#         if design_size[0] == label_size:
-#             pass
-# except:
-#     raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# if len(design_size) == 1:
+#     if design_size.pop() == label_size:
+#         pass
+#     else:
+#         raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# else:
+#     raise Exception("There is more than 1 label size in the filtered results")
 # template_management_page.click_sort_common_designs()
 # template_management_page.select_sort_order("A-Z")
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
@@ -482,12 +485,13 @@ def test_Template_Management_TestcaseID_45988():
 # label_size = template_management_page.select_label_size()
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
 # design_size = template_management_page.get_all_designs_size_in_my_designs()
-# try:
-#     if len(design_size) == 1:
-#         if design_size[0] == label_size:
-#             pass
-# except:
-#     raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# if len(design_size) == 1:
+#     if design_size.pop() == label_size:
+#         pass
+#     else:
+#         raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# else:
+#     raise Exception("There is more than 1 label size in the filtered results")
 # template_management_page.click_sort_common_designs()
 # template_management_page.select_sort_order("A-Z")
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
@@ -598,12 +602,76 @@ def test_Template_Management_TestcaseID_45990():
 # label_size = template_management_page.select_label_size()
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
 # design_size = template_management_page.get_all_designs_size_in_my_designs()
-# try:
-#     if len(design_size) == 1:
-#         if design_size.pop() == label_size:
-#             pass
-# except:
-#     raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# if len(design_size) == 1:
+#     if design_size.pop() == label_size:
+#         pass
+#     else:
+#         raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# else:
+#     raise Exception("There is more than 1 label size in the filtered results")
+# template_management_page.click_sort_common_designs()
+# template_management_page.select_sort_order("A-Z")
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_list = template_management_page.get_all_designs_in_my_designs(True)
+# template_management_page.verify_designs_are_according_to_sort_order(design_list)
+# template_management_page.click_sort_common_designs()
+# template_management_page.select_sort_order("Z-A")
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_list = template_management_page.get_all_designs_in_my_designs(True)
+# template_management_page.verify_designs_are_according_to_sort_order(design_list)
+# common_method.Stop_The_App()
+
+
+def test_Template_Management_TestcaseID_45991():
+    pass
+
+
+# common_method.Start_The_App()
+# login_page.click_Menu_HamburgerICN()
+# template_management_page.clickCommonDesigns()
+# template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
+# template_management_page.search_design_common_designs("Multipurpose/")
+# keyevent("Enter")
+# common_method.wait_for_element_appearance_namematches("Categories")
+# template_management_page.select_design_common_designs()
+# if template_management_page.verify_default_sort_my_designs():
+#     pass
+# else:
+#     raise Exception("Default sort is not \"Name (A to Z)\" in my designs.")
+# template_management_page.click_sort_common_designs()
+# template_management_page.verify_sort_options_my_designs()
+# poco("Scrim").click()
+# if template_management_page.verify_default_filter_my_designs():
+#     pass
+# else:
+#     raise Exception("Default filter is not \"All sizes\"")
+# template_management_page.click_filter_common_designs()
+# displayed_filter_options = template_management_page.filter_options()
+# if len(displayed_filter_options) == 1:
+#     if displayed_filter_options[0] == "3.5\" x 2.25\"":
+#         pass
+#     else:
+#         raise Exception(f"Filter option {displayed_filter_options[1]} displayed instead of 3.5\" x 2.25\"")
+# else:
+#     raise Exception(f"Has {len(displayed_filter_options)} instead of just 1 i.e., \"3.5\" x 2.25\"\" ")
+# poco("Scrim").click()
+# template_management_page.click_sort_common_designs()
+# sleep(3)
+# template_management_page.select_sort_order("Z-A")
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_list = template_management_page.get_all_designs_in_my_designs(True)
+# template_management_page.verify_designs_are_according_to_sort_order(design_list)
+# template_management_page.click_filter_common_designs()
+# label_size = template_management_page.select_label_size()
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_size = template_management_page.get_all_designs_size_in_my_designs()
+# if len(design_size) == 1:
+#     if design_size.pop() == label_size:
+#         pass
+#     else:
+#         raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# else:
+#     raise Exception("There is more than 1 label size in the filtered results")
 # template_management_page.click_sort_common_designs()
 # template_management_page.select_sort_order("A-Z")
 # template_management_page.wait_for_appearance_designs_in_a_particular_category()
@@ -619,9 +687,6 @@ def test_Template_Management_TestcaseID_45990():
 
 def test_Template_Management_TestcaseID_45992():
     pass
-
-
-"Now here"
 
 
 # common_method.Start_The_App()
@@ -684,6 +749,67 @@ def test_Template_Management_TestcaseID_45992():
 #     template_management_page.wait_for_appearance_designs_in_a_particular_category()
 #     design_list = template_management_page.get_all_designs_in_my_designs(True)
 #     template_management_page.verify_designs_are_according_to_sort_order(design_list)
+# common_method.Stop_The_App()
+
+
+def test_Template_Management_TestcaseID_45993():
+    pass
+
+
+# common_method.Start_The_App()
+# login_page.click_Menu_HamburgerICN()
+# template_management_page.clickCommonDesigns()
+# template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
+# template_management_page.search_design_common_designs("Shipping")
+# keyevent("Enter")
+# common_method.wait_for_element_appearance_namematches("Categories")
+# template_management_page.select_design_common_designs()
+# if template_management_page.verify_default_sort_my_designs():
+#     pass
+# else:
+#     raise Exception("Default sort is not \"Name (A to Z)\" in my designs.")
+# template_management_page.click_sort_common_designs()
+# template_management_page.verify_sort_options_my_designs()
+# poco("Scrim").click()
+# if template_management_page.verify_default_filter_my_designs():
+#     pass
+# else:
+#     raise Exception("Default filter is not \"All sizes\"")
+# template_management_page.click_filter_common_designs()
+# if template_management_page.filter_options(True) > 1:
+#     pass
+# else:
+#     raise Exception("No other filter option present other than All sizes.")
+# """Step 8 pending"""
+# """Cannot verify filter due to bug SMBM-1749"""
+# poco("Scrim").click()
+# template_management_page.click_sort_common_designs()
+# sleep(3)
+# template_management_page.select_sort_order("Z-A")
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_list = template_management_page.get_all_designs_in_my_designs(True)
+# template_management_page.verify_designs_are_according_to_sort_order(design_list)
+# template_management_page.click_filter_common_designs()
+# label_size = template_management_page.select_label_size()
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_size = template_management_page.get_all_designs_size_in_my_designs()
+# if len(design_size) == 1:
+#     if design_size.pop() == label_size:
+#         pass
+#     else:
+#         raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+# else:
+#     raise Exception("There is more than 1 label size in the filtered results")
+# template_management_page.click_sort_common_designs()
+# template_management_page.select_sort_order("A-Z")
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_list = template_management_page.get_all_designs_in_my_designs(True)
+# template_management_page.verify_designs_are_according_to_sort_order(design_list)
+# template_management_page.click_sort_common_designs()
+# template_management_page.select_sort_order("Z-A")
+# template_management_page.wait_for_appearance_designs_in_a_particular_category()
+# design_list = template_management_page.get_all_designs_in_my_designs(True)
+# template_management_page.verify_designs_are_according_to_sort_order(design_list)
 # common_method.Stop_The_App()
 
 
@@ -884,12 +1010,13 @@ def test_Template_Management_TestcaseID_46014():
 #     print(label_size)
 #     template_management_page.wait_for_appearance_designs_in_a_particular_category()
 #     design_size = template_management_page.get_all_designs_size_in_my_designs()
-#     try:
-#         if len(design_size) == 1:
-#             if design_size.pop() == label_size:
-#                 pass
-#     except:
-#         raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+#     if len(design_size) == 1:
+#         if design_size.pop() == label_size:
+#             pass
+#         else:
+#             raise Exception("Label size chosen in filter doesnt match the filtered result label size")
+#     else:
+#         raise Exception("There is more than 1 label size in the filtered results")
 #     design_list = template_management_page.get_all_designs_in_my_designs(True)
 #     init_no_of_designs = len(design_list)
 #     template_management_page.verify_designs_are_according_to_sort_order(design_list)
@@ -1006,6 +1133,8 @@ def test_Template_Management_TestcaseID_46015():
 # registration_page.wait_for_element_appearance_text("Home", 10)
 # sleep(3)
 # data_sources_page.click_Menu_HamburgerICNWeb()
+# data_sources_page.lock_phone()
+# wake()
 # data_sources_page.click_My_Data()
 # data_sources_page.click_Menu_HamburgerICNWeb()
 # data_sources_page.searchName("Korea.xlsx")
@@ -1014,6 +1143,7 @@ def test_Template_Management_TestcaseID_46015():
 # poco.scroll()
 # sleep(2)
 # data_sources_page.remove_File_Web()
+# sleep(5)
 # stop_app("com.android.chrome")
 # while not poco("Print").exists():
 #     poco.scroll()
@@ -1155,7 +1285,7 @@ def test_Template_Management_TestcaseID_46020():
 
 
 # common_method.Start_The_App()
-# """Step 1-4 pending due to web inconsistency"""
+# """Step 1-4 pending due to web inconsistency - has to be executed manually"""
 # """Open My designs"""
 # login_page.click_Menu_HamburgerICN()
 # data_sources_page.clickMyDesigns()
@@ -1198,6 +1328,60 @@ def test_Template_Management_TestcaseID_46020():
 #     scroll_view = poco("android.view.View")
 #     scroll_view.swipe("down")
 # template_management_page.verify_label_navigation()
+# data_sources_page.clickPrint()
+# template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+# common_method.Stop_The_App()
+
+
+def test_Template_Management_TestcaseID_46021():
+    pass
+
+
+# common_method.Start_The_App()
+# """Step 1-4 pending due to web inconsistency - has to be executed manually"""
+# """Step 5-6  - has to be executed manually"""
+# sleep(600)
+# """Open My designs"""
+# login_page.click_Menu_HamburgerICN()
+# data_sources_page.clickMyDesigns()
+# """Search and select design created in web"""
+# data_sources_page.searchMyDesigns("46021")
+# data_sources_page.selectDesignCreatedAtSetUp()
+# """Click print"""
+# data_sources_page.clickPrint()
+# """Select column"""
+# if poco(text="Choose an account").exists():
+#     help_page.chooseAcc("zsbswdvt@gmail.com")
+# template_management_page.selectChooseAnOption(3)
+# data_sources_page.clickContinue()
+# """Step 10 -11  - has to be executed manually"""
+# sleep(600)
+# """check that the label contents are not updated to the latest data source values - cannot be automated and has to be verified manually"""
+# sleep(10)
+# data_sources_page.verifyIfPreviewIsPresent()
+# while not poco("Print").exists():
+#     poco.scroll()
+# data_sources_page.clickPrint()
+# """check that the labels can be printed out correctly with the values, not the latest one - cannot be automated and has to be verified manually"""
+# template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+# sleep(3)
+# data_sources_page.clickBackArrow()
+# data_sources_page.selectDesignCreatedAtSetUp()
+# """Click print"""
+# data_sources_page.clickPrint()
+# """Select column"""
+# template_management_page.selectChooseAnOption(3)
+# data_sources_page.clickContinue()
+# try:
+#     common_method.wait_for_element_appearance_namematches("Label")
+# except:
+#     raise Exception("preview dialog did not open.")
+# """check that the content is updated with new column data - cannot be automated and has to be verified manually"""
+# """check that the labels can be printed out correctly with the latest values - cannot be automated and has to be verified manually"""
+# sleep(10)
+# data_sources_page.verifyIfPreviewIsPresent()
+# while not poco("Print").exists():
+#     poco.scroll()
 # data_sources_page.clickPrint()
 # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
 # common_method.Stop_The_App()
@@ -1324,8 +1508,6 @@ def test_Template_Management_TestcaseID_47791():
 # # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
 # # sleep(2)
 # # data_sources_page.clickEnter()
-# # data_sources_page.lock_phone()
-# # wake()
 # # registration_page.wait_for_element_appearance_text("Home", 10)
 # # data_sources_page.click_Menu_HamburgerICNWeb()
 # # data_sources_page.clickMyDesigns()
@@ -1560,9 +1742,6 @@ def test_Template_Management_TestcaseID_48547():
 # sleep(2)
 # data_sources_page.clickEnter()
 # sleep(3)
-# data_sources_page.lock_phone()
-# wake()
-# sleep(2)
 # try:
 #     poco(text="Sign In With").wait_for_appearance(timeout=15)
 #     account = "zebraidctest@gmail.com"
@@ -1803,7 +1982,7 @@ def test_Template_Management_TestcaseID_45979():
 # template_management_page.verifySearchIcon()
 # initial_design_list = template_management_page.get_all_designs_in_my_designs(True)
 # initial_count = template_management_page.get_showing_n_designs_number()
-# search_keyword = "LDA"
+# search_keyword = "4_Address"
 # data_sources_page.searchMyDesigns(search_keyword, False)
 # sleep(5)
 # if template_management_page.check_suggestion_window_in_common_design():
@@ -2529,10 +2708,8 @@ def test_Template_Management_TestcaseID_46026():
     pass
 
 
-"""Step 1-6 web portal - pending due to web in consistency"""
-
-
-# selected_file_name = "test_local.xlsx"
+# """Step 1-6 web portal - pending due to web in consistency"""
+# selected_file_name = "test_link.xlsx"
 # start_app("com.android.chrome")
 # sleep(2)
 # poco("com.android.chrome:id/tab_switcher_button").click()
@@ -2544,11 +2721,17 @@ def test_Template_Management_TestcaseID_46026():
 # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
 # sleep(2)
 # data_sources_page.clickEnter()
+# sleep(2)
+# registration_page.wait_for_element_appearance_text("Home", 20)
+# sleep(3)
+# sleep(600)
+# """2.in my design page, create a new design or edit an existing design
+# 3. select a data source file, no matter from local or google drive or one drive
+# 4. add text and barcode objects, select the link data source column as source type and select a column
+# 5. exit designer = has to be done manually due to web inconsistency"""
+# data_sources_page.click_Menu_HamburgerICNWeb()
 # data_sources_page.lock_phone()
 # wake()
-# registration_page.wait_for_element_appearance_text("Home", 10)
-# sleep(3)
-# data_sources_page.click_Menu_HamburgerICNWeb()
 # sleep(2)
 # data_sources_page.click_My_Data()
 # data_sources_page.click_Menu_HamburgerICNWeb()
@@ -2562,8 +2745,8 @@ def test_Template_Management_TestcaseID_46026():
 # common_method.Start_The_App()
 # login_page.click_Menu_HamburgerICN()
 # data_sources_page.clickMyDesigns()
+# common_method.wait_for_element_appearance_namematches("Showing")
 # design_name = "46026"
-# "here"
 # data_sources_page.searchMyDesigns(design_name)
 # common_method.wait_for_element_appearance_namematches("Showing")
 # data_sources_page.selectDesignCreatedAtSetUp()
@@ -2579,10 +2762,9 @@ def test_Template_Management_TestcaseID_46026():
 # template_management_page.selectChooseAnOption(2)
 # """Cannot automate \"Check the column name displayed above the column selection box. Currently it displays in the column selection box\" due to bug BUGID SMBM-2175"""
 # data_sources_page.clickContinue()
-# try:
-#     registration_page.wait_for_element_appearance("android.widget.ImageView", 20)
-# except:
-#     raise Exception("Print preview not present.")
+# sleep(10)
+# data_sources_page.verifyIfPreviewIsPresent()
+# """Cannot verify - navigate to check that the preview image is shown correctly- has to be done manually"""
 # while not poco("Print").exists():
 #     poco.scroll()
 # poco.scroll()
@@ -2592,6 +2774,36 @@ def test_Template_Management_TestcaseID_46026():
 # data_sources_page.clickBackArrow()
 # data_sources_page.clickPrint()
 # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+# sleep(3)
+# data_sources_page.clickBackArrow()
+# """Re-upload file for next execution"""
+# login_page.click_Menu_HamburgerICN()
+# sleep(3)
+# """Click My Data"""
+# data_sources_page.click_My_Data()
+# sleep(3)
+# drive_file = "test_link.xlsx"
+# """Click Add file"""
+# data_sources_page.click_Add_File()
+# sleep(2)
+# """Click Link File"""
+# data_sources_page.click_Link_File()
+# sleep(2)
+# """ google drive """
+# if data_sources_page.verifySignInWithGoogle():
+#     registration_page.click_Google_Icon()
+#     account = "zsbswdvt@gmail.com"
+#     if data_sources_page.checkIfAccPresentLink(account):
+#         help_page.chooseAcc(account)
+#     else:
+#         poco("com.google.android.gms:id/add_account_chip_title").click()
+#         registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+#         sleep(2)
+# common_method.wait_for_element_appearance_namematches("NAME", 20)
+# sleep(2)
+# data_sources_page.selectFileDrive(selected_file_name)
+# sleep(7)
+# common_method.Stop_The_App()
 
 
 def test_Template_Management_TestcaseID_47941():
@@ -2810,7 +3022,7 @@ def test_Template_Management_TestcaseID_46031():
 #         poco(text="Stay on web").click()
 # except:
 #     pass
-# template_management_page.delectContactGoogleContacts()
+# template_management_page.deleteContactGoogleContacts()
 # template_management_page.createContact("z", "1")
 # sleep(2)
 # template_management_page.createContact("y", "1")
@@ -3722,14 +3934,16 @@ def test_Template_Management_TestcaseID_46037():
 
 # common_method.Start_The_App()
 # """Log out of existing account"""
-# login_page.click_Menu_HamburgerICN()
-# registration_page.click_on_profile_edit()
-# while not poco("Log Out").exists():
-#     poco.scroll()
-# registration_page.click_log_out_button()
+# try:
+#     common_method.wait_for_element_appearance("Sign In")
+# except:
+#     login_page.click_Menu_HamburgerICN()
+#     registration_page.click_on_profile_edit()
+#     while not poco("Log Out").exists():
+#         poco.scroll()
+#     registration_page.click_log_out_button()
 # """Login to account with 100+designs"""
 # registration_page.clickSignIn()
-# # login_page.click_loginBtn()
 # registration_page.click_Google_Icon()
 # try:
 #     registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
@@ -3754,7 +3968,10 @@ def test_Template_Management_TestcaseID_46037():
 # login_page.click_Menu_HamburgerICN()
 # data_sources_page.clickMyDesigns()
 # common_method.wait_for_element_appearance_namematches("Showing")
-# initial_design_count = template_management_page.get_showing_n_designs_number()
+# initial_design_count = template_management_page.get_all_designs_in_my_designs()
+# designName = "ZZZ_Test"
+# """Step 1-4 pending due to web inconsistency - has to be done manually"""
+# sleep(600)
 # start_app("com.android.chrome")
 # sleep(2)
 # poco("com.android.chrome:id/tab_switcher_button").click()
@@ -3766,11 +3983,12 @@ def test_Template_Management_TestcaseID_46037():
 # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
 # sleep(2)
 # data_sources_page.clickEnter()
+# sleep(2)
 # registration_page.wait_for_element_appearance_text("Home", 10)
 # data_sources_page.click_Menu_HamburgerICNWeb()
-# data_sources_page.clickMyDesigns()
 # data_sources_page.lock_phone()
 # wake()
+# data_sources_page.clickMyDesigns()
 # data_sources_page.click_Menu_HamburgerICNWeb()
 # scroll_view = poco("android.view.View")
 # while poco(text="This is where you can access all of your saved designs.").exists():
@@ -3784,12 +4002,9 @@ def test_Template_Management_TestcaseID_46037():
 # data_sources_page.lock_phone()
 # wake()
 # """Step 4 pending due to web inconsistency."""
-# common_method.Start_The_App()
-# """Open My designs"""
-# login_page.click_Menu_HamburgerICN()
-# data_sources_page.clickMyDesigns()
+# stop_app("com.android.chrome")
 # common_method.wait_for_element_appearance_namematches("Showing")
-# new_design_count = template_management_page.get_showing_n_designs_number()
+# new_design_count = len(template_management_page.get_all_designs_in_my_designs())
 # if new_design_count == initial_design_count+1:
 #     pass
 # else:
@@ -3797,14 +4012,21 @@ def test_Template_Management_TestcaseID_46037():
 #     raise Exception(error)
 # """Step 5 check template total number add one pending"""
 # """Search and select design created in web"""
-# data_sources_page.searchMyDesigns("ZZZ_Test")
+# data_sources_page.searchMyDesigns(designName)
 # data_sources_page.selectDesignCreatedAtSetUp()
 # data_sources_page.clickPrint()
 # while not poco("Print").exists():
 #     poco.scroll()
 # template_management_page.wait_for_appearance_enabled("Print")
 # data_sources_page.clickPrint()
+# template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+# """Delete the design for next execution"""
+# data_sources_page.clickBackArrow()
+# data_sources_page.selectDesignCreatedAtSetUp()
+# template_management_page.clickDeleteDesign()
+# template_management_page.clickDeleteDesign()
 # common_method.Stop_The_App()
+
 
 def test_Template_Management_TestcaseID_46038():
     pass
@@ -3837,7 +4059,7 @@ def test_Template_Management_TestcaseID_46039():
 # login_page.click_Menu_HamburgerICN()
 # data_sources_page.clickMyDesigns()
 # common_method.wait_for_element_appearance_namematches("Showing")
-# initial_design_count = int(template_management_page.get_showing_n_designs_number())
+# initial_design_count = len(template_management_page.get_all_designs_in_my_designs())
 # """Step 2 pending as no pagination on mobile app"""
 # """Navigating to page 3 pending as no pagination on app"""
 # data_sources_page.selectDesignCreatedAtSetUp()
@@ -3846,7 +4068,7 @@ def test_Template_Management_TestcaseID_46039():
 # template_management_page.new_design_name(new_name)
 # template_management_page.clickSave()
 # common_method.wait_for_element_appearance_namematches("Showing")
-# new_design_count = int(template_management_page.get_showing_n_designs_number())
+# new_design_count = len(template_management_page.get_all_designs_in_my_designs())
 # if new_design_count == initial_design_count+1:
 #     pass
 # else:
@@ -3875,6 +4097,11 @@ def test_Template_Management_TestcaseID_46039():
 # data_sources_page.clickPrint()
 # template_management_page.verifyErrorPopUp_forInvalidCopies()
 # data_sources_page.clickContinue()
+# """Delete the design for next execution"""
+# data_sources_page.clickBackArrow()
+# data_sources_page.selectDesignCreatedAtSetUp()
+# template_management_page.clickDeleteDesign()
+# template_management_page.clickDeleteDesign()
 # common_method.Stop_The_App()
 
 
@@ -3887,7 +4114,7 @@ def test_Template_Management_TestcaseID_46040():
 # login_page.click_Menu_HamburgerICN()
 # data_sources_page.clickMyDesigns()
 # common_method.wait_for_element_appearance_namematches("Showing")
-# initial_design_count = int(template_management_page.get_showing_n_designs_number())
+# initial_design_count = len(template_management_page.get_all_designs_in_my_designs())
 # """Step 2 pending as no pagination on mobile app"""
 # login_page.click_Menu_HamburgerICN()
 # template_management_page.clickCommonDesigns()
@@ -3898,17 +4125,20 @@ def test_Template_Management_TestcaseID_46040():
 # template_management_page.select_design_common_designs()
 # template_management_page.select_label_common_designs()
 # template_management_page.click_copy_to_My_Designs()
+# sleep(2)
+# data_sources_page.clickBackArrow()
 # """Open My designs"""
+# design_name = "Asset copy"
 # login_page.click_Menu_HamburgerICN()
 # data_sources_page.clickMyDesigns()
 # common_method.wait_for_element_appearance_namematches("Showing")
-# new_design_count = int(template_management_page.get_showing_n_designs_number())
+# new_design_count = len(template_management_page.get_all_designs_in_my_designs())
 # if new_design_count == initial_design_count+1:
 #     pass
 # else:
 #     error = f"{new_design_count} is not equal to {initial_design_count}+1({initial_design_count+1})"
 #     raise Exception(error)
-# data_sources_page.searchMyDesigns("Address copy")
+# data_sources_page.searchMyDesigns(design_name)
 # data_sources_page.selectDesignCreatedAtSetUp()
 # data_sources_page.clickPrint()
 # while not poco("Print").exists():
@@ -3919,6 +4149,11 @@ def test_Template_Management_TestcaseID_46040():
 # template_management_page.wait_for_appearance_enabled("Print")
 # data_sources_page.clickPrint()
 # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+# """Delete the design for next execution"""
+# data_sources_page.clickBackArrow()
+# data_sources_page.selectDesignCreatedAtSetUp()
+# template_management_page.clickDeleteDesign()
+# template_management_page.clickDeleteDesign()
 # common_method.Stop_The_App()
 
 
@@ -3931,7 +4166,7 @@ def test_Template_Management_TestcaseID_46041():
 # login_page.click_Menu_HamburgerICN()
 # data_sources_page.clickMyDesigns()
 # common_method.wait_for_element_appearance_namematches("Showing")
-# initial_design_count = template_management_page.get_showing_n_designs_number()
+# # initial_design_count = template_management_page.get_showing_n_designs_number()
 # start_app("com.android.chrome")
 # sleep(2)
 # poco("com.android.chrome:id/tab_switcher_button").click()
@@ -3944,10 +4179,12 @@ def test_Template_Management_TestcaseID_46041():
 # sleep(2)
 # data_sources_page.clickEnter()
 # registration_page.wait_for_element_appearance_text("Home", 10)
+# sleep(2)
 # data_sources_page.click_Menu_HamburgerICNWeb()
-# data_sources_page.clickMyDesigns()
 # data_sources_page.lock_phone()
 # wake()
+# sleep(2)
+# data_sources_page.clickMyDesigns()
 # data_sources_page.click_Menu_HamburgerICNWeb()
 # scroll_view = poco("android.view.View")
 # while poco(text="This is where you can access all of your saved designs.").exists():
@@ -3956,15 +4193,12 @@ def test_Template_Management_TestcaseID_46041():
 #     pass
 # else:
 #     raise Exception("All templates did not show up with pagination")
-# design_selected = "Sale" + " copy"
+# design_selected = "ImportedTemplate"
 # downloaded_design_name = design_selected + ".nlbl"
 # template_management_page.clickImport()
 # data_sources_page.searchFileInLocalStorage(downloaded_design_name, "Downloads")
-# """Step 4 pending due to web inconsistency."""
-# common_method.Start_The_App()
-# """Open My designs"""
-# login_page.click_Menu_HamburgerICN()
-# data_sources_page.clickMyDesigns()
+# sleep(10)
+# stop_app("com.android.chrome")
 # common_method.wait_for_element_appearance_namematches("Showing")
 # new_design_count = template_management_page.get_showing_n_designs_number()
 # if new_design_count == initial_design_count+1:

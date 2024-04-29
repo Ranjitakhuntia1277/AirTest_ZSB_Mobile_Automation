@@ -33,7 +33,8 @@ class Add_A_Printer_Screen:
         self.poco = poco
 
         self.Add_A_Printer_Btn = "Add A Printer"
-        self.Start_Btn = "Start"
+        # self.Start_Btn = "Start"
+        self.Start_Btn = "Start Setup"
         self.Searching_For_Your_Printer_Text = "Searching for your printer"
         self.Printer_LED_Not_Flashing_Text = "My Printer’s LED is Not Flashing Blue What Does The LED Light Indicator Mean"
         self.To_Find_Your_Printer_Text = "To find your printer, please ensure your printer’s LED is flashing blue like the example below."
@@ -43,11 +44,9 @@ class Add_A_Printer_Screen:
                                           resolution=(1080, 2400))
         self.LED_Light_Behavior_Support_Text = "LED Light Behavior Support"
         self.the_Position_of_all_the_Buttons = Template(os.path.join(os.path.expanduser('~'),
-                                                       "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                       "tpl1705913879009.png"), record_pos=(0.001, 0.002), resolution=(1080, 2400))
-
-
-
+                                                                     "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
+                                                                     "tpl1705913879009.png"), record_pos=(0.001, 0.002),
+                                                        resolution=(1080, 2400))
 
         self.Printer_LED_Guide_Done_Btn = "Done"
         self.Select_your_printer_Text = "Select your printer"
@@ -60,29 +59,30 @@ class Add_A_Printer_Screen:
         self.Zebra_Network = "Zebra"
         self.Discovered_Devices_Text = "Discovered Devices"
         self.ZSB_Printer_images = Template(os.path.join(os.path.expanduser('~'),
-                                                       "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                       "tpl1706510933463.png"), record_pos=(-0.334, -0.229), resolution=(1080, 2400))
-
+                                                        "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
+                                                        "tpl1706510933463.png"), record_pos=(-0.334, -0.229),
+                                           resolution=(1080, 2400))
 
         self.Show_All_Printers = "Show all printers"
         self.Added_Printer = "ZSB-DP12C710B9"
         self.Second_Printer_Name = "android.widget.RadioButton"
         self.Connect_Wifi_Network_Text = Template(os.path.join(os.path.expanduser('~'),
-                                                       "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                       "tpl1707286425683.png"), record_pos=(0.026, -0.911), resolution=(1080, 2400))
-
+                                                               "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
+                                                               "tpl1707286425683.png"), record_pos=(0.026, -0.911),
+                                                  resolution=(1080, 2400))
 
         self.Select_Button_on_Select_Your_Printer = "Select"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
         self.Password_Field_On_Join_Network = Template(os.path.join(os.path.expanduser('~'),
-                                                       "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
-                                                       "tpl1707135468156.png"), record_pos=(0.006, 0.084), resolution=(1080, 2400))
+                                                                    "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
+                                                                    "tpl1707135468156.png"), record_pos=(0.006, 0.084),
+                                                       resolution=(1080, 2400))
 
         self.Submit_Button_ON_Join_Network = "Submit"
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
 
-    # """"""""""""""""""""""""""""""""""""""""""""""""smoke test-need to add""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        # """"""""""""""""""""""""""""""""""""""""""""""""smoke test-need to add""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         self.FirstOne_In_MyDesign = Template(os.path.join(os.path.expanduser('~'),
                                                           "Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images",
                                                           "tpl1707820626487.png"), record_pos=(-0.011, -0.003),
@@ -102,6 +102,8 @@ class Add_A_Printer_Screen:
         self.Common_Design_Tab = "Common Designs"
         self.FirstOne_Design_In_Common_Design = "Other"
         self.FirstOne_In_Common_Design = "Other"
+        self.Lets_Make_Sure_Text = "Let's make sure the printer is in Bluetooth pairing mode."
+        self.Next_Button = "Next"
 
     # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def disable_bluetooth(self):
@@ -396,7 +398,6 @@ class Add_A_Printer_Screen:
         common_design = self.poco(self.Common_Design_Tab)
         common_design.click()
 
-
     def click_FirstOne_Design_In_Common_Design(self):
         sleep(3)
         FirstOne_Design_In_Common_Design = self.poco(self.FirstOne_Design_In_Common_Design)
@@ -406,3 +407,16 @@ class Add_A_Printer_Screen:
         sleep(5)
         FirstOne_In_Common_Design = self.poco(self.FirstOne_In_Common_Design)
         FirstOne_In_Common_Design.click()
+
+    def Verify_Lets_Make_Sure_Text(self):
+        Lets_Make_Sure_Text = self.poco(self.Lets_Make_Sure_Text)
+        if Lets_Make_Sure_Text.exists():
+            text = Lets_Make_Sure_Text.get_text()
+            return text
+        else:
+            return None
+
+    def Click_Next_Button(self):
+        sleep(1)
+        Next_Button = self.poco(self.Next_Button)
+        Next_Button.click()
