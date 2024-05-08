@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="pytest for test_APS Settings_And_APS_Others.test_APS_Settings_And_APS_Others_TestcaseID_49138" type="tests" factoryName="py.test" singleton="false" nameIsGenerated="true">
+  <configuration default="false" name="pytest for ZSB_Mobile.TestExecution.test_APS_Testcases.test_APS_Settings_And_APS_Others.test_APS_Settings_And_APS_Others_TestcaseID_49138" type="tests" factoryName="py.test" singleton="false" nameIsGenerated="true">
     <module name="ZSB_Automation" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
@@ -11,7 +11,7 @@
     <option name="_new_keywords" value="&quot;&quot;" />
     <option name="_new_parameters" value="&quot;&quot;" />
     <option name="_new_additionalArguments" value="&quot;&quot;" />
-    <option name="_new_target" value="&quot;test_APS Settings_And_APS_Others.test_APS_Settings_And_APS_Others_TestcaseID_49138&quot;" />
+    <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_APS_Testcases.test_APS_Settings_And_APS_Others.test_APS_Settings_And_APS_Others_TestcaseID_49138&quot;" />
     <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     <method v="2" />
   </configuration>

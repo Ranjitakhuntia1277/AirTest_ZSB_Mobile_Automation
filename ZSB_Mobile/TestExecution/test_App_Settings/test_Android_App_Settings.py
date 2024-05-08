@@ -604,15 +604,10 @@ def test_AppSettings_TestcaseID_47825():
     app_settings_page.Verify_Login_Page_Important_Message_Text()
     """click on login button"""
     login_page.click_loginBtn()
-    """""""select the login with google option"""""""""
-    login_page.click_Loginwith_Google()
-    login_page.click_GooglemailId()
-    login_page.Enter_Google_UserID()
-    app_settings_page.click_Keyboard_back_Icon()
-    login_page.click_Emailid_Nextbtn()
-    sleep(2)
-    login_page.click_Password_Nextbtn()
-    sleep(9)
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.Loginwith_Added_Email_Id()
+    sleep(3)
     """"verify delete account pop up message"""
     app_settings_page.Is_Present_Delete_Account_Popup()
     """"click on cancel button on the pop up"""
@@ -1128,14 +1123,10 @@ def test_AppSettings_TestcaseID_51788():
     app_settings_page.click_Logout_Btn()
     """"click on login page"""
     login_page.click_loginBtn()
-    """""""select the login with google option"""""""""
-    login_page.click_Loginwith_Google()
-    login_page.click_GooglemailId()
-    login_page.Enter_Google_UserID()
-    login_page.click_Emailid_Nextbtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.Loginwith_Added_Email_Id()
     sleep(2)
-    login_page.click_Password_Nextbtn()
-    sleep(9)
     """verify home text is present on home page"""
     app_settings_page.Home_text_is_present_on_homepage()
     """stop the app"""

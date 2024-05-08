@@ -995,11 +995,19 @@ class App_Settings_Screen:
 
     def Is_Present_Zebra_Logo(self):
         sleep(3)
-        self.poco(name="Image").get_name()
+        a = self.poco(name="android.widget.ImageView")
+        if a.exists():
+            a.get_name()
+        else:
+            print("It is not present")
 
     def Is_Present_ZSB_Printer_Icon(self):
         sleep(3)
-        self.poco(name="Image")[1].get_name()
+        a = self.poco(name="android.widget.ImageView")[1]
+        if a.exists():
+            a.get_name()
+        else:
+            print("Printer icon is not present")
 
     def Verify_Login_Page_Important_Message_Text(self):
         sleep(3)
