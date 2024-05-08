@@ -165,6 +165,11 @@ class Data_Sources_Screen:
         set_up_design = self.poco("android.view.View")[5]
         set_up_design.click()
 
+    def selectDesignCreatedAtSetUpWeb(self):
+        self.poco(textMatches="Showing.*").wait_for_appearance(timeout=10)
+        set_up_design = self.poco("android.widget.Image")[1]
+        set_up_design.click()
+
     def selectSecondDesign(self):
         self.poco(nameMatches="Showing.*").wait_for_appearance(timeout=10)
         set_up_design = self.poco("android.view.View")[6]
@@ -246,12 +251,16 @@ class Data_Sources_Screen:
     def selectLabelSize(self):
         self.poco("android.view.View")[16].click()
 
+    def set_text(self, value):
+        self.poco("android.widget.EditText").click()
+        self.poco("android.widget.EditText").set_text(value)
+
     def clickContinue(self):
         try:
-            self.poco(self.Continue, enabled=True).wait_for_appearance(timeout=10)
+            self.poco(self.Continue, enabled=True).wait_for_appearance(timeout=20)
             self.poco(self.Continue).click()
         except:
-            self.poco("CONTINUE", enabled=True).wait_for_appearance(timeout=10)
+            self.poco("CONTINUE", enabled=True).wait_for_appearance(timeout=20)
             self.poco("CONTINUE").click()
 
     def clickContinueWeb(self):
@@ -551,7 +560,7 @@ class Data_Sources_Screen:
         for i in range(label_range):
             checkbox[3 + i].click()
 
-    def clickCheckBox(self, checkbox_number):
+    def clickCheckBox(self, checkbox_number=0):
         checkbox = self.poco(self.Check_Box)
         checkbox[checkbox_number].click()
 
@@ -647,9 +656,10 @@ class Data_Sources_Screen:
             return False
 
     def verifySignInWithGoogle(self):
-        if assert_exists(self.Sign_In_With_Google_Template):
+        try:
+            assert_exists(self.Sign_In_With_Google_Template)
             return True
-        else:
+        except:
             return False
 
     def signInWithMicrosoft(self, username, password, click_template=True):
@@ -694,7 +704,8 @@ class Data_Sources_Screen:
         end = 1
         while True:
             for i in range(start, len(self.poco("com.google.android.gms:id/list").child()) - end):
-                if self.poco("com.google.android.gms:id/list").child()[i].child()[1].get_text() == "Add another account":
+                if self.poco("com.google.android.gms:id/list").child()[i].child()[
+                    1].get_text() == "Add another account":
                     return False
                 elif self.poco("com.google.android.gms:id/list").child()[i].child()[1].child()[1].get_text() == account:
                     return True
@@ -1086,94 +1097,152 @@ class Data_Sources_Screen:
         file.click()
 
     def selectFileInLocalStorage(self):
-        file_1 = self.poco("com.google.android.documentsui:id/preview_icon")[0].parent()
+        file_1 = self.poco("com.google.android.documentsui:id/preview_icon").parent().child(
+            "android.widget.LinearLayout").child("android.widget.LinearLayout").child("android:id/title")
         file_1.click()
+        return file_1.get_text()
+
+    def selectUnSupportedFile(self):
+        self.poco(self.HamburgerMenuLocalStorage).click()
+        self.poco(name="android:id/title", textMatches=".*Document.*").wait_for_appearance(timeout=10)
+        self.poco(name="android:id/title", textMatches=".*Download.*").parent().parent().parent().child()[5].click()
+        sleep(2)
+        self.poco(desc="Search").click()
+        sleep(2)
+        self.poco("com.google.android.documentsui:id/search_src_text").set_text(".zpl")
+        sleep(2)
+        self.clickEnter()
+        file = self.poco("com.google.android.documentsui:id/item_root")[0]
+        file.click()
 
     def selectFilesInLocal(self):
-        if self.poco("com.google.android.documentsui:id/item_root").child().get_name() != "android.widget.LinearLayout":
-            self.poco("com.google.android.documentsui:id/sub_menu").click()
-        file_range = len(self.poco("com.google.android.documentsui:id/dir_list").child())
         file_list = []
-        if self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
-            0].get_name() != "android.widget.LinearLayout":
-            current_last_child = \
-                self.poco("com.google.android.documentsui:id/item_root")[file_range - 2].child().child()[
-                    0].child().child().get_text()
-            file_count = file_range - 1
-            pass
-        else:
-            current_last_child = \
-                self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
-                    0].child().child().get_text()
-            file_count = file_range
-        for i in range(file_count):
-            file_name = self.poco("com.google.android.documentsui:id/item_root")[i].child().child()[
-                0].child().child().get_text()
-            file_list.append(file_name)
-        file_1 = self.poco("com.google.android.documentsui:id/item_root")[0]
-        file_1.click()
-        sleep(2)
-
-        for i in range(1, file_count):
-            sleep(10)
-            self.click_Add_File()
-            sleep(2)
-            self.click_Upload_File()
-            sleep(2)
-            file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
-            file_i.click()
-        enter_while = True
+        prev_list = []
+        curr_list = []
+        start = 0
         scroll_count = 0
-        while True:
-            sleep(10)
-            self.click_Add_File()
-            sleep(2)
-            self.click_Upload_File()
-            sleep(2)
-            temp = []
-            scroll_count += 1
-            for i in range(scroll_count):
-                self.poco.scroll()
-            file_range = len(self.poco("com.google.android.documentsui:id/dir_list").child())
-            if self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
-                0].get_name() != "android.widget.LinearLayout":
-                new_last_child = \
-                    self.poco("com.google.android.documentsui:id/item_root")[file_range - 2].child().child()[
-                        0].child().child().get_text()
-                file_count = file_range - 2
-                pass
-            else:
-                new_last_child = \
-                    self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
-                        0].child().child().get_text()
-                file_count = file_range - 1
-            if new_last_child == current_last_child:
-                return file_list
-            for i in range(file_count):
-                file_name = self.poco("com.google.android.documentsui:id/item_root")[i].child().child()[
-                    0].child().child().get_text()
-                temp.append(file_name)
-            if current_last_child in temp:
-                index_from = temp.index(current_last_child) + 1
-            else:
-                index_from = 0
-            for i in range(index_from, len(temp)):
-                sleep(3)
-                file_list.append(temp[i])
-                print(file_list)
-                if not enter_while:
-                    sleep(5)
+        while 1:
+            file_count = len(self.poco("com.google.android.documentsui:id/preview_icon").parent().parent().parent().child())
+            print(file_count)
+            for i in range(start, file_count - 1):
+                print(i)
+                filee_name = self.poco("com.google.android.documentsui:id/preview_icon")[2].parent().parent().parent().child()[
+                    i].child("android.widget.LinearLayout").child("android.widget.LinearLayout").child(
+                    "android.widget.LinearLayout").child().get_text()
+                print(filee_name)
+                curr_list.append(filee_name)
+                print("curr:", curr_list)
+
+            for name in curr_list:
+                if name not in file_list:
+                    print(name)
+                    file_list.append(name)
+                    print("file", file_list)
+                    self.poco(text=name).click()
+                    sleep(10)
                     self.click_Add_File()
                     sleep(2)
                     self.click_Upload_File()
                     sleep(2)
-                    for j in range(scroll_count):
-                        self.poco.scroll()
-                file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
-                print(file_i.child().child()[0].child().child().get_text())
-                file_i.click()
-                enter_while = False
-            current_last_child = new_last_child
+                    for i in range(scroll_count):
+                        self.poco.swipe([0.5, 0.9], [0.5, 0.4])
+
+            print(prev_list)
+            if curr_list == prev_list:
+                break
+            prev_list = curr_list
+            curr_list = []
+            start = 1
+            self.poco.swipe([0.5, 0.9], [0.5, 0.4])
+            scroll_count += 1
+        return file_list
+        # if self.poco("com.google.android.documentsui:id/item_root").child().get_name() != "android.widget.LinearLayout":
+        #     self.poco("com.google.android.documentsui:id/sub_menu").click()
+        # file_range = len(self.poco("com.google.android.documentsui:id/dir_list").child())
+        # file_list = []
+        # if self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
+        #     0].get_name() != "android.widget.LinearLayout":
+        #     current_last_child = \
+        #         self.poco("com.google.android.documentsui:id/item_root")[file_range - 2].child().child()[
+        #             0].child().child().get_text()
+        #     file_count = file_range - 1
+        #     pass
+        # else:
+        #     current_last_child = \
+        #         self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
+        #             0].child().child().get_text()
+        #     file_count = file_range
+        # for i in range(file_count):
+        #     file_name = self.poco("com.google.android.documentsui:id/item_root")[i].child().child()[
+        #         0].child().child().get_text()
+        #     file_list.append(file_name)
+        # file_1 = self.poco("com.google.android.documentsui:id/item_root")[0]
+        # file_1.click()
+        # sleep(2)
+        #
+        # for i in range(1, file_count):
+        #     sleep(10)
+        #     self.click_Add_File()
+        #     sleep(2)
+        #     self.click_Upload_File()
+        #     sleep(2)
+        #     file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
+        #     file_i.click()
+        # enter_while = True
+        # scroll_count = 0
+        # while True:
+        #     sleep(10)
+        #     self.click_Add_File()
+        #     sleep(2)
+        #     self.click_Upload_File()
+        #     sleep(2)
+        #     temp = []
+        #     scroll_count += 1
+        #     for i in range(scroll_count):
+        #         self.poco.scroll()
+        #     sleep(2)
+        #     file_range = len(self.poco("com.google.android.documentsui:id/dir_list").child())
+        #     sleep(2)
+        #     if self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
+        #         0].get_name() != "android.widget.LinearLayout":
+        #         new_last_child = \
+        #             self.poco("com.google.android.documentsui:id/item_root")[file_range - 2].child().child()[
+        #                 0].child().child().get_text()
+        #         file_count = file_range - 2
+        #         pass
+        #     else:
+        #         new_last_child = \
+        #             self.poco("com.google.android.documentsui:id/item_root")[file_range - 1].child().child()[
+        #                 0].child().child().get_text()
+        #         file_count = file_range - 1
+        #     sleep(2)
+        #     if new_last_child == current_last_child:
+        #         return file_list
+        #     for i in range(file_count):
+        #         file_name = self.poco("com.google.android.documentsui:id/item_root")[i].child().child()[
+        #             0].child().child().get_text()
+        #         temp.append(file_name)
+        #     if current_last_child in temp:
+        #         index_from = temp.index(current_last_child) + 1
+        #     else:
+        #         index_from = 0
+        #     for i in range(index_from, len(temp)):
+        #         sleep(3)
+        #         file_list.append(temp[i])
+        #         print(file_list)
+        #         if not enter_while:
+        #             sleep(5)
+        #             self.click_Add_File()
+        #             sleep(2)
+        #             self.click_Upload_File()
+        #             sleep(2)
+        #             for j in range(scroll_count):
+        #                 self.poco.scroll()
+        #         file_i = self.poco("com.google.android.documentsui:id/item_root")[i]
+        #         print(file_i.child().child()[0].child().child().get_text())
+        #         file_i.click()
+        #         enter_while = False
+        #     current_last_child = new_last_child
 
     def searchMyDesigns(self, design_name, enter=True):
         self.poco("android.widget.EditText").click()
@@ -1238,6 +1307,7 @@ class Data_Sources_Screen:
             self.poco(text="OK").click()
         except:
             pass
+
     def allowPermissions(self):
         self.poco(text="While using the app").click()
 

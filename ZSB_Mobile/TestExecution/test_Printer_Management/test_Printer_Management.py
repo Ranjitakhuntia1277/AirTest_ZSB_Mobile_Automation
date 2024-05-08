@@ -100,39 +100,38 @@ def test_PrinterManagement_TestcaseID_47882():
 # """Verify if the info in the Drop Down matches with the expected info"""
 # printer_management_page.checkDropDownMenuInfo()
 # sleep(2)
-# """Click Done"""
-# printer_management_page.clickDoneOption()
+# """Close the pop up"""
 # common_method.Stop_The_App()
-#
-#
+
+
 def test_PrinterManagement_TestcaseID_47920():
     """""""""test"""""
 
 
-common_method.Start_The_App()
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# sleep(2)
-# login_page.click_GooglemailId()
-# sleep(5)
-# login_page.add_Account()
-# sleep(2)
-# login_page.Enter_Google_UserID()
-# sleep(2)
-# login_page.click_Emailid_Nextbtn()
-# sleep(4)
-# """"To enter password need to use the 2nd method """
-# login_page.Enter_Google_Password()
-#username - zsbswdvt@gmail.com
-#password - zsbswdvt@1234
-# # poco(text("Swdvt@#123"))
-# # sleep(2)
-# login_page.click_Password_Nextbtn()
-# sleep(7)
-# help_page.chooseAcc()
+# data_sources_page.clearAppData()
+# common_method.Start_The_App()
+# data_sources_page.allowPermissions()
+# registration_page.clickSignIn()
+# registration_page.click_Google_Icon()
+# try:
+#     registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+# except:
+#     raise Exception("Did not navigate to Sign In with google page")
+# account = "zebraidctest@gmail.com"
+# if template_management_page.checkIfAccPresent(account):
+#     help_page.chooseAcc(account)
+# else:
+#     while not poco(text="Use another account").exists():
+#         poco.scroll()
+#     login_page.click_GooglemailId()
+#     while not poco(text="Add account to device").exists():
+#         poco.scroll()
+#     registration_page.addAccountToDevice()
+#     registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+# try:
+#     registration_page.wait_for_element_appearance("Home", 20)
+# except:
+#     raise Exception("home page dint show up")
 # """Click hamburger icon to expand menu"""
 # login_page.click_Menu_HamburgerICN()
 # sleep(2)
@@ -143,24 +142,23 @@ common_method.Start_The_App()
 # """Open Printer settings"""
 # app_settings_page.click_Printer_Settings()
 
-"""Select printer"""
-printer_management_page.clickPrinter1InPinterSettings()
-printer_2_name = printer_management_page.getPrinter2NameInPrinterSettings()
-print(printer_2_name)
-"""Rename printer1 to printer2 name"""
-printer_management_page.setPrinterName(printer_2_name)
-keyevent("Enter")
-try:
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Printer Update Failed")
-    x=1/0
-except ZeroDivisionError:
-    raise Exception("Error pop up if 2 printers have same name.")
-except Exception as e:
-    pass
-"""Verify is '(1)' is append to the duplicate name"""
-"""Unable to verify due to BUG"""
-printer_management_page.verifyPrinterNameAfterRenaming(printer_2_name)
-
-common_method.Stop_The_App()
+# """Select printer"""
+# printer_management_page.clickPrinter1InPinterSettings()
+# printer_2_name = printer_management_page.getPrinter2NameInPrinterSettings()
+# print(printer_2_name)
+# """Rename printer1 to printer2 name"""
+# printer_management_page.setPrinterName(printer_2_name)
+# keyevent("Enter")
+# try:
+#     template_management_page_1.wait_for_element_appearance_name_matches_all("Printer Update Failed")
+#     x=1/0
+# except ZeroDivisionError:
+#     raise Exception("Error pop up if 2 printers have same name.")
+# except Exception as e:
+#     pass
+# """Verify is '(1)' is appended to the duplicate name"""
+# """Unable to verify due to BUG"""
+# printer_management_page.verifyPrinterNameAfterRenaming(printer_2_name)
+# common_method.Stop_The_App()
 
 

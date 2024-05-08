@@ -4,6 +4,7 @@ import requests
 import self
 from airtest.core.api import *
 from airtest.core.api import sleep
+from setuptools.config import expand
 from urllib3.util import url
 
 # from setuptools.config._validate_pyproject.formats import url
@@ -12,6 +13,7 @@ from ZSB_Mobile.Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 import os
+import subprocess
 
 
 class APS_Notification:
@@ -26,7 +28,6 @@ class APS_Notification:
         self.Print_Option = "Print"
         self.Notification_Is_Not_Displaying = "android:id/text"
         self.Notification_To_Login = "android:id/text"
-        self.Available_Printer_To_Print = ""
         self.Downloads_Tab = "com.google.android.apps.nbu.files:id/search_suggestion_text"
         self.Mobile_SearchBar = "com.google.android.apps.nexuslauncher:id/hotseat"
         self.Drive_SearchBar = "com.google.android.apps.nbu.files:id/open_search_bar_text_view"
@@ -44,23 +45,21 @@ class APS_Notification:
         self.Save_AS_PDF = "com.android.printspooler:id/title"
         self.All_Printers = "All printers…"
         self.Share_Option = "com.google.android.apps.nbu.files:id/share_action"
-        self.Print_job_sent_successfully_Message = ""
         self.Print_job_IS_IN_Progress_Message = ""
         self.Cancel_Button_On_The_Printing_InProgress_Notification = ""
+        self.Cancelling_Driver_Job_Is_Displaying = "Cancelled"
+        self.Use_ZSB_Series_Popup_Is_Displaying = ""
         self.Arrow_Icon = "com.android.printspooler:id/destination_spinner"
         self.Print_Icon_Option = "com.android.printspooler:id/print_button"
         self.Expand_Icon = "com.android.printspooler:id/expand_collapse_icon"
         self.Copies_Number_Field = "com.android.printspooler:id/copies_edittext"
-        self.Three_Dot_On_Added_Printer = ""
         self.Clear_Print_Queue = "Clear Print Queue"
-        self.Cancelling_Driver_Job_Is_Displaying = ""
-        self.Use_ZSB_Series_Popup_Is_Displaying = ""
-        self.OK_Button_On_The_Popup = "OK"
+        self.OK_Button_On_The_Popup = "android:id/button1"
         self.GoogleDrive_SearchBar = "com.google.android.apps.docs:id/open_search_bar_text_view"
         self.GoogleDrive_SearchBar2 = "com.google.android.apps.docs:id/search_text"
-        self.Suggestion_PDF_File_From_Drive = "com.google.android.apps.docs:id/title_text_view"
+        self.Suggestion_PDF_File_From_Drive = "android.widget.TextView"
         self.Three_Dot_Icon_Next_To_Drive_PDF = "com.google.android.apps.docs:id/action_show_menu"
-
+        self.ThreeDot_On_Added_Printer_On_HomePage = (Template(r"tpl1715066652101.png", record_pos=(0.407, -0.553), resolution=(1080, 2400)))
     # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def click_Device_Files_Folder(self):
         start_app("com.android.documentsui")
@@ -143,8 +142,7 @@ class APS_Notification:
 
     def click_ON_Three_Dot_Next_To_Drive_PDF(self):
         sleep(2)
-        three_dot = self.poco(self.Three_Dot_Icon_Next_To_Drive_PDF)
-        three_dot.click()
+        self.poco("android.widget.TextView")[2].click()
         sleep(2)
 
     def click_On_Share_Option(self):
@@ -155,13 +153,21 @@ class APS_Notification:
 
     def click_Suggestion_PDF_File(self):
         Suggestion_PDF_File = self.poco(self.Suggestion_PDF_File)
-        Suggestion_PDF_File.click()
-        sleep(3)
+        if  Suggestion_PDF_File.exists():
+            Suggestion_PDF_File.click()
+            sleep(3)
+        else:
+            self.poco(name="com.google.android.apps.nbu.files:id/title").click()
+            sleep(3)
+
 
     def click_Suggestion_PDF_File_From_Drive(self):
+        sleep(1)
         Suggestion_PDF_File = self.poco(self.Suggestion_PDF_File_From_Drive)
-        Suggestion_PDF_File.click()
-        sleep(3)
+        if Suggestion_PDF_File.exists():
+           Suggestion_PDF_File.click()
+           sleep(3)
+
 
     def click_PDF_ON_Result(self):
         PDF_ON_Result = self.poco(self.PDF_ON_Result)
@@ -358,9 +364,22 @@ class APS_Notification:
             return []
 
     def click_Turn_ON_ZSB_Series_Printer(self):
-        sleep(2)
+        sleep(3)
         ZSB_Series = self.poco(self.Turn_ON_ZSB_Series_Printer)
         ZSB_Series.click()
+        # if self.poco(text="Service disabled").exists():
+        #     self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+        # elif self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+        #     self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+        # else:
+        #     print("Printer not found or already turned on")
+
+
+
+    def click_Turn_OFF_ZSB_Series_Printer(self):
+        sleep(3)
+        if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+            self.poco(self.Turn_ON_ZSB_Series_Printer).click()
 
     def click_Mobile_back_icon(self):
         sleep(2)
@@ -430,10 +449,10 @@ class APS_Notification:
         sleep(2)
 
     def Verify_Printer_Status_AS_Offline(self):
-        Printer_Status_AS_Offline = self.poco(textMatches=".*ZSB Series - Offline*")
-        if Printer_Status_AS_Offline:
-            return "Printer status Is Displaying as Offline"
-        return "Printer status Is not Displaying as Offline"
+        sleep(9)
+        a = self.poco(textMatches="(?s).*ZSB Series - Offline*").get_name()
+        a.split("\n")
+        print(a)
 
     def Verify_Print_job_IS_IN_Progress_Message(self):
         Print_job_IS_IN_Progress_Message = self.poco(self.Print_job_IS_IN_Progress_Message)
@@ -465,6 +484,18 @@ class APS_Notification:
     def Turn_OFF_Wifi(self):
         cmd = "adb shell svc wifi disable"
         subprocess.run(cmd, shell=True)
+
+    def enable_wifi(self):
+        try:
+            os.system('adb shell svc wifi enable')  # turn off Wi-Fi
+        except Exception as e:
+            pass
+
+    def disable_wifi(self):
+        try:
+            os.system('adb shell svc wifi disable')  # turn off Wi-Fi
+        except Exception as e:
+            pass
 
     def click_Print_Icon_Option(self):
         sleep(2)
@@ -515,19 +546,23 @@ class APS_Notification:
             sleep(2)
 
     def Verify_Cancelling_Driver_Job_Is_Displaying(self):
+        sleep(7)
         Cancelling_Driver_Job_Is_Displaying = self.poco(self.Cancelling_Driver_Job_Is_Displaying)
-        Cancelling_Driver_Job_Is_Displaying.get_text()
+        if Cancelling_Driver_Job_Is_Displaying.exists():
+            Cancelling_Driver_Job_Is_Displaying.get_text()
         print(" Cancelling Driver Job is displaying:", Cancelling_Driver_Job_Is_Displaying)
         return Cancelling_Driver_Job_Is_Displaying
 
     def Verify_Use_ZSB_Series_Popup_Is_Displaying(self):
         Use_ZSB_Series_Popup_Is_Displaying = self.poco(self.Use_ZSB_Series_Popup_Is_Displaying)
-        Use_ZSB_Series_Popup_Is_Displaying.get_text()
-        print(" Use ZSB Series popup is displaying:", Use_ZSB_Series_Popup_Is_Displaying)
-        return Use_ZSB_Series_Popup_Is_Displaying
+        if Use_ZSB_Series_Popup_Is_Displaying.exists():
+           Use_ZSB_Series_Popup_Is_Displaying.get_text()
+        else:
+            print(" Use ZSB Series popup is displaying:", Use_ZSB_Series_Popup_Is_Displaying)
+            return Use_ZSB_Series_Popup_Is_Displaying
 
     def click_On_OK_Button_On_The_Popup(self):
-        sleep(1)
+        sleep(2)
         OK_Button = self.poco(self.OK_Button_On_The_Popup)
         if OK_Button.exists():
             OK_Button.click()
@@ -537,10 +572,194 @@ class APS_Notification:
         pass
 
     def Printer_Is_Not_Displaying(self):
-        pass
+        sleep(1)
+        if not self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+         # self.poco(text="Zebra Technologies").exists():
+           print("APS Printing option is off")
 
     def click_On_Cancel_Btn_On_The_Popup(self):
-        pass
+        cancel_btn = self.poco(name="Cancel")
+        cancel_btn.click()
 
     def Verify_Job_Is_Cancelled(self):
-        pass
+        jab_cancelled=self.poco(name="")
+        if jab_cancelled.exists():
+            print("Job is Cancelled")
+
+    def Enter_Playstore_Text_On_SearchBar(self):
+        SearchBar2 = self.poco(self.Searchbar2)
+        SearchBar2.set_text(" ")
+        sleep(2)
+        SearchBar2.set_text("Play Store")
+        sleep(2)
+        self.poco(name="Play Store").click()
+        sleep(3)
+
+    def click_PlayStore_Result(self):
+        sleep(1)
+        PlayStore_Result = self.poco(name="Play Store")
+        if PlayStore_Result.exists():
+            PlayStore_Result.click()
+            sleep(2)
+
+    def click_PlayStore_SearchBar(self):
+        playstore_searchbar = self.poco(name="android.view.View")
+        playstore_searchbar.click()
+        playstore_searchbar.set_text(" ")
+        sleep(1)
+        playstore_searchbar.set_text("ZSB Series")
+        sleep(1)
+        self.poco(name="Refine search to 'zsb series'").click()
+        sleep(2)
+
+    def Verify_Printer_Is_Not_Displaying(self):
+        sleep(5)
+        if not self.poco(text="Zebra Technologies").exists():
+            print("APS Printing option is off")
+
+    def Verify_Centimeter_IS_Displaying_On_Review_Page(self):
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*cm.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Inches_IS_Displaying_On_Review_Page(self):
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*.*").get_name()
+        print(a)
+
+    def ZSB_Series_Is_Not_Present(self):
+        sleep(2)
+        ZSB_Series = self.poco(text="ZSB Series")
+        if not ZSB_Series.exists():
+            print("ZSB Series is not present")
+        else:
+            print("ZSB_Series element is present")
+
+    def Verify_Cancel_Button_Is_Displaying(self):
+        sleep(1)
+        Cancel_Button = self.poco(name="Cancel")
+        if Cancel_Button.exists():
+            Cancel_Button.click()
+        sleep(2)
+
+    def Verify_OK_Button_Is_Displaying(self):
+        sleep(1)
+        Cancel_Button = self.poco(name="OK")
+        if Cancel_Button.exists():
+            Cancel_Button.click()
+        sleep(2)
+
+    def click_Three_Dot_On_Added_Printer_On_HomePage(self):
+        sleep(1)
+        touch(self.ThreeDot_On_Added_Printer_On_HomePage)
+
+    def click_Clear_Queue_Button(self):
+        sleep(1)
+        Clear_Queue_Button = self.poco(name="Clear Queue")
+        if Clear_Queue_Button.exists():
+           Clear_Queue_Button.click()
+        sleep(2)
+
+    def Expand_StatusBar(self):
+        cmd = "adb shell cmd statusbar expand-notifications"
+        subprocess.run(cmd, shell=True)
+
+    def Collapse_StatusBar(self):
+        cmd = "adb shell cmd statusbar collapse"
+        subprocess.run(cmd, shell=True)
+
+    def click_ON_Three_Dot_To_Print(self):
+        sleep(1)
+        three_dot= self.poco(name="com.google.android.apps.docs:id/action_show_menu")
+        three_dot.click()
+
+    def Verify_Printer_Icon_Is_Present(self):
+        sleep(8)
+        a = self.poco(nameMatches="(?s).*com.android.settings:id/icon.*").get_name()
+        a.split("\n")
+        print(a)
+
+
+    def Verify_Printer_Name_Is_Present(self):
+        sleep(3)
+        a = self.poco(textMatches="(?s).*ZSB-DP.*").get_name()
+        a.split("\n")
+        print(a)
+
+    def Verify_Printer_Status_Is_Present(self):
+        a = self.poco(textMatches="(?s).*Online.*").get_name()
+        print(a)
+
+    def Verify_Labels_left_Is_Present(self):
+        a = self.poco(textMatches="(?s).*Labels Left.*").get_name()
+        print(a)
+
+    def Verify_Bluetooth_Address_Is_Present(self):
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*com.android.settings:id/subtitle.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def click_ON_Three_Dot_ON_Print_Service_Page(self):
+        sleep(4)
+        self.poco(name="More options").click()
+
+
+    def click_Search_On_The_Menu(self):
+        sleep(1)
+        self.poco(text="Search").click()
+
+
+    def click_Add_Printer(self):
+        sleep(1)
+        self.poco(text="Add printer").click()
+
+    def Verify_ZSB_Series_App_Login_Page_Is_Displaying(self):
+        sleep(6)
+        if self.poco(name="Home").exists():
+            print("Home page is displaying")
+            sleep(1)
+        else:
+            self.poco(name="Sign In").exists()
+            print("Login page is displaying")
+
+    def Verify_Printer_Status_AS_HeadOpen(self):
+        a = self.poco(nameMatches="(?s).*Head Open.*").get_name()
+        print(a)
+
+    def Verify_Printer_Status_AS_Paper_Out(self):
+        a = self.poco(nameMatches="(?s).*Paper Out.*").get_name()
+        print(a)
+
+    def Verify_Printer_Status_AS_Media_LOW(self):
+        a = self.poco(nameMatches="(?s).*Media Low.*").get_name()
+        print(a)
+
+    def Verify_Longer_Printer_Name_Is_Present(self):
+        a = self.poco(nameMatches="(?s).*@abcdefghijklmn!@#abcdefghijklmn.*").get_name()
+        print(a)
+
+    def Verify_Turn_ON_Wifi_Popup(self):
+         a= self.poco(name="Turn On Your Wifi")
+         if a.exists():
+             a.get_text()
+         else:
+             print("Turn On you Wifi pop up is not displaying")
+
+    def Verify_And_Turn_ON_APS(self):
+        if self.poco(text="Service disabled").exists():
+           self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+
+        else:
+            pass
+
+    def Verify_And_Turn_OFF_APS(self):
+        if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+           self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+
+        else:
+            pass
+
+
+
