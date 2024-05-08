@@ -1038,7 +1038,7 @@ class Common_Method():
     def install_app(self):
         sleep(1)
         apk_path = r"C:\Users\rk1277\Downloads"
-        apk_filename = "ZsbMobile-production-5399.apk"
+        apk_filename = "ZsbMobile-production-5538.apk"
         packageName = "com.zebra.soho_app"
         target_apk_path = os.path.join(apk_path, apk_filename)
         try:
@@ -1050,7 +1050,7 @@ class Common_Method():
     def install_Older_app(self):
         sleep(1)
         apk_path = r"C:\Users\rk1277\Downloads"
-        apk_filename = "ZsbMobile-production-5339.apk"
+        apk_filename = "ZsbMobile-production-5399.apk"
         packageName = "com.zebra.soho_app"
         target_apk_path = os.path.join(apk_path, apk_filename)
         try:

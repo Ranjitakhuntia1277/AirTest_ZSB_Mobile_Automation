@@ -137,6 +137,9 @@ class App_Settings_Screen_iOS:
         self.Email_TextField_On_Password_Recovery_Screen = "TextField"
         self.Cancel_Button = "Cancel"
 
+    #    ##"""""""""""""""""""""""""""""new""""""""""""""""""""""""""""""""""""
+        self.Add_File = "android.widget.Button"
+
     ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     def click_Printer_Settings(self):
@@ -1740,3 +1743,37 @@ class App_Settings_Screen_iOS:
             sleep(2)
         else:
             print("Settings text is not there")
+
+    def click_My_Data(self):
+        my_data = self.poco(self.My_Data)
+        my_data.wait_for_appearance(timeout=10)
+        my_data.click()
+
+    def click_Add_File(self):
+        add_file = self.poco(self.Add_File)
+        add_file.wait_for_appearance(timeout=10)
+        add_file.click()
+
+    def click_Upload_File(self):
+        upload_file = self.poco("android.widget.Button")[-2]
+        upload_file.click()
+        if self.poco(text="Allow").exists():
+            self.poco(text="Allow").click()
+
+    def click_Link_File(self):
+        link_file = self.poco("android.widget.Button")[-3]
+        link_file.wait_for_appearance(timeout=10)
+        link_file.click()
+
+    def clickGoogleDrive(self):
+        google_drive = self.poco("android.view.View")[3].child()[1]
+        google_drive.click()
+
+    def checkFilesShownAreSupported(self):
+        supported_types = ["jpg", "png", "bmp", "txt", "xlsx", "csv", ""]
+        file_list = self.fileListDisplayed()
+        for i in file_list:
+            if self.substring_after(i, ".") in supported_types:
+                return
+            else:
+                raise Exception(str(i) + " is not of supported format")
