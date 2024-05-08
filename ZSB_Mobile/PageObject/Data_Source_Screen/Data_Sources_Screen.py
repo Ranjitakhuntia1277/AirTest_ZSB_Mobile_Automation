@@ -12,7 +12,6 @@ from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 
 from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
 
 common_method = Common_Method(poco)
 
@@ -550,6 +549,12 @@ class Data_Sources_Screen:
             return
         else:
             raise Exception("Preview not shown")
+
+    def checkPrintIsDisabled(self):
+        if self.poco("Print", enabled=False).exists():
+            pass
+        else:
+            raise Exception("Print is Enabled")
 
     def selectLabelRange(self, label_range):
         self.Label_Range = label_range
@@ -1122,11 +1127,13 @@ class Data_Sources_Screen:
         start = 0
         scroll_count = 0
         while 1:
-            file_count = len(self.poco("com.google.android.documentsui:id/preview_icon").parent().parent().parent().child())
+            file_count = len(
+                self.poco("com.google.android.documentsui:id/preview_icon").parent().parent().parent().child())
             print(file_count)
             for i in range(start, file_count - 1):
                 print(i)
-                filee_name = self.poco("com.google.android.documentsui:id/preview_icon")[2].parent().parent().parent().child()[
+                filee_name = \
+                self.poco("com.google.android.documentsui:id/preview_icon")[2].parent().parent().parent().child()[
                     i].child("android.widget.LinearLayout").child("android.widget.LinearLayout").child(
                     "android.widget.LinearLayout").child().get_text()
                 print(filee_name)
@@ -1295,11 +1302,23 @@ class Data_Sources_Screen:
     def clearBrowsingData(self):
         start_app("com.android.chrome")
         self.poco("com.android.chrome:id/menu_button").click()
-        self.poco(text="Clear browsing data").click()
-        self.poco("com.android.chrome:id/quick_delete_more_options").click()
+        try:
+            self.poco(textMatches=".*Clear browsing data.*").click()
+        except:
+            self.poco(text="History").click()
+            self.poco(textMatches=".*Clear browsing data.*").click()
+        try:
+            self.poco("com.android.chrome:id/quick_delete_more_options").click()
+        except:
+            pass
         self.poco("com.android.chrome:id/spinner").click()
         self.poco(text="All time").click()
         self.poco("com.android.chrome:id/clear_button").click()
+        try:
+            self.poco(text="Clear").click()
+        except:
+            pass
+        self.poco("com.android.chrome:id/close_menu_id").click()
 
     def clickOk(self):
         try:
@@ -1314,6 +1333,8 @@ class Data_Sources_Screen:
     def clickGotItWeb(self):
         if self.poco(text="Got It").exists():
             self.poco(text="Got It").click()
+        if self.poco(text="Welcome to your new ZSB Series Printer").exists():
+            self.poco(text="Welcome to your new ZSB Series Printer").parent().child("android.widget.Button").click()
 
     def get_current_date(self):
         year = datetime.date.today().year
@@ -1413,3 +1434,28 @@ class Data_Sources_Screen:
         while not self.poco("NAME").exists():
             scroll_view.swipe("down")
         return total
+
+    def checkIfInLoginPage(self):
+        try:
+            self.poco("Sign In").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("Not in Login page")
+
+    def checkIfInLoginPageWeb(self):
+        try:
+            self.poco(text="Sign In With").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("Not in Login page")
+
+    def checkIfOnHomePage(self):
+        try:
+            self.poco("Home").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("Did not reach home page.")
+
+    def checkIfOnHomePageWeb(self):
+        try:
+            self.poco(text="Home").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("Did not reach home page.")
+
