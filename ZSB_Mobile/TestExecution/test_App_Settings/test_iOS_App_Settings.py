@@ -1178,7 +1178,7 @@ def test_AppSettings_TestcaseID_47928():
     app_settings_page_ios.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
     """click on unpair bluetooth dropdown list"""""
     app_settings_page_ios.Verify_And_click_Unpair_Bluetooth_dropdown_list()
-    common_method.Stop_The_App()
+    common_method.Stop_The_iOSApp()
     app_settings_page_ios.Stop_iOS_App()
     app_settings_page_ios.click_Mobile_SearchBar()
     app_settings_page_ios.click_On_Searchbar2()
@@ -1187,7 +1187,7 @@ def test_AppSettings_TestcaseID_47928():
     app_settings_page_ios.click_Bluetooth()
     app_settings_page_ios.click_Unpair_Icon()
     app_settings_page_ios.click_On_Unpair()
-    common_method.Start_The_App()
+    common_method.Start_The_iOSApp()
     app_settings_page_ios.click_Done_Btn()
     app_settings_page_ios.Verify_Printer_Is_Not_Displaying()
     """stop the app"""
