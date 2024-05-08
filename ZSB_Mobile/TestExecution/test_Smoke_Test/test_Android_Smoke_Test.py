@@ -963,7 +963,7 @@ def test_Smoke_Test_TestcaseID_45877():
         poco("com.android.chrome:id/coordinator").click()
     registration_page.registerEmail()
     sleep(2)
-    a = registration_page.check_registration_of_email()
+    a = (registration_page.check_registration_of_email())
     if not a:
         raise Exception("register user page dint show")
     """Enter the User Email"""
