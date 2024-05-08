@@ -5,272 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android_semiautomated.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/tpl1714996894841.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/tpl1714998188897.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android_Semi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token/test_SSO_token.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK_semiautomated.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/fully_automated_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704879780106.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704965552396.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704965795152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704967494384.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704967715262.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1704971722085.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705043802427.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705300826503.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705310266352.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705310274082.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705314417017.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705401014619.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705401064196.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705401141406.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705419067128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705419132252.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705419196892.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705419282061.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705419343855.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705419524147.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705419993824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705420425792.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705420538483.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705420583545.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705420663756.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705420683027.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705569188191.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705569305111.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705915293017.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1705993965886.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706508391656.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706509159418.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706592659670.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706593483107.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706596588283.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706596892577.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706599309382.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706608399741.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706608445061.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706609710905.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706697485876.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706698934855.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706704195474.png" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706704195474.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706704936088.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706788194403.png" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706788194403.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706789579755.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706790676674.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706790948345.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1706793220189.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707135468156.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707286425683.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707288777589.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707296173547.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707302769907.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707307875194.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707820626487.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1707992893381.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708331710258.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708331943425.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708332158153.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708332370129.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708332995399.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708413534511.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708414077816.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708414465574.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708414599512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708425649634.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708426939171.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708427418561.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708427705088.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708429441924.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708429571570.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708429694122.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708429858413.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708430137158.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708430148657.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708448789991.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708450180260.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Images/tpl1708451072880.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings_Screen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Feed_on_HeadClose.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Help_Screen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Smoke_Test/Smoke_Test_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Smoke_Test/Smoke_Test_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Social_Login.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705389075576.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705390046682.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398216189.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398219467.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398225396.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398231270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398294774.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398298130.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398306007.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398311824.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398506959.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398510251.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398518084.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398523834.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398740268.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398743523.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398751403.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705398757090.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399213445.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399217525.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399226113.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399232665.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399440753.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399444915.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399453536.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399460153.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399888836.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399907980.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399948477.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399952603.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399961240.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399967860.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705399974244.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400016651.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400020779.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400029355.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400035884.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400042337.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400951308.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400953785.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705400981826.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705469946740.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470115216.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470117617.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470118520.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470122806.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470128694.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470134514.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470140896.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470141698.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470147095.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470151803.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470251731.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470254129.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470255015.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470259289.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470265339.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470291461.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470293863.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470294716.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470299020.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470304917.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470310731.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470317114.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470317898.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470323958.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470329863.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470335664.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470342099.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470342986.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470345394.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470352883.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470358783.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470364589.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470371010.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470371915.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470374323.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470378165.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470385541.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470391308.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470397091.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470403484.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470404277.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470410352.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470416246.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470576617.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470579163.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470582426.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470586863.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470587840.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470588072.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470593353.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470599134.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470601663.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470606001.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470608521.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470611056.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470617343.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470617719.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470620214.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470623507.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470627200.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/1705470630002.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings_SemiAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings_SemiAutomated.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings_SemiAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings_SemiAutomated.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704389095227.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704782766519.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704782805207.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704883228526.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704965552396.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704965795152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704965934868.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704967494384.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704967715262.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1704971722085.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705043802427.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705300826503.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705310266352.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705310274082.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705314417017.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705314757599.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705314814226.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705401014619.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705401064196.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705401141406.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705419067128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705419132252.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705419196892.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705419282061.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705419343855.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705419524147.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705419993824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705420425792.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705420538483.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705420583545.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705420663756.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705420683027.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705569188191.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705569305111.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705577555232.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705577631362.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1705993965886.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706003693540.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706508391656.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706509159418.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706592659670.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706593483107.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706596588283.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706596892577.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706599309382.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706608399741.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706608445061.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1706609710905.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/applypatch-msg.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/commit-msg.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/fsmonitor-watchman.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/post-update.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/pre-applypatch.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/pre-commit.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/pre-merge-commit.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/pre-push.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/pre-rebase.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/pre-receive.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/prepare-commit-msg.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/push-to-checkout.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/sendemail-validate.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/update.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" beforeDir="false" afterPath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Delete_Account/Delete_Account_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Delete_Account/Delete_Account_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Help_Screen/Help_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Help_Screen/Help_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,112 +56,139 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45769.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772_2.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45773.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45773_1.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45778.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45780.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45783.executor": "Run",
+    "Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784.executor": "Run",
+    "Python tests.pytest in test_Delete_Account_Android.py.executor": "Run",
+    "Python tests.pytest in test_Registration_Android.py.executor": "Run",
+    "Python tests.pytest in test_SSO_token.py.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "rk1277__Ranjita",
-    "last_opened_file_path": "C:/Users/rk1277/Desktop/ZSB_Automation",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "git-widget-placeholder": "jd4936__Jayakiran",
+    "last_opened_file_path": "C:/Users/JD4936/Documents/New_ZSB_Automation/ZSB_Mobile/TestExecution/test_Delete_Account",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JD4936\Documents\New_ZSB_Automation\ZSB_Mobile\TestExecution\test_Delete_Account" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JD4936\Documents\New_ZSB_Automation\ZSB_Mobile\TestExecution\test_SSO_token" />
+      <recent name="C:\Users\JD4936\Documents\New_ZSB_Automation\ZSB_Mobile\TestExecution\test_Delete_Account" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_App_Settings" />
       <recent name="C:\Users\rk1277\Documents\Automation new with latest changes\ZSB_Automation\ZSB_Mobile\PageObject\Add_A_Printer_Screen" />
       <recent name="C:\Users\rk1277\Documents\Automation new with latest changes\ZSB_Automation\ZSB_Mobile\TestExecution\test_Smoke_Test" />
-      <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\TestExecution\test_Smoke_Test" />
-      <recent name="C:\Users\rk1277\Pictures\Automation_Backup\ZSB_Automation\ZSB_Mobile\Images" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_47956">
-    <configuration name="pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_45688" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest in test_SSO_token.py">
+    <configuration name="pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_iOS_App_Settings.test_AppSettings_TestcaseID_45688&quot;" />
+      <option name="_new_target" value="&quot;test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_47881" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772_2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_iOS_App_Settings.test_AppSettings_TestcaseID_47881&quot;" />
+      <option name="_new_target" value="&quot;test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772_2&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_47956" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45778" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_iOS_App_Settings.test_AppSettings_TestcaseID_47956&quot;" />
+      <option name="_new_target" value="&quot;test_Delete_Account_Android.test_Delete_Account_TestcaseID_45778&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_51702" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_iOS_App_Settings.test_AppSettings_TestcaseID_51702&quot;" />
+      <option name="_new_target" value="&quot;test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_51788" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_SSO_token.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_iOS_App_Settings.test_AppSettings_TestcaseID_51788&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token/test_SSO_token.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_47956" />
-        <item itemvalue="Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_47881" />
-        <item itemvalue="Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_45688" />
-        <item itemvalue="Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_51702" />
-        <item itemvalue="Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_51788" />
+        <item itemvalue="Python tests.pytest in test_SSO_token.py" />
+        <item itemvalue="Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772_2" />
+        <item itemvalue="Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45772" />
+        <item itemvalue="Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784" />
+        <item itemvalue="Python tests.pytest for test_Delete_Account_Android.test_Delete_Account_TestcaseID_45778" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -429,5 +211,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
