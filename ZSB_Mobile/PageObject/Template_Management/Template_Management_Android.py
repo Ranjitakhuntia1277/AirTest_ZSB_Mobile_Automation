@@ -198,8 +198,10 @@ class Template_Management_Android:
             a = total[i].split("\n")
             temp[a[0]] = total[i]
 
-        while(not self.poco(temp[name]).exists()):
+        count=0
+        while(not self.poco(temp[name]).exists() and count<20):
             self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
+            count+=1
 
         if click:
             try:
@@ -224,7 +226,7 @@ class Template_Management_Android:
             a = self.poco(text=element)[order].exists()
             return a
 
-    def check_element_exists_enabled(self,element):
+    def check_element_exists_enabled(self, element):
         try:
             a=self.poco(element,enabled=True).exists()
             return a
@@ -290,13 +292,16 @@ class Template_Management_Android:
             return a
 
     def scroll_till_print_enabled_button(self):
-        while not self.poco(name="Print",enabled=True).exists():
+        count=0
+        while (not self.poco(name="Print",enabled=True).exists()) and (count<10):
             self.poco.scroll()
+            count+=1
 
     def select_the_printer_in_print_preview_page_by_index(self,no,get_printers_list=0):
-
-        while not self.poco(nameMatches=".*Total of 1 label.*").exists():
+        count = 0
+        while (not self.poco(nameMatches=".*Total of 1 label.*").exists()) and (count<10):
             self.poco.scroll()
+            count += 1
 
         temp = [child.get_name() for child in self.poco(nameMatches=".*labels left.*").parent().child()]
 
@@ -390,7 +395,7 @@ class Template_Management_Android:
         total = []
         prev = []
         while 1:
-            curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+            curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
             if curr != prev:
                 for i in curr:
                     if i not in total:
@@ -743,9 +748,10 @@ class Template_Management_Android:
                 continue
 
     def refresh_the_home_page_till_you_see_error(self):
-
-        while not self.poco("Continue").exists():
+        count=0
+        while not self.poco("Continue").exists() and count<10:
             self.poco.swipe([0.5,0.5], [0.5,1.0], duration=0.5)
+            count+=1
 
     def refresh_the_home_page_(self):
         self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
@@ -907,13 +913,12 @@ class Template_Management_Android:
             temp.append(a[0])
         return temp
 
-
     def wait_for_element_appearance_name_matches_all(self,element, time_out=20):
         self.poco(nameMatches="(?s).*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def scroll_till_print_enabled(self):
         count=0
-        while not self.check_element_exists_enabled("Print") and count<3:
+        while not self.check_element_exists_enabled("Print") and count<5:
             self.poco.scroll()
             count+=1
 
@@ -989,8 +994,10 @@ class Template_Management_Android:
         return int(temp[1][0])
 
     def get_total_count_designs_results_in_common_designs(self):
-        while(not self.poco(nameMatches=".*Designs .*", enabled=True).exists()):
+        count=0
+        while(count<10 and (not self.poco(nameMatches=".*Designs .*", enabled=True).exists())):
             self.poco.scroll()
+            count+=1
         a = self.poco(nameMatches=".*Designs .*", enabled=True).get_name()
         temp = a.split("(")
         return int(temp[1][0])
@@ -998,12 +1005,14 @@ class Template_Management_Android:
     def get_all_categories_in_search_designs(self):
         temp = []
         self.poco(nameMatches="(?s).*For use with Label Cartridges: .*")
-        while not self.poco(nameMatches=".*Designs .*", enabled=True).exists():
+        count=0
+        while count<10 and not self.poco(nameMatches=".*Designs .*", enabled=True).exists():
             curr = [child.get_name() for child in self.poco(nameMatches="(?s).*For use with Label Cartridges:.*")]
             for i in curr:
                 if i not in temp:
                     temp.append(i)
             self.poco.scroll()
+            count+=1
         try:
             curr = [child.get_name() for child in self.poco(nameMatches="(?s).*For use with Label Cartridges:.*")]
             for i in curr:
@@ -1036,9 +1045,11 @@ class Template_Management_Android:
         return a
 
     def get_all_designs_in_search_designs(self):
-        while (not self.poco(nameMatches=".*Designs .*", enabled=True).exists()):
+        count=0
+        while count<10 and (not self.poco(nameMatches=".*Designs .*", enabled=True).exists()):
 
             self.poco.scroll()
+            count+=1
 
         temp=self.get_all_designs_in_my_designs()
         return temp

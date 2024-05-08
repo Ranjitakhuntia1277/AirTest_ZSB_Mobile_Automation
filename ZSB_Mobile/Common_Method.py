@@ -10,6 +10,7 @@ import time
 from pipes import Template
 from platform import platform
 from time import sleep
+import traceback
 
 import package_name
 from airtest.core.api import swipe, exists, touch, keyevent, shell, start_app, stop_app, uninstall, install
@@ -124,14 +125,14 @@ class Common_Method():
     def wait_for_element_disappearance(self,element, time_out=20):
         self.poco(element).wait_for_disappearance(timeout=time_out)
 
-    def wait_for_element_appearance_enabled(self,element, time_out=10):
+    def wait_for_element_appearance_enabled(self,element, time_out=20):
         self.poco(element,enabled=True).wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_appearance_namematches(self,element, time_out=15):
+    def wait_for_element_appearance_namematches(self,element, time_out=25):
         self.poco(nameMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
 
 
-    def wait_for_element_appearance_textmatches(self,element, time_out=10):
+    def wait_for_element_appearance_textmatches(self,element, time_out=20):
         self.poco(textMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
 
     def swipe_by_positions(self,start_point,end_point):
@@ -1045,4 +1046,3 @@ class Common_Method():
     #
     #     # Install the app
     #     install(apk_path)
-    #     sleep(10)

@@ -35,6 +35,11 @@ class Registration_Screen:
         self.Try_Again = "Try Again"
         self.Login = "Login"
 
+    def clickSignIn(self):
+        signInBtn = self.poco("Sign In")
+        signInBtn.click()
+
+
     def registerEmail(self):
         self.poco(self.Register_Email).wait_for_appearance(timeout=10)
         self.poco(self.Register_Email).click()
@@ -43,7 +48,7 @@ class Registration_Screen:
         self.poco(" Reset Password").focus([0.2, 0.3]).click()
 
     def check_if_in_password_recovery_page(self):
-        return self.poco(text="Password Recovery").exists()
+        self.wait_for_element_appearance_text("Password Recovery", 20)
 
     def Enter_Username_password_recovery_page(self, email):
         self.poco("android.widget.EditText").set_text(email)
@@ -52,23 +57,26 @@ class Registration_Screen:
         self.poco(text="SUBMIT").click()
 
     def check_submit_is_clickable(self):
-        return self.poco(text="Success!").exists()
+        return self.poco(text="SUBMIT", enabled=True).exists()
 
     def check_if_in_login_page(self):
         return self.poco(self.Login).exists()
 
     def check_zebra_mail_registration_error(self):
-        return self.poco(
-            text="This site is for external users only. Please contact your local system administrator for application access request.").exists()
-
-    def check_registration_of_email(self):
-        return self.poco(text="ZSB Printer Account Registration").exists()
+        try:
+            self.wait_for_element_appearance_text("This site is for external users only. Please contact your local system administrator for application access request.")
+        except:
+            raise Exception("NO error when trying to register with zebra mail id.")
 
     def wait_for_element_appearance_text(self, element, time_out=15):
         self.poco(text=element).wait_for_appearance(timeout=time_out)
 
     def enter_user_email_for_registering(self, email):
+        if self.poco(text="Cookie use").exists():
+            self.poco(text="Reject All").click()
+        self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(email)
+        keyevent("Enter")
 
     def wait_for_element_appearance(self, element, time_out=10):
         self.poco(element).wait_for_appearance(timeout=time_out)
@@ -139,10 +147,9 @@ class Registration_Screen:
         return self.poco("Password and Confirm Password must match.").exists()
 
     def enter_the_fields(self, firstname, lastname, password):
-        temp2 = self.poco("android.widget.EditText")[0]
-        temp1 = self.poco(text="signup.zebra.com")
-        temp2.drag_to(temp1)
-        sleep(3)
+        scroll_view = self.poco("android.webkit.WebView")
+        while self.poco(text="Enter User Information ").exists():
+            scroll_view.swipe("up")
 
         self.poco("android.widget.EditText")[0].set_text(firstname)
 
@@ -197,15 +204,24 @@ class Registration_Screen:
         self.poco("CONTINUE").click()
 
     def check_email_already_exists_page_title(self):
-        return self.poco(text="ZSB Printer Account Already Exist.").exists()
+        try:
+            self.wait_for_element_appearance_text("ZSB Printer Account Already Exist.")
+        except:
+            raise Exception("Email already exists message did not appear.")
 
     def check_email_already_Exists_page_message(self):
-        return self.poco(
-            text="You already have an account with us, Please click the below \"Continue\" button to redirect to the application.").exists()
+        try:
+            self.wait_for_element_appearance_text("You already have an account with us, Please click the below \"Continue\" button to redirect to the application.")
+        except:
+            raise Exception(
+                "\"You already have an account with us, Please click the below \"Continue\" button to redirect to the application.\" did not appear.")
 
     def check_email_verification_page_message(self):
-        return self.poco(
-            text="Your request has been received. We have sent a verification code through your email to verify your account. Please enter your verification code below to finish registration. Can't find your email? Please check your junk mail or click this link: ").exists()
+        try:
+            self.wait_for_element_appearance_text("Your request has been received. We have sent a verification code through your email to verify your account. Please enter your verification code below to finish registration. Can't find your email? Please check your junk mail or click this link: ")
+        except:
+            raise Exception(
+                "\"Your request has been received. We have sent a verification code through your email to verify your account. Please enter your verification code below to finish registration. Can't find your email? Please check your junk mail or click this link: \" did not appear.")
 
     def check_email_verified_successfully_message(self):
         return self.poco(text="Email verified successfully!").exists()
@@ -214,14 +230,16 @@ class Registration_Screen:
         return self.poco("Resend Verification Code.").exists()
 
     def click_resend_verification_code_btn(self):
-        self.poco("Resend Verification Code.").click()
+        self.poco("Resend Verification Code.").focus([0.99, 0.01]).click()
 
     def verify_user_information_and_account_security_page(self):
-        return self.poco(text="ZSB Printer User Information and Account Security").exists()
+        try:
+            self.wait_for_element_appearance_text("ZSB Printer User Information and Account Security")
+        except:
+            raise Exception("Did not navigate to 'ZSB Printer User Information and Account Security' page.")
 
     def verify_verification_code_expired_error(self):
-        return self.poco("android.widget.TextView")[12].get_text()[
-               -84:] == ": Token has expired. Please use 'Resend Verification Code' link to regenerate token."
+        return self.poco(textMatches=".*Token has expired. Please use 'Resend Verification Code' link to regenerate token.").exists()
 
     def click_on_sign_in_with_email(self):
         sign_in_with_email = self.poco("android.widget.Button")
@@ -233,29 +251,31 @@ class Registration_Screen:
         if click_back:
             keyevent("back")
         if not enter_only_password:
-            self.poco("com.android.chrome:id/coordinator").click()
+            if self.poco("com.android.chrome:id/coordinator"):
+                self.poco("com.android.chrome:id/coordinator").click()
+            keyevent("Enter")
             self.poco("android.widget.EditText")[0].wait_for_appearance(timeout=10)
             self.poco("android.widget.EditText")[0].set_text(user_name)
+            keyevent("back")
         self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText")[1].set_text(password)
-
         # self.poco(text="Sign In").click()
         if click_on_sign_in:
             self.poco("android.widget.Button")[1].click()
         if wrong_password:
-            error_message = self.poco("android.widget.TextView").get_text()
-            if error_message == "We didn't recognize the username or password you entered. Please try again.":
-                print("Successfully displayed Error message for wrong password")
-                return
-            else:
-                print("Error message not displayed for wrong password.")
+            try:
+                self.poco("We didn't recognize the username or password you entered. Please try again.")
+            except:
                 raise Exception("Error message not displayed for wrong password.")
 
     def click_on_profile_edit(self):
         self.poco("android.widget.Button").click()
 
     def verify_if_on_EULA_page(self):
-        return self.poco("End User\n License Agreement").exists()
+        try:
+            self.wait_for_element_appearance("Click ‘Accept’ to indicate that you have read and agree to the ", 20)
+        except:
+            raise Exception("Did not reach EULA page")
 
     def check_user_does_not_exist_error(self):
         return self.poco(text="User does not exist.").exists()
@@ -282,58 +302,73 @@ class Registration_Screen:
     def click_on_next(self):
         self.poco(text="Next").click()
 
-    def verify_Sign_In_With_Google_Page(self):
-        if self.poco("android.widget.TextView").get_text() == "Sign in with Google":
-            print("Successfully navigated to Sign In with google page")
-            return
-        else:
-            raise Exception("Did not navigate to Sign In with google page")
+    def addAccountToDevice(self):
+        add_acc = self.poco(text="Add account to device")
+        add_acc.click()
 
     def sign_In_With_Google(self, password, username=None, wrong_password=False):
         if username is not None:
-            self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
-            self.poco("android.widget.EditText").set_text(username)
-            keyevent("enter")
-            self.poco("android.widget.Button")[3].click()
+            try:
+                self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
+                self.poco("android.widget.EditText").set_text(username)
+            except:
+                self.poco("identifierId").wait_for_appearance(timeout=10)
+                self.poco("identifierId").set_text(username)
+            keyevent("Enter")
+            self.poco("android.widget.Button")[-1].click()
         self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText").set_text(password)
-        keyevent("enter")
+        keyevent("Enter")
+        # self.poco("android.widget.Button")[-1].click()
         if wrong_password:
-            self.verify_Sign_In_With_Google_Page()
-            sleep(2)
-            error_message = self.poco("android.widget.TextView")[5].get_text()
-            if error_message == "Wrong password. Try again or click Forgot password to reset it.":
-                print("Successfully displayed Error message for wrong password")
-                return
-            else:
-                print("Error message not displayed for wrong password.")
-                raise Exception("Error message not displayed for wrong password.")
+            try:
+                self.wait_for_element_appearance_text(
+                    "Wrong password. Try again or click ‘Forgot password’ to reset it.")
+            except:
+                raise Exception(
+                    "Error message: \"Wrong password. Try again or click Forgot password to reset it.\" not displayed.")
         else:
-            self.poco("android.widget.Button")[1].click()
+            # self.poco("android.widget.Button")[-1].click()
+            try:
+                scrolls = 5
+                while scrolls!=0:
+                    poco.scroll()
+                if self.poco(text="Skip").exists():
+                    self.poco(text="Skip").click()
+            except:
+                pass
+            while not self.poco(text="I agree").exists():
+                self.poco.scroll()
+            self.poco(text="I agree").click()
+            try:
+                self.poco(text="Not now").wait_for_appearance(timeout=15)
+                self.poco(text="Not now").click()
+            except:
+                pass
 
     def get_login_name_from_menu(self):
         name = self.poco("android.view.View")[4].child().child().child().get_name().split("\n")[1]
         return name
 
     def login_Facebook(self, password, username=None, wrong_password=False):
-        if username:
+        if username is not None:
             self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
             self.poco("android.widget.EditText").set_text(username)
         self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText")[1].set_text(password)
+        keyevent("Enter")
         self.poco("android.widget.Button").click()
         if wrong_password:
-            message_part1 = self.poco("android.widget.TextView")[2].get_text()
-            message_part2 = self.poco("android.widget.TextView")[3].get_text()
-            error_message = message_part1 + message_part2
-            print(error_message)
-            if error_message == "Incorrect password. Did you forget your password?":
-                print("Successfully displayed Error message for wrong password")
-                return
-            else:
-                print("Error message not displayed for wrong password.")
-                raise Exception("Error message not displayed for wrong password.")
-        self.poco("android.widget.Button").click()
+            try:
+                self.wait_for_element_appearance_text("Incorrect password. ")
+                self.wait_for_element_appearance_text("Did you forget your password?")
+            except:
+                raise Exception("Error message \"Incorrect password. Did you forget your password?\"not displayed for wrong password.")
+        try:
+            self.poco(text="Continue as Zsb").wait_for_appearance(timeout=20)
+            self.poco(text="Continue as Zsb").click()
+        except:
+            pass
 
     def login_Apple(self, password, username=False, wrong_password=False):
         if username:
@@ -344,7 +379,7 @@ class Registration_Screen:
                 self.poco("com.android.chrome:id/coordinator").click()
         self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText")[1].set_text(password)
-        self.poco("android.widget.Button")[0].click()#changed during datasources test id- 45731
+        self.poco(text="Sign In").click()#changed during datasources test id- 45731
         if wrong_password:
             self.poco("android.widget.TextView")[7].click()
             error_message = [self.poco("android.widget.TextView")[11].get_text()][0]
@@ -355,8 +390,18 @@ class Registration_Screen:
             else:
                 print("Error message not displayed for wrong password.")
                 raise Exception("Error message not displayed for wrong password.")
-        else:
-            self.poco("android.widget.Button")[2].click()
+        "Enter OTP manually"
+        try:
+            self.poco(text="Trust").wait_for_appearance(timeout=40)
+            self.poco(text="Trust").click()
+        except:
+            pass
+        try:
+            self.poco(text="Continue").wait_for_appearance(timeout=20)
+            self.poco(text="Continue").click()
+        except:
+            pass
+
 
     def home_page_overview(self, firstname):
         self.poco(f"Hey {firstname}\nAdd a printer to get started. We’ll help you set things up.")
@@ -368,7 +413,7 @@ class Registration_Screen:
         return self.poco(self.Buy_More_Labels).exists()
 
     def click_Buy_More_Labels(self):
-        self.poco(self.Buy_More_Labels).wait_for_appearance(timeout=15)
+        self.poco(self.Buy_More_Labels).wait_for_appearance(timeout=25)
         self.poco(self.Buy_More_Labels).click()
 
     def clickRadioButton(self):
@@ -385,9 +430,9 @@ class Registration_Screen:
         self.poco(self.submit).click()
 
     def selectPrinter(self, printername):
+        no_of_devices_displayed = len(self.poco("android.view.View")[5].child())
+        last_device_displayed = self.poco("android.view.View")[5].child()[no_of_devices_displayed - 1].get_name()
         while True:
-            no_of_devices_displayed = len(self.poco("android.view.View")[5].child())
-            last_device_displayed = self.poco("android.view.View")[5].child()[no_of_devices_displayed - 1].get_name()
             for i in range(no_of_devices_displayed):
                 displayed_printer_name = self.poco("android.view.View")[5].child()[i]
                 if displayed_printer_name.get_name() == printername:
@@ -455,7 +500,7 @@ class Registration_Screen:
         self.poco("click here").click()
 
     def check_if_on_Reset_Password_page(self):
-        return self.poco(text="Reset Password").exists()
+        self.wait_for_element_appearance_text("Reset Password")
 
     def check_fields_on_Reset_Password_page(self):
         self.poco(text="Password Reset Code*").exists()
@@ -465,7 +510,7 @@ class Registration_Screen:
     def check_error_message_on_fields_on_Reset_Password_page(self):
         return_message = False
         if self.poco("android.widget.TextView")[1].get_text() == "This field is required.":
-            if self.poco("android.widget.TextView")[2].get_text() == "Password MUST contain one lowercase, one uppercase letter, one number and a special character. Password MUST NOT contain spaces or tabs.":
+            if self.poco("android.widget.TextView")[2].get_text() == "This field is required.":
                 if self.poco("android.widget.TextView")[3].get_text() == "This field is required.":
                     return_message = True
         return return_message
@@ -480,7 +525,7 @@ class Registration_Screen:
         self.poco("android.widget.EditText")[2].set_text(password)
 
     def checkWrongConfirmPasswordErrorMessage(self):
-        return self.poco("android.widget.TextView")[1].get_text() == "Password and Confirm Password must match"
+        return self.poco("android.widget.TextView")[1].get_text() == "Fields do not match."
 
     def check_OTExpiredMessage(self):
         return_message = False
@@ -539,47 +584,88 @@ class Registration_Screen:
         self.poco(text="Add account").click()
         self.poco(text="Google").wait_for_appearance(timeout=20)
         self.poco(text="Google").click()
-        self.poco("identifierId").wait_for_appearance(timeout=20)
+        self.poco(text="Create account", enabled=True).wait_for_appearance(timeout=30)
+        sleep(3)
         self.poco(text="Create account").click()
         self.poco(text="For my personal use").click()
         name = self.generate_random_word(10)
-        print(name)
         self.poco("firstName").wait_for_appearance(timeout=20)
+        sleep(2)
+        self.poco("firstName").click()
         self.poco("firstName").set_text(name)
+        keyevent("Enter")
         self.poco(text="Next").click()
-        self.poco("month-label").wait_for_appearance(timeout=20)
-        self.poco("month-label").click()
+        self.poco(text="Month").wait_for_appearance(timeout=20)
+        self.poco(text="Month").click()
         self.poco("android.widget.ListView").wait_for_appearance(timeout=20)
         month_length = len(self.poco("android.widget.ListView").child())
         i = random.randint(0, month_length - 1)
         self.poco("android.widget.ListView").child()[i].click()
         day = random.randint(1, 28)
-        self.poco("day").set_text(day)
+        try:
+            self.poco("day").set_text(day)
+        except:
+            self.poco("android.widget.EditText").set_text(day)
         year = random.randint(1990, 2007)
-        self.poco("year").set_text(year)
-        self.poco("gender-label").click()
+        try:
+            self.poco("year").set_text(year)
+        except:
+            self.poco("android.widget.EditText")[1].set_text(year)
+        self.poco(text="Gender").click()
         gender_length = len(self.poco("android.widget.ListView").child())
-        i = random.randint(0, gender_length)
+        i = random.randint(0, gender_length-2)
         self.poco("android.widget.ListView").child()[i].click()
         self.poco(text="Next").click()
         self.poco(text="Create your own Gmail address").wait_for_appearance(timeout=20)
         self.poco(text="Create your own Gmail address").click()
         self.poco("android.widget.EditText").set_text(name)
-        password = self.generate_random_word(10).join('@1234')
+        keyevent("Enter")
+        password = self.generate_random_word(10) + '@1234'
+        self.poco("android.widget.EditText").wait_for_appearance(timeout=20)
+        sleep(2)
         self.poco("android.widget.EditText").set_text(password)
+        keyevent("Enter")
         self.poco(text="Next").click()
-        while not self.poco(text="Skip").exists():
-            self.poco.scroll()
-        self.poco(text="Skip").click()
-        username = name.join('@gmail.com')
-        # self.poco("identifierId").set_text(username)
+        sleep(3)
         self.poco(text="Next").click()
+        if self.poco(text="Skip").exists():
+            self.poco(text="Skip").click()
+            self.poco(text="Next").click()
+        username = name + '@gmail.com'
+        print(username)
         while not self.poco(text="I agree").exists():
             self.poco.scroll()
         self.poco(text="I agree").click()
-        # return username, password
-        print(username)
-        print(password)
-        return 1/0
+        self.wait_for_element_appearance_text("Add account", 20)
+        return username, password
 
+    def verifyLinksInSignInPage(self):
+        while not self.poco("Legal Notice").exists():
+            self.poco.scroll()
+        link_1 = self.poco("Zebra.com", enabled=True).exists()
+        link_2 = self.poco("Legal Notice", enabled=True).exists()
+        link_3 = self.poco("Privacy Statement", enabled=True).exists()
+        return link_1 and link_2 and link_3
+
+    def add_contacts_google_account(self, email, password):
+        os.system("adb shell am start -a android.settings.SYNC_SETTINGS")
+        self.poco(text=email).click()
+        self.poco(text="Google Account").click()
+        self.wait_for_element_appearance_text("Home")
+        self.poco.swipe(self.poco(text="Data and privacy").get_position(), self.poco(text="Home").get_position())
+        self.poco.swipe(self.poco(text="Security").get_position(), self.poco(text="Data and privacy").get_position())
+        self.poco(text="People and sharing").click()
+        self.poco(text="Contacts")[1].click()
+        self.poco("android.widget.EditText").set_text(email)
+        self.poco("android.widget.EditText").set_text(password)
+        keyevent("Enter")
+        if self.poco(text="Stay on web").exists():
+            self.poco(text="Stay on web").click()
+        self.poco(text="Add new contact").click()
+
+    def clickClose(self):
+        self.poco("android.widget.Button").click()
+
+    def clickExit(self):
+        self.poco("Exit").click()
 
