@@ -47,7 +47,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
     """"Turn off the APS"""
-    aps_notification.click_Turn_ON_ZSB_Series_Printer()
+    aps_notification.Verify_And_Turn_OFF_APS()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
@@ -74,7 +74,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
     """""""Turn ON the APS"""""""
-    aps_notification.click_Turn_ON_ZSB_Series_Printer()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
@@ -101,7 +101,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
     """"Turn off the APS"""
-    aps_notification.click_Turn_ON_ZSB_Series_Printer()
+    aps_notification.Verify_And_Turn_OFF_APS()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
@@ -153,7 +153,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49185():
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
     """""""Turn ON the APS"""""""
-    aps_notification.click_Turn_ON_ZSB_Series_Printer()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Stop_Android_App()
 
 
@@ -320,7 +320,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49788():
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
     """"Turn off the printer option"""
-    aps_notification.click_Turn_ON_ZSB_Series_Printer()
+    aps_notification.Verify_And_Turn_OFF_APS()
 
 
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -340,5 +340,5 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49789():
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
     """"Turn on the printer option"""
-    aps_notification.click_Turn_ON_ZSB_Series_Printer()
+    aps_notification.Verify_And_Turn_ON_APS()
     # ##"""""""""""""""""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

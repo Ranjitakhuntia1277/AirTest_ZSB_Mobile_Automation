@@ -669,3 +669,22 @@ class Registration_Screen:
     def clickExit(self):
         self.poco("Exit").click()
 
+    def connectToWIfi(self):
+        try:
+            self.poco("Connect").wait_for_appearance(timeout=10)
+            self.poco("Connect").click()
+            return
+        except:
+            for i in range(10):
+                if self.poco("NESTWIFI").exists():
+                    self.poco("NESTWIFI").click()
+                    return
+                self.poco.scroll()
+            raise Exception("NESTWIFI not found.")
+
+    def enterPasswordWifi(self, password="123456789"):
+        self.poco("android.widget.EditText").click()
+        self.poco("android.widget.EditText").set_text(password)
+        sleep(2)
+        self.poco("Connect").click()
+

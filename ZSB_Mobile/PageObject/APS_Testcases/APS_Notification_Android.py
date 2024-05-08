@@ -449,11 +449,10 @@ class APS_Notification:
         sleep(2)
 
     def Verify_Printer_Status_AS_Offline(self):
-        sleep(5)
-        Printer_Status_AS_Offline = self.poco(textMatches=".*ZSB Series - Offline*")
-        if Printer_Status_AS_Offline:
-            return "Printer status Is Displaying as Offline"
-        return "Printer status Is not Displaying as Offline"
+        sleep(9)
+        a = self.poco(textMatches="(?s).*ZSB Series - Offline*").get_name()
+        a.split("\n")
+        print(a)
 
     def Verify_Print_job_IS_IN_Progress_Message(self):
         Print_job_IS_IN_Progress_Message = self.poco(self.Print_job_IS_IN_Progress_Message)
@@ -676,22 +675,24 @@ class APS_Notification:
         three_dot.click()
 
     def Verify_Printer_Icon_Is_Present(self):
-        sleep(3)
-        if self.poco(name="android:id/icon").exists():
-            print("Printer image is present")
+        sleep(8)
+        a = self.poco(nameMatches="(?s).*com.android.settings:id/icon.*").get_name()
+        a.split("\n")
+        print(a)
+
 
     def Verify_Printer_Name_Is_Present(self):
         sleep(3)
-        a = self.poco(nameMatches="(?s).*ZSB-DP.*").get_name()
+        a = self.poco(textMatches="(?s).*ZSB-DP.*").get_name()
         a.split("\n")
         print(a)
 
     def Verify_Printer_Status_Is_Present(self):
-        a = self.poco(nameMatches="(?s).*Online.*").get_name()
+        a = self.poco(textMatches="(?s).*Online.*").get_name()
         print(a)
 
     def Verify_Labels_left_Is_Present(self):
-        a = self.poco(nameMatches="(?s).*Labels Left.*").get_name()
+        a = self.poco(textMatches="(?s).*Labels Left.*").get_name()
         print(a)
 
     def Verify_Bluetooth_Address_Is_Present(self):
@@ -701,7 +702,7 @@ class APS_Notification:
         print(a)
 
     def click_ON_Three_Dot_ON_Print_Service_Page(self):
-        sleep(2)
+        sleep(4)
         self.poco(name="More options").click()
 
 
@@ -735,7 +736,7 @@ class APS_Notification:
         a = self.poco(nameMatches="(?s).*Media Low.*").get_name()
         print(a)
 
-    def Verify_Longer_Printer_Name__Is_Present(self):
+    def Verify_Longer_Printer_Name_Is_Present(self):
         a = self.poco(nameMatches="(?s).*@abcdefghijklmn!@#abcdefghijklmn.*").get_name()
         print(a)
 
@@ -746,7 +747,19 @@ class APS_Notification:
          else:
              print("Turn On you Wifi pop up is not displaying")
 
+    def Verify_And_Turn_ON_APS(self):
+        if self.poco(text="Service disabled").exists():
+           self.poco(self.Turn_ON_ZSB_Series_Printer).click()
 
+        else:
+            pass
+
+    def Verify_And_Turn_OFF_APS(self):
+        if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+           self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+
+        else:
+            pass
 
 
 

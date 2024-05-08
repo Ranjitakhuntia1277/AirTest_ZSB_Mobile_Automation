@@ -48,13 +48,14 @@ def test_Android_APS_Printer_Discover_TestcaseID_49135():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Icon_Is_Present()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Verify_Printer_Status_Is_Present()
     aps_notification.Verify_Labels_left_Is_Present()
     aps_notification.Verify_Bluetooth_Address_Is_Present()
-    """"Turn Off the Printer"""
-    sleep(2)
+    """"Turn Off the Printer manually"""
+    sleep(7)
     aps_notification.Verify_Printer_Status_AS_Offline()
     """Check Printers MAC address matches with what is on the physical printer manually"""""""""
 ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -73,6 +74,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49136():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.click_ON_Three_Dot_ON_Print_Service_Page()
     aps_notification.click_Search_On_The_Menu()
     aps_notification.click_ON_Three_Dot_ON_Print_Service_Page()
@@ -195,7 +197,6 @@ def test_Android_APS_Printer_Discover_TestcaseID_49172():
     """"Check it can not search out the printer after log out from the mobile app"""
     common_method.tearDown()
     common_method.Stop_The_App()
-    Common_Method.Clear_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
@@ -205,7 +206,11 @@ def test_Android_APS_Printer_Discover_TestcaseID_49172():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
-    aps_notification.click_Turn_ON_ZSB_Series_Printer()
+    aps_notification.Verify_And_Turn_ON_APS()
+    aps_notification.Verify_Printer_Name_Is_Present()
+    common_method.Clear_App()
+    aps_notification.Verify_And_Turn_OFF_APS()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Notification_To_Login()
     common_method.Start_The_App()
     login_page.click_loginBtn()
@@ -246,6 +251,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49177():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     common_method.Stop_The_App()
 
@@ -264,8 +270,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49178():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
-    aps_notification.click_ZSB_Series()
     aps_notification.Stop_Android_App()
     common_method.Clear_App()
     common_method.Start_The_App()
@@ -283,6 +289,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49178():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
 
 # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -309,8 +316,9 @@ def test_Android_APS_Printer_Discover_TestcaseID_49180():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
-    aps_notification.Verify_Longer_Printer_Name__Is_Present()
+    aps_notification.Verify_Longer_Printer_Name_Is_Present()
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Printer_Discover_TestcaseID_49183():
@@ -359,6 +367,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49726():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     common_method.Clear_App()
@@ -379,6 +388,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49726():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -395,6 +405,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49783():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -413,6 +424,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49785():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     common_method.Start_The_App()
@@ -427,6 +439,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49785():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_OFF_APS()
     aps_notification.Printer_Is_Not_Displaying()
     aps_notification.Stop_Android_App()
     common_method.Start_The_App()
@@ -449,6 +462,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49787():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -466,6 +480,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50030():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     sleep(30)
@@ -477,6 +492,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50030():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -494,6 +510,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50205():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     common_method.Start_The_App()
@@ -508,6 +525,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50205():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_OFF_APS()
     aps_notification.Printer_Is_Not_Displaying()
     aps_notification.Stop_Android_App()
     common_method.Start_The_App()
@@ -524,6 +542,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50205():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -540,6 +559,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50206():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     common_method.Clear_App()
@@ -560,6 +580,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50206():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -577,6 +598,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50268():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     common_method.Clear_App()
@@ -597,6 +619,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_50268():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -670,6 +693,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49179():
     # aps_notification.click_Connection_Preferences()
     # aps_notification.click_Printing_Tab()
     # aps_notification.click_ZSB_Series()
+    # aps_notification.Verify_And_Turn_ON_APS()
     # aps_notification.Verify_Printer_Name_Is_Present()
     # aps_notification.Stop_Android_App()
     # common_method.Start_The_App()
