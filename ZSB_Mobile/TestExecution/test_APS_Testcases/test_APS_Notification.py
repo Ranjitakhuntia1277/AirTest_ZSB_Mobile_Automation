@@ -328,6 +328,7 @@ def test_APS_Notification_TestcaseID_50500():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    app_settings_page.click_Keyboard_back_Icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
