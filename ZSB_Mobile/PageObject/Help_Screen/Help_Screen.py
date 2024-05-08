@@ -12,10 +12,15 @@ from airtest.core.assertions import assert_exists, assert_equal
 from airtest.core.api import *
 from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
 from airtest.core.api import device as current_device
+from ZSB_Mobile.Common_Method import *
+
+
+common_method = Common_Method(poco)
 
 
 class Help_Screen:
     pass
+
 
     def __init__(self, poco):
         self.poco = poco
@@ -219,3 +224,9 @@ class Help_Screen:
             self.poco(text="I agree").click()
         if self.poco(text="Accept").exists():
             self.poco(text="Accept").click()
+
+    def checkIfOnSignInPage(self):
+        try:
+            common_method.wait_for_element_appearance("Sign In")
+        except:
+            raise Exception("Did not reach \"Sign In\" page.")
