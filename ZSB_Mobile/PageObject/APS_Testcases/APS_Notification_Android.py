@@ -450,9 +450,12 @@ class APS_Notification:
 
     def Verify_Printer_Status_AS_Offline(self):
         sleep(9)
-        a = self.poco(textMatches="(?s).*ZSB Series - Offline*").get_name()
-        a.split("\n")
-        print(a)
+        a = self.poco(textMatches="(?s).*ZSB Series - Offline*")
+        if a.exists():
+            a.get_text()
+            return a
+        # a.split("\n")
+        # print(a)
 
     def Verify_Print_job_IS_IN_Progress_Message(self):
         Print_job_IS_IN_Progress_Message = self.poco(self.Print_job_IS_IN_Progress_Message)

@@ -64,6 +64,7 @@ def test_APS_Notification_TestcaseID_49155():
     common_method.Start_The_App()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
     aps_notification.Verify_Notification_Is_Not_Displaying()
@@ -81,6 +82,8 @@ def test_APS_Notification_TestcaseID_49167():
     2. The target printer is connected with the target mobile app login account and login in the Android device"""""""""""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -97,7 +100,6 @@ def test_APS_Notification_TestcaseID_49167():
     aps_notification.Verify_Print_Review_Page()
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()
-    """""Open the printer's head Manually- & make printer offline manually """""
     aps_notification.Verify_Printer_Status_AS_Offline()
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -111,6 +113,8 @@ def test_APS_Notification_TestcaseID_49168():
     2. The target printer is connected with the target mobile app login account and login in the Android device"""""""""""""""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -143,6 +147,8 @@ def test_APS_Notification_TestcaseID_49169():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -176,6 +182,8 @@ def test_APS_Notification_TestcaseID_50267():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -233,6 +241,8 @@ def test_APS_Notification_TestcaseID_50498():
     """""""""""ZSB Series in APS settings is off"""""""""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -270,6 +280,8 @@ def test_APS_Notification_TestcaseID_50499():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -308,6 +320,8 @@ def test_APS_Notification_TestcaseID_50500():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -348,6 +362,8 @@ def test_APS_Notification_TestcaseID_50501():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     common_method.Start_The_App()
     login_page.click_loginBtn()
@@ -391,6 +407,8 @@ def test_APS_Notification_TestcaseID_50502():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Clear_App()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
@@ -421,6 +439,8 @@ def test_APS_Notification_TestcaseID_50503():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()

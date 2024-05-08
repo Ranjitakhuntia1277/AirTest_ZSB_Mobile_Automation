@@ -44,14 +44,15 @@ aps_notification = APS_Notification(poco)
 #     common_method.Start_The_App()
 #     """ Allow pop up before login for the fresh installation"""
 #     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
 #     login_page.click_loginBtn()
 #     """for the first installation click on the zsb series popup"""
 #     login_page.click_Allow_ZSB_Series_Popup()
 #     """Relaunch the app"""
-#     """Relaunch the app"""
 #     common_method.relaunch_app()
 #     """ Allow pop up before login for the fresh installation"""
 #     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
 #     """for the first installation click on the zsb series popup"""
 #     login_page.click_Allow_ZSB_Series_Popup()
 #     """Relaunch the app"""
