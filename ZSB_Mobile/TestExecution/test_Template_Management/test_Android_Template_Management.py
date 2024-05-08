@@ -30,29 +30,29 @@ class test_Android_Template_Management:
         pass
     def test_Template_Management_TestcaseID_45902(self):
         pass
-        # stop_app("com.zebra.soho_app")
-        # start_app("com.zebra.soho_app")
-        # try:
-        #     common_method.wait_for_element_appearance_namematches("Home")
-        #     login_page.click_Menu_HamburgerICN()
-        #     others.click_on_profile_edit()
-        #     others.scroll_down()
-        #     others.click_log_out_button()
-        # except:
-        #     pass
-        #
-        # try:
-        #     others.wait_for_element_appearance("Sign In",10)
-        #     login_page.click_loginBtn()
-        #     common_method.wait_for_element_appearance_namematches("Continue with Google")
-        #     login_page.click_Loginwith_Google()
-        #
-        #     """enter email here"""
-        #     email = "zebratest850@gmail.com"
-        #     common_method.wait_for_element_appearance_textmatches("Choose an account")
-        #     others.choose_google_account(email)
-        # except:
-        #     pass
+        stop_app("com.zebra.soho_app")
+        start_app("com.zebra.soho_app")
+        try:
+            common_method.wait_for_element_appearance_namematches("Home")
+            login_page.click_Menu_HamburgerICN()
+            others.click_on_profile_edit()
+            others.scroll_down()
+            others.click_log_out_button()
+        except:
+            pass
+
+        try:
+            others.wait_for_element_appearance("Sign In",10)
+            login_page.click_loginBtn()
+            common_method.wait_for_element_appearance_namematches("Continue with Google")
+            login_page.click_Loginwith_Google()
+
+            """enter email here"""
+            email = "zebratest850@gmail.com"
+            common_method.wait_for_element_appearance_textmatches("Choose an account")
+            others.choose_google_account(email)
+        except:
+            pass
         common_method.wait_for_element_appearance_namematches("Recently")
 
         total_designs = template_management.get_all_designs_in_recently_printed_labels()
@@ -64,7 +64,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         try:
-            common_method.wait_for_element_appearance_namematches("Home")
+            common_method.wait_for_element_appearance_namematches("Open navigation menu")
             login_page.click_Menu_HamburgerICN()
             others.click_on_profile_edit()
             others.scroll_down()
@@ -178,10 +178,7 @@ class test_Android_Template_Management:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
 
-    def test_Template_Management_TestcaseID_45905(self):
-        pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+    def logout_and_login(self,email,password):
         try:
             common_method.wait_for_element_appearance_namematches("Home")
             login_page.click_Menu_HamburgerICN()
@@ -197,10 +194,18 @@ class test_Android_Template_Management:
         login_page.click_Loginwith_Google()
 
         """enter email here"""
-        email = "zebratest850@gmail.com"
+        email = email
+        password = password
         common_method.wait_for_element_appearance_textmatches("Choose an account")
         others.choose_google_account(email)
         common_method.wait_for_element_appearance_namematches("Home",20)
+
+    def test_Template_Management_TestcaseID_45905(self):
+        pass
+        stop_app("com.zebra.soho_app")
+        start_app("com.zebra.soho_app")
+
+        self.logout_and_login("zebratest850@gmail.com","Zebra#123456789")
 
         """Copy design from common design to my design"""
 
@@ -449,6 +454,9 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
+
+        self.logout_and_login("zebratest850@gmail.com","Zebra#123456789")
+
         common_method.wait_for_element_appearance_namematches("Home")
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -654,7 +662,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp[1:]:
 
@@ -726,7 +734,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp[1:]:
 
@@ -796,7 +804,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address",
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
 
         for text in temp[:1]:
@@ -892,7 +900,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp:
 
@@ -978,7 +986,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp:
 
@@ -3517,7 +3525,7 @@ class test_Android_Template_Management:
         name = template_management.get_first_design_in_my_designs()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
 
-        names = template_management.get_ith_design_by_index_in_my_designs(1)
+        names = template_management.get_ith_design_by_index_in_my_designs(2)
         names = template_management.get_names_of_design_in_search_designs([names])[0]
         full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(names,1)
         template_management.click_on_rename_button()
@@ -3609,7 +3617,7 @@ class test_Android_Template_Management:
         social_login.click_on_sign_in_with_email()
 
         """Provide the email and password"""
-        email = "zebratest852@gmail.com"
+        email = "zebratest850@gmail.com"
         password = "Zebra#123456789"
         social_login.complete_sign_in_with_email(email,password)
 
@@ -3638,13 +3646,11 @@ class test_Android_Template_Management:
         login_page.click_Loginwith_Google()
         try:
             """Enter the email"""
-            email = "zebratest850@gmail.com"
+            email = "zebratest901@gmail.com"
             social_login.choose_a_google_account(email)
         except:
             pass
         common_method.wait_for_element_appearance_namematches("Recently")
-
-        user2_name = "user2"
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -3913,7 +3919,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
@@ -3967,11 +3973,13 @@ class test_Android_Template_Management:
             raise Exception("save button is enabled for invalid characters")
 
         template_management.enter_text_in_rename_design("! @ $ ^ - ~ ( ) _  ` = { } | [ ] ; '")
+        sleep(2)
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error not displayed for allowed special characters ")
 
         new_name="new@_name"
         template_management.enter_text_in_rename_design(new_name)
+        sleep(2)
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error not displayed for allowed special characters ")
 
@@ -4021,7 +4029,7 @@ class test_Android_Template_Management:
         template_management.turn_off_wifi()
         sleep(2)
         template_management.click_on_save_button_in_rename_design()
-        """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error"""
+        """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error  SMBM-1771"""
         template_management.turn_on_wifi()
         sleep(5)
         template_management.click_on_save_button_in_rename_design()
@@ -4542,7 +4550,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
         for text in temp[1:]:
 
             login_page.click_Menu_HamburgerICN()
@@ -4590,8 +4598,8 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address", "Shipping", "Small Multipurpose"]
-        for text in temp[1:]:
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        for text in temp:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
@@ -5721,7 +5729,7 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         """Add more categories as required"""
-        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Badge", "Return Address",
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
 
         for text in temp:
@@ -5942,7 +5950,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        strings = ["Address", "Barcodes", "Jewelry", "Multipurpose/Name Tag", "Postage/Shipping", "Return Address/File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
+        strings = ["Address", "Barcodes", "Jewelry", "Name Tag", "Shipping", "File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -5975,7 +5983,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp = ["Address", "Barcodes", "Jewelry", "Multipurpose/Name Tag", "Postage/Shipping", "Return Address/File Folder", "Round", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcodes", "Jewelry", "Multipurpose", "Shipping", "File Folder", "Round", "Shipping", "Small Multipurpose"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
@@ -6001,8 +6009,8 @@ class test_Android_Template_Management:
             sorted_design = sorted(sorted_design)
 
             """Commented code currently cannot be verified since labels are not sorted properly"""
-            # if all_designs != sorted_design:
-            #     raise Exception("designs are not in sorted order")
+            if all_designs != sorted_design:
+                raise Exception("designs are not in sorted order")
 
             for i in all_complete_designs:
                 name,size,lastprint = template_management.get_the_name_size_and_lastprint_of_design(i)
@@ -6101,18 +6109,18 @@ class test_Android_Template_Management:
 
             """3. Go to Home > Recently Printed Designs.
         -Verify copied design is NOT displayed. this step fails due to bug id: SMBM-1372"""
-            # start_app("com.zebra.soho_app")
-            #
-            # others.wait_for_element_appearance_text("Home",20)
-            #
-            # others.scroll_down()
-            #
-            # common_method.wait_for_element_appearance_namematches("Recently")
-            # try:
-            #     template_management.get_the_full_name_of_design_and_click_in_my_design(name+" copy",0)
-            #     raise Exception("copied name found in recently printed label without printing ")
-            # except:
-            #     pass
+            start_app("com.zebra.soho_app")
+
+            others.wait_for_element_appearance_text("Home",20)
+
+            others.scroll_down()
+
+            common_method.wait_for_element_appearance_namematches("Recently")
+            try:
+                template_management.get_the_full_name_of_design_and_click_in_my_design(name+" copy",0)
+                raise Exception("copied name found in recently printed label without printing ")
+            except:
+                pass
 
     def test_Template_Management_TestcaseID_45939(self):
         pass
@@ -6168,9 +6176,9 @@ class test_Android_Template_Management:
         g_size, g_last_print = template_management.get_size_and_lastprint_of_design_in_google(new_name)
         if not designs_present:
             raise Exception("renamed design is not present in the google")
-        # """size in mobile and app should be same ,this step fails due to SMBM : 1749"""
-        # if g_size != prev_size:
-        #     raise Exception("sizes are different for same design in app and web")
+        """size in mobile and app should be same ,this step fails due to SMBM : 1749"""
+        if g_size != prev_size:
+            raise Exception("sizes are different for same design in app and web")
         if int(g_last_print)!=0:
             raise Exception("last print date displayed without printing for the copy")
 

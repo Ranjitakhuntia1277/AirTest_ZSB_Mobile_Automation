@@ -124,6 +124,8 @@ class Others:
         swipe([w1, h1], [w2, h2])
 
     def click_test_print(self):
+        while not self.poco("Test Print").exists():
+            self.poco.scroll()
         test_prin = self.poco(self.test_print)
         test_prin.click()
 
@@ -249,6 +251,15 @@ class Others:
 
     def change_Darkness_level_in_google(self, new_value):
         seekbar = self.poco(self.seekbar_path)
+        percentage = new_value / 100.0
+
+        seekbar_size = seekbar.get_size()
+        click_x = seekbar_size[0] * percentage
+
+        seekbar.click([click_x, seekbar_size[1] / 2])
+
+    def change_Printer_Darkness_level(self,new_value):
+        seekbar = self.poco(type="android.widget.SeekBar")
         percentage = new_value / 100.0
 
         seekbar_size = seekbar.get_size()
@@ -477,6 +488,7 @@ class Others:
 
     def click_log_out_button(self):
 
+        self.poco.scroll()
         log_out_btn = self.poco(self.log_out_button)
         log_out_btn.click()
 
@@ -808,7 +820,7 @@ class Others:
         self.poco("Install").wait_for_appearance(timeout=10)
         self.poco("Install").click()
 
-    def wait_for_element_appearance(self,element, time_out):
+    def wait_for_element_appearance(self,element, time_out=20):
         self.poco(element).wait_for_appearance(timeout=time_out)
 
     def wait_for_element_appearance_text(self,element, time_out):
@@ -975,7 +987,7 @@ class Others:
                 self.poco(text="Search settings").click()
             except:
                 self.poco(textMatches="Search").click()
-            text("wifi")
+            self.poco(type="android.widget.EditText").set_text("wifi")
             keyevent("enter")
             sleep(1)
 
