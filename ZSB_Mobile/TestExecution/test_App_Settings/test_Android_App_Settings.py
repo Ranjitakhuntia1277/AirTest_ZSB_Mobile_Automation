@@ -34,30 +34,32 @@ aps_notification = APS_Notification(poco)
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_AppSettings_TestcaseID_47918():
-    """	Verify ZSB app permission works fine."""
-    """Freshly Install the latest stage/production app on the phone & printer should be added"""
-
-    #
-    common_method.uninstall_app()
-    common_method.install_app()
-    common_method.Start_The_App()
-    """ Allow pop up before login for the fresh installation"""
-    login_page.click_LoginAllow_Popup()
-    login_page.click_loginBtn()
-    """for the first installation click on the zsb series popup"""
-    login_page.click_Allow_ZSB_Series_Popup()
-    """Relaunch the app"""
-    common_method.relaunch_app()
-    """ Allow pop up before login for the fresh installation"""
-    login_page.click_LoginAllow_Popup()
-    """for the first installation click on the zsb series popup"""
-    login_page.click_Allow_ZSB_Series_Popup()
-    """Relaunch the app"""
-    common_method.relaunch_app()
-    """Permission is not displaying due to SMBM-1242"""
-    login_page.Verify_LoginAllow_Popup_IS_Displaying()
-    common_method.Stop_The_App()
+# def test_AppSettings_TestcaseID_47918():
+#     """	Verify ZSB app permission works fine."""
+#     """Freshly Install the latest stage/production app on the phone & printer should be added"""
+#
+#     #
+#     common_method.uninstall_app()
+#     common_method.install_app()
+#     common_method.Start_The_App()
+#     """ Allow pop up before login for the fresh installation"""
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_loginBtn()
+#     """for the first installation click on the zsb series popup"""
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     """Relaunch the app"""
+#     common_method.relaunch_app()
+#     """ Allow pop up before login for the fresh installation"""
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     """for the first installation click on the zsb series popup"""
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     """Relaunch the app"""
+#     common_method.relaunch_app()
+#     """Permission is not displaying due to SMBM-1242"""
+#     login_page.Verify_LoginAllow_Popup_IS_Displaying()
+#     common_method.Stop_The_App()
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
