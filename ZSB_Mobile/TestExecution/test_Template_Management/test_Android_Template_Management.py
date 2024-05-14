@@ -1,16 +1,18 @@
 # from poco import poco
 import time
 import pytest
+# import sys
+# sys.path.append(r'C:\Users\tr5927\Desktop\ZSB_Automation')
+
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
-from ZSB_Mobile.PageObject.Others.Others import Others
-from ZSB_Mobile.PageObject.Social_Login.Social_Login import Social_Login
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
+from ...PageObject.Others.Others import Others
+from ...PageObject.Social_Login.Social_Login import Social_Login
 
 import os
-
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
