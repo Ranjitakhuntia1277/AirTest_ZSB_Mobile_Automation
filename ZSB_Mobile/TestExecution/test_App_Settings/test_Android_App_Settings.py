@@ -1,23 +1,26 @@
+# import sys
+# sys.path.append(r'C:\Users\rk1277\Desktop\ZSB_Automation')
+
 from airtest.core.api import *
-from compose import errors
+# from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # from setuptools import logging
-from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-import pytest
-from airtest.core.api import connect_device
+# from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...Common_Method import Common_Method
 
+# import pytest
+from airtest.core.api import connect_device
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
 
+
 class Android_App_Settings:
     pass
-
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=True)
 
@@ -30,112 +33,89 @@ add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 
-
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_AppSettings_TestcaseID_47918():
+    """	Verify ZSB app permission works fine."""
+    """Freshly Install the latest stage/production app on the phone & printer should be added"""
 
-# def test_AppSettings_TestcaseID_47918():
-#     """	Verify ZSB app permission works fine."""
-#     """Freshly Install the latest stage/production app on the phone & printer should be added"""
-#
-#     #
-#     common_method.uninstall_app()
-#     common_method.install_app()
-#     common_method.Start_The_App()
-#     """ Allow pop up before login for the fresh installation"""
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     login_page.click_loginBtn()
-#     """for the first installation click on the zsb series popup"""
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     """Relaunch the app"""
-#     common_method.relaunch_app()
-#     """ Allow pop up before login for the fresh installation"""
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     """for the first installation click on the zsb series popup"""
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     """Relaunch the app"""
-#     common_method.relaunch_app()
-#     """Permission is not displaying due to SMBM-1242"""
-#     login_page.Verify_LoginAllow_Popup_IS_Displaying()
-#     common_method.Stop_The_App()
+    #
+    ### common_method.uninstall_app()
+    # ##common_method.install_app()
+    common_method.Start_The_App()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    """ Allow pop up before login for the fresh installation"""
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    """for the first installation click on the zsb series popup"""
+    login_page.click_Allow_ZSB_Series_Popup()
+    """Relaunch the app"""
+    common_method.relaunch_app()
+    """ Allow pop up before login for the fresh installation"""
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """for the first installation click on the zsb series popup"""
+    login_page.click_Allow_ZSB_Series_Popup()
+    """Relaunch the app"""
+    common_method.relaunch_app()
+    """Permission is not displaying due to SMBM-1242"""
+    login_page.Verify_LoginAllow_Popup_IS_Displaying()
+    common_method.Stop_The_App()
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_AppSettings_TestcaseID_49665():
+    """Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared"""
 
-def test_AppSettings_TestcaseID_45688():
-    """""""""Verify Wifi Settings"""""
 
-    """""Install the latest production app on the phone & printer should be added and it should be connected to wifi"""""""""
-    """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
+    """"WIFI should not be connected in wifi section under printer name"""
+
     #
-    # :
-    """""Check whether App is installed or not"""
+
+    """start the app"""
     common_method.tearDown()
-    """" Allow pop up before login for the fresh installation"""""
+    common_method.Clear_App()
+    common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
-    """""for the first installation click on the zsb series popup"""
     login_page.click_Allow_ZSB_Series_Popup()
-    """""""""click on the login button"""""""""""
+    # """""for the first installation click on the zsb series popup"""
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # """""""""click on the login button"""""""""""
     login_page.click_loginBtn()
     sleep(2)
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     """""""select the login with google option"""""""""
     login_page.click_Loginwith_Google()
-    login_page.click_GooglemailId()
-    login_page.Enter_Google_UserID()
-    # app_settings_page.click_Keyboard_back_Icon()
-    login_page.click_Emailid_Nextbtn()
-    sleep(2)
-    login_page.click_Password_Nextbtn()
+    login_page.Loginwith_Added_Email_Id()
     sleep(9)
-    """""""click on the left hamburger menu on the home page"""""""""
+    """click on hamburger menu"""
     login_page.click_Menu_HamburgerICN()
-    """""click on the printer settings tab"""
+    """"click printer settings tab"""
     app_settings_page.click_Printer_Settings()
-    """""click on the printer tab"""
+    """click on printer name"""
     app_settings_page.click_PrinterName_On_Printersettings()
-    app_settings_page.click_General_Tab()
-    """"Verify the Test print button text & tab"""
-    app_settings_page.Test_Print_button_is_present_on_printer_settings_page()
-    """""""""" click on the wifi tab option"""""""""""
+    """"click wifi tab"""
     app_settings_page.click_wifi_tab()
-    """""""""validate the Current network text"""""
-    app_settings_page.test_CurrentNetwork_Txt_is_present_on_printer_settings_page()
-    """""""Validate the Network status text is present on the printer settings screen"""""""
-    app_settings_page.test_Network_Status_Txt_is_present_on_printer_settings_page()
-    """"validate network status result text on the printer settings screen"""
-    app_settings_page.get_text_Network_Status_Result_Txt()
-    """"""""" Verify IP address text is present on the printer settings screen"""""""""
-    app_settings_page.get_text_IPAddress_Txt()
-    """""""""Verify the message You can save upto 5 network profiles to your saved networks after Manage Networks"""
-    app_settings_page.IS_Present_Save_Network_Message_Txt()
-    """""""verify manage networks text is present & clickable"""""""
+    """"click manage network buttons"""
     app_settings_page.click_Manage_Networks_Btn()
-    """""""""""""Click on continue button on the Bluetooth Connection required popup"""""""
-    app_settings_page.accept_Continue_popup()
+    """"verify bluetooth connection required text"""
+    app_settings_page.get_text_Bluetooth_connection_required_Txt()
+    """""click continue button on bluetooth connection required"""
+    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""""""Verify the Cancel button on the Bluetooth_Connection_Failed_Popup"""""
-    app_settings_page.Cancel_is_present_on_Bluetooth_Connection_Failed_Popup()
-    """"""""""verify the continue button and click on that"""""
+    """"verify bluetooth_connection failed popup"""
+    app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
+    """""click continue button on connection failed popup"""
     app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
-    """"""""""Verify the red remove icon next to the network name"""""
-    app_settings_page.click_Red_Icon_to_remove_network()
-    sleep(5)
-    """"""""""Verify the Add Network text & button & click on that"""""""""""
-    app_settings_page.click_Add_Network()
-    sleep(3)
-    """""""""""""Verify Add network page is opening and verify the text"""""""
-    app_settings_page.get_text_Add_Network()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    """""test case 7 to 10 need to check on Web portal manually"""
+    """"click on manage networks button"""
+    app_settings_page.click_Manage_Networks_Btn()
+    app_settings_page.click_Keyboard_back_Icon()
     """stop the app"""
     common_method.Stop_The_App()
-
-##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_45689():
     """""""""Check Change Theme Function Works"""""
@@ -146,7 +126,9 @@ def test_AppSettings_TestcaseID_45689():
 
     """""""""start the app"""""""""""
     common_method.tearDown()
-    # """""""click hamburger menu"""""""
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""""click hamburger menu"""""""
     login_page.click_Menu_HamburgerICN()
     """"click three dot on workspace"""""
     app_settings_page.click_Three_Dot_On_Workspace()
@@ -242,6 +224,8 @@ def test_AppSettings_TestcaseID_45690():
 
     """""start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """""click hamburger menu"""""
     login_page.click_Menu_HamburgerICN()
     """"click on the pen icon near the user name"""
@@ -304,6 +288,8 @@ def test_AppSettings_TestcaseID_45691():
 
     """"start the app"""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_Three_Dot_On_Workspace()
     app_settings_page.click_Edit_Txt()
@@ -315,8 +301,9 @@ def test_AppSettings_TestcaseID_45691():
     sleep(2)
     """""click on the 1st image"""
     app_settings_page.click_On_First_Image_SearchBar()
-    app_settings_page.click_First_Image()
-    app_settings_page.click_JPG_ON_Result()
+    """"No need to uncomment these 2 line as it is device specific"""
+    ### app_settings_page.click_First_Image()
+    # ##app_settings_page.click_JPG_ON_Result()
     """click on the save & exit"""
     app_settings_page.click_Save_Exit_Btn()
     sleep(2)
@@ -347,6 +334,8 @@ def test_AppSettings_TestcaseID_45692():
 
     """""""""start the app"""""""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_Three_Dot_On_Workspace()
     app_settings_page.click_Edit_Txt()
@@ -435,6 +424,8 @@ def test_AppSettings_TestcaseID_45705():
 
     """""""start the app"""""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """""click hamburger menu"""""
     login_page.click_Menu_HamburgerICN()
     """"click on the pen icon near the user name"""
@@ -497,6 +488,8 @@ def test_AppSettings_TestcaseID_47810():
 
     """""start the app"""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"Click on hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """"click on  home tab"""
@@ -528,6 +521,8 @@ def test_AppSettings_TestcaseID_47820():
 
     """""""start the app"""""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     """"click on  home tab"""
     app_settings_page.click_Home_Tab()
@@ -561,6 +556,8 @@ def test_AppSettings_TestcaseID_47825():
     """""""start the app"""""""
     common_method.tearDown()
     sleep(3)
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """""click on hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """""click on the pen icon near to user name"""
@@ -605,9 +602,12 @@ def test_AppSettings_TestcaseID_47825():
     """""Verify login page Important messsage text"""
     app_settings_page.Verify_Login_Page_Important_Message_Text()
     """click on login button"""
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     sleep(3)
     """"verify delete account pop up message"""
@@ -633,6 +633,8 @@ def test_AppSettings_TestcaseID_47879():
 
     """""""start the app"""""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"click on hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """""click on Add a printer"""
@@ -662,6 +664,8 @@ def test_AppSettings_TestcaseID_47880():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"click on hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """""click on Add a printer"""
@@ -687,6 +691,8 @@ def test_AppSettings_TestcaseID_47911():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify printer is already added"""
     app_settings_page.Verify_Printer_is_already_added()
     """click on the hamburger icon"""
@@ -720,6 +726,8 @@ def test_AppSettings_TestcaseID_47914():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on the hamburger icon"""
@@ -748,6 +756,8 @@ def test_AppSettings_TestcaseID_47915():
 
     """start the app"""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
@@ -779,6 +789,8 @@ def test_AppSettings_TestcaseID_47917():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on the hamburger icon"""
@@ -810,11 +822,15 @@ def test_AppSettings_TestcaseID_47923():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_pen_Icon_near_UserName()
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
     login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Login_With_Email_Tab()
     login_page.click_Password_TextField()
     login_page.Enter_Zebra_Password()
@@ -837,6 +853,8 @@ def test_AppSettings_TestcaseID_47956():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"click on the hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """"click on pen icon"""
@@ -859,41 +877,64 @@ def test_AppSettings_TestcaseID_47956():
     common_method.Stop_The_App()
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_AppSettings_TestcaseID_45688():
+    """""""""Verify Wifi Settings"""""
 
-def test_AppSettings_TestcaseID_49665():
-    """Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared"""
-
-
-    """"WIFI should not be connected in wifi section under printer name"""
-
+    """""Install the latest production app on the phone & printer should be added and it should be connected to wifi"""""""""
+    """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
     #
-
-    """start the app"""
+    # :
+    """""Check whether App is installed or not"""
     common_method.tearDown()
-    """click on hamburger menu"""
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""""click on the left hamburger menu on the home page"""""""""
     login_page.click_Menu_HamburgerICN()
-    """"click printer settings tab"""
+    """""click on the printer settings tab"""
     app_settings_page.click_Printer_Settings()
-    """click on printer name"""
+    """""click on the printer tab"""
     app_settings_page.click_PrinterName_On_Printersettings()
-    """"click wifi tab"""
+    app_settings_page.click_General_Tab()
+    """"Verify the Test print button text & tab"""
+    app_settings_page.Test_Print_button_is_present_on_printer_settings_page()
+    """""""""" click on the wifi tab option"""""""""""
     app_settings_page.click_wifi_tab()
-    """"click manage network buttons"""
+    """""""""validate the Current network text"""""
+    app_settings_page.test_CurrentNetwork_Txt_is_present_on_printer_settings_page()
+    """""""Validate the Network status text is present on the printer settings screen"""""""
+    app_settings_page.test_Network_Status_Txt_is_present_on_printer_settings_page()
+    """"validate network status result text on the printer settings screen"""
+    app_settings_page.get_text_Network_Status_Result_Txt()
+    """"""""" Verify IP address text is present on the printer settings screen"""""""""
+    app_settings_page.get_text_IPAddress_Txt()
+    """""""""Verify the message You can save upto 5 network profiles to your saved networks after Manage Networks"""
+    app_settings_page.IS_Present_Save_Network_Message_Txt()
+    """""""verify manage networks text is present & clickable"""""""
     app_settings_page.click_Manage_Networks_Btn()
-    """"verify bluetooth connection required text"""
-    app_settings_page.get_text_Bluetooth_connection_required_Txt()
-    """""click continue button on bluetooth connection required"""
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
-    """"verify bluetooth_connection failed popup"""
-    app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
-    """""click continue button on connection failed popup"""
+    """""""""""""Click on continue button on the Bluetooth Connection required popup"""""""
+    app_settings_page.accept_Continue_popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""""""Verify the Cancel button on the Bluetooth_Connection_Failed_Popup"""""
+    app_settings_page.Cancel_is_present_on_Bluetooth_Connection_Failed_Popup()
+    """"""""""verify the continue button and click on that"""""
     app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
-    """"click on manage networks button"""
-    app_settings_page.click_Manage_Networks_Btn()
-    app_settings_page.click_Keyboard_back_Icon()
+    """"""""""Verify the red remove icon next to the network name"""""
+    app_settings_page.click_Red_Icon_to_remove_network()
+    sleep(5)
+    """"""""""Verify the Add Network text & button & click on that"""""""""""
+    app_settings_page.click_Add_Network()
+    sleep(3)
+    """""""""""""Verify Add network page is opening and verify the text"""""""
+    app_settings_page.get_text_Add_Network()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
+    """""test case 7 to 10 need to check on Web portal manually"""
     """stop the app"""
     common_method.Stop_The_App()
-### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 
 def test_AppSettings_TestcaseID_49960():
@@ -902,6 +943,8 @@ def test_AppSettings_TestcaseID_49960():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_pen_Icon_near_UserName()
     app_settings_page.Scroll_till_Delete_Account()
@@ -928,6 +971,8 @@ def test_AppSettings_TestcaseID_49961():
 
     """start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_pen_Icon_near_UserName()
     app_settings_page.Scroll_till_Delete_Account()
@@ -952,6 +997,8 @@ def test_AppSettings_TestcaseID_50031():
     """start the app"""
     common_method.tearDown()
     sleep(3)
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on the hamburger icon"""
@@ -990,6 +1037,8 @@ def test_AppSettings_TestcaseID_50333():
 
     """"start the app"""""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """click on the hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """"click on the printer settings tab"""
@@ -1025,6 +1074,8 @@ def test_AppSettings_TestcaseID_51702():
     #
     """"start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """click on the hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """"click on Notifications Tab"""
@@ -1084,6 +1135,8 @@ def test_AppSettings_TestcaseID_51705():
 
     """start the app"""
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"click on the hamburger icon"""
     login_page.click_Menu_HamburgerICN()
     """"click on pen icon"""
@@ -1115,6 +1168,8 @@ def test_AppSettings_TestcaseID_51788():
 
     """"start the app"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"click on the hamburger menu icon"""
     login_page.click_Menu_HamburgerICN()
     """click on the pen icon"""
@@ -1127,6 +1182,7 @@ def test_AppSettings_TestcaseID_51788():
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     sleep(2)
     """verify home text is present on home page"""
@@ -1149,6 +1205,8 @@ def test_AppSettings_TestcaseID_47881():
     """start the app"""
     common_method.tearDown()
     sleep(3)
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on three dot on added printer on home page"""
@@ -1176,6 +1234,8 @@ def test_AppSettings_TestcaseID_47928():
 
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on three dot on added printer on home page"""

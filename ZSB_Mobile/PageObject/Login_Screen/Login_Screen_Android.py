@@ -24,7 +24,7 @@ class Login_Screen:
         self.Use_Another_Account = "Use another account"
         self.Bluetooth_Allow = "android:id/button1"
         self.Google_Login = "Continue with Google"
-        self.Enter_GoogleID_Field = "SWDVT IDC test account"
+        self.Enter_GoogleID_Field = "SohoApp Testing"
         self.Google_UserID = "android.widget.EditText"
         self.Google_Password = "android.widget.TextView"
         self.Next_LoginBtn = "Next"
@@ -61,7 +61,7 @@ class Login_Screen:
             print("Login button is not present, , proceeding with the next part of the code.")
 
     def click_Loginwith_Google(self):
-        sleep(3)
+        sleep(5)
         google_login = self.poco(self.Google_Login)
         if google_login.exists():
            google_login.click()
@@ -71,12 +71,14 @@ class Login_Screen:
 
     def Loginwith_Added_Email_Id(self):
         sleep(4)
-        added_email= self.poco(text="SWDVT IDC test account")
+        added_email= self.poco(text="SohoApp Testing")
         if added_email.exists():
             added_email.click()
-            sleep(9)
+            sleep(15)
         else:
-            print("Added Email is not present")
+            poco.scroll()
+            added_email.click()
+            sleep(15)
 
     def click_GoogleID_Field(self):
         sleep(3)
@@ -86,20 +88,21 @@ class Login_Screen:
     def Enter_Google_UserID(self):
         sleep(3)
         enter_googleid = self.poco(self.Google_UserID)
-        keyboard_back_icon = self.poco(self.Keyboard_back_Icon)
         if enter_googleid.exists():
             enter_googleid.click()
             sleep(1)
-            enter_googleid.set_text("soho.swdvt.01@gmail.com")
-            sleep(1)
-        if keyboard_back_icon.exists():
-            keyboard_back_icon.click()
+            enter_googleid.set_text("zebra21.dvt@gmail.com")
+            sleep(2)
 
-        else:
-            print("field is not present to enter the email id, , proceeding with the next part of the code.")
+    def Add_Account_To_Device(self):
+           sleep(3)
+           add_account_to_device = self.poco(text= "Add account to device")
+           add_account_to_device.click()
+
 
     def click_GooglemailId(self):
         sleep(4)
+        poco.scroll()
         google_mailid = self.poco(self.Google_MailID)
         if google_mailid.exists():
             google_mailid.click()
@@ -136,7 +139,7 @@ class Login_Screen:
             print("Next button is not present, proceeding with the next part of the code.")
 
     def click_Menu_HamburgerICN(self):
-        sleep(4)
+        sleep(5)
         hamburgerIcn = self.poco(self.Menu_Hamburger_Icn)
         hamburgerIcn.click()
 
@@ -174,10 +177,6 @@ class Login_Screen:
     def click_UserName_TextField(self):
         username = self.poco(text="Continue with Google")
         username.click()
-    #
-    def Enter_UserName(self):
-        username = self.poco(text="Continue with Google")
-        username.set_text("soho.swdvt.01@gmail.com")
 
     def click_Password_TextField(self):
         sleep(1)

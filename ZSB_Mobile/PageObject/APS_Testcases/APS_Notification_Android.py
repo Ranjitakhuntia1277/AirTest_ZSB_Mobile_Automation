@@ -202,9 +202,10 @@ class APS_Notification:
         sleep(1)
         Available_Printer = self.poco(text="ZSB-DP12")
         if Available_Printer.exists():
-            Available_Printer.click()
-            sleep(4)
+           Available_Printer.click()
+           sleep(4)
         else:
+            self.poco(text="ZSB-DP12(1)").click()
             print(" Printer is not displaying:")
 
     def click_Available_Printer2_To_Print(self):
@@ -214,6 +215,8 @@ class APS_Notification:
             Available_Printer.click()
             sleep(4)
         else:
+
+            self.poco(text="ZSB-DP12(1)").click()
             print(" Printer is not displaying:")
 
     def click_Downloads(self):
@@ -504,8 +507,8 @@ class APS_Notification:
         sleep(2)
         print_icon = self.poco(self.Print_Icon_Option)
         if print_icon.exists():
-            print_icon.click()
-            sleep(2)
+           print_icon.click()
+           sleep(2)
 
     def click_Expand_Icon(self):
         sleep(1)
@@ -763,6 +766,151 @@ class APS_Notification:
 
         else:
             pass
+
+    def Verify_PaperSize(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*Paper size.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+
+    def Verify_Pages_Number(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*Pages.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def click_OK_On_Confirmation_Popup(self):
+        sleep(2)
+        ok_btn = self.poco(text="OK")
+        if ok_btn.exists():
+           ok_btn.click()
+        else:
+            print("Confirmation Ok button is not displaying")
+
+    def Verify_Default_Value_Is_1(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*1.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Labels_Left_Count(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*Labels Left.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Black_And_White_Text(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*Black & White.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Orientation_Text(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*Orientation.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Portrait_Option(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*Portrait.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Portrait_View_Is_Displaying(self):
+        sleep(2)
+        portrait_view = self.poco(name="")
+        portrait_view.get_text()
+        print(" Portrait View Is Displaying:", portrait_view)
+        return portrait_view
+
+    def click_Portrait_Tab(self):
+        sleep(1)
+        self.poco(text="Portrait").click()
+
+    def click_Landscape_Option(self):
+        sleep(1)
+        self.poco(text="Landscape").click()
+
+    def Verify_Landscape_View_Is_Displaying(self):
+        sleep(2)
+        landscape_view = self.poco(name="")
+        landscape_view.get_text()
+        print(" Landscape View Is Displaying:", landscape_view)
+        return landscape_view
+
+    def Verify_One_Sided_Option(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*One-sided.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Two_Sided_Option(self):
+        sleep(1)
+        a = self.poco(textMatches="(?s).*Two-sided.*").get_name()
+        a = a.split("\n")
+        print(a)
+
+    def Verify_Percentage_Is_Not_Present(self):
+        sleep(2)
+        percentage_text = self.poco(text="Percentage")
+        if not percentage_text.exists():
+            print("Percentage is not present")
+        else:
+            print("Percentages text is present")
+
+    def Verify_Printer_Status(self):
+        sleep(2)
+        a = self.poco(textMatches="(?s).*Offline*")
+        if a.exists():
+            a.get_name()
+            return a
+        else:
+            b = self.poco(textMatches="(?s).*Online*")
+            if b.exists():
+                b.get_name()
+                return b
+
+    def Verify_NA_Status(self):
+        sleep(2)
+        Labels_Left_text = self.poco(text="Labels Left")
+        if not Labels_Left_text.exists():
+            print("Labels Left is not present")
+        else:
+            print("Labels Left is present")
+
+    def click_And_Enter_0_Copies_Number_Field(self):
+        sleep(1)
+        Copies_Number_Field = self.poco(self.Copies_Number_Field)
+        if Copies_Number_Field.exists():
+            Copies_Number_Field.click()
+            sleep(1)
+            Copies_Number_Field.set_text(" ")
+            sleep(1)
+            Copies_Number_Field.set_text("0")
+
+    def click_All_Arrow_Mark(self):
+        sleep(2)
+        self.poco(name="com.android.printspooler:id/range_options_spinner").click()
+        sleep(1)
+
+    def Select_Range_Of_Option(self):
+        self.poco(text="Range of").click()
+        sleep(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

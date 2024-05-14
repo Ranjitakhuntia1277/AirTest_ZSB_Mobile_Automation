@@ -12,7 +12,7 @@ class Login_Screen_iOS:
         self.poco = poco
         self.loginBtn = "Sign In"
         self.Continue_popup_to_login = "Continue"
-        self.Enter_GoogleID_Field = "SWDVT IDC test account"
+        self.Enter_GoogleID_Field = "SohoApp Testing"
         self.Google_Login = "Continue with Google"
         self.Bluetooth_Allow = "android:id/button1"
         self.Google_MailID = "Use another account"
@@ -75,7 +75,8 @@ class Login_Screen_iOS:
 
     def Loginwith_Added_Email_Id(self):
         sleep(4)
-        added_email= self.poco(text="SWDVT IDC test account")
+        poco.scroll()
+        added_email= self.poco(text="SohoApp Testing")
         if added_email.exists():
             added_email.click()
             sleep(9)
@@ -87,33 +88,29 @@ class Login_Screen_iOS:
         enter_googleID_field = self.poco(self.Enter_GoogleID_Field)
         enter_googleID_field.click()
 
+
     def Enter_Google_UserID(self):
         sleep(3)
         enter_googleid = self.poco(self.Google_UserID)
-        keyboard_back_icon = self.poco(self.Keyboard_back_Icon)
         if enter_googleid.exists():
             enter_googleid.click()
             sleep(1)
-            enter_googleid.set_text("soho.swdvt.01@gmail.com")
-            sleep(1)
-        if keyboard_back_icon.exists():
-            keyboard_back_icon.click()
+            enter_googleid.set_text("zebra21.dvt@gmail.com")
+            sleep(2)
 
-        else:
-            print("field is not present to enter the email id, , proceeding with the next part of the code.")
+    def Add_Account_To_Device(self):
+        sleep(3)
+        add_account_to_device = self.poco(text="Add account to device")
+        add_account_to_device.click()
+
 
     def click_GooglemailId(self):
-        sleep(3)
-        added_account = self.poco(self.Enter_GoogleID_Field)
+        sleep(4)
+        poco.scroll()
         google_mailid = self.poco(self.Google_MailID)
-
-        if added_account.exists():
-            added_account.click()
-        elif google_mailid.exists():
+        if google_mailid.exists():
             google_mailid.click()
-            sleep(7)
-        else:
-            pass
+            sleep(9)
 
     def Enter_Google_Password(self):
         enter_google_password = self.poco(self.Google_Password)
@@ -180,13 +177,7 @@ class Login_Screen_iOS:
         self.poco(text("Zebra01.swdvt@icloud.com"))
         sleep(1)
 
-    def click_UserName_TextField(self):
-        username = self.poco(text="Continue with Google")
-        username.click()
-    #
-    def Enter_UserName(self):
-        username = self.poco(text="Continue with Google")
-        username.set_text("soho.swdvt.01@gmail.com")
+
 
     def click_Password_TextField(self):
         sleep(2)

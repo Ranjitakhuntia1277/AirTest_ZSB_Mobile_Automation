@@ -56,7 +56,7 @@ class App_Settings_Screen:
         self.Show_roots_Hamburger_Icn = "Show roots"
         self.Recent_Images = "android:id/title"
         self.Camera_Option = "androidx.cardview.widget.CardView"
-        self.Search_Bar = "com.google.android.documentsui:id/searchbar_title"
+        self.Search_Bar = "com.google.android.providers.media.module:id/icon_thumbnail"
         self.Search_Bar2 = "com.google.android.documentsui:id/search_src_text"
         self.JPG_ON_Result = "com.google.android.documentsui:id/icon_thumb"
         self.Remove_Image = "Remove image"
@@ -438,7 +438,7 @@ class App_Settings_Screen:
         save_exit.click()
 
     def Home_text_is_present_on_homepage(self):
-        sleep(4)
+        sleep(6)
         home_text = self.poco(self.Home_text_on_homepage)
         home_text.get_text()
         print("Home Text is present on home page:", home_text)
@@ -648,7 +648,7 @@ class App_Settings_Screen:
         camera_option.click()
 
     def click_On_First_Image_SearchBar(self):
-        sleep(2)
+        sleep(5)
         Search_Bar = self.poco(self.Search_Bar)
         Search_Bar.click()
         sleep(2)
@@ -1391,14 +1391,9 @@ class App_Settings_Screen:
             return "NESTWIFI is still present in the network list. Printer is still connected."
 
     def Check_no_of_left_cartridge(self):
-        child_names = [child.get_name() for child in
-                       self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child(
-                           "android.view.View").child("android.view.View").child("android.view.View").offspring(
-                           "android.widget.ScrollView").child("android.view.View")[0].child("android.view.View").child(
-                           "android.view.View")[0].children()]
+        child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*prints left.*")]
         modified_list = [item.split('\n') for item in child_names]
         modified_list = modified_list[0][4].split(" ")
-
         return int(modified_list[0])
 
     def check_update_cartridge(self, previous, current, count):

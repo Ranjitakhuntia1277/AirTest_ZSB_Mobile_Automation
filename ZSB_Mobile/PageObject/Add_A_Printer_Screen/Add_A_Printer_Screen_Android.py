@@ -56,7 +56,7 @@ class Add_A_Printer_Screen:
         self.Show_All_Printers = "Show all printers"
         self.Added_Printer = "ZSB-DP12C710B9"
         self.Second_Printer_Name = "android.widget.RadioButton"
-        self.Connect_Wifi_Network_Text = "Connect Wi-Fi Network"
+        self.Connect_Wifi_Network_Text = "Connect to Wi-Fi"
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
         self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44),
