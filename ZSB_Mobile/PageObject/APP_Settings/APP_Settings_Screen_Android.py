@@ -1,5 +1,5 @@
 import requests
-import self
+# import self
 from airtest.core.api import *
 from airtest.core.api import sleep
 from urllib3.util import url
