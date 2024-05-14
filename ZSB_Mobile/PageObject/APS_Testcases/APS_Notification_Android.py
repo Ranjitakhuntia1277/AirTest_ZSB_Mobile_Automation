@@ -4,8 +4,8 @@ import requests
 import self
 from airtest.core.api import *
 from airtest.core.api import sleep
-from setuptools.config import expand
-from urllib3.util import url
+# from setuptools.config import expand
+# from urllib3.util import url
 
 # from setuptools.config._validate_pyproject.formats import url
 
