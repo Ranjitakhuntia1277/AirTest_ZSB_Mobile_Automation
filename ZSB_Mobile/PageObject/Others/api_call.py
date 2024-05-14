@@ -51,7 +51,7 @@ def deviceDetails(execID, hardwarename="", firmwarename="Testing"):
         "learnMode": "",
         "basePath": ""
     }
-    session.put(device_details_url, json=data, timeout=60)
+    session.put(device_details_url, json=data, timeout=60,verify=False)
 
 
 def insert_tool_version(execid, version):
@@ -65,7 +65,7 @@ def insert_tool_version(execid, version):
         "appName": "Airtest",
         "version": version
     }
-    session.put(insert_tool_version_url, json=insert_tool_version_json, timeout=60)
+    session.put(insert_tool_version_url, json=insert_tool_version_json, timeout=60,verify=False)
 
 
 def start_set_up(exec_id, setup_id, setup_name):
@@ -94,25 +94,25 @@ def end_set_up(exec_id, exec_time):
 
 
 
-def start_main(exec_id):
+def start_main(exec_id,leftId):
     start_main_loop_url = path + "ExecEngineMain/StartMain"
     start_main_json = {
         "executionId": exec_id,
         "loopIndex": 1,
-        "leftId": 1
+        "leftId": leftId
     }
-    session.put(start_main_loop_url, json=start_main_json, timeout=60)
+    session.put(start_main_loop_url, json=start_main_json, timeout=60,verify=False)
 
 
-def end_main(exec_id, exec_time):
+def end_main(exec_id,leftId,exec_time):
     start_main_loop_url = path + "ExecEngineMain/EndMain"
     start_main_json = {
         "executionId": exec_id,
         "loopIndex": 1,
-        "leftId": 1,
+        "leftId": leftId,
         "executionTime": exec_time
     }
-    session.put(start_main_loop_url, json=start_main_json, timeout=60)
+    session.put(start_main_loop_url, json=start_main_json, timeout=60,verify=False)
 
 
 def insert_device(exec_id, version, hardware_name, firmware_name, serial_number, communication_details):
@@ -153,7 +153,7 @@ def start_execution_loop(exec_id):
         "executionId": exec_id,
         "loopIndex": 1
     }
-    session.put(start_execution_loop_url, json=start_execution_loop_json, timeout=60)
+    session.put(start_execution_loop_url, json=start_execution_loop_json, timeout=60,verify=False)
 
 
 def insert_case_details(execid, report_text, errmsg):
@@ -172,7 +172,7 @@ def insert_case_details(execid, report_text, errmsg):
 def insert_case_results(execid, loopindex, leftId, result, exec_time, reportext, errormsg):
     """
     Update the execution result for each case.
-    # :param total_suite_result_list:
+    :param total_suite_result_list:
     :return:
     """
     insert_case_results_url = path + "ExecEngineCase/Insert_CaseResult"
@@ -224,7 +224,7 @@ def end_execution_loop(execid):
         "executionId": execid,
         "loopIndex": 1
     }
-    session.post(end_execution_loop_url, json=end_execution_loop_json, timeout=60)
+    session.post(end_execution_loop_url, json=end_execution_loop_json, timeout=60,verify=False)
 
 
 def end_execution(exec_id):
@@ -240,7 +240,7 @@ def get_test_case(exec_id):
     url = path + "ExecEngineHierarchy/Get_CasesHierarchy/" + str(exec_id)
     # print(u)
     # requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-    # response = requests.get(url,verify=False)
+    response = requests.get(url,verify=False)
     # print(response)
     # print(response.content)
 
@@ -285,7 +285,7 @@ def initialize_cases_hierarchy(exec_id, casenames):
         "delim2": ",",
         "table": casenames
     }
-    session.put(initialize_cases_hierarchy_url, json=initialize_cases_hierarchy_json, timeout=60)
+    session.put(initialize_cases_hierarchy_url, json=initialize_cases_hierarchy_json, timeout=60,verify=False)
 
 
 def initializecaseshirarchy(exec_id, case_id, left_id, case_name):
@@ -302,24 +302,24 @@ def initializecaseshirarchy(exec_id, case_id, left_id, case_name):
     session.put(initialize_cases_hierarchy_url, json=initialize_cases_hierarchy_json, timeout=60)
 
 
-def insert_step(exec_id, ordinal_number, set_up_number, step_type_name, step_name, result, exec_time):
+def insert_step(exec_id,left_id, ordinal_number, set_up_number, step_name, result, exec_time):
     insert_step_url = path + "ExecEngineStep/Insert_Step"
     insert_step_json = {
         "executionID": exec_id,
         "loopIndex": 1,
-        "leftID": 1,
+        "leftID": left_id,
         "type": "string",
-        "setupNumber": set_up_number,
+        "setupNumber": "0",
         "ordinalNumber": ordinal_number,
-        "stepID": 0,
-        "stepTypeName": step_type_name,
+        "stepID": set_up_number,
+        "stepTypeName": "",
         "stepName": step_name,
         "result": result,
         "executionTime": exec_time,
         "duttime": 0
     }
 
-    session.put(insert_step_url, json=insert_step_json, timeout=60)
+    session.put(insert_step_url, json=insert_step_json, timeout=60,verify=False)
 
 
 def insert_stepAttributes(exec_id, set_up_number, text):
@@ -352,274 +352,93 @@ def insert_stepDetails(exec_id, set_up_number, ordinal_number, report_text, erro
     session.put(insert_step_url, json=insert_step_json, timeout=60)
 
 
-# execID = 917235
+# execID = 928662
 #
 #
 # deviceDetails(execID,"Pixel 7 Pro","14.0.11")
-# deviceDetails(execID,"ZSB DP 12","1D89")
-#
 # insert_tool_version(execID,"2")
 #
-# start_main(execID)
+# initialize_cases_hierarchy(execID, "0,47972,Verify the Label Alignment Demo feature|0,47973,Verify the Printer Demo feature")
+#
 # start_execution_loop(execID)
 #
+# start_main(execID,1)
 #
-# # initializecaseshirarchy(execID,"12020",1,"12020")
-# initialize_cases_hierarchy(execID,"0,0,test_zsb")
+# stepID = "0"
+# stepTypeName = ""
+# stepName =  "On a mobile device, from the menu click Printer Settings."
+# ordinalNum = 1
 #
-# tcVersion = "0.34";
-# stepID = "4000060";
-# stepTypeName = "";
-# stepName = "SetUp_Launch Browser";
-# ordinalNum = 0;
-# section = "Setup";
+# insert_step(execID, 1,ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
 #
-# start_set_up(execID, stepID, stepName);
-# stepID = "4100195";
-# stepTypeName = "Launch Browser";
-# stepName = "Launch Edge Browser";
-# ordinalNum = 1;
-# section = "Setup";
-#
-# start_set_up(execID, stepID, stepName);
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100196";
-# stepTypeName = "Set Base URL";
-# stepName = "Open Login page";
-# ordinalNum = 2;
-# section = "Setup";
-#
-# start_set_up(execID, stepID, stepName);
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100197";
-# stepTypeName = "Click";
-# stepName = "Click Sign In with your email ";
-# ordinalNum = 3;
-# section = "Setup";
-#
-# start_set_up(execID, stepID, stepName);
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100198";
-# stepTypeName = "Set Text";
-# stepName = "Input username";
-# ordinalNum = 4;
-# section = "Setup";
-#
-# start_set_up(execID, stepID, stepName);
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100199";
-# stepTypeName = "Set Text";
-# stepName = "Input password";
-# ordinalNum = 5;
-#
-# start_set_up(execID, stepID, stepName);
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100200";
-# stepTypeName = "Click";
-# stepName = "Click Sign In button";
-# ordinalNum = 6;
-#
-# start_set_up(execID, stepID, stepName);
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4000059";
-# stepTypeName = "";
-# stepName = "TDMSTest_48509";
-# ordinalNum = 0;
+# stepID = "1"
+# stepTypeName = ""
+# stepName = "Select the printer under test and then select General."
+# ordinalNum = 2
 #
 #
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100342";
-# stepTypeName = "Click";
-# stepName = "Close Welcome window";
-# ordinalNum = 2;
-# section = "Main";
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100343";
-# stepTypeName = "Set Delay";
-# stepName = "Set Delay- Wait 3s";
-# ordinalNum = 3;
-# section = "Main";
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100194";
-# stepTypeName = "Click";
-# stepName = "Click pen button";
-# ordinalNum = 4;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100240";
-# stepTypeName = "Click";
-# stepName = "Click Continue with Facebook";
-# ordinalNum = 9;
-# section = "Main";
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100241";
-# stepTypeName = "Set Delay";
-# stepName = "Wait for Facebook Login in page ";
-# ordinalNum = 10;
-# section = "Main";
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100242";
-# stepTypeName = "Get Text and Compare";
-# stepName = "Check Facebook Login page opened";
-# ordinalNum = 11;
-# section = "Main";
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100243";
-# stepTypeName = "Set Text";
-# stepName = "Input Facebook username";
-# ordinalNum = 12;
-# section = "Main";
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100244";
-# stepTypeName = "Set Text";
-# stepName = "Input Facebook password";
-# ordinalNum = 13;
-# section = "Main";
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100245";
-# stepTypeName = "Click";
-# stepName = "Click login in Facebook account";
-# ordinalNum = 14;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100246";
-# stepTypeName = "Set Delay";
-# stepName = "Wait for login in successfully";
-# ordinalNum = 15;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100345";
-# stepTypeName = "Click";
-# stepName = "Click Driver Tips";
-# ordinalNum = 16;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100346";
-# stepTypeName = "Click";
-# stepName = "Close Welcome window";
-# ordinalNum = 17;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100344";
-# stepTypeName = "Set Delay";
-# stepName = "Set Delay- Wait 3s";
-# ordinalNum = 18;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100249";
-# stepTypeName = "Click";
-# stepName = "Click pen button";
-# ordinalNum = 19;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4104579";
-# stepTypeName = "Check element status";
-# stepName = "Check signed in email is correct";
-# ordinalNum = 20;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100251";
-# stepTypeName = "Click";
-# stepName = "Click Log Out button";
-# ordinalNum = 21;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100252";
-# stepTypeName = "Set Delay";
-# stepName = "Set Delay";
-# ordinalNum = 22;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4100253";
-# stepTypeName = "Get Text and Compare";
-# stepName = "Check Log off page shows up";
-# ordinalNum = 23;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4104745";
-# stepTypeName = "Set Base URL";
-# stepName = "Open ZSB login page ";
-# ordinalNum = 24;
-#
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# stepID = "4104767";
-# stepTypeName = "Click";
-# stepName = "Click sign in with Apple";
-# ordinalNum = 36;
+# insert_step(execID,1, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
 #
 #
-# insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
+# stepID = "2"
+# stepTypeName = ""
+# stepName = "Click on the i button next to the Feed on Cover Close text."
+# ordinalNum = 3
 #
-# stepID = "4122222";
-# start_set_up(execID,stepID,"new_test_case")
 #
-# stepID = "4122223";
+# insert_step(execID,1, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
 #
-# start_set_up(execID,stepID,"new_test_case_1")
+#
+# stepID = "3"
+# stepTypeName = ""
+# stepName = "Click on the Label Alignment Demo button."
+# ordinalNum = 4
+#
+#
+# insert_step(execID, 1,ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+#
+#
+# stepID = "4"
+# stepTypeName = ""
+# stepName = "Once the video starts playing, click navigate through the video."
+# ordinalNum = 5
+#
+# insert_step(execID,1, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+#
+# stepID = "5"
+# stepTypeName = ""
+# stepName = "Click any area of mobile screen Check the video pop-up will be dismissed "
+# ordinalNum = 6
+#
+# insert_step(execID,1, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+#
+#
+# end_main(execID,1,0)
+#
+#
+# start_main(execID,3)
+# stepID = "45874"
+# stepName = "Verify the Label Alignment Demo feature"
+#
+# expected_version_no = "1.4.5538"
+# stepID = "5"
+# stepTypeName = ""
+# stepName = "Click on the Hamburger icon on the Home page"
+# ordinalNum = 0
+# insert_step(execID,3, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+#
+# stepID = "5"
+# stepTypeName = ""
+# stepName = "Check the version number at the bottom is displayed completely, and same to the version number as the test version installed"
+# ordinalNum = 1
+#
+# insert_step(execID,3, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+#
+# end_main(execID, 3,0)
 #
 # end_execution_loop(execID)
-# end_execution(exec_id)
-#
-# # upload_case_files(exec_id,"C:\\Users\\tr5927\\Desktop\\Sampletest\\sample_log_files")
-#
-# end_main(execID,0)
-#
-# # start_main(execID)
-# # start_execution_loop(execID)
-# # initialize_cases_hierarchy(execID,"1,1,test2")
-# #
-# # tcVersion = "0.34";
-# # stepID = "4000060";
-# # stepTypeName = "";
-# # stepName = "SetUp_Launch Browser";
-# # ordinalNum = 0;
-# # section = "Setup";
-# #
-# # start_set_up(execID, stepID, stepName);
-# # stepID = "4100195";
-# # stepTypeName = "Launch Browser";
-# # stepName = "Launch Edge Browser";
-# # ordinalNum = 1;
-# # section = "Setup";
-# #
-# # start_set_up(execID, stepID, stepName);
-# # insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# # stepID = "4100196";
-# # stepTypeName = "Set Base URL";
-# # stepName = "Open Login page";
-# # ordinalNum = 2;
-# # section = "Setup";
-# #
-# # start_set_up(execID, stepID, stepName);
-# # insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# # stepID = "4100197";
-# # stepTypeName = "Click";
-# # stepName = "Click Sign In with your email ";
-# # ordinalNum = 3;
-# # section = "Setup";
-# #
-# # start_set_up(execID, stepID, stepName);
-# # insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0);
-# # stepID = "4100198";
-# # stepTypeName = "Set Text";
-# # stepName = "Input username";
-# # ordinalNum = 4;
-# # section = "Setup";
-# #
-# #
-# # end_execution_loop(execID)
-# # end_execution(execID)
-#
-#
-#
-#
+
+
 
 
 
