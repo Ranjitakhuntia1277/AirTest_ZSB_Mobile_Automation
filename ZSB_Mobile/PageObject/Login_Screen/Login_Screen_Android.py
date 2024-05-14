@@ -99,17 +99,12 @@ class Login_Screen:
             print("field is not present to enter the email id, , proceeding with the next part of the code.")
 
     def click_GooglemailId(self):
-        sleep(3)
-        added_account = self.poco(self.Enter_GoogleID_Field)
+        sleep(4)
         google_mailid = self.poco(self.Google_MailID)
-
-        if added_account.exists():
-            added_account.click()
-        elif google_mailid.exists():
+        if google_mailid.exists():
             google_mailid.click()
-            sleep(7)
-        else:
-            pass
+            sleep(9)
+
 
     def Enter_Google_Password(self):
         enter_google_password = self.poco(self.Google_Password)
