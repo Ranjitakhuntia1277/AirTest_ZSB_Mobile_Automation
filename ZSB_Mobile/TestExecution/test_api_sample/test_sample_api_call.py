@@ -4,9 +4,11 @@ from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ZSB_Mobile.PageObject.Others.Others import Others
-from ZSB_Mobile.Common_Method import *
+from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.Social_Login.Social_Login import Social_Login
 from ZSB_Mobile.PageObject.Others.api_call import *
+from datetime import datetime
+
 
 import os
 
@@ -24,11 +26,16 @@ others = Others(poco)
 common_method=Common_Method(poco)
 social_login = Social_Login(poco)
 
-execID = 926616
+# execID=new_execution("pixel","tarun")
+execID = 929331
 
 deviceDetails(execID,"Pixel 7 Pro","14.0.11")
 insert_tool_version(execID,"2")
 
+initialize_cases_hierarchy(execID,
+                           "0,47972,Verify the Label Alignment Demo feature|0,45874,Check the version number displays well on different OS")
+
+start_execution_loop(execID)
 
 def test_Others_TestcaseID_47972():
     pass
@@ -39,17 +46,12 @@ def test_Others_TestcaseID_47972():
         common_method.wait_for_element_appearance_namematches("Open navigation menu")
     except:
         pass
-    start_main(execID)
-    start_execution_loop(execID)
-    stepID = "47972"
-    stepName = "Verify the Label Alignment Demo feature"
-    initialize_cases_hierarchy(execID, "0,47972,Verify the Label Alignment Demo feature")
+    start_main(execID,1)
 
-    start_set_up(execID, stepID, stepName)
-    stepID = "0"
-    stepTypeName = ""
-    stepName =  "On a mobile device, from the menu click Printer Settings."
+    stepID = 0
+    stepName = "On a mobile device, from the menu click Printer Settings."
     ordinalNum = 1
+    start_time = datetime.now()
 
     try:
 
@@ -59,28 +61,37 @@ def test_Others_TestcaseID_47972():
 
         """ Select the Printer Settings """
         others.click_Printer_Settings()
+        end_time = datetime.now()
 
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+        time_difference = (end_time - start_time).total_seconds() * 10 ** 3
+        insert_step(execID, 1,ordinalNum, stepID, stepName, "Pass", time_difference)
 
     except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        end_time = datetime.now()
 
-    stepID = "1"
-    stepTypeName = ""
+        time_difference = (end_time - start_time).total_seconds() * 10 ** 3
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Fail", time_difference)
+
+    stepID = 1
     stepName = "Select the printer under test and then select General."
     ordinalNum = 2
-
+    start_time = datetime.now()
     try:
         others.swipe_left()
         """ Select a printer """
         others.select_first_printer()
         sleep(2)
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
-    except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        end_time = datetime.now()
 
-    stepID = "2"
-    stepTypeName = ""
+        time_difference = (end_time - start_time).total_seconds() * 10 ** 3
+        insert_step(execID, 1,ordinalNum, stepID, stepName, "Pass", time_difference)
+    except:
+        end_time = datetime.now()
+
+        time_difference = (end_time - start_time).total_seconds() * 10 ** 3
+        insert_step(execID, 1,ordinalNum, stepID, stepName, "Fail", time_difference)
+
+    stepID = 2
     stepName = "Click on the i button next to the Feed on Cover Close text."
     ordinalNum = 3
 
@@ -88,12 +99,11 @@ def test_Others_TestcaseID_47972():
         """ Click on the icon """
         others.click_icon()
         sleep(1)
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Pass", 0)
     except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Fail", 0)
 
-    stepID = "3"
-    stepTypeName = ""
+    stepID = 3
     stepName = "Click on the Label Alignment Demo button."
     ordinalNum = 4
 
@@ -101,23 +111,21 @@ def test_Others_TestcaseID_47972():
         """Click On the Demo video"""
         others.click_demo_video()
         sleep(5)
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Pass", 0)
     except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Fail", 0)
 
-    stepID = "4"
-    stepTypeName = ""
+    stepID = 4
     stepName = "Once the video starts playing, click navigate through the video."
     ordinalNum = 5
 
     try:
         others.click_on_the_vedio_while_playing()
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Pass", 0)
     except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        insert_step(execID, 1,ordinalNum, stepID, stepName, "Fail", 0)
 
-    stepID = "5"
-    stepTypeName = ""
+    stepID = 5
     stepName = "Click any area of mobile screen Check the video pop-up will be dismissed "
     ordinalNum = 6
 
@@ -128,15 +136,11 @@ def test_Others_TestcaseID_47972():
         """Check if closed"""
         if not others.check_demo_video_closed():
             raise Exception("demo video not closed")
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Pass", 0)
     except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        insert_step(execID,1, ordinalNum, stepID, stepName, "Fail", 0)
 
-    start_cleanup(execID,0,"cleanup1")
-    end_cleanup(execID,0)
-    end_execution_loop(execID)
-    end_main(execID,0)
-    end_execution(execID)
+    end_main(execID,1,0)
 
 def test_Others_TestcaseID_45874():
     pass
@@ -147,28 +151,21 @@ def test_Others_TestcaseID_45874():
         common_method.wait_for_element_appearance_namematches("Open navigation menu")
     except:
         pass
-    start_main(execID)
-    stepID = "45874"
-    stepName = "Verify the Label Alignment Demo feature"
+    start_main(execID,3)
 
-    initialize_cases_hierarchy(execID, "0,45874,Check the version number displays well on different OS")
-    start_set_up(execID, stepID, stepName)
-
-    expected_version_no = "1.4.5538"
-    stepID = "5"
-    stepTypeName = ""
+    expected_version_no = "1.4.5399"
+    stepID = 0
     stepName = "Click on the Hamburger icon on the Home page"
     ordinalNum = 0
 
     try:
         """click on the hamburger icon"""
         login_page.click_Menu_HamburgerICN()
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+        insert_step(execID,3, ordinalNum, stepID, stepName, "Pass", 0)
     except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        insert_step(execID,3, ordinalNum, stepID, stepName, "Fail", 0)
 
-    stepID = "5"
-    stepTypeName = ""
+    stepID = 1
     stepName = "Check the version number at the bottom is displayed completely, and same to the version number as the test version installed"
     ordinalNum = 1
 
@@ -179,10 +176,10 @@ def test_Others_TestcaseID_45874():
         """If version number not same generate error"""
         if expected_version_no != actual_version_no:
             raise Exception("Version no did not match")
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Pass", 0)
+        insert_step(execID,3, ordinalNum, stepID, stepName, "Pass", 0)
     except:
-        insert_step(execID, ordinalNum, stepID, stepTypeName, stepName, "Fail", 0)
+        insert_step(execID,3, ordinalNum, stepID, stepName, "Fail", 0)
 
-    start_cleanup(execID, 1, "cleanup2")
-    end_cleanup(execID, 0)
-    end_main(execID, 0)
+    end_main(execID, 3,0)
+
+    end_execution_loop(execID)

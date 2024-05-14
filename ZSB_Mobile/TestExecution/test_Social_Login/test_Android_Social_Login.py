@@ -44,7 +44,8 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48464(self):
         pass
 
-        self.setup_logout()
+        common_method.Clear_App()
+        common_method.tearDown()
 
         try:
             social_login.click_on_allow_for_notification()
