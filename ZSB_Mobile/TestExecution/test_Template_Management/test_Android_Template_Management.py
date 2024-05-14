@@ -662,7 +662,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp[1:]:
 
@@ -734,7 +734,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp[1:]:
 
@@ -804,7 +804,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address",
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
 
         for text in temp[:1]:
@@ -900,7 +900,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp:
 
@@ -986,7 +986,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
 
         for text in temp:
 
@@ -3479,7 +3479,7 @@ class test_Android_Template_Management:
         name=template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name,1)
         template_management.click_on_rename_button()
-        new_name = "Address"
+        new_name = "Basic"
 
         template_management.enter_text_in_rename_design(new_name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
@@ -3919,7 +3919,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
@@ -4062,6 +4062,7 @@ class test_Android_Template_Management:
 
         new_name="ne@_name"
         template_management.enter_text_in_rename_design(new_name)
+        sleep(2)
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error not displayed for allowed special characters ")
 
@@ -4550,7 +4551,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
         for text in temp[1:]:
 
             login_page.click_Menu_HamburgerICN()
@@ -4598,7 +4599,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
@@ -5729,7 +5730,7 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         """Add more categories as required"""
-        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name tag", "Return Address",
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
 
         for text in temp:
@@ -5768,7 +5769,8 @@ class test_Android_Template_Management:
         n_prev=template_management.get_showing_n_designs_number()
 
         """input an existing design name"""
-        original_copy = "Barcode copy"
+        name = template_management.get_first_design_in_recently_printed_labels()
+        original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
 
         template_management.click_on_delete_button_in_designs()
@@ -6086,7 +6088,7 @@ class test_Android_Template_Management:
             login_page.click_Loginwith_Google()
             common_method.wait_for_element_appearance_textmatches("Choose an account")
             """pass your email below for the same account"""
-            email = "zebratest850@gmail.com"
+            email = "zebratest901@gmail.com"
             template_management.select_and_click_an_google_account(email)
 
             common_method.wait_for_element_appearance_text("Home",20)
