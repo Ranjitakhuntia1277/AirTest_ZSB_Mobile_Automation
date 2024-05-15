@@ -5,30 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_iOS.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_TestSuite.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_iOS_PDF_Printing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/test_Android_SemiAuto_TestSuite.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/SSO_Token_Renewal_Screen/SSO_Token_Renewal_Screen_Android.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/assets/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/samp_report.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/sampl_report.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/reports/assets/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/reports/report.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_api_sample/test_sample_api_call.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test Results - pytest_for_test_APS_Settings_And_APS_Others_test_APS_Settings_And_APS_Others_TestcaseID_49540.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test Results - pytest_for_test_iOS_App_Settings_test_AppSettings_TestcaseID_47881.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/ADB_logs/Logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/ADB_logs/Logs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/FullyAutomatedTestSuite/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/FullyAutomatedTestSuite/fully_automated_test_suite_jk.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Notification.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Notification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Print_Preview_Options.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Print_Preview_Options.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printer_Discover.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printer_Discover.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Settings_And_APS_Others.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Settings_And_APS_Others.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/api_call.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/api_calls/api_call.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/sample_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/api_calls/sample_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/test_sample_api_call.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/api_calls/test_sample_api_call.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/temp/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/temp/sample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/temp/store.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_iOS_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_iOS_Smoke_Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_SemiAuto_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings_SemiAuto.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings_SemiAuto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/test_Android_Others_Semi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/test_Android_Others_Semi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token/test_SSO_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token/test_SSO_token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login_Exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login_Exec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_test/test_run.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_JayaKiran/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_JayaKiran/Android/Android_Automated_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_Automated_TestSuite.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +65,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.Android_Automated_TestSuite.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;rk1277__Ranjita&quot;,
@@ -73,11 +80,11 @@
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_APS_Testcases" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_APS_Testcases" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Automated_TestSuite\Automated_TestSuite_Ranjita\Android" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Automated_TestSuite\Automated_TestSuite_JayaKiran\Android" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Test_Suite_Execution" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_Suite_Ranjita" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Android_Automated_TestSuite">
@@ -89,11 +96,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/Automated_TestSuite/Automated_TestSuite_Ranjita/Android" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestSuite\Automated_TestSuite_Ranjita\Android\Android_Automated_TestSuite.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ZSB_Mobile/Automated_TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -102,7 +109,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_APS_Print_Preview_Options.test_Android_APS_Printer_Discover_TestcaseID_49141" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_APS_Notification.test_APS_Notification_TestcaseID_49155" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -114,66 +121,74 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_APS_Print_Preview_Options.test_Android_APS_Printer_Discover_TestcaseID_49141&quot;" />
+      <option name="_new_target" value="&quot;test_APS_Notification.test_APS_Notification_TestcaseID_49155&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45688" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_APS_Notification.test_APS_Notification_TestcaseID_49167" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_45688&quot;" />
+      <option name="_new_target" value="&quot;test_APS_Notification.test_APS_Notification_TestcaseID_49167&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_49665" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_APS_Notification.test_APS_Notification_TestcaseID_50500" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Android_App_Settings.test_AppSettings_TestcaseID_49665&quot;" />
+      <option name="_new_target" value="&quot;test_APS_Notification.test_APS_Notification_TestcaseID_50500&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in Android_Automated_TestSuite.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_APS_Notification.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Notification.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in Android_Automated_TestSuite.py" />
-        <item itemvalue="Python tests.pytest for test_APS_Print_Preview_Options.test_Android_APS_Printer_Discover_TestcaseID_49141" />
-        <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_45688" />
-        <item itemvalue="Python tests.pytest for test_Android_App_Settings.test_AppSettings_TestcaseID_49665" />
+        <item itemvalue="Python tests.pytest for test_APS_Notification.test_APS_Notification_TestcaseID_49167" />
+        <item itemvalue="Python tests.pytest for test_APS_Notification.test_APS_Notification_TestcaseID_50500" />
+        <item itemvalue="Python tests.pytest in test_APS_Notification.py" />
+        <item itemvalue="Python.Android_Automated_TestSuite" />
+        <item itemvalue="Python tests.pytest for test_APS_Notification.test_APS_Notification_TestcaseID_49155" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

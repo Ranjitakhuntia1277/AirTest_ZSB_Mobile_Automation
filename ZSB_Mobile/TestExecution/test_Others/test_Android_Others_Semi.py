@@ -27,8 +27,9 @@ social_login = Social_Login(poco)
 def test_Others_TestcaseID_45807(self):
     pass
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+    common_method.Clear_App()
+    common_method.tearDown()
+
     common_method.wait_for_element_appearance_namematches("Recently")
 
     """SMBM-1774"""

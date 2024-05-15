@@ -1,5 +1,5 @@
 import requests
-import self
+# import self
 from airtest.core.api import *
 from airtest.core.api import sleep
 from urllib3.util import url
@@ -163,8 +163,14 @@ class App_Settings_Screen:
     def click_PrinterName2_On_Printersettings(self):
         sleep(3)
         printerName = self.poco(self.PrinterName2_In_Printer_Settings)
-        printerName.click()
-        sleep(1)
+        printername1 = self.poco(self.PrinterName1_In_Printer_Settings)
+        if printerName.exists():
+            printerName.click()
+        else:
+            printername1.exists()
+            printername1.click()
+            sleep(3)
+
 
     def click_wifi_tab(self):
         sleep(1)

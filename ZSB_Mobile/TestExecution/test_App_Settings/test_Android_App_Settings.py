@@ -1,26 +1,23 @@
-# import sys
-# sys.path.append(r'C:\Users\rk1277\Desktop\ZSB_Automation')
-
 from airtest.core.api import *
-# from compose import errors
+from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # from setuptools import logging
 # from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
+from ...Common_Method import Common_Method
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ...Common_Method import Common_Method
-
-# import pytest
+import pytest
 from airtest.core.api import connect_device
+
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
 
-
 class Android_App_Settings:
     pass
+
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=True)
 
@@ -33,23 +30,23 @@ add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 
+
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_AppSettings_TestcaseID_47918():
     """	Verify ZSB app permission works fine."""
     """Freshly Install the latest stage/production app on the phone & printer should be added"""
 
     #
-    ### common_method.uninstall_app()
-    # ##common_method.install_app()
-    common_method.Start_The_App()
+    common_method.tearDown()
+    common_method.Stop_The_App()
     common_method.Clear_App()
     common_method.Start_The_App()
     """ Allow pop up before login for the fresh installation"""
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
     """for the first installation click on the zsb series popup"""
     login_page.click_Allow_ZSB_Series_Popup()
     """Relaunch the app"""
@@ -66,6 +63,7 @@ def test_AppSettings_TestcaseID_47918():
     common_method.Stop_The_App()
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_AppSettings_TestcaseID_49665():
     """Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared"""
 
@@ -76,21 +74,8 @@ def test_AppSettings_TestcaseID_49665():
 
     """start the app"""
     common_method.tearDown()
-    common_method.Clear_App()
-    common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    # """""for the first installation click on the zsb series popup"""
-    # login_page.click_Allow_ZSB_Series_Popup()
-    # """""""""click on the login button"""""""""""
-    login_page.click_loginBtn()
-    sleep(2)
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """""""select the login with google option"""""""""
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    sleep(9)
     """click on hamburger menu"""
     login_page.click_Menu_HamburgerICN()
     """"click printer settings tab"""
@@ -116,7 +101,6 @@ def test_AppSettings_TestcaseID_49665():
     """stop the app"""
     common_method.Stop_The_App()
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 def test_AppSettings_TestcaseID_45689():
     """""""""Check Change Theme Function Works"""""
 
@@ -254,7 +238,7 @@ def test_AppSettings_TestcaseID_45690():
     app_settings_page.click_Home_Tab()
     sleep(2)
     """""""""verify printer details, everything should display in centimeters"""""
-    # #app_settings_page.verify_printer_details_in_Centimeters()
+    app_settings_page.verify_printer_details_in_Centimeters()
     sleep(2)
     login_page.click_Menu_HamburgerICN()
     """""click on my design tab"""
@@ -301,9 +285,8 @@ def test_AppSettings_TestcaseID_45691():
     sleep(2)
     """""click on the 1st image"""
     app_settings_page.click_On_First_Image_SearchBar()
-    """"No need to uncomment these 2 line as it is device specific"""
-    ### app_settings_page.click_First_Image()
-    # ##app_settings_page.click_JPG_ON_Result()
+    app_settings_page.click_First_Image()
+    app_settings_page.click_JPG_ON_Result()
     """click on the save & exit"""
     app_settings_page.click_Save_Exit_Btn()
     sleep(2)
@@ -602,12 +585,9 @@ def test_AppSettings_TestcaseID_47825():
     """""Verify login page Important messsage text"""
     app_settings_page.Verify_Login_Page_Important_Message_Text()
     """click on login button"""
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     sleep(3)
     """"verify delete account pop up message"""
@@ -829,8 +809,6 @@ def test_AppSettings_TestcaseID_47923():
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
     login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Login_With_Email_Tab()
     login_page.click_Password_TextField()
     login_page.Enter_Zebra_Password()
@@ -877,6 +855,10 @@ def test_AppSettings_TestcaseID_47956():
     common_method.Stop_The_App()
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+
+
+
 def test_AppSettings_TestcaseID_45688():
     """""""""Verify Wifi Settings"""""
 
@@ -886,8 +868,24 @@ def test_AppSettings_TestcaseID_45688():
     # :
     """""Check whether App is installed or not"""
     common_method.tearDown()
+    """" Allow pop up before login for the fresh installation"""""
+    login_page.click_LoginAllow_Popup()
+    """""for the first installation click on the zsb series popup"""
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""""""click on the login button"""""""""""
+    login_page.click_loginBtn()
+    sleep(2)
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
+    """""""select the login with google option"""""""""
+    login_page.click_Loginwith_Google()
+    login_page.click_GooglemailId()
+    login_page.Enter_Google_UserID()
+    # app_settings_page.click_Keyboard_back_Icon()
+    login_page.click_Emailid_Nextbtn()
+    sleep(2)
+    login_page.click_Password_Nextbtn()
+    sleep(9)
     """""""click on the left hamburger menu on the home page"""""""""
     login_page.click_Menu_HamburgerICN()
     """""click on the printer settings tab"""
@@ -934,7 +932,6 @@ def test_AppSettings_TestcaseID_45688():
     common_method.Stop_The_App()
 
 ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 
 def test_AppSettings_TestcaseID_49960():
@@ -1134,7 +1131,7 @@ def test_AppSettings_TestcaseID_51705():
 
 
     """start the app"""
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     """"click on the hamburger icon"""
@@ -1182,7 +1179,6 @@ def test_AppSettings_TestcaseID_51788():
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     sleep(2)
     """verify home text is present on home page"""
@@ -1190,6 +1186,105 @@ def test_AppSettings_TestcaseID_51788():
     """stop the app"""
     common_method.Stop_The_App()
 # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_AppSettings_TestcaseID_47924():
+    """Verify Should not allow same printer name in all the clients.."""
+    #
+    """"Account should be having 2 printers"""
+
+
+    """start the app"""
+    common_method.tearDown()
+    # ##test_robo_finger()
+    ### sleep(6)
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """"verify home text is displaying on the home screen"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Add printer tab"""""
+    add_a_printer_screen.click_Add_A_Printer()
+    """"click on the start button"""
+    add_a_printer_screen.click_Start_Button()
+    login_page.click_Allow_ZSB_Series_Popup()
+    add_a_printer_screen.Verify_Lets_Make_Sure_Text()
+    add_a_printer_screen.Click_Next_Button()
+    """click on hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """click on printer settings tab"""
+    app_settings_page.click_Printer_Settings()
+    """"scroll till the 3rd printer"""
+    app_settings_page.Scroll_Till_Notification_Settings_Tab()
+    """click on printer name on the printer settings page"""""
+    app_settings_page.click_PrinterName2_On_Printersettings()
+    """click on printr name"""
+    app_settings_page.click_Printer_Name_Text_Field()
+    """click on printer name text field"""
+    app_settings_page.clear_First_Name()
+    """Rename the Printer Name with a long text (more than 30 characters)"""
+    app_settings_page.Rename_PrinterName_With_Same_Name()
+    """"click on back icon"""
+    app_settings_page.click_Back_Icon()
+    """click continue button"""""
+    app_settings_page.click_Continue_Button_On_Printer_Update_Failed_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Printer_Settings()
+    """"verify previous printer name is displaying"""
+    app_settings_page.click_PrinterName2_On_Printersettings()
+    """stop the app"""
+    common_method.Stop_The_App()
+# ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_AppSettings_TestcaseID_47910():
+    """""Verify pull-down screen twice then the prints left value can refresh success in home page."""""
+
+
+    """start the app"""
+    common_method.tearDown()
+    sleep(3)
+    # add_a_printer_screen.click_Add_A_Printer()
+    app_settings_page.Verify_Printer_is_already_added()
+    """take the prvious number of cartridges"""
+    previous = app_settings_page.Check_no_of_left_cartridge()
+    print(previous)
+
+    """click on navigation option"""
+    login_page.click_Menu_HamburgerICN()
+
+    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    sleep(2)
+    n=2
+
+    """test the printer to print the label"""
+    for i in range(n):
+        app_settings_page.click_Test_Print_Button()
+        sleep(2)
+
+    sleep(1)
+    """Go to the Home Page"""
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    sleep(2)
+
+    """After printing Get the number of cartridges"""
+    after = app_settings_page.Check_no_of_left_cartridge()
+    print(after)
+
+    """Check wheather the cartridges are updated or not"""
+    res = app_settings_page.check_update_cartridge(previous,after,n)
+    if res:
+        print("success")
+    else:
+        print("Failed")
+    """stop the app"""
+    common_method.Stop_The_App()
+
+
+### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_AppSettings_TestcaseID_47881():
     """""Verify "How to Unpair Bluetooth" dropdown list should expend with small size screen device."""""
@@ -1215,14 +1310,8 @@ def test_AppSettings_TestcaseID_47881():
     app_settings_page.click_Delete_Printer_Button()
     """verify delete printer page"""
     app_settings_page.Verify_Delete_Printer_Page()
-    """"click delete printer button"""
-    app_settings_page.click_Delete_Printer_Button()
-    """"click yes delete button"""
-    app_settings_page.click_Yes_Delete_Button()
-    """click on unpair bluetooth dropdown list"""""
-    app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
-    """"verify UI of unpair bluetooth dropdown list """
-    app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
+    """"click Cancel on printer button"""
+    app_settings_page.Click_Cancel_On_Delete_Printer_Page()
     """stop the app"""
     common_method.Stop_The_App()
 
