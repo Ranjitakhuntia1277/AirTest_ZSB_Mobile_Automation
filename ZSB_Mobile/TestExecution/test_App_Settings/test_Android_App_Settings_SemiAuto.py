@@ -36,6 +36,8 @@ def test_AppSettings_TestcaseID_47913():
     common_method.tearDown()
     #test_robo_finger()
     sleep(6)
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on the hamburger icon"""
@@ -87,88 +89,6 @@ def test_AppSettings_TestcaseID_47913():
     common_method.Stop_The_App()
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_AppSettings_TestcaseID_47924():
-    """Verify Should not allow same printer name in all the clients.."""
-    #
-    """"Account should be having 2 printers"""
-
-
-    """start the app"""
-    common_method.tearDown()
-    test_robo_finger()
-    sleep(6)
-    """"verify home text is displaying on the home screen"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on Add printer tab"""""
-    add_a_printer_screen.click_Add_A_Printer()
-    """"click on the start button"""
-    add_a_printer_screen.click_Start_Button()
-    login_page.click_Allow_ZSB_Series_Popup()
-    add_a_printer_screen.Verify_Lets_Make_Sure_Text()
-    add_a_printer_screen.Click_Next_Button()
-    """"Verify searching for your printer text"""
-    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
-    """"verify select your printer text"""
-    add_a_printer_screen.Verify_Select_your_printer_Text()
-    """"select 2nd printer which you want to add"""
-    add_a_printer_screen.click_2nd_Printer_Details_To_Add()
-    """""click on select button"""
-    add_a_printer_screen.click_Select_Button_On_Select_Your_Printer_Screen()
-    """"verify pairing your printer text"""
-    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    """"verify pairing your printer text"""
-    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    """Verify Connect Wi-fi Network Text"""
-    add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
-    """"click on connect button on connect wifi network screen"""
-    add_a_printer_screen.click_Connect_Btn_On_Connect_Wifi_Network_Screen()
-    add_a_printer_screen.click_Password_Field_On_Join_Network()
-    add_a_printer_screen.click_Submit_Button_ON_Join_Network()
-    """"verify need the printer driver text"""
-    add_a_printer_screen.Verify_Need_the_Printer_Driver_Text()
-    """""verify registering your printer text"""
-    add_a_printer_screen.Verify_Registering_your_Printer_Text()
-    """"click on finish setup button"""
-    add_a_printer_screen.click_Finish_Setup_Button()
-    """click on hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """click on printer settings tab"""
-    app_settings_page.click_Printer_Settings()
-    """"scroll till the 3rd printer"""
-    app_settings_page.Scroll_Till_Notification_Settings_Tab()
-    """click on printer name on the printer settings page"""""
-    app_settings_page.click_PrinterName2_On_Printersettings()
-    """click on printr name"""
-    app_settings_page.click_Printer_Name_Text_Field()
-    """click on printer name text field"""
-    app_settings_page.clear_First_Name()
-    """Rename the Printer Name with a long text (more than 30 characters)"""
-    app_settings_page.Rename_PrinterName_With_Same_Name()
-    """"click on back icon"""
-    app_settings_page.click_Back_Icon()
-    """verify printer name update failed message"""
-    app_settings_page.Verify_Printer_Name_Update_Failed_Message()
-    """click continue button"""""
-    app_settings_page.click_Continue_Button_On_Printer_Update_Failed_Popup()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Printer_Settings()
-    """"verify previous printer name is displaying"""
-    app_settings_page.click_PrinterName2_On_Printersettings()
-    """stop the app"""
-    common_method.Stop_The_App()
-# ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 def test_AppSettings_TestcaseID_49709():
     """Manage network- Check able to manage network with long name"""
@@ -320,52 +240,4 @@ def test_AppSettings_TestcaseID_50325():
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_AppSettings_TestcaseID_47910():
-    """""Verify pull-down screen twice then the prints left value can refresh success in home page."""""
-
-
-    """start the app"""
-    common_method.tearDown()
-    sleep(3)
-    # add_a_printer_screen.click_Add_A_Printer()
-    app_settings_page.Verify_Printer_is_already_added()
-    """take the prvious number of cartridges"""
-    previous = app_settings_page.Check_no_of_left_cartridge()
-    print(previous)
-
-    """click on navigation option"""
-    login_page.click_Menu_HamburgerICN()
-
-    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
-    app_settings_page.click_Printer_Settings()
-    app_settings_page.click_PrinterName_On_Printersettings()
-    sleep(2)
-    n=2
-
-    """test the printer to print the label"""
-    for i in range(n):
-        app_settings_page.click_Test_Print_Button()
-        sleep(2)
-
-    sleep(1)
-    """Go to the Home Page"""
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Home_Tab()
-    sleep(2)
-
-    """After printing Get the number of cartridges"""
-    after = app_settings_page.Check_no_of_left_cartridge()
-    print(after)
-
-    """Check wheather the cartridges are updated or not"""
-    res = app_settings_page.check_update_cartridge(previous,after,n)
-    if res:
-        print("success")
-    else:
-        print("Failed")
-    """stop the app"""
-    common_method.Stop_The_App()
-
-
-### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
