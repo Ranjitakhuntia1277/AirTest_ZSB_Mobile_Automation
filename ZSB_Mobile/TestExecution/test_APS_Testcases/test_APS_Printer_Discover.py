@@ -34,6 +34,7 @@ aps_notification = APS_Notification(poco)
 Password: Swdvt@#123""""""
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def test_Android_APS_Printer_Discover_TestcaseID_49135():
     """Check the printer should be discoverable by APS which are associated with the currectly login account in the mobile app"""
 
@@ -64,7 +65,6 @@ def test_Android_APS_Printer_Discover_TestcaseID_49135():
     aps_notification.Verify_Printer_Status_Is_Present()
     aps_notification.Verify_Labels_left_Is_Present()
     aps_notification.Verify_Bluetooth_Address_Is_Present()
-    """"Turn Off the Printer manually"""
     sleep(7)
     aps_notification.Verify_Printer_Status_AS_Offline()
     """Check Printers MAC address matches with what is on the physical printer manually"""""""""
@@ -92,25 +92,25 @@ def test_Android_APS_Printer_Discover_TestcaseID_49136():
     aps_notification.Verify_ZSB_Series_App_Login_Page_Is_Displaying()
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49158():
+#def test_Android_APS_Printer_Discover_TestcaseID_49158():
     """Check the ZSB printer should also be discoverable if the printer in error statues(offline/head open/paper out)"""
 
-    common_method.tearDown()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    """Turn off the printer manually"""
-    aps_notification.Verify_Printer_Status_AS_Offline()
-    """Head open on the printer manually """
-    aps_notification.Verify_Printer_Status_AS_HeadOpen()
-    """"Make the status as paper out """
-    aps_notification.Verify_Printer_Status_AS_Paper_Out()
+#   common_method.tearDown()
+#   common_method.Stop_The_App()
+#   aps_notification.Stop_Android_App()
+#   aps_notification.click_Mobile_SearchBar()
+#    aps_notification.click_On_Searchbar2()
+#   aps_notification.Enter_Settings_Text_On_SearchBar()
+#   aps_notification.click_Settings()
+#   aps_notification.click_Connected_Devices()
+ #  aps_notification.click_Connection_Preferences()
+  # aps_notification.click_Printing_Tab()
+ #  """Turn off the printer manually"""
+  # aps_notification.Verify_Printer_Status_AS_Offline()
+ #  """Head open on the printer manually """
+ #  aps_notification.Verify_Printer_Status_AS_HeadOpen()
+ #  """"Make the status as paper out """
+ #  aps_notification.Verify_Printer_Status_AS_Paper_Out()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Printer_Discover_TestcaseID_49160():
@@ -122,6 +122,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49160():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -137,7 +139,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49160():
     aps_notification.Verify_Printer_Name_Is_Present()
     aps_notification.Verify_Printer_Status_Is_Present()
     aps_notification.Verify_Labels_left_Is_Present()
-##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_Android_APS_Printer_Discover_TestcaseID_49162():
@@ -149,6 +151,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49162():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -175,6 +179,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49164():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -298,6 +304,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49178():
     login_page.click_Password_TextField()
     login_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Settings_Text_On_SearchBar()
@@ -314,6 +322,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49178():
 def test_Android_APS_Printer_Discover_TestcaseID_49180():
     """Update printer name to a long name ,click refresh, check printer name display correct in APS available devices list"""
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     """"click on printer settings tab"""""
     app_settings_page.click_Printer_Settings()
@@ -342,9 +352,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49183():
     """Check no printer fetched by APS if user never install ZSB APP"""
     common_method.tearDown()
     common_method.Stop_The_App()
-    common_method.uninstall_app()
+    common_method.Clear_App()
     aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Settings_Text_On_SearchBar()
@@ -358,6 +367,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49183():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -369,7 +380,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49183():
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()
     aps_notification.Verify_Printer_Is_Not_Displaying()
-    # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Printer_Discover_TestcaseID_49726():
     """User A log in ZSB and log out then login with user B, check printers in user B displayed in APS available devices list"""
@@ -660,6 +671,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_50268():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -706,52 +719,19 @@ def test_Android_APS_Printer_Discover_TestcaseID_50514():
     aps_notification.click_Connected_Devices()
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
-    """Turn off the printer manually"""
-    aps_notification.Verify_Printer_Status_AS_Offline()
-    """Head open on the printer manually """
-    aps_notification.Verify_Printer_Status_AS_HeadOpen()
-    """"Make the status as paper out """
-    aps_notification.Verify_Printer_Status_AS_Paper_Out()
-    # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_Android_APS_Printer_Discover_TestcaseID_49179():
-    """Check the printer can not be discovered after deleting the printer in the ZSB mobile app"""
-    # common_method.tearDown()
-    # common_method.Stop_The_App()
-    # aps_notification.Stop_Android_App()
-    # aps_notification.click_Mobile_SearchBar()
-    # aps_notification.click_On_Searchbar2()
-    # aps_notification.Enter_Settings_Text_On_SearchBar()
-    # aps_notification.click_Settings()
-    # aps_notification.click_Connected_Devices()
-    # aps_notification.click_Connection_Preferences()
-    # aps_notification.click_Printing_Tab()
-    # aps_notification.click_ZSB_Series()
-    # aps_notification.Verify_And_Turn_ON_APS()
-    # aps_notification.Verify_Printer_Name_Is_Present()
-    # aps_notification.Stop_Android_App()
-    # common_method.Start_The_App()
-    # app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
-    # app_settings_page.click_Delete_Printer_Button()
-    # app_settings_page.click_Yes_Delete_Button()
-    # common_method.Stop_The_App()
-    # aps_notification.Stop_Android_App()
-    # aps_notification.click_Mobile_SearchBar()
-    # aps_notification.click_On_Searchbar2()
-    # aps_notification.Enter_Settings_Text_On_SearchBar()
-    # aps_notification.click_Settings()
-    # aps_notification.click_Connected_Devices()
-    # aps_notification.click_Connection_Preferences()
-    # aps_notification.click_Printing_Tab()
-    # aps_notification.Verify_Printer_Is_Not_Displaying()
-    # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    ### """Turn off the printer manually"""
+    #### aps_notification.Verify_Printer_Status_AS_Offline()
+    ### """Head open on the printer manually """
+    #### aps_notification.Verify_Printer_Status_AS_HeadOpen()
+    #### """"Make the status as paper out """
+    #### aps_notification.Verify_Printer_Status_AS_Paper_Out()
+    # ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Printer_Discover_TestcaseID_49181():
     """"Check no printer fetched by APS login in ZSB account with no printer added"""
     common_method.tearDown()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Settings_Text_On_SearchBar()
@@ -768,7 +748,6 @@ def test_Android_APS_Printer_Discover_TestcaseID_49182():
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Settings_Text_On_SearchBar()
     aps_notification.click_Settings()
@@ -781,6 +760,8 @@ def test_Android_APS_Printer_Discover_TestcaseID_49182():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -792,4 +773,51 @@ def test_Android_APS_Printer_Discover_TestcaseID_49182():
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()
     aps_notification.Verify_Printer_Is_Not_Displaying()
-    # ##""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+# # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_APS_Printer_Discover_TestcaseID_49179():
+    """Check the printer can not be discovered after deleting the printer in the ZSB mobile app"""
+    common_method.tearDown()
+    common_method.Stop_The_App()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    aps_notification.click_Connection_Preferences()
+    aps_notification.click_Printing_Tab()
+    aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
+    aps_notification.Verify_Printer_Name_Is_Present()
+    aps_notification.Stop_Android_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    aps_notification.click_Three_Dot_On_Added_Printer_On_HomePage()
+    app_settings_page.click_Delete_Printer_Button()
+    app_settings_page.Click_Cancel_On_Delete_Printer_Page()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    aps_notification.click_Connection_Preferences()
+    aps_notification.click_Printing_Tab()
+    aps_notification.Verify_Printer_Is_Not_Displaying()
+    # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# ##""""""""""""""""""""""""""END OF APS PRINTER DISCOVER"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

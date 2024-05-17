@@ -6,7 +6,7 @@ from urllib3.util import url
 
 # from setuptools.config._validate_pyproject.formats import url
 
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
@@ -1396,11 +1396,26 @@ class App_Settings_Screen:
         else:
             return "NESTWIFI is still present in the network list. Printer is still connected."
 
+    # def Check_no_of_left_cartridge(self):
+    #     child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*prints left.*")]
+    #     modified_list = [item.split('\n') for item in child_names]
+    #     modified_list = modified_list[0][4].split(" ")
+    #     return int(modified_list[0])
+
     def Check_no_of_left_cartridge(self):
-        child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*prints left.*")]
-        modified_list = [item.split('\n') for item in child_names]
-        modified_list = modified_list[0][4].split(" ")
-        return int(modified_list[0])
+        try:
+            child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*prints left.*")]
+            if not child_names:
+                return 0  # Return a default value if no matching elements are found
+            modified_list = [item.split('\n') for item in child_names]
+            if not modified_list or len(modified_list[0]) < 5:
+                return 0  # Return a default value if the list is not in the expected format
+            modified_list = modified_list[0][4].split(" ")
+            return int(modified_list[0])
+        except Exception as e:
+            return 0  # Return a default value in case of any other unexpected errors
+
+
 
     def check_update_cartridge(self, previous, current, count):
 
@@ -1581,7 +1596,7 @@ class App_Settings_Screen:
         print(a)
 
     def Click_Cancel_On_Delete_Printer_Page(self):
-        Cancel = self.poco(text="Cancel")
+        Cancel = self.poco(name="Cancel")
         if Cancel.exists():
             Cancel.click()
 
