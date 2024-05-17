@@ -55,6 +55,8 @@ def test_APS_Printing_TestcaseID_49163():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -91,6 +93,7 @@ def test_APS_Printing_TestcaseID_49166():
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
     aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -123,6 +126,8 @@ def test_APS_Printing_TestcaseID_49170():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -150,6 +155,7 @@ def test_APS_Printing_TestcaseID_49186():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -188,6 +194,8 @@ def test_APS_Printing_TestcaseID_49187():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -216,6 +224,8 @@ def test_APS_Printing_TestcaseID_49188():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -244,6 +254,8 @@ def test_APS_Printing_TestcaseID_49189():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -273,6 +285,8 @@ def test_APS_Printing_TestcaseID_49190():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -313,6 +327,8 @@ def test_APS_Printing_TestcaseID_49204():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -340,6 +356,8 @@ def test_APS_Printing_TestcaseID_49204():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -369,6 +387,8 @@ def test_APS_Printing_TestcaseID_49778():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -388,6 +408,7 @@ def test_APS_Printing_TestcaseID_49778():
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
     aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PNG_Image_File_From_The_List()
@@ -400,54 +421,7 @@ def test_APS_Printing_TestcaseID_49778():
     aps_notification.click_Available_Printer_To_Print()
     aps_notification.click_Print_Icon_Option()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-    # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    # #""""""""""""""""""Google drive""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_APS_Printing_TestcaseID_49779():
-    """Check print service shall support all printable forms and can print out success from One Drive (image,pdf)"""
-    """"Setup:
-    Pre-condition:
-    Install ZSB app and user has logged in with at least added a printer
-    2. ZSB Series in APS settings is ON"""""
-
-    common_method.tearDown()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Drive_On_Searchbar()
-    aps_notification.click_Drive_Folder()
-    aps_notification.click_Mobile_Footer_Back_Icon()
-    aps_notification.click_Google_Drive_SearchBar2()
-    aps_notification.click_PDF_File_From_The_Google_DriveList()
-    aps_notification.click_Suggestion_PDF_File_From_Drive()
-    aps_notification.click_ON_Three_Dot_Next_To_Drive_PDF()
-    poco.scroll()
-    aps_notification.click_Print_Option()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.Verify_Print_job_sent_successfully_Message()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Drive_On_Searchbar()
-    aps_notification.click_Drive_Folder()
-    aps_notification.click_Mobile_Footer_Back_Icon()
-    aps_notification.click_Google_Drive_SearchBar2()
-    aps_notification.click_JPG_Image_File_From_The_Google_DriveList()
-    aps_notification.click_ON_Three_Dot_Next_To_Drive_PDF()
-    aps_notification.click_ON_Three_Dot_To_Print()
-    poco.scroll()
-    aps_notification.click_Print_Option()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.Verify_Print_job_sent_successfully_Message()
-    # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def test_APS_Printing_TestcaseID_51379():
     """Check the first-time print PDF, then second time print it by another printer and cancel the print job"""
     """Pre-condition:
@@ -463,6 +437,8 @@ def test_APS_Printing_TestcaseID_51379():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -475,12 +451,10 @@ def test_APS_Printing_TestcaseID_51379():
     aps_notification.click_All_Printers()
     aps_notification.click_Available_Printer_To_Print()
     aps_notification.click_Print_Icon_Option()
+    aps_notification.click_On_OK_Button_On_The_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-    """""need to execute"""
-    """"Add a new printer and Cover Open on the printer B manually"""
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer2_To_Print()
+    aps_notification.click_ON_Three_Dot()
+    aps_notification.click_Print_Option()
     aps_notification.click_Print_Icon_Option()
     aps_notification.click_On_Cancel_Btn_On_The_Popup()
     aps_notification.Verify_Job_Is_Cancelled()
@@ -501,6 +475,8 @@ def test_APS_Printing_TestcaseID_51380():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -516,10 +492,6 @@ def test_APS_Printing_TestcaseID_51380():
     aps_notification.Verify_Print_job_sent_successfully_Message()
     aps_notification.click_ON_Three_Dot()
     aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
     aps_notification.click_Expand_Icon()
     aps_notification.click_And_Enter_50_Copies_Number_Field()
     aps_notification.click_Expand_Icon()
@@ -527,9 +499,7 @@ def test_APS_Printing_TestcaseID_51380():
     aps_notification.click_On_Cancel_Btn_On_The_Popup()
     aps_notification.Verify_Job_Is_Cancelled()
 
-
-
-    # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_APS_Printing_TestcaseID_51383():
     """Check cancel different print jobs (image/pdf/txt) when printer is media out/cover open"""
@@ -546,6 +516,8 @@ def test_APS_Printing_TestcaseID_51383():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -559,14 +531,6 @@ def test_APS_Printing_TestcaseID_51383():
     aps_notification.click_Available_Printer_To_Print()
     aps_notification.click_Print_Icon_Option()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-    """""need to execute"""
-    """"Add a new printer and Cover Open on the printer B manually"""
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer2_To_Print()
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.click_On_Cancel_Btn_On_The_Popup()
-    aps_notification.Verify_Job_Is_Cancelled()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def test_APS_Printing_TestcaseID_51384():
     """	Check cancel same print job at least two times when printer status is cover open"""
@@ -583,6 +547,8 @@ def test_APS_Printing_TestcaseID_51384():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -595,12 +561,10 @@ def test_APS_Printing_TestcaseID_51384():
     aps_notification.click_All_Printers()
     aps_notification.click_Available_Printer_To_Print()
     aps_notification.click_Print_Icon_Option()
+    aps_notification.click_On_OK_Button_On_The_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-    """""need to execute"""
-    """"Add a new printer and Cover Open on the printer B manually"""
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer2_To_Print()
+    aps_notification.click_ON_Three_Dot()
+    aps_notification.click_Print_Option()
     aps_notification.click_Print_Icon_Option()
     aps_notification.click_On_Cancel_Btn_On_The_Popup()
     aps_notification.Verify_Job_Is_Cancelled()
@@ -622,6 +586,7 @@ def test_APS_Printing_TestcaseID_51614():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -669,6 +634,7 @@ def test_APS_Printing_TestcaseID_51618():
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
     aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -710,6 +676,7 @@ def test_APS_Printing_TestcaseID_49144():
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
     aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -728,6 +695,7 @@ def test_APS_Printing_TestcaseID_49144():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -755,6 +723,7 @@ def test_APS_Printing_TestcaseID_49157():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    app_settings_page.click_Keyboard_back_Icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -772,7 +741,6 @@ def test_APS_Printing_TestcaseID_49157():
     aps_notification.click_Expand_Icon()
     aps_notification.click_Print_Icon_Option()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-    """""""""need to execute"""""""""
     aps_notification.Verify_Print_job_IS_IN_Progress_Message()
     aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
     ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -790,6 +758,8 @@ def test_APS_Printing_TestcaseID_49161():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -805,4 +775,51 @@ def test_APS_Printing_TestcaseID_49161():
     """"Check the preview page and the label would be re-sized in the preview page"""""""
     aps_notification.click_Print_Icon_Option()
     """Verify the print Manually"""
-    # ##""""""""""""""""""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# ##""""""""""""""""""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+ # #""""""""""""""""""Google drive""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_APS_Printing_TestcaseID_49779():
+    """Check print service shall support all printable forms and can print out success from One Drive (image,pdf)"""
+    """"Setup:
+    Pre-condition:
+    Install ZSB app and user has logged in with at least added a printer
+    2. ZSB Series in APS settings is ON"""""
+
+    common_method.tearDown()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Drive_On_Searchbar()
+    aps_notification.click_Drive_Folder()
+    aps_notification.click_Mobile_Footer_Back_Icon()
+    aps_notification.click_Google_Drive_SearchBar2()
+    aps_notification.click_PDF_File_From_The_Google_DriveList()
+    aps_notification.click_Suggestion_PDF_File_From_Drive()
+    aps_notification.click_ON_Three_Dot_To_Print()
+    poco.scroll()
+    aps_notification.click_Google_Drive_Print_Option()
+    aps_notification.click_Save_AS_PDF()
+    aps_notification.click_All_Printers()
+    aps_notification.click_Available_Printer_To_Print()
+    aps_notification.click_Print_Icon_Option()
+    aps_notification.Verify_Print_job_sent_successfully_Message()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PDF_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    aps_notification.click_Print_Option()
+    aps_notification.Verify_Print_job_sent_successfully_Message()
+    # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# ###""""""""""""""""""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

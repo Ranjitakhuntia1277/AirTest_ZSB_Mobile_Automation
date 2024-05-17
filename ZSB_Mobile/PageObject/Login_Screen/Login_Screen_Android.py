@@ -61,13 +61,10 @@ class Login_Screen:
             print("Login button is not present, , proceeding with the next part of the code.")
 
     def click_Loginwith_Google(self):
-        sleep(5)
-        google_login = self.poco(self.Google_Login)
-        if google_login.exists():
-           google_login.click()
-           sleep(15)
-        else:
-           print("Google login option is not present, , proceeding with the next part of the code.")
+        sleep(20)
+        self.poco(text="Continue with Google").click()
+        sleep(12)
+
 
     def Loginwith_Added_Email_Id(self):
         sleep(4)
@@ -192,7 +189,7 @@ class Login_Screen:
     def click_SignIn_Button(self):
         sleep(1)
         self.poco("android.widget.Button")[1].click()
-        sleep(9)
+        sleep(10)
 
     def Check_loginBtn_IS_Present(self):
         sleep(5)

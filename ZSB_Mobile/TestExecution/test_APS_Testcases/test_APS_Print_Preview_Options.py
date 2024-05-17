@@ -34,20 +34,10 @@ aps_notification = APS_Notification(poco)
 Password: Swdvt@#123""""""
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49141():
+def test_Android_APS_Print_Preview_TestcaseID_49141():
     """Check the print options in the printing page when sharing a file to print and selecting the ZSB printer"""
 
     common_method.tearDown()
-    common_method.Stop_The_App()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -79,7 +69,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49141():
     aps_notification.Verify_Print_job_sent_successfully_Message()
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49142():
+def test_Android_APS_Print_Preview_TestcaseID_49142():
     """Check it works that APS can print 1 copy 1 page of the supported shared file with default settings"""
 
     common_method.tearDown()
@@ -116,7 +106,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49142():
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_Android_APS_Printer_Discover_TestcaseID_49146():
+def test_Android_APS_Print_Preview_TestcaseID_4914649146():
     """Check the multiple copies can be printed in APS"""
 
     common_method.tearDown()
@@ -152,7 +142,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49146():
     print(after)
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49147():
+def test_Android_APS_Print_Preview_TestcaseID_49147():
     """Check the user can set the printing range in the preview page in APS"""
 
     common_method.tearDown()
@@ -162,8 +152,6 @@ def test_Android_APS_Printer_Discover_TestcaseID_49147():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
@@ -182,7 +170,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49147():
 
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49148():
+def test_Android_APS_Print_Preview_TestcaseID_49148():
     """Check the cropped option works when printing in APS"""
 
     common_method.tearDown()
@@ -212,9 +200,9 @@ def test_Android_APS_Printer_Discover_TestcaseID_49148():
     aps_notification.click_Print_Icon_Option()
     aps_notification.click_OK_On_Confirmation_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-#     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49149():
+def test_Android_APS_Print_Preview_TestcaseID_49149():
     """Check the Rotation option works when printing in APS"""
 
     common_method.tearDown()
@@ -251,7 +239,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49149():
     aps_notification.Verify_Print_job_sent_successfully_Message()
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49150():
+def test_Android_APS_Print_Preview_TestcaseID_49150():
     """Check the Print in Color vs. Print in Black and White printing option"""
 
     common_method.tearDown()
@@ -279,7 +267,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49150():
     aps_notification.click_Expand_Icon()
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49151():
+def test_Android_APS_Print_Preview_TestcaseID_49151():
     """Check the Single or Double Sided printing option"""
     common_method.tearDown()
     common_method.Stop_The_App()
@@ -306,7 +294,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49151():
     aps_notification.click_Expand_Icon()
     # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49152():
+def test_Android_APS_Print_Preview_TestcaseID_49152():
     """	Check the Scaling Percentage option disabled in printing for APS"""
     common_method.tearDown()
     common_method.Stop_The_App()
@@ -333,7 +321,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49152():
     aps_notification.click_Expand_Icon()
 #     ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49153():
+def test_Android_APS_Print_Preview_TestcaseID_49153():
     """Check the printer dropdown list works and can change the printer to print"""
 
     common_method.tearDown()
@@ -367,7 +355,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49153():
     aps_notification.Verify_PaperSize()
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49154():
+def test_Android_APS_Print_Preview_TestcaseID_49154():
     """Check the paper size in print options displayed correctly and can be updated"""
 
     common_method.tearDown()
@@ -406,7 +394,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49154():
     aps_notification.click_OK_On_Confirmation_Popup()
     # ######""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49159():
+def test_Android_APS_Print_Preview_TestcaseID_49159():
     """Check it works that APS can print 1 copy with multiple pages of the supported shared file with default settings"""
 
     common_method.tearDown()
@@ -442,7 +430,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49159():
     print(after)
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49165():
+def test_Android_APS_Print_Preview_TestcaseID_49165():
     """	Check inputting the invalid copies in print option"""
 
     common_method.tearDown()
@@ -474,7 +462,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49165():
     aps_notification.Verify_Print_job_sent_successfully_Message()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49173():
+def test_Android_APS_Print_Preview_TestcaseID_49173():
     """	Check it can not print when inputting out of page range in the printing page"""
     common_method.tearDown()
     common_method.Stop_The_App()
@@ -499,12 +487,11 @@ def test_Android_APS_Printer_Discover_TestcaseID_49173():
     aps_notification.click_Expand_Icon()
     aps_notification.click_All_Arrow_Mark()
     aps_notification.Select_Range_Of_Option()
-    aps_notification.Select_Start_Page_Number()
-    aps_notification.Select_End_Page_Number()
+    aps_notification.Select_Start_And_End_Page_Number()
     aps_notification.Verify_Cannot_Select_Greater_than_Maximunpage()
 #     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49174():
+def test_Android_APS_Print_Preview_TestcaseID_49174():
     """Check it can print when selecting the custom range in the printing page"""
 
     common_method.tearDown()
@@ -535,9 +522,6 @@ def test_Android_APS_Printer_Discover_TestcaseID_49174():
     aps_notification.click_Print_Icon_Option()
     aps_notification.click_OK_On_Confirmation_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
     aps_notification.click_Expand_Icon()
     aps_notification.click_All_Arrow_Mark()
     aps_notification.Select_Range_Of_Option()
@@ -549,7 +533,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49174():
     """""Verify Print results manually"""
 #     ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49191():
+def test_Android_APS_Print_Preview_TestcaseID_49191():
     """Printer field is displayed the last selected printer name on print preview page when ever selected a printer"""
 
     common_method.tearDown()
@@ -598,7 +582,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49191():
     aps_notification.Verify_Print_job_sent_successfully_Message()
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49725():
+def test_Android_APS_Print_Preview_TestcaseID_49725():
     """Verify the Print Preview layout gets updated as per the Orientation set"""
 
     common_method.tearDown()
@@ -633,22 +617,25 @@ def test_Android_APS_Printer_Discover_TestcaseID_49725():
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_Android_APS_Printer_Discover_TestcaseID_49786():
+def test_Android_APS_Print_Preview_TestcaseID_49786():
     """Printer field is displayed "Select a Printer" when have not select a printer ever on print preview page"""
     common_method.tearDown()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Drive_On_Searchbar()
-    aps_notification.click_Drive_Folder()
-    aps_notification.click_Mobile_Footer_Back_Icon()
-    aps_notification.click_Google_Drive_SearchBar2()
-    aps_notification.click_JPG_Image_File_From_The_Google_DriveList()
-    aps_notification.click_ON_Three_Dot_Next_To_Drive_PDF()
-    aps_notification.click_ON_Three_Dot_To_Print()
-    poco.scroll()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PDF_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
     aps_notification.click_Print_Option()
+    aps_notification.Verify_Print_Review_Page()
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()
     aps_notification.click_Available_Printer_To_Print()
@@ -656,8 +643,9 @@ def test_Android_APS_Printer_Discover_TestcaseID_49786():
     aps_notification.Verify_Print_job_sent_successfully_Message()
     # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Android_APS_Printer_Discover_TestcaseID_49790():
+def test_Android_APS_Print_Preview_TestcaseID_49790():
     """Check print failed when turn off APS ZSB series at print preview page"""
+
     common_method.tearDown()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
@@ -668,10 +656,10 @@ def test_Android_APS_Printer_Discover_TestcaseID_49790():
     aps_notification.click_Mobile_Footer_Back_Icon()
     aps_notification.click_Google_Drive_SearchBar2()
     aps_notification.click_JPG_Image_File_From_The_Google_DriveList()
-    aps_notification.click_ON_Three_Dot_Next_To_Drive_PDF()
+    aps_notification.click_Suggestion_PDF_File_From_Drive()
     aps_notification.click_ON_Three_Dot_To_Print()
     poco.scroll()
-    aps_notification.click_Print_Option()
+    aps_notification.click_Google_Drive_Print_Option()
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()
     aps_notification.click_Available_Printer_To_Print()
@@ -693,13 +681,24 @@ def test_Android_APS_Printer_Discover_TestcaseID_49790():
     aps_notification.click_Mobile_Footer_Back_Icon()
     aps_notification.click_Google_Drive_SearchBar2()
     aps_notification.click_JPG_Image_File_From_The_Google_DriveList()
-    aps_notification.click_ON_Three_Dot_Next_To_Drive_PDF()
+    aps_notification.click_Suggestion_PDF_File_From_Drive()
     aps_notification.click_ON_Three_Dot_To_Print()
     poco.scroll()
-    aps_notification.click_Print_Option()
+    aps_notification.click_Google_Drive_Print_Option()
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()
     aps_notification.Printer_Is_Not_Displaying()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    aps_notification.click_Connection_Preferences()
+    aps_notification.click_Printing_Tab()
+    aps_notification.click_ZSB_Series()
+    aps_notification.Verify_And_Turn_ON_APS()
+    aps_notification.Stop_Android_App()
 
 #    #######""""""""""""""""""""END""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
