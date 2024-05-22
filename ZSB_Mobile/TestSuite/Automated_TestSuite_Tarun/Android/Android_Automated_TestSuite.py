@@ -1,6 +1,6 @@
 import os
 import pytest
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
 # Define the paths to your test files
 # test_files = [

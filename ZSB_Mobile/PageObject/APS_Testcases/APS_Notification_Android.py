@@ -9,7 +9,7 @@ from airtest.core.api import sleep
 
 # from setuptools.config._validate_pyproject.formats import url
 
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 import os

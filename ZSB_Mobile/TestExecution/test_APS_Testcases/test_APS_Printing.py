@@ -1,17 +1,22 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-from ZSB_Mobile.PageObject.Others import Others
+# from ZSB_Mobile.Common_Method import Common_Method
+# from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+# from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+# from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+# from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...PageObject.Others import Others
 from airtest.cli.parser import cli_setup
 
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 class Android_APS_Printing:
     pass
@@ -51,6 +56,8 @@ def test_APS_Printing_TestcaseID_49163():
     common_method.tearDown()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()

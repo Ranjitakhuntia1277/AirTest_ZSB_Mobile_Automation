@@ -47,6 +47,7 @@ def test_AppSettings_TestcaseID_47918():
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
     """for the first installation click on the zsb series popup"""
     login_page.click_Allow_ZSB_Series_Popup()
     """Relaunch the app"""
@@ -71,11 +72,18 @@ def test_AppSettings_TestcaseID_49665():
     """"WIFI should not be connected in wifi section under printer name"""
 
     #
-
-    """start the app"""
     common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    """ Allow pop up before login for the fresh installation"""
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    """for the first installation click on the zsb series popup"""
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     """click on hamburger menu"""
     login_page.click_Menu_HamburgerICN()
     """"click printer settings tab"""
@@ -95,9 +103,10 @@ def test_AppSettings_TestcaseID_49665():
     app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
     """""click continue button on connection failed popup"""
     app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
+    add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+    add_a_printer_screen.click_Bluetooth_pairing_Popup2()
     """"click on manage networks button"""
     app_settings_page.click_Manage_Networks_Btn()
-    app_settings_page.click_Keyboard_back_Icon()
     """stop the app"""
     common_method.Stop_The_App()
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -188,7 +197,7 @@ def test_AppSettings_TestcaseID_45689():
     sleep(3)
     app_settings_page.check_Change_Modern_Theme()
     sleep(3)
-    # """""click save & exit button"""
+    """""click save & exit button"""
     app_settings_page.click_Save_Exit_Btn()
     sleep(3)
     app_settings_page.Home_text_is_present_on_homepage()
@@ -271,15 +280,15 @@ def test_AppSettings_TestcaseID_45691():
     """""Check whether App is installed or not"""
 
     """"start the app"""""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Three_Dot_On_Workspace()
-    app_settings_page.click_Edit_Txt()
-    sleep(2)
-    """""verify the Edit workspace text"""
-    app_settings_page.get_text_Edit_Workspace()
+    # common_method.tearDown()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_Menu_HamburgerICN()
+    # app_settings_page.click_Three_Dot_On_Workspace()
+    # app_settings_page.click_Edit_Txt()
+    # sleep(2)
+    # """""verify the Edit workspace text"""
+    # app_settings_page.get_text_Edit_Workspace()
     """""""click upload photo"""""""
     app_settings_page.click_upload_photo()
     sleep(2)
@@ -588,6 +597,7 @@ def test_AppSettings_TestcaseID_47825():
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     sleep(3)
     """"verify delete account pop up message"""
@@ -796,6 +806,44 @@ def test_AppSettings_TestcaseID_47917():
 
 ## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_AppSettings_TestcaseID_50333():
+    """Android only- Check it will back to manage network after clicking device’s back button"""""
+
+    """"App should be in logged in condition & printer should be added"""""
+
+
+    """"start the app"""""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on the printer settings tab"""
+    app_settings_page.click_Printer_Settings()
+    """click on the printer name"""
+    app_settings_page.click_PrinterName_On_Printersettings()
+    """"click on the wifi tab"""
+    app_settings_page.click_wifi_tab()
+    """click on the Manage network button"""
+    app_settings_page.click_Manage_Networks_Btn()
+    """"verify bluetooth connection required text"""
+    app_settings_page.get_text_Bluetooth_connection_required_Txt()
+    """click on keyboard back icon"""
+    app_settings_page.click_Keyboard_back_Icon()
+    """""Due to bug id SMBM-2243, step 5 is blocked"""
+    """Turn off printer Manually"""
+    """"verify bluetooth connection failed pop up"""
+    app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
+    """""click keyboard back icon"""
+    app_settings_page.click_Keyboard_back_Icon()
+    """"verify wifi tab & text is present"""
+    app_settings_page.Verify_Wifi_Tab_Text()
+    """stop the app"""
+    common_method.Stop_The_App()
+#
+### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 def test_AppSettings_TestcaseID_47923():
     """Verify changing password should log out all clients."""
 
@@ -857,8 +905,6 @@ def test_AppSettings_TestcaseID_47956():
 
 
 
-
-
 def test_AppSettings_TestcaseID_45688():
     """""""""Verify Wifi Settings"""""
 
@@ -872,21 +918,6 @@ def test_AppSettings_TestcaseID_45688():
     login_page.click_LoginAllow_Popup()
     """""for the first installation click on the zsb series popup"""
     login_page.click_Allow_ZSB_Series_Popup()
-    """""""""click on the login button"""""""""""
-    login_page.click_loginBtn()
-    sleep(2)
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """""""select the login with google option"""""""""
-    login_page.click_Loginwith_Google()
-    login_page.click_GooglemailId()
-    login_page.Enter_Google_UserID()
-    # app_settings_page.click_Keyboard_back_Icon()
-    login_page.click_Emailid_Nextbtn()
-    sleep(2)
-    login_page.click_Password_Nextbtn()
-    sleep(9)
-    """""""click on the left hamburger menu on the home page"""""""""
     login_page.click_Menu_HamburgerICN()
     """""click on the printer settings tab"""
     app_settings_page.click_Printer_Settings()
@@ -985,83 +1016,6 @@ def test_AppSettings_TestcaseID_49961():
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_AppSettings_TestcaseID_50031():
-    """Check the error message prompted when print test page and printer head open or offline"""
-
-
-
-    """printer should be online"""
-    """start the app"""
-    common_method.tearDown()
-    sleep(3)
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """"verify home text is displaying on the home screen"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on printer settings tab"""""
-    app_settings_page.click_Printer_Settings()
-    """"click on printer name on printer settings page"""
-    app_settings_page.click_PrinterName_On_Printersettings()
-    """verify printer name text"""
-    app_settings_page.Verify_Printer_Name_Text()
-    """click test print button"""
-    app_settings_page.click_Test_Print_Button()
-    """"Verify Printed successfully text"""
-    app_settings_page.Verify_Printed_Successfully_Text()
-    """click test print button"""
-    app_settings_page.click_Test_Print_Button()
-    """"Open the printer cover manually"""
-    """""verify error message of cover open"""
-    app_settings_page.Verify_ErrorMessage_Text()
-    """""Cover close on the printer manually"""""
-    """"click on test print"""
-    app_settings_page.click_Test_Print_Button()
-    """"Verify Printed successfully text"""
-    app_settings_page.Verify_Printed_Successfully_Text()
-    """stop the app"""
-    common_method.Stop_The_App()
-
-
-## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_AppSettings_TestcaseID_50333():
-    """Android only- Check it will back to manage network after clicking device’s back button"""""
-
-    """"App should be in logged in condition & printer should be added"""""
-
-
-    """"start the app"""""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on the printer settings tab"""
-    app_settings_page.click_Printer_Settings()
-    """click on the printer name"""
-    app_settings_page.click_PrinterName_On_Printersettings()
-    """"click on the wifi tab"""
-    app_settings_page.click_wifi_tab()
-    """click on the Manage network button"""
-    app_settings_page.click_Manage_Networks_Btn()
-    """"verify bluetooth connection required text"""
-    app_settings_page.get_text_Bluetooth_connection_required_Txt()
-    """click on keyboard back icon"""
-    app_settings_page.click_Keyboard_back_Icon()
-    """""Due to bug id SMBM-2243, step 5 is blocked"""
-    """Turn off printer Manually"""
-    """"verify bluetooth connection failed pop up"""
-    app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
-    """""click keyboard back icon"""
-    app_settings_page.click_Keyboard_back_Icon()
-    """"verify wifi tab & text is present"""
-    app_settings_page.Verify_Wifi_Tab_Text()
-    """stop the app"""
-    common_method.Stop_The_App()
-#
-### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_51702():
     """Check the UI of toggle buttons on Notification Settings""""""
@@ -1124,6 +1078,37 @@ def test_AppSettings_TestcaseID_51702():
 
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#
+def test_AppSettings_TestcaseID_51788():
+    """""Sign in with existing Non-Zebra User Account, then sign out"""
+
+    """"App should be in logged in condition & printer should be added"""""
+
+
+    """"start the app"""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """"click on the hamburger menu icon"""
+    login_page.click_Menu_HamburgerICN()
+    """click on the pen icon"""
+    app_settings_page.click_pen_Icon_near_UserName()
+    """"scroll till delete account """
+    app_settings_page.Scroll_till_Delete_Account()
+    """click on logout """
+    app_settings_page.click_Logout_Btn()
+    """"click on login page"""
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    sleep(2)
+    """verify home text is present on home page"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """stop the app"""
+    common_method.Stop_The_App()
+# ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_51705():
     """Check clicking the photo taken by camera will not affect uploading photo as user avatar""""""
@@ -1156,36 +1141,6 @@ def test_AppSettings_TestcaseID_51705():
     common_method.Stop_The_App()
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-def test_AppSettings_TestcaseID_51788():
-    """""Sign in with existing Non-Zebra User Account, then sign out"""
-
-    """"App should be in logged in condition & printer should be added"""""
-
-
-    """"start the app"""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """"click on the hamburger menu icon"""
-    login_page.click_Menu_HamburgerICN()
-    """click on the pen icon"""
-    app_settings_page.click_pen_Icon_near_UserName()
-    """"scroll till delete account """
-    app_settings_page.Scroll_till_Delete_Account()
-    """click on logout """
-    app_settings_page.click_Logout_Btn()
-    """"click on login page"""
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.Loginwith_Added_Email_Id()
-    sleep(2)
-    """verify home text is present on home page"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """stop the app"""
-    common_method.Stop_The_App()
-# ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_47924():
     """Verify Should not allow same printer name in all the clients.."""
@@ -1243,7 +1198,7 @@ def test_AppSettings_TestcaseID_47910():
     """start the app"""
     common_method.tearDown()
     sleep(3)
-    # add_a_printer_screen.click_Add_A_Printer()
+    ### add_a_printer_screen.click_Add_A_Printer()
     app_settings_page.Verify_Printer_is_already_added()
     """take the prvious number of cartridges"""
     previous = app_settings_page.Check_no_of_left_cartridge()

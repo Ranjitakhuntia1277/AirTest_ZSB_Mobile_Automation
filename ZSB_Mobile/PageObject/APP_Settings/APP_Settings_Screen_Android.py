@@ -20,6 +20,7 @@ class App_Settings_Screen:
         self.PrinterName_In_Printer_Settings = "ZSB-DP12\nTab 2 of 2"
         self.PrinterName1_In_Printer_Settings = "ZSB-DP12\nTab 2 of 3"
         self.PrinterName2_In_Printer_Settings = "ZSB-DP12 (1)\nTab 3 of 3"
+        self.PrinterName3_In_Printer_Settings = "ZSB-DP12 (1)\nTab 2 of 4"
         self.WiFi_Tab = "Wi-Fi\nTab 2 of 2"
         self.Current_Network_Txt = "Current Networks"
         self.Network_Name_Txt = "NESTWIFI"
@@ -35,7 +36,8 @@ class App_Settings_Screen:
         self.Test_Print_Btn = "Test Print"
         self.Continue_Btn_on_Bluetooth_Connection_Failed_popup = "Continue"
         self.Cancel_Btn_n_Bluetooth_Connection_Failed_Popup = "Cancel"
-        self.Red_Icon_to_remove_network = Template(r"tpl1704879780106.png", record_pos=(0.424, 0.164), resolution=(1080, 2400))
+        self.Red_Icon_to_remove_network = Template(r"tpl1704879780106.png", record_pos=(0.424, 0.164),
+                                                   resolution=(1080, 2400))
         self.Add_Network = "Add Network"
         self.Add_Network_Txt = "Add Network"
         self.Deleted_Network = "Zebra"
@@ -149,16 +151,37 @@ class App_Settings_Screen:
         sleep(2)
         enter_google_password.set_text("Swdvt@#123")
 
+    # def click_PrinterName_On_Printersettings(self):
+    #     sleep(3)
+    #     printerName = self.poco(self.PrinterName_In_Printer_Settings)
+    #     printername1 = self.poco(self.PrinterName1_In_Printer_Settings)
+    #
+    #     if printerName.exists():
+    #         printerName.click()
+    #     else:
+    #         printername1.exists()
+    #         printername1.click()
+    #         sleep(3)
+
     def click_PrinterName_On_Printersettings(self):
         sleep(3)
         printerName = self.poco(self.PrinterName_In_Printer_Settings)
-        printername1 = self.poco(self.PrinterName1_In_Printer_Settings)
+        printerName1 = self.poco(self.PrinterName1_In_Printer_Settings)
+        printerName2 = self.poco(self.PrinterName2_In_Printer_Settings)
+        printerName3 = self.poco(self.PrinterName3_In_Printer_Settings)
+
         if printerName.exists():
             printerName.click()
+        elif printerName1.exists():
+            printerName1.click()
+        elif printerName2.exists():
+            printerName2.click()
+        elif printerName3.exists():
+            printerName3.click()
         else:
-            printername1.exists()
-            printername1.click()
-            sleep(3)
+            print("No printer names found.")
+
+        sleep(3)
 
     def click_PrinterName2_On_Printersettings(self):
         sleep(3)
@@ -170,7 +193,6 @@ class App_Settings_Screen:
             printername1.exists()
             printername1.click()
             sleep(3)
-
 
     def click_wifi_tab(self):
         sleep(1)
@@ -440,6 +462,7 @@ class App_Settings_Screen:
             print("Electic theme RadioButton not found. Test continues...")
 
     def click_Save_Exit_Btn(self):
+        sleep(2)
         save_exit = self.poco(self.Save_Exit_Btn)
         save_exit.click()
 
@@ -661,15 +684,17 @@ class App_Settings_Screen:
 
     def click_First_Image(self):
         Search_Bar2 = self.poco(self.Search_Bar2)
-        Search_Bar2.set_text(" ")
-        sleep(1)
-        Search_Bar2.set_text("jpg")
-        sleep(3)
+        if Search_Bar2.exists():
+            Search_Bar2.set_text(" ")
+            sleep(1)
+            Search_Bar2.set_text("jpg")
+            sleep(3)
 
     def click_JPG_ON_Result(self):
         jpg_ON_Result = self.poco(self.JPG_ON_Result)
-        jpg_ON_Result.click()
-        sleep(3)
+        if jpg_ON_Result.exists():
+           jpg_ON_Result.click()
+           sleep(3)
 
     def click_Remove_Image(self):
         sleep(2)
@@ -707,8 +732,6 @@ class App_Settings_Screen:
         if keyboard_back_icon.exists():
             keyboard_back_icon.click()
 
-        else:
-            pass
 
     def Verify_SaveExit_Option_Is_Not_There(self):
 
@@ -1414,8 +1437,6 @@ class App_Settings_Screen:
             return int(modified_list[0])
         except Exception as e:
             return 0  # Return a default value in case of any other unexpected errors
-
-
 
     def check_update_cartridge(self, previous, current, count):
 

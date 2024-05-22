@@ -7,7 +7,7 @@ from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Setti
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
 from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
 from poco import poco
-from ZSB_Mobile.Conftest import Conftest
+# from ZSB_Mobile.conftest import Conftest
 from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
 import pytest
 

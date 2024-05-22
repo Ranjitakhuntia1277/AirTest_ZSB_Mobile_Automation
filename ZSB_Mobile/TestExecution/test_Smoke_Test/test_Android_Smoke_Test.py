@@ -1,18 +1,18 @@
-import sys
-sys.path.append(r'C:\Users\rk1277\Desktop\ZSB_Automation')
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
+import sys
+import os
+from airtest.core.api import connect_device
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-
-
+from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+import pytest
 
 class Android_Smoke_Test:
     pass
@@ -73,8 +73,8 @@ def test_Smoke_Test_TestcaseID_45876():
     """start the app"""""
     common_method.tearDown()
     common_method.Stop_The_App()
-    # common_method.uninstall_app()
-    # common_method.install_Older_app()
+    # ##common_method.uninstall_app()
+    # ##common_method.install_Older_app()
     common_method.Clear_App()
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
