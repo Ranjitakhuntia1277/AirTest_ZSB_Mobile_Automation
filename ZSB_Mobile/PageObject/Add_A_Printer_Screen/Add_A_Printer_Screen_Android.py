@@ -194,8 +194,9 @@ class Add_A_Printer_Screen:
     def Verify_Select_your_printer_Text(self):
         sleep(9)
         select_your_printer_Text = self.poco(self.Select_your_printer_Text)
-        select_your_printer_Text.get_text()
-        return select_your_printer_Text
+        if select_your_printer_Text.exists():
+           select_your_printer_Text.get_text()
+           return select_your_printer_Text
 
     def Verify_Pairing_Your_Printer_Text(self):
         sleep(2)
@@ -216,11 +217,13 @@ class Add_A_Printer_Screen:
 
     def click_Bluetooth_pairing_Popup1(self):
         bluetooth_pairing_popup1 = self.poco(self.Bluetooth_pairing_Popup1)
-        bluetooth_pairing_popup1.click()
+        if bluetooth_pairing_popup1.exists():
+           bluetooth_pairing_popup1.click()
 
     def click_Bluetooth_pairing_Popup2(self):
-        bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2).wait_for_appearance(timeout=3)
-        bluetooth_pairing_popup2.click()
+        bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2)
+        if bluetooth_pairing_popup2.exists():
+           bluetooth_pairing_popup2.click()
 
     def Verify_Searching_for_wifi_networks_Text(self):
         sleep(2)

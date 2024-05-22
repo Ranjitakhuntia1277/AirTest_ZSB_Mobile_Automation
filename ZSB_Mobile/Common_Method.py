@@ -1128,3 +1128,4 @@ class Common_Method():
             os.system('adb shell svc wifi enable')  # turn off Wi-Fi
         except Exception as e:
             pass
+

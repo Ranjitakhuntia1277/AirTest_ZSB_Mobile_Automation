@@ -3,14 +3,15 @@ from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # from setuptools import logging
 from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+
 import pytest
 from airtest.core.api import connect_device
 
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
@@ -272,6 +273,17 @@ def test_Android_APS_Printer_Discover_TestcaseID_49177():
     aps_notification.click_Printing_Tab()
     aps_notification.click_ZSB_Series()
     aps_notification.Verify_And_Turn_ON_APS()
+    aps_notification.Verify_Printer_Name_Is_Present()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    aps_notification.click_Connection_Preferences()
+    aps_notification.click_Printing_Tab()
+    aps_notification.click_ZSB_Series()
     aps_notification.Verify_Printer_Name_Is_Present()
     common_method.Stop_The_App()
 

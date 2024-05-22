@@ -1,15 +1,14 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-from ZSB_Mobile.PageObject.Others import Others
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...PageObject.Others import Others
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 
 class Android_APS_Notification:
@@ -19,9 +18,9 @@ class Android_APS_Notification:
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
 connect_device("Android:///")
-start_app("com.zebra.soho_app")
-stop_app("com.zebra.soho_app")
-sleep(2.0)
+# start_app("com.zebra.soho_app")
+# stop_app("com.zebra.soho_app")
+# sleep(2.0)
 
 """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
 login_page = Login_Screen(poco)

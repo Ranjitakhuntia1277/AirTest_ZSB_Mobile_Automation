@@ -28,6 +28,7 @@ add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 
+"""""""""""""""""""""""Change Password part needs to be verified manually"""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_47913():
     """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
@@ -89,6 +90,48 @@ def test_AppSettings_TestcaseID_47913():
     common_method.Stop_The_App()
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_AppSettings_TestcaseID_50031():
+    """Check the error message prompted when print test page and printer head open or offline"""
+
+
+
+    """printer should be online"""
+    """start the app"""
+    common_method.tearDown()
+    sleep(3)
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """"verify home text is displaying on the home screen"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on printer settings tab"""""
+    app_settings_page.click_Printer_Settings()
+    """"click on printer name on printer settings page"""
+    app_settings_page.click_PrinterName_On_Printersettings()
+    """verify printer name text"""
+    app_settings_page.Verify_Printer_Name_Text()
+    """click test print button"""
+    app_settings_page.click_Test_Print_Button()
+    """"Verify Printed successfully text"""
+    app_settings_page.Verify_Printed_Successfully_Text()
+    """click test print button"""
+    app_settings_page.click_Test_Print_Button()
+    """"Open the printer cover manually"""
+    """""verify error message of cover open"""
+    app_settings_page.Verify_ErrorMessage_Text()
+    """""Cover close on the printer manually"""""
+    """"click on test print"""
+    app_settings_page.click_Test_Print_Button()
+    """"Verify Printed successfully text"""
+    app_settings_page.Verify_Printed_Successfully_Text()
+    """stop the app"""
+    common_method.Stop_The_App()
+
+
+## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_49709():
     """Manage network- Check able to manage network with long name"""
