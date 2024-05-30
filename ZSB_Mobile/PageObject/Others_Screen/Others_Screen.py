@@ -45,7 +45,7 @@ class Others:
         self.notifications_button = "Notifications"
         self.seekbar_path = "android.widget.SeekBar"
         #self.down_arrow_button = Template(r"tpl1705053444096.png", record_pos=(0.407, -0.425), resolution=(1080, 2340))
-        self.down_arrow_button = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates","tpl1705053444096.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
+        self.down_arrow_button = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates","down_arrow_notification_page.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
 
         self.dismiss_button = "Dismiss"
         self.photo_upload = "Upload Photo"
@@ -709,17 +709,47 @@ class Others:
 
     def uninstall_and_install_zsb_series_on_google_play(self, Open=False, Verify_LoginBtn=False):
         stop_app("com.android.vending")
-
+        sleep(1)
         start_app("com.android.vending")
-
+        sleep(3)
         self.poco("Search Google Play").click()
         self.poco("android.widget.EditText").set_text("zsb series")
-        keyevent("enter")
-        self.poco("ZSB Series\nInstalled\n").click()
+        sleep(1)
+        keyevent("Enter")
+        try:
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
+        except:
+            self.poco("Search Google Play").click()
+            self.poco("android.widget.EditText").set_text("zsb series")
+            sleep(1)
+            self.poco(nameMatches=".*zsb series.*").click()
+            sleep(1)
+            try:
+                self.poco("ZSB Series\nZebra Technologies\n").click()
+            except:
+                self.poco(nameMatches="(?s).*ZSB Series.*").click()
         self.poco("Uninstall").click()
         self.poco("Uninstall").click()
         self.poco("Install").wait_for_appearance(timeout=10)
         self.poco("Install").click()
+
+
+
+        # stop_app("com.android.vending")
+        #
+        # start_app("com.android.vending")
+        #
+        # self.poco("Search Google Play").click()
+        # self.poco("android.widget.EditText").set_text("zsb series")
+        # keyevent("enter")
+        # self.poco("ZSB Series\nInstalled\n").click()
+        # self.poco("Uninstall").click()
+        # self.poco("Uninstall").click()
+        # self.poco("Install").wait_for_appearance(timeout=10)
+        # self.poco("Install").click()
         if Open:
             self.poco("Uninstall").wait_for_appearance(timeout=30)
             self.poco("Open").click()

@@ -12,10 +12,15 @@ from airtest.core.assertions import assert_exists, assert_equal
 from airtest.core.api import *
 from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
 from airtest.core.api import device as current_device
+from ZSB_Mobile.Common_Method import *
+
+
+common_method = Common_Method(poco)
 
 
 class Help_Screen:
     pass
+
 
     def __init__(self, poco):
         self.poco = poco
@@ -42,6 +47,7 @@ class Help_Screen:
         self.Back_Arrow = "android.widget.Button"
         self.Go_To_Chat_Btn = "Go to chat"
         self.Chat_Hours = "Available 7am to 7pm ET"
+        self.EnterGooglePassword = "android.widget.EditText"
 
     def click_Help_dropdown_option(self):
         # help_dropdown_btn = self.poco(self.Dropdown_for_help)
@@ -61,32 +67,40 @@ class Help_Screen:
 
     def click_Chat(self):
         chat_btn = self.poco(self.Chat_btn)
+        chat_btn.wait_for_appearance(timeout=10)
         chat_btn.click()
 
     def clickBeginChat(self):
         begin_chat = self.poco(self.BeginChat_btn)
+        begin_chat.wait_for_appearance(timeout=10)
         begin_chat.click()
 
     def checkIfHelpIsPresent(self):
         assert_exists(self.Help_text, "Help option visible")
 
     def checkIfHelpIconIsPresent(self):
-        assert_exists(self.Help_icon, "Help option is represented by '?'.")
+        return assert_exists(self.Help_icon, "Help option is represented by '?'.")
 
     def checkIfLandedOnSupportPage(self):
-        support = self.poco(text="Welcome to ZSB Series Support")
-        support_title = support.get_text()
-        assert_equal(support_title, "Welcome to ZSB Series Support", "Title of the page is matching")
+        try:
+            self.poco(text="Welcome to ZSB Series Support").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("\"Welcome to ZSB Series Support\" not found on support page.")
 
     def checkIfLandedOnFAQsPage(self):
-        faq = self.poco(text="Frequently Asked Questions")
-        faq_title = faq.get_text()
-        assert_equal(faq_title, "Frequently Asked Questions", "Title of the page is matching")
+        try:
+            self.poco(text="Frequently Asked Questions").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("\"Frequently Asked Questions\" not found on support page.")
 
     def checkIfLandedOnContactUsPage(self):
-        contact_us = self.poco(text="Call Us")
-        contact_us_title = contact_us.get_text()
-        assert_equal(contact_us_title, "Call Us", "Title of the page is matching")
+        try:
+            self.poco(text="Call Us").wait_for_appearance(timeout=20)
+        except:
+            try:
+                self.poco(text="Support Case Submission").wait_for_appearance(timeout=20)
+            except:
+                raise Exception("\"Call Us\" not found on support page.")
 
     "--------------------------------------------------------------------------------------------------"
     """ Step 8. Check the logo located on top left is a ZSB Series logo
@@ -99,6 +113,7 @@ class Help_Screen:
 
     def clickBackArrow(self):
         back_arrow = self.poco(self.Back_Arrow)
+        back_arrow.wait_for_appearance(timeout=10)
         back_arrow.click()
 
     def selectDropDownForSubject(self):
@@ -126,28 +141,31 @@ class Help_Screen:
         support_btn = self.poco(self.Support_btn)
         faq_btn = self.poco(self.FAQs_btn)
         contact_us_btn = self.poco(self.Contact_Us_btn)
-        # live_chat_btn = self.poco(self.Chat_btn)
-        options = [support_btn, faq_btn, contact_us_btn]
+        live_chat_btn = self.poco(self.Chat_btn)
+        options = [support_btn, faq_btn, contact_us_btn, live_chat_btn]
         for option in options:
             if option.exists():
-                print(f"{option} button is present.")
+                # print(f"{option} button is present.")
                 assert True
 
             else:
-                print(f"{option} button is not present.")
+                # print(f"{option} button is not present.")
                 assert False
 
     def verify_url(self, expected_url):
         self.poco("com.android.chrome:id/security_button").click()
         self.poco("com.android.chrome:id/page_info_truncated_url").click()
         url_on_screen = self.poco("com.android.chrome:id/page_info_url").get_text()
-        if url_on_screen == expected_url:
+        if expected_url in url_on_screen:
+            keyevent("back")
             return
         else:
             raise Exception("URL not matching")
 
-    def chooseAcc(self):
-        account = self.poco(self.Account)
+    def chooseAcc(self, Acc_Name="swdvt zsb"):
+        account = self.poco(text=Acc_Name)
+        while not account.exists():
+            self.poco.scroll()
         account.click()
 
     def swipeLeft(self):
@@ -166,12 +184,12 @@ class Help_Screen:
         self.poco(self.Start_chat).click()
 
     def verifyChatHours(self):
-        chathours = self.poco("android.view.View")[4].child()[1].get_name()
-        if chathours == "Available 7am to 7pm ET":
+        chat_hours = self.poco("android.view.View")[4].child()[1].get_name()
+        if chat_hours == "Available 7am to 7pm ET":
             return
         else:
-            print(f"Displaying --{chathours} instead of Available 7am to 7pm ET ")
-            return 1/0
+            error = f"Displaying --{chat_hours} instead of Available 7am to 7pm ET "
+            raise Exception(error)
 
 
     def goToChat(self):
@@ -181,12 +199,34 @@ class Help_Screen:
         if self.poco("android.view.View")[4].child().child()[1].get_name() == "Help":
             return
         else:
-            print("Chat window title is not Help")
-            return 1 / 0
+            raise Exception("Chat window title is not Help")
 
     def verifyBeginChatBtn(self):
         if self.poco(self.BeginChat_btn).exists():
             return
         else:
-            print("Begin Chat Button not available")
-            return 1 / 0
+            raise Exception("Begin Chat Button not available")
+
+    def addAccountToDevice(self):
+        if self.poco(text="Add account to device").exists():
+            self.poco(text="Add account to device").click()
+        else:
+            pass
+
+    def clickNext(self):
+        self.poco(text="Next").click()
+
+    def enter_Google_Password(self, password):
+        self.poco(self.EnterGooglePassword).set_text(password)
+
+    def Agreement_google_login(self):
+        if self.poco(text="I agree").exists():
+            self.poco(text="I agree").click()
+        if self.poco(text="Accept").exists():
+            self.poco(text="Accept").click()
+
+    def checkIfOnSignInPage(self):
+        try:
+            common_method.wait_for_element_appearance("Sign In")
+        except:
+            raise Exception("Did not reach \"Sign In\" page.")

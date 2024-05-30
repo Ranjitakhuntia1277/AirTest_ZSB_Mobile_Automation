@@ -1,15 +1,18 @@
 from time import sleep
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
-
+from poco import poco
+# from ZSB_Mobile.TestExecution.temp.sample import poco
+from poco.drivers.ios import iosPoco
+# from pocoui_lib.ios.kotoComponent import poco
 class Login_Screen_iOS:
     pass
 
     def __init__(self, poco):
         self.poco = poco
-        self.loginBtn = "Login"
+        self.loginBtn = "Sign In"
         self.Continue_popup_to_login = "Continue"
-        self.Enter_GoogleID_Field = "SWDVT IDC test account"
+        self.Enter_GoogleID_Field = "SohoApp Testing"
         self.Google_Login = "Continue with Google"
         self.Bluetooth_Allow = "android:id/button1"
         self.Google_MailID = "Use another account"
@@ -28,6 +31,7 @@ class Login_Screen_iOS:
         self.Password_Field = "SecureTextField"
         self.SignIn_Button = "Sign In"
         self.Login_With_ZebraEmail = "Sign In with your email"
+        self.Keyboard_back_Icon=""
 
 
 
@@ -60,97 +64,141 @@ class Login_Screen_iOS:
         bluetooth_allow = self.poco(self.Bluetooth_Allow)
         bluetooth_allow.click()
 
-    def click_GooglemailId(self):
-        google_mailid = self.poco(self.Google_MailID)
-        google_mailid.click()
+    def click_Loginwith_Google(self):
+        sleep(3)
+        google_login = self.poco(self.Google_Login)
+        if google_login.exists():
+           google_login.click()
+           sleep(15)
+        else:
+           print("Google login option is not present, , proceeding with the next part of the code.")
+
+    def Loginwith_Added_Email_Id(self):
+        sleep(4)
+        poco.scroll()
+        added_email= self.poco(text="SohoApp Testing")
+        if added_email.exists():
+            added_email.click()
+            sleep(9)
+        else:
+            print("Added Email is not present")
+
+    def click_GoogleID_Field(self):
+        sleep(3)
+        enter_googleID_field = self.poco(self.Enter_GoogleID_Field)
+        enter_googleID_field.click()
+
 
     def Enter_Google_UserID(self):
+        sleep(3)
         enter_googleid = self.poco(self.Google_UserID)
-        enter_googleid.set_text("soho.swdvt.01@gmail.com")
+        if enter_googleid.exists():
+            enter_googleid.click()
+            sleep(1)
+            enter_googleid.set_text("zebra21.dvt@gmail.com")
+            sleep(2)
 
-    def click_Emailid_Nextbtn(self):
-        emailid_nextbtn = self.poco(self.Emailid_Nextbtn)
-        emailid_nextbtn.click()
+    def Add_Account_To_Device(self):
+        sleep(3)
+        add_account_to_device = self.poco(text="Add account to device")
+        add_account_to_device.click()
+
+
+    def click_GooglemailId(self):
+        sleep(4)
+        poco.scroll()
+        google_mailid = self.poco(self.Google_MailID)
+        if google_mailid.exists():
+            google_mailid.click()
+            sleep(9)
 
     def Enter_Google_Password(self):
         enter_google_password = self.poco(self.Google_Password)
         sleep(2)
         enter_google_password.set_text("Swdvt@#123")
 
-    def click_Password_Nextbtn(self):
-        password_nextbtn = self.poco(self.Password_Nextbtn)
-        password_nextbtn.click()
-
-    def click_Menu_HamburgerICN(self):
-        sleep(4)
-        hamburgerIcn = self.poco(self.Menu_Hamburger_Icn)
-        hamburgerIcn.click()
-
-    def click_LoginAllow_Popup(self):
-        loginallow = self.poco(self.LoginAllow_Popup)
-        loginallow.click()
-
     def click_Next_LoginBtn(self):
         next_login_btn = self.poco(self.Next_LoginBtn)
         next_login_btn.click()
 
-    def click_Enter_Password_Field(self):
-        enter_google_password = self.poco(self.Google_Password)
-        enter_google_password.click()
+    def click_Emailid_Nextbtn(self):
+        sleep(4)
+        emailid_nextbtn = self.poco(text="Next")
+        if emailid_nextbtn.exists():
+            emailid_nextbtn.click()
+            sleep(9)
+            poco(text("Swdvt@#123"))
+        else:
+           print("Next button is not present, proceeding with the next part of the code.")
 
-    def click_Allow_ZSB_Series_Popup(self):
+
+    def click_Password_Nextbtn(self):
+        sleep(2)
+        password_nextbtn = self.poco(self.Password_Nextbtn)
+        if password_nextbtn.exists():
+           password_nextbtn.click()
+           sleep(8)
+        else:
+            print("Next button is not present, proceeding with the next part of the code.")
+
+    def click_Menu_HamburgerICN(self):
+        sleep(7)
+        hamburgerIcn = self.poco(self.Menu_Hamburger_Icn)
+        hamburgerIcn.click()
+
+    def click_Allow_Login_Popup(self):
         sleep(3)
-        Allow_ZSB_Series_Popup = self.poco(self.Allow_ZSB_Series_Popup)
+        Allow_ZSB_Series_Popup = self.poco(self.LoginAllow_Popup)
         if Allow_ZSB_Series_Popup.exists():
             Allow_ZSB_Series_Popup.click()
         else:
             # pytest.skip("Allow ZSB Series Popup does not exist, skipping test.")
             print("Element not found, proceeding with the next part of the code.")
 
-    # def Verify_LoginAllow_Popup_IS_Not_Displaying(self):
-    #     if assert_not_exists(self.poco(self.LoginAllow_Popup), "Login Allow pop up is not there"):
-    #         print("Pass")
-    #     else:
-    #         print("Fail")
-
     def Verify_LoginAllow_Popup_IS_Not_Displaying(self):
+        if assert_not_exists(self.poco(self.LoginAllow_Popup), "Login Allow pop up is not there"):
+            print("Pass")
+        else:
+            print("Fail")
+
+    def Verify_LoginAllow_Popup_IS_Displaying(self):
         sleep(2)
         if self.poco(self.LoginAllow_Popup).exists():
-            print("Fail")
-        else:
             print("Pass")
+        else:
+            print("Login Allow Pop up is not displaying")
 
     def click_Login_With_Email_Tab(self):
-        sleep(7)
-        touch(self.Login_With_ZebraEmail)
-        # login_with_email = self.poco(self.Login_With_Email)
-        # # login_with_email.click()
-        # if login_with_email.exists():
-        # login_with_email.click()
-        # else:
-        #     print("Login with email element not found.")
+        sleep(9)
+        self.poco(name="Sign In with your email").click()
+        sleep(4)
+        self.poco(name="TextField").click()
+        sleep(2)
+        self.poco(text("Zebra01.swdvt@icloud.com"))
+        sleep(1)
 
-    def click_UserName_TextField(self):
-        username = self.poco(self.UserName)
-        username.click()
 
-    def Enter_UserName(self):
-        username = self.poco(self.UserName)
-        username.set_text("soho.swdvt.01@gmail.com")
 
     def click_Password_TextField(self):
+        sleep(2)
+        sleep(2)
+        start_point = (0.57, 0.47)  # Example coordinates (x, y)
+        # Specify the vector for swiping up
+        vector = (0.297, 0.211)  # Example vector (delta_x, delta_y)
+        # Perform the swipe action
+        swipe(start_point, vector)
         password = self.poco(self.Password_Field)
         password.click()
 
     def Enter_Password(self):
         password = self.poco(self.Password_Field)
         sleep(2)
-        password.set_text("Swdvt@#123")
+        password.set_text("Testing@1234")
 
     def click_SignIn_Button(self):
-        signin = self.poco(self.SignIn_Button)
-        signin.click()
-        sleep(7)
+        sleep(1)
+        self.poco("Sign In").click()
+        sleep(9)
 
     def Check_loginBtn_IS_Present(self):
         sleep(5)
@@ -164,12 +212,7 @@ class Login_Screen_iOS:
             print("Login Button is not enabled.")
             return False
 
-    def Enter_Zebra_UserName(self):
-        sleep(2)
-        username = self.poco(self.UserName)
-        username.set_text("Zebra01.swdvt@icloud.com")
 
     def Enter_Zebra_Password(self):
-        password = self.poco(self.Password_Field)
-        password.set_text("Testing@1234")
-
+        sleep(1)
+        self.poco(text("Testing@12345"))
