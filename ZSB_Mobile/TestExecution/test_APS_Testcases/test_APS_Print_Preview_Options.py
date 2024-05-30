@@ -105,7 +105,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49142():
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_Android_APS_Print_Preview_TestcaseID_4914649146():
+def test_Android_APS_Print_Preview_TestcaseID_49146():
     """Check the multiple copies can be printed in APS"""
 
     common_method.tearDown()
@@ -353,46 +353,6 @@ def test_Android_APS_Print_Preview_TestcaseID_49153():
     aps_notification.Verify_Printer_Status()
     aps_notification.Verify_PaperSize()
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_Android_APS_Print_Preview_TestcaseID_49154():
-    """Check the paper size in print options displayed correctly and can be updated"""
-
-    common_method.tearDown()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    aps_notification.Verify_Labels_Left_Count()
-    aps_notification.Verify_Printer_Status()
-    aps_notification.Verify_PaperSize()
-    """""Open the printer's head manually"""
-    aps_notification.Verify_NA_Status()
-    """""Close the printer's head without any cartridge manually"""
-    aps_notification.Verify_NA_Status()
-    """"""""""Open the printer's head and change the cartridge from the printer"""""
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.click_OK_On_Confirmation_Popup()
-    # ######""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 def test_Android_APS_Print_Preview_TestcaseID_49159():
     """Check it works that APS can print 1 copy with multiple pages of the supported shared file with default settings"""
 

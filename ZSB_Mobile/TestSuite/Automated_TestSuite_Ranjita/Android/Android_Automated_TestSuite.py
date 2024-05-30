@@ -10,6 +10,8 @@ import os
 2.Zebra Email Account-: Zebra01.swdvt@icloud.com//Testing@12345"""""""""""""""""
 
 
+
+
 cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Notification.py --html=reports/report_test_APS_Notification.py.html"
 a = os.system(cmd)
 

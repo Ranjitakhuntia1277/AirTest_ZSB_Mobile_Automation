@@ -2,12 +2,12 @@ from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # from setuptools import logging
-from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Robofinger import test_robo_finger
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
@@ -117,9 +117,10 @@ def test_AppSettings_TestcaseID_50031():
     app_settings_page.click_Test_Print_Button()
     """"Verify Printed successfully text"""
     app_settings_page.Verify_Printed_Successfully_Text()
+    """"Open the printer cover manually"""
+    sleep(15)
     """click test print button"""
     app_settings_page.click_Test_Print_Button()
-    """"Open the printer cover manually"""
     """""verify error message of cover open"""
     app_settings_page.Verify_ErrorMessage_Text()
     """""Cover close on the printer manually"""""

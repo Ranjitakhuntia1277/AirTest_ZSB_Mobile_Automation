@@ -184,7 +184,6 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49784():
     aps_notification.click_Files_Folder()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_JPG_Image_File_From_The_List()
@@ -205,6 +204,15 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     """Check the measure unit can be updated after change a different unit via change ZSB workspace settings - change to inch ,cm,mm"""
 
     common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     login_page.click_Menu_HamburgerICN()
     """"click on the pen icon near the user name"""
     app_settings_page.click_pen_Icon_near_UserName()
@@ -359,5 +367,6 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49789():
     aps_notification.click_ZSB_Series()
     """"Turn on the printer option"""
     aps_notification.Verify_And_Turn_ON_APS()
+    aps_notification.Stop_Android_App()
     # ##"""""""""""""""""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # #######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

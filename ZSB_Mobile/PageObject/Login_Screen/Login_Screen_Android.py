@@ -136,7 +136,7 @@ class Login_Screen:
             print("Next button is not present, proceeding with the next part of the code.")
 
     def click_Menu_HamburgerICN(self):
-        sleep(5)
+        sleep(9)
         hamburgerIcn = self.poco(self.Menu_Hamburger_Icn)
         hamburgerIcn.click()
 
@@ -163,7 +163,7 @@ class Login_Screen:
             print("Login Allow Pop up is not displaying")
 
     def click_Login_With_Email_Tab(self):
-        sleep(7)
+        sleep(9)
         zebra_login= self.poco(text="Sign In with your email")
         zebra_login.click()
         sleep(2)
@@ -178,8 +178,10 @@ class Login_Screen:
     def click_Password_TextField(self):
         sleep(1)
         poco.scroll()
-        password = self.poco(self.Password_Field)
-        password.click()
+        sleep(1)
+        self.poco("android.widget.EditText")[1].click()
+        # password = self.poco(self.Password_Field)
+        # password.click()
 
     def Enter_Password(self):
         password = self.poco(self.Password_Field)
