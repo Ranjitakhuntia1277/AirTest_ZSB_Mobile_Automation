@@ -4,14 +4,14 @@ import sys
 import os
 from airtest.core.api import connect_device
 # sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 import pytest
 
 class Android_Smoke_Test:
@@ -55,6 +55,8 @@ def test_Smoke_Test_TestcaseID_45875():
     # ##common_method.uninstall_app()
     # ##common_method.install_app()
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     app_settings_page.Home_text_is_present_on_homepage()
     common_method.Stop_The_App()
     #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -103,6 +105,8 @@ def test_Smoke_Test_TestcaseID_45876():
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     app_settings_page.Home_text_is_present_on_homepage()
     app_settings_page.Verify_Printer_is_already_added()
     login_page.click_Menu_HamburgerICN()

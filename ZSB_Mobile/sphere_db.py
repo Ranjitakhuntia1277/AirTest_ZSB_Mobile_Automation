@@ -4,7 +4,7 @@ Sphere result integration with ATF
 import os
 
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+# from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 
 path = "https://tdmsapi.zebra.lan/api/"
@@ -231,7 +231,7 @@ def end_execution(exec_id):
 def get_test_case(exec_id):
     url = path+"ExecEngineHierarchy/Get_CasesHierarchy/"+str(exec_id)
     # print(u)
-    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+    # requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     # response = requests.get(url,verify=False)
     # print(response)
     # print(response.content)

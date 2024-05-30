@@ -93,27 +93,6 @@ def test_Android_APS_Printer_Discover_TestcaseID_49136():
     aps_notification.Verify_ZSB_Series_App_Login_Page_Is_Displaying()
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-#def test_Android_APS_Printer_Discover_TestcaseID_49158():
-    """Check the ZSB printer should also be discoverable if the printer in error statues(offline/head open/paper out)"""
-
-#   common_method.tearDown()
-#   common_method.Stop_The_App()
-#   aps_notification.Stop_Android_App()
-#   aps_notification.click_Mobile_SearchBar()
-#    aps_notification.click_On_Searchbar2()
-#   aps_notification.Enter_Settings_Text_On_SearchBar()
-#   aps_notification.click_Settings()
-#   aps_notification.click_Connected_Devices()
- #  aps_notification.click_Connection_Preferences()
-  # aps_notification.click_Printing_Tab()
- #  """Turn off the printer manually"""
-  # aps_notification.Verify_Printer_Status_AS_Offline()
- #  """Head open on the printer manually """
- #  aps_notification.Verify_Printer_Status_AS_HeadOpen()
- #  """"Make the status as paper out """
- #  aps_notification.Verify_Printer_Status_AS_Paper_Out()
-    # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 def test_Android_APS_Printer_Discover_TestcaseID_49160():
     """Check the new added printer can be discovered in APS"""
     common_method.tearDown()
@@ -697,27 +676,6 @@ def test_Android_APS_Printer_Discover_TestcaseID_50268():
     aps_notification.click_All_Printers()
     aps_notification.click_Available_Printer_To_Print()
     # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_Android_APS_Printer_Discover_TestcaseID_50508():
-    """Put the Media low cartridge to the printer, check the status would be media low in APS"""
-    common_method.tearDown()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    """Turn off the printer manually"""
-    aps_notification.Verify_Printer_Status_AS_Offline()
-    """Head open on the printer manually """
-    aps_notification.Verify_Printer_Status_AS_HeadOpen()
-    """"Make the status as paper out manually """
-    aps_notification.Verify_Printer_Status_AS_Paper_Out()
-    """"Make the status as media low manually """
-    aps_notification.Verify_Printer_Status_AS_Media_LOW()
 
 def test_Android_APS_Printer_Discover_TestcaseID_50514():
     """	Check the printer status correct after turn off and then turn on APS"""

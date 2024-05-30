@@ -803,8 +803,7 @@ class APS_Notification:
         if self.poco(text="Service disabled").exists():
             self.poco(self.Turn_ON_ZSB_Series_Printer).click()
 
-        else:
-            pass
+
 
     def Verify_And_Turn_OFF_APS(self):
         if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():

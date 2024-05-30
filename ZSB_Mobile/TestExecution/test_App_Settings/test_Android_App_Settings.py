@@ -99,12 +99,12 @@ def test_AppSettings_TestcaseID_49665():
     """""click continue button on bluetooth connection required"""
     app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
     login_page.click_Allow_ZSB_Series_Popup()
+    add_a_printer_screen.click_Bluetooth_pairing_Popup1_on_Setting_page()
+    add_a_printer_screen.click_Bluetooth_pairing_Popup2_on_Setting_page()
     """"verify bluetooth_connection failed popup"""
     app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
     """""click continue button on connection failed popup"""
     app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
-    add_a_printer_screen.click_Bluetooth_pairing_Popup1()
-    add_a_printer_screen.click_Bluetooth_pairing_Popup2()
     """"click on manage networks button"""
     app_settings_page.click_Manage_Networks_Btn()
     """stop the app"""
@@ -280,15 +280,15 @@ def test_AppSettings_TestcaseID_45691():
     """""Check whether App is installed or not"""
 
     """"start the app"""""
-    # common_method.tearDown()
-    # login_page.click_LoginAllow_Popup()
-    # login_page.click_Allow_ZSB_Series_Popup()
-    # login_page.click_Menu_HamburgerICN()
-    # app_settings_page.click_Three_Dot_On_Workspace()
-    # app_settings_page.click_Edit_Txt()
-    # sleep(2)
-    # """""verify the Edit workspace text"""
-    # app_settings_page.get_text_Edit_Workspace()
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Three_Dot_On_Workspace()
+    app_settings_page.click_Edit_Txt()
+    sleep(2)
+    """""verify the Edit workspace text"""
+    app_settings_page.get_text_Edit_Workspace()
     """""""click upload photo"""""""
     app_settings_page.click_upload_photo()
     sleep(2)
@@ -296,6 +296,7 @@ def test_AppSettings_TestcaseID_45691():
     app_settings_page.click_On_First_Image_SearchBar()
     app_settings_page.click_First_Image()
     app_settings_page.click_JPG_ON_Result()
+    app_settings_page.click_First_Image_ON_The_List()
     """click on the save & exit"""
     app_settings_page.click_Save_Exit_Btn()
     sleep(2)
@@ -308,6 +309,7 @@ def test_AppSettings_TestcaseID_45691():
     app_settings_page.click_upload_photo()
     sleep(1)
     app_settings_page.click_Back_Icon()
+    app_settings_page.click_Close_Icon()
     sleep(2)
     app_settings_page.click_Save_Exit_Btn()
     sleep(2)
@@ -406,7 +408,7 @@ def test_AppSettings_TestcaseID_45692():
 # # # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_AppSettings_TestcaseID_45705():
+def test_AppSettings_TestcaseID_Blocked_45705():
     """""""""Verify account profile update for non-Zebra user"""""
 
 
@@ -866,6 +868,7 @@ def test_AppSettings_TestcaseID_47923():
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Change_Password_Btn()
     app_settings_page.Verify_Password_Recovery_Text_Is_Displaying()
+    app_settings_page.click_Close_Icon()
     """After changing the password, it should logged out. this needs to be validated Manually"""""
     """stop the app"""
     common_method.Stop_The_App()
@@ -973,11 +976,13 @@ def test_AppSettings_TestcaseID_49960():
     common_method.tearDown()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_pen_Icon_near_UserName()
-    app_settings_page.Scroll_till_Delete_Account()
-    app_settings_page.click_Logout_Btn()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Login_With_Email_Tab()
     login_page.click_Password_TextField()
     login_page.Enter_Zebra_Password()
@@ -1165,12 +1170,12 @@ def test_AppSettings_TestcaseID_47924():
     login_page.click_Allow_ZSB_Series_Popup()
     add_a_printer_screen.Verify_Lets_Make_Sure_Text()
     add_a_printer_screen.Click_Next_Button()
-    """click on hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Close_Icon_On_Select_Your_Printer_Screen()
+    add_a_printer_screen.click_Exit_Btn_On_Exit_Printer_Setup()
     """click on printer settings tab"""
     app_settings_page.click_Printer_Settings()
-    """"scroll till the 3rd printer"""
-    app_settings_page.Scroll_Till_Notification_Settings_Tab()
+    """"scroll till the 2nd or 3rd printer"""
+    app_settings_page.Scroll_Till_2nd_Printer()
     """click on printer name on the printer settings page"""""
     app_settings_page.click_PrinterName2_On_Printersettings()
     """click on printr name"""
@@ -1185,6 +1190,7 @@ def test_AppSettings_TestcaseID_47924():
     app_settings_page.click_Continue_Button_On_Printer_Update_Failed_Popup()
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_Printer_Settings()
+    app_settings_page.Scroll_Till_2nd_Printer()
     """"verify previous printer name is displaying"""
     app_settings_page.click_PrinterName2_On_Printersettings()
     """stop the app"""

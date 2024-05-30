@@ -163,39 +163,48 @@ class App_Settings_Screen:
     #         printername1.click()
     #         sleep(3)
 
+    # def click_PrinterName_On_Printersettings(self):
+    #     sleep(3)
+    #     printerName = self.poco(self.PrinterName_In_Printer_Settings)
+    #     printerName1 = self.poco(self.PrinterName1_In_Printer_Settings)
+    #     printerName3 = self.poco(self.PrinterName3_In_Printer_Settings)
+    #
+    #     if printerName.exists():
+    #         printerName.click()
+    #     elif printerName1.exists():
+    #         printerName1.click()
+    #     elif printerName3.exists():
+    #         printerName3.click()
+    #     else:
+    #         print("No printer names found.")
+    #
+    #     sleep(3)
+
     def click_PrinterName_On_Printersettings(self):
         sleep(3)
-        printerName = self.poco(self.PrinterName_In_Printer_Settings)
-        printerName1 = self.poco(self.PrinterName1_In_Printer_Settings)
-        printerName2 = self.poco(self.PrinterName2_In_Printer_Settings)
-        printerName3 = self.poco(self.PrinterName3_In_Printer_Settings)
+        self.poco(nameMatches="(?s).*ZSB-DP.*").click()
 
-        if printerName.exists():
-            printerName.click()
-        elif printerName1.exists():
-            printerName1.click()
-        elif printerName2.exists():
-            printerName2.click()
-        elif printerName3.exists():
-            printerName3.click()
-        else:
-            print("No printer names found.")
-
-        sleep(3)
+    def Scroll_Till_2nd_Printer(self):
+        sleep(2)
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        # Set the maximum number of swipes to avoid an infinite loop
+        max_swipes = 2
+        for _ in range(max_swipes):
+            # Swipe left on the ScrollView
+            scroll_view.swipe("left", duration=0.5)
+            sleep(3)
 
     def click_PrinterName2_On_Printersettings(self):
         sleep(3)
-        printerName = self.poco(self.PrinterName2_In_Printer_Settings)
-        printername1 = self.poco(self.PrinterName1_In_Printer_Settings)
-        if printerName.exists():
-            printerName.click()
+        if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+            self.poco(nameMatches="(?s).*ZSB-DP.*").click()
         else:
-            printername1.exists()
-            printername1.click()
+            self.poco(nameMatches="(?s).*ZSB-DP(1).*").exists()
+            self.poco(nameMatches="(?s).*ZSB-DP(1).*").click()
             sleep(3)
 
     def click_wifi_tab(self):
-        sleep(1)
+        sleep(2)
         WiFi_Tab = self.poco(self.WiFi_Tab)
         WiFi_Tab.click()
         sleep(2)
@@ -462,7 +471,7 @@ class App_Settings_Screen:
             print("Electic theme RadioButton not found. Test continues...")
 
     def click_Save_Exit_Btn(self):
-        sleep(2)
+        sleep(3)
         save_exit = self.poco(self.Save_Exit_Btn)
         save_exit.click()
 
@@ -654,7 +663,7 @@ class App_Settings_Screen:
         inches_Text.click()
 
     def click_upload_photo(self):
-        sleep(2)
+        sleep(4)
         upload_photo = self.poco(self.Upload_Photo)
         upload_photo.click()
 
@@ -679,8 +688,9 @@ class App_Settings_Screen:
     def click_On_First_Image_SearchBar(self):
         sleep(5)
         Search_Bar = self.poco(self.Search_Bar)
-        Search_Bar.click()
-        sleep(2)
+        if Search_Bar.exists():
+            Search_Bar.click()
+            sleep(2)
 
     def click_First_Image(self):
         Search_Bar2 = self.poco(self.Search_Bar2)
@@ -693,8 +703,8 @@ class App_Settings_Screen:
     def click_JPG_ON_Result(self):
         jpg_ON_Result = self.poco(self.JPG_ON_Result)
         if jpg_ON_Result.exists():
-           jpg_ON_Result.click()
-           sleep(3)
+            jpg_ON_Result.click()
+            sleep(3)
 
     def click_Remove_Image(self):
         sleep(2)
@@ -709,8 +719,15 @@ class App_Settings_Screen:
 
     def click_Back_Icon(self):
         back_icon = self.poco(self.Back_Icon)
-        back_icon.click()
+        if back_icon.exists():
+            back_icon.click()
+            sleep(2)
+
+    def click_Close_Icon(self):
         sleep(2)
+        cancel_btn = self.poco(nameMatches="(?s).*Cancel.*")
+        if cancel_btn.exists():
+            cancel_btn.click()
 
     def Is_Present_Workspace_Name_Text(self):
         workspaceName_Text = self.poco(self.Workspace_Name_Text)
@@ -731,7 +748,6 @@ class App_Settings_Screen:
         keyboard_back_icon = self.poco(self.Keyboard_back_Icon)
         if keyboard_back_icon.exists():
             keyboard_back_icon.click()
-
 
     def Verify_SaveExit_Option_Is_Not_There(self):
 
@@ -920,6 +936,7 @@ class App_Settings_Screen:
             sleep(3)
 
     def Scroll_till_Delete_Account(self):
+        sleep(1)
         poco.scroll()
         delete_account = self.poco(self.Delete_Account)
         delete_account.get_text()
@@ -1164,9 +1181,9 @@ class App_Settings_Screen:
         printer_name.set_text("ZSB-DP12")
 
     def Verify_Exceeding_Characters_Message(self):
-        exceeding_characters_Message = self.poco(self.Exceeding_Characters_Message)
-        exceeding_characters_Message.get_text()
-        return exceeding_characters_Message
+        sleep(1)
+        a = self.poco(nameMatches=".*Printer name updated..*").get_name()
+        print(a)
 
     def click_Test_Print_Button(self):
         sleep(2)
@@ -1658,3 +1675,13 @@ class App_Settings_Screen:
         for _ in range(max_swipes):
             # Swipe up on the ScrollView
             scroll_view.swipe("left", duration=0.9)
+
+    def click_Close_Icon(self):
+        sleep(1)
+        if self.poco(name="").exists():
+            self.poco(name="").click()
+
+    def click_First_Image_ON_The_List(self):
+        sleep(2)
+        if self.poco(name="androidx.cardview.widget.CardView").exists():
+           self.poco(name="androidx.cardview.widget.CardView").click()
