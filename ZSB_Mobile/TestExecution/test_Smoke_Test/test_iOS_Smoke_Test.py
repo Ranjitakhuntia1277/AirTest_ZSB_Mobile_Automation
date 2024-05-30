@@ -206,6 +206,7 @@ def test_Smoke_Test_TestcaseID_45881():
     login_screen_ios.click_loginBtn()
     login_screen_ios.click_Continue_Btn_To_Login()
     login_screen_ios.click_Loginwith_Google()
+    login_screen_ios.Loginwith_Added_Email_Id()
     common_method.Stop_The_iOSApp()
 
 ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -271,6 +272,7 @@ def test_Smoke_Test_TestcaseID_45883():
     login_screen_ios.click_loginBtn()
     login_screen_ios.click_Continue_Btn_To_Login()
     login_screen_ios.click_Loginwith_Google()
+    login_screen_ios.Loginwith_Added_Email_Id()
     smoke_test_ios.Verify_Google_UserName_Is_Displaying()
     common_method.Stop_The_iOSApp()
 
@@ -923,6 +925,7 @@ def test_Smoke_Test_TestcaseID_45877():
     login_screen_ios.click_loginBtn()
     login_screen_ios.click_Allow_Login_Popup()
     login_screen_ios.click_Loginwith_Google()
+    login_screen_ios.Loginwith_Added_Email_Id()
     common_method.Stop_The_iOSApp()
 
 

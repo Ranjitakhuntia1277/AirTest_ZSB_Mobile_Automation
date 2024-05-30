@@ -1,16 +1,18 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-
-
+import sys
+import os
+from airtest.core.api import connect_device
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+import pytest
 
 class Android_Smoke_Test:
     pass
@@ -38,24 +40,23 @@ def test_Smoke_Test_TestcaseID_45875():
 
     """Freshly install the app"""
     """start the app"""""
-
     common_method.tearDown()
     common_method.Stop_The_App()
-    common_method.uninstall_app()
-    common_method.install_app()
+    common_method.Clear_App()
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Loginwith_Google()
-    login_page.click_GooglemailId()
-    login_page.Enter_Google_UserID()
-    app_settings_page.click_Keyboard_back_Icon()
-    login_page.click_Emailid_Nextbtn()
-    sleep(2)
-    login_page.click_Password_Nextbtn()
-    sleep(9)
+    login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
+    # ##common_method.uninstall_app()
+    # ##common_method.install_app()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     app_settings_page.Home_text_is_present_on_homepage()
     common_method.Stop_The_App()
     #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -73,42 +74,39 @@ def test_Smoke_Test_TestcaseID_45876():
 
     """start the app"""""
     common_method.tearDown()
-    common_method.uninstall_app()
-    common_method.install_Older_app()
+    common_method.Stop_The_App()
+    # ##common_method.uninstall_app()
+    # ##common_method.install_Older_app()
+    common_method.Clear_App()
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
-    sleep(2)
+    login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""""select the login with google option"""""""""
     login_page.click_Loginwith_Google()
-    login_page.click_GooglemailId()
-    login_page.Enter_Google_UserID()
-    app_settings_page.click_Keyboard_back_Icon()
-    login_page.click_Emailid_Nextbtn()
-    sleep(2)
-    login_page.click_Password_Nextbtn()
-    sleep(9)
+    login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
+    common_method.Start_The_App()
     app_settings_page.Home_text_is_present_on_homepage()
     """""""Verify the Already added Printer"""
     app_settings_page.Verify_Printer_is_already_added()
     common_method.Stop_The_App()
-    common_method.uninstall_app()
-    common_method.install_app()
+    # common_method.uninstall_app()
+    # common_method.install_app()
+    common_method.Clear_App()
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Loginwith_Google()
-    login_page.click_GooglemailId()
-    login_page.Enter_Google_UserID()
-    app_settings_page.click_Keyboard_back_Icon()
-    login_page.click_Emailid_Nextbtn()
-    sleep(2)
-    login_page.click_Password_Nextbtn()
-    sleep(9)
+    login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     app_settings_page.Home_text_is_present_on_homepage()
     app_settings_page.Verify_Printer_is_already_added()
     login_page.click_Menu_HamburgerICN()
@@ -224,6 +222,7 @@ def test_Smoke_Test_TestcaseID_45879():
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
@@ -294,9 +293,13 @@ def test_Smoke_Test_TestcaseID_45881():
     app_settings_page.click_pen_Icon_near_UserName()
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
 
 ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -337,8 +340,11 @@ def test_Smoke_Test_TestcaseID_45883():
     app_settings_page.click_pen_Icon_near_UserName()
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
     smoke_test_android.Verify_SignIn_With_Text_Is_Present()
     smoke_test_android.click_Continue_With_Facebook_Option()
@@ -348,8 +354,11 @@ def test_Smoke_Test_TestcaseID_45883():
     app_settings_page.click_pen_Icon_near_UserName()
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     smoke_test_android.click_Continue_With_Apple_Option()
     smoke_test_android.click_Continue_With_Password_ForApple_Login()
     smoke_test_android.click_On_Password_Textfield()
@@ -359,9 +368,13 @@ def test_Smoke_Test_TestcaseID_45883():
     app_settings_page.click_pen_Icon_near_UserName()
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     smoke_test_android.Verify_Google_UserName_Is_Displaying()
     common_method.Stop_The_App()
 
@@ -545,47 +558,6 @@ def test_Smoke_Test_TestcaseID_45887():
     """stop the app"""
     common_method.Stop_The_App()
 # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-#
-def test_Smoke_Test_TestcaseID_45888():
-    """	Check user can delete a printer from Mobile App"""
-
-
-    common_method.tearDown()
-    """"verify home text is displaying on the home screen"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """click on three dot on added printer on home page"""
-    app_settings_page.Verify_Printer_Text()
-    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
-    """""click on delete printer button"""
-    app_settings_page.click_Delete_Printer_Button()
-    """verify delete printer page"""
-    app_settings_page.Verify_Delete_Printer_Page()
-    app_settings_page.Click_Cancel_On_Delete_Printer_Page()
-    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
-    """"click delete printer button"""
-    app_settings_page.click_Delete_Printer_Button()
-    """"click yes delete button"""
-    app_settings_page.click_Yes_Delete_Button()
-    """"verify UI of unpair bluetooth dropdown list """
-    app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
-    """click on unpair bluetooth dropdown list"""""
-    app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    app_settings_page.click_Bluetooth()
-    app_settings_page.click_Unpair_Icon()
-    app_settings_page.click_On_Unpair()
-    common_method.Start_The_App()
-    app_settings_page.click_Done_Btn()
-    app_settings_page.Verify_Printer_Is_Not_Displaying()
-    """stop the app"""
-    common_method.Stop_The_App()
-# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_Smoke_Test_TestcaseID_45889():
@@ -755,8 +727,8 @@ def test_Smoke_Test_TestcaseID_45900():
 # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-    def test_Smoke_Test_TestcaseID_45892():
-        """	Delete template in Workspace"""
+def test_Smoke_Test_TestcaseID_45892():
+    """	Delete template in Workspace"""
 
 
     """"Setup:
@@ -957,6 +929,7 @@ def test_Smoke_Test_TestcaseID_45877():
     app_settings_page.click_Logout_Btn()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     poco.scroll()
     data_sources_page.signInWithEmail()
     if poco("com.android.chrome:id/coordinator").exists():
@@ -1015,5 +988,47 @@ def test_Smoke_Test_TestcaseID_45877():
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
 # ## """"""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_Smoke_Test_TestcaseID_45888():
+    """	Check user can delete a printer from Mobile App"""
+
+
+    common_method.tearDown()
+    """"verify home text is displaying on the home screen"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """click on three dot on added printer on home page"""
+    app_settings_page.Verify_Printer_Text()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
+    """""click on delete printer button"""
+    app_settings_page.click_Delete_Printer_Button()
+    """verify delete printer page"""
+    app_settings_page.Verify_Delete_Printer_Page()
+    app_settings_page.Click_Cancel_On_Delete_Printer_Page()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
+    """"click delete printer button"""
+    app_settings_page.click_Delete_Printer_Button()
+    """"click yes delete button"""
+    app_settings_page.click_Yes_Delete_Button()
+    """"verify UI of unpair bluetooth dropdown list """
+    app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
+    """click on unpair bluetooth dropdown list"""""
+    app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    app_settings_page.click_Bluetooth()
+    app_settings_page.click_Unpair_Icon()
+    app_settings_page.click_On_Unpair()
+    common_method.Start_The_App()
+    app_settings_page.click_Done_Btn()
+    app_settings_page.Verify_Printer_Is_Not_Displaying()
+    """stop the app"""
+    common_method.Stop_The_App()
+# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

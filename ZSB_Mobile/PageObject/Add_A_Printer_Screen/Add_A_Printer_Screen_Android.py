@@ -56,7 +56,7 @@ class Add_A_Printer_Screen:
         self.Show_All_Printers = "Show all printers"
         self.Added_Printer = "ZSB-DP12C710B9"
         self.Second_Printer_Name = "android.widget.RadioButton"
-        self.Connect_Wifi_Network_Text = "Connect Wi-Fi Network"
+        self.Connect_Wifi_Network_Text = "Connect to Wi-Fi"
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
         self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44),
@@ -194,8 +194,9 @@ class Add_A_Printer_Screen:
     def Verify_Select_your_printer_Text(self):
         sleep(9)
         select_your_printer_Text = self.poco(self.Select_your_printer_Text)
-        select_your_printer_Text.get_text()
-        return select_your_printer_Text
+        if select_your_printer_Text.exists():
+            select_your_printer_Text.get_text()
+            return select_your_printer_Text
 
     def Verify_Pairing_Your_Printer_Text(self):
         sleep(2)
@@ -216,11 +217,22 @@ class Add_A_Printer_Screen:
 
     def click_Bluetooth_pairing_Popup1(self):
         bluetooth_pairing_popup1 = self.poco(self.Bluetooth_pairing_Popup1)
-        bluetooth_pairing_popup1.click()
+        if bluetooth_pairing_popup1.exists():
+            bluetooth_pairing_popup1.click()
 
     def click_Bluetooth_pairing_Popup2(self):
-        bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2).wait_for_appearance(timeout=3)
+        bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2)
+        if bluetooth_pairing_popup2.exists():
+            bluetooth_pairing_popup2.click()
+
+    def click_Bluetooth_pairing_Popup1_on_Setting_page(self):
+        bluetooth_pairing_popup1 = self.poco(self.Bluetooth_pairing_Popup1)
+        bluetooth_pairing_popup1.click()
+
+    def click_Bluetooth_pairing_Popup2_on_Setting_page(self):
+        bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2)
         bluetooth_pairing_popup2.click()
+
 
     def Verify_Searching_for_wifi_networks_Text(self):
         sleep(2)
@@ -456,3 +468,12 @@ class Add_A_Printer_Screen:
         Text_Field_To_Edit.click()
         sleep(1)
         poco(text("1"))
+
+    def click_Close_Icon_On_Select_Your_Printer_Screen(self):
+        sleep(4)
+        self.poco(name="android.widget.Button").click()
+
+    def click_Exit_Btn_On_Exit_Printer_Setup(self):
+        sleep(1)
+        self.poco(name="Exit").click()
+
