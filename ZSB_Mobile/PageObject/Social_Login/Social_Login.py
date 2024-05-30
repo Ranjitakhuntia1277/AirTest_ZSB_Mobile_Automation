@@ -393,10 +393,12 @@ class Social_Login:
             self.poco(text="Continue").click()
 
     def accept_EULA_agreement(self):
-        while self.poco(name="Accept",enabled=False):
+        count=0
+        while self.poco(name="Accept",enabled=False) and count<10:
             start_point = [0.5,0.8]
             end_point = [0.5,0.1]
             self.poco.swipe(start_point, end_point, duration=0.1)
+            count+=1
 
         sleep(2)
 
@@ -404,10 +406,12 @@ class Social_Login:
 
     def decline_EULA_agreement(self):
 
-        while self.poco(name="Decline", enabled=False):
+        count=0
+        while self.poco(name="Decline", enabled=False) and count<10:
             start_point = [0.5, 0.8]
             end_point = [0.5, 0.1]
             self.poco.swipe(start_point, end_point, duration=0.1)
+            count+=1
 
         sleep(2)
 
@@ -459,9 +463,12 @@ class Social_Login:
         return a
 
     def choose_a_google_account(self,gmail):
-        while not self.poco(text=gmail).exists():
+        count=0
+        while not self.poco(text=gmail).exists() and count<7:
             self.poco.scroll()
+            count += 1
         a = self.poco(text=gmail).click()
+
 
     def check_the_email_in_profile_page(self,loged_in_mail):
         email = self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
@@ -528,11 +535,15 @@ class Social_Login:
     def get_one_of_the_gmail_accounts(self):
         return self.poco(textMatches=".*@gmail.com.*").get_text()
     def sign_in_with_google(self):
-        while not self.poco(text="Use another account").exists():
+        count=0
+        while not self.poco(text="Use another account").exists() and count<10:
             self.poco.scroll()
+            count+=1
         self.poco(text="Use another account").click()
-        while not self.poco(text="Add account to device").exists():
+        count=0
+        while not self.poco(text="Add account to device").exists() and count<10:
             self.poco.scroll()
+            count+=1
         self.poco(text="Add account to device").click()
 
     def check_for_incorrect_username_in_google(self):

@@ -91,3 +91,14 @@ class Conftest():
             auto_setup(logdir="./", compress=3,
                        devices=[f"ios:///http+usbmux://{i}"])
             start_app("com.zebra.soho")
+
+
+def test_Android_Device(self):
+    connect_device("Android:///")
+
+def test_iOS_Device(self):
+    uuid = "00008101-00051D400144001E"
+    Bonding = connect_device("ios:///http+usbmux://" + uuid)
+    poco = iosPoco(device=Bonding)
+    auto_setup(logdir="./", compress=3,
+               devices=[f"ios:///http+usbmux://{uuid}"])

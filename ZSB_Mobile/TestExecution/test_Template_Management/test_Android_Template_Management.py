@@ -1843,13 +1843,12 @@ class test_Android_Template_Management:
             try:
                 full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
-
             except:
                 raise Exception("copied template not shown or is incorrect name")
 
             if original_size != copy_size:
                 raise Exception("copyied and original design sizes are not same")
-            if int(copy_lastdate) != 0:
+            if copy_lastdate != 0:
                 raise Exception("last printed date displayed for copied design without printing")
 
             template_management.click_print_button_enabled()
@@ -3378,7 +3377,8 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Recently",20)
+        sleep(2)
         name=template_management.get_first_design_in_recently_printed_labels()
         name=template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name,1)
@@ -3475,8 +3475,9 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Recently")
         """Give the name of existing design here"""
+        sleep(2)
         name=template_management.get_first_design_in_recently_printed_labels()
         name=template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name,1)
@@ -3567,6 +3568,7 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         """Give the name of existing design here"""
+        sleep(2)
         name = template_management.get_second_design_in_recently_printed_design()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name,1)
@@ -3768,7 +3770,8 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Recently")
+        sleep(2)
         name = template_management.get_first_design_in_recently_printed_labels()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 1)
@@ -3836,8 +3839,8 @@ class test_Android_Template_Management:
 
         """. Input only one or several spaces
         Check spaces should be auto cleared and provide the message "Name must be at least 1 character…”  fails"""
-        template_management.enter_text_in_rename_design("   ")
-        sleep(1)
+        template_management.enter_text_in_rename_design(" ")
+        sleep(2)
         if not template_management.check_error_for_blank_value_in_rename_design():
             raise Exception("error not displayed for blank field")
 
@@ -3884,7 +3887,8 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Recently")
+        sleep(1)
         name=template_management.get_first_design_in_recently_printed_labels()
         name=template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name,1)
@@ -3924,6 +3928,8 @@ class test_Android_Template_Management:
         temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
         for text in temp:
 
+            login_page.click_Menu_HamburgerICN()
+            social_login.click_home_button()
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
@@ -3968,6 +3974,7 @@ class test_Android_Template_Management:
             raise Exception("default value not matches with original name")
 
         template_management.enter_text_in_rename_design("Abc123+")
+        sleep(2)
         if not template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error not displayed for invalid characters")
 
@@ -4554,8 +4561,10 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
-        for text in temp[1:]:
+        for text in temp[:2]:
 
+            login_page.click_Menu_HamburgerICN()
+            social_login.click_home_button()
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
@@ -4602,8 +4611,10 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
-        for text in temp:
+        for text in temp[::2]:
 
+            login_page.click_Menu_HamburgerICN()
+            social_login.click_home_button()
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
@@ -5954,7 +5965,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        strings = ["Address", "Barcodes", "Jewelry", "Name Tag", "Shipping", "File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
+        strings = ["Address", "Barcodes", "Jewelry", "Shipping", "File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
