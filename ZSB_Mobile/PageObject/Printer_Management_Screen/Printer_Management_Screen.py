@@ -7,10 +7,10 @@ from airtest.core.api import exists, sleep
 # from pipes import Template
 from airtest.core.cv import Template
 from poco import poco
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from airtest.core.assertions import assert_exists, assert_equal
 from airtest.core.api import *
-from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
+from ...PageObject.Login_Screen import Login_Screen
 
 
 class Printer_Management_Screen:
@@ -191,7 +191,8 @@ class Printer_Management_Screen:
 
     def clickPrinter1InPinterSettings(self):
         self.poco(nameMatches="(?s).*Common.*").wait_for_appearance(timeout=10)
-        self.poco("android.widget.HorizontalScrollView").child()[1].click()
+        # self.poco("android.widget.HorizontalScrollView").child()[1].click()
+        self.poco(nameMatches="(?s).*Common.*").parent().child()[1].click()
 
     def getPrinter2NameInPrinterSettings(self):
         return self.poco("android.widget.HorizontalScrollView").child()[2].get_name().split("\n")[0]

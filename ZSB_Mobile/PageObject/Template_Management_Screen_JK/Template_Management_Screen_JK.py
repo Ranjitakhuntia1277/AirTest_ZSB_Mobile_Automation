@@ -10,9 +10,9 @@ from airtest.core.api import *
 from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 import subprocess
 
 common_method = Common_Method(poco)
@@ -50,7 +50,7 @@ class Template_Management_Screen:
         return self.poco("Name (A to Z)").exists()
 
     def click_sort_my_designs(self):
-        self.poco("android.view.View")[4].child()[4].click()
+        self.poco(nameMatches="Name(.*)").click()
 
     def verify_sort_options_my_designs(self):
         if len(self.poco("android.view.View")[6].child()) == 2:
@@ -78,7 +78,21 @@ class Template_Management_Screen:
             if name == "All sizes":
                 self.poco("All sizes").click()
         else:
-            self.poco("android.view.View")[4].child()[3].click()
+            self.poco(nameMatches="Name(.*)").parent.child()[3].click()
+
+    def waitForAppearanceOfCategories(self):
+        sleep(10)
+        if self.poco(nameMatches=".*Categories.*").exists():
+            pass
+        else:
+            raise Exception("Categories not shown.")
+
+    def waitForAppearanceOfNoResultsFound(self):
+        sleep(10)
+        if self.poco(nameMatches=".*No results found.\nSearch tips: try typing exactly what you’re looking for. It may help to simply type 1 word, and search for results then.*").exists():
+            pass
+        else:
+            raise Exception("\"No results found\" message not displayed.")
 
     def selectFilter(self, filterOptionNumber):
         selected_option = self.poco("android.view.View")[6].child()[filterOptionNumber].get_name()
@@ -86,10 +100,10 @@ class Template_Management_Screen:
         return selected_option
 
     def click_sort_common_designs(self):
-        self.poco("android.widget.EditText").parent().child()[3].click()
+        self.poco(nameMatches="Name(.*)").click()
 
     def click_filter_common_designs(self):
-        self.poco("android.view.View")[5].child()[2].click()
+        self.poco(nameMatches="Name(.*)").parent().child()[2].click()
 
     def get_filter_value(self):
         return self.poco("android.view.View")[5].child()[2].get_name()
@@ -564,7 +578,7 @@ class Template_Management_Screen:
         temp = []
         flag = 1
         while flag:
-            curr = [child.get_name() for child in self.poco("android.widget.FrameLayout")[4].child().child().child()[0].child().child().child()]
+            curr = [child.get_name() for child in self.poco("android:id/content").child("android.widget.FrameLayout").child().child().child()[0].child().child().child()]
             if curr == prev:
                 break
             for i in curr:
@@ -692,13 +706,14 @@ class Template_Management_Screen:
                 if field is not None and field not in elements:
                     print("selection "+field)
                     if value is None:
-                        random_word = data_sources_page.generateRandomWord(8)
+                        random_word = data_sources_page.generateRandomWordLetters(8)
                     else:
                         random_word = value
                     print(random_word)
                     self.poco(text=field).click()
                     self.poco(text=field).set_text(random_word)
                     keyevent("back")
+                    sleep(2)
                     elements.append(random_word)
             previous = current
 
@@ -1172,6 +1187,7 @@ class Template_Management_Screen:
             self.poco(text="Move to trash").click()
         except:
             self.poco(text="Move to the bin").click()
+
     def clickGotIt(self):
         self.poco(text="Got It").click()
         if self.poco(text="Welcome to your new ZSB Series Printer").exists():
@@ -1179,3 +1195,12 @@ class Template_Management_Screen:
 
     def selectRoundLabelInCreate(self):
         self.poco(text="Round").click()
+
+    def checkDisplayedCountMatchesExpected(self, expected_count):
+        count_displayed = self.get_showing_n_designs_number()
+        print("cc",count_displayed)
+        if count_displayed == expected_count:
+            pass
+        else:
+            # error = f"Displayed count({count_displayed}) does not match expected count({expected_count})"
+            raise Exception("Design not loaded properly.")
