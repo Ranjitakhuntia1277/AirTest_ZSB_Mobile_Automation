@@ -10,9 +10,9 @@ from airtest.core.api import *
 from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 import subprocess
 
 common_method = Common_Method(poco)
@@ -27,8 +27,6 @@ class Delete_Account_Screen:
         self.deleteAccount = "Delete Account"
         self.logOut = "Log Out"
         self.delete = "Delete"
-        self.first_name = "new_first_name"
-        self.last_name = "new_last_name"
 
     def checkIfDeleteAccountIsNextToLogOut(self):
         if self.poco(self.logOut).parent().child()[0].get_name() == "Delete Account":
@@ -155,17 +153,17 @@ class Delete_Account_Screen:
         keyevent("KEYCODE_APP_SWITCH")
         sleep(1)
 
-    def change_first_name(self):
+    def change_first_name(self, first_name="new_first_name"):
         self.poco("android.widget.EditText").click()
-        self.poco("android.widget.EditText").set_text(self.first_name)
+        self.poco("android.widget.EditText").set_text(first_name)
         keyevent("back")
-        sleep(2)
+        sleep(4)
 
-    def change_last_name(self):
+    def change_last_name(self, last_name="new_last_name"):
         self.poco("android.widget.EditText")[1].click()
-        self.poco("android.widget.EditText")[1].set_text(self.last_name)
+        self.poco("android.widget.EditText")[1].set_text(last_name)
         keyevent("back")
-        sleep(2)
+        sleep(4)
 
     def change_unit_of_measurement(self):
         self.poco.scroll()

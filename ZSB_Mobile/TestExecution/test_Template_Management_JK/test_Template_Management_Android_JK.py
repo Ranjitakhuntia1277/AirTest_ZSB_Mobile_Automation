@@ -2,20 +2,21 @@ from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
 
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen import *
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Login_Screen import *
 
-from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
-from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
-from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
+from ...PageObject.Help_Screen.Help_Screen import Help_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...PageObject.Others_Screen.Others_Screen import Others
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
+from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
 
 import pytest
+
 
 class Android_App_Registration:
     pass
@@ -43,33 +44,16 @@ def test_Template_Management_TestcaseID_45981():
     pass
 
     data_sources_page.clearAppData()
+    sleep(2)
     common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
-    login_page.click_loginBtn()
-    registration_page.click_Google_Icon()
-    try:
-        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-    except:
-        raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
-    if template_management_page.checkIfAccPresent(account):
-        help_page.chooseAcc(account)
-    else:
-        while not poco(text="Use another account").exists():
-            poco.scroll()
-        login_page.click_GooglemailId()
-        while not poco(text="Add account to device").exists():
-            poco.scroll()
-        registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@gmail.com", "zebraidctest@1234")
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#123456789", 1, 0)
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if template_management_page.verify_default_sort_my_designs():
         pass
     else:
@@ -80,7 +64,8 @@ def test_Template_Management_TestcaseID_45981():
     design_names = template_management_page.get_all_designs_in_my_designs(True)
     template_management_page.verify_design_names_follow_order(design_names)
     expected_designs = ["IconGiftLabel", "1_Asset", "2_Asset", "3_Address", "4_Address", "5_Barcode", "6_IconGiftLabel",
-                        "$Address", "$Asset", "$Barcode", "$IconGiftLabel"]
+                        "$Address", "$Asset", "$Barcode", "$IconGiftLabel", "Address", "Asset", "Barcode (1)",
+                        "IconGiftLabel"]
     for design in expected_designs:
         if design in design_names:
             pass
@@ -95,7 +80,7 @@ def test_Template_Management_TestcaseID_45981():
     template_management_page.clickCommonDesigns()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if template_management_page.verify_default_sort_my_designs():
         pass
     else:
@@ -126,7 +111,7 @@ def test_Template_Management_TestcaseID_45982():
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if template_management_page.verify_default_sort_my_designs():
         pass
     else:
@@ -154,7 +139,7 @@ def test_Template_Management_TestcaseID_45982():
     template_management_page.clickCommonDesigns()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if template_management_page.verify_default_sort_my_designs():
         pass
     else:
@@ -187,7 +172,7 @@ def test_Template_Management_TestcaseID_45983():
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     template_management_page.click_sort_my_designs()
     template_management_page.select_sort_order("Z-A")
     design_names = template_management_page.get_all_designs_in_my_designs(True)
@@ -208,7 +193,7 @@ def test_Template_Management_TestcaseID_45983():
     template_management_page.clickCommonDesigns()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if template_management_page.verify_default_sort_my_designs():
         pass
     else:
@@ -222,7 +207,7 @@ def test_Template_Management_TestcaseID_45984():
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if template_management_page.verify_default_filter_my_designs():
         pass
     else:
@@ -250,7 +235,7 @@ def test_Template_Management_TestcaseID_45984():
     template_management_page.clickCommonDesigns()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if template_management_page.verify_default_filter_my_designs():
         pass
     else:
@@ -282,7 +267,7 @@ def test_Template_Management_TestcaseID_45985():
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     template_management_page.click_filter_my_designs("All sizes")
     number_of_filter_options = template_management_page.filter_options(True)
     if number_of_filter_options > 1:
@@ -291,7 +276,7 @@ def test_Template_Management_TestcaseID_45985():
         raise Exception("No other filter option present other than All sizes.")
     for i in range(1, number_of_filter_options):
         selectedFilterSize = template_management_page.selectFilter(i)
-        common_method.wait_for_element_appearance_namematches("Showing")
+        data_sources_page.checkIfDesignsLoaded()
         label_size_present = template_management_page.get_all_designs_size_in_my_designs()
         labels = template_management_page.get_all_designs_in_my_designs()
         if len(label_size_present) == 1:
@@ -304,14 +289,15 @@ def test_Template_Management_TestcaseID_45985():
         if len(labels) == int(template_management_page.get_showing_n_designs_number()):
             pass
         else:
+            print(len(labels), "\n", int(template_management_page.get_showing_n_designs_number()))
             print(labels)
-            raise Exception("NUmber of labels displayed not matching the number shown in title.")
+            raise Exception("Number of labels displayed not matching the number shown in title.")
         template_management_page.verify_designs_are_according_to_sort_order(labels)
         login_page.click_Menu_HamburgerICN()
         template_management_page.clickCommonDesigns()
         login_page.click_Menu_HamburgerICN()
         data_sources_page.clickMyDesigns()
-        common_method.wait_for_element_appearance_namematches("Showing")
+        data_sources_page.checkIfDesignsLoaded()
         if template_management_page.verify_default_filter_my_designs():
             pass
         else:
@@ -328,7 +314,7 @@ def test_Template_Management_TestcaseID_45987():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("Address")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     if template_management_page.verify_default_sort_my_designs():
         pass
@@ -346,9 +332,13 @@ def test_Template_Management_TestcaseID_45987():
         pass
     else:
         raise Exception("No other filter option present other than All sizes.")
-    """Step 8 pending"""
-    """Cannot verify filter due to bug SMBM-1749"""
-    poco("Scrim").click()
+    template_management_page.selectFilter(1)
+    template_management_page.wait_for_appearance_designs_in_a_particular_category()
+    design_sizes_displayed = template_management_page.get_all_designs_size_in_my_designs()
+    if len(design_sizes_displayed) > 1:
+        print(design_sizes_displayed)
+        raise Exception(
+            "Designs are not filtered i.em designs of different sizes present even after filtering on one size.")
     template_management_page.click_sort_common_designs()
     sleep(3)
     template_management_page.select_sort_order("Z-A")
@@ -387,7 +377,7 @@ def test_Template_Management_TestcaseID_45988():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("Barcodes")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     if template_management_page.verify_default_sort_my_designs():
         pass
@@ -405,9 +395,12 @@ def test_Template_Management_TestcaseID_45988():
         pass
     else:
         raise Exception("No other filter option present other than All sizes.")
-    """Step 8 pending"""
-    """Cannot verify filter due to bug SMBM-1749"""
-    poco("Scrim").click()
+    template_management_page.selectFilter(1)
+    template_management_page.wait_for_appearance_designs_in_a_particular_category()
+    design_sizes_displayed = template_management_page.get_all_designs_size_in_my_designs()
+    if len(design_sizes_displayed) > 1:
+        raise Exception(
+            "Designs are not filtered i.em designs of different sizes present even after filtering on one size.")
     template_management_page.click_sort_common_designs()
     sleep(3)
     template_management_page.select_sort_order("Z-A")
@@ -446,7 +439,7 @@ def test_Template_Management_TestcaseID_45989():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("File Folder")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     if template_management_page.verify_default_sort_my_designs():
         pass
@@ -464,9 +457,12 @@ def test_Template_Management_TestcaseID_45989():
         pass
     else:
         raise Exception("No other filter option present other than All sizes.")
-    """Step 8 pending"""
-    """Cannot verify filter due to bug SMBM-1749"""
-    poco("Scrim").click()
+    template_management_page.selectFilter(1)
+    template_management_page.wait_for_appearance_designs_in_a_particular_category()
+    design_sizes_displayed = template_management_page.get_all_designs_size_in_my_designs()
+    if len(design_sizes_displayed) > 1:
+        raise Exception(
+            "Designs are not filtered i.e, designs of different sizes present even after filtering on one size.")
     template_management_page.click_sort_common_designs()
     sleep(3)
     template_management_page.select_sort_order("Z-A")
@@ -498,7 +494,7 @@ def test_Template_Management_TestcaseID_45990():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("Jewelry")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     if template_management_page.verify_default_sort_my_designs():
         pass
@@ -519,7 +515,8 @@ def test_Template_Management_TestcaseID_45990():
         else:
             raise Exception(f"Filter option {displayed_filter_options[1]} displayed instead of 2.25\" x 0.5\"")
     else:
-        raise Exception(f"Has {len(displayed_filter_options)} instead of just 1 i.e., \"2.25\" x 0.5\"\" ")
+        error = f"Has {len(displayed_filter_options)} filter options i.e., {displayed_filter_options} instead of just 1 i.e., \"2.25\" x 0.5\"\" "
+        raise Exception(error)
     poco("Scrim").click()
     template_management_page.click_sort_common_designs()
     sleep(3)
@@ -559,7 +556,7 @@ def test_Template_Management_TestcaseID_45991():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("Multipurpose/")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     if template_management_page.verify_default_sort_my_designs():
         pass
@@ -580,7 +577,8 @@ def test_Template_Management_TestcaseID_45991():
         else:
             raise Exception(f"Filter option {displayed_filter_options[1]} displayed instead of 3.5\" x 2.25\"")
     else:
-        raise Exception(f"Has {len(displayed_filter_options)} instead of just 1 i.e., \"3.5\" x 2.25\"\" ")
+        error = f"Has {len(displayed_filter_options)} filter options i.e., {displayed_filter_options} instead of just 1 i.e., \"3.5\" x 2.25\"\" "
+        raise Exception(error)
     poco("Scrim").click()
     template_management_page.click_sort_common_designs()
     sleep(3)
@@ -620,7 +618,7 @@ def test_Template_Management_TestcaseID_45992():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("Name")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     if template_management_page.verify_default_sort_my_designs():
         pass
@@ -649,7 +647,7 @@ def test_Template_Management_TestcaseID_45992():
     template_management_page.click_filter_common_designs()
     for i in range(1, number_of_filter_options):
         selectedFilterSize = template_management_page.selectFilter(i)
-        common_method.wait_for_element_appearance_namematches("Showing")
+        data_sources_page.checkIfDesignsLoaded()
         label_size_present = template_management_page.get_all_designs_size_in_my_designs()
         labels = template_management_page.get_all_designs_in_my_designs()
         if len(label_size_present) == 1:
@@ -685,7 +683,7 @@ def test_Template_Management_TestcaseID_45993():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("Shipping")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     if template_management_page.verify_default_sort_my_designs():
         pass
@@ -703,9 +701,12 @@ def test_Template_Management_TestcaseID_45993():
         pass
     else:
         raise Exception("No other filter option present other than All sizes.")
-    """Step 8 pending"""
-    """Cannot verify filter due to bug SMBM-1749"""
-    poco("Scrim").click()
+    template_management_page.selectFilter(1)
+    template_management_page.wait_for_appearance_designs_in_a_particular_category()
+    design_sizes_displayed = template_management_page.get_all_designs_size_in_my_designs()
+    if len(design_sizes_displayed) > 1:
+        raise Exception(
+            "Designs are not filtered i.em designs of different sizes present even after filtering on one size.")
     template_management_page.click_sort_common_designs()
     sleep(3)
     template_management_page.select_sort_order("Z-A")
@@ -736,69 +737,69 @@ def test_Template_Management_TestcaseID_45993():
     common_method.Stop_The_App()
 
 
-def test_Template_Management_TestcaseID_45994():
-    pass
-    common_method.tearDown()
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.clickMyDesigns()
-    template_management_page.turn_off_wifi()
-    template_management_page.click_filter_my_designs()
-    label_size = template_management_page.select_label_size()
-    sleep(3)
-    if template_management_page.verify_connection_error_app():
-        pass
-    else:
-        raise Exception("Connection lost error not displayed.")
-    template_management_page.turn_on_wifi()
-    sleep(5)
-    template_management_page.click_filter_my_designs()
-    label_size = template_management_page.select_label_size()
-    template_management_page.wait_for_appearance_designs_in_a_particular_category()
-    design_name = template_management_page.get_first_design_name_my_designs()
-    design_list = template_management_page.get_all_designs_in_my_designs(True)
-    title_count = template_management_page.get_showing_n_designs_number()
-    if len(design_list) == int(title_count):
-        pass
-    else:
-        raise Exception("Count in title doesn't match the number of designs.")
-    template_management_page.turn_off_wifi()
-    template_management_page.search_design_common_designs(design_name)
-    """Step 8-10 pending due to bug SMBM-1774"""
-    sleep(3)
-    if template_management_page.verify_connection_error_app():
-        pass
-    else:
-        raise Exception("Connection lost error not displayed.")
-    template_management_page.turn_on_wifi()
-    sleep(5)
-    template_management_page.search_design_common_designs(design_name)
-    try:
-        template_management_page.wait_for_suggestions_to_appear()
-    except:
-        raise Exception("dropdown did not appear.")
-    template_management_page.check_dropdown_options_Are_clickable()
-    template_management_page.click_drop_down_result_1()
-    try:
-        template_management_page.wait_for_suggestions_to_appear()
-        x = 1 / 0
-    except ZeroDivisionError:
-        raise Exception("dropdown is present.")
-    except Exception as e:
-        pass
-    design_list = template_management_page.get_all_designs_in_my_designs(True)
-    if len(design_list) == 1:
-        if design_list[0] == design_name:
-            pass
-        else:
-            raise Exception("The resulting design name doesn't match search name")
-    else:
-        raise Exception("There are more than 1 result.")
-    title_count = template_management_page.get_showing_n_designs_number()
-    if int(title_count) == 1:
-        pass
-    else:
-        raise Exception("Title is not 'Showing 1 Design'.")
-    common_method.Stop_The_App()
+# def test_Template_Management_TestcaseID_45994():
+#     pass
+#     common_method.tearDown()
+#     login_page.click_Menu_HamburgerICN()
+#     data_sources_page.clickMyDesigns()
+#     template_management_page.turn_off_wifi()
+#     template_management_page.click_filter_my_designs()
+#     label_size = template_management_page.select_label_size()
+#     sleep(3)
+#     if template_management_page.verify_connection_error_app():
+#         pass
+#     else:
+#         raise Exception("Connection lost error not displayed.")
+#     template_management_page.turn_on_wifi()
+#     sleep(5)
+#     template_management_page.click_filter_my_designs()
+#     label_size = template_management_page.select_label_size()
+#     template_management_page.wait_for_appearance_designs_in_a_particular_category()
+#     design_name = template_management_page.get_first_design_name_my_designs()
+#     design_list = template_management_page.get_all_designs_in_my_designs(True)
+#     title_count = template_management_page.get_showing_n_designs_number()
+#     if len(design_list) == int(title_count):
+#         pass
+#     else:
+#         raise Exception("Count in title doesn't match the number of designs.")
+#     template_management_page.turn_off_wifi()
+#     template_management_page.search_design_common_designs(design_name)
+#     """Step 8-10 pending due to bug SMBM-1774"""
+#     sleep(3)
+#     if template_management_page.verify_connection_error_app():
+#         pass
+#     else:
+#         raise Exception("Connection lost error not displayed.")
+#     template_management_page.turn_on_wifi()
+#     sleep(5)
+#     template_management_page.search_design_common_designs(design_name)
+#     try:
+#         template_management_page.wait_for_suggestions_to_appear()
+#     except:
+#         raise Exception("dropdown did not appear.")
+#     template_management_page.check_dropdown_options_Are_clickable()
+#     template_management_page.click_drop_down_result_1()
+#     try:
+#         template_management_page.wait_for_suggestions_to_appear()
+#         x = 1 / 0
+#     except ZeroDivisionError:
+#         raise Exception("dropdown is present.")
+#     except Exception as e:
+#         pass
+#     design_list = template_management_page.get_all_designs_in_my_designs(True)
+#     if len(design_list) == 1:
+#         if design_list[0] == design_name:
+#             pass
+#         else:
+#             raise Exception("The resulting design name doesn't match search name")
+#     else:
+#         raise Exception("There are more than 1 result.")
+#     title_count = template_management_page.get_showing_n_designs_number()
+#     if int(title_count) == 1:
+#         pass
+#     else:
+#         raise Exception("Title is not 'Showing 1 Design'.")
+#     common_method.Stop_The_App()
 
 
 def test_Template_Management_TestcaseID_46010():
@@ -822,11 +823,12 @@ def test_Template_Management_TestcaseID_46010():
     sleep(3)
     category_list_drop_down = template_management_page.get_drop_down_list_common_designs(True)
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     category_list = template_management_page.get_all_categories_in_common_designs(True)
     if category_list == category_list_drop_down:
         pass
     else:
+        print(category_list, "\n", category_list_drop_down)
         raise Exception("All Categories not displayed in drop down.")
     template_management_page.clickCancelSearch()
     search_text = "-"
@@ -864,8 +866,7 @@ def test_Template_Management_TestcaseID_46010():
         pass
     template_management_page.search_design_common_designs("~`!@#$%^&*()_-+={}[]|/\:;"'<>,.?'"")
     try:
-        common_method.wait_for_element_appearance_namematches(
-            "No results found.\nSearch tips: try typing exactly what you’re looking for. It may help to simply type 1 word, and search for results then.")
+        template_management_page.waitForAppearanceOfNoResultsFound()
     except:
         raise Exception("No results for \"searched text\" text not displayed.")
     template_management_page.search_design_common_designs("")
@@ -878,19 +879,19 @@ def test_Template_Management_TestcaseID_46010():
 
 def test_Template_Management_TestcaseID_46014():
     pass
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     """"""
     categories = ["Address", "Barcodes", "Jewelry", "Multipurpose/Name Tag", "Postage/Shipping",
                   "Return Address/File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
-    search_text = ["Address", "Dishes", "Price", "Badge", "Harmful", "TwoLine", "Fragile", "Caution", "Asset",
+    search_text = ["Product", "Dishes", "Price", "Badge", "Harmful", "TwoLine", "Fragile", "Caution", "Asset",
                    "Checklist"]
     for i in range(len(categories)):
         template_management_page.search_design_common_designs(categories[i])
         keyevent("Enter")
-        common_method.wait_for_element_appearance_namematches("Categories")
+        template_management_page.waitForAppearanceOfCategories()
         template_management_page.select_design_common_designs()
         if template_management_page.verify_search_placeholder():
             pass
@@ -982,7 +983,31 @@ def test_Template_Management_TestcaseID_46015():
     pass
 
     """Step 1-4 web portal - pending due to web in consistency"""
-    common_method.Start_The_App()
+    data_sources_page.clearAppData()
+    sleep(2)
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
+    account = "zebraidctest@gmail.com"
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        while not poco(text="Add account to device").exists():
+            poco.scroll()
+        registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
     sleep(3)
@@ -994,7 +1019,7 @@ def test_Template_Management_TestcaseID_46015():
     design_name = "46015"
     "here"
     data_sources_page.searchMyDesigns(design_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     common_method.wait_for_element_appearance_namematches("could not be read")
@@ -1016,7 +1041,7 @@ def test_Template_Management_TestcaseID_46015():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     data_sources_page.clickBackArrow()
     """Reopen print preview"""
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     common_method.wait_for_element_appearance_namematches("could not be read")
@@ -1037,7 +1062,10 @@ def test_Template_Management_TestcaseID_46015():
     sleep(2)
     poco("com.android.chrome:id/tab_switcher_button").click()
     sleep(2)
-    poco("com.android.chrome:id/new_tab_view_button").click()
+    try:
+        poco("com.android.chrome:id/new_tab_view_button").click()
+    except:
+        poco(text="New tab").click()
     sleep(2)
     poco(text="Search or type URL").click()
     sleep(2)
@@ -1066,6 +1094,7 @@ def test_Template_Management_TestcaseID_46015():
     data_sources_page.clickPrint()
     common_method.Stop_The_App()
 
+
 def test_Template_Management_TestcaseID_46016():
     pass
 
@@ -1075,8 +1104,10 @@ def test_Template_Management_TestcaseID_46016():
     # sleep(2)
     # poco("com.android.chrome:id/tab_switcher_button").click()
     # sleep(2)
-    # poco("com.android.chrome:id/new_tab_view_button").click()
-    # sleep(2)
+    # try:
+    #     poco("com.android.chrome:id/new_tab_view_button").click()
+    # except:
+    #     poco(text="New tab").click()    # sleep(2)
     # poco(text="Search or type URL").click()
     # sleep(2)
     # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
@@ -1116,7 +1147,7 @@ def test_Template_Management_TestcaseID_46016():
     # keyevent("Back")
     """"""
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
     data_sources_page.searchName("csv_file.csv")
@@ -1155,7 +1186,7 @@ def test_Template_Management_TestcaseID_46016():
 
 def test_Template_Management_TestcaseID_46019():
     pass
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Step 1-4 pending due to web inconsistency"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
@@ -1194,7 +1225,7 @@ def test_Template_Management_TestcaseID_46019():
 def test_Template_Management_TestcaseID_46020():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Step 1-4 pending due to web inconsistency - has to be executed manually"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
@@ -1250,8 +1281,10 @@ def test_Template_Management_TestcaseID_46022():
     # sleep(2)
     # poco("com.android.chrome:id/tab_switcher_button").click()
     # sleep(2)
-    # poco("com.android.chrome:id/new_tab_view_button").click()
-    # sleep(2)
+    # try:
+    #     poco("com.android.chrome:id/new_tab_view_button").click()
+    # except:
+    #     poco(text="New tab").click()    # sleep(2)
     # poco(text="Search or type URL").click()
     # sleep(2)
     # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
@@ -1304,7 +1337,7 @@ def test_Template_Management_TestcaseID_46022():
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.searchMyDesigns("46022")
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     data_sources_page.clickBackArrow()
@@ -1313,6 +1346,8 @@ def test_Template_Management_TestcaseID_46022():
     poco.scroll()
     """Issue in step 7 due to bug SMBM-2202"""
     selected_file_name = template_management_page.select_file_update_data_connections("Drive")
+    if poco(text="Choose an account").exists():
+        data_sources_page.chooseAccToLinkFile("zsbswdvt@gmail.com")
     data_sources_page.clickContinue()
     data_sources_page.first_row_header(True)
     template_management_page.selectChooseAnOption(1)
@@ -1355,7 +1390,10 @@ def test_Template_Management_TestcaseID_47791():
     # sleep(2)
     # poco("com.android.chrome:id/tab_switcher_button").click()
     # sleep(2)
-    # poco("com.android.chrome:id/new_tab_view_button").click()
+    # try:
+    #     poco("com.android.chrome:id/new_tab_view_button").click()
+    # except:
+    #     poco(text="New tab").click()
     # sleep(2)
     # poco(text="Search or type URL").click()
     # sleep(2)
@@ -1396,7 +1434,7 @@ def test_Template_Management_TestcaseID_47791():
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.searchMyDesigns("47791")
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     if template_management_page.verify_if_on_relink_data_source_page():
@@ -1412,15 +1450,15 @@ def test_Template_Management_TestcaseID_47791():
     common_method.Stop_The_App()
 
 
-def test_Template_Management_TestcaseID_47812():
-    pass
-
-    common_method.tearDown()
-    login_page.click_Menu_HamburgerICN()
-    template_management_page.clickCommonDesigns()
-    data_sources_page.searchName("Label", False)
-    """Cannot automate - Check the search result title and the result label should not overlap each other - due to bug SMBM-1886"""
-    common_method.Stop_The_App()
+# def test_Template_Management_TestcaseID_47812():
+#     pass
+#
+#     common_method.tearDown()
+#     login_page.click_Menu_HamburgerICN()
+#     template_management_page.clickCommonDesigns()
+#     data_sources_page.searchName("Label", False)
+#     """Cannot automate - Check the search result title and the result label should not overlap each other - due to bug SMBM-1886"""
+#     common_method.Stop_The_App()
 
 
 def test_Template_Management_TestcaseID_47824():
@@ -1429,7 +1467,7 @@ def test_Template_Management_TestcaseID_47824():
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing", 10)
+    data_sources_page.checkIfDesignsLoaded()
     """Search and select design created in web"""
     data_sources_page.searchMyDesigns("Blank")
     data_sources_page.selectDesignCreatedAtSetUp()
@@ -1441,22 +1479,21 @@ def test_Template_Management_TestcaseID_47824():
     data_sources_page.clickPrint()
     try:
         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 20)
-        x=1/0
+        x = 1 / 0
     except ZeroDivisionError:
-        raise Exception("Print complete pop up is present eb=ven while printing blank label.")
+        raise Exception("Print complete pop up is present even while printing blank label.")
     data_sources_page.checkPrintIsDisabled()
     """cannot verify - Check ZSB app should not show pint complete popup or the print button is disabled"""
     "No pop up and Print is enabled."
-    "ithar"
 
 
 def test_Template_Management_TestcaseID_47947():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing", 10)
+    data_sources_page.checkIfDesignsLoaded()
     initial_count = int(template_management_page.get_showing_n_designs_number())
     """Search and select design created in web"""
     data_sources_page.searchMyDesigns("47947")
@@ -1469,7 +1506,7 @@ def test_Template_Management_TestcaseID_47947():
     """Blocked due to bug id SMBM-1902"""
     template_management_page.turn_on_wifi()
     data_sources_page.searchMyDesigns("")
-    common_method.wait_for_element_appearance_namematches("Showing", 10)
+    data_sources_page.checkIfDesignsLoaded()
     final_count = int(template_management_page.get_showing_n_designs_number())
     if final_count == initial_count - 1:
         pass
@@ -1485,7 +1522,10 @@ def test_Template_Management_TestcaseID_48266():
     sleep(2)
     poco("com.android.chrome:id/tab_switcher_button").click()
     sleep(2)
-    poco("com.android.chrome:id/new_tab_view_button").click()
+    try:
+        poco("com.android.chrome:id/new_tab_view_button").click()
+    except:
+        poco(text="New tab").click()
     sleep(2)
     poco(text="Search or type URL").click()
     sleep(2)
@@ -1522,13 +1562,13 @@ def test_Template_Management_TestcaseID_48266():
     template_management_page.select_label_common_designs_Web()
     data_sources_page.clickPrint()
     data_sources_page.clickPrint()
-    common_method.Start_The_App()
+    common_method.tearDown()
     registration_page.wait_for_element_appearance("Open navigation menu", 10)
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     """Search and select design created in web"""
     data_sources_page.searchMyDesigns(copied_design_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     design_list = template_management_page.get_all_designs_in_my_designs(True)
     if copied_design_name in design_list:
         pass
@@ -1538,7 +1578,7 @@ def test_Template_Management_TestcaseID_48266():
     template_management_page.clickCommonDesigns()
     template_management_page.search_design_common_designs("Round")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     template_management_page.verifyLabelsShown()
     data_sources_page.clickBackArrow()
@@ -1558,16 +1598,17 @@ def test_Template_Management_TestcaseID_48266():
         raise Exception("My Designs did not load properly.")
     common_method.Stop_The_App()
 
+
 def test_Template_Management_TestcaseID_48548():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     """Search and select design created in web"""
     design_created = "48548"
     data_sources_page.searchMyDesigns(design_created)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     """Rename pending"""
     renamed_design = "Round@22"
@@ -1576,13 +1617,13 @@ def test_Template_Management_TestcaseID_48548():
     template_management_page.clickSave()
     common_method.wait_for_element_appearance_namematches("Design has been successfully renamed")
     data_sources_page.searchMyDesigns(renamed_design)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page.clickDuplicateDesign()
     template_management_page.clickSave()
     common_method.wait_for_element_appearance_namematches("Design has been successfully duplicated")
     data_sources_page.searchMyDesigns(renamed_design + " copy")
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     duplicated_design_name = renamed_design + " copy"
     try:
         template_management_page_1.wait_for_element_appearance_name_matches_all(duplicated_design_name, 20)
@@ -1600,7 +1641,7 @@ def test_Template_Management_TestcaseID_48548():
     data_sources_page.clickMyDesigns()
     """Search and select design created in web"""
     data_sources_page.searchMyDesigns(renamed_design)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectSecondDesign()
     template_management_page.clickDeleteDesign()
     template_management_page.clickDeleteDesign()
@@ -1609,7 +1650,7 @@ def test_Template_Management_TestcaseID_48548():
     except:
         raise Exception("Design not deleted.")
     data_sources_page.searchMyDesigns(duplicated_design_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     try:
         template_management_page_1.wait_for_element_appearance_name_matches_all(duplicated_design_name, 20)
     except:
@@ -1626,7 +1667,7 @@ def test_Template_Management_TestcaseID_48548():
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.searchMyDesigns(duplicated_design_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page.rename_Design()
     template_management_page.new_design_name(design_created)
@@ -1663,7 +1704,7 @@ def test_Template_Management_TestcaseID_45979():
         raise Exception("Drop down list did not appear.")
     else:
         pass
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     displayed_list = template_management_page.get_all_designs_in_my_designs()
     if len(displayed_list) == 1:
         if displayed_list[0] == selected_design:
@@ -1677,7 +1718,7 @@ def test_Template_Management_TestcaseID_45979():
     else:
         raise Exception("Showing 1 Design not present.")
     data_sources_page.searchMyDesigns("")
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     new_file_list = template_management_page.get_all_designs_in_my_designs(True)
     if initial_design_list == new_file_list:
         pass
@@ -1697,9 +1738,9 @@ def test_Template_Management_TestcaseID_45922():
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    search_label_name = "11Elements"
+    search_label_name = "Elements_11"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     """cannot verify - 3a. Verify the design's elements are displayed in the print preview.
@@ -1748,7 +1789,7 @@ def test_Template_Management_TestcaseID_45922():
 def test_Template_Management_TestcaseID_45965():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     while not poco("Log Out").exists():
@@ -1777,7 +1818,7 @@ def test_Template_Management_TestcaseID_45965():
         raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if poco(nameMatches="Showing.*Designs").exists():
         pass
     else:
@@ -1792,7 +1833,7 @@ def test_Template_Management_TestcaseID_45965():
     design_precondition3 = ["unprintedDesign1 copy", "unprintedDesign2 copy"]
     for design in design_precondition1:
         data_sources_page.searchMyDesigns(design)
-        common_method.wait_for_element_appearance_namematches("Showing")
+        data_sources_page.checkIfDesignsLoaded()
         design_info = template_management_page.getDesignInfo(design)
         if "Last print" in design_info:
             pass
@@ -1800,13 +1841,13 @@ def test_Template_Management_TestcaseID_45965():
             raise Exception("No Last print date in designs from precondition 1.")
     for design in design_precondition2:
         data_sources_page.searchMyDesigns(design)
-        common_method.wait_for_element_appearance_namematches("Showing")
+        data_sources_page.checkIfDesignsLoaded()
         design_info = template_management_page.getDesignInfo(design)
         if "Last print" in design_info:
             raise Exception("No Last print date in designs from precondition 1.")
     for design in design_precondition3:
         data_sources_page.searchMyDesigns(design)
-        common_method.wait_for_element_appearance_namematches("Showing")
+        data_sources_page.checkIfDesignsLoaded()
         design_info = template_management_page.getDesignInfo(design)
         if "Last print" in design_info:
             raise Exception("No Last print date in designs from precondition 1.")
@@ -1828,7 +1869,7 @@ def test_Template_Management_TestcaseID_45965():
 def test_Template_Management_TestcaseID_45966():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     while not poco("Log Out").exists():
@@ -1850,14 +1891,14 @@ def test_Template_Management_TestcaseID_45966():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("sohozsb@gmail.com", "sohozsb@1234")
+        registration_page.sign_In_With_Google("sohozsb@1234", "sohozsb@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
         raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     if poco(nameMatches="Showing 100 Designs").exists():
         pass
     else:
@@ -1876,7 +1917,7 @@ def test_Template_Management_TestcaseID_45966():
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page.clickDeleteDesign()
     template_management_page.clickDeleteDesign()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     design_list = template_management_page.get_all_designs_in_my_designs(True)
     if len(design_list) <= 100:
         pass
@@ -1892,7 +1933,7 @@ def test_Template_Management_TestcaseID_45966():
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page.clickDuplicateDesign()
     template_management_page.clickSave()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     design_list = template_management_page.get_all_designs_in_my_designs(True)
     if len(design_list) <= 100:
         pass
@@ -1909,7 +1950,31 @@ def test_Template_Management_TestcaseID_45966():
 def test_Template_Management_TestcaseID_45924():
     pass
 
-    common_method.Start_The_App()
+    data_sources_page.clearAppData()
+    sleep(2)
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
+    account = "zebraidctest@gmail.com"
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        while not poco(text="Add account to device").exists():
+            poco.scroll()
+        registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
     lastPrintInitial = template_management_page.getLastPrintFromFirstDesignInRecentlyPrintedDesigns()
     template_management_page_1.click_first_design_in_recently_printed_labels()
     data_sources_page.clickPrint()
@@ -1949,7 +2014,7 @@ def test_Template_Management_TestcaseID_45921():
 
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     sleep(5)
@@ -1978,17 +2043,16 @@ def test_Template_Management_TestcaseID_46005():
 
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     search_label_name = "46005"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     name, size, lastPrint = template_management_page.get_the_name_size_and_lastprint_of_design(
         poco(nameMatches=f"(?s).*{search_label_name}.*").get_name())
     "unable to Verify design's information (Name, Size, Last Print) are NOT updated."
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     template_management_page.fill_all_print_fields("0")
-    print(1 / 0)
     """Clear the input box for print preview-unable to set value to blank"""
     while not poco("Print").exists():
         poco.scroll()
@@ -2001,16 +2065,16 @@ def test_Template_Management_TestcaseID_46023():
     pass
 
     "Step 1- 4 pending due to web inconsistency"
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Click hamburger menu"""
     login_page.click_Menu_HamburgerICN()
     """clickMy designs"""
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     "Search label created in web"
     search_label_name = "46023"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     "Select the label"
     data_sources_page.selectDesignCreatedAtSetUp()
     """Click print"""
@@ -2053,7 +2117,7 @@ def test_Template_Management_TestcaseID_46023():
         raise Exception("Print option is not greyed out")
     "click back arrow"
     data_sources_page.clickBackArrow()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     "select the design created and click print"
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
@@ -2151,7 +2215,7 @@ def test_Template_Management_TestcaseID_46024():
 
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     search_label_name = "Linked_CSV"
     data_sources_page.searchMyDesigns(search_label_name)
     data_sources_page.selectDesignCreatedAtSetUp()
@@ -2211,11 +2275,11 @@ def test_Template_Management_TestcaseID_46024():
         common_method.wait_for_element_appearance_namematches("My Designs")
     except:
         raise Exception("Did not return to \"My Designs\" page.")
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.searchName("")
     sleep(7)
     data_sources_page.searchName(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     design = template_management_page.get_all_designs_in_my_designs()
     design_last_print_date = design[0].split("\n")[2].split(":")[1].strip()
     if design_last_print_date == data_sources_page.get_current_date():
@@ -2260,7 +2324,7 @@ def test_Template_Management_TestcaseID_46024():
 def test_Template_Management_TestcaseID_46025():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     categories = ["Address", "Barcodes", "Jewelry", "Multipurpose/Name Tag", "Postage/Shipping",
                   "Return Address/File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
     for i in range(len(categories)):
@@ -2269,7 +2333,7 @@ def test_Template_Management_TestcaseID_46025():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
         template_management_page.search_design_common_designs(categories[i])
         keyevent("Enter")
-        common_method.wait_for_element_appearance_namematches("Categories")
+        template_management_page.waitForAppearanceOfCategories()
         template_management_page.select_design_common_designs()
         template_management_page.select_label_common_designs()
         data_sources_page.clickPrint()
@@ -2325,7 +2389,10 @@ def test_Template_Management_TestcaseID_46026():
     # sleep(2)
     # poco("com.android.chrome:id/tab_switcher_button").click()
     # sleep(2)
-    # poco("com.android.chrome:id/new_tab_view_button").click()
+    # try:
+    #     poco("com.android.chrome:id/new_tab_view_button").click()
+    # except:
+    #     poco(text="New tab").click()
     # sleep(2)
     # poco(text="Search or type URL").click()
     # sleep(2)
@@ -2353,13 +2420,13 @@ def test_Template_Management_TestcaseID_46026():
     # sleep(2)
     # data_sources_page.remove_File_Web()
     # stop_app("com.android.chrome")
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     design_name = "46026"
     data_sources_page.searchMyDesigns(design_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     template_management_page.verify_update_data_connections_dialog()
@@ -2420,7 +2487,7 @@ def test_Template_Management_TestcaseID_46026():
 def test_Template_Management_TestcaseID_47941():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
     try:
@@ -2484,10 +2551,10 @@ def test_Template_Management_TestcaseID_46032():
     sleep(2)
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     search_label_name = "46032"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     sleep(2)
@@ -2534,15 +2601,15 @@ def test_Template_Management_TestcaseID_46033():
     pass
 
     """Step 1-5 pending due to web automation"""
-    common_method.Start_The_App()
+    common_method.tearDown()
     registration_page.wait_for_element_appearance("Home", 20)
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     search_label_name = "46033"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     sleep(2)
@@ -2595,7 +2662,7 @@ def test_Template_Management_TestcaseID_46027():
 
     """Step 1-5 pending due to web automation"""
     data_sources_page.clearAppData()
-    common_method.Start_The_App()
+    common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
@@ -2645,10 +2712,10 @@ def test_Template_Management_TestcaseID_46027():
     sleep(5)
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     search_label_name = "46027"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     sleep(2)
@@ -2700,15 +2767,15 @@ def test_Template_Management_TestcaseID_46028():
     pass
 
     """Step 1-5 pending due to web automation"""
-    common_method.Start_The_App()
+    common_method.tearDown()
     registration_page.wait_for_element_appearance("Home", 20)
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     search_label_name = "46028"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     sleep(2)
@@ -2763,7 +2830,7 @@ def test_Template_Management_TestcaseID_46029():
 
     """Step 1-5 pending due to web automation"""
     data_sources_page.clearAppData()
-    common_method.Start_The_App()
+    common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
@@ -2781,17 +2848,17 @@ def test_Template_Management_TestcaseID_46029():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@gmail.com", "zebraidctest@1234")
+        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
         raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     search_label_name = "46029"
     data_sources_page.searchMyDesigns(search_label_name)
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     sleep(2)
@@ -2847,7 +2914,10 @@ def test_Template_Management_TestcaseID_46029():
     sleep(2)
     poco("com.android.chrome:id/tab_switcher_button").click()
     sleep(2)
-    poco("com.android.chrome:id/new_tab_view_button").click()
+    try:
+        poco("com.android.chrome:id/new_tab_view_button").click()
+    except:
+        poco(text="New tab").click()
     sleep(2)
     poco(text="Search or type URL").click()
     sleep(2)
@@ -2904,7 +2974,7 @@ def test_Template_Management_TestcaseID_46029():
 def test_Template_Management_TestcaseID_46018():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Step 1-4 pending due to web inconsistency"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
@@ -2955,12 +3025,12 @@ def test_Template_Management_TestcaseID_46018():
 def test_Template_Management_TestcaseID_46017():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Step 1-4 pending due to web inconsistency"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     """Search and select design created in web"""
     data_sources_page.searchMyDesigns("46017")
     data_sources_page.selectDesignCreatedAtSetUp()
@@ -2998,7 +3068,7 @@ def test_Template_Management_TestcaseID_46017():
 def test_Template_Management_TestcaseID_46037():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Log out of existing account"""
     try:
         common_method.wait_for_element_appearance("Sign In")
@@ -3025,7 +3095,7 @@ def test_Template_Management_TestcaseID_46037():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("sohozsb@gmail.com", "sohozst@1234")
+        registration_page.sign_In_With_Google("sohozsb@1234", "sohozsb@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -3033,7 +3103,7 @@ def test_Template_Management_TestcaseID_46037():
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     initial_design_count = template_management_page.get_all_designs_in_my_designs()
     designName = "ZZZ_Test"
     """Step 1-4 pending due to web inconsistency - has to be done manually"""
@@ -3042,7 +3112,10 @@ def test_Template_Management_TestcaseID_46037():
     sleep(2)
     poco("com.android.chrome:id/tab_switcher_button").click()
     sleep(2)
-    poco("com.android.chrome:id/new_tab_view_button").click()
+    try:
+        poco("com.android.chrome:id/new_tab_view_button").click()
+    except:
+        poco(text="New tab").click()
     sleep(2)
     poco(text="Search or type URL").click()
     sleep(2)
@@ -3069,7 +3142,7 @@ def test_Template_Management_TestcaseID_46037():
     wake()
     """Step 4 pending due to web inconsistency."""
     stop_app("com.android.chrome")
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     new_design_count = len(template_management_page.get_all_designs_in_my_designs())
     if new_design_count == initial_design_count + 1:
         pass
@@ -3097,11 +3170,11 @@ def test_Template_Management_TestcaseID_46037():
 def test_Template_Management_TestcaseID_46038():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     """Step 2, 3 pending as no pagination on mobile app"""
     """Navigating to page 3 pending as no pagination on app"""
     data_sources_page.selectDesignCreatedAtSetUp()
@@ -3118,11 +3191,11 @@ def test_Template_Management_TestcaseID_46038():
 def test_Template_Management_TestcaseID_46039():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     initial_design_count = len(template_management_page.get_all_designs_in_my_designs())
     """Step 2 pending as no pagination on mobile app"""
     """Navigating to page 3 pending as no pagination on app"""
@@ -3131,7 +3204,7 @@ def test_Template_Management_TestcaseID_46039():
     new_name = "Duplicate Test"
     template_management_page.new_design_name(new_name)
     template_management_page.clickSave()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     new_design_count = len(template_management_page.get_all_designs_in_my_designs())
     if new_design_count == initial_design_count + 1:
         pass
@@ -3172,11 +3245,11 @@ def test_Template_Management_TestcaseID_46039():
 def test_Template_Management_TestcaseID_46040():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     initial_design_count = len(template_management_page.get_all_designs_in_my_designs())
     """Step 2 pending as no pagination on mobile app"""
     login_page.click_Menu_HamburgerICN()
@@ -3184,7 +3257,7 @@ def test_Template_Management_TestcaseID_46040():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     template_management_page.search_design_common_designs("Address")
     keyevent("Enter")
-    common_method.wait_for_element_appearance_namematches("Categories")
+    template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
     template_management_page.select_label_common_designs()
     template_management_page.click_copy_to_My_Designs()
@@ -3194,7 +3267,7 @@ def test_Template_Management_TestcaseID_46040():
     design_name = "Asset copy"
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     new_design_count = len(template_management_page.get_all_designs_in_my_designs())
     if new_design_count == initial_design_count + 1:
         pass
@@ -3223,11 +3296,11 @@ def test_Template_Management_TestcaseID_46040():
 def test_Template_Management_TestcaseID_46041():
     pass
 
-    common_method.Start_The_App()
+    common_method.tearDown()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     initial_design_count = template_management_page.get_showing_n_designs_number()
     start_app("com.android.chrome")
     sleep(2)
@@ -3261,7 +3334,7 @@ def test_Template_Management_TestcaseID_46041():
     data_sources_page.searchFileInLocalStorage(downloaded_design_name, "Downloads")
     sleep(10)
     stop_app("com.android.chrome")
-    common_method.wait_for_element_appearance_namematches("Showing")
+    data_sources_page.checkIfDesignsLoaded()
     new_design_count = template_management_page.get_showing_n_designs_number()
     if new_design_count == initial_design_count + 1:
         pass
@@ -3277,4 +3350,3 @@ def test_Template_Management_TestcaseID_46041():
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     common_method.Stop_The_App()
-

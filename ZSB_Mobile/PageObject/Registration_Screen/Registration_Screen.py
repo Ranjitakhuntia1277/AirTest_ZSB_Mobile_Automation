@@ -10,8 +10,8 @@ from airtest.core.api import *
 from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Login_Screen.Login_Screen import Login_Screen
 
 common_method = Common_Method(poco)
 
@@ -38,6 +38,10 @@ class Registration_Screen:
     def clickSignIn(self):
         signInBtn = self.poco("Sign In")
         signInBtn.click()
+        if self.poco("Allow").exists():
+            self.poco("Allow").click()
+        elif self.poco(text="Allow").exists():
+            self.poco(text="Allow").click()
 
     def registerEmail(self):
         self.poco(self.Register_Email).wait_for_appearance(timeout=10)
@@ -262,7 +266,8 @@ class Registration_Screen:
             keyevent("Enter")
             self.poco("android.widget.EditText")[0].wait_for_appearance(timeout=10)
             self.poco("android.widget.EditText")[0].set_text(user_name)
-            keyevent("back")
+            keyevent("Enter")
+            # keyevent("back")
         self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText")[1].set_text(password)
         # self.poco(text="Sign In").click()
@@ -275,6 +280,7 @@ class Registration_Screen:
                 raise Exception("Error message not displayed for wrong password.")
 
     def click_on_profile_edit(self):
+        sleep(3)
         self.poco("android.widget.Button").click()
 
     def verify_if_on_EULA_page(self):
@@ -292,21 +298,33 @@ class Registration_Screen:
     def click_decline(self):
         self.poco("Decline").click()
 
+    def scroll_till_log_out(self):
+        while not self.poco("Log Out").exists():
+            self.poco.scroll()
+
     def click_log_out_button(self):
         log_out_btn = self.poco(self.log_out_button)
         log_out_btn.click()
 
     def click_Google_Icon(self):
+        sleep(2)
         touch(self.Google_Icon)
+        sleep(2)
 
     def click_Facebook_Icon(self):
+        sleep(2)
         touch(self.Facebook_Icon)
+        sleep(2)
 
     def click_Apple_Icon(self):
+        sleep(2)
         touch(self.Apple_Icon)
+        sleep(2)
 
     def click_on_next(self):
+        sleep(2)
         self.poco(text="Next").click()
+        sleep(2)
 
     def addAccountToDevice(self):
         add_acc = self.poco(text="Add account to device")
@@ -398,6 +416,7 @@ class Registration_Screen:
                 print("Error message not displayed for wrong password.")
                 raise Exception("Error message not displayed for wrong password.")
         "Enter OTP manually"
+        sleep(60)
         try:
             self.poco(text="Trust").wait_for_appearance(timeout=40)
             self.poco(text="Trust").click()
@@ -707,18 +726,19 @@ class Registration_Screen:
         self.poco(text="Submit").parent().focus([0.1, 0.5]).click()
         self.clickSubmit()
 
-    def connectToWIfi(self):
+    def connectToWIfi(self, wifi_name="NESTWIFI"):
         try:
             self.poco("Connect").wait_for_appearance(timeout=10)
             self.poco("Connect").click()
             return
         except:
             for i in range(10):
-                if self.poco("NESTWIFI").exists():
-                    self.poco("NESTWIFI").click()
+                if self.poco(wifi_name).exists():
+                    self.poco(wifi_name).click()
                     return
                 self.poco.scroll()
-            raise Exception("NESTWIFI not found.")
+            error = f'{wifi_name}not found.'
+            raise Exception(error)
 
     def enterPasswordWifi(self, password="123456789"):
         self.poco("android.widget.EditText").click()
