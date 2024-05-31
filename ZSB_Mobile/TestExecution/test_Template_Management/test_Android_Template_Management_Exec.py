@@ -1,9 +1,11 @@
+# import sys
+# sys.path.append(r'C:\Users\tr5927\Desktop\ZSB_Automation')
+
 import pytest
 
-from ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management import test_Android_Template_Management
+from ...TestExecution.test_Template_Management.test_Android_Template_Management import test_Android_Template_Management
 
 tm_a = test_Android_Template_Management()
-
 
 def test_Template_Management_TestcaseID_46006():
     tm_a.test_Template_Management_TestcaseID_46006()
@@ -42,7 +44,6 @@ def test_Template_Management_TestcaseID_45967():
     tm_a.test_Template_Management_TestcaseID_45967()
 def test_Template_Management_TestcaseID_45968():
     tm_a.test_Template_Management_TestcaseID_45968()
-
 def test_Template_Management_TestcaseID_45926():
     tm_a.test_Template_Management_TestcaseID_45926()
 def test_Template_Management_TestcaseID_45927():
@@ -53,8 +54,7 @@ def test_Template_Management_TestcaseID_45930():
     tm_a.test_Template_Management_TestcaseID_45930()
 def test_Template_Management_TestcaseID_45931():
     tm_a.test_Template_Management_TestcaseID_45931()
-def test_Template_Management_TestcaseID_45932():
-    tm_a.test_Template_Management_TestcaseID_45932()
+
 def test_Template_Management_TestcaseID_45933():
     tm_a.test_Template_Management_TestcaseID_45933()
 def test_Template_Management_TestcaseID_45934():
@@ -183,9 +183,9 @@ def test_Template_Management_TestcaseID_45924():
 def test_Template_Management_TestcaseID_45904():
     tm_a.test_Template_Management_TestcaseID_45904()
 
-
-
-
+def test_Template_Management_TestcaseID_45932():
+    tm_a.test_Template_Management_TestcaseID_45932()
+#hello
 
 
 

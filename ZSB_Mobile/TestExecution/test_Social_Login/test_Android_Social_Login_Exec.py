@@ -1,9 +1,8 @@
 import pytest
 
-from ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login import test_Android_Social_Login
+from ...TestExecution.test_Social_Login.test_Android_Social_Login import test_Android_Social_Login
 
 t_sl = test_Android_Social_Login()
-
 
 def test_Social_Login_TtestcaseID_48464():
     t_sl.test_Social_Login_TestcaseID_48464()

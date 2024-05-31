@@ -1,15 +1,14 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-from ZSB_Mobile.PageObject.Others import Others
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...PageObject.Others import Others
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 
 class Android_APS_Notification:
@@ -19,9 +18,9 @@ class Android_APS_Notification:
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
 connect_device("Android:///")
-start_app("com.zebra.soho_app")
-stop_app("com.zebra.soho_app")
-sleep(2.0)
+# start_app("com.zebra.soho_app")
+# stop_app("com.zebra.soho_app")
+# sleep(2.0)
 
 """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
 login_page = Login_Screen(poco)
@@ -53,6 +52,8 @@ def test_APS_Notification_TestcaseID_49155():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -62,9 +63,12 @@ def test_APS_Notification_TestcaseID_49155():
     aps_notification.click_Print_Option()
     aps_notification.Verify_Notification_To_Login()
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
     aps_notification.Verify_Notification_Is_Not_Displaying()
@@ -90,6 +94,8 @@ def test_APS_Notification_TestcaseID_49167():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -121,6 +127,8 @@ def test_APS_Notification_TestcaseID_49168():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -155,6 +163,8 @@ def test_APS_Notification_TestcaseID_49169():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -190,6 +200,8 @@ def test_APS_Notification_TestcaseID_50267():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -208,6 +220,8 @@ def test_APS_Notification_TestcaseID_50267():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -263,6 +277,8 @@ def test_APS_Notification_TestcaseID_50498():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -303,6 +319,8 @@ def test_APS_Notification_TestcaseID_50499():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -313,7 +331,7 @@ def test_APS_Notification_TestcaseID_50499():
     aps_notification.Verify_Notification_To_Login()
 
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_APS_Notification_TestcaseID_50500():
     """ Check it will notify user need login to search printers when share another file via APS if user not login ZSB series and a print preview has been opened"""
@@ -329,6 +347,7 @@ def test_APS_Notification_TestcaseID_50500():
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
     app_settings_page.click_Keyboard_back_Icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_JPG_Image_File_From_The_List()
@@ -366,8 +385,12 @@ def test_APS_Notification_TestcaseID_50501():
     login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
@@ -390,6 +413,8 @@ def test_APS_Notification_TestcaseID_50501():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -416,6 +441,8 @@ def test_APS_Notification_TestcaseID_50502():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -425,8 +452,12 @@ def test_APS_Notification_TestcaseID_50502():
     aps_notification.click_Print_Option()
     aps_notification.Verify_Notification_To_Login()
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
     aps_notification.Verify_Notification_Is_Not_Displaying()
@@ -462,6 +493,8 @@ def test_APS_Notification_TestcaseID_50503():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()

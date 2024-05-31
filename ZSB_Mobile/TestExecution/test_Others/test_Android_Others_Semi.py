@@ -23,12 +23,88 @@ others = Others(poco)
 common_method=Common_Method(poco)
 social_login = Social_Login(poco)
 
+def test_Others_TestcaseID_51703():
+    pass
+    common_method.tearDown()
+
+
+    others.install_zsb_series_on_google_play()
+    common_method.wait_for_element_appearance_namematches("Uninstall",50)
+    others.open_the_zsb_series_app_in_play_store()
+    others.check_allow_permission_for_location()
+    login_page.click_loginBtn()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        login_page.click_Loginwith_Google()
+        common_method.wait_for_element_appearance_textmatches("Choose an account")
+        others.click_an_google_account("zebratest850@gmail.com")
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Home",30)
+    res = others.check_home_page()
+    if not res:
+        raise Exception("Not in Home page")
+
+    others.uninstall_and_install_zsb_series_on_google_play()
+    common_method.wait_for_element_appearance_namematches("Uninstall",30)
+    stop_app("com.android.vending")
+
+    poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    while(1):
+        if others.check_zsb_app_icon():
+            t='present'
+            break
+        else:
+            others.scroll_down()
+
+    others.click_zsb_app_icon()
+    sleep(5)
+
+    try:
+        others.check_allow_permission_for_location()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+
+    try:
+        login_page.click_loginBtn()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        login_page.click_Loginwith_Google()
+        common_method.wait_for_element_appearance_textmatches("Choose an account")
+        others.click_an_google_account("zebratest850@gmail.com")
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Home",30)
+
+    res = others.check_home_page()
+    if not res:
+        raise Exception("Not in Home page")
 
 def test_Others_TestcaseID_45807(self):
     pass
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+    common_method.Clear_App()
+    common_method.tearDown()
+
     common_method.wait_for_element_appearance_namematches("Recently")
 
     """SMBM-1774"""
@@ -468,6 +544,31 @@ def test_Others_TestcaseID_45807(self):
         if res == "Offline":
             print("ok")
 
+def test_Others_TestcaseID_45799():
+    pass
+
+    start_app("com.android.documentsui")
+    t=''
+    others.install_the_zsb_apk_in_files_android_8()
+    sleep(3)
+    res = others.check_app_is_installed_on_android_8()
+    if res:
+        raise Exception("app is installed but it should not")
+
+    others.go_back()
+    others.go_back()
+
+    poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    while(1):
+        if others.check_zsb_app_icon():
+            t='present'
+            break
+        else:
+            others.scroll_down()
+
+    if t == 'present':
+        raise Exception("app present")
 
 
 

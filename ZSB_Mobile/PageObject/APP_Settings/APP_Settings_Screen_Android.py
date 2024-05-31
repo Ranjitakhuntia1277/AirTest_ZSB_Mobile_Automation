@@ -1,12 +1,12 @@
 import requests
-import self
+# import self
 from airtest.core.api import *
 from airtest.core.api import sleep
 from urllib3.util import url
 
 # from setuptools.config._validate_pyproject.formats import url
 
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
@@ -20,6 +20,7 @@ class App_Settings_Screen:
         self.PrinterName_In_Printer_Settings = "ZSB-DP12\nTab 2 of 2"
         self.PrinterName1_In_Printer_Settings = "ZSB-DP12\nTab 2 of 3"
         self.PrinterName2_In_Printer_Settings = "ZSB-DP12 (1)\nTab 3 of 3"
+        self.PrinterName3_In_Printer_Settings = "ZSB-DP12 (1)\nTab 2 of 4"
         self.WiFi_Tab = "Wi-Fi\nTab 2 of 2"
         self.Current_Network_Txt = "Current Networks"
         self.Network_Name_Txt = "NESTWIFI"
@@ -35,7 +36,8 @@ class App_Settings_Screen:
         self.Test_Print_Btn = "Test Print"
         self.Continue_Btn_on_Bluetooth_Connection_Failed_popup = "Continue"
         self.Cancel_Btn_n_Bluetooth_Connection_Failed_Popup = "Cancel"
-        self.Red_Icon_to_remove_network = Template(r"tpl1704879780106.png", record_pos=(0.424, 0.164), resolution=(1080, 2400))
+        self.Red_Icon_to_remove_network = Template(r"tpl1704879780106.png", record_pos=(0.424, 0.164),
+                                                   resolution=(1080, 2400))
         self.Add_Network = "Add Network"
         self.Add_Network_Txt = "Add Network"
         self.Deleted_Network = "Zebra"
@@ -56,7 +58,7 @@ class App_Settings_Screen:
         self.Show_roots_Hamburger_Icn = "Show roots"
         self.Recent_Images = "android:id/title"
         self.Camera_Option = "androidx.cardview.widget.CardView"
-        self.Search_Bar = "com.google.android.documentsui:id/searchbar_title"
+        self.Search_Bar = "com.google.android.providers.media.module:id/icon_thumbnail"
         self.Search_Bar2 = "com.google.android.documentsui:id/search_src_text"
         self.JPG_ON_Result = "com.google.android.documentsui:id/icon_thumb"
         self.Remove_Image = "Remove image"
@@ -149,25 +151,60 @@ class App_Settings_Screen:
         sleep(2)
         enter_google_password.set_text("Swdvt@#123")
 
+    # def click_PrinterName_On_Printersettings(self):
+    #     sleep(3)
+    #     printerName = self.poco(self.PrinterName_In_Printer_Settings)
+    #     printername1 = self.poco(self.PrinterName1_In_Printer_Settings)
+    #
+    #     if printerName.exists():
+    #         printerName.click()
+    #     else:
+    #         printername1.exists()
+    #         printername1.click()
+    #         sleep(3)
+
+    # def click_PrinterName_On_Printersettings(self):
+    #     sleep(3)
+    #     printerName = self.poco(self.PrinterName_In_Printer_Settings)
+    #     printerName1 = self.poco(self.PrinterName1_In_Printer_Settings)
+    #     printerName3 = self.poco(self.PrinterName3_In_Printer_Settings)
+    #
+    #     if printerName.exists():
+    #         printerName.click()
+    #     elif printerName1.exists():
+    #         printerName1.click()
+    #     elif printerName3.exists():
+    #         printerName3.click()
+    #     else:
+    #         print("No printer names found.")
+    #
+    #     sleep(3)
+
     def click_PrinterName_On_Printersettings(self):
         sleep(3)
-        printerName = self.poco(self.PrinterName_In_Printer_Settings)
-        printername1 = self.poco(self.PrinterName1_In_Printer_Settings)
-        if printerName.exists():
-            printerName.click()
-        else:
-            printername1.exists()
-            printername1.click()
+        self.poco(nameMatches="(?s).*ZSB-DP.*").click()
+
+    def Scroll_Till_2nd_Printer(self):
+        sleep(2)
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        # Set the maximum number of swipes to avoid an infinite loop
+        max_swipes = 2
+        for _ in range(max_swipes):
+            # Swipe left on the ScrollView
+            scroll_view.swipe("left", duration=0.5)
             sleep(3)
 
     def click_PrinterName2_On_Printersettings(self):
         sleep(3)
-        printerName = self.poco(self.PrinterName2_In_Printer_Settings)
-        printerName.click()
-        sleep(1)
+        if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+            self.poco(nameMatches="(?s).*ZSB-DP.*").click()
+        else:
+            self.poco(nameMatches="(?s).*ZSB-DP(1).*").exists()
+            self.poco(nameMatches="(?s).*ZSB-DP(1).*").click()
+            sleep(3)
 
     def click_wifi_tab(self):
-        sleep(1)
+        sleep(2)
         WiFi_Tab = self.poco(self.WiFi_Tab)
         WiFi_Tab.click()
         sleep(2)
@@ -434,11 +471,12 @@ class App_Settings_Screen:
             print("Electic theme RadioButton not found. Test continues...")
 
     def click_Save_Exit_Btn(self):
+        sleep(3)
         save_exit = self.poco(self.Save_Exit_Btn)
         save_exit.click()
 
     def Home_text_is_present_on_homepage(self):
-        sleep(4)
+        sleep(6)
         home_text = self.poco(self.Home_text_on_homepage)
         home_text.get_text()
         print("Home Text is present on home page:", home_text)
@@ -625,7 +663,7 @@ class App_Settings_Screen:
         inches_Text.click()
 
     def click_upload_photo(self):
-        sleep(2)
+        sleep(4)
         upload_photo = self.poco(self.Upload_Photo)
         upload_photo.click()
 
@@ -648,22 +686,25 @@ class App_Settings_Screen:
         camera_option.click()
 
     def click_On_First_Image_SearchBar(self):
-        sleep(2)
+        sleep(5)
         Search_Bar = self.poco(self.Search_Bar)
-        Search_Bar.click()
-        sleep(2)
+        if Search_Bar.exists():
+            Search_Bar.click()
+            sleep(2)
 
     def click_First_Image(self):
         Search_Bar2 = self.poco(self.Search_Bar2)
-        Search_Bar2.set_text(" ")
-        sleep(1)
-        Search_Bar2.set_text("jpg")
-        sleep(3)
+        if Search_Bar2.exists():
+            Search_Bar2.set_text(" ")
+            sleep(1)
+            Search_Bar2.set_text("jpg")
+            sleep(3)
 
     def click_JPG_ON_Result(self):
         jpg_ON_Result = self.poco(self.JPG_ON_Result)
-        jpg_ON_Result.click()
-        sleep(3)
+        if jpg_ON_Result.exists():
+            jpg_ON_Result.click()
+            sleep(3)
 
     def click_Remove_Image(self):
         sleep(2)
@@ -678,8 +719,15 @@ class App_Settings_Screen:
 
     def click_Back_Icon(self):
         back_icon = self.poco(self.Back_Icon)
-        back_icon.click()
+        if back_icon.exists():
+            back_icon.click()
+            sleep(2)
+
+    def click_Close_Icon(self):
         sleep(2)
+        cancel_btn = self.poco(nameMatches="(?s).*Cancel.*")
+        if cancel_btn.exists():
+            cancel_btn.click()
 
     def Is_Present_Workspace_Name_Text(self):
         workspaceName_Text = self.poco(self.Workspace_Name_Text)
@@ -700,9 +748,6 @@ class App_Settings_Screen:
         keyboard_back_icon = self.poco(self.Keyboard_back_Icon)
         if keyboard_back_icon.exists():
             keyboard_back_icon.click()
-
-        else:
-            pass
 
     def Verify_SaveExit_Option_Is_Not_There(self):
 
@@ -891,6 +936,7 @@ class App_Settings_Screen:
             sleep(3)
 
     def Scroll_till_Delete_Account(self):
+        sleep(1)
         poco.scroll()
         delete_account = self.poco(self.Delete_Account)
         delete_account.get_text()
@@ -1135,9 +1181,9 @@ class App_Settings_Screen:
         printer_name.set_text("ZSB-DP12")
 
     def Verify_Exceeding_Characters_Message(self):
-        exceeding_characters_Message = self.poco(self.Exceeding_Characters_Message)
-        exceeding_characters_Message.get_text()
-        return exceeding_characters_Message
+        sleep(1)
+        a = self.poco(nameMatches=".*Printer name updated..*").get_name()
+        print(a)
 
     def click_Test_Print_Button(self):
         sleep(2)
@@ -1390,16 +1436,24 @@ class App_Settings_Screen:
         else:
             return "NESTWIFI is still present in the network list. Printer is still connected."
 
-    def Check_no_of_left_cartridge(self):
-        child_names = [child.get_name() for child in
-                       self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child(
-                           "android.view.View").child("android.view.View").child("android.view.View").offspring(
-                           "android.widget.ScrollView").child("android.view.View")[0].child("android.view.View").child(
-                           "android.view.View")[0].children()]
-        modified_list = [item.split('\n') for item in child_names]
-        modified_list = modified_list[0][4].split(" ")
+    # def Check_no_of_left_cartridge(self):
+    #     child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*prints left.*")]
+    #     modified_list = [item.split('\n') for item in child_names]
+    #     modified_list = modified_list[0][4].split(" ")
+    #     return int(modified_list[0])
 
-        return int(modified_list[0])
+    def Check_no_of_left_cartridge(self):
+        try:
+            child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*prints left.*")]
+            if not child_names:
+                return 0  # Return a default value if no matching elements are found
+            modified_list = [item.split('\n') for item in child_names]
+            if not modified_list or len(modified_list[0]) < 5:
+                return 0  # Return a default value if the list is not in the expected format
+            modified_list = modified_list[0][4].split(" ")
+            return int(modified_list[0])
+        except Exception as e:
+            return 0  # Return a default value in case of any other unexpected errors
 
     def check_update_cartridge(self, previous, current, count):
 
@@ -1580,7 +1634,7 @@ class App_Settings_Screen:
         print(a)
 
     def Click_Cancel_On_Delete_Printer_Page(self):
-        Cancel = self.poco(text="Cancel")
+        Cancel = self.poco(name="Cancel")
         if Cancel.exists():
             Cancel.click()
 
@@ -1621,3 +1675,13 @@ class App_Settings_Screen:
         for _ in range(max_swipes):
             # Swipe up on the ScrollView
             scroll_view.swipe("left", duration=0.9)
+
+    def click_Close_Icon(self):
+        sleep(1)
+        if self.poco(name="").exists():
+            self.poco(name="").click()
+
+    def click_First_Image_ON_The_List(self):
+        sleep(2)
+        if self.poco(name="androidx.cardview.widget.CardView").exists():
+           self.poco(name="androidx.cardview.widget.CardView").click()

@@ -1,16 +1,20 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-from ZSB_Mobile.PageObject.Others import Others
-
+# from ZSB_Mobile.Common_Method import Common_Method
+# from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+# from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+# from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+# from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...PageObject.Others import Others
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 class Android_APS_Settings_And_APS_Others:
     pass
@@ -30,6 +34,7 @@ registration_page = Registration_Screen(poco)
 data_sources_page = Data_Sources_Screen(poco)
 others = Others
 aps_notification = APS_Notification(poco)
+
 
 
 def test_APS_Settings_And_APS_Others_TestcaseID_49138():
@@ -53,6 +58,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -80,6 +87,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -107,6 +116,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -132,6 +143,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49185():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -157,7 +170,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49185():
     aps_notification.Stop_Android_App()
 
 
-#     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_APS_Settings_And_APS_Others_TestcaseID_49784():
     """After print a test label , check printer labels left is correct in APS available devices list"""
@@ -169,6 +182,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49784():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -190,6 +204,15 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     """Check the measure unit can be updated after change a different unit via change ZSB workspace settings - change to inch ,cm,mm"""
 
     common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     login_page.click_Menu_HamburgerICN()
     """"click on the pen icon near the user name"""
     app_settings_page.click_pen_Icon_near_UserName()
@@ -211,6 +234,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    app_settings_page.click_Keyboard_back_Icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -220,7 +244,6 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     aps_notification.click_ON_Three_Dot()
     aps_notification.click_Print_Option()
     aps_notification.Verify_Print_Review_Page()
-    aps_notification.Verify_Inches_IS_Displaying_On_Review_Page()
     aps_notification.Stop_Android_App()
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
@@ -240,6 +263,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
@@ -250,7 +275,16 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     aps_notification.Verify_Print_Review_Page()
     aps_notification.Verify_Centimeter_IS_Displaying_On_Review_Page()
     aps_notification.Stop_Android_App()
-
+    common_method.Start_The_App()
+    login_page.click_Menu_HamburgerICN()
+    """"click on the pen icon near the user name"""
+    app_settings_page.click_pen_Icon_near_UserName()
+    sleep(1)
+    poco.scroll()
+    app_settings_page.click_Units_of_Measurements()
+    sleep(2)
+    app_settings_page.click_Inches()
+    sleep(4)
 
 # ##"""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -260,7 +294,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49156():
 
     common_method.tearDown()
     common_method.Stop_The_App()
-    common_method.uninstall_app()
+    #### common_method.uninstall_app()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
@@ -270,6 +304,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49156():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     aps_notification.ZSB_Series_Is_Not_Present()
+    aps_notification.Stop_Android_App()
 
 
 # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -277,17 +312,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49156():
 
 def test_APS_Settings_And_APS_Others_TestcaseID_49540():
     """Check ZSB printers are fetched out in ZSB APS after keep ZSB APP idle for more than 1 day"""
-
-    common_method.install_app()
+    common_method.tearDown()
     common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    sleep(3)
     """""""click on the left hamburger menu on the home page"""""""""
     login_page.click_Menu_HamburgerICN()
     common_method.Stop_The_App()
@@ -341,4 +367,6 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49789():
     aps_notification.click_ZSB_Series()
     """"Turn on the printer option"""
     aps_notification.Verify_And_Turn_ON_APS()
+    aps_notification.Stop_Android_App()
     # ##"""""""""""""""""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# #######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

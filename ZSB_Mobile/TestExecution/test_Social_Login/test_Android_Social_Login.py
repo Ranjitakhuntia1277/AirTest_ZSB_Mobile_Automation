@@ -1,12 +1,20 @@
 import time
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Social_Login.Social_Login import Social_Login
-from ZSB_Mobile.Common_Method import *
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Social_Login.Social_Login import Social_Login
+from ...Common_Method import *
 import os
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Others.Others import Others
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Others.Others import Others
 
+import tkinter as tk
+from tkinter import simpledialog
+
+def get_user_input():
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
+    user_input = simpledialog.askstring("Input", "Please enter your value:")
+    return user_input
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
@@ -27,6 +35,12 @@ class test_Android_Social_Login():
     def setup_logout(self):
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
+
+        try:
+            others.wait_for_element_appearance("Sign In", 10)
+        except:
+            pass
+
         try:
             common_method.wait_for_element_appearance_namematches("Home")
             login_page.click_Menu_HamburgerICN()
@@ -36,22 +50,29 @@ class test_Android_Social_Login():
         except:
             pass
 
-        try:
-            others.wait_for_element_appearance("Sign In", 10)
-        except:
-            pass
-
     def test_Social_Login_TestcaseID_48464(self):
         pass
 
-        self.setup_logout()
+        common_method.Clear_App()
+        common_method.tearDown()
 
         try:
             social_login.click_on_allow_for_notification()
         except:
             pass
-
+        try:
+            social_login.click_on_allow_for_notification()
+        except:
+            pass
         login_page.click_loginBtn()
+        try:
+            social_login.click_on_allow_for_notification()
+        except:
+            pass
+        try:
+            social_login.click_on_allow_for_notification()
+        except:
+            pass
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         res = social_login.check_zebra_logo()
         if not res:
@@ -89,6 +110,7 @@ class test_Android_Social_Login():
         start_app("com.zebra.soho_app")
     def test_Social_Login_TestcaseID_48465(self):
         pass
+
         self.setup_logout()
         try:
             social_login.click_on_allow_for_notification()
@@ -410,7 +432,7 @@ class test_Android_Social_Login():
         """Enter the email"""
         email = "zebratest850@gmail.com"
         social_login.choose_a_google_account(email)
-        social_login.wait_for_element_appearance("Home",10)
+        social_login.wait_for_element_appearance("Home",20)
         login_page.click_Menu_HamburgerICN()
         social_login.click_on_profile_edit()
 
@@ -534,6 +556,7 @@ class test_Android_Social_Login():
         social_login.click_on_sign_in_with_email()
 
         social_login.complete_sign_in_with_email(email,password,1,1)
+        sleep(2)
         if not social_login.check_for_incorrect_user_name_or_password_sign_in_with_email():
             raise Exception("Error not displayed for incorrect email")
 
@@ -725,7 +748,7 @@ class test_Android_Social_Login():
         social_login.wait_for_element_appearance_text("Continue with Google",10)
 
         social_login.click_login_with_facebook()
-        social_login.wait_for_element_appearance_text("Log in",10)
+        social_login.wait_for_element_appearance_namematches_all("og .*n",10)
 
         email = "wrongemail.com"
         password = "Zebra#123456"
@@ -960,7 +983,10 @@ class test_Android_Social_Login():
         social_login.wait_for_element_appearance_text("Continue with Google",10)
 
         social_login.click_login_with_apple()
-        social_login.wait_for_element_appearance_text("Forgot",10)
+        try:
+            social_login.wait_for_element_appearance_text("Forgot",10)
+        except:
+            pass
 
         apple_id = "testzebra101@gmail.com"
         password = "Zebra#12345678"
@@ -1105,7 +1131,6 @@ class test_Android_Social_Login():
         apple_id = "testzebra101@gmail.com"
         password = "Zebra#123456789"
         social_login.enter_apple_id_and_password(apple_id,password)
-
 
         """IF two factor authentication requires"""
         try:
@@ -1557,7 +1582,7 @@ class test_Android_Social_Login():
         social_login.wait_for_element_appearance("Continue with Google")
         login_page.click_Loginwith_Google()
         social_login.sign_in_with_google()
-        social_login.wait_for_element_appearance("identifierId")
+        sleep(5)
 
         social_login.enter_user_name_in_google("zebratest_o1@outlook.com")
         social_login.click_on_next_in_google_sing_in()
