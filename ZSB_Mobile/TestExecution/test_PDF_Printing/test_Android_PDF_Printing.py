@@ -1885,7 +1885,10 @@ def test_Android_PDF_Printing_TestcaseID_45851():
 
 def test_Android_PDF_Printing_TestcaseID_45852():
     """image file cannot share to ZSB serial"""
-
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
@@ -1908,3 +1911,27 @@ def test_Android_PDF_Printing_TestcaseID_45852():
 def test_Android_PDF_Printing_TestcaseID_45853():
     """Check invalid PDF would fail share to ZSB serial"""
 
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    pdf_printing.click_Adobe_From_The_List()
+    pdf_printing.click_PDF_From_The_List()
+    pdf_printing.click_Suggestion_PDF()
+    pdf_printing.click_PDF_From_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
