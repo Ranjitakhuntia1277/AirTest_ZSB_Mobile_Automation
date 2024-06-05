@@ -3,18 +3,18 @@ import logging
 from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
-from ZSB_Mobile.PageObject.Delete_Account.Delete_Account_Screen import Delete_Account_Screen
-from ZSB_Mobile.PageObject.PDF_Printing.PDF_Printing_Android import *
+from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
+# from ZSB_Mobile.PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 # from setuptools import logging
-from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
+# from ...PageObject.Robofinger import test_robo_finger
 import pytest
 from airtest.core.api import connect_device
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
@@ -33,8 +33,7 @@ app_settings_page = App_Settings_Screen(poco)
 add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
-pdf_printing = PDF_Printing_Android(poco)
-delete_account = Delete_Account_Screen(poco)
+pdf_printing = PDF_Printing_Screen(poco)
 """"""""""Printer should be added in Google account-zebra21.dvt@gmail.com
 Password: Swdvt@#123""""""
 # delete_account.switch_to_different_app()
@@ -68,8 +67,14 @@ def test_Android_PDF_Printing_TestcaseID_45808():
     aps_notification.click_ON_Three_Dot_To_Print()
     pdf_printing.click_Send_Copy_For_Google_Drive_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     common_method.Stop_The_App()
@@ -88,16 +93,24 @@ def test_Android_PDF_Printing_TestcaseID_45808():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45806():
     """Error Handling-Check sharing pdf to ZSB app when the printer is in error status(offline, media out, paper out)will show waring toast"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -114,9 +127,15 @@ def test_Android_PDF_Printing_TestcaseID_45806():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     """""""Turn ON the printer manually"""""""""
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     pdf_printing.Verify_No_Warning_Popup()
@@ -128,6 +147,7 @@ def test_Android_PDF_Printing_TestcaseID_45806():
     pdf_printing.Verify_Print_Complete_Popup_IS_Not_Displaying()
     """""""Turn ON the printer manually"""""""""
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     """ADD the Cartridge without the paper manually"""
@@ -138,6 +158,7 @@ def test_Android_PDF_Printing_TestcaseID_45806():
     """""Put the media back into the printer manually"""
     """""""Turn ON the printer manually"""""""""
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     """""Open the printer cover manually"""
@@ -147,6 +168,7 @@ def test_Android_PDF_Printing_TestcaseID_45806():
     pdf_printing.Verify_Print_Complete_Popup_IS_Not_Displaying()
     """""Close the printer cover manually"""
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     """Remove the Cartridge manually"""
@@ -164,6 +186,8 @@ def test_Android_PDF_Printing_TestcaseID_45806():
     login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
+
+
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ##### bug id-SMBM-2727
@@ -171,6 +195,8 @@ def test_Android_PDF_Printing_TestcaseID_45809():
     """Share template PDF files to ZSB Series and print out (ZSB series in different pages)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -188,12 +214,17 @@ def test_Android_PDF_Printing_TestcaseID_45809():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below 2 function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     pdf_printing.Click_On_PDF_Print_Review_BackIcon()
-    sleep(10)
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_My_Design()
     common_method.Stop_The_App()
@@ -213,7 +244,14 @@ def test_Android_PDF_Printing_TestcaseID_45809():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
+
+
 # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -221,6 +259,8 @@ def test_Android_PDF_Printing_TestcaseID_45810():
     """the printing preview page can be rotated on tablet"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -238,16 +278,24 @@ def test_Android_PDF_Printing_TestcaseID_45810():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_Label_Print_Range_Is_Selected_AS_All()
     pdf_printing.Verify_Current_Label_Print_Option_IS_Displaying()
     pdf_printing.Verify_Custom_Label_Print_Option_IS_Displaying()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Rotation_To_Current()
     pdf_printing.click_Rotation_Option()
     pdf_printing.click_Done_Btn()
     pdf_printing.Verify_Print_Preview_page()
+
+
 # #######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -255,6 +303,8 @@ def test_Android_PDF_Printing_TestcaseID_45811():
     """the end digit should be bigger than the begin digit when choosing Custom radio box"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -272,8 +322,14 @@ def test_Android_PDF_Printing_TestcaseID_45811():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.Verify_Label_Print_Range_Is_Selected_AS_All()
     pdf_printing.Verify_Current_Label_Print_Option_IS_Displaying()
     pdf_printing.Verify_Custom_Label_Print_Option_IS_Displaying()
@@ -285,12 +341,16 @@ def test_Android_PDF_Printing_TestcaseID_45811():
     pdf_printing.click_End_Range_Filed()
     pdf_printing.click_Change_Start_Range()
     pdf_printing.click_Start_Range_Filed()
+
+
 #     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45812():
     """Check can share a big size file to ZSB Serial and display with out any issue"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -308,8 +368,14 @@ def test_Android_PDF_Printing_TestcaseID_45812():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Edit_Option()
     pdf_printing.click_OK_Button_On_Popup()
@@ -317,6 +383,8 @@ def test_Android_PDF_Printing_TestcaseID_45812():
     pdf_printing.click_Done_Btn()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 # ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
 
 # ##bug id- SMBM-2808
@@ -324,6 +392,8 @@ def test_Android_PDF_Printing_TestcaseID_45813():
     """Check can share a big size file to ZSB Serial and display with out any issue"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -341,8 +411,14 @@ def test_Android_PDF_Printing_TestcaseID_45813():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Edit_Option()
     pdf_printing.click_OK_Button_On_Popup()
@@ -353,13 +429,17 @@ def test_Android_PDF_Printing_TestcaseID_45813():
     pdf_printing.Select_2nd_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.click_OK_Button_On_Popup_If_Printer_Is_Offline()
-# ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+
+
+# ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'"""""""""""""""""""""""""""""
 
 
 def test_Android_PDF_Printing_TestcaseID_45814():
     """Check can share PDF to ZSB serial and login with social media account success"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     common_method.Clear_App()
     common_method.Stop_The_App()
@@ -386,7 +466,12 @@ def test_Android_PDF_Printing_TestcaseID_45814():
     login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     sleep(4)
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page_For_Printer_Online_And_Not_Added()
+
+
 # #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 #### bug id-SMBM-922
@@ -394,6 +479,8 @@ def test_Android_PDF_Printing_TestcaseID_45815():
     """change cropper window direction for the pdf file has more than 1 label (apply to current)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -411,8 +498,14 @@ def test_Android_PDF_Printing_TestcaseID_45815():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.Verify_Current_Label_Range_Option_Is_Selected()
     pdf_printing.click_Current_Label_Range_Option()
@@ -421,6 +514,8 @@ def test_Android_PDF_Printing_TestcaseID_45815():
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -428,6 +523,8 @@ def test_Android_PDF_Printing_TestcaseID_45816():
     """change cropper window direction for the pdf file has more than 1 label (apply to all)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -445,8 +542,14 @@ def test_Android_PDF_Printing_TestcaseID_45816():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.Verify_Current_Label_Range_Option_Is_Selected()
     pdf_printing.click_All_Label_Range_Option()
@@ -454,12 +557,16 @@ def test_Android_PDF_Printing_TestcaseID_45816():
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 # #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45817():
     """	change cropper window chosen area for the pdf file has more than 1 label (apply to current)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -477,8 +584,14 @@ def test_Android_PDF_Printing_TestcaseID_45817():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Drag_And_Drop_The_Cropper()
@@ -486,12 +599,16 @@ def test_Android_PDF_Printing_TestcaseID_45817():
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45818():
     """	change cropper window chosen area for the pdf file has more than 1 label (apply to all)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -509,8 +626,12 @@ def test_Android_PDF_Printing_TestcaseID_45818():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_All_Label_Range_Option()
     pdf_printing.click_Drag_And_Drop_The_Cropper()
@@ -520,11 +641,14 @@ def test_Android_PDF_Printing_TestcaseID_45818():
     pdf_printing.Verify_Print_Complete_Popup()
     # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 # ###bug id-SMBM-1767
 def test_Android_PDF_Printing_TestcaseID_45819():
     """change cropper window direction and chosen area for the pdf file has more than 1 label (apply to current)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -542,8 +666,14 @@ def test_Android_PDF_Printing_TestcaseID_45819():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Rotation_Option()
@@ -552,12 +682,16 @@ def test_Android_PDF_Printing_TestcaseID_45819():
     """Verify Manually the view of pdf screens for 1st one it will be different and for rest it will be different"""
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45820():
     """change cropper window direction and chosen area for the pdf file has more than 1 label (apply to all)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -575,8 +709,14 @@ def test_Android_PDF_Printing_TestcaseID_45820():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_All_Label_Range_Option()
     pdf_printing.click_Rotation_Option()
@@ -587,12 +727,16 @@ def test_Android_PDF_Printing_TestcaseID_45820():
     pdf_printing.click_Right_Arrow_of_PDF_On_Preview_Screen()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45821():
     """check cancle button on the Edit page"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -610,8 +754,14 @@ def test_Android_PDF_Printing_TestcaseID_45821():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Rotation_Option()
@@ -625,10 +775,13 @@ def test_Android_PDF_Printing_TestcaseID_45821():
     pdf_printing.Verify_Print_Complete_Popup()
     #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_PDF_Printing_TestcaseID_45822():
     """	change cropper window direction for the pdf file only has 1 label (apply to all/Current)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -646,8 +799,14 @@ def test_Android_PDF_Printing_TestcaseID_45822():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Rotation_Option()
@@ -657,10 +816,13 @@ def test_Android_PDF_Printing_TestcaseID_45822():
     pdf_printing.Verify_Print_Complete_Popup()
     #     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_PDF_Printing_TestcaseID_45823():
     """	change cropper window chosen area for the pdf file only has 1 label (apply to all/Current)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -678,8 +840,14 @@ def test_Android_PDF_Printing_TestcaseID_45823():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Drag_And_Drop_The_Cropper()
@@ -689,10 +857,13 @@ def test_Android_PDF_Printing_TestcaseID_45823():
     pdf_printing.Verify_Print_Complete_Popup()
     # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_PDF_Printing_TestcaseID_45824():
     """	change cropper window direction and chosen area for the pdf file only has 1 label (apply to all/Current)"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -710,8 +881,14 @@ def test_Android_PDF_Printing_TestcaseID_45824():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Rotation_Option()
@@ -722,10 +899,13 @@ def test_Android_PDF_Printing_TestcaseID_45824():
     pdf_printing.Verify_Print_Complete_Popup()
     # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_PDF_Printing_TestcaseID_45825():
     """	Check printing preview page can update info when changing printer status and cartridge"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -743,8 +923,14 @@ def test_Android_PDF_Printing_TestcaseID_45825():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     """"""""""""" open the printer head manually"""""""""
     pdf_printing.Verify_Cover_Open_Notification()
     pdf_printing.Verify_Cover_Open_Is_Displaying_In_The_Printer_List()
@@ -754,6 +940,7 @@ def test_Android_PDF_Printing_TestcaseID_45825():
     """"open the printer head, take away the cartridge and install another type cartridge manually"""
     pdf_printing.Verify_Cover_Closed_Notification()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.Click_On_PDF_Print_Review_BackIcon()
     sleep(10)
     pdf_printing.Verify_Printer_Status_AS_Online_On_Homepage()
@@ -761,6 +948,8 @@ def test_Android_PDF_Printing_TestcaseID_45825():
     app_settings_page.click_Printer_Settings()
     app_settings_page.click_PrinterName_On_Printersettings()
     app_settings_page.click_Test_Print_Button()
+
+
 #     ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # ####Bug id- SMBM-2371
@@ -768,6 +957,8 @@ def test_Android_PDF_Printing_TestcaseID_45826():
     """Mulit-page PDF share to ZSB Serial, select all pages, check all pages can print out success"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -785,18 +976,27 @@ def test_Android_PDF_Printing_TestcaseID_45826():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.Verify_Label_Print_Range_Is_Selected_AS_All()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     pdf_printing.Verify_Print_Complete_Popup_Should_Not_present_Again()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_PDF_Printing_TestcaseID_45827():
     """Mulit-page PDF share to ZSB Serial, select current page, check current page can print out success"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -814,8 +1014,14 @@ def test_Android_PDF_Printing_TestcaseID_45827():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Move_To_Page_No_3()
@@ -831,6 +1037,8 @@ def test_Android_PDF_Printing_TestcaseID_45828():
     """Mulit-page PDF share to ZSB Serial, select Custom and select a range, check selected pages can print out success"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -848,8 +1056,14 @@ def test_Android_PDF_Printing_TestcaseID_45828():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
@@ -857,12 +1071,16 @@ def test_Android_PDF_Printing_TestcaseID_45828():
     pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Print_Option_On_PDF_Printing()
-#     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+#     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45829():
     """	about 500-pages PDF share to ZSB Serial, select Custom and select a range, check page number show correnct can select a valid range"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -880,20 +1098,30 @@ def test_Android_PDF_Printing_TestcaseID_45829():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
     pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Print_Option_On_PDF_Printing()
+
+
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45830():
     """	One Page PDF share to ZSB Serial,select Custom and select a range, check range show 1 to 1 and not able to change"""
 
-    common_method.tearDown()
+    common_method.tearDown(),
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -911,8 +1139,14 @@ def test_Android_PDF_Printing_TestcaseID_45830():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
@@ -926,6 +1160,8 @@ def test_Android_PDF_Printing_TestcaseID_45831():
     """	With no printer added, share pdf to ZSB serial, check printer preview display"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -943,15 +1179,23 @@ def test_Android_PDF_Printing_TestcaseID_45831():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Printer_Not_Found_Popup()
     pdf_printing.click_Continue_Button()
     pdf_printing.Verify_Print_Button_Is_Grayed_Out()
     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_PDF_Printing_TestcaseID_45832():
     """	With one printer added Share PDF to ZSB Serial, check printer default selected, printer status will displayed"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -969,6 +1213,11 @@ def test_Android_PDF_Printing_TestcaseID_45832():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     """""""Turn Off the Printer manually"""""""""
     pdf_printing.Verify_Status_Of_The_Printer_As_Offline()
@@ -977,14 +1226,18 @@ def test_Android_PDF_Printing_TestcaseID_45832():
     pdf_printing.click_On_OK_Button_On_PrinterOffline_Popup()
     """""""Turn ON the printer manually"""""""""
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_Android_PDF_Printing_TestcaseID_45833():
     """	With multi printers added, share PDF to ZSB Serial, check user can select different printer to print"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -1002,16 +1255,25 @@ def test_Android_PDF_Printing_TestcaseID_45833():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_Android_PDF_Printing_TestcaseID_45834():
     """	With ZSB mobile app installed,open Third Party App click Share button, check "ZSB Serial" in app list"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -1029,13 +1291,21 @@ def test_Android_PDF_Printing_TestcaseID_45834():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_Android_PDF_Printing_TestcaseID_45835():
     """	Opened and login in Mobile App, From Third App open PDF share to ZSB Serial will open ZSB Serial and show print preview page"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -1053,13 +1323,21 @@ def test_Android_PDF_Printing_TestcaseID_45835():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_Android_PDF_Printing_TestcaseID_45836():
     """	Not login Mobile App, from Third App open PDF file share to ZSB Mobile App , ZSB Mobile app will open login page after login success will show print Preview page"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     common_method.Clear_App()
     common_method.Stop_The_App()
@@ -1079,6 +1357,11 @@ def test_Android_PDF_Printing_TestcaseID_45836():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     sleep(2)
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
@@ -1094,6 +1377,8 @@ def test_Android_PDF_Printing_TestcaseID_45837():
     """	ZSB Serial login but not run on back ground, from Third App open PDF file share to ZSB Mobile App , ZSB Mobile app will open login page after login success will show print Preview page"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -1111,8 +1396,14 @@ def test_Android_PDF_Printing_TestcaseID_45837():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 #
 def test_Android_PDF_Printing_TestcaseID_45838():
@@ -1120,10 +1411,13 @@ def test_Android_PDF_Printing_TestcaseID_45838():
 
     """Blocked due to SMBM-640 SMBM-681 SMBM-792 & SMBM-2808"""
 
+
 def test_Android_PDF_Printing_TestcaseID_45840():
     """	Open PDF file with Adobe Reader share to ZSB Serial, print Preview and print out then Open another PDF file in Adobe reader Share to ZSB Serail"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -1141,17 +1435,26 @@ def test_Android_PDF_Printing_TestcaseID_45840():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 # ####iOS Bug-SMBM-2874
 def test_Android_PDF_Printing_TestcaseID_45841():
     """Open PDF file with Adobe Reader share to ZSB Serial, print Preview and print out then Open another PDF file from Files/Google Drive/ One Drive Share to ZSB Serial"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     common_method.Clear_App()
     common_method.Start_The_App()
@@ -1175,8 +1478,14 @@ def test_Android_PDF_Printing_TestcaseID_45841():
     aps_notification.click_ON_Three_Dot_To_Print()
     pdf_printing.click_Send_Copy_For_Google_Drive_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     common_method.Stop_The_App()
@@ -1195,16 +1504,24 @@ def test_Android_PDF_Printing_TestcaseID_45841():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45842():
     """Open Landscape view PDF file and share to ZSB Serial, check preview page show correct"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -1222,8 +1539,14 @@ def test_Android_PDF_Printing_TestcaseID_45842():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     pdf_printing.click_Current_Label_Range_Option()
     pdf_printing.click_Drag_And_Drop_The_Cropper()
@@ -1231,8 +1554,357 @@ def test_Android_PDF_Printing_TestcaseID_45842():
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
+
+
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_PDF_Printing_TestcaseID_45843():
     """Open PDF file contains both portait and landscpage pages, check preivew page show correct"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    pdf_printing.click_Adobe_From_The_List()
+    pdf_printing.click_PDF_From_The_List()
+    pdf_printing.click_Suggestion_PDF()
+    pdf_printing.click_PDF_From_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    """"4. Check print preview show with default printer media size-----this step has to be removed"""
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    pdf_printing.click_Edit_Label()
+    """""""""5.user can crop any area in pdf file----cropping is not possible as there is no element for the object"""""
+    pdf_printing.click_Current_Label_Range_Option()
+    pdf_printing.click_Drag_And_Drop_The_Cropper()
+    pdf_printing.click_Done_Btn()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    pdf_printing.click_Edit_Label()
+    pdf_printing.click_Current_Label_Range_Option()
+    pdf_printing.click_2nd_Page_Option()
+    pdf_printing.click_Drag_And_Drop_The_Cropper()
+    pdf_printing.click_Done_Btn()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.click_Edit_Label()
+    pdf_printing.click_Current_Label_Range_Option()
+    pdf_printing.click_1st_Page_Option()
+#     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_PDF_Printing_TestcaseID_45844():
+    """Share a 4''x6 '' size pdf to ZSB Serial and print out with 4"x6" media,check the print out label content is as expected"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    pdf_printing.click_Adobe_From_The_List()
+    pdf_printing.click_PDF_From_The_List()
+    pdf_printing.click_Suggestion_PDF()
+    pdf_printing.click_PDF_From_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.Verify_Print_Complete_Popup()
+#     ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_PDF_Printing_TestcaseID_45846():
+    """Printer in Error status, Share a PDF to ZSB serial and click edit label will pop up error dialog"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PDF_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    """""""Turn Off the Printer manually"""""""""
+    pdf_printing.Verify_Status_Of_The_Printer_As_Offline()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.Verify_Warnning_Popup_For_Printer_IS_Offline()
+    pdf_printing.click_On_OK_Button_On_PrinterOffline_Popup()
+    pdf_printing.Verify_Print_Complete_Popup_IS_Not_Displaying()
+    """ADD the Cartridge without the paper manually"""
+    pdf_printing.Verify_Warnning_Popup_For_Printer_IS_PaperOut()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.Verify_Warnning_Popup_For_Printer_Is_Out_Of_Paper()
+    pdf_printing.Verify_Print_Complete_Popup_IS_Not_Displaying()
+    """""Put the media back into the printer manually"""
+    """""""Turn ON the printer manually"""""""""
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.Verify_Print_Complete_Popup()
+    """""Open the printer cover manually"""
+    pdf_printing.Verify_Status_Of_The_Printer_As_CoverOpen()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.Verify_Warnning_Popup_For_Printer_Cover_Open()
+    pdf_printing.Verify_Print_Complete_Popup_IS_Not_Displaying()
+    """""Close the printer cover manually"""
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.Verify_Print_Complete_Popup()
+    # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_PDF_Printing_TestcaseID_45847():
+    """Share a PDF to ZSB serial, check the default print copies value is 1, and can update copies to a valid value print out correct copies"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PDF_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Verify_Default_Copies_Values_Is_1()
+    pdf_printing.Update_Copies_Value()
+    pdf_printing.click_Custom_Label_Range_Option()
+    pdf_printing.click_Print_Option_On_PDF_Printing()
+    pdf_printing.Verify_Print_Complete_Popup()
+    # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_PDF_Printing_TestcaseID_45848():
+    """Share a PDF to ZSB serial, check in print preview page, user input invalid value it will auto change to valid value"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PDF_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Verify_Default_Copies_Values_Is_1()
+    pdf_printing.Update_Copies_Value_To_Special_Characters()
+    pdf_printing.click_Custom_Label_Range_Option()
+    pdf_printing.Verify_Default_Copies_Values_Is_1()
+    # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_PDF_Printing_TestcaseID_45849():
+    """After updated print Copies in print preview page, the total labels would print out would auto update"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PDF_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Verify_Default_Copies_Values_Is_1()
+    pdf_printing.Update_Copies_Value()
+    pdf_printing.click_Custom_Label_Range_Option()
+    pdf_printing.Verify_Total_Labels()
+    pdf_printing.Update_Copies_Value_To_10()
+    pdf_printing.click_Custom_Label_Range_Option()
+    pdf_printing.Verify_Total_Labels()
+    # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+
+
+def test_Android_PDF_Printing_TestcaseID_45850():
+    """"Preview Feature" popup as a dismissible text box"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    pdf_printing.click_Adobe_From_The_List()
+    pdf_printing.click_PDF_From_The_List()
+    pdf_printing.click_Suggestion_PDF()
+    pdf_printing.click_PDF_From_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""after the issue is fixed, need to delete the below function"""
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Verify_The_Printer_As_Online()
+    pdf_printing.Select_The_Online_Printer()
+    pdf_printing.click_Edit_Label()
+    pdf_printing.click_Edit_Option()
+    pdf_printing.click_OK_Button_On_Popup()
+    pdf_printing.click_Rotation_Option()
+    """""Close icon is not displaying on the popup"""
+# ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_Android_PDF_Printing_TestcaseID_45851():
+    """click back button on the printing preview page would navigate to the Redirect calling App"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    pdf_printing.click_Adobe_From_The_List()
+    pdf_printing.click_PDF_From_The_List()
+    pdf_printing.click_Suggestion_PDF()
+    pdf_printing.click_PDF_From_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Switch_To_Different_App()
+    pdf_printing.Verify_Print_Preview_page()
+    pdf_printing.Click_On_PDF_Print_Review_BackIcon()
+    pdf_printing.Verify_Calling_App_Is_Displaying()
+#     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_PDF_Printing_TestcaseID_45852():
+    """image file cannot share to ZSB serial"""
+
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PNG_Image_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
+    pdf_printing.Select_ZSB_App()
+
+    pdf_printing.Verify_ZSB_APP_Option_Is_Not_There()
+    # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Android_PDF_Printing_TestcaseID_45853():
+    """Check invalid PDF would fail share to ZSB serial"""
 

@@ -1,12 +1,6 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
-# from ZSB_Mobile.Common_Method import Common_Method
-# from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-# from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-# from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-# from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ...PageObject.Others import Others
@@ -15,6 +9,7 @@ from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+
 
 class Android_APS_Settings_And_APS_Others:
     pass
@@ -36,11 +31,12 @@ others = Others
 aps_notification = APS_Notification(poco)
 
 
-
 def test_APS_Settings_And_APS_Others_TestcaseID_49138():
     """Check the APS can be turn on/off"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -137,6 +133,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49185():
     """Check turn off APS then update install ZSB app, it’s still turn off"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -176,6 +174,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49784():
     """After print a test label , check printer labels left is correct in APS available devices list"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -246,6 +246,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     aps_notification.Verify_Print_Review_Page()
     aps_notification.Stop_Android_App()
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     """"click on the pen icon near the user name"""
     app_settings_page.click_pen_Icon_near_UserName()
@@ -276,6 +278,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     aps_notification.Verify_Centimeter_IS_Displaying_On_Review_Page()
     aps_notification.Stop_Android_App()
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
     """"click on the pen icon near the user name"""
     app_settings_page.click_pen_Icon_near_UserName()
@@ -286,6 +290,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     app_settings_page.click_Inches()
     sleep(4)
 
+
 # ##"""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -293,6 +298,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49156():
     """Check APS would be deleted after deleting ZSB Series app"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     #### common_method.uninstall_app()
     aps_notification.Stop_Android_App()
@@ -314,6 +321,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49540():
     """Check ZSB printers are fetched out in ZSB APS after keep ZSB APP idle for more than 1 day"""
     common_method.tearDown()
     common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """""""click on the left hamburger menu on the home page"""""""""
     login_page.click_Menu_HamburgerICN()
     common_method.Stop_The_App()
@@ -335,6 +344,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49788():
     """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -355,6 +366,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49789():
     """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()

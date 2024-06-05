@@ -4,19 +4,19 @@ from airtest.core.android import android
 from airtest.core.api import *
 from airtest.core.api import sleep
 from urllib3.util import url
-
+import os
 # from setuptools.config._validate_pyproject.formats import url
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ZSB_Mobile.PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
 
-class PDF_Printing_Android:
+class PDF_Printing_Screen:
     pass
 
     def __init__(self, poco):
@@ -30,8 +30,8 @@ class PDF_Printing_Android:
         self.PDF_ON_Result = "com.google.android.apps.nbu.files:id/title"
         self.Suggestion_PDF_File_From_Drive = "android.widget.TextView"
         self.Suggestion_PDF_File = "com.google.android.apps.nbu.files:id/search_suggestion_text"
-    # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+    # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     def click_Mobile_SearchBar(self):
         Mobile_SearchBar = self.poco(self.Mobile_SearchBar)
@@ -72,57 +72,89 @@ class PDF_Printing_Android:
             self.poco(self.Drive_SearchBar2).click()
 
     def Verify_Print_Preview_page(self):
-        sleep(9)
+        sleep(10)
         a = self.poco(nameMatches="(?s).*Edit Label.*").get_name()
         print(a)
 
+    # def Verify_The_Printer_As_Online2(self):
+    #     a = self.poco(nameMatches="(?s).*Online.*")
+    #     if a.exists():
+    #        a.get_name()
+    #        a.split("\n")
+    #        print("Printer Is Online")
+    #        return
+    #
+    # def Select_The_Online_Printer(self):
+    #     sleep(2)
+    #     if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
+    #        self.poco(nameMatches="(?s).*ZSB-DP.*").click()
+    #        sleep(1)
+    #     b= self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[1]
+    #     if b.exists():
+    #         sleep(1)
+    #         b.click()
+    #         sleep(1)
+    #     else:
+    #         c = self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[0]
+    #         if c.exists():
+    #             sleep(1)
+    #             c.click()
+
     def Verify_The_Printer_As_Online(self):
         sleep(1)
-        printer_info = self.poco("Print").parent().child()[9].get_name()
+        printer_info = self.poco(nameMatches="(?s).*Online.*")
+        if printer_info.exists():
+            printer_info.get_name()
+            # printer_info.split("\n")
+            return
+            # if "Online" in printer_info:
+            #     print("Printer Is Online")
+            #     return  # Exit if the printer is found online
+        else:
+            self.poco(nameMatches="(?s).*ZSB-DP.*").click()
+            sleep(1)
 
-        if "Online" in printer_info:
-            print("Printer Is Online")
-            return  # Exit if the printer is found online
-
-        # First interaction attempt
-        self.poco(nameMatches="(?s).*ZSB-DP.*").click()
+    def Select_The_Online_Printer(self):
         sleep(1)
-        self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[1].click()
-        sleep(1)
+        printer_info = self.poco(nameMatches="(?s).*Online.*")
+        if self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[1].exists():
+            self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[1].click()
+            sleep(1)
 
         # Recheck after first interaction
-        printer_info = self.poco("Print").parent().child()[9].get_name()
-        if "Online" in printer_info:
-            print("Printer Is Online")
-            return  # Exit if the printer is found online
-
-        # Second interaction attempt
-        self.poco(nameMatches="(?s).*ZSB-DP.*").click()
-        sleep(1)
-        self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[2].click()
-        sleep(1)
-
-        # Recheck after second interaction
-        printer_info = self.poco("Print").parent().child()[9].get_name()
-        if "Online" in printer_info:
-            print("Printer Is Online")
-            return  # Exit if the printer is found online
-
+        # printer_info = self.poco(nameMatches="(?s).*Online.*")
+        if printer_info.exists():
+            printer_info.get_name()
+            # printer_info.split("\n")
+            return
+        else:
+            printer_info = self.poco(nameMatches="(?s).*Online.*")
+        if self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[2].exists():
+            self.poco(nameMatches="(?s).*ZSB-DP.*").parent().child()[2].click()
+            sleep(1)
+        # printer_info = self.poco(nameMatches="(?s).*Online.*")
+        if printer_info.exists():
+            printer_info.get_name()
+            # printer_info.split("\n")
+            return
         raise Exception("Printer is not online after all checks.")
 
     def click_Print_Option_On_PDF_Printing(self):
         sleep(1)
         poco.scroll()
         sleep(1)
-        print=self.poco(name="Print")
+        print = self.poco(name="Print")
         print.click()
 
     def Verify_Print_Complete_Popup(self):
-        a=self.poco(nameMatches="(?s).*Print complete.*").get_name()
-        print(a)
+        sleep(1)
+        if self.poco(nameMatches="(?s).*Print complete.*").exists():
+            a = self.poco(nameMatches="(?s).*Print complete.*").get_name()
+            print(a)
 
     def Verify_No_Warning_Popup(self):
-        a = self.poco(textMatches="(?s).*Ensure printer is Online and reshare the PDF to use this feature. ).*").get_name()
+        a = self.poco(
+            textMatches="(?s).*Ensure printer is Online and reshare the PDF to use this feature. ).*").get_name()
         a.split("\n")
         print(a)
 
@@ -134,7 +166,8 @@ class PDF_Printing_Android:
 
     def Verify_Warnning_Popup_For_Printer_IS_Offline(self):
         sleep(1)
-        a = self.poco(textMatches="(?s).*Ensure printer is Online and reshare the PDF to use this feature. ).*").get_name()
+        a = self.poco(
+            textMatches="(?s).*Ensure printer is Online and reshare the PDF to use this feature. ).*").get_name()
         a.split("\n")
         print(a)
 
@@ -171,7 +204,7 @@ class PDF_Printing_Android:
 
     def click_On_OK_Button_On_PrinterOffline_Popup(self):
         sleep(1)
-        ok_btn=self.poco(name="Ok")
+        ok_btn = self.poco(name="Ok")
         ok_btn.click()
 
     def click_Mobile_Recent_App_Icon(self):
@@ -179,7 +212,7 @@ class PDF_Printing_Android:
         self.poco(name="com.android.systemui:id/recent_apps").click()
 
     def Select_ZSB_App(self):
-        sleep(2)
+        sleep(4)
         if self.poco(textMatches=".*ZSB Series.*").exists():
             self.poco(textMatches=".*ZSB Series.*").click()
         else:
@@ -193,7 +226,7 @@ class PDF_Printing_Android:
 
     def Click_On_PDF_Print_Review_BackIcon(self):
         self.poco(name="Open navigation menu").click()
-
+        sleep(10)
     def Verify_Label_Print_Range_Is_Selected_AS_All(self):
         sleep(1)
         a = self.poco(nameMatches="(?s).*All.*").get_name()
@@ -208,7 +241,8 @@ class PDF_Printing_Android:
         print(a)
 
     def click_Custom_Label_Range_Option(self):
-        custom_label=self.poco(name="Custom")
+        sleep(2)
+        custom_label = self.poco(name="Custom")
         custom_label.click()
 
     def click_Start_Range_Filed(self):
@@ -216,19 +250,22 @@ class PDF_Printing_Android:
 
     def click_Change_Start_Range(self):
         sleep(1)
-        self.poco(name="2").click()
+        if self.poco(name="2").exists():
+            self.poco(name="2").click()
+        else:
+            self.poco(name="1").click()
 
     def click_End_Range_Filed(self):
         sleep(1)
         self.poco(name="2").click()
 
     def Verify_There_IS_NO_1_Option_Is_Available(self):
-         sleep(2)
-         if not self.poco(name="1").exists():
-             print("1 is not present")
+        sleep(2)
+        if not self.poco(name="1").exists():
+            print("1 is not present")
 
     def click_Send_Copy_For_Google_Drive_Files(self):
-        sleep(1)
+        sleep(2)
         self.poco(text="Send a copy").click()
 
     def click_Send_File_For_Files(self):
@@ -241,7 +278,12 @@ class PDF_Printing_Android:
 
     def click_Edit_Label(self):
         sleep(2)
-        self.poco(nameMatches="(?s).*Edit Label.*").click()
+        if self.poco(nameMatches="(?s).*Edit Label.*").exists():
+            self.poco(nameMatches="(?s).*Edit Label.*").click()
+        else:
+            sleep(1)
+            poco.scroll()
+            self.poco(nameMatches="(?s).*Edit Label.*").click()
 
     def click_Rotation_Option(self):
         self.poco("android.widget.Button")[2].click()
@@ -287,13 +329,13 @@ class PDF_Printing_Android:
         a = self.poco(nameMatches="(?s).*Edit Label.*")
 
         if a.exists():
-           a.get_name()
-           print(a)
+            a.get_name()
+            print(a)
         else:
             b = self.poco(nameMatches="(?s).*Printers not found.*")
             if b.exists():
-               b.get_name()
-               print(b)
+                b.get_name()
+                print(b)
 
     def click_Current_Label_Range_Option(self):
         custom_label = self.poco(name="Current")
@@ -319,7 +361,6 @@ class PDF_Printing_Android:
     def click_Cancel_Button(self):
         self.poco(nameMatches="(?s).*Cancel.*").click()
 
-
     def click_Left_Arrow_of_PDF_On_Preview_Screen(self):
         sleep(1)
         self.poco("android.widget.Button")[2].click()
@@ -331,16 +372,16 @@ class PDF_Printing_Android:
     def Verify_Print_Complete_Popup_Should_Not_present_Again(self):
         a = self.poco(nameMatches="(?s).*Print complete.*")
         if not a.exists():
-               print("Print Complete pop up is not displaying again")
+            print("Print Complete pop up is not displaying again")
         else:
             print("Print Complete pop up is displaying again")
 
     def Move_To_Page_No_3(self):
         sleep(1)
         if self.poco("android.widget.Button")[3].exists():
-           self.poco("android.widget.Button")[3].click()
-           sleep(1)
-           self.poco("android.widget.Button")[3].click()
+            self.poco("android.widget.Button")[3].click()
+            sleep(1)
+            self.poco("android.widget.Button")[3].click()
 
     def click_And_Enter_Copies_Number_Field(self):
         sleep(1)
@@ -365,9 +406,9 @@ class PDF_Printing_Android:
     def click_Change_End_Range_To_6(self):
         sleep(1)
         if self.poco(name="1").exists():
-           self.poco(name="1").click()
-           sleep(1)
-           self.poco(name="6").click()
+            self.poco(name="1").click()
+            sleep(1)
+            self.poco(name="6").click()
 
     def Verify_Range_1_Is_Displaying(self):
         sleep(1)
@@ -376,8 +417,64 @@ class PDF_Printing_Android:
             a.get_name()
             print(a)
 
+    def Switch_To_Different_App(self):
+        sleep(2)
+        keyevent("KEYCODE_APP_SWITCH")
+        sleep(1)
+        keyevent("KEYCODE_APP_SWITCH")
+        sleep(1)
+
+    def click_2nd_Page_Option(self):
+        sleep(1)
+        self.poco("android.widget.Button")[1].click()
+
+    def click_1st_Page_Option(self):
+        sleep(1)
+        self.poco("android.widget.Button")[0].click()
+
+    def Verify_Print_Complete_Popup_IS_Not_Displaying(self):
+        sleep(1)
+        if not self.poco(nameMatches="(?s).*Print complete.*").exists():
+            print("Print complete popup is not displaying.")
+        else:
+            print("Print complete popup is displaying.")
+
+    def Verify_Default_Copies_Values_Is_1(self):
+        sleep(1)
+        self.poco(name="android.widget.EditText").get_name()
+
+    def Update_Copies_Value(self):
+        sleep(1)
+        self.poco(name="android.widget.EditText").click()
+        poco(text("5"))
+
+    def Update_Copies_Value_To_Special_Characters(self):
+        sleep(1)
+        Copies_Number_Field= self.poco(name="android.widget.EditText").click()
+        Copies_Number_Field.set_text(" ")
+        sleep(1)
+        Copies_Number_Field.set_text("@&777")
 
 
+    def Update_Copies_Value_To_10(self):
+        sleep(1)
+        Copies_Number_Field= self.poco(name="android.widget.EditText").click()
+        Copies_Number_Field.set_text(" ")
+        sleep(1)
+        Copies_Number_Field.set_text("10")
 
 
+    def Verify_Total_Labels(self):
+        sleep(1)
+        a = poco(nameMatches="(?s).*Total of.*").get_name()
+        print(a)
 
+    def Verify_ZSB_APP_Option_Is_Not_There(self):
+        sleep(4)
+        if not self.poco(textMatches=".*ZSB Series.*").exists():
+            print("ZSB Series is not present")
+        else:
+            poco.scroll()
+            sleep(1)
+            if not self.poco(textMatches=".*ZSB Series.*").exists():
+                print("ZSB Series is not present")

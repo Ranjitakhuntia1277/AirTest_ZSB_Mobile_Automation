@@ -34,6 +34,7 @@ add_a_printer_page_ios = Add_A_Printer_Screen_iOS(poco)
 common_method = Common_Method(poco)
 
 
+# ####bug id-SMBM-2773
 def test_AppSettings_TestcaseID_47913():
     """""Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
     """start the app"""
@@ -173,6 +174,7 @@ def test_AppSettings_TestcaseID_47924():
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# ####bug id----SMBM-2160
 def test_AppSettings_TestcaseID_49709():
     """Manage network- Check able to manage network with long name"""
     """"printer should be online & wifi should be connected"""
@@ -213,6 +215,8 @@ def test_AppSettings_TestcaseID_49709():
 
 ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# ##SMBM-2163
 def test_AppSettings_TestcaseID_49711():
     """Manage networks- Check there is a prompt message when applying to the network which can't resolve Zebra host"""
 

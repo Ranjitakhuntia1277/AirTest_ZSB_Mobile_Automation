@@ -32,7 +32,8 @@ import tidevice
 from airtest.core.api import *
 from airtest.core.api import device as current_device
 from poco import poco
-
+import tkinter as tk
+from tkinter import messagebox
 
 # from test.body import poco
 
@@ -1058,11 +1059,13 @@ class Common_Method():
         except Exception as e:
             self.triggerError('Install app failed: ' + str(e))
         sleep(2)
+
     def install_app_From_PlayStore(self):
         sleep(2)
         self.apk_path = r"C:\Users\rk1277\Downloads\ZsbMobile-production-5197.apk"  # Use 'r' before the string to treat it as a raw string
         os.system("adb install " + self.apk_path)
         sleep(9)
+
     def tearDown(self):
         packagename = "com.zebra.soho_app"
         try:
@@ -1106,9 +1109,8 @@ class Common_Method():
     #     if not isinstance(error_array, list):
     #         error_array = []
 
-        # Append the error to the error_array
-        # error_array.append(error)
-
+    # Append the error to the error_array
+    # error_array.append(error)
 
     def printExceptionIfPresent(self, error_array):
         print("\n")
@@ -1128,4 +1130,18 @@ class Common_Method():
             os.system('adb shell svc wifi enable')  # turn off Wi-Fi
         except Exception as e:
             pass
+
+    def Display_Popup_On_The_Screen(self):
+        toast_message = "Cover Open"
+
+        # Use the Android shell to show the toast message
+        shell(f'am broadcast -a com.example.airtest.Toast --es msg "{toast_message}"')
+
+    def show_popup(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        messagebox.showinfo("Notification", "Cover Open")
+
+
+
 
