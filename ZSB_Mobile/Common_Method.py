@@ -15,7 +15,7 @@ from time import sleep
 from poco.exceptions import PocoNoSuchNodeException
 # from pocoui_lib.android.kotoComponent import poco
 # from pocoui_lib.ios.kotoComponent import poco
-import package_name
+# import package_name
 from airtest.core.api import swipe, exists, touch, keyevent, shell, start_app, stop_app, uninstall, install
 from airtest.core.assertions import assert_true
 from airtest.report.report import LogToHtml
