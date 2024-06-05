@@ -39,6 +39,10 @@ def test_Template_Management_TestcaseID_45974():
     tm_a.test_Template_Management_TestcaseID_45974()
 def test_Template_Management_TestcaseID_45975():
     tm_a.test_Template_Management_TestcaseID_45975()
+def test_Template_Management_TestcaseID_45930():
+    tm_a.test_Template_Management_TestcaseID_45930()
+def test_Template_Management_TestcaseID_45933():
+    tm_a.test_Template_Management_TestcaseID_45933()
 
 def test_Template_Management_TestcaseID_45967():
     tm_a.test_Template_Management_TestcaseID_45967()
@@ -50,13 +54,11 @@ def test_Template_Management_TestcaseID_45927():
     tm_a.test_Template_Management_TestcaseID_45927()
 def test_Template_Management_TestcaseID_45929():
     tm_a.test_Template_Management_TestcaseID_45929()
-def test_Template_Management_TestcaseID_45930():
-    tm_a.test_Template_Management_TestcaseID_45930()
+
 def test_Template_Management_TestcaseID_45931():
     tm_a.test_Template_Management_TestcaseID_45931()
 
-def test_Template_Management_TestcaseID_45933():
-    tm_a.test_Template_Management_TestcaseID_45933()
+
 def test_Template_Management_TestcaseID_45934():
     tm_a.test_Template_Management_TestcaseID_45934()
 def test_Template_Management_TestcaseID_45935():

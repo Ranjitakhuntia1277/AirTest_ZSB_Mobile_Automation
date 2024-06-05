@@ -9,12 +9,21 @@ from ...PageObject.Others.Others import Others
 
 import tkinter as tk
 from tkinter import simpledialog
+from tkinter import messagebox
 
-def get_user_input():
+def get_user_input(msg):
     root = tk.Tk()
     root.withdraw()  # Hide the root window
-    user_input = simpledialog.askstring("Input", "Please enter your value:")
+    root.attributes('-topmost', True)  # Ensure the root window is on top
+    user_input = simpledialog.askstring("Input", msg)
     return user_input
+
+def show_message(msg):
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
+    root.attributes('-topmost', True)  # Ensure the root window is on top
+    messagebox.showinfo("Information", msg)
+    root.destroy()
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
@@ -188,7 +197,7 @@ class test_Android_Social_Login():
 
         """Part2"""
         common_method.wait_for_element_appearance_textmatches("Reset Password",30)
-        sleep(30)
+        show_message("enter the temp password which you got through mail")
         new_pass = "Zebra#@85085085"
         social_login.enter_the_new_password_with_temporary_password(new_pass)
 
@@ -282,7 +291,7 @@ class test_Android_Social_Login():
 
         """Semi automated """
         """Enter Verification code"""
-        verification_code = "31RPAG"
+        verification_code = get_user_input("Enter the verification code")
         social_login.enter_the_verification_code(verification_code)
         social_login.scroll_down(1)
         social_login.click_on_next()
@@ -305,6 +314,7 @@ class test_Android_Social_Login():
                 social_login.select_the_check_boxes()
             except:
                 pass
+        show_message("if check boxes are not selected select it")
         social_login.click_submit_and_continue()
         sleep(2)
         social_login.check_sign_up_successful()
@@ -338,8 +348,9 @@ class test_Android_Social_Login():
         social_login.click_on_sign_in_with_email()
 
         """Provide new_user name and password which is not registered"""
-        email = "testzebra120@gmail.com"
-        password = "Zebra#123456789"
+        show_message("create new_user name and password which is not registered")
+        email = get_user_input("enter email")
+        password = get_user_input("enter password")
         first_name = "Zebra"
         last_name = "Z"
 
@@ -610,12 +621,14 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48470(self):
         pass
 
+
+        email = get_user_input("enter the new email here , which should be added in the phone already")
+        email = email
         self.setup_logout()
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google",10)
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account")
-        email="testzebra118@gmail.com"
         social_login.choose_a_google_account(email)
         sleep(3)
         try:
@@ -670,9 +683,11 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48472(self):
         pass
 
+        show_message("create a new facebook account")
+        email = get_user_input("enter email of new facebook account")
+        password = get_user_input("enter password")
         self.setup_logout()
-        email = "testswdvt@gmail.com"
-        password = "Zebra#123456789"
+
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google",10)
 
@@ -830,6 +845,8 @@ class test_Android_Social_Login():
         except:
             pass
 
+        show_message("if code required, enter code and go to next page")
+
         social_login.continue_in_facebook()
 
         try:
@@ -885,8 +902,7 @@ class test_Android_Social_Login():
 
         social_login.wait_for_element_appearance("Home",20)
 
-        sleep(60*5)
-        """Semi automated"""
+        show_message("Add a printer to the account")
         # login_page.click_Menu_HamburgerICN()
         # add_a_printer_page.click_Add_A_Printer()
         #
@@ -1031,10 +1047,13 @@ class test_Android_Social_Login():
 
     def test_Social_Login_TestcaseID_48471(self):
         pass
+
+        show_message("create a new apple account before proceeding")
+        apple_id = get_user_input("enter new apple id")
+        password = get_user_input("enter password for apple id")
         self.setup_logout()
+
         """Need to create a new apple account"""
-        apple_id = "testzebra101@gmail.com"
-        password = "Zebra#123456789"
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google",10)
 
@@ -1130,13 +1149,15 @@ class test_Android_Social_Login():
         """Sign in"""
         apple_id = "testzebra101@gmail.com"
         password = "Zebra#123456789"
+        msg="enter this password if it does not login"+password
         social_login.enter_apple_id_and_password(apple_id,password)
+        show_message(msg)
 
         """IF two factor authentication requires"""
         try:
-            common_method.wait_for_element_appearance_textmatches("Two-factor authentication",4)
+            common_method.wait_for_element_appearance_textmatches("Two-",10)
             # social_login.go_back()
-            code="902509"
+            code=get_user_input()
             social_login.two_factor_authentication_for_apple(code)
         except:
             pass
@@ -1192,7 +1213,7 @@ class test_Android_Social_Login():
         social_login.click_on_continue()
         social_login.wait_for_element_appearance("Home",30)
 
-        sleep(60*5)
+        show_message("Add a printer to the account")
         """Semi automated"""
         # login_page.click_Menu_HamburgerICN()
         # add_a_printer_page.click_Add_A_Printer()
@@ -1285,12 +1306,14 @@ class test_Android_Social_Login():
 
     def test_Social_Login_TestcaseID_50223(self):
         pass
+
+        show_message("create a new google account")
         self.setup_logout()
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google",10)
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account")
-        email="testzebra265@gmail.com"
+        email = get_user_input("enter the email address which is created")
         social_login.choose_a_google_account(email)
         sleep(3)
         try:
@@ -1499,7 +1522,8 @@ class test_Android_Social_Login():
         social_login.choose_a_google_account(email)
         social_login.wait_for_element_appearance("Home",10)
 
-        sleep(60*5)
+
+        show_message("Add a printer to the account")
         # login_page.click_Menu_HamburgerICN()
         # add_a_printer_page.click_Add_A_Printer()
         #

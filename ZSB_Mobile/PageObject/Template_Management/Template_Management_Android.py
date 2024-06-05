@@ -99,7 +99,7 @@ class Template_Management_Android:
         if len(temp) == 0:
             prev = []
             while 1:
-                curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+                curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
                 a = self.poco(nameMatches=regex_pattern).exists()
                 if a:
                     p = self.poco(nameMatches=regex_pattern).get_name()
@@ -255,7 +255,7 @@ class Template_Management_Android:
     def set_new_date_in_print_page(self,date):
         date=str(date)
         self.poco("android.widget.EditText")[0].parent().child("android.view.View").click()
-        self.poco(nameMatches=".*" +date+ ".*").click()
+        # self.poco(nameMatches=".*" +date+ ".*").click()
         self.poco("OK").click()
 
     def click_on_image_input_in_print_page(self):

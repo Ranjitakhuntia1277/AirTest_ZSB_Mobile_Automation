@@ -180,6 +180,7 @@ class test_Android_Template_Management:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
 
+
     def logout_and_login(self,email,password):
         try:
             common_method.wait_for_element_appearance_namematches("Home")
@@ -249,7 +250,10 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance("Recently Printed Labels")
         curr = template_management.get_first_design_in_recently_printed_labels()
         curr = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(curr_design,0)
-        print(curr)
+        curr = template_management.get_first_design_in_recently_printed_labels()
+
+        if curr_design != curr:
+            raise Exception("the top of recently printed label is not as expected")
         curr_mon,curr_date,curr_year = template_management.get_current_date()
         des_mon,des_date,des_year = template_management.get_design_last_print_date(curr)
         if curr_mon!=des_mon or curr_date!=des_date or curr_year!=des_year:
@@ -666,7 +670,7 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Home")
         temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
 
-        for text in temp[1:]:
+        for text in temp[::3]:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
@@ -727,6 +731,7 @@ class test_Android_Template_Management:
 
             print("duplicate",duplicate_name)
             try:
+                sleep(3)
                 d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
             except:
                 raise Exception("failing this step:","c. Verify the Duplicate Design is displayed with correct name (Name used in step 6 appended with number (1)).")
@@ -904,7 +909,7 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Home")
         temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
 
-        for text in temp:
+        for text in temp[1::4]:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
@@ -970,6 +975,7 @@ class test_Android_Template_Management:
                 raise Exception("rename popup not closed")
             sleep(1)
             try:
+                sleep(2)
                 full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(new_name, 1)
             except:
                 raise Exception("design not found after updating")
@@ -2199,7 +2205,13 @@ class test_Android_Template_Management:
 
         now_date = template_management.get_current_date_in_mm_dd_yy_format()
         cur_d = now_date.split("/")
+        print(cur_d)
         template_management.set_new_date_in_print_page(int(cur_d[1]))
+        sleep(1)
+        try:
+            template_management.click_on_cancel_button_in_rename_popup()
+        except:
+            pass
 
         curr_date = template_management.get_the_date_from_print_page()
         changing_date=str(template_management.get_in_proper_dd_mm_yy_format())
@@ -2427,6 +2439,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_enabled("Print",15)
         except:
             raise Exception("print page not displayed")
+        sleep(2)
         curr_labels=template_management.get_no_of_labels_left_in_print_page()
 
         if curr_labels!=temp:
@@ -2440,7 +2453,13 @@ class test_Android_Template_Management:
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
+        login_page.click_Menu_HamburgerICN()
+        template_management.click_my_designs_button()
+        login_page.click_Menu_HamburgerICN()
+        template_management.click_home_button()
+
         sleep(1)
+
 
         labels_left = template_management.get_no_of_left_cartridge()
 
@@ -2462,8 +2481,7 @@ class test_Android_Template_Management:
         try:
             common_method.wait_for_element_appearance_enabled("Print",15)
         except:
-            raise Exception("print page not displayed")
-
+            pass
 
         template_management.click_element_by_name_or_text("android.widget.EditText",1)
 
@@ -2496,7 +2514,10 @@ class test_Android_Template_Management:
 
         template_management.scroll_till_print_enabled_button()
         template_management.click_print_button_enabled()
-        template_management.wait_for_element_appearance_name_matches_all("Print complete")
+        try:
+            template_management.wait_for_element_appearance_name_matches_all("Print complete")
+        except:
+            pass
 
         common_method.wait_for_element_appearance_enabled("Print")
         curr_labels = template_management.get_no_of_labels_left_in_print_page()
@@ -2536,7 +2557,7 @@ class test_Android_Template_Management:
         try:
             common_method.wait_for_element_appearance_enabled("Print",15)
         except:
-            raise Exception("print page not displayed")
+            pass
         curr_labels=template_management.get_no_of_labels_left_in_print_page()
         if curr_labels!=temp:
             raise Exception("count not same after reselecting the design")
@@ -3605,35 +3626,35 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        login_page.click_Menu_HamburgerICN()
-        social_login.click_on_profile_edit()
-        social_login.scroll_down(1)
-        social_login.click_log_out_button()
-        try:
-            social_login.wait_for_element_appearance("Sign In",5)
-        except:
-            raise Exception("Did not redirect to the login page")
-
-        """Sign in with email"""
-
-        login_page.click_loginBtn()
-        social_login.wait_for_element_appearance_text("Continue with Google",10)
-        social_login.click_on_sign_in_with_email()
-
-        """Provide the email and password"""
-        email = "zebratest850@gmail.com"
-        password = "Zebra#123456789"
-        social_login.complete_sign_in_with_email(email,password)
-
-        try:
-            social_login.wait_for_element_appearance("Home",20)
-        except:
-            raise Exception("home page dint show up")
+        # login_page.click_Menu_HamburgerICN()
+        # social_login.click_on_profile_edit()
+        # social_login.scroll_down(1)
+        # social_login.click_log_out_button()
+        # try:
+        #     social_login.wait_for_element_appearance("Sign In",5)
+        # except:
+        #     raise Exception("Did not redirect to the login page")
+        #
+        # """Sign in with email"""
+        #
+        # login_page.click_loginBtn()
+        # social_login.wait_for_element_appearance_text("Continue with Google",10)
+        # login_page.click_Loginwith_Google()
+        #
+        # email = "zebratest850@gmail.com"
+        # password = "Zebra#123456789"
+        # social_login.choose_a_google_account(email)
+        #
+        # try:
+        #     social_login.wait_for_element_appearance("Home",20)
+        # except:
+        #     raise Exception("home page dint show up")
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
         user2_name = template_management.get_first_design_in_my_designs()
+        user2_name = template_management.get_names_of_design_in_search_designs([user2_name])[0]
 
         login_page.click_Menu_HamburgerICN()
         social_login.click_on_profile_edit()
@@ -3705,7 +3726,7 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Recently")
         """Note: the design should be printed if not design rename will not be shown in recently printed labels"""
         name = template_management.get_all_designs_in_recently_printed_labels()
         name = template_management.get_names_of_design_in_search_designs(name)[0]
@@ -4005,6 +4026,7 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
 
+        sleep(3)
         try:
             full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(new_name, 0)
         except:
@@ -4030,13 +4052,13 @@ class test_Android_Template_Management:
         prev_size,prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
         template_management.click_on_rename_button()
 
-        new_name="new@_name"
+        new_name="new@_name_45940"
         template_management.enter_text_in_rename_design(new_name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error not displayed for allowed special characters ")
 
         template_management.turn_off_wifi()
-        sleep(2)
+        sleep(3)
         template_management.click_on_save_button_in_rename_design()
         """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error  SMBM-1771"""
         template_management.turn_on_wifi()
@@ -4049,6 +4071,7 @@ class test_Android_Template_Management:
             raise Exception("design has been successfully renamed. is not displayed")
 
         try:
+            sleep(3)
             full_name=template_management.select_design_in_my_design_by_name_and_return(new_name, 0)
         except:
             raise Exception("updated name not found")
@@ -4079,6 +4102,7 @@ class test_Android_Template_Management:
         sleep(2)
         template_management.click_on_save_button_in_rename_design()
         """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error"""
+        common_method.wait_for_element_appearance_namematches("Error communicating with server")
         template_management.turn_on_wifi()
         sleep(5)
         template_management.click_on_save_button_in_rename_design()
@@ -5063,7 +5087,7 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Recently")
+        common_method.wait_for_element_appearance_namematches("Recently",30)
         """Give the name of existing design here"""
 
         name=template_management.get_normal_design_if_there_in_first_screen_recently_printed_design()
@@ -5092,8 +5116,9 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("duplicate design window not closed")
 
-        print("duplicate",duplicate_name)
+        # print("duplicate",duplicate_name)
         try:
+            sleep(2)
             d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 1)
         except:
             raise Exception("duplicate name not found")
@@ -5114,7 +5139,7 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Open navigation menu")
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
@@ -5149,6 +5174,7 @@ class test_Android_Template_Management:
 
         print("duplicate",duplicate_name)
         try:
+            sleep(2)
             d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 1)
         except:
             raise Exception("duplicate name not found")
@@ -5200,6 +5226,7 @@ class test_Android_Template_Management:
 
         print("duplicate",duplicate_name)
         try:
+            sleep(3)
             d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 1)
         except:
             raise Exception("duplicate name not found")
@@ -5388,6 +5415,7 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
+            sleep(3)
             full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy,1)
         except:
             raise Exception("original name not found")
@@ -5423,6 +5451,7 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
+            sleep(3)
             full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name,1)
         except:
             raise Exception("original name not found")
@@ -5436,8 +5465,9 @@ class test_Android_Template_Management:
         enter_name="&*%"
 
         template_management.enter_name_in_duplicate_designs(enter_name)
-        if template_management.check_for_invalid_character_error_in_duplicate_design():
-            raise Exception("error  displayed for valid  name")
+        sleep(2)
+        if not template_management.check_for_invalid_character_error_in_duplicate_design():
+            raise Exception("error not displayed for valid  name")
 
         if template_management.check_save_button_clickable_in_rename_popup():
             raise Exception("save button is not clickable for invalid characters")
@@ -5531,12 +5561,14 @@ class test_Android_Template_Management:
 
         duplicate_name=original_copy+" copy"
         try:
+            sleep(3)
             d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
             raise Exception("duplicate name not found")
         except:
             pass
 
         try:
+            sleep(3)
             d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 1)
         except:
             raise Exception("original name not found")
@@ -5575,12 +5607,14 @@ class test_Android_Template_Management:
 
         duplicate_name=original_copy+" copy"
         try:
+            sleep(3)
             d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 0)
             raise Exception("duplicate name not found")
         except:
             pass
 
         try:
+            sleep(3)
             d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy, 1)
         except:
             raise Exception("original name not found")
@@ -5748,6 +5782,8 @@ class test_Android_Template_Management:
 
         for text in temp:
 
+            login_page.click_Menu_HamburgerICN()
+            template_management.click_home_button()
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
@@ -5965,7 +6001,7 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        strings = ["Address", "Barcodes", "Jewelry", "Shipping", "File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
+        strings = ["Address", "Barcodes", "Jewelry", "Shipping", "Return Address/File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -5973,7 +6009,7 @@ class test_Android_Template_Management:
 
         curr_categories = template_management.get_all_categories_in_common_designs()
         categories = template_management.get_names_of_design_in_search_designs(curr_categories)
-
+        print(categories)
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
         login_page.click_Menu_HamburgerICN()

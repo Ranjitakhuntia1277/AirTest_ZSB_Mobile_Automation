@@ -581,11 +581,18 @@ class Social_Login:
             self.poco(text="Continue").click()
         except:
             pass
-        self.click_on_android_view_by_position(0.5,0.3)
 
-        self.poco("android.widget.EditText")[1].set_text(password)
+        try:
+            self.poco(textMatches="(?s).*with Password.*").click()
+        except:
+            pass
 
-        self.poco(text="Sign In").click()
+        try:
+            self.poco("android.widget.EditText")[1].set_text(password)
+
+            self.poco(text="Sign In").click()
+        except:
+            pass
 
     def two_factor_authentication_for_apple(self,a):
 

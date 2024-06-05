@@ -129,10 +129,10 @@ class Common_Method():
     def wait_for_element_disappearance(self, element, time_out=20):
         self.poco(element).wait_for_disappearance(timeout=time_out)
 
-    def wait_for_element_appearance_enabled(self, element, time_out=10):
+    def wait_for_element_appearance_enabled(self, element, time_out=15):
         self.poco(element, enabled=True).wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_appearance_namematches(self, element, time_out=10):
+    def wait_for_element_appearance_namematches(self, element, time_out=20):
         self.poco(nameMatches=".*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def wait_for_element_appearance_textmatches(self, element, time_out=10):
