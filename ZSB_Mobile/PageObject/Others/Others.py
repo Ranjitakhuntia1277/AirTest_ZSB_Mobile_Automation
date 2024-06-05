@@ -124,8 +124,10 @@ class Others:
         swipe([w1, h1], [w2, h2])
 
     def click_test_print(self):
-        while not self.poco("Test Print").exists():
+        count=0
+        while not self.poco("Test Print").exists() and count<10:
             self.poco.scroll()
+            count+=1
         test_prin = self.poco(self.test_print)
         test_prin.click()
 
@@ -592,16 +594,20 @@ class Others:
         self.poco(self.continue_button).click()
 
     def click_add_network_button(self):
-        while not self.poco("Add Network").exists():
+        count=0
+        while not self.poco("Add Network").exists() and count<10:
             self.poco.scroll()
+            count+=1
         add_network = self.poco(self.add_network_button)
         add_network.click()
 
     def select_network_and_enter_password(self,name,password):
 
         flag=0
-        while not self.poco(name).exists():
+        count=0
+        while not self.poco(name).exists() and count<10:
             self.poco.scroll()
+            count+=1
 
         if self.poco(name).exists():
             self.poco(name).click()

@@ -7,12 +7,12 @@ from airtest.core.api import exists, sleep
 # from pipes import Template
 from airtest.core.cv import Template
 from poco import poco
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from airtest.core.assertions import assert_exists, assert_equal
 from airtest.core.api import *
-from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
+from ...PageObject.Login_Screen import Login_Screen
 from airtest.core.api import device as current_device
-from ZSB_Mobile.Common_Method import *
+from ...Common_Method import *
 
 
 common_method = Common_Method(poco)
@@ -162,7 +162,7 @@ class Help_Screen:
         else:
             raise Exception("URL not matching")
 
-    def chooseAcc(self, Acc_Name="swdvt zsb"):
+    def chooseAcc(self, Acc_Name="zsbswdvt@gmail.com"):
         account = self.poco(text=Acc_Name)
         while not account.exists():
             self.poco.scroll()
@@ -227,6 +227,6 @@ class Help_Screen:
 
     def checkIfOnSignInPage(self):
         try:
-            common_method.wait_for_element_appearance("Sign In")
+            self.poco("Sign In").wait_for_appearance(timeout=20)
         except:
             raise Exception("Did not reach \"Sign In\" page.")

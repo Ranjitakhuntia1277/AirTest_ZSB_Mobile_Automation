@@ -757,3 +757,49 @@ def test_Registration_TestcaseID_50287():
         pass
     except:
         raise Exception("Showing EULA page after logging in with existing account.")
+
+
+def test_Registration_TestcaseID_46306():
+    """""""""test"""""
+    #
+    common_method.tearDown()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Add printer tab"""""
+    add_a_printer_page.click_Add_A_Printer()
+    """"click on the start button"""
+    add_a_printer_page.click_Start_Button()
+    login_page.click_Allow_ZSB_Series_Popup()
+    add_a_printer_page.Click_Next_Button()
+    """"Verify searching for your printer text"""
+    add_a_printer_page.Verify_Searching_for_your_printer_Text()
+    """"verify select your printer text"""
+    add_a_printer_page.Verify_Select_your_printer_Text()
+    """"select 2nd printer which you want to add"""
+    add_a_printer_page.click_2nd_Printer_Details_To_Add()
+    """""click on select button"""
+    add_a_printer_page.Click_Next_Button()
+    add_a_printer_page.Verify_Pairing_Your_Printer_Text()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+    try:
+        registration_page.wait_for_element_appearance("Connect to Wi-Fi", 50)
+    except:
+        raise Exception("Bluetooth connection unsuccessful")
+    common_method.wait_for_element_appearance("Discovered networks", 30)
+    registration_page.connectToWIfi("POCO M3")
+    registration_page.enterPasswordWifi("123456789")
+    try:
+        registration_page.wait_for_element_appearance("Incorrect Wi-Fi password entered", 60)
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("Internet access blocked message did not show up.")
+    except Exception as e:
+        pass
+    common_method.Stop_The_App()

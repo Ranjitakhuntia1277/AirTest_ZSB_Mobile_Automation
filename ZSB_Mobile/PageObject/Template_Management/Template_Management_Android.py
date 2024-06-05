@@ -6,7 +6,7 @@ from airtest.core.android import Android
 from airtest.core.api import *
 from airtest.core.cv import Template
 from poco import poco
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from airtest.core.api import device as current_device
 import os
 from ZSB_Mobile.PageObject.Login_Screen import Login_Screen_Android
@@ -85,7 +85,7 @@ class Template_Management_Android:
         temp = []
         prev = []
         while 1:
-            curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+            curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
             a = self.poco(nameMatches=regex_pattern).exists()
             if a:
                 p = self.poco(nameMatches=regex_pattern).get_name()
@@ -109,7 +109,7 @@ class Template_Management_Android:
                     break
                 prev = curr
                 self.poco.swipe([0.5, 0.9], [0.5, 0.4], duration=0.5)
-        print(temp)
+        # print(temp)
         if click:
             self.poco(temp[0]).click()
 
@@ -446,7 +446,7 @@ class Template_Management_Android:
         self.poco("android.view.View").child(type="android.widget.ImageView")[1].click()
 
     def get_first_design_in_recently_printed_labels(self):
-        curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+        curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
         temp = []
         for i in curr:
             if "prints left" not in i:
