@@ -177,14 +177,14 @@ class Login_Screen:
 
     def click_Password_TextField(self):
         sleep(1)
-        poco.scroll()
+        # poco.scroll()
         sleep(1)
-        self.poco("android.widget.EditText")[1].click()
+        self.poco(name="android.widget.EditText")[1].click()
         # password = self.poco(self.Password_Field)
         # password.click()
 
     def Enter_Password(self):
-        password = self.poco(self.Password_Field)
+        password = self.poco(name="android.widget.EditText")[1]
         sleep(2)
         password.set_text("Testing@1234")
 
@@ -207,5 +207,5 @@ class Login_Screen:
 
 
     def Enter_Zebra_Password(self):
-        password = self.poco(self.Password_Field)
+        password = self.poco("android.widget.EditText")[1]
         password.set_text("Testing@12345")

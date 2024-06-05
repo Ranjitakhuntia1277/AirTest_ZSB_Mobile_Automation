@@ -30,6 +30,8 @@ aps_notification = APS_Notification(poco)
 
 """""""""""""""""""""""Change Password part needs to be verified manually"""""""""""""""""""""""""""""
 
+
+# #### bug id-SMBM-2773
 def test_AppSettings_TestcaseID_47913():
     """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
 
@@ -92,6 +94,7 @@ def test_AppSettings_TestcaseID_47913():
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+####### bug id---SMBM-2778
 def test_AppSettings_TestcaseID_50031():
     """Check the error message prompted when print test page and printer head open or offline"""
 
@@ -134,6 +137,8 @@ def test_AppSettings_TestcaseID_50031():
 
 ## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# ###bug id-SMBM-2160
 def test_AppSettings_TestcaseID_49709():
     """Manage network- Check able to manage network with long name"""
 
@@ -175,6 +180,8 @@ def test_AppSettings_TestcaseID_49709():
 
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# ####bug id-SMBM-2163
 def test_AppSettings_TestcaseID_49711():
     """Manage networks- Check there is a prompt message when applying to the network which can't resolve Zebra host"""
 
