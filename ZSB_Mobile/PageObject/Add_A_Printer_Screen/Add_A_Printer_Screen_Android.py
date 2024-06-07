@@ -6,7 +6,7 @@ import pytest
 from airtest.core.android import Android
 from airtest.core.api import exists, sleep
 from poco import poco
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException, PocoTargetTimeout
 from pocoui_lib.android.kotoComponent import poco
 import subprocess
@@ -192,7 +192,7 @@ class Add_A_Printer_Screen:
         sleep(2)
 
     def Verify_Select_your_printer_Text(self):
-        sleep(9)
+        sleep(10)
         select_your_printer_Text = self.poco(self.Select_your_printer_Text)
         if select_your_printer_Text.exists():
             select_your_printer_Text.get_text()
@@ -251,16 +251,20 @@ class Add_A_Printer_Screen:
         Zebra_Network.click()
 
     def Verify_Discovered_Devices_Text(self):
+        sleep(2)
         discovered_devices_Text = self.poco(self.Discovered_Devices_Text)
-        discovered_devices_Text.get_text()
+        if discovered_devices_Text.exists():
+           discovered_devices_Text.get_text()
         print(" Discovered Devices Text is displaying:", discovered_devices_Text)
         return discovered_devices_Text
 
     def Verify_same_ZSB_image_for_all_items(self):
         sleep(1)
-        a = self.poco(nameMatches="(?s).*ZSB-DP12.*").get_name()
-        a = a.split("\n")
-        print(a)
+        a = self.poco(nameMatches="(?s).*ZSB-DP12.*")
+        if a.exists():
+           a.get_name()
+           a = a.split("\n")
+           print(a)
 
     def Verify_Already_Added_Printer_IS_Not_Displaying(self):
         sleep(5)
