@@ -13,11 +13,15 @@ import pytest
 #     pytest.main([test_file, f"--html={html_report_filename}", "--self-contained-html"])
 
 
-cmd = "cd C:\\Users\\tr5927\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Template_Management && pytest test_Android_Template_Management_Exec.py"
-# Run the combined command
+# cmd = "cd C:\\Users\\tr5927\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Template_Management && pytest test_Android_Template_Management_Exec.py"
+# # Run the combined command
+# a = os.system(cmd)
+
+cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Social_Login && pytest test_Android_Social_Login_Exec.py"
 a = os.system(cmd)
 
-
+cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Others && pytest test_Android_Others.py"
+a = os.system(cmd)
 
 
 

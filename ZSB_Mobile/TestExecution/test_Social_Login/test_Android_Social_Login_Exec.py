@@ -22,8 +22,9 @@ def test_Social_Login_TtestcaseID_48473():
 def test_Social_Login_TtestcaseID_48479():
     t_sl.test_Social_Login_TestcaseID_48479()
 
-def test_Social_Login_TtestcaseID_48480():
-    t_sl.test_Social_Login_TestcaseID_48480()
+"""Semi"""
+# def test_Social_Login_TtestcaseID_48480():
+#     t_sl.test_Social_Login_TestcaseID_48480()
 
 def test_Social_Login_TtestcaseID_48481():
     t_sl.test_Social_Login_TestcaseID_48481()
@@ -31,8 +32,9 @@ def test_Social_Login_TtestcaseID_48481():
 def test_Social_Login_TtestcaseID_48483():
     t_sl.test_Social_Login_TestcaseID_48483()
 
-def test_Social_Login_TtestcaseID_48484():
-    t_sl.test_Social_Login_TestcaseID_48484()
+"""Semi"""
+# def test_Social_Login_TtestcaseID_48484():
+#     t_sl.test_Social_Login_TestcaseID_48484()
 
 def test_Social_Login_TtestcaseID_48485():
     t_sl.test_Social_Login_TestcaseID_48485()

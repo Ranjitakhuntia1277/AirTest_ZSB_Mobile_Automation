@@ -25,7 +25,6 @@ login_page = Login_Screen(poco)
 help_page = Help_Screen(poco)
 registration_page = Registration_Screen(poco)
 data_sources_page = Data_Sources_Screen(poco)
-errors = []
 
 
 def test_Help_TestcaseID_45789():
@@ -104,14 +103,17 @@ def test_Help_TestcaseID_45789():
     except:
         pass
     sleep(5)
-    """Click chat to """
-    help_page.click_Chat()
-    sleep(5)
-    """Verify Chat Page Title"""
-    help_page.verifyLiveChatWindowTitle()
-    sleep(2)
-    """Verify if Begin Chat button is present"""
-    help_page.verifyBeginChatBtn()
+    if help_page.checkIfOnValidChatTime():
+        """Click chat to """
+        help_page.click_Chat()
+        sleep(5)
+        """Verify Chat Page Title"""
+        help_page.verifyLiveChatWindowTitle()
+        sleep(2)
+        """Verify if Begin Chat button is present"""
+        help_page.verifyBeginChatBtn()
+    else:
+        help_page.checkChatCurrentlyUnavailableMessagePresent()
     sleep(2)
     common_method.Stop_The_App()
 
@@ -126,22 +128,25 @@ def test_Help_TestcaseID_47788():
     sleep(2)
     """Click Help dropdown to expand Help options"""
     help_page.click_Help_dropdown_option()
-    """Click Live Chat"""
-    help_page.click_Chat()
-    sleep(2)
-    """Check if it displays Available 7am to 7pm ET"""
-    try:
+    if help_page.checkIfOnValidChatTime():
+        """Click Live Chat"""
+        help_page.click_Chat()
+        sleep(2)
+        """Check if it displays Available 7am to 7pm ET"""
+        try:
+            help_page.verifyChatHours()
+        except:
+            pass
+        """Begin Chat"""
+        help_page.clickBeginChat()
+        """Click Back Arrow"""
+        help_page.clickBackArrow()
+        sleep(2)
+        """Check if it displays Available 7am to 7pm ET"""
+        """Unable to verify due to BUG"""
         help_page.verifyChatHours()
-    except:
-        pass
-    """Begin Chat"""
-    help_page.clickBeginChat()
-    """Click Back Arrow"""
-    help_page.clickBackArrow()
-    sleep(2)
-    """Check if it displays Available 7am to 7pm ET"""
-    """Unable to verify due to BUG"""
-    help_page.verifyChatHours()
+    else:
+        help_page.checkChatCurrentlyUnavailableMessagePresent()
     common_method.Stop_The_App()
 
 
@@ -159,29 +164,32 @@ def test_Help_TestcaseID_47919():
     """Click Help dropdown to expand Help options"""
     help_page.click_Help_dropdown_option()
     sleep(5)
-    """Click Live Chat"""
-    help_page.click_Chat()
-    """Begin Chat"""
-    help_page.clickBeginChat()
-    sleep(2)
-    """Select Subject from dropdown"""
-    help_page.selectDropDownForSubject()
-    sleep(2)
-    help_page.selectSubjectFromDropDown()
-    sleep(2)
-    """Enter Problem Description"""
-    help_page.fillDescription()
-    sleep(2)
-    """Select affected printer"""
-    help_page.selectDropDownForAffectedPrinter()
-    sleep(2)
-    help_page.selectAffectedPrinterFromDropDown()
-    sleep(2)
-    """Start chat"""
-    help_page.startChat()
-    """Click Go to chat"""
-    help_page.goToChat()
-    """Check if chat bubble does not appear"""
-    """Cannot check since chat bubble does not appear"""
+    if help_page.checkIfOnValidChatTime():
+        """Click Live Chat"""
+        help_page.click_Chat()
+        """Begin Chat"""
+        help_page.clickBeginChat()
+        sleep(2)
+        """Select Subject from dropdown"""
+        help_page.selectDropDownForSubject()
+        sleep(2)
+        help_page.selectSubjectFromDropDown()
+        sleep(2)
+        """Enter Problem Description"""
+        help_page.fillDescription()
+        sleep(2)
+        """Select affected printer"""
+        help_page.selectDropDownForAffectedPrinter()
+        sleep(2)
+        help_page.selectAffectedPrinterFromDropDown()
+        sleep(2)
+        """Start chat"""
+        help_page.startChat()
+        """Click Go to chat"""
+        help_page.goToChat()
+        """Check if chat bubble does not appear"""
+        """Cannot check since chat bubble does not appear"""
+    else:
+        help_page.checkChatCurrentlyUnavailableMessagePresent()
     common_method.Stop_The_App()
 
