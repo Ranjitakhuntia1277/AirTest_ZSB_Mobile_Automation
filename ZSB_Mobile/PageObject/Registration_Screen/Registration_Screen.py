@@ -307,9 +307,16 @@ class Registration_Screen:
         log_out_btn.click()
 
     def click_Google_Icon(self):
-        sleep(2)
-        touch(self.Google_Icon)
-        sleep(2)
+        try:
+            sleep(2)
+            self.poco(nameMatches=".*Continue with Google.*").click()
+        except:
+            try:
+                self.poco(nameMatches=".*Sign in with Google.*").click()
+            except:
+                touch(self.Google_Icon)
+                sleep(2)
+
 
     def click_Facebook_Icon(self):
         sleep(2)

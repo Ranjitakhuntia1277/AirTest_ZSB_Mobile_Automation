@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/Device_Network_Android_Semi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" beforeDir="false" afterPath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Social_Login/Social_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Social_Login/Social_Login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management/Template_Management_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management/Template_Management_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/Device_Network_Android_Exec.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/test_Android_device_networks.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/test_Android_device_networks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login_Semi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login_Semi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/sample_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/sample_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management_Screen_JK/Template_Management_Screen_JK.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management_Screen_JK/Template_Management_Screen_JK.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" afterDir="false" />
     </list>
@@ -53,6 +48,26 @@
     &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Semi.test_Social_Login_TestcaseID_48468.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45930.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45933.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45922.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45924.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45965.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_45966.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46005.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46015.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46016.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46023.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46024.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46025.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46026.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46027.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46028.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46029.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46032.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46037.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46041.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47824.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_47941.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_48266.executor&quot;: &quot;Run&quot;,
     &quot;Python.Android_Automated_TestSuite.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -83,8 +98,8 @@
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Test_Suite_Execution" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45933">
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_47924" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_48266">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46015" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -97,11 +112,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_47924&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46015&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_49960" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46016" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,11 +129,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_49960&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46016&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Semi.test_Social_Login_TestcaseID_48468" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46037" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,11 +146,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Semi.test_Social_Login_TestcaseID_48468&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46037&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45930" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46041" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,11 +163,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45930&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46041&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45933" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_48266" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -165,17 +180,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45933&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_48266&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45933" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.sample_test.test_Template_Management_TestcaseID_45930" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Semi.test_Social_Login_TestcaseID_48468" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_49960" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_47924" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_48266" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46016" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46015" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46041" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management_JK.test_Template_Management_Android_JK.test_Template_Management_TestcaseID_46037" />
       </list>
     </recent_temporary>
   </component>
