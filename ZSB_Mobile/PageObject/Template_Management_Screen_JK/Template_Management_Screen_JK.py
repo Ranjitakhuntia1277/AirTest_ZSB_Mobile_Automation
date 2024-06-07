@@ -27,8 +27,8 @@ class Template_Management_Screen:
         self.Search_place_holder = Template(r"search_design_placeholder.png", record_pos=(-0.192, -0.609),
                                             resolution=(1080, 2280))
         self.Search_icon = Template(r"search_Icon.png", record_pos=(-0.398, -0.605), resolution=(1080, 2280))
-        self.Search_files_place_holder = Template(r"search_files_place_holder.png", record_pos=(-0.203, -0.584), resolution=(1080, 2340))
-
+        self.Search_files_place_holder = Template(r"search_files_place_holder.png", record_pos=(-0.203, -0.584),
+                                                  resolution=(1080, 2340))
 
     def turn_on_wifi(self):
         cmd = "adb shell svc wifi enable"
@@ -89,7 +89,8 @@ class Template_Management_Screen:
 
     def waitForAppearanceOfNoResultsFound(self):
         sleep(10)
-        if self.poco(nameMatches=".*No results found.\nSearch tips: try typing exactly what you’re looking for. It may help to simply type 1 word, and search for results then.*").exists():
+        if self.poco(
+                nameMatches=".*No results found.\nSearch tips: try typing exactly what you’re looking for. It may help to simply type 1 word, and search for results then.*").exists():
             pass
         else:
             raise Exception("\"No results found\" message not displayed.")
@@ -251,7 +252,8 @@ class Template_Management_Screen:
         end = 1
         while True:
             for i in range(start, len(self.poco("android.widget.ListView").child()) - end):
-                if self.poco("android.widget.ListView").child()[i].child().child()[0].get_text() == "Use another account":
+                if self.poco("android.widget.ListView").child()[i].child().child()[
+                    0].get_text() == "Use another account":
                     return False
                 elif self.poco("android.widget.ListView").child()[i].child().child()[1].get_text() == account:
                     return True
@@ -304,7 +306,8 @@ class Template_Management_Screen:
             if fnmatch.fnmatch(self.poco("android.view.View")[3].child()[i].get_name().split("\n")[1], "? result"):
                 pass
             else:
-                raise Exception("Number of design that matches the list in the suggestion dropdown is not displayed on the right side of each.")
+                raise Exception(
+                    "Number of design that matches the list in the suggestion dropdown is not displayed on the right side of each.")
 
     def check_dropdown_options_Are_clickable(self):
         drop_down_result_1 = self.poco("android.view.View")[3].child().get_name()
@@ -429,12 +432,15 @@ class Template_Management_Screen:
 
     def get_child_file_update_data_connections(self, index):
         try:
-            child = self.poco(type="android.view.View", nameMatches=".*(Local File).*").parent().child()[index].get_name()
+            child = self.poco(type="android.view.View", nameMatches=".*(Local File).*").parent().child()[
+                index].get_name()
         except:
             try:
-                child = self.poco(type="android.view.View", nameMatches=".*(OneDrive).*").parent().child()[index].get_name()
+                child = self.poco(type="android.view.View", nameMatches=".*(OneDrive).*").parent().child()[
+                    index].get_name()
             except:
-                child = self.poco(type="android.view.View", nameMatches=".*(Google Drive).*").parent().child()[index].get_name()
+                child = self.poco(type="android.view.View", nameMatches=".*(Google Drive).*").parent().child()[
+                    index].get_name()
         return child
 
     def select_child_file_update_data_connections(self, index):
@@ -462,13 +468,27 @@ class Template_Management_Screen:
             last_child = new_last_child
             child_count = new_child_count
 
+    def continueDisabled(self):
+        if self.poco("Continue", enabled=False).exists():
+            return True
+
+    def choose_file_relink_data_sources(self, option_name):
+        self.poco(option_name).click()
+
+    def checkIfOnRelinkDataSourcesPage(self):
+        if self.poco("Relink Data Source Columns").exists():
+            return True
+
     def selectChooseAnOption(self, option_count=1, option_name=None, click=True):
+        relink_data_source_page = False
         try:
             self.poco(nameMatches="(?s).*Choose an option.*").wait_for_appearance(timeout=20)
         except:
             sleep(3)
 
         for i in range(1, option_count + 1):
+            if self.checkIfOnRelinkDataSourcesPage():
+                relink_data_source_page = True
             try:
                 self.poco(nameMatches="(?s).*Choose an option.*").click()
             except:
@@ -477,7 +497,10 @@ class Template_Management_Screen:
                 if option_name is None:
                     self.poco("android.view.View")[6].child()[option_count - i].click()
                 else:
-                    self.choose_file_update_data_connections(option_name)
+                    if relink_data_source_page:
+                        self.choose_file_relink_data_sources(option_name)
+                    else:
+                        self.choose_file_update_data_connections(option_name)
 
     def verify_label_range_is_All(self):
         if self.poco("All").exists():
@@ -578,7 +601,9 @@ class Template_Management_Screen:
         temp = []
         flag = 1
         while flag:
-            curr = [child.get_name() for child in self.poco("android:id/content").child("android.widget.FrameLayout").child().child().child()[0].child().child().child()]
+            curr = [child.get_name() for child in
+                    self.poco("android:id/content").child("android.widget.FrameLayout").child().child().child()[
+                        0].child().child().child()]
             if curr == prev:
                 break
             for i in curr:
@@ -623,7 +648,7 @@ class Template_Management_Screen:
         return temp
 
     def waitForAppearanceTypeName(self, elementType, elementName, time_out=20):
-        self.poco(type=elementType, nameMatches="(?s).*"+elementName+".*").wait_for_appearance(timeout=time_out)
+        self.poco(type=elementType, nameMatches="(?s).*" + elementName + ".*").wait_for_appearance(timeout=time_out)
 
     def get_all_search_results_in_search_designs(self, name=False):
         a = len(self.poco(nameMatches="(?s).*result.*"))
@@ -661,7 +686,6 @@ class Template_Management_Screen:
 
     def verifySearchResults_n(self, n):
         return self.poco(f"Search results ({n})").exists()
-
 
     def check_suggestion_window_in_common_design(self):
         regex_pattern = "(?s).*CATEGORIES.*"
@@ -704,7 +728,7 @@ class Template_Management_Screen:
             for field in current:
                 print(field)
                 if field is not None and field not in elements:
-                    print("selection "+field)
+                    print("selection " + field)
                     if value is None:
                         random_word = data_sources_page.generateRandomWordLetters(8)
                     else:
@@ -718,7 +742,9 @@ class Template_Management_Screen:
             previous = current
 
     def getLastPrintFromFirstDesignInRecentlyPrintedDesigns(self):
-        return self.poco("android.view.View").child(type="android.widget.ImageView")[1].get_name().split("\n")[-1].split(":")[-1].strip()
+        return \
+        self.poco("android.view.View").child(type="android.widget.ImageView")[1].get_name().split("\n")[-1].split(":")[
+            -1].strip()
 
     def get_remaining_label_count(self):
         labels_left = int(self.poco(nameMatches=".*Printer.*").get_name().split(" ")[1][1:])
@@ -889,9 +915,11 @@ class Template_Management_Screen:
 
     def verify_update_data_connections_dialog(self):
         try:
-            self.poco(nameMatches="The below data sources are missing for the .* label. They must be updated in order to print.")
+            self.poco(
+                nameMatches="The below data sources are missing for the .* label. They must be updated in order to print.")
         except:
-            raise Exception("\"The below data sources are missing for the label. They must be updated in order to print.\" dialog did not appear")
+            raise Exception(
+                "\"The below data sources are missing for the label. They must be updated in order to print.\" dialog did not appear")
 
     def selectDesign(self, design_name):
         self.poco(name=design_name).click()
@@ -905,7 +933,7 @@ class Template_Management_Screen:
         self.poco("android.widget.EditText").set_text("1.01")
 
     def getDesignInfo(self, design_name):
-        return self.poco(nameMatches="(?s).*"+design_name+".*").get_name()
+        return self.poco(nameMatches="(?s).*" + design_name + ".*").get_name()
 
     def changeAccInAddContacts(self, account):
         self.poco(textMatches=".*Google Account:.*").click()
@@ -930,7 +958,8 @@ class Template_Management_Screen:
         prefix = ["Mr", "Ms", "Mrs"]
         suffix = ["Sr", "Jr"]
         address = ["66", "1", "74"]
-        department = ["IT", "Testing", "SDE", "SDE-1", "SDET", "Firmware Test", "Frontend", "App Dev", "Devops", "Cloud Technician", "CloudDB"]
+        department = ["IT", "Testing", "SDE", "SDE-1", "SDET", "Firmware Test", "Frontend", "App Dev", "Devops",
+                      "Cloud Technician", "CloudDB"]
 
         self.poco(text="Add new contact").click()
         keyevent('adb shell input keyevent 26')
@@ -1189,7 +1218,8 @@ class Template_Management_Screen:
             self.poco(text="Move to the bin").click()
 
     def clickGotIt(self):
-        self.poco(text="Got It").click()
+        if self.poco(text="Got It").exists():
+            self.poco(text="Got It").click()
         if self.poco(text="Welcome to your new ZSB Series Printer").exists():
             self.poco(text="Welcome to your new ZSB Series Printer").parent().child()[0].click()
 
@@ -1198,7 +1228,7 @@ class Template_Management_Screen:
 
     def checkDisplayedCountMatchesExpected(self, expected_count):
         count_displayed = self.get_showing_n_designs_number()
-        print("cc",count_displayed)
+        print("cc", count_displayed)
         if count_displayed == expected_count:
             pass
         else:

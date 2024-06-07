@@ -1,10 +1,11 @@
-#from poco import poco
+# from poco import poco
 import time
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Others.Others import Others
 from ...Common_Method import *
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 from ...PageObject.Social_Login.Social_Login import Social_Login
 # from ZSB_Mobile.sphere_db import *
 import pytest
@@ -13,92 +14,95 @@ import os
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
 connect_device("Android:///")
-#start_app("com.zebra.soho_app")
+# start_app("com.zebra.soho_app")
 sleep(3.0)
 
 login_page = Login_Screen(poco)
 others = Others(poco)
-common_method=Common_Method(poco)
+common_method = Common_Method(poco)
 social_login = Social_Login(poco)
+registration_page = Registration_Screen(poco)
 
 
-def test_Others_TestcaseID_45793():
+# def test_Others_TestcaseID_45793():
+#     """Notifications some times will not sync properly"""
+#     start_app("com.google.android.googlequicksearchbox")
+#
+#     others.click_google_search_bar()
+#     others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
+#     others.click_enter()
+#     try:
+#         others.wait_for_element_appearance("Continue with Google", 10)
+#         login_page.click_Loginwith_Google()
+#         common_method.wait_for_element_appearance_textmatches("Choose an account")
+#         others.click_an_google_account("zsbswdvt@gmail.com")
+#     except:
+#         pass
+#
+#     others.wait_for_element_appearance_text("Home", 30)
+#     sleep(3)
+#     others.check_google_home_pop_up()
+#
+#     others.click_hamburger_button_in_Google()
+#     sleep(2)
+#     others.click_Printer_Settings_in_google()
+#
+#     others.click_hamburger_button_in_Google()
+#
+#     """Pass the printer name"""
+#
+#     others.select_first_printer_in_google()
+#     common_method.wait_for_element_appearance_textmatches("Auto Label")
+#
+#     """others.google_scroll_down()"""
+#     others.scroll_down_till_printer_test_label_in_google()
+#     sleep(1)
+#     n = 2
+#     for i in range(n):
+#         others.click_google_print_test_button()
+#         sleep(5)
+#
+#     """others.change_Darkness_level_in_google(50)"""
+#
+#     others.wait_for_element_appearance_text("Home", 10)
+#     others.click_hamburger_button_in_Google()
+#
+#     others.wait_for_element_appearance("Notifications", 5)
+#
+#     others.click_notifications_button_in_google()
+#     others.click_hamburger_button_in_Google()
+#     res = others.check_text_history()
+#     if not res:
+#         others.scroll_up(1)
+#     """Clear The Notifications in google if present"""
+#     google_notification = others.get_notification_text_in_google()
+#
+#     print(google_notification)
+#     sleep(2)
+#
+#     common_method.tearDown()
+#     try:
+#         others.wait_for_element_appearance("Home", 15)
+#         sleep(2)
+#     except:
+#         """*** - Ask tarun if we should login and if this test case is semi automated."""
+#
+#     login_page.click_Menu_HamburgerICN()
+#     others.click_notifications_button()
+#
+#     Android_notification = others.get_notification_text_in_Android()
+#     sleep(3)
+#     print("notification", Android_notification, google_notification)
+#
+#     res = others.verify_notifications(google_notification, Android_notification)
+#     if not res:
+#         raise Exception("Notfications not matching")
+#     print(res)
+#
+#     """This step need to be manually executed:
+#     5. Idle mobile app 30 to 1 h, back to the app, trigger some printer notification (cover open/close/media out)
+#     Check the notification pops up correctly"""
 
-    """Notifications some times will not sync properly"""
-    start_app("com.google.android.googlequicksearchbox")
-
-    others.click_google_search_bar()
-    others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
-    others.click_enter()
-    try:
-        others.wait_for_element_appearance("Continue with Google",10)
-        login_page.click_Loginwith_Google()
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
-        others.click_an_google_account("zsbswdvt@gmail.com")
-    except:
-        pass
-
-    others.wait_for_element_appearance_text("Home",30)
-    sleep(3)
-    others.check_google_home_pop_up()
-
-    others.click_hamburger_button_in_Google()
-    sleep(2)
-    others.click_Printer_Settings_in_google()
-
-    others.click_hamburger_button_in_Google()
-
-    """Pass the printer name"""
-
-    others.select_first_printer_in_google()
-    common_method.wait_for_element_appearance_textmatches("Auto Label")
-
-    """others.google_scroll_down()"""
-    others.scroll_down_till_printer_test_label_in_google()
-    sleep(1)
-    n = 2
-    for i in range(n):
-        others.click_google_print_test_button()
-        sleep(5)
-
-    """others.change_Darkness_level_in_google(50)"""
-
-    others.wait_for_element_appearance_text("Home",10)
-    others.click_hamburger_button_in_Google()
-
-    others.wait_for_element_appearance("Notifications",5)
-
-    others.click_notifications_button_in_google()
-    others.click_hamburger_button_in_Google()
-    res = others.check_text_history()
-    if not res:
-        others.scroll_up(1)
-    """Clear The Notifications in google if present"""
-    google_notification = others.get_notification_text_in_google()
-
-    print(google_notification)
-    sleep(2)
-
-    start_app("com.zebra.soho_app")
-
-    others.wait_for_element_appearance("Home",15)
-    sleep(2)
-
-    login_page.click_Menu_HamburgerICN()
-    others.click_notifications_button()
-
-    Android_notification = others.get_notification_text_in_Android()
-    sleep(3)
-    print("notification",Android_notification,google_notification)
-
-    res = others.verify_notifications(google_notification,Android_notification)
-    if not res:
-        raise Exception("Notfications not matching")
-    print(res)
-
-    """This step need to be manually executed:
-    5. Idle mobile app 30 to 1 h, back to the app, trigger some printer notification (cover open/close/media out)
-    Check the notification pops up correctly"""
 
 def test_Others_TestcaseID_45794():
     pass
@@ -138,10 +142,10 @@ def test_Others_TestcaseID_45794():
     others.click_Printer_Settings()
     others.select_first_printer()
     others.click_test_print()
-    others.wait_for_appearance_all("Print Complete")
+    others.wait_for_appearance_all("Print complete")
     sleep(2)
     others.click_test_print()
-    others.wait_for_appearance_all("Print Complete")
+    others.wait_for_appearance_all("Print complete")
     sleep(2)
 
     """Generate less than 5 notifications"""
@@ -156,10 +160,11 @@ def test_Others_TestcaseID_45794():
 
     Android_notification_after = others.get_notifications_in_first_page_android()
 
-    if len(Android_notification_before)>len(Android_notification_after):
+    if len(Android_notification_before) > len(Android_notification_after):
         print("Success")
     else:
         raise Exception(" Notification dint dismiss ")
+
 
 def test_Others_TestcaseID_45796():
     pass
@@ -198,11 +203,11 @@ def test_Others_TestcaseID_45796():
     if not res:
         raise Exception("default image not found")
 
+
 def test_Others_TestcaseID_45797():
     pass
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+    common_method.tearDown()
     common_method.wait_for_element_appearance_namematches("Home")
     login_page.click_Menu_HamburgerICN()
     others.click_on_profile_edit()
@@ -210,7 +215,7 @@ def test_Others_TestcaseID_45797():
     others.click_log_out_button()
 
     try:
-        others.wait_for_element_appearance("Sign In",10)
+        others.wait_for_element_appearance("Sign In", 10)
         login_page.click_loginBtn()
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         login_page.click_Loginwith_Google()
@@ -221,7 +226,7 @@ def test_Others_TestcaseID_45797():
         others.choose_google_account(email)
     except:
         pass
-    others.wait_for_element_appearance("Home",30)
+    others.wait_for_element_appearance("Home", 30)
 
     login_page.click_Menu_HamburgerICN()
     others.click_on_profile_edit()
@@ -269,13 +274,13 @@ def test_Others_TestcaseID_45797():
     if not res:
         raise Exception("default image not found")
 
+
 def test_Others_TestcaseID_45798():
     pass
 
     """has bug id:SMBM-2711"""
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+    common_method.tearDown()
     try:
         common_method.wait_for_element_appearance_namematches("Home")
         login_page.click_Menu_HamburgerICN()
@@ -285,7 +290,7 @@ def test_Others_TestcaseID_45798():
     except:
         pass
 
-    others.wait_for_element_appearance("Sign In",10)
+    others.wait_for_element_appearance("Sign In", 10)
     login_page.click_loginBtn()
     common_method.wait_for_element_appearance_namematches("Continue with Google")
     login_page.click_Loginwith_Google()
@@ -295,7 +300,7 @@ def test_Others_TestcaseID_45798():
     common_method.wait_for_element_appearance_textmatches("Choose an account")
     others.choose_google_account(email)
 
-    others.wait_for_element_appearance("Home",30)
+    others.wait_for_element_appearance("Home", 30)
 
     login_page.click_Menu_HamburgerICN()
     """Click on the profile edit"""
@@ -356,89 +361,93 @@ def test_Others_TestcaseID_45798():
 
 
 def setup_logout():
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
-
-        try:
-            others.wait_for_element_appearance("Sign In", 10)
-        except:
-            pass
-
-        try:
-            common_method.wait_for_element_appearance_namematches("Home")
-            login_page.click_Menu_HamburgerICN()
-            others.click_on_profile_edit()
-            others.scroll_down()
-            others.click_log_out_button()
-        except:
-            pass
-
-def test_Others_TestcaseID_45800():
-    pass
-
-    """has bug: SMBM-1098,SMBM-2234"""
     common_method.tearDown()
-    setup_logout()
-    login_page.click_loginBtn()
-    social_login.wait_for_element_appearance_text("Continue with Google",10)
-    social_login.click_on_sign_in_with_email()
 
-    """Provide new_user name and password which is registered"""
-    email = "zebratest851@gmail.com"
-    password = "Zebra#8518518"
-    social_login.complete_sign_in_with_email(email,password)
-
-    others.wait_for_element_appearance("Home",30)
-    sleep(1)
-    login_page.click_Menu_HamburgerICN()
-    others.click_on_profile_edit()
-
-    first_name = "zebra"
-    others.edit_first_name(first_name)
     try:
-        common_method.wait_for_element_appearance_namematches("have been saved",5)
+        others.wait_for_element_appearance("Sign In", 10)
     except:
         pass
 
-    last_name = "t"
-    others.edit_last_name(last_name)
     try:
-        common_method.wait_for_element_appearance_namematches("have been saved",5)
+        common_method.wait_for_element_appearance_namematches("Home")
+        login_page.click_Menu_HamburgerICN()
+        others.click_on_profile_edit()
+        others.scroll_down()
+        others.click_log_out_button()
     except:
         pass
-
-    current_first_name = others.get_first_name()
-    current_last_name = others.get_last_name()
-
-    if first_name == current_first_name and last_name == current_last_name:
-        print("ok")
-    else:
-        raise Exception("dint update")
-
-    others.scroll_down()
-    others.change_password_for_user_account()
-    common_method.wait_for_element_appearance_textmatches("Please enter your username")
-    others.enter_user_name_for_change_password("zebratest851@gmail.com")
     sleep(2)
-    others.click_on_submit()
 
-    common_method.wait_for_element_appearance_textmatches("Change Password")
-    others.change_old_password_to_new_password(password,"Zebra#85185180")
-    others.click_on_submit()
 
-    try:
-        common_method.wait_for_element_appearance_textmatches("Password changed successfully")
-    except:
-        raise Exception("confirmation did not receive")
+"""Semi"""
 
-    others.click_here_to_login_after_changing_password()
 
-    others.wait_for_element_appearance("Sign In",5)
+# def test_Others_TestcaseID_45800():
+#     pass
+#
+#     """has bug: SMBM-1098,SMBM-2234"""
+#     common_method.tearDown()
+#     setup_logout()
+#     login_page.click_loginBtn()
+#     social_login.wait_for_element_appearance_text("Continue with Google", 10)
+#     social_login.click_on_sign_in_with_email()
+#
+#     """Provide new_user name and password which is registered"""
+#     email = "zebratest851@gmail.com"
+#     password = "Zebra#85185180"
+#     social_login.complete_sign_in_with_email(email, password)
+#
+#     others.wait_for_element_appearance("Home", 30)
+#     sleep(1)
+#     login_page.click_Menu_HamburgerICN()
+#     others.click_on_profile_edit()
+#
+#     first_name = "zebra"
+#     others.edit_first_name(first_name)
+#     try:
+#         common_method.wait_for_element_appearance_namematches("have been saved", 5)
+#     except:
+#         pass
+#
+#     last_name = "t"
+#     others.edit_last_name(last_name)
+#     try:
+#         common_method.wait_for_element_appearance_namematches("have been saved", 5)
+#     except:
+#         pass
+#
+#     current_first_name = others.get_first_name()
+#     current_last_name = others.get_last_name()
+#
+#     if first_name == current_first_name and last_name == current_last_name:
+#         print("ok")
+#     else:
+#         raise Exception("dint update")
+#
+#     others.scroll_down()
+#     others.change_password_for_user_account()
+#     common_method.wait_for_element_appearance_textmatches("Please enter your username")
+#     others.enter_user_name_for_change_password("zebratest851@gmail.com")
+#     sleep(2)
+#     others.click_on_submit()
+#
+#     common_method.wait_for_element_appearance_textmatches("Change Password")
+#     others.change_old_password_to_new_password(password, "Zebra#85185180")
+#     others.click_on_submit()
+#
+#     try:
+#         common_method.wait_for_element_appearance_textmatches("Password changed successfully")
+#     except:
+#         raise Exception("confirmation did not receive")
+#
+#     others.click_here_to_login_after_changing_password()
+#
+#     others.wait_for_element_appearance("Sign In", 5)
+
 
 def test_Others_TestcaseID_45801():
     pass
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+    common_method.tearDown()
     setup_logout()
     try:
         common_method.wait_for_element_appearance_namematches("Sign In")
@@ -455,12 +464,12 @@ def test_Others_TestcaseID_45801():
 
     login_page.click_Menu_HamburgerICN()
     others.click_common_designs_button()
-    others.search_designs("Address")
+    others.search_designs("Small Multipurpose")
     sleep(4)
     others.select_first_design()
     sleep(4)
 
-    others.search_designs("Asset")
+    others.search_designs("PriceLabel")
     sleep(3)
     others.select_first_design()
 
@@ -470,7 +479,7 @@ def test_Others_TestcaseID_45801():
     others.click_left_arrow()
     login_page.click_Menu_HamburgerICN()
     others.click_on_my_designs()
-    others.search_designs("Asset")
+    others.search_designs("PriceLabel")
     sleep(3)
     others.select_first_design()
 
@@ -538,20 +547,22 @@ def test_Others_TestcaseID_47946():
     after = others.get_no_of_left_cartridge()
 
     """Check wheather the cartridges are updated"""
-    res = others.check_auto_update_cartridge(previous,after,n)
+    res = others.check_auto_update_cartridge(previous, after, n)
     if not res:
         raise Exception("number of cartridge count not updated")
 
+
+"""Yet to Test"""
+
+
 def test_Others_TestcaseID_47955():
     pass
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
-
+    common_method.tearDown()
     common_method.wait_for_element_appearance_namematches("Open navigation menu")
     login_page.click_Menu_HamburgerICN()
     others.click_Printer_Settings()
     names, id = others.get_printer_names()
-    print(names,id)
+    print(names, id)
     others.select_printer_1(id[1])
     others.rename_printer(id[1], names[2])
     sleep(1)
@@ -560,6 +571,7 @@ def test_Others_TestcaseID_47955():
     print(res)
     if not res:
         raise Exception("printer update failed not raised")
+
 
 def test_Others_TestcaseID_47972():
     pass
@@ -600,11 +612,11 @@ def test_Others_TestcaseID_47972():
     if not others.check_demo_video_closed():
         raise Exception("demo video not closed")
 
+
 def test_Others_TestcaseID_49203():
     pass
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+    common_method.tearDown()
     try:
         common_method.wait_for_element_appearance_namematches("Home")
     except:
@@ -633,7 +645,7 @@ def test_Others_TestcaseID_45795():
 
     common_method.tearDown()
 
-    others.wait_for_element_appearance("Home",10)
+    others.wait_for_element_appearance("Home", 10)
 
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
@@ -641,17 +653,16 @@ def test_Others_TestcaseID_45795():
     Android_notification = others.get_notifications_in_first_page_android()
     sleep(3)
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+    common_method.tearDown()
 
-    others.wait_for_element_appearance("Home",10)
+    others.wait_for_element_appearance("Home", 10)
 
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
 
     Android_notification_after_closing_app = others.get_notifications_in_first_page_android()
 
-    res = others.check_two_arrays_same(Android_notification,Android_notification_after_closing_app)
+    res = others.check_two_arrays_same(Android_notification, Android_notification_after_closing_app)
 
     if not res:
         raise Exception("Notifications did match appear after reopening the app")
@@ -660,7 +671,7 @@ def test_Others_TestcaseID_45795():
     others.click_on_profile_edit()
     others.scroll_down()
     others.click_log_out_button()
-    others.wait_for_element_appearance("Sign In",10)
+    others.wait_for_element_appearance("Sign In", 10)
     login_page.click_loginBtn()
     common_method.wait_for_element_appearance_namematches("Continue with Google")
     login_page.click_Loginwith_Google()
@@ -670,42 +681,50 @@ def test_Others_TestcaseID_45795():
     common_method.wait_for_element_appearance_textmatches("Choose an account")
     others.choose_google_account(email)
 
-    others.wait_for_element_appearance("Home",20)
+    others.wait_for_element_appearance("Home", 20)
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
 
     Android_notification_after_logout = others.get_notifications_in_first_page_android()
 
-    res = others.check_two_arrays_same(Android_notification,Android_notification_after_logout)
+    res = others.check_two_arrays_same(Android_notification, Android_notification_after_logout)
     if not res:
         raise Exception("Notifications are not same after log out")
 
-    others.uninstall_and_install_zsb_series_on_google_play()
-    others.open_the_zsb_series_app_in_play_store()
-    others.wait_for_element_appearance("Sign In",10)
+    # others.uninstall_and_install_zsb_series_on_google_play()
+    # others.open_the_zsb_series_app_in_play_store()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    others.wait_for_element_appearance("Sign In", 10)
     others.check_allow_permission_for_location()
-    login_page.click_loginBtn()
+    registration_page.clickSignIn()
     common_method.wait_for_element_appearance_namematches("Continue with Google")
     login_page.click_Loginwith_Google()
 
     """pass email here"""
-    email = "zsbswdvt@zebra.com"
+    email = "zsbswdvt@gmail.com"
     common_method.wait_for_element_appearance_textmatches("Choose an account")
     others.choose_google_account(email)
 
-    others.wait_for_element_appearance("Home",20)
+    others.wait_for_element_appearance("Home", 20)
 
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
 
     Android_notification_after_deleting_app = others.get_notifications_in_first_page_android()
 
-    res = others.check_two_arrays_same(Android_notification,Android_notification_after_deleting_app)
+    res = others.check_two_arrays_same(Android_notification, Android_notification_after_deleting_app)
     if res:
         raise Exception("Notifications did not disappear after deleting the app")
 
+
 def test_Others_TestcaseID_45802():
     pass
+    common_method.tearDown()
+    try:
+        social_login.click_on_allow_for_notification()
+    except:
+        pass
     setup_logout()
     common_method.wait_for_element_appearance_namematches("Sign In")
 
@@ -714,80 +733,84 @@ def test_Others_TestcaseID_45802():
     others.click_on_sign_in_with_email()
     common_method.wait_for_element_appearance_textmatches("Sign In")
 
-    email="zebratest851@gmail.com"
-    password="Zebra#85185180"
-    social_login.complete_sign_in_with_email(email,password,0)
+    email = "zebratest851@gmail.com"
+    password = "Zebra#85185180"
+    social_login.complete_sign_in_with_email(email, password, 0)
 
-    sleep_time = 60*29
+    sleep_time = 60 * 29
     sleep(sleep_time)
 
     others.click_on_sign_in()
-    common_method.wait_for_element_appearance_namematches("Home",30)
+    common_method.wait_for_element_appearance_namematches("Home", 30)
 
     login_page.click_Menu_HamburgerICN()
     others.click_Printer_Settings()
     login_page.click_Menu_HamburgerICN()
 
-def test_Others_TestcaseID_45803():
-    pass
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
+"""Semi"""
 
-    common_method.wait_for_element_appearance_namematches("Open navigation menu")
 
-    """Has bugs SMBM 1801 ,and 997"""
-    res = others.check_printer_online_status()
-    if res == "Online":
-        print("ok")
-    else:
-        raise Exception("Printer is in offline or other state turn it on")
-
-    login_page.click_Menu_HamburgerICN()
-
-    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
-    others.click_Printer_Settings()
-
-    """pass the printer name"""
-    others.select_first_printer()
-    sleep(2)
-
-    others.click_test_print()
-    login_page.click_Menu_HamburgerICN()
-
-    others.click_home_button()
-
-    res = others.check_printer_online_status()
-    if res == "Paper out":
-        print("ok")
-    else:
-        raise Exception("Paper out should be shown but not shown")
-
-    login_page.click_Menu_HamburgerICN()
-
-    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
-    others.click_Printer_Settings()
-
-    """pass the printer name"""
-    others.select_first_printer()
-    sleep(2)
-
-    others.click_test_print()
-
-    login_page.click_Menu_HamburgerICN()
-
-    others.click_home_button()
-
-    res = others.check_printer_online_status()
-    if res == "Online":
-        print("ok")
-    else:
-        raise Exception("Printer is in offline state turn it on")
+# def test_Others_TestcaseID_45803():
+#     pass
+#
+#     common_method.tearDown()
+#
+#     common_method.wait_for_element_appearance_namematches("Open navigation menu")
+#
+#     """Has bugs SMBM 1801 ,and 997"""
+#     res = others.check_printer_online_status()
+#     if res == "Online":
+#         print("ok")
+#     else:
+#         raise Exception("Printer is in offline or other state turn it on")
+#
+#     login_page.click_Menu_HamburgerICN()
+#
+#     """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+#     others.click_Printer_Settings()
+#
+#     """pass the printer name"""
+#     others.select_first_printer()
+#     sleep(2)
+#
+#     others.click_test_print()
+#     login_page.click_Menu_HamburgerICN()
+#
+#     others.click_home_button()
+#
+#     res = others.check_printer_online_status()
+#     if res == "Paper out":
+#         print("ok")
+#     else:
+#         raise Exception("Paper out should be shown but not shown")
+#
+#     login_page.click_Menu_HamburgerICN()
+#
+#     """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+#     others.click_Printer_Settings()
+#
+#     """pass the printer name"""
+#     others.select_first_printer()
+#     sleep(2)
+#
+#     others.click_test_print()
+#
+#     login_page.click_Menu_HamburgerICN()
+#
+#     others.click_home_button()
+#
+#     res = others.check_printer_online_status()
+#     if res == "Online":
+#         print("ok")
+#     else:
+#         raise Exception("Printer is in offline state turn it on")
 
 
 def test_Others_TestcaseID_45872():
     pass
 
+    common_method.tearDown()
     setup_logout()
     common_method.wait_for_element_appearance_namematches("Sign In")
 
@@ -801,15 +824,13 @@ def test_Others_TestcaseID_45872():
 
     others.enter_password_in_sign_with_email("Zebra#85185180")
 
-    sleep_time = 60*31
+    sleep_time = 60 * 31
     sleep(sleep_time)
 
     others.click_on_sign_in()
 
     try:
-        others.wait_for_element_appearance("Home",10)
+        others.wait_for_element_appearance("Home", 10)
         raise Exception("The page does not timeout")
     except ZeroDivisionError:
         pass
-
-

@@ -23,7 +23,7 @@ class Printer_Management_Screen:
         self.Three_Dot_Menu = Template(r"tpl1705378684557.png", record_pos=(0.402, -0.5), resolution=(1080, 2340))
         self.Delete = "Delete"
         self.Yes_Delete = "Yes, Delete"
-        self.Drop_Down_Menu_Icon = Template(r"tpl1705382553515.png", record_pos=(0.334, 0.155), resolution=(1080, 2340))
+        self.Drop_Down_Menu_Icon = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1705382553515.png"), record_pos=(0.334, 0.155), resolution=(1080, 2340))
         self.Drop_Down_Menu_Info = "1.\nOpen your mobile device Settings\n2.\nSelect Bluetooth\n3.\nEnable Bluetooth if it's OFF\n4.\nSelect Device info ZSB-DP14-C66CB7 from My Devices\n5.\nSelect Forget This Device"
         """name = drop_down_info.split("\n")[-3][19:-16]"""
         self.Buy_More_Labels = "Buy More Labels"
@@ -49,7 +49,10 @@ class Printer_Management_Screen:
 
     def clickThreeDotMenu(self):
         NameOfDecommissioningPrinter = self.poco(nameMatches="(?s).*line.*").get_name()
-        touch(self.Three_Dot_Menu)
+        try:
+            touch(self.Three_Dot_Menu)
+        except:
+            self.poco(nameMatches="(?s).*line.*").focus([0.95, 0.1]).click()
         return NameOfDecommissioningPrinter
 
     def clickDelete(self):
@@ -118,15 +121,14 @@ class Printer_Management_Screen:
         return device
 
     def checkIfPrinterIsDecommissioned(self, printer_name):
-        printer_details = self.poco("android.widget.ScrollView").child().child().child().child()[0].get_name()
-        if printer_details[0:6] == "Online":
-            printerName = printer_details[6:len(printer_details) - 45]
+        sleep(3)
+        noPrinter = self.poco(nameMatches="(?s).*Add a printer to get started. We’ll help you set things up.*").exists()
+        if noPrinter:
+            pass
         else:
-            printerName = printer_details[7:len(printer_details) - 45]
-        if printerName == self.NameOfDecommissioningPrinter:
-            return
-        else:
-            raise Exception("Printer not decommissioned.")
+            printer_details = self.poco("android.widget.ScrollView").child().child().child().child()[0].get_name()
+            if printer_details == printer_name:
+                raise Exception("Printer not decommissioned.")
 
     def openBluetoothSettings(self):
         os.system('adb shell am start -a android.settings.BLUETOOTH_SETTINGS')
@@ -135,35 +137,51 @@ class Printer_Management_Screen:
         os.system('adb shell input keyevent KEYCODE_APP_SWITCH')
 
     def getDeviceNameToUnpair(self):
-        return self.poco(nameMatches="(?s).*Unpair.*").get_name().split("\n")[-3].split(" ")[-4]
+        device_name = self.poco(nameMatches="(?s).*Unpair.*").get_name().split("\n")[-3].split(" ")[-4]
+        if device_name[0] == "(":
+            device_name = device_name[4:]
+        return device_name
 
     def unpair_bluetooth_device(self):
         connected_device = 0
         device_name = self.getDeviceNameToUnpair()
+        print(device_name)
         self.openBluetoothSettings()
         self.poco(nameMatches="(?s).*device.*").wait_for_appearance(timeout=10)
+        sleep(3)
+        if self.poco(text="See all").exists():
+            self.poco(text="See all").click()
         prev_last_dev = ""
-        curr_last_dev = self.getDeviceNameSettings(-2)
+        curr_last_dev = self.getDeviceNameSettings(-1)
         while prev_last_dev != curr_last_dev:
+            print(curr_last_dev)
+            print(prev_last_dev)
             print("1")
             if self.poco(textMatches="(?s).*"+device_name+".*").exists():
                 print("2")
                 if self.poco("com.android.settings:id/recycler_view").exists():
                     print("3")
-                    print(connect_device)
                     connected_device = len(self.poco("com.android.settings:id/recycler_view").child())
-                    print(connected_device)
+                    print("length", connected_device)
                 elif self.poco("com.android.settings:id/tw_expandable_listview").exists():
-                    print("4")
+                    print("4i")
                     connected_device = len(self.poco("com.android.settings:id/tw_expandable_listview").child())
 
                 for i in range(connected_device-1):
-                    print(i)
+                    print("i", i)
                     curr_device = self.getDeviceNameSettings(i)
                     print(self.getDeviceNameSettings(i))
 
-                    if curr_device == device_name:
+                    if device_name in curr_device:
+                        print("last")
                         self.poco(textMatches="(?s).*"+device_name+".*").parent().parent().focus([0.95, 0.5]).click()
+                        sleep(5)
+                        try:
+                            self.poco(text="Forget device").click()
+                        except:
+                            self.poco(text="Forget").click()
+                            sleep(2)
+                            self.poco(text="Forget device").click()
                         # try:
                         #     self.poco("com.android.settings:id/preference_detail")[i].exists()
                         #     self.poco("com.android.settings:id/preference_detail")[i].click()
@@ -178,7 +196,7 @@ class Printer_Management_Screen:
                 break
             self.poco.scroll()
             prev_last_dev = curr_last_dev
-            curr_last_dev = self.getDeviceNameSettings(-2)
+            curr_last_dev = self.getDeviceNameSettings(-1)
 
         if self.poco(text="Unpair").exists():
             self.poco(text="Unpair").click()
