@@ -59,7 +59,8 @@ class APS_Notification:
         self.GoogleDrive_SearchBar2 = "com.google.android.apps.docs:id/search_text"
         self.Suggestion_PDF_File_From_Drive = "android.widget.TextView"
         self.Three_Dot_Icon_Next_To_Drive_PDF = "com.google.android.apps.docs:id/action_show_menu"
-        self.ThreeDot_On_Added_Printer_On_HomePage = (Template(r"tpl1715066652101.png", record_pos=(0.407, -0.553), resolution=(1080, 2400)))
+        self.ThreeDot_On_Added_Printer_On_HomePage = (
+            Template(r"tpl1715066652101.png", record_pos=(0.407, -0.553), resolution=(1080, 2400)))
 
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def click_Device_Files_Folder(self):
@@ -212,14 +213,13 @@ class APS_Notification:
         sleep(1)
         # a = poco(name="com.android.printspooler:id/icon")[1]
         # a = self.poco(textMatches="(?s).*ZSB-DP.*")
-        a= self.poco(textMatches="(?s).*Online.*")
+        a = self.poco(textMatches="(?s).*Online.*")
         if a.exists():
             a.click()
             print(a)
         else:
             if self.poco(textMatches="(?s).*ZSB-DP.*").exists():
                 self.poco(textMatches="(?s).*ZSB-DP.*").click()
-
 
     def is_grayed_out(element):
         # Example implementation, adjust based on how you identify a grayed-out element
@@ -658,8 +658,8 @@ class APS_Notification:
         sleep(1)
         a = self.poco(textMatches="(?s).*cm.*")
         if a.exists():
-           a.get_name()
-           print(a)
+            a.get_name()
+            print(a)
 
     def Verify_Inches_IS_Displaying_On_Review_Page(self):
         sleep(1)
@@ -726,9 +726,9 @@ class APS_Notification:
         sleep(3)
         a = self.poco(textMatches="(?s).*ZSB-DP.*")
         if a.exists():
-           a.get_name()
-           # a.split("\n")
-           print(a)
+            a.get_name()
+            # a.split("\n")
+            print(a)
 
     def Verify_Printer_Status_Is_Present(self):
         sleep(3)
@@ -750,8 +750,6 @@ class APS_Notification:
         if a.exists():
             a.get_name()
             print(a)
-
-
 
     def click_ON_Three_Dot_ON_Print_Service_Page(self):
         sleep(4)
@@ -777,14 +775,14 @@ class APS_Notification:
     def Verify_Printer_Status_AS_HeadOpen(self):
         a = self.poco(nameMatches="(?s).*Head Open.*")
         if a.exists():
-           a.get_name()
-           print(a)
+            a.get_name()
+            print(a)
 
     def Verify_Printer_Status_AS_Paper_Out(self):
         a = self.poco(nameMatches="(?s).*Paper Out.*")
         if a.exists():
-           a.get_name()
-           print(a)
+            a.get_name()
+            print(a)
 
     def Verify_Printer_Status_AS_Media_LOW(self):
         a = self.poco(nameMatches="(?s).*Media Low.*")
@@ -795,8 +793,8 @@ class APS_Notification:
     def Verify_Longer_Printer_Name_Is_Present(self):
         a = self.poco(nameMatches="(?s).*@abcdefghijklmn!@#abcdefghijklmn.*")
         if a.exists():
-           a.get_name()
-           print(a)
+            a.get_name()
+            print(a)
 
     def Verify_Turn_ON_Wifi_Popup(self):
         a = self.poco(name="Turn On Your Wifi")
@@ -808,8 +806,6 @@ class APS_Notification:
     def Verify_And_Turn_ON_APS(self):
         if self.poco(text="Service disabled").exists():
             self.poco(self.Turn_ON_ZSB_Series_Printer).click()
-
-
 
     def Verify_And_Turn_OFF_APS(self):
         if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
@@ -899,9 +895,9 @@ class APS_Notification:
         sleep(2)
         landscape_view = self.poco(name="")
         if landscape_view.exists():
-           landscape_view.get_text()
-           print(" Landscape View Is Displaying:", landscape_view)
-           return landscape_view
+            landscape_view.get_text()
+            print(" Landscape View Is Displaying:", landscape_view)
+            return landscape_view
 
     def Verify_One_Sided_Option(self):
         sleep(1)
@@ -973,10 +969,10 @@ class APS_Notification:
         sleep(1)
         a = self.poco(name="com.android.printspooler:id/page_range_edittext")
         if a.exists():
-           a.click()
-           sleep(1)
-           poco(text("1-1"))
-           sleep(1)
+            a.click()
+            sleep(1)
+            poco(text("1-1"))
+            sleep(1)
 
     def Select_2_to_4_Page(self):
         sleep(1)
@@ -986,8 +982,6 @@ class APS_Notification:
             sleep(1)
             poco(text("2-4"))
             sleep(1)
-
-
 
     def Select_Start_And_End_Page_Number(self):
         sleep(1)
@@ -1004,3 +998,5 @@ class APS_Notification:
         if Expand_Icon.exists():
             Expand_Icon.click()
             sleep(2)
+
+

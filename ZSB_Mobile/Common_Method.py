@@ -1142,6 +1142,12 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         messagebox.showinfo("Notification", "Cover Open")
 
+    def Turn_Off_The_Phone(self):
+        sleep(1)
+        keyevent("KEYCODE_POWER")
 
 
-
+    def Turn_ON_The_Phone(self):
+        keyevent("KEYCODE_POWER")
+        sleep(1)
+        swipe((540, 1600), (540, 400))
