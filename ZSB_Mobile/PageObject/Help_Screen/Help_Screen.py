@@ -14,7 +14,7 @@ from ...PageObject.Login_Screen import Login_Screen
 from airtest.core.api import device as current_device
 from ...Common_Method import *
 from datetime import datetime, time
-import pytz
+import pytest
 
 common_method = Common_Method(poco)
 
