@@ -506,12 +506,15 @@ class PDF_Printing_Screen:
 
     def click_ON_Three_Dot_On_Adobe_PDF(self):
         sleep(8)
-        self.poco(name="com.adobe.reader:id/file_overflow_icon").click()
+        if self.poco(name="com.adobe.reader:id/fileName").exists():
+           self.poco(name="com.adobe.reader:id/fileName").click()
+        # sleep(4)
+        # self.poco(name="com.adobe.reader:id/file_overflow_icon").click()
 
 
     def click_Share_On_Adobe(self):
-        sleep(2)
-        self.poco(text="Share").click()
+        sleep(4)
+        self.poco(name="com.adobe.reader:id/classic_viewer_share_file").click()
 
     def click_Send_A_Copy_On_Adobe(self):
         sleep(2)

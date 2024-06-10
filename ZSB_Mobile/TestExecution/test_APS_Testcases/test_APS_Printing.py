@@ -41,326 +41,326 @@ aps_notification = APS_Notification(poco)
 1. The APS has been ready and turn on in the Android device(Reference path : Settings -> Connection & sharing -> print)
 2. The target printers are connected with the target mobile app login account
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_APS_Printing_TestcaseID_49166():
-    """check printing around 50 pages and click cancel, the print job is paused"""
-
-    common_method.tearDown()
-    common_method.Stop_The_App()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    aps_notification.click_Expand_Icon()
-    aps_notification.click_And_Enter_50_Copies_Number_Field()
-    aps_notification.click_Expand_Icon()
-    aps_notification.click_Print_Icon_Option()
-    """""""need to execute"""""""
-    aps_notification.Verify_Print_job_IS_IN_Progress_Message()
-    aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
-    # """"""""""Check Manually that the printer would pause the printing and the print job have been cancelled"""""""""""
-    ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Printing_TestcaseID_49170():
-    """Check it can not print when the printer offline"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    """Turn off the Printer Manually"""""""""
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.Verify_Print_job_sent_successfully_Message()
-    """"Turn on the Printer manually & check the label printed out"""""
-    # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Printing_TestcaseID_49186():
-    """Check APS queue job will be cleared when go to ZSB app to Clear Print Queue"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    """Open the head or remove the media Manually"""
-    aps_notification.click_Print_Icon_Option()
-    """""""Check Manually that the file would not be printed"""
-    common_method.Start_The_App()
-    aps_notification.click_Three_Dot_On_Added_Printer_On_HomePage()
-    aps_notification.click_On_Clear_Print_Queue()
-    aps_notification.click_Clear_Queue_Button()
-    common_method.Stop_The_App()
-    aps_notification.Expand_StatusBar()
-    aps_notification.Verify_Cancelling_Driver_Job_Is_Displaying()
-    aps_notification.Collapse_StatusBar()
-    """"Close the Printer head manually"""
-
-    # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Printing_TestcaseID_49187():
-    """Check there is a dialog "Use ZSB series" pop up when printing for the first time on APS and click OK will print success"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    """""It will only display on The Android device has not printed via ZSB printer in APS yet"""""
-    aps_notification.Verify_Use_ZSB_Series_Popup_Is_Displaying()
-    aps_notification.click_On_OK_Button_On_The_Popup()
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.Verify_Print_job_sent_successfully_Message()
-    # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Printing_TestcaseID_49188():
-    """Check dialog "Use ZSB series" would not pop up when printing for NOT the first time on APS"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.Verify_Print_job_sent_successfully_Message()
-    # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Printing_TestcaseID_49189():
-    """Check it would not print when click Cancel on the dialog "Use ZSB series"""
-
-    """"Setup:
-    The Android device has not printed via ZSB printer in APS yet"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    """""It will only display on The Android device has not printed via ZSB printer in APS yet"""""
-    aps_notification.Verify_Use_ZSB_Series_Popup_Is_Displaying()
-    aps_notification.Verify_Cancel_Button_Is_Displaying()
-    aps_notification.Verify_OK_Button_Is_Displaying()
-    # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Printing_TestcaseID_49190():
-    """Check "Use ZSB series" dialog would pop up when cancel first time then print via APS again"""
-    """"Setup:
-    The Android device has not printed via ZSB printer in APS yet"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-    """""It will only display on The Android device has not printed via ZSB printer in APS yet"""""
-    aps_notification.Verify_Use_ZSB_Series_Popup_Is_Displaying()
-    aps_notification.click_On_OK_Button_On_The_Popup()
-    aps_notification.click_Print_Icon_Option()
-    aps_notification.Verify_Print_job_sent_successfully_Message()
-    # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Printing_TestcaseID_49204():
-    """Check APS can be turn on before selecting printer if it is turn off"""
-    """"Setup:
-    The Android device has not printed via ZSB printer in APS yet"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    aps_notification.click_ZSB_Series()
-    aps_notification.Verify_And_Turn_OFF_APS()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    """""""""""""""""""""need to execute"""""""""""""""
-    aps_notification.Printer_Is_Not_Displaying()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    aps_notification.click_ZSB_Series()
-    aps_notification.Verify_And_Turn_ON_APS()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Files_Text_On_SearchBar()
-    aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Mobile_back_icon()
-    aps_notification.click_Drive_Searchbar()
-    aps_notification.click_Drive_Searchbar2()
-    aps_notification.click_PDF_File_From_The_List()
-    aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_PDF_ON_Result()
-    aps_notification.click_ON_Three_Dot()
-    aps_notification.click_Print_Option()
-    aps_notification.Verify_Print_Review_Page()
-    aps_notification.click_Save_AS_PDF()
-    aps_notification.click_All_Printers()
-    aps_notification.click_Available_Printer_To_Print()
-
-    # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+#
+# def test_APS_Printing_TestcaseID_49166():
+#     """check printing around 50 pages and click cancel, the print job is paused"""
+#
+#     common_method.tearDown()
+#     common_method.Stop_The_App()
+#     common_method.Clear_App()
+#     common_method.Start_The_App()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_loginBtn()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_Loginwith_Google()
+#     login_page.Loginwith_Added_Email_Id()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#     aps_notification.click_Expand_Icon()
+#     aps_notification.click_And_Enter_50_Copies_Number_Field()
+#     aps_notification.click_Expand_Icon()
+#     aps_notification.click_Print_Icon_Option()
+#     """""""need to execute"""""""
+#     aps_notification.Verify_Print_job_IS_IN_Progress_Message()
+#     aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
+#     # """"""""""Check Manually that the printer would pause the printing and the print job have been cancelled"""""""""""
+#     ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Printing_TestcaseID_49170():
+#     """Check it can not print when the printer offline"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#     """Turn off the Printer Manually"""""""""
+#     aps_notification.click_Print_Icon_Option()
+#     aps_notification.Verify_Print_job_sent_successfully_Message()
+#     """"Turn on the Printer manually & check the label printed out"""""
+#     # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Printing_TestcaseID_49186():
+#     """Check APS queue job will be cleared when go to ZSB app to Clear Print Queue"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#     """Open the head or remove the media Manually"""
+#     aps_notification.click_Print_Icon_Option()
+#     """""""Check Manually that the file would not be printed"""
+#     common_method.Start_The_App()
+#     aps_notification.click_Three_Dot_On_Added_Printer_On_HomePage()
+#     aps_notification.click_On_Clear_Print_Queue()
+#     aps_notification.click_Clear_Queue_Button()
+#     common_method.Stop_The_App()
+#     aps_notification.Expand_StatusBar()
+#     aps_notification.Verify_Cancelling_Driver_Job_Is_Displaying()
+#     aps_notification.Collapse_StatusBar()
+#     """"Close the Printer head manually"""
+#
+#     # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Printing_TestcaseID_49187():
+#     """Check there is a dialog "Use ZSB series" pop up when printing for the first time on APS and click OK will print success"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#     """""It will only display on The Android device has not printed via ZSB printer in APS yet"""""
+#     aps_notification.Verify_Use_ZSB_Series_Popup_Is_Displaying()
+#     aps_notification.click_On_OK_Button_On_The_Popup()
+#     aps_notification.click_Print_Icon_Option()
+#     aps_notification.Verify_Print_job_sent_successfully_Message()
+#     # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Printing_TestcaseID_49188():
+#     """Check dialog "Use ZSB series" would not pop up when printing for NOT the first time on APS"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#     aps_notification.click_Print_Icon_Option()
+#     aps_notification.Verify_Print_job_sent_successfully_Message()
+#     # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Printing_TestcaseID_49189():
+#     """Check it would not print when click Cancel on the dialog "Use ZSB series"""
+#
+#     """"Setup:
+#     The Android device has not printed via ZSB printer in APS yet"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#     """""It will only display on The Android device has not printed via ZSB printer in APS yet"""""
+#     aps_notification.Verify_Use_ZSB_Series_Popup_Is_Displaying()
+#     aps_notification.Verify_Cancel_Button_Is_Displaying()
+#     aps_notification.Verify_OK_Button_Is_Displaying()
+#     # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Printing_TestcaseID_49190():
+#     """Check "Use ZSB series" dialog would pop up when cancel first time then print via APS again"""
+#     """"Setup:
+#     The Android device has not printed via ZSB printer in APS yet"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#     """""It will only display on The Android device has not printed via ZSB printer in APS yet"""""
+#     aps_notification.Verify_Use_ZSB_Series_Popup_Is_Displaying()
+#     aps_notification.click_On_OK_Button_On_The_Popup()
+#     aps_notification.click_Print_Icon_Option()
+#     aps_notification.Verify_Print_job_sent_successfully_Message()
+#     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Printing_TestcaseID_49204():
+#     """Check APS can be turn on before selecting printer if it is turn off"""
+#     """"Setup:
+#     The Android device has not printed via ZSB printer in APS yet"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Settings_Text_On_SearchBar()
+#     aps_notification.click_Settings()
+#     aps_notification.click_Connected_Devices()
+#     aps_notification.click_Connection_Preferences()
+#     aps_notification.click_Printing_Tab()
+#     aps_notification.click_ZSB_Series()
+#     aps_notification.Verify_And_Turn_OFF_APS()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     """""""""""""""""""""need to execute"""""""""""""""
+#     aps_notification.Printer_Is_Not_Displaying()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Settings_Text_On_SearchBar()
+#     aps_notification.click_Settings()
+#     aps_notification.click_Connected_Devices()
+#     aps_notification.click_Connection_Preferences()
+#     aps_notification.click_Printing_Tab()
+#     aps_notification.click_ZSB_Series()
+#     aps_notification.Verify_And_Turn_ON_APS()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Files_Text_On_SearchBar()
+#     aps_notification.click_Files_Folder()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Mobile_back_icon()
+#     aps_notification.click_Drive_Searchbar()
+#     aps_notification.click_Drive_Searchbar2()
+#     aps_notification.click_PDF_File_From_The_List()
+#     aps_notification.click_Suggestion_PDF_File()
+#     aps_notification.click_PDF_ON_Result()
+#     aps_notification.click_ON_Three_Dot()
+#     aps_notification.click_Print_Option()
+#     aps_notification.Verify_Print_Review_Page()
+#     aps_notification.click_Save_AS_PDF()
+#     aps_notification.click_All_Printers()
+#     aps_notification.click_Available_Printer_To_Print()
+#
+#     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
 
 def test_APS_Printing_TestcaseID_49778():
     """Check print service shall support all printable forms and can print out success from Google Drive (image,pdf)"""
@@ -398,7 +398,7 @@ def test_APS_Printing_TestcaseID_49778():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
+    app_settings_page.click_Keyboard_back_Icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -433,7 +433,7 @@ def test_APS_Printing_TestcaseID_51380():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
     aps_notification.click_Files_Folder()
-    aps_notification.click_Mobile_back_icon()
+    app_settings_page.click_Keyboard_back_Icon()
     aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
@@ -690,6 +690,7 @@ def test_APS_Printing_TestcaseID_49779():
     aps_notification.Enter_Drive_On_Searchbar()
     aps_notification.click_Drive_Folder()
     aps_notification.click_Mobile_Footer_Back_Icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Google_Drive_SearchBar2()
     aps_notification.click_PDF_File_From_The_Google_DriveList()
     aps_notification.click_Suggestion_PDF_File_From_Drive()

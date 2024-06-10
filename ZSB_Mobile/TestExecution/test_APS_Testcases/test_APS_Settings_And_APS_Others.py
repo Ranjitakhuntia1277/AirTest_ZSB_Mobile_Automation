@@ -236,6 +236,8 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     aps_notification.click_Files_Folder()
     app_settings_page.click_Keyboard_back_Icon()
     aps_notification.click_Mobile_back_icon()
+    app_settings_page.click_Keyboard_back_Icon()
+    aps_notification.click_Mobile_back_icon()
     aps_notification.click_Drive_Searchbar()
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()

@@ -434,8 +434,8 @@ def test_Android_PDF_Printing_TestcaseID_45814():
     login_page.Loginwith_Added_Email_Id()
     sleep(4)
     """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
+    # pdf_printing.Switch_To_Different_App()
+    # pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page_For_Printer_Online_And_Not_Added()
 
 
