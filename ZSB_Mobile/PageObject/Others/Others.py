@@ -8,12 +8,15 @@ from poco import poco
 from ZSB_Mobile.Common_Method import Common_Method
 from airtest.core.api import device as current_device
 import os
+
+
 # from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
 
 
-
 def Basic_path(a):
-    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",a)
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates", a)
+
+
 class Others:
     pass
 
@@ -29,7 +32,7 @@ class Others:
         self.Label_alignment_demo = "Label Alignment Demo"
         self.android_widget_button = "android.widget.Button"
 
-        self.three_dots = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",
+        self.three_dots = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
                                                 "tpl1704949114184.png"), record_pos=(0.398, -0.695),
                                    resolution=(1080, 2340))
         self.delete_button = "Delete"
@@ -43,7 +46,9 @@ class Others:
                                               resolution=(1080, 2340))
         self.notifications_button = "Notifications"
         self.seekbar_path = "android.widget.SeekBar"
-        self.down_arrow_button = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates","down_arrow_notification_page.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
+        self.down_arrow_button = Template(
+            os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
+                         "down_arrow_notification_page.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
 
         self.dismiss_button = "Dismiss"
         self.photo_upload = "Upload Photo"
@@ -71,6 +76,7 @@ class Others:
         self.copy_to_my_designs = "Copy to My Designs"
 
         self.my_data_button = "My Data"
+
     def start_google(self):
         start_app("com.google.android.googlequicksearchbox")
 
@@ -82,13 +88,15 @@ class Others:
 
     def click_Printer_Settings_in_google(self):
 
-        if self.poco(nameMatches=".*Printer Settings.*").exists() or self.poco(textMatches=".*Printer Settings.*").exists():
+        if self.poco(nameMatches=".*Printer Settings.*").exists() or self.poco(
+                textMatches=".*Printer Settings.*").exists():
             self.poco(self.Printer_Settings_Btn).click()
         else:
             left_scroll_position = self.poco("My Designs").get_position()
 
             # Define the target position on the left side where you want to scroll
-            target_position = [left_scroll_position[0], left_scroll_position[1] - 0.2]  # Adjust the Y coordinate as needed
+            target_position = [left_scroll_position[0],
+                               left_scroll_position[1] - 0.2]  # Adjust the Y coordinate as needed
 
             # Perform the swipe or scroll action
             self.poco.swipe(left_scroll_position, target_position, duration=1)
@@ -124,10 +132,10 @@ class Others:
         swipe([w1, h1], [w2, h2])
 
     def click_test_print(self):
-        count=0
-        while not self.poco("Test Print").exists() and count<10:
+        count = 0
+        while not self.poco("Test Print").exists() and count < 10:
             self.poco.scroll()
-            count+=1
+            count += 1
         test_prin = self.poco(self.test_print)
         test_prin.click()
 
@@ -141,11 +149,10 @@ class Others:
         try:
             touch(Template(Basic_path(r"tpl1710829861070.png"), record_pos=(0.117, 0.244), resolution=(1080, 2400)))
         except:
-            self.poco(nameMatches="(?s).*Label Alignment Demo.*").focus([0.5,0.71]).click()
-
+            self.poco(nameMatches="(?s).*Label Alignment Demo.*").focus([0.5, 0.71]).click()
 
     def close_demo_video(self):
-        self.poco("Dismiss").focus([0.5,0.3]).click()
+        self.poco("Dismiss").focus([0.5, 0.3]).click()
 
     def check_demo_video_closed(self):
         a = self.poco(nameMatches="(?s).*Automatic Label Feed.*").exists()
@@ -199,8 +206,8 @@ class Others:
 
         return 1 if previous - count == current else 0
 
-    def wait_for_appearance_all(self,elem,time_out=20):
-        self.poco(nameMatches="(?s).*"+elem+".*").wait_for_appearance(timeout=time_out)
+    def wait_for_appearance_all(self, elem, time_out=20):
+        self.poco(nameMatches="(?s).*" + elem + ".*").wait_for_appearance(timeout=time_out)
 
     def click_google_search_bar(self):
 
@@ -219,15 +226,16 @@ class Others:
         photo_gallery_btn.click()
 
     def click_upload_photo(self):
+        sleep(2)
         upload_photo_btn = self.poco(self.photo_upload)
         upload_photo_btn.click()
+        sleep(2)
 
     def click_hamburger_button_in_Google(self):
         # hamburger_icon = self.poco("android.widget.FrameLayout").child("android.widget.LinearLayout").child("android.widget.FrameLayout").offspring("com.android.chrome:id/compositor_view_holder").offspring("root")[1].child("android.view.View")[0].child("android.view.View").click()
         # hamburger_icon.click()
 
         self.poco("zsbportal.zebra").click()
-
 
     def google_scroll_down(self):
         self.poco("android.widget.FrameLayout").child("android.widget.LinearLayout").child(
@@ -248,7 +256,7 @@ class Others:
     def click_selected_printer_in_google(self):
         self.poco(text=self.Google_ZSB_DP12_1).click()
 
-    def click_on_printer_name_in_google(self,name):
+    def click_on_printer_name_in_google(self, name):
         self.poco(text=name).click()
 
     def change_Darkness_level_in_google(self, new_value):
@@ -260,7 +268,7 @@ class Others:
 
         seekbar.click([click_x, seekbar_size[1] / 2])
 
-    def change_Printer_Darkness_level(self,new_value):
+    def change_Printer_Darkness_level(self, new_value):
         seekbar = self.poco(type="android.widget.SeekBar")
         percentage = new_value / 100.0
 
@@ -281,8 +289,7 @@ class Others:
         temp = [child.get_text() for child in self.poco(textMatches=".*Print complete.*")]
         return temp
 
-
-    def scroll_up(self,count):
+    def scroll_up(self, count):
         start_point = [0.5, 0.2]
         end_point = [0.5, 0.8]
 
@@ -303,7 +310,7 @@ class Others:
         except:
             return []
 
-    def choose_google_account(self,email):
+    def choose_google_account(self, email):
         try:
             self.poco(text=email).click()
         except:
@@ -317,6 +324,7 @@ class Others:
             a = temp[i].split("\n")
             temp[i] = a[0]
         return temp[1:]
+
     def verify_notifications(self, google, android):
         if len(google) == len(android):
             return 1
@@ -351,12 +359,13 @@ class Others:
             self.poco(nameMatches=".*Photo taken.*")[0].click()
 
     def click_remove_image_button(self):
-            click_remove_btn = self.poco(self.remove_image_button)
-            click_remove_btn.click()
-
+        click_remove_btn = self.poco(self.remove_image_button)
+        click_remove_btn.click()
 
     def verify_default_image(self):
-        temp = [child.get_text() for child in self.poco(nameMatches="(?s).*Avatar.*").child(type="android.widget.EditText")]
+        sleep(2)
+        temp = [child.get_text() for child in
+                self.poco(nameMatches="(?s).*Avatar.*").child(type="android.widget.EditText")]
 
         f_n = temp[0].upper()
         l_n = temp[1].upper()
@@ -369,20 +378,19 @@ class Others:
         else:
             return 0
 
-
     def get_avatar_image(self):
         f_n = self.get_first_name()
         l_n = self.get_last_name()
-        temp = f_n[0].upper()+l_n[0].upper()
-        res = "Avatar"+temp
+        temp = f_n[0].upper() + l_n[0].upper()
+        res = "Avatar" + temp
         return res
-
 
     def click_on_profile_edit(self):
 
         self.poco(self.profile_edit).click()
 
     def select_camera(self):
+        sleep(3)
         click_camera = self.poco(self.camera_button)
         click_camera.click()
 
@@ -395,11 +403,12 @@ class Others:
             return False
 
     def click_allow(self):
-
+        sleep(2)
         try:
             self.poco(self.click_allow_permission).click()
         except:
             self.poco("com.android.permissioncontroller:id/permission_allow_foreground_only_button").click()
+        sleep(2)
 
     def capture_the_image_button(self):
         try:
@@ -413,6 +422,7 @@ class Others:
             self.run_the_command("adb shell input keyevent KEYCODE_CAMERA")
 
     def retake_the_image_button(self):
+        sleep(3)
         try:
             retake_btn = self.poco(self.retake_image_button)
             retake_btn.click()
@@ -436,15 +446,16 @@ class Others:
         return temp[1]
 
     def dont_allow_permission(self):
+        sleep(2)
         try:
             self.poco(nameMatches=".*deny.*").click()
         except:
             self.poco(nameMatches=".*dont.*").click()
-
+        sleep(2)
 
     def get_printer_names(self):
         child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*Common.*").parent().children()]
-
+        print(child_names)
         modified_list = [item.split('\n')[0] for item in child_names]
         return modified_list, child_names
 
@@ -454,13 +465,15 @@ class Others:
         printer1_rename.set_text(printer2_name)
 
     def verify_text_update_printer_name_fail(self):
-        a = self.poco("Printer Update Failed\nThe printer name failed to update. The following are allowed characters for renaming your printer: A-Z a-z 0-9 ! $ * ( ) _ + - ' and .\nPlease remove any invalid characters to update your printer name.").exists()
+        a = self.poco(
+            "Printer Update Failed\nThe printer name failed to update. The following are allowed characters for renaming your printer: A-Z a-z 0-9 ! $ * ( ) _ + - ' and .\nPlease remove any invalid characters to update your printer name.").exists()
         return a
 
     def select_printer_1(self, printer1):
         self.poco(printer1).click()
 
     def go_back(self):
+        sleep(2)
         keyevent("back")
 
     def click_deny(self):
@@ -539,8 +552,9 @@ class Others:
 
         except:
             child_names = [child.get_name() for child in
-                 self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
-                     "android.view.View").child("android.view.View").child("android.view.View")[1].children()]
+                           self.poco("android.widget.FrameLayout").child("android.view.View").child(
+                               "android.view.View").child(
+                               "android.view.View").child("android.view.View").child("android.view.View")[1].children()]
 
             modified_list = [item.split('\n')[0] for item in child_names]
 
@@ -560,6 +574,7 @@ class Others:
         print_btn.click()
 
     def check_error_print_preview(self):
+        sleep(3)
         a = self.poco("Error\nCould not fetch the Print Preview")
         if a:
             self.poco("Cancel").click()
@@ -594,20 +609,20 @@ class Others:
         self.poco(self.continue_button).click()
 
     def click_add_network_button(self):
-        count=0
-        while not self.poco("Add Network").exists() and count<10:
+        count = 0
+        while not self.poco("Add Network").exists() and count < 10:
             self.poco.scroll()
-            count+=1
+            count += 1
         add_network = self.poco(self.add_network_button)
         add_network.click()
 
-    def select_network_and_enter_password(self,name,password):
+    def select_network_and_enter_password(self, name, password):
 
-        flag=0
-        count=0
-        while not self.poco(name).exists() and count<10:
+        flag = 0
+        count = 0
+        while not self.poco(name).exists() and count < 10:
             self.poco.scroll()
-            count+=1
+            count += 1
 
         if self.poco(name).exists():
             self.poco(name).click()
@@ -616,20 +631,19 @@ class Others:
             text(password)
             self.poco("Submit").click()
             sleep(1)
-            flag=1
+            flag = 1
 
         if not flag:
             count = 0
-            while not self.poco("Enter Network Manually...").exists() and count<10:
+            while not self.poco("Enter Network Manually...").exists() and count < 10:
                 self.poco.scroll()
                 count += 1
 
-    def click_an_google_account(self,name):
+    def click_an_google_account(self, name):
         try:
             self.poco(name).click()
         except:
             self.poco(text=name).click()
-
 
     def click_on_sign_in_with_email(self):
         self.poco("android.widget.Button").click()
@@ -680,18 +694,18 @@ class Others:
 
         res = dict(zip(temp, original_names))
 
-        return res,original_names
+        return res, original_names
 
     def swap_two_networks(self, nw_1, nw_2):
 
-        temp2 = self.poco(nameMatches=".*"+nw_2+".*")
+        temp2 = self.poco(nameMatches=".*" + nw_2 + ".*")
 
-        temp1 = self.poco(nameMatches=".*"+nw_1+".*").focus('center')
+        temp1 = self.poco(nameMatches=".*" + nw_1 + ".*").focus('center')
         temp2.drag_to(temp1)
 
-    def delete_one_network(self,network_name):
+    def delete_one_network(self, network_name):
 
-        #self.poco(nameMatches=".*"+network_name).focus([1, 0.5]).click()
+        # self.poco(nameMatches=".*"+network_name).focus([1, 0.5]).click()
         self.poco(network_name).focus([0.95, 0.4]).click()
 
     def check_apply_changes_button_clickable(self):
@@ -723,10 +737,10 @@ class Others:
         self.poco(self.my_designs_button).click()
 
     def click_enter_data_for_design(self):
-        self.poco("android.widget.EditText")[0].click()
+        self.poco("android.widget.EditText")[1].click()
 
     def click_enter_text_for_design(self):
-        self.poco("android.widget.EditText")[1].click()
+        self.poco("android.widget.EditText")[0].click()
 
     def check_the_swift_keyboard(self):
         a = self.poco("com.touchtype.swiftkey:id/keyboard_frame").exists()
@@ -738,12 +752,14 @@ class Others:
 
     def enter_data_for_design(self, str):
 
-        a = self.poco("android.widget.EditText")[0]
-        a.set_text(str)
-
-    def enter_text_for_design(self, str):
         a = self.poco("android.widget.EditText")[1]
         a.set_text(str)
+        sleep(2)
+
+    def enter_text_for_design(self, str):
+        a = self.poco("android.widget.EditText")[0]
+        a.set_text(str)
+        sleep(2)
 
     def install_zsb_series_on_google_play(self):
         start_app("com.android.vending")
@@ -826,13 +842,11 @@ class Others:
         self.poco("Install").wait_for_appearance(timeout=10)
         self.poco("Install").click()
 
-    def wait_for_element_appearance(self,element, time_out=20):
+    def wait_for_element_appearance(self, element, time_out=20):
         self.poco(element).wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_appearance_text(self,element, time_out):
-        self.poco(textMatches=".*"+element+".*").wait_for_appearance(timeout=time_out)
-
-
+    def wait_for_element_appearance_text(self, element, time_out):
+        self.poco(textMatches=".*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def update_zsb_series_on_google_play(self):
         stop_app("com.android.vending")
@@ -891,7 +905,6 @@ class Others:
 
         return 0
 
-
     def install_the_zsb_apk_in_files_android_8(self):
         self.poco(text="ZsbMobile-stage 4619.apk").click()
         try:
@@ -923,7 +936,7 @@ class Others:
         except:
             self.poco("Change").click()
 
-    def enter_user_name_for_change_password(self,user_name):
+    def enter_user_name_for_change_password(self, user_name):
         try:
             self.poco("android.widget.EditText").set_text(user_name)
         except:
@@ -934,7 +947,7 @@ class Others:
 
     def change_old_password_to_new_password(self, old_password, new_password):
 
-        if self.poco(name="android.widget.EditText",focused=True).exists():
+        if self.poco(name="android.widget.EditText", focused=True).exists():
             self.go_back()
         try:
             self.poco("android.widget.EditText")[0].set_text(old_password)
@@ -944,8 +957,6 @@ class Others:
             self.poco(type="android.widget.EditText")[0].set_text(old_password)
             self.poco(type="android.widget.EditText")[1].set_text(new_password)
             self.poco(type="android.widget.EditText")[2].set_text(new_password)
-
-
 
     def check_password_changed_successfully(self):
         a = self.poco(text="Password changed successfully.").exists()
@@ -962,12 +973,14 @@ class Others:
 
         child_names = [child.get_name() for child in
                        self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child("android"
-                                                                                                             ".view.View").child("android.view.View").child("android.view.View").child("android.view.View").child("android.view.View")[1].child("android.view.View").child().children()]
+                                                                                                             ".view.View").child(
+                           "android.view.View").child("android.view.View").child("android.view.View").child(
+                           "android.view.View")[1].child("android.view.View").child().children()]
         return child_names
 
-    def select_wifi(self,ssid, password):
+    def select_wifi(self, ssid, password):
 
-        #self.poco(text="Internet").click()
+        # self.poco(text="Internet").click()
         self.run_the_command("adb shell svc wifi enable")
         self.poco(text=ssid).wait_for_appearance(timeout=20)
 
@@ -1005,13 +1018,14 @@ class Others:
         self.poco(nameMatches=".*allow.*").click()
 
     def get_recently_printed_labels(self):
-        child_names = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+        child_names = [child.get_name() for child in
+                       self.poco("android.view.View").child(type="android.widget.ImageView")]
 
         return child_names
 
-    def check_same_after_switching_network(self,arr1, arr2):
+    def check_same_after_switching_network(self, arr1, arr2):
         for i in range(len(arr1)):
-            if arr1[i]!=arr2[i]:
+            if arr1[i] != arr2[i]:
                 return 0
         return 1
 
@@ -1019,12 +1033,12 @@ class Others:
         self.poco(self.my_data_button).click()
 
     def check_network_present(self, str1):
-        #a = self.poco(nameMatches=".*"+str1).exists()
+        # a = self.poco(nameMatches=".*"+str1).exists()
         a = self.poco(str1).exists()
         return a
 
-    def check_two_arrays_same(self,arr1,arr2):
-        if len(arr1)!=len(arr2):
+    def check_two_arrays_same(self, arr1, arr2):
+        if len(arr1) != len(arr2):
             return 0
         for i in range(len(arr1)):
             if arr1[i] != arr2[i]:
@@ -1040,7 +1054,7 @@ class Others:
         self.poco(text="Common").parent().parent().child()[1].child().click()
 
     def check_google_pop_up_for_printer_drivers(self):
-        a=self.poco(text="Got It").exists()
+        a = self.poco(text="Got It").exists()
         if a:
             self.poco(text="Got It").click()
         else:
@@ -1051,6 +1065,3 @@ class Others:
             self.poco("android.widget.Button").click()
         except:
             pass
-
-
-

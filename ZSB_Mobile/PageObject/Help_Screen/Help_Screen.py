@@ -13,14 +13,14 @@ from airtest.core.api import *
 from ...PageObject.Login_Screen import Login_Screen
 from airtest.core.api import device as current_device
 from ...Common_Method import *
-
+from datetime import datetime, time
+import pytz
 
 common_method = Common_Method(poco)
 
 
 class Help_Screen:
     pass
-
 
     def __init__(self, poco):
         self.poco = poco
@@ -33,12 +33,13 @@ class Help_Screen:
         self.Contact_Us_btn = "Contact Us"
         self.ContactUs_page_title = "Call Us"
         self.Chat_btn = "Live Chat"
+        self.Chat_unavailable = "Chat currently unavailable"
         self.BeginChat_btn = "Begin chat"
         self.Chat_subject = "Workspace"
         self.Start_chat = "Start Chatting"
-        self.Help_icon = Template(r"tpl1704698945082.png", record_pos=(-0.385, 0.553), resolution=(1080, 2340))
-        self.Help_text = Template(r"tpl1704699099813.png", record_pos=(-0.267, 0.55), resolution=(1080, 2340))
-        self.Dropdown_for_help = Template(r"tpl1704697680422.png", record_pos=(0.205, 0.552), resolution=(1080, 2340))
+        self.Help_icon = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1704698945082.png"), record_pos=(-0.385, 0.553), resolution=(1080, 2340))
+        self.Help_text = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1704699099813.png"), record_pos=(-0.267, 0.55), resolution=(1080, 2340))
+        self.Dropdown_for_help = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1704697680422.png"), record_pos=(0.205, 0.552), resolution=(1080, 2340))
         self.Dropdown_for_subject = "Select from dropdown"
         self.Dropdown_for_affected_printer = "Select from dropdown"
         self.browser = {"chrome": "android.chrome", "edge": "microsoft.emmx"}
@@ -48,6 +49,14 @@ class Help_Screen:
         self.Go_To_Chat_Btn = "Go to chat"
         self.Chat_Hours = "Available 7am to 7pm ET"
         self.EnterGooglePassword = "android.widget.EditText"
+
+    def checkIfOnValidChatTime(self):
+        eastern_zone = pytz.timezone('US/Eastern')
+        eastern_time_now = datetime.now(eastern_zone)
+        available_time_interval_start = time(7, 0, 0)
+        available_time_interval_end = time(19, 0, 0)
+        valid_time_to_chat = available_time_interval_start <= eastern_time_now.time() <= available_time_interval_end
+        return valid_time_to_chat
 
     def click_Help_dropdown_option(self):
         # help_dropdown_btn = self.poco(self.Dropdown_for_help)
@@ -74,6 +83,13 @@ class Help_Screen:
         begin_chat = self.poco(self.BeginChat_btn)
         begin_chat.wait_for_appearance(timeout=10)
         begin_chat.click()
+
+    def checkChatCurrentlyUnavailableMessagePresent(self):
+        sleep(3)
+        try:
+            self.poco(self.Chat_unavailable).wait_for_appearance(timeout=15)
+        except:
+            raise Exception("\"Chat currently unavailable\" Message not present when out of official chat timeline.")
 
     def checkIfHelpIsPresent(self):
         assert_exists(self.Help_text, "Help option visible")
@@ -141,7 +157,10 @@ class Help_Screen:
         support_btn = self.poco(self.Support_btn)
         faq_btn = self.poco(self.FAQs_btn)
         contact_us_btn = self.poco(self.Contact_Us_btn)
-        live_chat_btn = self.poco(self.Chat_btn)
+        if self.checkIfOnValidChatTime():
+            live_chat_btn = self.poco(self.Chat_btn)
+        else:
+            live_chat_btn = self.poco(self.Chat_unavailable)
         options = [support_btn, faq_btn, contact_us_btn, live_chat_btn]
         for option in options:
             if option.exists():
@@ -153,12 +172,16 @@ class Help_Screen:
                 assert False
 
     def verify_url(self, expected_url):
-        self.poco("com.android.chrome:id/security_button").click()
+        sleep(5)
+        try:
+            self.poco("com.android.chrome:id/security_button").click()
+        except:
+            self.poco("com.android.chrome:id/location_bar_status_icon").click()
         self.poco("com.android.chrome:id/page_info_truncated_url").click()
         url_on_screen = self.poco("com.android.chrome:id/page_info_url").get_text()
         if expected_url in url_on_screen:
             keyevent("back")
-            return
+            return True
         else:
             raise Exception("URL not matching")
 
@@ -190,7 +213,6 @@ class Help_Screen:
         else:
             error = f"Displaying --{chat_hours} instead of Available 7am to 7pm ET "
             raise Exception(error)
-
 
     def goToChat(self):
         self.poco(self.Go_To_Chat_Btn).click()

@@ -144,6 +144,7 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """Select file with special characters"""
+    data_sources_page.searchFilesInLinkFiles(special_char_file)
     data_sources_page.selectFileDrive(special_char_file)
     sleep(5)
     data_sources_page.searchName(special_char_file)
@@ -163,6 +164,7 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.clickMicrosoftOneDrive()
     sleep(2)
     """Select long file name"""
+    data_sources_page.searchFilesInLinkFiles(long_file)
     data_sources_page.selectFileDrive(long_file)
     sleep(5)
     data_sources_page.searchName(long_file)
@@ -211,9 +213,9 @@ def test_DataSources_TestcaseID_45729():
 def test_DataSources_TestcaseID_45730():
     """""""""test"""""
 
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
+    common_method.tearDown_iOS()
+    data_sources_page.log_out_for_current_execution_ios()
+    common_method.tearDown_iOS()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
     registration_page.complete_sign_in_with_email("jd4936", "Vl@d#vost0k008", 1, 0, False)
@@ -238,6 +240,7 @@ def test_DataSources_TestcaseID_45730():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Google Drive")
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(3)
     data_sources_page.checkFilesShownAreSupported()
