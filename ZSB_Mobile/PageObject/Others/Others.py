@@ -455,7 +455,7 @@ class Others:
 
     def get_printer_names(self):
         child_names = [child.get_name() for child in self.poco(nameMatches="(?s).*Common.*").parent().children()]
-
+        print(child_names)
         modified_list = [item.split('\n')[0] for item in child_names]
         return modified_list, child_names
 

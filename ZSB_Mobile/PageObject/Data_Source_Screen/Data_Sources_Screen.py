@@ -117,7 +117,6 @@ class Data_Sources_Screen:
     def select_File_To_Upload(self, return_name=False):
         name_on_device = self.poco("com.google.android.documentsui:id/item_root")[0].child("android.widget.LinearLayout").child("android.widget.LinearLayout").offspring("android:id/title").get_text()
         self.File_Info_Device.append(name_on_device)
-
         file = self.poco("com.google.android.documentsui:id/item_root")[0].child("android.widget.LinearLayout").child("android.widget.LinearLayout").offspring("android:id/title")
         file.click()
         if return_name:
@@ -493,6 +492,7 @@ class Data_Sources_Screen:
         sleep(2)
         if search:
             self.clickEnter()
+        sleep(7)
 
     def searchExistingName(self):
         if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
@@ -690,9 +690,10 @@ class Data_Sources_Screen:
                 return
 
     def verifySignInWithMicrosoft(self):
-        if assert_exists(self.Sign_In_With_Microsoft_Template):
+        try:
+            assert_exists(self.Sign_In_With_Microsoft_Template)
             return True
-        else:
+        except:
             return False
 
     def verifySignInWithGoogle(self):
@@ -837,6 +838,7 @@ class Data_Sources_Screen:
     def checkNoChangeInFileCount(self, initialFileCount):
         file_list = self.fileListDisplayed()
         curr_file_count = len(file_list)
+        print(initialFileCount, curr_file_count)
         if initialFileCount == curr_file_count:
             return
         else:
@@ -881,12 +883,12 @@ class Data_Sources_Screen:
 
     def selectExistingFile(self):
         if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
-            search_File_Name = self.poco("android.widget.HorizontalScrollView").child()[2].get_name()
-            self.poco("android.widget.HorizontalScrollView").child()[2].click()
+            search_File_Name = self.poco("android.widget.HorizontalScrollView").child()[3].get_name()
+            self.poco("android.widget.HorizontalScrollView").child()[3].click()
             self.clickSelect()
         else:
-            search_File_Name = self.poco("android.widget.HorizontalScrollView").child()[1].get_name()
-            self.poco("android.widget.HorizontalScrollView").child()[1].click()
+            search_File_Name = self.poco("android.widget.HorizontalScrollView").child()[2].get_name()
+            self.poco("android.widget.HorizontalScrollView").child()[2].click()
             self.clickSelect()
 
         return search_File_Name
@@ -1060,6 +1062,7 @@ class Data_Sources_Screen:
                                 self.clickRemove()
                             else:
                                 self.clickCancel()
+                            sleep(7)
                             return
                     else:
                         three_dot = self.poco("android.widget.Button")[i]
@@ -1071,6 +1074,7 @@ class Data_Sources_Screen:
                             self.clickRemove()
                         else:
                             self.clickCancel()
+                        sleep(7)
                         return name_app
             scroll_view.swipe("down")
             curr_child_count = self.getCurrCount(True)
@@ -1094,6 +1098,7 @@ class Data_Sources_Screen:
                             self.clickRemove()
                         else:
                             self.clickCancel()
+                        sleep(7)
                         return
                 else:
                     three_dot = self.poco("android.widget.Button")[i]
@@ -1105,6 +1110,7 @@ class Data_Sources_Screen:
                         self.clickRemove()
                     else:
                         self.clickCancel()
+                    sleep(7)
                     return name_app
         raise Exception("No file with datasource " + datasource)
 
@@ -1119,6 +1125,7 @@ class Data_Sources_Screen:
             self.verify_Remove_File_Warning("Google Drive")
         if not cancel:
             self.clickRemove()
+            sleep(7)
         else:
             self.clickCancel()
         scroll_view = self.poco("android.widget.HorizontalScrollView")
@@ -1479,6 +1486,7 @@ class Data_Sources_Screen:
                 self.poco(self.Check_Box).click()
 
     def lock_phone(self):
+        sleep(5)
         os.system('adb shell input keyevent 26')
         sleep(2)
 
@@ -1539,6 +1547,7 @@ class Data_Sources_Screen:
                     self.poco(nameMatches=".*done.*").click()
                 except:
                     self.poco(desc="Done").click()
+        sleep(10)
 
     def allowPermissions(self):
         try:

@@ -8,6 +8,7 @@ from ...Common_Method import *
 import os
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Others.Others import Others
+from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 
 import tkinter as tk
 from tkinter import simpledialog
@@ -32,6 +33,7 @@ add_a_printer_page = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 others = Others(poco)
 data_sources_page = Data_Sources_Screen(poco)
+help_page = Help_Screen(poco)
 
 
 class test_Android_Social_Login():
@@ -127,7 +129,7 @@ class test_Android_Social_Login():
         login_page.click_loginBtn()
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         social_login.click_on_benefits_of_zebra_account()
-        sleep(2)
+        sleep(5)
         res = social_login.check_the_text_of_benefits_of_free_account_page()
         if not res:
             raise Exception("the page text dint match")
@@ -145,9 +147,6 @@ class test_Android_Social_Login():
         pass
         self.setup_logout()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         try:
             social_login.open_in_chrome()
@@ -160,19 +159,19 @@ class test_Android_Social_Login():
         wake()
         sleep(2)
         social_login.click_on_zebra_link()
-        if not social_login.verify_the_url("zebra.com"):
+        if not help_page.verify_url("zebra.com"):
             raise Exception("zebra.com url not present")
         social_login.go_back()
         social_login.swith_back_the_app()
         social_login.click_on_legal_notice_link()
-        if not social_login.verify_the_url("zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html"):
+        if not help_page.verify_url("zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html"):
             raise Exception("\"zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html\" url not present")
         social_login.go_back()
         social_login.swith_back_the_app()
         sleep(1)
         social_login.click_on_privacy_statement_link()
-        if not social_login.verify_the_url(
-                "zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html"):
+        # old_url = "zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html"
+        if not help_page.verify_url("https://www.zebra.com/uss/en/about-zebra/company-information/compliance/information-privacy/privacy-statement.html"):
             raise Exception("\"zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html\" url not present")
 
     def test_Social_Login_TestcaseID_48475(self):
@@ -241,7 +240,9 @@ class test_Android_Social_Login():
             keyevent("back")
         except:
             pass
-
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         if not social_login.check_zebra_logo():
             raise Exception("Zebra Logo not present")
 
@@ -396,6 +397,9 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         social_login.click_on_sign_in_with_email()
 
@@ -444,6 +448,9 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
 
         login_page.click_Loginwith_Google()
@@ -475,7 +482,9 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
-
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         """Enter the email and password"""
         email = "zebratest850@gmail.com"
@@ -495,10 +504,12 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
-
         """Enter the email and password"""
         email = ""
         password = ''
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
 
         social_login.click_on_sign_in_with_email()
@@ -525,6 +536,9 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         social_login.click_on_sign_in_with_email()
 
@@ -764,9 +778,12 @@ class test_Android_Social_Login():
 
     def test_Social_Login_TestcaseID_48481(self):
         pass
-
+        # Log in to your Facebook account to connect with Zebra Technologies
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
 
         social_login.click_login_with_facebook()
@@ -1597,6 +1614,9 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance("Continue with Google")
         login_page.click_Loginwith_Google()
         social_login.sign_in_with_google()

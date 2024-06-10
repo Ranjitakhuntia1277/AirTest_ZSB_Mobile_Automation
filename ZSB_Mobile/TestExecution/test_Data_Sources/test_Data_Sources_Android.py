@@ -35,7 +35,6 @@ template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 others_page = Others(poco)
 
-
 def test_DataSources_TestcaseID_45729():
     pass
 
@@ -88,7 +87,6 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.searchName(special_char_file)
     data_sources_page.verify_File_Data(special_char_file, "Google Drive")
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.click_Add_File()
     sleep(2)
     """Click Link File"""
@@ -101,16 +99,13 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.searchName(long_file)
     data_sources_page.verify_File_Data(long_file, "Google Drive")
     data_sources_page.searchName("")
-    sleep(7)
     """Remove both files"""
     data_sources_page.searchName(special_char_file)
     data_sources_page.remove_File()
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(long_file)
     data_sources_page.remove_File()
     data_sources_page.searchName("")
-    sleep(7)
     """Check if files removed successfully"""
     data_sources_page.searchName(special_char_file)
     data_sources_page.checkIfListIsEmpty()
@@ -136,7 +131,6 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.searchName(special_char_file)
     data_sources_page.verify_File_Data(special_char_file, "OneDrive")
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.click_Add_File()
     sleep(2)
     """Click Link File"""
@@ -150,7 +144,6 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.searchName(long_file)
     data_sources_page.verify_File_Data(long_file, "OneDrive")
     data_sources_page.searchName("")
-    sleep(7)
     """Remove both files"""
     data_sources_page.searchName(special_char_file)
     data_sources_page.remove_File()
@@ -158,7 +151,6 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.searchName(long_file)
     data_sources_page.remove_File()
     data_sources_page.searchName("")
-    sleep(7)
     """Check if files removed successfully"""
     data_sources_page.searchName(special_char_file)
     data_sources_page.checkIfListIsEmpty()
@@ -254,7 +246,6 @@ def test_DataSources_TestcaseID_45735():
     data_sources_page.selectFileDrive(png_file)
     sleep(5)
     data_sources_page.searchName(png_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -270,7 +261,6 @@ def test_DataSources_TestcaseID_45735():
     data_sources_page.selectFileDrive(jpg_file)
     sleep(5)
     data_sources_page.searchName(jpg_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -286,7 +276,6 @@ def test_DataSources_TestcaseID_45735():
     data_sources_page.selectFileDrive(txt_file)
     sleep(5)
     data_sources_page.searchName(txt_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(txt_file, "OneDrive", True)
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -302,27 +291,21 @@ def test_DataSources_TestcaseID_45735():
     data_sources_page.selectFileDrive(bmp_file)
     sleep(5)
     data_sources_page.searchName(bmp_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
     """Remove files for next execution"""
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(png_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(jpg_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(txt_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(bmp_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
     data_sources_page.searchName("")
-    sleep(7)
     common_method.Stop_The_App()
 
 
@@ -368,18 +351,14 @@ def test_DataSources_TestcaseID_45736():
     """Google Drive"""
     data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file, True, True)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(txt_file)
-    sleep(2)
     try:
         data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
     except:
         raise Exception("File removed even after clicking cancel")
     sleep(2)
     data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
-    sleep(5)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(txt_file)
     try:
         data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
@@ -390,23 +369,17 @@ def test_DataSources_TestcaseID_45736():
         pass
     """One Drive"""
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(png_file)
-    sleep(5)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", None, True, True)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(png_file)
-    sleep(2)
     try:
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
     except:
         raise Exception("File not removed")
     sleep(2)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
-    sleep(5)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(png_file)
     try:
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
@@ -449,13 +422,10 @@ def test_DataSources_TestcaseID_45737():
     sleep(2)
     removed_file_name = "45737_original.xlsx"
     data_sources_page.searchName(removed_file_name)
-    sleep(5)
     data_sources_page.remove_File_Based_On_DataSource("Google Drive", removed_file_name, False, True)
-    sleep(10)
+    sleep(3)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(removed_file_name)
-    sleep(5)
     try:
         data_sources_page.verifyFilePresentInList(removed_file_name, "Google Drive", True)
         x = 1 / 0
@@ -646,9 +616,7 @@ def test_DataSources_TestcaseID_45739():
     """Remove uploaded files for next execution"""
     for name in uploaded_file_list:
         data_sources_page.searchName(name)
-        sleep(7)
         data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-        sleep(7)
     common_method.Stop_The_App()
 
 
@@ -698,6 +666,7 @@ def test_DataSources_TestcaseID_45744():
     sleep(2)
     data_sources_page.selectFileDrive(drive_file)
     sleep(5)
+    data_sources_page.verifyFilePresentInList(drive_file, "Google Drive", True)
     data_sources_page.click_Add_File()
     sleep(2)
     """Click Upload file"""
@@ -706,23 +675,16 @@ def test_DataSources_TestcaseID_45744():
     data_sources_page.searchFileInLocalStorage(drive_file)
     sleep(7)
     data_sources_page.searchName(drive_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(drive_file, "Local File", True)
     "remove file for next execution"
     removing_files = [search_name + " (1)", search_name]
     for i in removing_files:
         data_sources_page.searchName(i)
-        sleep(5)
         data_sources_page.remove_File()
-        sleep(7)
     data_sources_page.searchName(drive_file)
-    sleep(5)
     data_sources_page.remove_File_Based_On_DataSource("Google Drive", drive_file)
-    sleep(7)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(drive_file)
-    sleep(5)
     data_sources_page.remove_File_Based_On_DataSource("Local File", drive_file)
     common_method.Stop_The_App()
 
@@ -793,9 +755,7 @@ def test_DataSources_TestcaseID_45740():
     """Remove uploaded files for next execution"""
     for name in uploaded_file_list:
         data_sources_page.searchName(name)
-        sleep(7)
         data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-        sleep(7)
     common_method.Stop_The_App()
 
 
@@ -824,9 +784,7 @@ def test_DataSources_TestcaseID_45741():
     else:
         raise Exception("File list empty")
     data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file_name)
-    sleep(7)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(selected_file_name)
     try:
         data_sources_page.verifyFilePresentInList(selected_file_name, "Local File", True)
@@ -894,9 +852,7 @@ def test_DataSources_TestcaseID_45742():
     else:
         raise Exception("File list empty")
     data_sources_page.remove_File_Based_On_DataSource("Local File", remove_file_name)
-    sleep(7)
     data_sources_page.searchName("")
-    sleep(7)
     data_sources_page.searchName(remove_file_name)
     try:
         data_sources_page.verifyFilePresentInList(remove_file_name, "Local File", True)
@@ -1027,7 +983,6 @@ def test_DataSources_TestcaseID_45745():
     for char in ignored_char:
         special_char_file1 = special_char_file1.replace(char, '')
     data_sources_page.searchName(special_char_file1)
-    sleep(7)
     """Verify If File Uploaded Successfully"""
     data_sources_page.verifyFilePresentInList(special_char_file1)
     """Select File to upload"""
@@ -1041,7 +996,6 @@ def test_DataSources_TestcaseID_45745():
     for char in ignored_char:
         special_char_file2 = special_char_file2.replace(char, '')
     data_sources_page.searchName(special_char_file2)
-    sleep(7)
     """Verify If File Uploaded Successfully"""
     data_sources_page.verifyFilePresentInList(special_char_file2)
     common_method.Stop_The_App()
@@ -1066,18 +1020,15 @@ def test_DataSources_TestcaseID_45746():
     data_sources_page.searchFileInLocalStorage(long_name_file, "Downloads")
     sleep(7)
     data_sources_page.searchName(long_name_file)
-    sleep(7)
     """Verify If File Uploaded Successfully"""
     data_sources_page.verifyFilePresentInList(long_name_file)
     """Remove file for next execution"""
     data_sources_page.remove_File_Based_On_DataSource("Local File", long_name_file)
-    sleep(5)
     common_method.Stop_The_App()
 
 
 def test_DataSources_TestcaseID_45747():
-    """test"""
-
+    pass
     common_method.tearDown()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
@@ -1086,7 +1037,6 @@ def test_DataSources_TestcaseID_45747():
     data_sources_page.click_My_Data()
     """Large file"""
     large_file = "large_unsupported_file(50mb).png"
-
     """Click Add File"""
     sleep(2)
     data_sources_page.click_Add_File()
@@ -1097,11 +1047,11 @@ def test_DataSources_TestcaseID_45747():
     data_sources_page.searchFileInLocalStorage(large_file, "Downloads")
     sleep(20)
     data_sources_page.searchName(large_file)
-    sleep(7)
     try:
         data_sources_page.verifyFilePresentInList(large_file, "Local File", True)
         x = 1 / 0
     except ZeroDivisionError:
+        data_sources_page.remove_File_Based_On_DataSource("Local File", large_file)
         raise Exception("We are able to upload file larger than 28.4 MB.")
     except Exception as e:
         pass
@@ -1116,7 +1066,6 @@ def test_DataSources_TestcaseID_45747():
     data_sources_page.searchFileInLocalStorage("28.3M.png", "Downloads")
     sleep(5)
     data_sources_page.searchName("28.3M.png")
-    sleep(7)
     data_sources_page.verifyFilePresentInList("28.3M.png", "Local File", True)
     sleep(5)
     """Click Add File"""
@@ -1128,19 +1077,13 @@ def test_DataSources_TestcaseID_45747():
     data_sources_page.searchFileInLocalStorage("29.4M.png", "Downloads")
     sleep(5)
     data_sources_page.searchName("29.4m.png")
-    sleep(7)
     data_sources_page.verifyFilePresentInList("29.4m.png", "Local File", True)
     """Remove uploaded files for next execution"""
     data_sources_page.remove_File_Based_On_DataSource("Local File", "29.4m.png")
-    sleep(5)
     data_sources_page.searchName("28.3M.png")
-    sleep(5)
     data_sources_page.remove_File_Based_On_DataSource("Local File", "28.3M.png")
-    sleep(5)
     data_sources_page.searchName(large_file)
-    sleep(5)
     data_sources_page.remove_File_Based_On_DataSource("Local File", large_file)
-    sleep(5)
     common_method.tearDown()
 
 
@@ -1167,7 +1110,7 @@ def test_DataSources_TestcaseID_45747():
 #     data_sources_page.searchRandomWord()
 #     """check if the list is empty"""
 #     data_sources_page.checkIfListIsEmpty()
-#     """nter special characters to the Search field"""
+#     """Enter special characters to the Search field"""
 #     data_sources_page.enterSpecialCharactersInsearchField()
 #     """Cannot verify if error occurs as here is no error."""
 #     data_sources_page.clearTextAndVerifyFileCount(initial_file_count)
@@ -1175,14 +1118,13 @@ def test_DataSources_TestcaseID_45747():
 
 
 def test_DataSources_TestcaseID_45755():
-    """""""""test"""""
-
+    pass
     """Google Login"""
     common_method.tearDown()
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
-        raise Exception("home page dint show up")
+        raise Exception("Home page dint show up")
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.click_My_Data()
@@ -1218,7 +1160,6 @@ def test_DataSources_TestcaseID_45755():
     data_sources_page.selectFileDrive(png_file)
     sleep(5)
     data_sources_page.searchName(png_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -1234,7 +1175,6 @@ def test_DataSources_TestcaseID_45755():
     data_sources_page.selectFileDrive(jpg_file)
     sleep(5)
     data_sources_page.searchName(jpg_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -1250,7 +1190,6 @@ def test_DataSources_TestcaseID_45755():
     data_sources_page.selectFileDrive(csv_file)
     sleep(5)
     data_sources_page.searchName(csv_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -1266,7 +1205,6 @@ def test_DataSources_TestcaseID_45755():
     data_sources_page.selectFileDrive(txt_file)
     sleep(5)
     data_sources_page.searchName(txt_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(txt_file, "OneDrive", True)
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -1282,8 +1220,21 @@ def test_DataSources_TestcaseID_45755():
     data_sources_page.selectFileDrive(bmp_file)
     sleep(5)
     data_sources_page.searchName(bmp_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
+    data_sources_page.searchName("")
     common_method.Stop_The_App()
 
 
@@ -1340,8 +1291,7 @@ def test_DataSources_TestcaseID_45755():
 
 
 def test_DataSources_TestcaseID_45757():
-    """""""""test"""""
-
+    pass
     common_method.tearDown()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
@@ -1372,8 +1322,9 @@ def test_DataSources_TestcaseID_45757():
         pass
     others_page.capture_the_image_button()
     data_sources_page.clickOk()
-    """Part of step 4 is to check the preview is correct
-        unable to verify preview has to be done manually"""
+
+
+    """Part of step 4 is to check the preview is correct unable to verify preview has to be done manually"""
     """Print the photo"""
     while not poco("Print", enabled=True).exists():
         poco.scroll()
@@ -1384,12 +1335,8 @@ def test_DataSources_TestcaseID_45757():
 
 def test_DataSources_TestcaseID_45759():
     pass
-
     common_method.tearDown()
-    try:
-        registration_page.wait_for_element_appearance("Home", 30)
-    except:
-        raise Exception("home page dint show up")
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
     data_sources_page.click_My_Data()
@@ -1406,7 +1353,6 @@ def test_DataSources_TestcaseID_45759():
     existing_file = data_sources_page.selectExistingFile()
     sleep(5)
     data_sources_page.searchName(existing_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(existing_file, "Google Drive", True)
     """Re upload same file"""
     """Click Add file"""
@@ -1422,7 +1368,9 @@ def test_DataSources_TestcaseID_45759():
     """Verify if 'filename' is already linked pop up appears"""
     data_sources_page.checkIsAlreadyLinkedPopUp()
     sleep(3)
-    """"""""""""
+    # """remove file for next execution"""
+    # data_sources_page.searchName(existing_file)
+    # data_sources_page.remove_File_Based_On_DataSource("Google Drive", existing_file)
     """ One Drive """
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -1442,7 +1390,6 @@ def test_DataSources_TestcaseID_45759():
     existing_file = data_sources_page.selectExistingFile()
     sleep(3)
     data_sources_page.searchName(existing_file)
-    sleep(5)
     data_sources_page.verifyFilePresentInList(existing_file, "OneDrive", True)
     """Re upload same file"""
     """Click Add file"""
@@ -1456,12 +1403,15 @@ def test_DataSources_TestcaseID_45759():
     data_sources_page.selectExistingFile()
     """Verify if 'filename' is already linked pop up appears"""
     data_sources_page.checkIsAlreadyLinkedPopUp()
+    sleep(3)
+    # """remove file for next execution"""
+    # data_sources_page.searchName(existing_file)
+    # data_sources_page.remove_File_Based_On_DataSource("OneDrive", existing_file)
     common_method.Stop_The_App()
 
 
 def test_DataSources_TestcaseID_47830():
-    """""""""test"""""
-
+    pass
     """Click hamburger icon to expand menu"""
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
@@ -1558,8 +1508,7 @@ def test_DataSources_TestcaseID_47830():
 
 
 def test_DataSources_TestcaseID_47936():
-    """""""""test"""""
-
+    pass
     common_method.tearDown()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
@@ -1573,1057 +1522,1006 @@ def test_DataSources_TestcaseID_47936():
     data_sources_page.click_Upload_File()
     sleep(2)
     """Select File to upload"""
-    selected_file = data_sources_page.select_File_To_Upload(True)
+    selected_file = "Demo.jpg"
+    data_sources_page.searchFileInLocalStorage(selected_file)
     sleep(5)
     """Notification on file upload"""
     """Unable to verify due to BUG SMBM-712"""
+    print(selected_file)
     data_sources_page.searchName(selected_file)
     data_sources_page.remove_File()
     """Notification on file removal"""
     """Unable to verify due to BUG SMBM-712"""
+    raise Exception("No notification on uploading and removing file")
     common_method.Stop_The_App()
 
 
-# def test_DataSources_TestcaseID_47942():
-#     """""""""test"""""
-#
-#     common_method.tearDown()
-#     data_sources_page.checkIfOnHomePage()
-#     """Click hamburger icon to expand menu"""
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(5)
-#     """Click My Data"""
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     """Click Add File"""
-#     data_sources_page.click_Add_File()
-#     sleep(5)
-#     """Click Upload file"""
-#     data_sources_page.click_Upload_File()
-#     sleep(5)
-#     """Select File to upload"""
-#     data_sources_page.selectFileInLocalStorage()
-#     sleep(5)
-#     """Verify Progress Indicator"""
-#     data_sources_page.verifyProgressIndicator()
-#     """Verify if file uploaded succesfully"""
-#     common_method.Stop_The_App()
-#
-#
-# def test_DataSources_TestcaseID_47944():
-#     """""""test"""
-#
-#     """Click hamburger icon to expand menu"""
-#     common_method.tearDown()
-#     login_page.click_Menu_HamburgerICN()
-#     """Click My Data"""
-#     data_sources_page.click_My_Data()
-#     sleep(2)
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     data_sources_page.click_Upload_File()
-#     template_management_page.wait_for_appearance_enabled("Show roots")
-#     """select 4-BMP.BMP"""
-#     data_sources_page.searchFileInLocalStorage("4-BMP.BMP", "Downloads")
-#     sleep(5)
-#     """Step 5 pending as no error pop up"""
-#     data_sources_page.searchName("4-BMP.BMP")
-#     sleep(5)
-#     """check list empty"""
-#     data_sources_page.checkIfListIsEmpty()
-#     common_method.Stop_The_App()
-#
-#
-# def test_DataSources_TestcaseID_45758():
-#     """""""""test"""""
-#
-#     data_sources_page.clearAppData()
-#     common_method.tearDown()
-#     data_sources_page.allowPermissions()
-#     registration_page.clickSignIn()
-#     registration_page.click_Google_Icon()
-#     try:
-#         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-#     except:
-#         raise Exception("Did not navigate to Sign In with google page")
-#     account = "zebraidctest@gmail.com"
-#     if template_management_page.checkIfAccPresent(account):
-#         help_page.chooseAcc(account)
-#     else:
-#         while not poco(text="Use another account").exists():
-#             poco.scroll()
-#         login_page.click_GooglemailId()
-#         if poco(text="Signed in to Google as").exists():
-#             while not poco(text="Add account to device").exists():
-#                 poco.scroll()
-#             registration_page.addAccountToDevice()
-#         registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
-#     """Click hamburger icon to expand menu"""
-#     try:
-#         registration_page.wait_for_element_appearance("Home", 30)
-#     except:
-#         raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     """Click My Data"""
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     """Google Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     """ google drive """
-#     if data_sources_page.verifySignInWithGoogle():
-#         registration_page.click_Google_Icon()
-#     account = "zebratest850@gmail.com"
-#     if data_sources_page.checkIfAccPresentLink(account):
-#         help_page.chooseAcc(account)
-#     else:
-#         poco("com.google.android.gms:id/add_account_chip_title").click()
-#         registration_page.sign_In_With_Google("Zebra#123456789", account)
-#     sleep(2)
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     data_sources_page.checkDriveEmpty()
-#     """Cannot automate - Check the Select button is disabled. as select button not displayed"""
-#     data_sources_page.clickBackArrow()
-#
-#     """One Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     """ One drive """
-#     sleep(2)
-#     data_sources_page.clickMicrosoftOneDrive()
-#     if data_sources_page.verifySignInWithMicrosoft():
-#         data_sources_page.signInWithMicrosoft(account, "Zebra#123456789")
-#         sleep(2)
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(2)
-#     data_sources_page.checkDriveEmpty()
-#     """Cannot automate - Check the Select button is disabled. as select button not displayed"""
-#     data_sources_page.clickBackArrow()
-#     common_method.Stop_The_App()
+def test_DataSources_TestcaseID_47942():
+    """""""""test"""""
+
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    """Click hamburger icon to expand menu"""
+    login_page.click_Menu_HamburgerICN()
+    sleep(5)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    """Click Add File"""
+    data_sources_page.click_Add_File()
+    sleep(5)
+    """Click Upload file"""
+    data_sources_page.click_Upload_File()
+    sleep(5)
+    """Select File to upload"""
+    selected_file = "Demo.jpg"
+    data_sources_page.searchFileInLocalStorage(selected_file)
+    sleep(5)
+    """Verify Progress Indicator"""
+    data_sources_page.verifyProgressIndicator()
+    """Verify if file uploaded successfully"""
+    data_sources_page.searchName(selected_file)
+    data_sources_page.verifyFilePresentInList(selected_file)
+    """remove file for next execution"""
+    data_sources_page.searchName(selected_file)
+    data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file)
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_47944():
+    """""""test"""
+
+    """Click hamburger icon to expand menu"""
+    common_method.tearDown()
+    login_page.click_Menu_HamburgerICN()
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(2)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Upload_File()
+    template_management_page.wait_for_appearance_enabled("Show roots")
+    """select 4-BMP.BMP"""
+    data_sources_page.searchFileInLocalStorage("4-BMP.BMP", "Downloads")
+    sleep(5)
+    """Step 5 pending as no error pop up"""
+    data_sources_page.searchName("4-BMP.BMP")
+    """check list empty"""
+    data_sources_page.checkIfListIsEmpty()
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_45758():
+    """""""""test"""""
+
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
+    account = "zebraidctest@gmail.com"
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        if poco(text="Signed in to Google as").exists():
+            while not poco(text="Add account to device").exists():
+                poco.scroll()
+            registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+    """Click hamburger icon to expand menu"""
+    try:
+        registration_page.wait_for_element_appearance("Home", 30)
+    except:
+        raise Exception("home page dint show up")
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    """Google Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ google drive """
+    if data_sources_page.verifySignInWithGoogle():
+        registration_page.click_Google_Icon()
+    account = "zebratest850@gmail.com"
+    if data_sources_page.checkIfAccPresentLink(account):
+        help_page.chooseAcc(account)
+    else:
+        poco("com.google.android.gms:id/add_account_chip_title").click()
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
+    sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    data_sources_page.checkDriveEmpty()
+    """Cannot automate - Check the Select button is disabled. as select button not displayed"""
+    data_sources_page.clickBackArrow()
+
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ One drive """
+    sleep(2)
+    data_sources_page.clickMicrosoftOneDrive()
+    if data_sources_page.verifySignInWithMicrosoft():
+        data_sources_page.signInWithMicrosoft(account, "Zebra#123456789")
+        sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(2)
+    data_sources_page.checkDriveEmpty()
+    """Cannot automate - Check the Select button is disabled. as select button not displayed"""
+    data_sources_page.clickBackArrow()
+    common_method.Stop_The_App()
 
 
 """zebraloginzsb@gmail"""
 
-# def test_DataSources_TestcaseID_47937():
-#     pass
-#
-#     # data_sources_page.clearAppData()
-#     # # data_sources_page.clearBrowsingData()
-#     # common_method.tearDown()
-#     # data_sources_page.allowPermissions()
-#     # registration_page.clickSignIn()
-#     # data_sources_page.signInWithEmail()
-#     # registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#123456789", 1, 0, False)
-#     # try:
-#     #     registration_page.wait_for_element_appearance_text("Continue", 30)
-#     #     data_sources_page.clickContinueWeb()
-#     # except:
-#     #     pass
-#     # try:
-#     #     registration_page.wait_for_element_appearance("Home", 20)
-#     # except:
-#     #     raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     """One Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     """ One drive """
-#     sleep(2)
-#     data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
-#     sleep(2)
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     png_file = "png_file.png"
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     jpg_file = "jpg_file.jpg"
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(5)
-#     csv_file = "csv_file.csv"
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
-#     data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
-#     sleep(7)
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(csv_file)
-#     sleep(7)
-#     try:
-#         data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
-#         x = 1 / 0
-#     except ZeroDivisionError:
-#         raise Exception("File not removed")
-#     except Exception as e:
-#         pass
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(5)
-#     if data_sources_page.verifySignInWithGoogle():
-#         registration_page.click_Google_Icon()
-#     account = "zsbswdvt@gmail.com"
-#     if data_sources_page.checkIfAccPresentLink(account):
-#         help_page.chooseAcc(account)
-#     else:
-#         poco("com.google.android.gms:id/add_account_chip_title").click()
-#         registration_page.sign_In_With_Google("zsbswdvt@1234", account)
-#         sleep(2)
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(5)
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
-#     data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
-#     sleep(7)
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(csv_file)
-#     sleep(7)
-#     try:
-#         data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
-#         x = 1 / 0
-#     except ZeroDivisionError:
-#         raise Exception("File not removed")
-#     except Exception as e:
-#         pass
-#     sleep(2)
-#     """Non-Zebra login"""
-#     login_page.click_Menu_HamburgerICN()
-#     registration_page.click_on_profile_edit()
-#     while not poco("Log Out").exists():
-#         poco.scroll()
-#     registration_page.click_log_out_button()
-#     """Login pending"""
-#     registration_page.clickSignIn()
-#     registration_page.click_Google_Icon()
-#     try:
-#         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-#     except:
-#         raise Exception("Did not navigate to Sign In with google page")
-#     account = "zsbswdvt1@gmail.com"
-#     if template_management_page.checkIfAccPresent(account):
-#         help_page.chooseAcc(account)
-#     else:
-#         while not poco(text="Use another account").exists():
-#             poco.scroll()
-#         login_page.click_GooglemailId()
-#         if poco(text="Signed in to Google as").exists():
-#             while not poco(text="Add account to device").exists():
-#                 poco.scroll()
-#             registration_page.addAccountToDevice()
-#         registration_page.sign_In_With_Google("zsbswdvt1@1234", "zsbswdvt1@gmail.com")
-#     try:
-#         registration_page.wait_for_element_appearance("Home", 20)
-#     except:
-#         raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     """One Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     """ One drive """
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(5)
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
-#     data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
-#     sleep(7)
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(csv_file)
-#     sleep(7)
-#     try:
-#         data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
-#         x = 1 / 0
-#     except ZeroDivisionError:
-#         raise Exception("File not removed")
-#     except Exception as e:
-#         pass
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(5)
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
-#     data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
-#     sleep(7)
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(csv_file)
-#     sleep(7)
-#     try:
-#         data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
-#         x = 1 / 0
-#     except ZeroDivisionError:
-#         raise Exception("File not removed")
-#     except Exception as e:
-#         pass
-#     common_method.Stop_The_App()
-#
-#
-# def test_DataSources_TestcaseID_45752():
-#     """test"""
-#
-#     """Remove if one drive account - zsbswdvt@gmail.com present"""
-#     common_method.tearDown()
-#     try:
-#         registration_page.wait_for_element_appearance("Home", 20)
-#     except:
-#         raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     initial_file_count = len(data_sources_page.fileListDisplayed())
-#     """One Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     """ One drive """
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     data_sources_page.checkFilesShownAreSupported()
-#     sleep(3)
-#     data_sources_page.clickBackArrow()
-#     """Check no file linked"""
-#     data_sources_page.checkNoChangeInFileCount(initial_file_count)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     png_file = "png_file.png"
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     jpg_file = "jpg_file.jpg"
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     csv_file = "csv_file.csv"
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     txt_file = "text_file.txt"
-#     data_sources_page.selectFileDrive(txt_file)
-#     sleep(5)
-#     data_sources_page.searchName(txt_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(txt_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     bmp_file = "bmp_file.bmp"
-#     data_sources_page.selectFileDrive(bmp_file)
-#     sleep(5)
-#     data_sources_page.searchName(bmp_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
-#     """Remove files for next execution"""
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(png_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(jpg_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(txt_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(bmp_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     common_method.Stop_The_App()
-#
-#
-# def test_DataSources_TestcaseID_45730():
-#     """""""""test"""""
-#
-#     common_method.tearDown()
-#     data_sources_page.checkIfOnHomePage()
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     """Click My Data"""
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     initial_file_count = len(data_sources_page.fileListDisplayed())
-#     """Google Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(3)
-#     data_sources_page.checkFilesShownAreSupported()
-#     sleep(3)
-#     data_sources_page.clickBackArrow()
-#     """Check no file linked"""
-#     data_sources_page.checkNoChangeInFileCount(initial_file_count)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     png_file = "png_file.png"
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     jpg_file = "jpg_file.jpg"
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     txt_file = "text_file.txt"
-#     data_sources_page.selectFileDrive(txt_file)
-#     sleep(5)
-#     data_sources_page.searchName(txt_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     bmp_file = "bmp_file.bmp"
-#     data_sources_page.selectFileDrive(bmp_file)
-#     sleep(5)
-#     data_sources_page.searchName(bmp_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
-#     """Remove files for next execution"""
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(png_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(jpg_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(txt_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(bmp_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     common_method.Stop_The_App()
-#
-#
-# def test_DataSources_TestcaseID_45749():
-#     pass
-#
-#     common_method.tearDown()
-#     try:
-#         registration_page.wait_for_element_appearance("Home", 20)
-#     except:
-#         raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     """Click My Data"""
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     initial_file_count = len(data_sources_page.fileListDisplayed())
-#     """Google Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     data_sources_page.checkFilesShownAreSupported()
-#     sleep(3)
-#     data_sources_page.clickBackArrow()
-#     """Check no file linked"""
-#     data_sources_page.checkNoChangeInFileCount(initial_file_count)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     png_file = "png_file.png"
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     jpg_file = "jpg_file.jpg"
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     csv_file = "csv_file.csv"
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     txt_file = "text_file.txt"
-#     data_sources_page.selectFileDrive(txt_file)
-#     sleep(5)
-#     data_sources_page.searchName(txt_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     bmp_file = "bmp_file.bmp"
-#     data_sources_page.selectFileDrive(bmp_file)
-#     sleep(5)
-#     data_sources_page.searchName(bmp_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
-#     """Remove files for next execution"""
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(png_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(jpg_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(txt_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     data_sources_page.searchName(bmp_file)
-#     data_sources_page.remove_File()
-#     data_sources_page.searchName("")
-#     sleep(7)
-#     common_method.Stop_The_App()
+
+def test_DataSources_TestcaseID_47937():
+    pass
+
+    data_sources_page.clearAppData()
+    # data_sources_page.clearBrowsingData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#123456789", 1, 0, False)
+    try:
+        registration_page.wait_for_element_appearance_text("Continue", 30)
+        data_sources_page.clickContinueWeb()
+    except:
+        pass
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    data_sources_page.click_My_Data()
+    sleep(5)
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    """ One drive """
+    sleep(2)
+    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    png_file = "png_file.png"
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    jpg_file = "jpg_file.jpg"
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(5)
+    csv_file = "csv_file.csv"
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
+    sleep(7)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    try:
+        data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("File not removed")
+    except Exception as e:
+        pass
+    data_sources_page.searchName("")
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(5)
+    if data_sources_page.verifySignInWithGoogle():
+        registration_page.click_Google_Icon()
+    account = "zsbswdvt@gmail.com"
+    if data_sources_page.checkIfAccPresentLink(account):
+        help_page.chooseAcc(account)
+    else:
+        poco("com.google.android.gms:id/add_account_chip_title").click()
+        registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+        sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(5)
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
+    sleep(7)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    try:
+        data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("File not removed")
+    except Exception as e:
+        pass
+    sleep(2)
+    """Non-Zebra login"""
+    login_page.click_Menu_HamburgerICN()
+    registration_page.click_on_profile_edit()
+    while not poco("Log Out").exists():
+        poco.scroll()
+    registration_page.click_log_out_button()
+    """Login pending"""
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
+    account = "zsbswdvt1@gmail.com"
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        if poco(text="Signed in to Google as").exists():
+            while not poco(text="Add account to device").exists():
+                poco.scroll()
+            registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("zsbswdvt1@1234", "zsbswdvt1@gmail.com")
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    data_sources_page.click_My_Data()
+    sleep(5)
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    """ One drive """
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(5)
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
+    sleep(7)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    try:
+        data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("File not removed")
+    except Exception as e:
+        pass
+    data_sources_page.searchName("")
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(5)
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
+    sleep(7)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    try:
+        data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("File not removed")
+    except Exception as e:
+        pass
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_45752():
+    """test"""
+
+    """Remove if one drive account - zsbswdvt@gmail.com present"""
+    common_method.tearDown()
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    data_sources_page.click_My_Data()
+    sleep(5)
+    initial_file_count = len(data_sources_page.fileListDisplayed())
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ One drive """
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(3)
+    data_sources_page.clickBackArrow()
+    """Check no file linked"""
+    data_sources_page.checkNoChangeInFileCount(initial_file_count)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    png_file = "png_file.png"
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    jpg_file = "jpg_file.jpg"
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    csv_file = "csv_file.csv"
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    txt_file = "text_file.txt"
+    data_sources_page.selectFileDrive(txt_file)
+    sleep(5)
+    data_sources_page.searchName(txt_file)
+    data_sources_page.verifyFilePresentInList(txt_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    bmp_file = "bmp_file.bmp"
+    data_sources_page.selectFileDrive(bmp_file)
+    sleep(5)
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_45730():
+    """""""""test"""""
+
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    initial_file_count = len(data_sources_page.fileListDisplayed())
+    """Google Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(3)
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(3)
+    data_sources_page.clickBackArrow()
+    """Check no file linked"""
+    data_sources_page.checkNoChangeInFileCount(initial_file_count)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    png_file = "png_file.png"
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    jpg_file = "jpg_file.jpg"
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    txt_file = "text_file.txt"
+    data_sources_page.selectFileDrive(txt_file)
+    sleep(5)
+    data_sources_page.searchName(txt_file)
+    data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    bmp_file = "bmp_file.bmp"
+    data_sources_page.selectFileDrive(bmp_file)
+    sleep(5)
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_45749():
+    pass
+
+    common_method.tearDown()
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    initial_file_count = len(data_sources_page.fileListDisplayed())
+    """Google Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(3)
+    data_sources_page.clickBackArrow()
+    """Check no file linked"""
+    data_sources_page.checkNoChangeInFileCount(initial_file_count)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    png_file = "png_file.png"
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    jpg_file = "jpg_file.jpg"
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    csv_file = "csv_file.csv"
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    txt_file = "text_file.txt"
+    data_sources_page.selectFileDrive(txt_file)
+    sleep(5)
+    data_sources_page.searchName(txt_file)
+    data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    bmp_file = "bmp_file.bmp"
+    data_sources_page.selectFileDrive(bmp_file)
+    sleep(5)
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File()
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File()
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File()
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File()
+    data_sources_page.searchName("")
+    common_method.Stop_The_App()
 
 
 """Facebook"""
 
-# def test_DataSources_TestcaseID_45750():
-#     """Test"""
-#
-#     """FB login """
-#     data_sources_page.clearAppData()
-#     data_sources_page.clearBrowsingData()
-#     common_method.tearDown()
-#     data_sources_page.allowPermissions()
-#     registration_page.wait_for_element_appearance("Sign In", 10)
-#     registration_page.clickSignIn()
-#     registration_page.click_Facebook_Icon()
-#     registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
-#     try:
-#         registration_page.wait_for_element_appearance("Home", 30)
-#     except:
-#         raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     """Click My Data"""
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     initial_file_count = len(data_sources_page.fileListDisplayed())
-#     """Google Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     data_sources_page.signInWithGoogle("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
-#     sleep(5)
-#     data_sources_page.checkFilesShownAreSupported()
-#     sleep(3)
-#     data_sources_page.clickBackArrow()
-#     """Check no file linked"""
-#     data_sources_page.checkNoChangeInFileCount(initial_file_count)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     common_method.wait_for_element_appearance_namematches("NAME", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     png_file = "png_file.png"
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     common_method.wait_for_element_appearance_namematches("NAME", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     jpg_file = "jpg_file.jpg"
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     common_method.wait_for_element_appearance_namematches("NAME", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     csv_file = "csv_file.csv"
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     common_method.wait_for_element_appearance_namematches("NAME", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     txt_file = "text_file.txt"
-#     data_sources_page.selectFileDrive(txt_file)
-#     sleep(5)
-#     data_sources_page.searchName(txt_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     common_method.wait_for_element_appearance_namematches("NAME", 20)
-#     sleep(2)
-#     """ google drive """
-#     data_sources_page.clickGoogleDrive()
-#     sleep(5)
-#     bmp_file = "bmp_file.bmp"
-#     data_sources_page.selectFileDrive(bmp_file)
-#     sleep(5)
-#     data_sources_page.searchName(bmp_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
-#     common_method.Stop_The_App()
-#
-#
-# def test_DataSources_TestcaseID_45753():
-#     """Test"""
-#
-#     """FB login """
-#
-#     data_sources_page.clearAppData()
-#     data_sources_page.clearBrowsingData()
-#     common_method.tearDown()
-#     data_sources_page.allowPermissions()
-#     registration_page.wait_for_element_appearance("Sign In", 10)
-#     registration_page.clickSignIn()
-#     registration_page.click_Facebook_Icon()
-#     registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
-#     try:
-#         registration_page.wait_for_element_appearance("Home", 30)
-#     except:
-#         raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     sleep(2)
-#     data_sources_page.click_My_Data()
-#     sleep(5)
-#     initial_file_count = len(data_sources_page.fileListDisplayed())
-#     """One Drive"""
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     """ One drive """
-#     data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     data_sources_page.checkFilesShownAreSupported()
-#     sleep(3)
-#     data_sources_page.clickBackArrow()
-#     """Check no file linked"""
-#     data_sources_page.checkNoChangeInFileCount(initial_file_count)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     png_file = "png_file.png"
-#     data_sources_page.selectFileDrive(png_file)
-#     sleep(5)
-#     data_sources_page.searchName(png_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     jpg_file = "jpg_file.jpg"
-#     data_sources_page.selectFileDrive(jpg_file)
-#     sleep(5)
-#     data_sources_page.searchName(jpg_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     csv_file = "csv_file.csv"
-#     data_sources_page.selectFileDrive(csv_file)
-#     sleep(5)
-#     data_sources_page.searchName(csv_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     txt_file = "text_file.txt"
-#     data_sources_page.selectFileDrive(txt_file)
-#     sleep(5)
-#     data_sources_page.searchName(txt_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(txt_file, "OneDrive", True)
-#     """Click Add file"""
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     """Click Link File"""
-#     data_sources_page.click_Link_File()
-#     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-#     """ One drive """
-#     data_sources_page.clickMicrosoftOneDrive()
-#     common_method.wait_for_element_appearance("NAME")
-#     sleep(5)
-#     bmp_file = "bmp_file.bmp"
-#     data_sources_page.selectFileDrive(bmp_file)
-#     sleep(5)
-#     data_sources_page.searchName(bmp_file)
-#     sleep(5)
-#     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
-#     common_method.Stop_The_App()
+def test_DataSources_TestcaseID_45750():
+    pass
+    """FB login"""
+    data_sources_page.clearAppData()
+    data_sources_page.clearBrowsingData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    registration_page.wait_for_element_appearance("Sign In", 10)
+    registration_page.clickSignIn()
+    registration_page.click_Facebook_Icon()
+    registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+    try:
+        registration_page.wait_for_element_appearance("Home", 30)
+    except:
+        raise Exception("home page dint show up")
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    initial_file_count = len(data_sources_page.fileListDisplayed())
+    """Google Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.signInWithGoogle("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
+    sleep(5)
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(3)
+    data_sources_page.clickBackArrow()
+    """Check no file linked"""
+    data_sources_page.checkNoChangeInFileCount(initial_file_count)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    common_method.wait_for_element_appearance_namematches("NAME", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    png_file = "png_file.png"
+    data_sources_page.selectFileDrive(png_file)
+    sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    common_method.wait_for_element_appearance_namematches("NAME", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    jpg_file = "jpg_file.jpg"
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    common_method.wait_for_element_appearance_namematches("NAME", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    csv_file = "csv_file.csv"
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    common_method.wait_for_element_appearance_namematches("NAME", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    txt_file = "text_file.txt"
+    data_sources_page.selectFileDrive(txt_file)
+    sleep(5)
+    data_sources_page.searchName(txt_file)
+    data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    common_method.wait_for_element_appearance_namematches("NAME", 20)
+    sleep(2)
+    """ google drive """
+    data_sources_page.clickGoogleDrive()
+    sleep(5)
+    bmp_file = "bmp_file.bmp"
+    data_sources_page.selectFileDrive(bmp_file)
+    sleep(5)
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_45753():
+    pass
+    """FB login"""
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    data_sources_page.click_My_Data()
+    sleep(5)
+    initial_file_count = len(data_sources_page.fileListDisplayed())
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ One drive """
+    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(3)
+    data_sources_page.clickBackArrow()
+    """Check no file linked"""
+    data_sources_page.checkNoChangeInFileCount(initial_file_count)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    png_file = "png_file.png"
+    data_sources_page.selectFileDrive(png_file)
+    # sleep(5)
+    data_sources_page.searchName(png_file)
+    data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    jpg_file = "jpg_file.jpg"
+    data_sources_page.selectFileDrive(jpg_file)
+    sleep(5)
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    csv_file = "csv_file.csv"
+    data_sources_page.selectFileDrive(csv_file)
+    sleep(5)
+    data_sources_page.searchName(csv_file)
+    data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    txt_file = "text_file.txt"
+    data_sources_page.selectFileDrive(txt_file)
+    sleep(5)
+    data_sources_page.searchName(txt_file)
+    data_sources_page.verifyFilePresentInList(txt_file, "OneDrive", True)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    bmp_file = "bmp_file.bmp"
+    data_sources_page.selectFileDrive(bmp_file)
+    sleep(5)
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
+    common_method.Stop_The_App()
