@@ -7,17 +7,18 @@ import pytest
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
-
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ...PageObject.Login_Screen import *
-
+# from ...PageObject.Login_Screen import *
 from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Others_Screen.Others_Screen import Others
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
 from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
 
@@ -28,7 +29,6 @@ wake()
 # start_app("com.zebra.soho_app")
 sleep(2.0)
 common_method = Common_Method(poco)
-login_page = Login_Screen(poco)
 help_page = Help_Screen(poco)
 printer_management_page = Printer_Management_Screen(poco)
 data_sources_page = Data_Sources_Screen(poco)
@@ -37,6 +37,13 @@ registration_page = Registration_Screen(poco)
 others_page = Others(poco)
 template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
+login_page = Login_Screen(poco)
+app_settings_page = App_Settings_Screen(poco)
+add_a_printer_screen = Add_A_Printer_Screen(poco)
+smoke_test_android = Smoke_Test_Android(poco)
+aps_notification = APS_Notification(poco)
+
+
 
 """zebraidctest@gmail.com"""
 from ...TestExecution.test_Template_Management.test_Android_Template_Management import test_Android_Template_Management
@@ -3514,9 +3521,356 @@ def test_Template_Management_TestcaseID_46025():
     common_method.Stop_The_App()
 
 
+# ###"""""""""""""""""""""""""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# #####""""""""""""""""""""""""""""""""Smoketestcases""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45880():
+    """Verify sign in with non-zebra account, check the design linked different format file from local can be printed out successfully"""
+
+#
+    """""Sign in the same account on Web portal, create design1, add text object, and link Local file with csv format.
+    Create design2, add text object, and link local file with xlsx format"""
+
+    common_method.tearDown()
+    common_method.Stop_The_App()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_My_Design()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
+    add_a_printer_screen.click_SecondOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    common_method.Stop_The_App()
+
+# #
+# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 
+def test_Smoke_Test_TestcaseID_45881():
+    """Verify sign in with social account, check the design linked different format file from Google Drive can be printed out successfully"""
+
+    """start the app"""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
+    smoke_test_android.Verify_SignIn_With_Text_Is_Present()
+    smoke_test_android.click_Continue_With_Facebook_Option()
+    """""due to some issue, it is directly login to the facebook account without asking for password"""
+    smoke_test_android.click_Continue_As_Zebra()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+    app_settings_page.click_My_Design()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
+    add_a_printer_screen.click_SecondOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    common_method.Stop_The_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
 
 
+# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_Smoke_Test_TestcaseID_45882():
+    """Verify sign in with non-Zebra account, check the design linked different format file from One Drive can be printed out successfully"""
+
+    common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_My_Design()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.Verify_Design_Preview_Screen_With_Details()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
+    add_a_printer_screen.click_SecondOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    common_method.Stop_The_App()
+    """""The below step needs to be verified manually"""
+    """"""""""2. Sign in the same account on Web portal, create design1, add text object, and link One Drive file with xlsx format. Create design2, add text object, and link One Drive file with csv format"""""""""
+
+
+# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45890():
+    """	Print template with static information in Recently Printed Template list"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    previous = app_settings_page.Check_no_of_left_cartridge()
+    print(previous)
+
+    """click on navigation option"""
+    login_page.click_Menu_HamburgerICN()
+
+    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    sleep(2)
+    n = 2
+
+    """test the printer to print the label"""
+    for i in range(n):
+        app_settings_page.click_Test_Print_Button()
+        sleep(2)
+
+    sleep(1)
+    """Go to the Home Page"""
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    sleep(2)
+
+    """After printing Get the number of cartridges"""
+    after = app_settings_page.Check_no_of_left_cartridge()
+    print(after)
+
+    """Check wheather the cartridges are updated or not"""
+    res = app_settings_page.check_update_cartridge(previous, after, n)
+    if res:
+        print("success")
+    else:
+        print("Failed")
+    common_method.Stop_The_App()
+
+
+#
+# # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+def test_Smoke_Test_TestcaseID_45891():
+    """	Print multiple copies of template with variable data in Workspace"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    app_settings_page.click_Firstone_In_Recently_Prtinted_Label()
+    smoke_test_android.click_Print_Button()
+    smoke_test_android.click_And_Enter_Copies_Number_Field()
+    smoke_test_android.click_Second_Print_Button()
+    app_settings_page.click_Keyboard_back_Icon()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    previous = app_settings_page.Check_no_of_left_cartridge()
+    print(previous)
+
+    """click on navigation option"""
+    login_page.click_Menu_HamburgerICN()
+
+    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    sleep(2)
+    n = 2
+
+    """test the printer to print the label"""
+    for i in range(n):
+        app_settings_page.click_Test_Print_Button()
+        sleep(2)
+
+    sleep(1)
+    """Go to the Home Page"""
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    sleep(2)
+
+    """After printing Get the number of cartridges"""
+    after = app_settings_page.Check_no_of_left_cartridge()
+    print(after)
+
+    """Check wheather the cartridges are updated or not"""
+    res = app_settings_page.check_update_cartridge(previous, after, n)
+    if res:
+        print("success")
+    else:
+        print("Failed")
+    common_method.Stop_The_App()
+
+
+# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+def test_Smoke_Test_TestcaseID_45892():
+    """	Delete template in Workspace"""
+
+    """"Setup:
+    1. There is an existing template in My Designs."""""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_My_Design()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    smoke_test_android.click_Delete_Button_On_MyDesign()
+    smoke_test_android.click_Cancel_Button_On_Delete_Popup()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    smoke_test_android.click_Delete_Button_On_MyDesign()
+    smoke_test_android.Click_Delete_Button_On_Delete_Popup()
+    smoke_test_android.Verify_Deleted_Successfully_Message()
+    common_method.Stop_The_App()
+
+
+#
+# #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+def test_Smoke_Test_TestcaseID_45893():
+    """	To Verify View Zebra defined categories in Common Designs"""
+    #
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    smoke_test_android.Verify_List_Is_Sorted_From_A_TO_Z()
+    smoke_test_android.get_all_designs_in_Common_Designs()
+    common_method.Stop_The_App()
+
+
+#
+#
+# #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+def test_Smoke_Test_TestcaseID_45894():
+    """	View list of Zebra templates in Common Designs"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
+    add_a_printer_screen.click_FirstOne_In_Common_Design()
+    app_settings_page.click_Keyboard_back_Icon()
+    smoke_test_android.click_Back_Icon_On_Address_Screen()
+    smoke_test_android.Verify_Common_Design_Page_Is_Displaying()
+    smoke_test_android.Verify_List_Is_Sorted_From_A_TO_Z()
+    smoke_test_android.get_all_designs_in_Common_Designs()
+    common_method.tearDown()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
+    add_a_printer_screen.click_FirstOne_In_Common_Design()
+    smoke_test_android.Verify_Copy_To_My_Design_Text_Is_Present()
+    app_settings_page.click_Keyboard_back_Icon()
+    smoke_test_android.click_Back_Icon_On_Address_Screen()
+    smoke_test_android.Verify_Common_Design_Page_Is_Displaying()
+    common_method.Stop_The_App()
+
+
+# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+def test_Smoke_Test_TestcaseID_45895():
+    """Print Zebra templates after Copy the template which needs to upload a picture from Library to Workspace (eg: Address->AddressWithIcon; Small Multipurpose->pickImage)"""
+
+    #
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    previous = app_settings_page.Check_no_of_left_cartridge()
+    print(previous)
+
+    """click on navigation option"""
+    login_page.click_Menu_HamburgerICN()
+
+    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    sleep(2)
+    n = 2
+
+    """test the printer to print the label"""
+    for i in range(n):
+        app_settings_page.click_Test_Print_Button()
+        sleep(2)
+
+    sleep(1)
+    """Go to the Home Page"""
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    sleep(2)
+
+    """After printing Get the number of cartridges"""
+    after = app_settings_page.Check_no_of_left_cartridge()
+    print(after)
+
+    """Check wheather the cartridges are updated or not"""
+    res = app_settings_page.check_update_cartridge(previous, after, n)
+    if res:
+        print("success")
+    else:
+        print("Failed")
+    common_method.Stop_The_App()
+    #
+
+# # # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+def test_Smoke_Test_TestcaseID_45896():
+    """Print a label from Common Design."""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
+    add_a_printer_screen.click_FirstOne_In_Common_Design()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Text_Field_To_Edit()
+    add_a_printer_screen.click_Print_Button()
+    """Verify manually it should print successfully"""
+    """"point 4 is blocked due to SMB-1664"""""
+    common_method.Stop_The_App()
+# # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

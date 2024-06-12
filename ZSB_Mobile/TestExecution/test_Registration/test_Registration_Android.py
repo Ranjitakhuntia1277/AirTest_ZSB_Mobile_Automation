@@ -3,8 +3,6 @@ from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
 
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ...PageObject.Login_Screen import *
-
 from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 from ...Common_Method import Common_Method
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
@@ -442,3 +440,86 @@ def test_Registration_TestcaseID_45862():
 
 
 """UP -TO DATE"""
+# ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45877():
+    """	Verify create a brand new user with unregistered user in Mobile App."""
+
+#
+    """"Setup:
+    1. Create a new email address
+    (Need to match the new register email format, for IDC, it should be soho_swdvt_xxxx@xxxx.com, for CDC, it should be soho_swdvt_xxxx@xxxx.com)
+    2. Install the target build of ZSB app on mobile device"""""
+
+    """start the app"""""
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    poco.scroll()
+    data_sources_page.signInWithEmail()
+    if poco("com.android.chrome:id/coordinator").exists():
+        poco("com.android.chrome:id/coordinator").click()
+    registration_page.registerEmail()
+    sleep(2)
+    a = (registration_page.check_registration_of_email())
+    if not a:
+        raise Exception("register user page dint show")
+    """Enter the User Email"""
+    registration_page.enter_user_email_for_registering("smbmzsb7@gmail.com")
+    registration_page.click_on_next()
+
+    try:
+        registration_page.wait_for_element_appearance("Resend Verification Code.", 10)
+    except:
+        raise Exception("Second step dint work")
+
+    verification_code = "SLS9820000"
+    registration_page.enter_the_verification_code(verification_code)
+    registration_page.click_on_next()
+    sleep(2)
+    """Enter the first Name last name and the password"""
+    first_n = "Zebra"
+    last_n = "Z"
+    password = "Zebra#123456789"
+    registration_page.enter_the_fields(first_n, last_n, password)
+    registration_page.select_the_country("India")
+    registration_page.select_the_check_boxes()
+    registration_page.click_submit_and_continue()
+    sleep(2)
+    registration_page.check_sign_up_successful()
+    registration_page.click_continue_registration_page()
+    poco("Login").wait_for_appearance(timeout=10)
+
+    login_page.click_loginBtn()
+    registration_page.wait_for_element_appearance_text("Continue with Google", 20)
+    data_sources_page.signInWithEmail()
+    """Provide the email and password"""
+    email = "zebra852@gmail.com"
+    password = "Zebra#123456789"
+    registration_page.complete_sign_in_with_email(email, password)
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
+
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    try:
+        registration_page.wait_for_element_appearance("Login", 5)
+    except:
+        raise Exception("Did not redirect to the login page")
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
+# # ## """"""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""
+#

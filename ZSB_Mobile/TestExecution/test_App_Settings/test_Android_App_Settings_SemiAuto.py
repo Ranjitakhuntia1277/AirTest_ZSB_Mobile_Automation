@@ -256,39 +256,62 @@ def test_AppSettings_TestcaseID_50326():
 #
 # # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_AppSettings_TestcaseID_50325():
-    """Manage Network-Check able to add/delete/sort network when printer bt paired/unpaired in device"""
+def test_AppSettings_TestcaseID_45688():
+    """""""""Verify Wifi Settings"""""
 
-
-    """"App should be in logged in condition & printer should be added """
-
-
-
-    """"start the app"""
+    """""Install the latest production app on the phone & printer should be added and it should be connected to wifi"""""""""
+    """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
+    #
+    # :
+    """""Check whether App is installed or not"""
     common_method.tearDown()
+    """" Allow pop up before login for the fresh installation"""""
+    login_page.click_LoginAllow_Popup()
+    """""for the first installation click on the zsb series popup"""
+    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
+    """""click on the printer settings tab"""
     app_settings_page.click_Printer_Settings()
+    """""click on the printer tab"""
     app_settings_page.click_PrinterName_On_Printersettings()
+    app_settings_page.click_General_Tab()
+    """"Verify the Test print button text & tab"""
+    app_settings_page.Test_Print_button_is_present_on_printer_settings_page()
+    """""""""" click on the wifi tab option"""""""""""
     app_settings_page.click_wifi_tab()
+    """""""""validate the Current network text"""""
+    app_settings_page.test_CurrentNetwork_Txt_is_present_on_printer_settings_page()
+    """""""Validate the Network status text is present on the printer settings screen"""""""
+    app_settings_page.test_Network_Status_Txt_is_present_on_printer_settings_page()
+    """"validate network status result text on the printer settings screen"""
+    app_settings_page.get_text_Network_Status_Result_Txt()
+    """"""""" Verify IP address text is present on the printer settings screen"""""""""
+    app_settings_page.get_text_IPAddress_Txt()
+    """""""""Verify the message You can save upto 5 network profiles to your saved networks after Manage Networks"""
+    app_settings_page.IS_Present_Save_Network_Message_Txt()
+    """""""verify manage networks text is present & clickable"""""""
     app_settings_page.click_Manage_Networks_Btn()
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
+    """""""""""""Click on continue button on the Bluetooth Connection required popup"""""""
+    app_settings_page.accept_Continue_popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""""""Verify the Cancel button on the Bluetooth_Connection_Failed_Popup"""""
+    app_settings_page.Cancel_is_present_on_Bluetooth_Connection_Failed_Popup()
+    """"""""""verify the continue button and click on that"""""
+    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
+    """"""""""Verify the red remove icon next to the network name"""""
+    app_settings_page.click_Red_Icon_to_remove_network()
+    sleep(5)
+    """"""""""Verify the Add Network text & button & click on that"""""""""""
     app_settings_page.click_Add_Network()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Security_Open()
-    app_settings_page.click_WPA_PSK()
-    app_settings_page.click_Keyboard_back_Icon()
-    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
+    sleep(3)
+    """""""""""""Verify Add network page is opening and verify the text"""""""
+    app_settings_page.get_text_Add_Network()
     app_settings_page.click_Enter_Network_Manually()
     app_settings_page.click_Network_UserName()
     app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    app_settings_page.Verify_Added_Network()
+    """""test case 7 to 10 need to check on Web portal manually"""
     """stop the app"""
     common_method.Stop_The_App()
 
-###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

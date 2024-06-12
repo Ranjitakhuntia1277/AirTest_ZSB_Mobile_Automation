@@ -2,6 +2,7 @@
 import uuid
 
 import logdir
+# import logdir
 import poco.drivers.ios
 from airtest.core.api import *
 # from test.body import poco
