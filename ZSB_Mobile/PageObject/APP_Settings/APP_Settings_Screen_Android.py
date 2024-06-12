@@ -27,7 +27,7 @@ class App_Settings_Screen:
         self.Current_Network_Txt = "Current Networks"
         self.Network_Name_Txt = "NESTWIFI"
         self.ZEBRA_Network = "Zebra"
-        self.Network_Password_Field = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings", "tpl1706704195474.png"), record_pos=(0.009, 0.083),
+        self.Network_Password_Field = Template(Basic_path("tpl1706704195474.png"), record_pos=(0.009, 0.083),
                                                resolution=(1080, 2400))
         self.Network_Status_Txt = "Network Status"
         self.Network_Status_Result_Txt = "Connected"
@@ -38,7 +38,7 @@ class App_Settings_Screen:
         self.Test_Print_Btn = "Test Print"
         self.Continue_Btn_on_Bluetooth_Connection_Failed_popup = "Continue"
         self.Cancel_Btn_n_Bluetooth_Connection_Failed_Popup = "Cancel"
-        self.Red_Icon_to_remove_network = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings", "tpl1704879780106.png"), record_pos=(0.424, 0.164),
+        self.Red_Icon_to_remove_network = Template(Basic_path("tpl1704879780106.png"), record_pos=(0.424, 0.164),
                                                    resolution=(1080, 2400))
         self.Add_Network = "Add Network"
         self.Add_Network_Txt = "Add Network"
@@ -94,12 +94,12 @@ class App_Settings_Screen:
 
         self.Cancel_on_Delete_Account_Popup = "Cancel"
 
-        self.ThreeDot_On_Added_Printer_On_HomePage = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings","tpl1705915293017.png"), record_pos=(0.402, -0.553),
+        self.ThreeDot_On_Added_Printer_On_HomePage = Template(Basic_path("tpl1705915293017.png"), record_pos=(0.402, -0.553),
                                                               resolution=(1080, 2400))
         self.Delete_Printer_Button = "Delete"
 
         self.Yes_Delete_Button = "Yes, Delete"
-        self.Unpair_Bluetooth_dropdown_list = Template(os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings", "tpl1706788194403.png"), record_pos=(0.329, 0.09),
+        self.Unpair_Bluetooth_dropdown_list = Template(Basic_path("tpl1706788194403.png"), record_pos=(0.329, 0.09),
                                                        resolution=(1080, 2400))
 
         self.Printer_Name_Text = "Printer Name"

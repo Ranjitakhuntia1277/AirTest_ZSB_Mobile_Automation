@@ -15,6 +15,8 @@ from pocoui_lib.android.kotoComponent import poco
 import os
 import subprocess
 
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_APS_Testcases", a)
 
 class APS_Notification:
     pass
@@ -59,8 +61,7 @@ class APS_Notification:
         self.GoogleDrive_SearchBar2 = "com.google.android.apps.docs:id/search_text"
         self.Suggestion_PDF_File_From_Drive = "android.widget.TextView"
         self.Three_Dot_Icon_Next_To_Drive_PDF = "com.google.android.apps.docs:id/action_show_menu"
-        self.ThreeDot_On_Added_Printer_On_HomePage = (
-            Template(r"tpl1715066652101.png", record_pos=(0.407, -0.553), resolution=(1080, 2400)))
+        self.ThreeDot_On_Added_Printer_On_HomePage = Template(Basic_path("tpl1715066652101.png"), record_pos=(0.407, -0.553), resolution=(1080, 2400))
 
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def click_Device_Files_Folder(self):
