@@ -11,6 +11,9 @@ from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
+
 
 class Smoke_Test_Android:
     pass
@@ -24,10 +27,10 @@ class Smoke_Test_Android:
         self.Continue_With_Password_ForApple_Login = "Continue with Password"
         self.click_On_Password_Text_field = "SecureTextField"
         self.Sign_In_Option = "Sign In"
-        self.Apple_UserName = Template(r"tpl1707817586300.png", record_pos=(-0.191, -0.867),
+        self.Apple_UserName = Template(Basic_path("tpl1707817586300.png"), record_pos=(-0.191, -0.867),
                                        resolution=(1170, 2532))
 
-        self.Google_UserName = Template(r"tpl1707818376117.png", record_pos=(-0.174, -0.867), resolution=(1170, 2532))
+        self.Google_UserName = Template(Basic_path("tpl1707818376117.png"), record_pos=(-0.174, -0.867), resolution=(1170, 2532))
 
         self.MyData_Tab = "My Data"
         self.Plus_Icon = "android.widget.Button"

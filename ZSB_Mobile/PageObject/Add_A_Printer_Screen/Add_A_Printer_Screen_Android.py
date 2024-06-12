@@ -12,6 +12,9 @@ from pocoui_lib.android.kotoComponent import poco
 import subprocess
 from time import sleep
 
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Add_A_Printer", a)
+
 
 def disable_bluetooth():
     os.system('adb shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE> nul 2>&1')
@@ -59,7 +62,7 @@ class Add_A_Printer_Screen:
         self.Connect_Wifi_Network_Text = "Connect to Wi-Fi"
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
-        self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44),
+        self.Password_Field_On_Join_Network = Template(Basic_path("tpl1712913927236.png"), record_pos=(-0.048, -0.44),
                                                        resolution=(1080, 2400))
         self.Submit_Button_ON_Join_Network = "Submit"
         self.Registering_your_Printer_Text = "Registering your Printer"

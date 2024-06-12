@@ -7,27 +7,6 @@
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/Others.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/Others.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others_Screen/Others_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others_Screen/Others_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Smoke_Test/Smoke_Test_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Smoke_Test/Smoke_Test_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Smoke_Test/Smoke_Test_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Smoke_Test/Smoke_Test_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings_SemiAuto.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings_SemiAuto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/tpl1717516073248.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/test_Android_device_networks.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Device_Networks/test_Android_device_networks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Feed_on_headclose/test_Android_Feed_On_headclose.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Feed_on_headclose/test_Android_Feed_On_headclose.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Printer_Management/test_Printer_Management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Printer_Management/test_Printer_Management.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/test_Android_Smoke_Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Smoke_Test/tpl1707806465367.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login_Exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login_Exec.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
