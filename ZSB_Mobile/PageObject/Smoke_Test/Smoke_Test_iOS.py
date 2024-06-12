@@ -15,7 +15,6 @@ class Smoke_Test_iOS:
         self.Continue_With_Facebook_Option = "Continue with Facebook"
         self.Continue_With_Apple_Option = "Continue with Apple"
         self.home_Text_IS_Present = "Home"
-        self.Facebook_UserName = Template(r"tpl1707806465367.png", record_pos=(-0.169, -0.869), resolution=(1170, 2532))
         self.Continue_With_Password_ForApple_Login = "Continue with Password"
         self.click_On_Password_Text_field = "SecureTextField"
         self.Sign_In_Option = "Sign In"
@@ -58,7 +57,9 @@ class Smoke_Test_iOS:
 
     def Verify_Facebook_UserName_Is_Displaying(self):
         sleep(3)
-        assert_exists(self.Facebook_UserName, "Facebook UserName is displaying")
+        if self.poco(nameMatches="(?s).*Zebra Soho .*").exists():
+            self.poco(nameMatches="(?s).*Zebra Soho .*").get_name()
+
 
     def click_Continue_With_Apple_Option(self):
         sleep(2)

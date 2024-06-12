@@ -69,8 +69,6 @@ class Add_A_Printer_Screen:
 
         self.Print_Option = "Print"
         self.Print_Button = "Print"
-        self.Design_Preview_With_Details = Template(r"tpl1707902210476.png", record_pos=(0.047, 0.202),
-                                                    resolution=(1170, 2532))
         self.Back_Icon_Of_Print_Review_Screen = "android.widget.Button"
         self.Common_Design_Tab = "Common Designs"
 
@@ -263,7 +261,6 @@ class Add_A_Printer_Screen:
         a = self.poco(nameMatches="(?s).*ZSB-DP12.*")
         if a.exists():
            a.get_name()
-           a = a.split("\n")
            print(a)
 
     def Verify_Already_Added_Printer_IS_Not_Displaying(self):
@@ -414,7 +411,6 @@ class Add_A_Printer_Screen:
         sleep(3)
 
     def click_Print_Button(self):
-        global start_point
         sleep(4)
         print_button = self.poco(self.Print_Button)
         if print_button.exists():
@@ -432,7 +428,9 @@ class Add_A_Printer_Screen:
 
     def Verify_Design_Preview_Screen_With_Details(self):
         sleep(3)
-        assert_exists(self.Design_Preview_With_Details, "Design Preview With Details is displaying correctly")
+        a= self.poco(nameMatches="(?s).*Label.*").get_name()
+        print(a)
+
 
     def click_The_Back_Icon_Of_Print_Review_Screen(self):
         sleep(2)

@@ -1,7 +1,6 @@
 import pytest
-
+from airtest.core.api import *
 from ...TestExecution.test_Social_Login.test_Android_Social_Login import test_Android_Social_Login
-
 t_sl = test_Android_Social_Login()
 
 
@@ -71,3 +70,5 @@ def test_Social_Login_TtestcaseID_50643():
 
 def test_Social_Login_TtestcaseID_50646():
     t_sl.test_Social_Login_TestcaseID_50646()
+
+

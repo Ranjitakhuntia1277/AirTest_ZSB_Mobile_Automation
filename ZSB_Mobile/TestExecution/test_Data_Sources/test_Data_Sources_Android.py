@@ -1,17 +1,18 @@
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
-
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen import *
-
-from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
-from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
-from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
-from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Help_Screen.Help_Screen import Help_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
+from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
+from ...PageObject.Others_Screen.Others_Screen import Others
 import pytest
 
 
@@ -26,7 +27,6 @@ wake()
 # start_app("com.zebra.soho_app")
 # sleep(2.0)
 common_method = Common_Method(poco)
-login_page = Login_Screen(poco)
 help_page = Help_Screen(poco)
 printer_management_page = Printer_Management_Screen(poco)
 data_sources_page = Data_Sources_Screen(poco)
@@ -34,6 +34,12 @@ registration_page = Registration_Screen(poco)
 template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 others_page = Others(poco)
+login_page = Login_Screen(poco)
+app_settings_page = App_Settings_Screen(poco)
+add_a_printer_screen = Add_A_Printer_Screen(poco)
+smoke_test_android = Smoke_Test_Android(poco)
+aps_notification = APS_Notification(poco)
+
 
 def test_DataSources_TestcaseID_45729():
     pass
@@ -1323,7 +1329,6 @@ def test_DataSources_TestcaseID_45757():
     others_page.capture_the_image_button()
     data_sources_page.clickOk()
 
-
     """Part of step 4 is to check the preview is correct unable to verify preview has to be done manually"""
     """Print the photo"""
     while not poco("Print", enabled=True).exists():
@@ -2293,6 +2298,7 @@ def test_DataSources_TestcaseID_45749():
 
 """Facebook"""
 
+
 def test_DataSources_TestcaseID_45750():
     pass
     """FB login"""
@@ -2525,3 +2531,119 @@ def test_DataSources_TestcaseID_45753():
     data_sources_page.searchName(csv_file)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     common_method.Stop_The_App()
+
+
+# #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45878():
+    """	Verify sign in as zebra, check link and delete one/google drive file works well"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.click_MyData_Tab()
+    smoke_test_android.click_Plus_icon()
+    smoke_test_android.click_LinkFile()
+    smoke_test_android.click_SignIn_With_Microsoft()
+    smoke_test_android.click_Email_Text_Field()
+    smoke_test_android.click_Next_Button()
+    smoke_test_android.click_Microsoft_Password_Field()
+    smoke_test_android.click_Sign_In_Button()
+    smoke_test_android.click_Microsoft_OneDrive_Tab()
+    smoke_test_android.click_On_Jpg_File()
+    smoke_test_android.click_On_Select_Btn()
+    app_settings_page.Scroll_Till_Next_Tab()
+    smoke_test_android.click_Three_Dot_On_MyData()
+    smoke_test_android.Click_Delete_File()
+    smoke_test_android.Click_Delete_File()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    common_method.Stop_The_App()
+    ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_Smoke_Test_TestcaseID_45879():
+    """Verify sign in as non-zebra, check link and delete one/google drive file works well"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.click_MyData_Tab()
+    smoke_test_android.click_Plus_icon()
+    smoke_test_android.click_LinkFile()
+    smoke_test_android.click_SignIn_With_Google_Drive()
+    login_page.Loginwith_Added_Email_Id()
+    smoke_test_android.click_Google_Drive_Password_Field()
+    smoke_test_android.click_Sign_In_Button()
+    smoke_test_android.click_On_PNG_File()
+    smoke_test_android.click_On_Select_Btn()
+    app_settings_page.Scroll_Till_Next_Tab()
+    smoke_test_android.click_Three_Dot_On_MyData()
+    smoke_test_android.Click_Delete_File()
+    smoke_test_android.Click_Delete_File()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
+
+
+#
+#     ## """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45889():
+    """	Check user can upload or link file to My Data"""
+
+    #
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+
+    """Click My Data"""
+
+    data_sources_page.click_My_Data()
+    sleep(2)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """Test for Google Drive"""
+    data_sources_page.clickGoogleDrive()
+    sleep(2)
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(2)
+    large_file = data_sources_page.selectLargeFile()
+    sleep(2)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.clickGoogleDrive()
+    """Upload a file"""
+    existing_file = data_sources_page.selectExistingFile()
+    sleep(5)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.clickGoogleDrive()
+    common_method.Stop_The_App()
+
+# # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#

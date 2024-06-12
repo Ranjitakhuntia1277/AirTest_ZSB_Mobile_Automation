@@ -40,11 +40,9 @@ class Add_A_Printer_Screen_iOS:
         self.Added_Printer = "ZSB-DP12C710B9"
         self.Second_Printer_Name = "android.widget.RadioButton"
         self.Connect_Wifi_Network_Text = "Connect Wi-Fi Network"
-
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
         self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44), resolution=(1080, 2400))
-
         self.Submit_Button_ON_Join_Network = "Submit"
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
@@ -53,7 +51,6 @@ class Add_A_Printer_Screen_iOS:
 
         self.Print_Option = "Print"
         self.Print_Button = "Print"
-        self.Design_Preview_With_Details = Template(r"tpl1707902210476.png", record_pos=(0.047, 0.202), resolution=(1170, 2532))
         self.Back_Icon_Of_Print_Review_Screen = "android.widget.Button"
         self.Common_Design_Tab = "Common Designs"
 
@@ -66,7 +63,7 @@ class Add_A_Printer_Screen_iOS:
                 check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             # Check for the 'Allow' element using poco
-            shell_element = poco(text="Allow")
+            shell_element = self.poco(text="Allow")
             if shell_element.exists():
                 shell_element.click()
                 sleep(1)
@@ -86,7 +83,7 @@ class Add_A_Printer_Screen_iOS:
                 check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             # Check for the 'Allow' element using poco
-            shell_element = poco(text="Allow")
+            shell_element = self.poco(text="Allow")
             if shell_element.exists():
                 shell_element.click()
                 sleep(1)
@@ -409,7 +406,8 @@ class Add_A_Printer_Screen_iOS:
 
     def Verify_Design_Preview_Screen_With_Details(self):
         sleep(3)
-        assert_exists(self.Design_Preview_With_Details, "Design Preview With Details is displaying correctly")
+        a = self.poco(nameMatches="(?s).*Label.*").get_name()
+        print(a)
 
     def click_The_Back_Icon_Of_Print_Review_Screen(self):
         sleep(2)

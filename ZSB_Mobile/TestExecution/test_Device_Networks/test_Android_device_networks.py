@@ -1,14 +1,20 @@
 #from poco import poco
 import time
 from airtest.core.api import *
+from ...Common_Method import Common_Method
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Others.Others import Others
-from ZSB_Mobile.Common_Method import *
-from ZSB_Mobile.PageObject.Social_Login.Social_Login import Social_Login
-# from ZSB_Mobile.sphere_db import *
-from ZSB_Mobile.PageObject.Device_Networks.Device_Network_Android import Device_Networks_Android
 
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Others.Others import Others
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...PageObject.Social_Login.Social_Login import Social_Login
+# from ...sphere_db import *
+from ...PageObject.Device_Networks.Device_Network_Android import Device_Networks_Android
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 import os
 import logging
 logger = logging.getLogger("airtest")
@@ -21,11 +27,18 @@ connect_device("Android:///")
 #start_app("com.zebra.soho_app")
 sleep(3.0)
 
-login_page = Login_Screen(poco)
 others = Others(poco)
-common_method=Common_Method(poco)
+common_method= Common_Method(poco)
 social_login = Social_Login(poco)
 device_networks = Device_Networks_Android(poco)
+login_page = Login_Screen(poco)
+app_settings_page = App_Settings_Screen(poco)
+add_a_printer_screen = Add_A_Printer_Screen(poco)
+smoke_test_android = Smoke_Test_Android(poco)
+registration_page = Registration_Screen(poco)
+data_sources_page = Data_Sources_Screen(poco)
+aps_notification = APS_Notification(poco)
+
 
 class Test_Android_device_networks():
     pass
@@ -1408,7 +1421,39 @@ class Test_Android_device_networks():
     #
     #     self.check_basic_functionalities()
 
+#     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_Smoke_Test_TestcaseID_45897():
+    """Adding New network: Add Essids by using another phone."""
+
+
+    """"start the app"""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    app_settings_page.click_wifi_tab()
+    app_settings_page.click_Manage_Networks_Btn()
+    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
+    app_settings_page.click_Add_Network()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Security_Open()
+    app_settings_page.click_WPA_PSK()
+    app_settings_page.click_Keyboard_back_Icon()
+    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
+    app_settings_page.Verify_Added_Network()
+    """stop the app"""
+    common_method.Stop_The_App()
+# # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 
