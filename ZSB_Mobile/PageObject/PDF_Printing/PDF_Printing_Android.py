@@ -139,6 +139,8 @@ class PDF_Printing_Screen:
             return
         raise Exception("Printer is not online after all checks.")
 
+
+
     def click_Print_Option_On_PDF_Printing(self):
         sleep(1)
         poco.scroll()
@@ -173,10 +175,21 @@ class PDF_Printing_Screen:
 
     def click_Adobe_From_The_List(self):
         sleep(2)
-        SearchBar2 = self.poco(self.Drive_SearchBar2)
+        SearchBar2 = self.poco(self.Searchbar2)
         SearchBar2.set_text(" ")
         sleep(3)
         SearchBar2.set_text("Adobe")
+        sleep(3)
+        self.poco(name="Adobe Acrobat").click()
+        sleep(3)
+
+    def click_Adobe_Folder(self):
+        sleep(3)
+        if self.poco(name="Adobe Acrobat").exists():
+            self.poco(name="Adobe Acrobat").click()
+            sleep(2)
+        else:
+            print("Adobe folder is not there")
         sleep(3)
 
     def click_PDF_From_The_List(self):
@@ -227,6 +240,7 @@ class PDF_Printing_Screen:
     def Click_On_PDF_Print_Review_BackIcon(self):
         self.poco(name="Open navigation menu").click()
         sleep(10)
+
     def Verify_Label_Print_Range_Is_Selected_AS_All(self):
         sleep(1)
         a = self.poco(nameMatches="(?s).*All.*").get_name()
@@ -450,19 +464,17 @@ class PDF_Printing_Screen:
 
     def Update_Copies_Value_To_Special_Characters(self):
         sleep(1)
-        Copies_Number_Field= self.poco(name="android.widget.EditText").click()
+        Copies_Number_Field = self.poco(name="android.widget.EditText").click()
         Copies_Number_Field.set_text(" ")
         sleep(1)
         Copies_Number_Field.set_text("@&777")
 
-
     def Update_Copies_Value_To_10(self):
         sleep(1)
-        Copies_Number_Field= self.poco(name="android.widget.EditText").click()
+        Copies_Number_Field = self.poco(name="android.widget.EditText").click()
         Copies_Number_Field.set_text(" ")
         sleep(1)
         Copies_Number_Field.set_text("10")
-
 
     def Verify_Total_Labels(self):
         sleep(1)
@@ -478,3 +490,102 @@ class PDF_Printing_Screen:
             sleep(1)
             if not self.poco(textMatches=".*ZSB Series.*").exists():
                 print("ZSB Series is not present")
+            else:
+                raise AssertionError("ZSB Series is present")
+
+    def click_Search_Icon_On_Adobe(self):
+        sleep(5)
+        self.poco(text="Search").click()
+
+    def click_PDF_From_The_Adobe_List(self):
+            sleep(2)
+            self.poco(name="com.adobe.reader:id/search_src_text").click()
+            self.poco(text(" "))
+            sleep(3)
+            self.poco(text("pdf"))
+
+    def click_ON_Three_Dot_On_Adobe_PDF(self):
+        sleep(8)
+        if self.poco(name="com.adobe.reader:id/fileName").exists():
+           self.poco(name="com.adobe.reader:id/fileName").click()
+        # sleep(4)
+        # self.poco(name="com.adobe.reader:id/file_overflow_icon").click()
+
+
+    def click_Share_On_Adobe(self):
+        sleep(4)
+        self.poco(name="com.adobe.reader:id/classic_viewer_share_file").click()
+
+    def click_Send_A_Copy_On_Adobe(self):
+        sleep(2)
+        self.poco(text="Send a copy").click()
+
+    def click_Common_Design(self):
+        sleep(2)
+        self.poco(name="Common Designs").click()
+
+    def click_First_Image_ON_The_List(self):
+        sleep(3)
+        self.poco(name="android.view.View").click()
+        sleep(3)
+
+    def click_firstimage_on_firstone(self):
+        sleep(4)
+        self.poco(name="android.view.View").click()
+
+    def click_print_Button(self):
+        sleep(4)
+        self.poco(name="Print").click()
+
+    def click_Print2_button(self):
+        sleep(4)
+        if self.poco(name="Print").exists():
+            self.poco(name="Print").click()
+        else:
+            poco.scroll()
+            sleep(2)
+            self.poco(name="Print").click()
+
+    def click_Back_Icon(self):
+        sleep(1)
+        self.poco(name="android.widget.Button").click()
+
+    def click_And_Enter_Invalid_Number_In_Copies_Number_Field(self):
+        def click_And_Enter_Copies_Number_Field(self):
+            sleep(1)
+            poco.scroll()
+            Copies_Number_Field = self.poco(name="android.widget.EditText")
+            Copies_Number_Field.click()
+            sleep(1)
+            Copies_Number_Field.set_text(" ")
+            sleep(1)
+            Copies_Number_Field.set_text(".")
+
+    def Verify_Print_Is_GreyedOut(self):
+        sleep(1)
+        if not self.poco(name="Print").exists():
+            print("Print is greyed out")
+        else:
+            print("print is displaying")
+
+    def click_And_Enter_2Copies_Number_Field(self):
+        sleep(1)
+        poco.scroll()
+        Copies_Number_Field = self.poco(name="android.widget.EditText")
+        Copies_Number_Field.click()
+        sleep(1)
+        Copies_Number_Field.set_text(" ")
+        sleep(1)
+        Copies_Number_Field.set_text("2")
+
+    def Verify_Printer_Not_Found_Popup(self):
+        sleep(5)
+        a= self.poco(nameMatches="(?s).*Printer Not Found.*")
+        if a.exists():
+           a.get_name()
+           print(a)
+
+    def click_Continue_Button(self):
+        sleep(2)
+        if self.poco(name="Continue").exists():
+            self.poco(name="Continue").click()

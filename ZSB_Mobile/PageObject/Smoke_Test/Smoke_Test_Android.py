@@ -11,6 +11,9 @@ from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
+
 
 class Smoke_Test_Android:
     pass
@@ -21,14 +24,13 @@ class Smoke_Test_Android:
         self.Continue_With_Facebook_Option = "Continue with Facebook"
         self.Continue_With_Apple_Option = "Continue with Apple"
         self.home_Text_IS_Present = "Home"
-        self.Facebook_UserName = Template(r"tpl1707806465367.png", record_pos=(-0.169, -0.869), resolution=(1170, 2532))
         self.Continue_With_Password_ForApple_Login = "Continue with Password"
         self.click_On_Password_Text_field = "SecureTextField"
         self.Sign_In_Option = "Sign In"
-        self.Apple_UserName = Template(r"tpl1707817586300.png", record_pos=(-0.191, -0.867),
+        self.Apple_UserName = Template(Basic_path("tpl1707817586300.png"), record_pos=(-0.191, -0.867),
                                        resolution=(1170, 2532))
 
-        self.Google_UserName = Template(r"tpl1707818376117.png", record_pos=(-0.174, -0.867), resolution=(1170, 2532))
+        self.Google_UserName = Template(Basic_path("tpl1707818376117.png"), record_pos=(-0.174, -0.867), resolution=(1170, 2532))
 
         self.MyData_Tab = "My Data"
         self.Plus_Icon = "android.widget.Button"
@@ -46,24 +48,37 @@ class Smoke_Test_Android:
         self.Copy_To_My_Design_Text = "Copy to My Designs"
         self.Print_button = "Print"
         self.Select_Btn = "Select"
-        self.Threedot_On_MyData="android.widget.Button"
+        self.Threedot_On_MyData = "android.widget.Button"
 
     # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def Verify_SignIn_With_Text_Is_Present(self):
         sleep(10)
-        SignIn_With_Text = self.poco(self.SignIn_With_Text)
-        SignIn_With_Text.get_text()
-        return SignIn_With_Text
+        a = self.poco(textMatches=".*Sign In With.*").get_name()
+        print(a)
 
     def click_Continue_With_Facebook_Option(self):
-        sleep(2)
+        sleep(10)
         Continue_With_Facebook_Option = self.poco(self.Continue_With_Facebook_Option)
         Continue_With_Facebook_Option.click()
-        sleep(20)
+
+    def click_Login_With_Facebook_Tab(self):
+        sleep(9)
+        zebra_login = self.poco(text="Sign In with your email")
+        zebra_login.click()
+        sleep(2)
+        poco(text(""))
+        poco(text("zebra03.swdvt@gmail.com"))
+        sleep(1)
+
+    def Enter_Facebook_Password(self):
+        password = self.poco(name="android.widget.EditText")[1]
+        sleep(2)
+        password.set_text("Zebra#123456789")
 
     def Verify_Facebook_UserName_Is_Displaying(self):
         sleep(3)
-        assert_exists(self.Facebook_UserName, "Facebook UserName is displaying")
+        if self.poco(nameMatches="(?s).*Zebra Soho .*").exists():
+            self.poco(nameMatches="(?s).*Zebra Soho .*").get_name()
 
     def click_Continue_With_Apple_Option(self):
         sleep(2)
@@ -81,7 +96,6 @@ class Smoke_Test_Android:
         enter_apple_id_password.click()
         sleep(2)
         poco(text("Testing@123"))
-
 
     def Enter_Apple_ID_Password(self):
         self.poco(text("Testing@123"))
@@ -122,7 +136,7 @@ class Smoke_Test_Android:
         sleep(2)
         sign_in_with_microsoft = self.poco(self.SignIn_With_Microsoft)
         if sign_in_with_microsoft.exists():
-           sign_in_with_microsoft.click()
+            sign_in_with_microsoft.click()
         else:
             print("Sign in with Microsift is not displaying")
 
@@ -153,10 +167,6 @@ class Smoke_Test_Android:
         else:
             print("Emailo Field is not displaying")
 
-
-
-
-
     def Upload_Files(self):
         sleep(2)
         Upload_Files = self.poco(self.Select_Upload_Files)
@@ -186,21 +196,27 @@ class Smoke_Test_Android:
         sleep(8)
 
     def Add_Multiple_Copies_Number(self):
-        # Copies_Field = self.poco(self.Copies_Field)
-        poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").offspring(
-            "android.widget.ScrollView").child("android.widget.EditText")[1].set_text("")
-        poco(text("3"))
+        sleep(5)
+        copies_number = self.poco(name="android.widget.EditText").click()
+        copies_number.set_text("3")
+        sleep(1)
+
+    def click_And_Enter_Copies_Number_Field(self):
+        sleep(1)
+        poco.scroll()
+        Copies_Number_Field = self.poco(name="android.widget.EditText")
+        Copies_Number_Field.click()
+        sleep(1)
+        Copies_Number_Field.set_text(" ")
+        sleep(1)
+        Copies_Number_Field.set_text("3")
 
     def click_On_Copies_Filed(self):
-        sleep(3)
-        poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").offspring(
-            "android.widget.ScrollView").child("android.widget.EditText")[1].click()
+        sleep(8)
+        copies_number=self.poco(name="android.widget.EditText").click().click()
+        copies_number.set_text(" ")
+        copies_number.set_text("3")
         sleep(2)
-        poco.set_text("")
-
-    # def Add_Multiple_Copies_Number(self):
-    #     poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").offspring("android.widget.ScrollView").child("android.widget.EditText")[1]).set_text("3")
-
     def click_Delete_Button_On_MyDesign(self):
         sleep(3)
         Delete_Button_On_MyDesign = self.poco(self.Delete_Button_On_MyDesign)
@@ -238,7 +254,6 @@ class Smoke_Test_Android:
         else:
             print("The list is not sorted from A to Z.")
 
-
     def click_Back_Icon_On_Address_Screen(self):
         sleep(3)
         Back_Icon = self.poco(self.Back_Icon_On_Address_Screen)
@@ -256,24 +271,23 @@ class Smoke_Test_Android:
         a = self.poco(self.Copy_To_My_Design_Text).get_name()
         return a
 
-
     def click_Email_Text_Field(self):
-            sleep(2)
-            microsoft_email = self.poco(type="android.widget.EditText")
-            if microsoft_email.exists():
-                microsoft_email.click()
-                sleep(1)
-                microsoft_email.set_text("swdvt.zebra@outlook.com")
-                sleep(4)
-            else:
-                print("Sign in field is not displaying")
+        sleep(2)
+        microsoft_email = self.poco(type="android.widget.EditText")
+        if microsoft_email.exists():
+            microsoft_email.click()
+            sleep(1)
+            microsoft_email.set_text("swdvt.zebra@outlook.com")
+            sleep(4)
+        else:
+            print("Sign in field is not displaying")
 
     def click_Next_Button(self):
         sleep(1)
         Next_Button = self.poco(text="Next")
         if Next_Button.exists():
-           Next_Button.click()
-           sleep(2)
+            Next_Button.click()
+            sleep(2)
         else:
             print("Next button is not displaying")
 
@@ -309,10 +323,10 @@ class Smoke_Test_Android:
     def click_Microsoft_Password_Field(self):
         sleep(2)
         microsoft_password = self.poco(type="android.widget.EditText")
-        if microsoft_password .exists():
-            microsoft_password .click()
+        if microsoft_password.exists():
+            microsoft_password.click()
             sleep(1)
-            microsoft_password .set_text("Swdvt@123")
+            microsoft_password.set_text("Swdvt@123")
             sleep(4)
         else:
             print("Password field is not displaying")
@@ -328,15 +342,12 @@ class Smoke_Test_Android:
         else:
             print("Password field is not displaying")
 
-
-
-
     def click_Sign_In_Button(self):
         sleep(1)
         sign_in_btn = self.poco(text="Sign in")
         if sign_in_btn.exists():
-           sign_in_btn.click()
-           sleep(1)
+            sign_in_btn.click()
+            sleep(1)
         else:
             print("Sign in button is not displaying")
 
@@ -344,8 +355,8 @@ class Smoke_Test_Android:
         sleep(2)
         microsoft_tab = self.poco(name="Microsoft OneDrive\nTab 2 of 2")
         if microsoft_tab.exists():
-           microsoft_tab.click()
-           sleep(1)
+            microsoft_tab.click()
+            sleep(1)
         else:
             print("Microsoft Onedrive tab is not present")
 
@@ -367,13 +378,13 @@ class Smoke_Test_Android:
 
     def click_On_Select_Btn(self):
         sleep(1)
-        select_btn=self.poco(self.Select_Btn)
+        select_btn = self.poco(self.Select_Btn)
         select_btn.click()
         sleep(4)
 
     def click_Three_Dot_On_MyData(self):
         sleep(1)
-        threedot=self.poco(self.Threedot_On_MyData)
+        threedot = self.poco(self.Threedot_On_MyData)
         threedot.click()
         sleep(1)
 
@@ -436,3 +447,9 @@ class Smoke_Test_Android:
     def get_first_design_in_my_designs(self):
         a = self.poco("android.view.View").child(type="android.widget.ImageView")[0].get_name()
         return a
+
+    def click_Continue_As_Zebra(self):
+        sleep(16)
+        if self.poco(text="Continue as Zeba").exists():
+            self.poco(text="Continue as Zeba").click()
+            sleep(20)

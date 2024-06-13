@@ -12,7 +12,6 @@ from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 
 from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen import Login_Screen
 
 common_method = Common_Method(poco)
 

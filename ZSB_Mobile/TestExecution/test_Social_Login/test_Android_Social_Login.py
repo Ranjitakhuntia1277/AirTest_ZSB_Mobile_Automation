@@ -1,8 +1,11 @@
 import time
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ...PageObject.Social_Login.Social_Login import Social_Login
 from ...Common_Method import *
 import os
@@ -27,13 +30,18 @@ connect_device("Android:///")
 # start_app("com.zebra.soho_app")
 # sleep(3.0)
 
-login_page = Login_Screen(poco)
 social_login = Social_Login(poco)
 add_a_printer_page = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 others = Others(poco)
 data_sources_page = Data_Sources_Screen(poco)
 help_page = Help_Screen(poco)
+login_page = Login_Screen(poco)
+app_settings_page = App_Settings_Screen(poco)
+add_a_printer_screen = Add_A_Printer_Screen(poco)
+smoke_test_android = Smoke_Test_Android(poco)
+registration_page = Registration_Screen(poco)
+aps_notification = APS_Notification(poco)
 
 
 class test_Android_Social_Login():
@@ -1626,3 +1634,55 @@ class test_Android_Social_Login():
         social_login.click_on_next_in_google_sing_in()
         if not social_login.check_for_incorrect_username_in_google():
             raise Exception("error not found for incorrect email")
+
+    def test_Smoke_Test_TestcaseID_45883(self):
+        """Verify sign in sign out with registered social accounts in Mobile App."""
+
+        """start the app"""
+        common_method.tearDown()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_Menu_HamburgerICN()
+        app_settings_page.click_pen_Icon_near_UserName()
+        app_settings_page.Scroll_till_Delete_Account()
+        app_settings_page.click_Logout_Btn()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
+        smoke_test_android.Verify_SignIn_With_Text_Is_Present()
+        smoke_test_android.click_Continue_With_Facebook_Option()
+        """""due to some issue, it is directly login to the facebook account without asking for password"""
+        smoke_test_android.click_Continue_As_Zebra()
+        login_page.click_Menu_HamburgerICN()
+        smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+        app_settings_page.click_pen_Icon_near_UserName()
+        app_settings_page.Scroll_till_Delete_Account()
+        app_settings_page.click_Logout_Btn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        smoke_test_android.click_Continue_With_Apple_Option()
+        smoke_test_android.click_Continue_With_Password_ForApple_Login()
+        smoke_test_android.click_On_Password_Textfield()
+        smoke_test_android.click_On_Sign_In_Option()
+        login_page.click_Menu_HamburgerICN()
+        smoke_test_android.Verify_Apple_UserName_Is_Displaying()
+        app_settings_page.click_pen_Icon_near_UserName()
+        app_settings_page.Scroll_till_Delete_Account()
+        app_settings_page.click_Logout_Btn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_Loginwith_Google()
+        login_page.Loginwith_Added_Email_Id()
+        smoke_test_android.Verify_Google_UserName_Is_Displaying()
+        common_method.Stop_The_App()
+
+    #
+    # # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    #

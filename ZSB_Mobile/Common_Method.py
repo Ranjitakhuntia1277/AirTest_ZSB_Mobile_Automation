@@ -34,7 +34,6 @@ from airtest.core.api import device as current_device
 from poco import poco
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import simpledialog
 
 # from test.body import poco
 
@@ -1143,16 +1142,12 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         messagebox.showinfo("Notification", "Cover Open")
 
-    def show_message(self, msg):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)  # Ensure the root window is on top
-        messagebox.showinfo("Information", msg)
-        root.destroy()
+    def Turn_Off_The_Phone(self):
+        sleep(1)
+        keyevent("KEYCODE_POWER")
 
-    def get_user_input(self, msg):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        user_input = simpledialog.askstring("Input", msg)
-        return user_input
+
+    def Turn_ON_The_Phone(self):
+        keyevent("KEYCODE_POWER")
+        sleep(1)
+        swipe((540, 1600), (540, 400))

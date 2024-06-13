@@ -10,6 +10,8 @@ from ...Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings", a)
 
 class App_Settings_Screen:
     pass
@@ -25,7 +27,7 @@ class App_Settings_Screen:
         self.Current_Network_Txt = "Current Networks"
         self.Network_Name_Txt = "NESTWIFI"
         self.ZEBRA_Network = "Zebra"
-        self.Network_Password_Field = Template(r"tpl1706704195474.png", record_pos=(0.009, 0.083),
+        self.Network_Password_Field = Template(Basic_path("tpl1706704195474.png"), record_pos=(0.009, 0.083),
                                                resolution=(1080, 2400))
         self.Network_Status_Txt = "Network Status"
         self.Network_Status_Result_Txt = "Connected"
@@ -36,7 +38,7 @@ class App_Settings_Screen:
         self.Test_Print_Btn = "Test Print"
         self.Continue_Btn_on_Bluetooth_Connection_Failed_popup = "Continue"
         self.Cancel_Btn_n_Bluetooth_Connection_Failed_Popup = "Cancel"
-        self.Red_Icon_to_remove_network = Template(r"tpl1704879780106.png", record_pos=(0.424, 0.164),
+        self.Red_Icon_to_remove_network = Template(Basic_path("tpl1704879780106.png"), record_pos=(0.424, 0.164),
                                                    resolution=(1080, 2400))
         self.Add_Network = "Add Network"
         self.Add_Network_Txt = "Add Network"
@@ -92,14 +94,12 @@ class App_Settings_Screen:
 
         self.Cancel_on_Delete_Account_Popup = "Cancel"
 
-        # self.ThreeDot_On_Added_Printer_On_HomePage = Template(r"tpl1717516073248.png", record_pos=(0.396, -0.555), resolution=(1080, 2400))
-
-        self.ThreeDot_On_Added_Printer_On_HomePage = Template(r"tpl1705915293017.png", record_pos=(0.402, -0.553),
+        self.ThreeDot_On_Added_Printer_On_HomePage = Template(Basic_path("tpl1705915293017.png"), record_pos=(0.402, -0.553),
                                                               resolution=(1080, 2400))
         self.Delete_Printer_Button = "Delete"
 
         self.Yes_Delete_Button = "Yes, Delete"
-        self.Unpair_Bluetooth_dropdown_list = Template(r"tpl1706788194403.png", record_pos=(0.329, 0.09),
+        self.Unpair_Bluetooth_dropdown_list = Template(Basic_path("tpl1706788194403.png"), record_pos=(0.329, 0.09),
                                                        resolution=(1080, 2400))
 
         self.Printer_Name_Text = "Printer Name"
@@ -858,15 +858,14 @@ class App_Settings_Screen:
             print("zsb-12 is not present")
 
     def Verify_Printer_Is_Not_Displaying(self):
-        sleep(3)
+        sleep(5)
         if not self.Printer_is_present:
             return "Printer Is removed"
         return "Printer Is  still present"
 
     def click_Firstone_In_Recently_Prtinted_Label(self):
-        sleep(1)
-        firstone = self.poco(self.Firstone_In_Recently_Printed_Labels)
-        firstone.click()
+        sleep(4)
+        self.poco(name="Recently Printed Labels").parent().child()[2].click()
         sleep(3)
 
     def Update_First_Name_With_Special_Characters_with_30_characters(self):
@@ -1095,7 +1094,7 @@ class App_Settings_Screen:
         print("Screen freeze for 30 seconds completed.")
 
     def click_Yes_Delete_Button(self):
-        sleep(1)
+        sleep(4)
         Yes_Delete_Button = self.poco(self.Yes_Delete_Button)
         Yes_Delete_Button.click()
 
@@ -1654,17 +1653,17 @@ class App_Settings_Screen:
 
     def click_Unpair_Icon(self):
         sleep(1)
-        unpair_icon = self.poco(name="com.oplus.wirelesssettings:id/deviceDetails")
+        unpair_icon = self.poco(name="com.android.settings:id/settings_button")
         unpair_icon.click()
 
     def click_On_Unpair(self):
         sleep(1)
-        unpair = self.poco(text="Unpair")
+        unpair = self.poco(text="Forget")
         unpair.click()
         sleep(8)
 
     def click_Done_Btn(self):
-        sleep(1)
+        sleep(4)
         unpair = self.poco(name="Done")
         unpair.click()
 
@@ -1686,3 +1685,11 @@ class App_Settings_Screen:
         sleep(2)
         if self.poco(name="androidx.cardview.widget.CardView").exists():
            self.poco(name="androidx.cardview.widget.CardView").click()
+
+    def click_Confirm_Delete_Popup(self):
+        sleep(3)
+        forget_device= self.poco(text="Forget device")
+        if forget_device.exists():
+           forget_device.click()
+           sleep(3)
+
