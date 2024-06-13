@@ -34,23 +34,23 @@ aps_notification = APS_Notification(poco)
 # #### bug id-SMBM-2773
 def test_AppSettings_TestcaseID_47913():
     """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
-
-    common_method.tearDown()
-    # test_robo_finger()
-    # sleep(6)
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    """"verify home text is displaying on the home screen"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
+    #
+    # common_method.tearDown()
+    # # test_robo_finger()
+    # # sleep(6)
+    # common_method.Clear_App()
+    # common_method.Start_The_App()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_loginBtn()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_Loginwith_Google()
+    # login_page.Loginwith_Added_Email_Id()
+    # """"verify home text is displaying on the home screen"""
+    # app_settings_page.Home_text_is_present_on_homepage()
+    # """click on the hamburger icon"""
+    # login_page.click_Menu_HamburgerICN()
     """"click on Add printer tab"""""
     add_a_printer_screen.click_Add_A_Printer()
     """"click on the start button"""

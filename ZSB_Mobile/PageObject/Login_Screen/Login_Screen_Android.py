@@ -209,3 +209,13 @@ class Login_Screen:
     def Enter_Zebra_Password(self):
         password = self.poco("android.widget.EditText")[1]
         password.set_text("Testing@12345")
+
+    def click_Continue_On_Facebbok_Login_Page(self):
+        sleep(10)
+        a = self.poco(textMatches="(?s).*Continue.*")
+        if a.exists():
+            a.click()
+            print(a)
+
+
+
