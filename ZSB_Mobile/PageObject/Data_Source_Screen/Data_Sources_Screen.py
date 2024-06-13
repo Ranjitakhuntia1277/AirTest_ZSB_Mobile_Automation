@@ -17,11 +17,11 @@ from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 
-
 login_page = Login_Screen(poco)
 help_page = Help_Screen(poco)
 common_method = Common_Method(poco)
 registration_page = Registration_Screen(poco)
+
 
 class Data_Sources_Screen:
     pass
@@ -65,12 +65,16 @@ class Data_Sources_Screen:
         self.Search_Files = Template(r"tpl1705645360605.png", record_pos=(-0.261, -0.571), resolution=(1080, 2340))
         self.expectedSearchList = ["Tes1.jpg", "Test2.png", "Test3.bmp"]
         self.Sign_In_With_Microsoft = "Sign in with Microsoft"
-        self.Sign_In_With_Microsoft_Template = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "Microsoft_Icon.png"), record_pos=(0.002, 0.183),
-                                                        resolution=(1080, 2340))
+        self.Sign_In_With_Microsoft_Template = Template(
+            os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
+                         "Microsoft_Icon.png"), record_pos=(0.002, 0.183),
+            resolution=(1080, 2340))
         self.test_45738 = Template(r"tpl1706683702494.png", record_pos=(0.0, -0.264), resolution=(1080, 2340))
         self.Sign_In_With_Google = "Sign in with Google"
-        self.Sign_In_With_Google_Template = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "Google_Icon.png"), record_pos=(-0.006, 0.017),
-                                                     resolution=(1080, 2340))
+        self.Sign_In_With_Google_Template = Template(
+            os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
+                         "Google_Icon.png"), record_pos=(-0.006, 0.017),
+            resolution=(1080, 2340))
         self.Select = "Select"
         self.File_Name_Web = ""
         # self.search_File_Name = ""
@@ -115,9 +119,11 @@ class Data_Sources_Screen:
         account.click()
 
     def select_File_To_Upload(self, return_name=False):
-        name_on_device = self.poco("com.google.android.documentsui:id/item_root")[0].child("android.widget.LinearLayout").child("android.widget.LinearLayout").offspring("android:id/title").get_text()
+        name_on_device = self.poco("com.google.android.documentsui:id/item_root")[0].child(
+            "android.widget.LinearLayout").child("android.widget.LinearLayout").offspring("android:id/title").get_text()
         self.File_Info_Device.append(name_on_device)
-        file = self.poco("com.google.android.documentsui:id/item_root")[0].child("android.widget.LinearLayout").child("android.widget.LinearLayout").offspring("android:id/title")
+        file = self.poco("com.google.android.documentsui:id/item_root")[0].child("android.widget.LinearLayout").child(
+            "android.widget.LinearLayout").offspring("android:id/title")
         file.click()
         if return_name:
             return name_on_device
@@ -763,6 +769,7 @@ class Data_Sources_Screen:
         self.lock_phone()
         sleep(2)
         wake()
+
     def checkIfAccPresentLink(self, account):
         start = 0
         end = 1
@@ -1222,9 +1229,9 @@ class Data_Sources_Screen:
             for i in range(start, file_count - 1):
                 print(i)
                 filee_name = \
-                self.poco("com.google.android.documentsui:id/preview_icon")[2].parent().parent().parent().child()[
-                    i].child("android.widget.LinearLayout").child("android.widget.LinearLayout").child(
-                    "android.widget.LinearLayout").child().get_text()
+                    self.poco("com.google.android.documentsui:id/preview_icon")[2].parent().parent().parent().child()[
+                        i].child("android.widget.LinearLayout").child("android.widget.LinearLayout").child(
+                        "android.widget.LinearLayout").child().get_text()
                 print(filee_name)
                 curr_list.append(filee_name)
                 print("curr:", curr_list)
@@ -1351,7 +1358,8 @@ class Data_Sources_Screen:
         end = 1
         while True:
             for i in range(start, len(self.poco("android.widget.ListView").child()) - end):
-                if self.poco("android.widget.ListView").child()[i].child().child()[0].get_text() == "Use another account":
+                if self.poco("android.widget.ListView").child()[i].child().child()[
+                    0].get_text() == "Use another account":
                     return False
                 elif self.poco("android.widget.ListView").child()[i].child().child()[1].get_text() == account:
                     return True
@@ -1365,8 +1373,10 @@ class Data_Sources_Screen:
 
     def chooseAcc(self, Acc_Name="zsbswdvt@gmail.com"):
         account = self.poco(text=Acc_Name)
-        while not account.exists():
+        count = 5
+        while not account.exists() and count != 0:
             self.poco.scroll()
+            count -= 1
         account.click()
 
     def click_GooglemailId(self):
@@ -1405,14 +1415,21 @@ class Data_Sources_Screen:
             try:
                 scrolls = 5
                 while scrolls != 0:
-                    poco.scroll()
+                    self.poco.scroll()
+                    scrolls -= 1
                 if self.poco(text="Skip").exists():
                     self.poco(text="Skip").click()
             except:
                 pass
-            while not self.poco(text="I agree").exists():
-                self.poco.scroll()
-            self.poco(text="I agree").click()
+            try:
+                scrolls = 5
+                while scrolls != 0:
+                    self.poco.scroll()
+                    scrolls -= 1
+                if self.poco(text="I agree").exists():
+                    self.poco(text="I agree").click()
+            except:
+                pass
             try:
                 self.poco(text="Not now").wait_for_appearance(timeout=15)
                 self.poco(text="Not now").click()
@@ -1433,12 +1450,16 @@ class Data_Sources_Screen:
             if self.checkIfAccPresent(account):
                 self.chooseAcc(account)
             else:
-                while not self.poco(text="Use another account").exists():
+                count = 5
+                while not self.poco(text="Use another account").exists() and count != 0:
                     self.poco.scroll()
+                    count -= 1
                 self.click_GooglemailId()
                 if self.poco(text="Signed in to Google as").exists():
-                    while not self.poco(text="Add account to device").exists():
+                    count = 5
+                    while not self.poco(text="Add account to device").exists() and count != 0:
                         self.poco.scroll()
+                        count-=1
                     self.addAccountToDevice()
                 self.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
 
@@ -1462,8 +1483,10 @@ class Data_Sources_Screen:
                 self.poco("android.widget.CheckBox").click()
 
     def labelRangeSelection(self, label_range, confirm=True):
-        while not self.poco("Print").exists():
+        count=5
+        while not self.poco("Print").exists() and count!=0:
             self.poco.scroll()
+            count-=1
         checkbox = self.poco(self.Check_Box)
         self.poco("Print").parent().child()[-7].click()
         self.select_All()
@@ -1498,8 +1521,10 @@ class Data_Sources_Screen:
             self.poco("Open navigation menu").click()
             sleep(3)
             self.poco("android.widget.Button").click()
-            while not self.poco("Log Out").exists():
+            count = 5
+            while not self.poco("Log Out").exists() and count!=0:
                 self.poco.scroll()
+                count-=1
             self.poco("Log Out").click()
         except:
             pass
@@ -1684,4 +1709,3 @@ class Data_Sources_Screen:
             self.poco(text="Home").wait_for_appearance(timeout=20)
         except:
             raise Exception("Did not reach home page.")
-

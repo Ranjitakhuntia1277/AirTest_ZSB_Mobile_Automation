@@ -479,16 +479,19 @@ class Template_Management_Screen:
         if self.poco("Relink Data Source Columns").exists():
             return True
 
+    def checkIfOnPrintPage(self):
+        return self.poco(nameMatches=".*Label.*").exists()
+
     def selectChooseAnOption(self, option_count=1, option_name=None, click=True):
-        relink_data_source_page = False
+        choice_name = False
         try:
             self.poco(nameMatches="(?s).*Choose an option.*").wait_for_appearance(timeout=20)
         except:
             sleep(3)
 
         for i in range(1, option_count + 1):
-            if self.checkIfOnRelinkDataSourcesPage():
-                relink_data_source_page = True
+            if self.checkIfOnRelinkDataSourcesPage() or self.checkIfOnPrintPage():
+                choice_name = True
             try:
                 self.poco(nameMatches="(?s).*Choose an option.*").click()
             except:
@@ -497,7 +500,7 @@ class Template_Management_Screen:
                 if option_name is None:
                     self.poco("android.view.View")[6].child()[option_count - i].click()
                 else:
-                    if relink_data_source_page:
+                    if choice_name:
                         self.choose_file_relink_data_sources(option_name)
                     else:
                         self.choose_file_update_data_connections(option_name)
