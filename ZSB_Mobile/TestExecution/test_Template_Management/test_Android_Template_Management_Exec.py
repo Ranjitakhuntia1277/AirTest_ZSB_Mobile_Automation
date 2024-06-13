@@ -3578,7 +3578,7 @@ def test_Smoke_Test_TestcaseID_45881():
     smoke_test_android.Verify_SignIn_With_Text_Is_Present()
     smoke_test_android.click_Continue_With_Facebook_Option()
     """""due to some issue, it is directly login to the facebook account without asking for password"""
-    smoke_test_android.click_Continue_As_Zebra()
+    login_page.click_Continue_On_Facebbok_Login_Page()
     login_page.click_Menu_HamburgerICN()
     smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
     app_settings_page.click_My_Design()
