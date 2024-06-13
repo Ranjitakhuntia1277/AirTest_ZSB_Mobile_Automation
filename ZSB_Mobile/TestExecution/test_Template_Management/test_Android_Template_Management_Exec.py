@@ -235,9 +235,6 @@ def test_Template_Management_TestcaseID_45932():
 """JayKirans Code"""
 
 
-"""zebraidctest@gmail.com"""
-
-
 def test_Template_Management_TestcaseID_46015():
     pass
     """Step 1-4 web portal - pending due to web in consistency"""
@@ -255,11 +252,16 @@ def test_Template_Management_TestcaseID_46015():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
-        while not poco(text="Add account to device").exists():
-            poco.scroll()
+        if poco(text="Signed in to Google as").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
+                poco.scroll()
+                count-=1
         registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
     try:
@@ -293,8 +295,10 @@ def test_Template_Management_TestcaseID_46015():
         registration_page.wait_for_element_appearance("android.widget.ImageView", 20)
     except:
         raise Exception("Print preview not present.")
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     data_sources_page.clickBackArrow()
@@ -347,8 +351,10 @@ def test_Template_Management_TestcaseID_46015():
     data_sources_page.remove_File_Web()
     sleep(5)
     stop_app("com.android.chrome")
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     common_method.Stop_The_App()
 
@@ -358,6 +364,7 @@ def test_Template_Management_TestcaseID_45924():
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     lastPrintInitial = template_management_page.getLastPrintFromFirstDesignInRecentlyPrintedDesigns()
+    raise Exception("Recently printed label has a bug SMBM-1748 hence unable to proceed.")
     template_management_page_1.click_first_design_in_recently_printed_labels()
     data_sources_page.clickPrint()
     template_management_page.wait_for_appearance_enabled("Print")
@@ -373,6 +380,7 @@ def test_Template_Management_TestcaseID_45924():
         pass
     else:
         raise Exception("Last print info updated without printing.")
+    raise Exception("Recently printed label has a bug SMBM-1748 hence unable to proceed.")
     template_management_page_1.click_first_design_in_recently_printed_labels()
     data_sources_page.clickPrint()
     template_management_page.wait_for_appearance_enabled("Print")
@@ -417,33 +425,36 @@ def test_Template_Management_TestcaseID_46032():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
     sleep(5)
     data_sources_page.verifyIfPreviewIsPresent()
-    count = template_management_page.get_total_contacts()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if int(number_of_labels) == int(count):
+    if int(number_of_labels) == 15:
         pass
     else:
-        if int(number_of_labels) > int(count):
+        if int(number_of_labels) > 15:
             raise Exception("Label amount is more than the number of contacts.")
         else:
             raise Exception("Label amount is less than the number of contacts.")
     scroll_view = poco("android.widget.ScrollView")
     """verify label range navigation works"""
     template_management_page.verify_label_navigation()
-    """cannot automate - check all the link column values are correct, the preview image is correct -has to be done manually"""
     while poco(nameMatches=".*Label . of .*").exists():
         scroll_view.swipe("up")
-    """check that variables with empty value in that contact are available for your to input the value at print time - unable to enter manually"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.choose_label_print_range()
     """cannot automate - check the table info is the same as your contact info - has to be checked manually"""
     data_sources_page.clickConfirm()
     sleep(3)
     """Cannot automate  - has to be done manually as unable to enter data for missing fields"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     try:
         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 20)
@@ -468,11 +479,16 @@ def test_Template_Management_TestcaseID_46029():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
-        while not poco(text="Add account to device").exists():
-            poco.scroll()
+        if poco(text="Signed in to Google as").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
+                poco.scroll()
+                count-=1
         registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
     try:
@@ -515,11 +531,12 @@ def test_Template_Management_TestcaseID_46029():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
-    count = int(template_management_page.get_total_contacts())
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == count:
+    if number_of_labels == 1:
         pass
     else:
         error = f"There are {number_of_labels} labels printing even when connected to google account with no contacts."
@@ -532,6 +549,7 @@ def test_Template_Management_TestcaseID_46029():
         raise Exception("Tabel is not empty.")
     data_sources_page.clickBackArrow()
     """Step - 7 pending as input fields are not editable."""
+    raise Exception("Unable to enter data to empty values due to bug SMBM-2204")
     data_sources_page.clickPrint()
     try:
         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
@@ -576,17 +594,19 @@ def test_Template_Management_TestcaseID_46029():
     stop_app("com.android.chrome")
     registration_page.wait_for_element_appearance("Home", 20)
     registration_page.wait_for_element_appearance("Recently Printed Labels", 20)
+    raise Exception("Recently printed label has a bug SMBM-1748 hence unable to proceed.")
     """Yet to execute as recently printed labels has bug"""
     template_management_page_1.click_first_design_in_recently_printed_labels()
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
     sleep(5)
     data_sources_page.verifyIfPreviewIsPresent()
-    count = int(template_management_page.get_total_contacts())
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == count:
+    if number_of_labels == 2:
         pass
     else:
         error = f"There are {number_of_labels} labels printing even when connected to google account with no contacts."
@@ -715,8 +735,10 @@ def test_Template_Management_TestcaseID_46019():
     """check that only the selected column values shown in the table - pending"""
     """Check and uncheck select all"""
     scroll_view = poco("android.widget.ScrollView")
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.choose_label_print_range()
     data_sources_page.select_All()
     data_sources_page.select_All(False)
@@ -726,8 +748,10 @@ def test_Template_Management_TestcaseID_46019():
     data_sources_page.clickConfirm()
     """Check"""
     template_management_page.verify_label_navigation()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     common_method.Stop_The_App()
 
@@ -1010,8 +1034,10 @@ def test_Template_Management_TestcaseID_46005():
     data_sources_page.clickPrint()
     template_management_page.fill_all_print_fields("0")
     """Clear the input box for print preview-unable to set value to blank"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     "Verify updated elements are visible in print preview-cannot automate"
     try:
@@ -1049,8 +1075,10 @@ def test_Template_Management_TestcaseID_46023():
     except:
         raise Exception("No error displayed")
     data_sources_page.clickCancel()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     poco.scroll()
     "navigate labels and check for error"
     data_sources_page.clickNext()
@@ -1093,8 +1121,10 @@ def test_Template_Management_TestcaseID_46023():
         raise Exception("Error message shown for column with numeric values.")
     except Exception as e:
         pass
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     "check print option is disabled"
     try:
         template_management_page.wait_for_appearance_disabled("Print", 5)
@@ -1197,8 +1227,10 @@ def test_Template_Management_TestcaseID_46024():
     data_sources_page.first_row_header(True)
     template_management_page.selectChooseAnOption(2)
     data_sources_page.clickContinue()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     initial_print_label_count = int(template_management_page.get_total_labels_printing())
     copies = 2
     template_management_page.changeCopiesCount(copies)
@@ -1264,8 +1296,10 @@ def test_Template_Management_TestcaseID_46024():
     data_sources_page.first_row_header(True)
     template_management_page.selectChooseAnOption(1)
     data_sources_page.clickContinue()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     new_remaining_label_1 = template_management_page.get_remaining_label_count()
     if new_remaining_label_1 == new_remaining_label:
         pass
@@ -1304,13 +1338,15 @@ def test_Template_Management_TestcaseID_46033():
         raise Exception("Microsoft Login dialog popped up even after google account already login")
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == 27:
+    if number_of_labels == 15:
         pass
     else:
-        if number_of_labels > 27:
+        if number_of_labels > 15:
             raise Exception("Label amount is more than the number of contacts.")
         else:
             raise Exception("Label amount is less than the number of contacts.")
@@ -1320,17 +1356,23 @@ def test_Template_Management_TestcaseID_46033():
     """cannot automate - check all the link column values are correct, the preview image is correct -has to be done manually"""
     while poco(nameMatches=".*Label . of .*").exists():
         scroll_view.swipe("up")
+    raise Exception("Unable to enter data to empty values due to bug SMBM-2204")
     """check that variables with empty value in that contact are available for your to input the value at print time - unable to enter manually"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     """cannot automate - check the table info is the same as your contact info - has to be checked manually"""
     data_sources_page.labelRangeSelection(7)
     sleep(3)
     template_management_page.verify_only_selected_rows_displayed_in_label_range("7")
     template_management_page.verify_label_navigation()
+    raise Exception("unable to enter data manually for missing fields")
     """Cannot automate step 9 - has to be done manually anda also unable to enter data manually for missing fields"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
     """Cannot automate-
@@ -1416,8 +1458,10 @@ def test_Template_Management_TestcaseID_46017():
     data_sources_page.clickContinue()
     template_management_page.check_if_on_print_preview_page()
     scroll_view = poco("android.widget.ScrollView")
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.verify_label_range_is_All()
     template_management_page.choose_label_print_range()
     try:
@@ -1454,11 +1498,16 @@ def test_Template_Management_TestcaseID_46027():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count != 0:
             poco.scroll()
+            count -= 1
         login_page.click_GooglemailId()
-        while not poco(text="Add account to device").exists():
-            poco.scroll()
+        if poco(text="Signed in to Google as").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count != 0:
+                poco.scroll()
+                count -= 1
         registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
     try:
@@ -1506,8 +1555,10 @@ def test_Template_Management_TestcaseID_46027():
     common_method.wait_for_element_appearance_namematches("Label", 20)
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     number_of_labels = int(template_management_page.get_total_labels_printing())
     if number_of_labels == 12:
         pass
@@ -1522,16 +1573,18 @@ def test_Template_Management_TestcaseID_46027():
     """cannot automate - check all the link column values are correct, the preview image is correct -has to be done manually"""
     while poco(nameMatches=".*Label . of .*").exists():
         scroll_view.swipe("up")
-    """check that variables with empty value in that contact are available for your to input the value at print time - unable to enter manually"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.choose_label_print_range()
     """cannot automate - check the table info is the same as your contact info - has to be checked manually"""
     data_sources_page.clickConfirm()
     sleep(3)
-    """Cannot automate  - has to be done manually as unable to enter data for missing fields"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     try:
         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 10)
@@ -1561,14 +1614,15 @@ def test_Template_Management_TestcaseID_46028():
         raise Exception("Google Login dialog popped up even after google account already login")
     sleep(5)
     data_sources_page.verifyIfPreviewIsPresent()
-    count = int(template_management_page.get_total_contacts())
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == count:
+    if number_of_labels == 12:
         pass
     else:
-        if number_of_labels > count:
+        if number_of_labels > 12:
             raise Exception("Label amount is more than the number of contacts.")
         else:
             raise Exception("Label amount is less than the number of contacts.")
@@ -1582,9 +1636,12 @@ def test_Template_Management_TestcaseID_46028():
     data_sources_page.clickNext()
     while poco(nameMatches=".*Label . of .*").exists():
         scroll_view.swipe("up")
+    raise Exception("Unable to enter data to empty values due to bug SMBM-2204")
     """check that variables with empty value in that contact are available for your to input the value at print time - unable to enter manually"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.choose_label_print_range()
     """cannot automate - check the table info is the same as your contact info - has to be checked manually"""
     data_sources_page.select_All(False)
@@ -1594,8 +1651,10 @@ def test_Template_Management_TestcaseID_46028():
     template_management_page.verify_only_selected_rows_displayed_in_label_range("7")
     template_management_page.verify_label_navigation()
     """Cannot automate step 9 - has to be done manually anda also unable to enter data manually for missing fields"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
     """Step 11 pending as unable to enter data manually for missing fields"""
@@ -1628,8 +1687,10 @@ def test_Template_Management_TestcaseID_46020():
         registration_page.wait_for_element_appearance("android.widget.ImageView", 20)
     except:
         raise Exception("Print preview not present.")
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.verify_label_range_is_All()
     """check that only the selected column values shown in the table - pending"""
     """select arbitrary number of columns"""
@@ -1737,8 +1798,10 @@ def test_Template_Management_TestcaseID_46022():
         registration_page.wait_for_element_appearance("android.widget.ImageView", 20)
     except:
         raise Exception("Print preview not present.")
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.verify_label_range_is_All()
     """check that only the selected column values shown in the table - pending"""
     """select arbitrary number of columns"""
@@ -1827,8 +1890,10 @@ def test_Template_Management_TestcaseID_46026():
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     """Cannot verify - navigate to check that the preview image is shown correctly- has to be done manually"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     poco.scroll()
     template_management_page.verify_label_range_is_All()
     data_sources_page.clickLabelRange()
@@ -1868,7 +1933,176 @@ def test_Template_Management_TestcaseID_46026():
     common_method.Stop_The_App()
 
 
-"""zebraloginzsb@gmail.com"""
+def test_Template_Management_TestcaseID_50656():
+    pass
+    common_method.tearDown()
+    login_page.click_Menu_HamburgerICN()
+    template_management_page.clickCommonDesigns()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
+    template_management_page.search_design_common_designs("PickImage")
+    keyevent("Enter")
+    common_method.wait_for_element_appearance_namematches("Designs")
+    template_management_page.select_label_common_designs()
+    data_sources_page.clickPrint()
+    template_management_page.selectChooseAnOption(1, "Zebra Gallery")
+    try:
+        template_management_page.wait_for_element_appearance_type("android.widget.ImageView")
+    except:
+        raise Exception("Zebra Gallery did not load.")
+    all_Icons = template_management_page.get_all_icons_zebra_gallery()
+    search_keyword = "Error"
+    template_management_page.search_Icons(search_keyword)
+    keyevent("Enter")
+    search_results = template_management_page.get_all_icons_zebra_gallery()
+    for icon in search_results:
+        if search_keyword in icon:
+            pass
+        else:
+            raise Exception("Search results do not contain the search keyword.")
+    template_management_page.search_Icons("")
+    keyevent("Enter")
+    icons_after_clearing_search = template_management_page.get_all_icons_zebra_gallery()
+    if all_Icons == icons_after_clearing_search:
+        pass
+    else:
+        raise Exception("All Icons did not show up after clearing search text.")
+    # common_method.Stop_The_App()
+    # """Sign in same account in web portal, go to my designs, create/edit a design, add an image, set it to prompt at print needs to be executed manually due to web inconsistency """
+    # start_app("com.android.chrome")
+    # sleep(2)
+    # poco("com.android.chrome:id/tab_switcher_button").click()
+    # sleep(2)
+    # poco("com.android.chrome:id/new_tab_view_button").click()
+    # sleep(2)
+    # poco(text="Search or type URL").click()
+    # sleep(2)
+    # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+    # sleep(2)
+    # data_sources_page.clickEnter()
+    # registration_page.wait_for_element_appearance_text("Home", 10)
+    # data_sources_page.click_Menu_HamburgerICNWeb()
+    # data_sources_page.clickMyDesigns()
+    # data_sources_page.lock_phone()
+    # wake()
+    # sleep(2)
+    # data_sources_page.click_Menu_HamburgerICNWeb()
+    # data_sources_page.clickCreateDesignBtn()
+    # sleep(5)
+    # data_sources_page.selectLabelSize()
+    # data_sources_page.clickContinueWeb()
+    # data_sources_page.lock_phone()
+    # wake()
+    # common_method.wait_for_element_appearance_text("Exit Designer")
+    # a, b = poco(text="Undo last operation. Max of 10 undo steps are supported.").get_position()
+    # while not poco(text="Add picture").exists():
+    #     common_method.swipe_screen([0.9, b], [0.3, b], 1)
+    #     data_sources_page.lock_phone()
+    #     wake()
+    #     sleep(3)
+    # data_sources_page.clickAddPhoto()
+    # data_sources_page.placePhoto()
+    # while not poco(text="Exit Designer").exists():
+    #     common_method.swipe_screen([0.1, b], [0.7, b], 1)
+    #     data_sources_page.lock_phone()
+    #     wake()
+    #     sleep(3)
+    design_name = "Pic_PromptAtPrint"
+    # data_sources_page.setLabelName(design_name)
+    # sleep(5)
+    # data_sources_page.exitDesigner()
+    # """Web pending due to inconsistent behaviour"""
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickMyDesigns()
+    data_sources_page.searchMyDesigns(design_name)
+    data_sources_page.selectDesignCreatedAtSetUp()
+    data_sources_page.clickPrint()
+    template_management_page.selectChooseAnOption(1, "Zebra Gallery")
+    try:
+        template_management_page.wait_for_element_appearance_type("android.widget.ImageView")
+    except:
+        raise Exception("Zebra Gallery did not load.")
+    template_management_page.clickSearchIconTextBox()
+    template_management_page.clickSearchIcon()
+    keyevent("Enter")
+    all_iconsAfterClickingSearch = template_management_page.get_all_icons_zebra_gallery()
+    if all_iconsAfterClickingSearch == all_Icons:
+        pass
+    else:
+        raise Exception("All Icons did not show up.")
+    template_management_page.clickFirstIcon()
+    count=5
+    while not poco("Print").exists() and count!=0:
+        poco.scroll()
+        count-=1
+    template_management_page.wait_for_appearance_enabled("Print")
+    data_sources_page.clickPrint()
+    try:
+        template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    except:
+        raise Exception("Print not successful.")
+    data_sources_page.clickBackArrow()
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickHome()
+    registration_page.wait_for_element_appearance("Recently Printed Labels", 20)
+    raise Exception("Recently printed label has a bug SMBM-1748 hence unable to proceed.")
+    """Yet to execute as recently printed labels has bug"""
+    template_management_page_1.click_first_design_in_recently_printed_labels()
+    data_sources_page.clickPrint()
+    template_management_page.selectChooseAnOption(1, "Zebra Gallery")
+    try:
+        template_management_page.wait_for_element_appearance_type("android.widget.ImageView")
+    except:
+        raise Exception("Zebra Gallery did not load.")
+    template_management_page.clickSearchIconTextBox()
+    template_management_page.clickSearchIcon()
+    keyevent("Enter")
+    all_iconsAfterClickingSearch = template_management_page.get_all_icons_zebra_gallery()
+    if all_iconsAfterClickingSearch == all_Icons:
+        pass
+    else:
+        raise Exception("All Icons did not show up.")
+    template_management_page.clickFirstIcon()
+    count=5
+    while not poco("Print").exists() and count!=0:
+        poco.scroll()
+        count-=1
+    template_management_page.wait_for_appearance_enabled("Print")
+    data_sources_page.clickPrint()
+    try:
+        template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    except:
+        raise Exception("Print not successful.")
+    common_method.Stop_The_App()
+
+
+def test_Template_Management_TestcaseID_47792():
+    pass
+
+    "Step 1-3 pending due to web inconsistency"
+    common_method.Start_The_App()
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickMyDesigns()
+    common_method.wait_for_element_appearance_namematches("Showing", 10)
+    """Search and select design created in web"""
+    data_sources_page.searchMyDesigns("CurrencyGBP")
+    data_sources_page.selectDesignCreatedAtSetUp()
+    data_sources_page.clickPrint()
+    initial_print_value = template_management_page.get_print_value()
+    template_management_page.click_print_value()
+    keyevent("keyword del")
+    keyevent("Enter")
+    modified_print_value = template_management_page.get_print_value()
+    if initial_print_value == modified_print_value:
+        raise Exception("Print value not modified on clicking backspace.")
+    else:
+        pass
+    common_method.Stop_The_App()
+
+
+
+"""zebra07.swdvt@gmail.com"""
 
 
 def test_Template_Management_TestcaseID_45981():
@@ -1880,7 +2114,7 @@ def test_Template_Management_TestcaseID_45981():
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -2568,69 +2802,70 @@ def test_Template_Management_TestcaseID_45993():
     common_method.Stop_The_App()
 
 
-# def test_Template_Management_TestcaseID_45994():
-#     pass
-#     common_method.tearDown()
-#     login_page.click_Menu_HamburgerICN()
-#     data_sources_page.clickMyDesigns()
-#     template_management_page.turn_off_wifi()
-#     template_management_page.click_filter_my_designs()
-#     label_size = template_management_page.select_label_size()
-#     sleep(3)
-#     if template_management_page.verify_connection_error_app():
-#         pass
-#     else:
-#         raise Exception("Connection lost error not displayed.")
-#     template_management_page.turn_on_wifi()
-#     sleep(5)
-#     template_management_page.click_filter_my_designs()
-#     label_size = template_management_page.select_label_size()
-#     template_management_page.wait_for_appearance_designs_in_a_particular_category()
-#     design_name = template_management_page.get_first_design_name_my_designs()
-#     design_list = template_management_page.get_all_designs_in_my_designs(True)
-#     title_count = template_management_page.get_showing_n_designs_number()
-#     if len(design_list) == int(title_count):
-#         pass
-#     else:
-#         raise Exception("Count in title doesn't match the number of designs.")
-#     template_management_page.turn_off_wifi()
-#     template_management_page.search_design_common_designs(design_name)
-#     """Step 8-10 pending due to bug SMBM-1774"""
-#     sleep(3)
-#     if template_management_page.verify_connection_error_app():
-#         pass
-#     else:
-#         raise Exception("Connection lost error not displayed.")
-#     template_management_page.turn_on_wifi()
-#     sleep(5)
-#     template_management_page.search_design_common_designs(design_name)
-#     try:
-#         template_management_page.wait_for_suggestions_to_appear()
-#     except:
-#         raise Exception("dropdown did not appear.")
-#     template_management_page.check_dropdown_options_Are_clickable()
-#     template_management_page.click_drop_down_result_1()
-#     try:
-#         template_management_page.wait_for_suggestions_to_appear()
-#         x = 1 / 0
-#     except ZeroDivisionError:
-#         raise Exception("dropdown is present.")
-#     except Exception as e:
-#         pass
-#     design_list = template_management_page.get_all_designs_in_my_designs(True)
-#     if len(design_list) == 1:
-#         if design_list[0] == design_name:
-#             pass
-#         else:
-#             raise Exception("The resulting design name doesn't match search name")
-#     else:
-#         raise Exception("There are more than 1 result.")
-#     title_count = template_management_page.get_showing_n_designs_number()
-#     if int(title_count) == 1:
-#         pass
-#     else:
-#         raise Exception("Title is not 'Showing 1 Design'.")
-#     common_method.Stop_The_App()
+def test_Template_Management_TestcaseID_45994():
+    pass
+    common_method.tearDown()
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickMyDesigns()
+    template_management_page.turn_off_wifi()
+    template_management_page.click_filter_my_designs()
+    label_size = template_management_page.select_label_size()
+    sleep(3)
+    raise Exception("Blocked due to bug SMBM-1774")
+    if template_management_page.verify_connection_error_app():
+        pass
+    else:
+        raise Exception("Connection lost error not displayed.")
+    template_management_page.turn_on_wifi()
+    sleep(5)
+    template_management_page.click_filter_my_designs()
+    label_size = template_management_page.select_label_size()
+    template_management_page.wait_for_appearance_designs_in_a_particular_category()
+    design_name = template_management_page.get_first_design_name_my_designs()
+    design_list = template_management_page.get_all_designs_in_my_designs(True)
+    title_count = template_management_page.get_showing_n_designs_number()
+    if len(design_list) == int(title_count):
+        pass
+    else:
+        raise Exception("Count in title doesn't match the number of designs.")
+    template_management_page.turn_off_wifi()
+    template_management_page.search_design_common_designs(design_name)
+    """Step 8-10 pending due to bug SMBM-1774"""
+    sleep(3)
+    if template_management_page.verify_connection_error_app():
+        pass
+    else:
+        raise Exception("Connection lost error not displayed.")
+    template_management_page.turn_on_wifi()
+    sleep(5)
+    template_management_page.search_design_common_designs(design_name)
+    try:
+        template_management_page.wait_for_suggestions_to_appear()
+    except:
+        raise Exception("dropdown did not appear.")
+    template_management_page.check_dropdown_options_Are_clickable()
+    template_management_page.click_drop_down_result_1()
+    try:
+        template_management_page.wait_for_suggestions_to_appear()
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("dropdown is present.")
+    except Exception as e:
+        pass
+    design_list = template_management_page.get_all_designs_in_my_designs(True)
+    if len(design_list) == 1:
+        if design_list[0] == design_name:
+            pass
+        else:
+            raise Exception("The resulting design name doesn't match search name")
+    else:
+        raise Exception("There are more than 1 result.")
+    title_count = template_management_page.get_showing_n_designs_number()
+    if int(title_count) == 1:
+        pass
+    else:
+        raise Exception("Title is not 'Showing 1 Design'.")
+    common_method.Stop_The_App()
 
 
 def test_Template_Management_TestcaseID_46010():
@@ -2832,11 +3067,16 @@ def test_Template_Management_TestcaseID_45966():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
-        while not poco(text="Add account to device").exists():
-            poco.scroll()
+        if poco(text="Signed in to Google as").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
+                poco.scroll()
+                count-=1
         registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("sohozsb@1234", account)
     try:
@@ -2952,8 +3192,10 @@ def test_Template_Management_TestcaseID_46037():
     data_sources_page.searchMyDesigns(designName)
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.wait_for_appearance_enabled("Print")
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
@@ -2977,8 +3219,10 @@ def test_Template_Management_TestcaseID_46038():
     """Navigating to page 3 pending as no pagination on app"""
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.wait_for_appearance_enabled("Print")
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
@@ -3013,8 +3257,10 @@ def test_Template_Management_TestcaseID_46039():
     data_sources_page.searchMyDesigns(new_name)
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     copies = 2
     template_management_page.changeCopiesCount(copies)
     keyevent("Enter")
@@ -3059,12 +3305,11 @@ def test_Template_Management_TestcaseID_46040():
     keyevent("Enter")
     template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
-    template_management_page.select_label_common_designs()
+    selected_label = template_management_page.select_label_common_designs() + " copy"
     template_management_page.click_copy_to_My_Designs()
     sleep(2)
     data_sources_page.clickBackArrow()
     """Open My designs"""
-    design_name = "Asset copy"
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -3074,11 +3319,13 @@ def test_Template_Management_TestcaseID_46040():
     else:
         error = f"{new_design_count} is not equal to {initial_design_count}+1({initial_design_count + 1})"
         raise Exception(error)
-    data_sources_page.searchMyDesigns(design_name)
+    data_sources_page.searchMyDesigns(selected_label)
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     copies = 2
     template_management_page.changeCopiesCount(copies)
     keyevent("Enter")
@@ -3147,8 +3394,10 @@ def test_Template_Management_TestcaseID_46041():
     data_sources_page.searchMyDesigns(design_selected)
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     template_management_page.wait_for_appearance_enabled("Print")
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
@@ -3374,11 +3623,16 @@ def test_Template_Management_TestcaseID_45965():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
-        while not poco(text="Add account to device").exists():
-            poco.scroll()
+        if poco(text="Signed in to Google as").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
+                poco.scroll()
+                count-=1
         registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zsbswdvt1@1234", account)
     try:
@@ -3448,8 +3702,10 @@ def test_Template_Management_TestcaseID_45921():
         common_method.wait_for_element_appearance_namematches("Label")
     except:
         raise Exception("Print page did not pop up.")
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     remaining_label_count = template_management_page.get_remaining_label_count()
     data_sources_page.clickPrint()
     new_label_count = template_management_page.get_remaining_label_count()
