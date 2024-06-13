@@ -67,7 +67,7 @@ class Login_Screen:
 
 
     def Loginwith_Added_Email_Id(self):
-        sleep(4)
+        sleep(9)
         added_email= self.poco(text="SohoApp Testing")
         if added_email.exists():
             added_email.click()
