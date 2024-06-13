@@ -3111,12 +3111,11 @@ def test_Template_Management_TestcaseID_46040():
     keyevent("Enter")
     template_management_page.waitForAppearanceOfCategories()
     template_management_page.select_design_common_designs()
-    template_management_page.select_label_common_designs()
+    selected_label = template_management_page.select_label_common_designs() + " copy"
     template_management_page.click_copy_to_My_Designs()
     sleep(2)
     data_sources_page.clickBackArrow()
     """Open My designs"""
-    design_name = "Asset copy"
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -3126,7 +3125,7 @@ def test_Template_Management_TestcaseID_46040():
     else:
         error = f"{new_design_count} is not equal to {initial_design_count}+1({initial_design_count + 1})"
         raise Exception(error)
-    data_sources_page.searchMyDesigns(design_name)
+    data_sources_page.searchMyDesigns(selected_label)
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     count=5
@@ -3351,6 +3350,9 @@ def test_Template_Management_TestcaseID_48266():
         template_management_page.waitForAppearanceTypeName("android.widget.ImageView", "x")
     except:
         raise Exception("My Designs did not load properly.")
+    "Remove the copy for next execution"
+    data_sources_page.searchName(copied_design_name)
+    data_sources_page.remove_File()
     common_method.Stop_The_App()
 
 
@@ -3581,5 +3583,14 @@ def test_Template_Management_TestcaseID_46025():
                     "Recently printed date of the top design in recently printed design is not the current date.")
         else:
             raise Exception("First shown design in \"Recently Printed Labels\" is not the recently printed design.")
+        login_page.click_Menu_HamburgerICN()
+        data_sources_page.clickMyDesigns()
+        try:
+            template_management_page.waitForAppearanceTypeName("android.widget.ImageView", "x")
+        except:
+            raise Exception("My Designs did not load properly.")
+        "Remove the copy for next execution"
+        data_sources_page.searchName(selected_label)
+        data_sources_page.remove_File()
     common_method.Stop_The_App()
 
