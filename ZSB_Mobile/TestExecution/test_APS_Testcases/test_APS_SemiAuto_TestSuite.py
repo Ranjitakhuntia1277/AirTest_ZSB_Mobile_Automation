@@ -51,10 +51,16 @@ def test_Android_APS_Printer_Discover_TestcaseID_49158():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     """Turn off the printer manually"""
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Turn_OFF_The_Printer_Manually()
     aps_notification.Verify_Printer_Status_AS_Offline()
     """Head open on the printer manually """
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Open_The_Printer_Head_Manually()
     aps_notification.Verify_Printer_Status_AS_HeadOpen()
-    """"Make the status as paper out """
+    """"Make the status as paper out  Manually"""
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Remove_The_Cartridge_Manually()
     aps_notification.Verify_Printer_Status_AS_Paper_Out()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -71,16 +77,28 @@ def test_Android_APS_Printer_Discover_TestcaseID_50508():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     """Turn off the printer manually"""
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Turn_OFF_The_Printer_Manually()
     aps_notification.Verify_Printer_Status_AS_Offline()
     """Head open on the printer manually """
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Open_The_Printer_Head_Manually()
     aps_notification.Verify_Printer_Status_AS_HeadOpen()
     """"Make the status as paper out manually """
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Remove_The_Cartridge_Manually()
     aps_notification.Verify_Printer_Status_AS_Paper_Out()
     """"Make the status as media low manually """
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Make_The_Status_AS_LowMedia_Manually()
     aps_notification.Verify_Printer_Status_AS_Media_LOW()
     """Check Printers MAC address matches with what is on the physical printer manually"""""""""
-    """""""""Insert the cartridge which is different from the 4' x 6' label (eg. LC2) into the target printer""""""""""""
-    """"Check the preview page and the label would be re-sized in the preview page"""""""
+    """""""Insert the cartridge which is different from the 4' x 6' label (eg. LC2) into the target printer""""""
+    """"POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Insert_Different_Cartridge_Manually()
+    """"Check the preview page and the label would be re-sized in the preview page"""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Verify_Preview_Manually()
 # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_APS_Printing_TestcaseID_51379():
@@ -122,6 +140,8 @@ def test_APS_Printing_TestcaseID_51379():
     aps_notification.click_On_Cancel_Btn_On_The_Popup()
     aps_notification.Verify_Job_Is_Cancelled()
     """"""""""Check Manually all the below steps"""""""""""""""""""""""""""""""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Verify_All_The_Below_Points_Manually()
     """""1.that the printer would pause the printing and the print job have been cancelled
     6. Select another PDF or image, select to the same printer to print via printer 2
     Check the job is shown in Printer Spooler, waiting to sent
@@ -129,6 +149,8 @@ def test_APS_Printing_TestcaseID_51379():
     Check the job can be cancelled successfully
     Check the job for printer 2 will be send successfully
     8. Check printer 2 will print out the correct label"""""""""""""""""""""""""""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Verify_Printout_Manually()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Printer_Discover_TestcaseID_50514():
@@ -144,10 +166,16 @@ def test_Android_APS_Printer_Discover_TestcaseID_50514():
     aps_notification.click_Connection_Preferences()
     aps_notification.click_Printing_Tab()
     """Turn off the printer manually"""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Turn_OFF_The_Printer_Manually()
     aps_notification.Verify_Printer_Status_AS_Offline()
     """Head open on the printer manually """
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Open_The_Printer_Head_Manually()
     aps_notification.Verify_Printer_Status_AS_HeadOpen()
     """"Make the status as paper out """
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Remove_The_Cartridge_Manually()
     aps_notification.Verify_Printer_Status_AS_Paper_Out()
 ##### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -178,8 +206,12 @@ def test_APS_Printing_TestcaseID_49161():
     aps_notification.click_Available_Printer_To_Print()
     """""""""Insert the cartridge which is different from the 4' x 6' label (eg. LC2) into the target printer manually""""""""""""
     """"Check the preview page and the label would be re-sized in the preview page"""""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Insert_Different_Cartridge_Manually()
     aps_notification.click_Print_Icon_Option()
     """Verify the print Manually"""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Verify_Printout_Manually()
     # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_APS_Printing_TestcaseID_51614():
@@ -219,6 +251,8 @@ def test_APS_Printing_TestcaseID_51614():
     aps_notification.Verify_Print_job_IS_IN_Progress_Message()
     aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
     """"""""""Check Manually all the below steps"""""""""""""""""""""""""""""""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Verify_All_The_Below_Points_Manually()
     """""1.that the printer would pause the printing and the print job have been cancelled
     6. Select another PDF or image, select to the same printer to print via printer 2
     Check the job is shown in Printer Spooler, waiting to sent
@@ -226,6 +260,8 @@ def test_APS_Printing_TestcaseID_51614():
     Check the job can be cancelled successfully
     Check the job for printer 2 will be send successfully
     8. Check printer 2 will print out the correct label"""""""""""""""""""""""""""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Verify_Printout_Manually()
     ## """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49154():
@@ -255,10 +291,17 @@ def test_Android_APS_Print_Preview_TestcaseID_49154():
     aps_notification.Verify_Printer_Status()
     aps_notification.Verify_PaperSize()
     """""Open the printer's head manually"""
-    aps_notification.Verify_NA_Status()
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Open_The_Printer_Head_Manually()
+    aps_notification.Verify_Printer_Status_AS_HeadOpen()
     """""Close the printer's head without any cartridge manually"""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Remove_The_Cartridge_Manually()
     aps_notification.Verify_NA_Status()
     """"""""""Open the printer's head and change the cartridge from the printer"""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Open_The_Printer_Head_Manually()
+    common_method.Show_popup_To_Insert_Different_Cartridge_Manually()
     aps_notification.Verify_Print_Review_Page()
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()

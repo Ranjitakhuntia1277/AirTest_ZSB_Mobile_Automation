@@ -774,18 +774,21 @@ class APS_Notification:
             print("Login page is displaying")
 
     def Verify_Printer_Status_AS_HeadOpen(self):
+        sleep(4)
         a = self.poco(nameMatches="(?s).*Head Open.*")
         if a.exists():
             a.get_name()
             print(a)
 
     def Verify_Printer_Status_AS_Paper_Out(self):
+        sleep(4)
         a = self.poco(nameMatches="(?s).*Paper Out.*")
         if a.exists():
             a.get_name()
             print(a)
 
     def Verify_Printer_Status_AS_Media_LOW(self):
+        sleep(4)
         a = self.poco(nameMatches="(?s).*Media Low.*")
         if a.exists():
             a.get_name()
