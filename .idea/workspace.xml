@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" beforeDir="false" afterPath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Help/test_Help_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Help/test_Help_Android.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management_Exec.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management_JK/test_Template_Management_Android_JK.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,16 +36,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Android_Automated_TestSuite.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "jd4936__Jayakiran",
-    "last_opened_file_path": "C:/Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/Test_Suite_Execution/test_Suite_Ranjita",
-    "settings.editor.selected.configurable": "terminal"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Android_Automated_TestSuite.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;jd4936__Jayakiran&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/Test_Suite_Execution/test_Suite_Ranjita&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ZSB_Automation" is-module-sdk="true">
