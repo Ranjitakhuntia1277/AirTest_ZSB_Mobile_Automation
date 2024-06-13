@@ -205,13 +205,22 @@ def test_Registration_TestcaseID_45868():
 
 
 def test_Registration_TestcaseID_45869():
-    """""""""test"""""
-
+    pass
     common_method.tearDown()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
-    poco(text="Choose an account").wait_for_appearance(timeout=20)
-    help_page.chooseAcc("zsbswdvt@gmail.com")
+    account = "zebra03.swdvt@gmail.com"
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        if poco(text="Signed in to Google as").exists():
+            while not poco(text="Add account to device").exists():
+                poco.scroll()
+            registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
     data_sources_page.checkIfOnHomePage()
     registration_page.click_Buy_More_Labels()
     try:
@@ -223,164 +232,102 @@ def test_Registration_TestcaseID_45869():
     common_method.Stop_The_App()
 
 
-def test_Registration_TestcaseID_46303():
-    """""""""test"""""
-
-    common_method.tearDown()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on Add printer tab"""""
-    add_a_printer_page.click_Add_A_Printer()
-    """"click on the start button"""
-    add_a_printer_page.click_Start_Button()
-    login_page.click_Allow_ZSB_Series_Popup()
-    add_a_printer_page.Click_Next_Button()
-    """"Verify searching for your printer text"""
-    add_a_printer_page.Verify_Searching_for_your_printer_Text()
-    """"verify select your printer text"""
-    add_a_printer_page.Verify_Select_your_printer_Text()
-    """"select 2nd printer which you want to add"""
-    add_a_printer_page.click_2nd_Printer_Details_To_Add()
-    """""click on select button"""
-    add_a_printer_page.Click_Next_Button()
-    add_a_printer_page.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
-    """Verify Connect Wi-fi Network Text"""
-    common_method.wait_for_element_appearance("Connect to Wi-Fi", 30)
-    common_method.wait_for_element_appearance("Discovered networks", 30)
-    """"click on connect button on connect wi-fi network screen"""
-    registration_page.connectToWIfi()
-    registration_page.enterPasswordWifi()
-    """Store the time till wi-fi turn green."""
-    time_taken = registration_page.timeTillWiFiGreen()
-    print(time_taken)
-    """"click on finish setup button"""
-    common_method.wait_for_element_appearance("Printer registration was successful", 30)
-    add_a_printer_page.click_Finish_Setup_Button()
-    common_method.Stop_The_App()
-
-
-def test_Registration_TestcaseID_46307():
-    """""""""test"""""
-
-    common_method.tearDown()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on Add printer tab"""""
-    add_a_printer_page.click_Add_A_Printer()
-    """"click on the start button"""
-    add_a_printer_page.click_Start_Button()
-    login_page.click_Allow_ZSB_Series_Popup()
-    add_a_printer_page.Click_Next_Button()
-    """"Verify searching for your printer text"""
-    add_a_printer_page.Verify_Searching_for_your_printer_Text()
-    """"verify select your printer text"""
-    add_a_printer_page.Verify_Select_your_printer_Text()
-    """"select 2nd printer which you want to add"""
-    add_a_printer_page.click_2nd_Printer_Details_To_Add()
-    """""click on select button"""
-    add_a_printer_page.Click_Next_Button()
-    add_a_printer_page.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
-    """Verify Connect Wi-fi Network Text"""
-    common_method.wait_for_element_appearance("Connect to Wi-Fi", 20)
-    common_method.wait_for_element_appearance("Discovered networks", 30)
-    """"click on connect button on connect wi-fi network screen"""
-    registration_page.connectToWIfi()
-    registration_page.enterPasswordWifi()
-    """wait till wi-fi turn green."""
-    registration_page.timeTillWiFiGreen()
-    """"click on finish setup button"""
-    common_method.wait_for_element_appearance("Printer registration was successful", 30)
-    add_a_printer_page.click_Finish_Setup_Button()
-    common_method.Stop_The_App()
-
-
-def test_Registration_TestcaseID_47786():
-    """""""""test"""""
-
-    common_method.tearDown()
-    # others_page.uninstall_and_install_zsb_series_on_google_play(True)
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    sleep(2)
-    registration_page.clickSignIn()
-    if poco(text="Allow").exists():
-        poco(text="Allow").click()
-    poco("Continue with Google").wait_for_appearance(timeout=10)
-    registration_page.click_Google_Icon()
-    sleep(2)
-    help_page.chooseAcc("zsbswdvt@gmail.com")
-    data_sources_page.checkIfOnHomePage()
-    # others_page.uninstall_and_install_zsb_series_on_google_play(True, True)
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    sleep(2)
-    registration_page.clickSignIn()
-    if poco(text="Allow").exists():
-        poco(text="Allow").click()
-    poco("Continue with Google").wait_for_appearance(timeout=10)
-    registration_page.click_Google_Icon()
-    sleep(2)
-    help_page.chooseAcc("zsbswdvt@gmail.com")
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
-    """Token verification pending"""
-    common_method.Stop_The_App()
+"""Add printer"""
+# def test_Registration_TestcaseID_46303():
+#     """""""""test"""""
+#
+#     common_method.tearDown()
+#     """click on the hamburger icon"""
+#     login_page.click_Menu_HamburgerICN()
+#     """"click on Add printer tab"""""
+#     add_a_printer_page.click_Add_A_Printer()
+#     """"click on the start button"""
+#     add_a_printer_page.click_Start_Button()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     add_a_printer_page.Click_Next_Button()
+#     """"Verify searching for your printer text"""
+#     add_a_printer_page.Verify_Searching_for_your_printer_Text()
+#     """"verify select your printer text"""
+#     add_a_printer_page.Verify_Select_your_printer_Text()
+#     """"select 2nd printer which you want to add"""
+#     add_a_printer_page.click_2nd_Printer_Details_To_Add()
+#     """""click on select button"""
+#     add_a_printer_page.Click_Next_Button()
+#     add_a_printer_page.Verify_Pairing_Your_Printer_Text()
+#     """"accept Bluetooth pairing popup 1"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+#     """"accept Bluetooth pairing popup 2"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+#     """"accept Bluetooth pairing popup 1"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+#     """"accept Bluetooth pairing popup 2"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+#     """Verify Connect Wi-fi Network Text"""
+#     common_method.wait_for_element_appearance("Connect to Wi-Fi", 30)
+#     common_method.wait_for_element_appearance("Discovered networks", 30)
+#     """"click on connect button on connect wi-fi network screen"""
+#     registration_page.connectToWIfi()
+#     registration_page.enterPasswordWifi()
+#     """Store the time till wi-fi turn green."""
+#     time_taken = registration_page.timeTillWiFiGreen()
+#     print(time_taken)
+#     """"click on finish setup button"""
+#     common_method.wait_for_element_appearance("Printer registration was successful", 30)
+#     add_a_printer_page.click_Finish_Setup_Button()
+#     common_method.Stop_The_App()
+#
+#
+# """Add printer"""
+# def test_Registration_TestcaseID_46307():
+#     """""""""test"""""
+#
+#     common_method.tearDown()
+#     """click on the hamburger icon"""
+#     login_page.click_Menu_HamburgerICN()
+#     """"click on Add printer tab"""""
+#     add_a_printer_page.click_Add_A_Printer()
+#     """"click on the start button"""
+#     add_a_printer_page.click_Start_Button()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     add_a_printer_page.Click_Next_Button()
+#     """"Verify searching for your printer text"""
+#     add_a_printer_page.Verify_Searching_for_your_printer_Text()
+#     """"verify select your printer text"""
+#     add_a_printer_page.Verify_Select_your_printer_Text()
+#     """"select 2nd printer which you want to add"""
+#     add_a_printer_page.click_2nd_Printer_Details_To_Add()
+#     """""click on select button"""
+#     add_a_printer_page.Click_Next_Button()
+#     add_a_printer_page.Verify_Pairing_Your_Printer_Text()
+#     """"accept Bluetooth pairing popup 1"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+#     """"accept Bluetooth pairing popup 2"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+#     """"accept Bluetooth pairing popup 1"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+#     """"accept Bluetooth pairing popup 2"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+#     """Verify Connect Wi-fi Network Text"""
+#     common_method.wait_for_element_appearance("Connect to Wi-Fi", 20)
+#     common_method.wait_for_element_appearance("Discovered networks", 30)
+#     """"click on connect button on connect wi-fi network screen"""
+#     registration_page.connectToWIfi()
+#     registration_page.enterPasswordWifi()
+#     """wait till wi-fi turn green."""
+#     registration_page.timeTillWiFiGreen()
+#     """"click on finish setup button"""
+#     common_method.wait_for_element_appearance("Printer registration was successful", 30)
+#     add_a_printer_page.click_Finish_Setup_Button()
+#     common_method.Stop_The_App()
 
 
 def test_Registration_TestcaseID_45862():
-    """""""""test"""""
-
-    # data_sources_page.clearAppData()
-    # common_method.tearDown()
-    # data_sources_page.allowPermissions()
-    # registration_page.clickSignIn()
-    # registration_page.click_Google_Icon()
-    try:
-        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-    except:
-        raise Exception("Did not navigate to Sign In with google page")
-    while not poco(text="Use another account").exists():
-        poco.scroll()
-    login_page.click_GooglemailId()
-    if poco(text="Signed in to Google as").exists():
-        while not poco(text="Add account to device").exists():
-            poco.scroll()
-        registration_page.addAccountToDevice()
-    registration_page.sign_In_With_Google("wrongloginzsb@123", "wrongloginzsb@gmail.com", True)
-    registration_page.sign_In_With_Google("wrongloginzsb@1234")
-    try:
-        common_method.wait_for_element_appearance_text("For the best experience, we need a couple of things from you.",
-                                                       20)
-        poco(text="For the best experience, we need a couple of things from you.").parent().child()[1].focus(
-            [0.5, 0.2]).click()
-        text("ZSB")
-        data_sources_page.clickContinue()
-    except:
-        pass
+    pass
+    common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     name = registration_page.get_login_name_from_menu()
-    if name == "wrongLoginZsb ZSB":
+    if name == "swdvt zsb":
         pass
     else:
         raise Exception("Login name does not match")

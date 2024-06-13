@@ -3,7 +3,8 @@ import os
 import time
 import random
 import string
-
+import tkinter as tk
+from tkinter import messagebox
 from airtest.core.api import *
 # import pytest
 # from pipes import Template
@@ -34,6 +35,13 @@ class Registration_Screen:
         self.Try_Again = "Try Again"
         self.Login = "Login"
 
+    def show_message(self, msg):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)  # Ensure the root window is on top
+        messagebox.showinfo("Notification", msg)
+        root.destroy()
+
     def clickSignIn(self):
         sleep(2)
         signInBtn = self.poco("Sign In")
@@ -49,6 +57,9 @@ class Registration_Screen:
         self.poco(self.Register_Email).click()
 
     def click_on_reset_password(self):
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
         self.poco(" Reset Password").focus([0.2, 0.3]).click()
 
     def check_if_in_password_recovery_page(self):
@@ -370,14 +381,21 @@ class Registration_Screen:
             try:
                 scrolls = 5
                 while scrolls != 0:
-                    poco.scroll()
+                    self.poco.scroll()
+                    scrolls-=1
                 if self.poco(text="Skip").exists():
                     self.poco(text="Skip").click()
             except:
                 pass
-            while not self.poco(text="I agree").exists():
-                self.poco.scroll()
-            self.poco(text="I agree").click()
+            try:
+                scrolls = 5
+                while scrolls != 0:
+                    self.poco.scroll()
+                    scrolls-=1
+                if self.poco(text="I agree").exists():
+                    self.poco(text="I agree").click()
+            except:
+                pass
             try:
                 self.poco(text="Not now").wait_for_appearance(timeout=15)
                 self.poco(text="Not now").click()
@@ -430,7 +448,7 @@ class Registration_Screen:
                 print("Error message not displayed for wrong password.")
                 raise Exception("Error message not displayed for wrong password.")
         "Enter OTP manually"
-        sleep(60)
+        self.show_message(f"Enter otp for AppleId received in the phone number \'9751025169\'")
         try:
             self.poco(text="Trust").wait_for_appearance(timeout=40)
             self.poco(text="Trust").click()
@@ -640,8 +658,10 @@ class Registration_Screen:
 
     def create_google_account(self):
         os.system("adb shell am start -a android.settings.SYNC_SETTINGS")
-        while not self.poco(text="Add account").exists():
+        count = 5
+        while not self.poco(text="Add account").exists() and count!=0:
             self.poco.scroll()
+            count-=1
         self.poco(text="Add account").click()
         self.poco(text="Google").wait_for_appearance(timeout=20)
         self.poco(text="Google").click()
@@ -694,15 +714,19 @@ class Registration_Screen:
             self.poco(text="Next").click()
         username = name + '@gmail.com'
         print(username)
-        while not self.poco(text="I agree").exists():
+        count = 5
+        while not self.poco(text="I agree").exists() and count!=0:
             self.poco.scroll()
+            count-=1
         self.poco(text="I agree").click()
         self.wait_for_element_appearance_text("Add account", 20)
         return username, password
 
     def verifyLinksInSignInPage(self):
-        while not self.poco("Legal Notice").exists():
+        count = 5
+        while not self.poco("Legal Notice").exists() and count!=0:
             self.poco.scroll()
+            count-=1
         link_1 = self.poco("Zebra.com", enabled=True).exists()
         link_2 = self.poco("Legal Notice", enabled=True).exists()
         link_3 = self.poco("Privacy Statement", enabled=True).exists()
@@ -754,12 +778,15 @@ class Registration_Screen:
             error = f'{wifi_name}not found.'
             raise Exception(error)
 
+
     def enterPasswordWifi(self, password="123456789"):
         self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(password)
         sleep(2)
-        self.poco("Connect").click()
+        self.clickConnect()
 
     def scrollTillLogOutAppears(self):
-        while not self.poco("Log Out").exists():
+        count = 5
+        while not self.poco("Log Out").exists() and count!=0:
             self.poco.scroll()
+            count-=1

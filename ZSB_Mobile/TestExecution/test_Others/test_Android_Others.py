@@ -552,9 +552,6 @@ def test_Others_TestcaseID_47946():
         raise Exception("number of cartridge count not updated")
 
 
-"""Yet to Test"""
-
-
 def test_Others_TestcaseID_47955():
     pass
     common_method.tearDown()
