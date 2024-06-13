@@ -1,17 +1,17 @@
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen import *
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Login_Screen import *
 
-from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
-from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
-from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
-from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
+from ...PageObject.Help_Screen.Help_Screen import Help_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
+from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
+from ...PageObject.Others_Screen.Others_Screen import Others
 import pytest
 
 
@@ -35,6 +35,7 @@ template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 others_page = Others(poco)
 
+
 def test_DataSources_TestcaseID_45729():
     pass
 
@@ -52,12 +53,16 @@ def test_DataSources_TestcaseID_45729():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
         if poco(text="Signed in to Google as").exists():
-            while not poco(text="Add account to device").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
                 poco.scroll()
+                count-=1
             registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zsbswdvt@1234", "zsbswdvt@gmail.com")
     try:
@@ -101,10 +106,10 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.searchName("")
     """Remove both files"""
     data_sources_page.searchName(special_char_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", special_char_file)
     data_sources_page.searchName("")
     data_sources_page.searchName(long_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", long_file)
     data_sources_page.searchName("")
     """Check if files removed successfully"""
     data_sources_page.searchName(special_char_file)
@@ -146,10 +151,10 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.searchName("")
     """Remove both files"""
     data_sources_page.searchName(special_char_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", special_char_file)
     data_sources_page.searchName("")
     data_sources_page.searchName(long_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", long_file)
     data_sources_page.searchName("")
     """Check if files removed successfully"""
     data_sources_page.searchName(special_char_file)
@@ -203,6 +208,77 @@ def test_DataSources_TestcaseID_45729():
 #     data_sources_page.searchTest(".bmp")
 #     random_word = data_sources_page.generateRandomWord(24)
 #     data_sources_page.searchTest(random_word)
+
+
+def test_DataSources_TestcaseID_45734():
+    """test"""
+
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    data_sources_page.click_My_Data()
+    sleep(3)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    """Test for Google Drive"""
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    common_method.wait_for_element_appearance_namematches("NAME", 20)
+    sleep(2)
+    """Cannot select unsupported file"""
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(2)
+    large_file = "large_unsupported_file(50mb).png"
+    data_sources_page.selectFileDrive(large_file)
+    """No prompt message on uploading file greater than 28.4mb"""
+    sleep(5)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(3)
+    """Re upload same file"""
+    data_sources_page.select_file_link_drive(large_file)
+    sleep(5)
+    data_sources_page.checkIsAlreadyLinkedPopUp()
+    """Remove for next execution"""
+    data_sources_page.searchName(large_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", large_file)
+    data_sources_page.searchName("")
+    sleep(2)
+    """Test for One Drive"""
+    sleep(3)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    """ One drive """
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    data_sources_page.clickMicrosoftOneDrive()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("NAME", 20)
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(3)
+    data_sources_page.select_file_link_drive(large_file)
+    sleep(5)
+    sleep(7)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(3)
+    data_sources_page.clickMicrosoftOneDrive()
+    sleep(2)
+    """Re upload the same file"""
+    data_sources_page.select_file_link_drive(large_file)
+    sleep(5)
+    data_sources_page.checkIsAlreadyLinkedPopUp()
+    """Remove files for next execution"""
+    data_sources_page.searchName(large_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", large_file)
+    data_sources_page.searchName("")
+    sleep(2)
+    common_method.Stop_The_App()
 
 
 def test_DataSources_TestcaseID_45735():
@@ -405,12 +481,16 @@ def test_DataSources_TestcaseID_45737():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
         if poco(text="Signed in to Google as").exists():
-            while not poco(text="Add account to device").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
                 poco.scroll()
+                count-=1
             registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
     try:
@@ -454,15 +534,19 @@ def test_DataSources_TestcaseID_45737():
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     """Cannot automate - navigate to check different preview images are correct-has to be verified manually"""
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.labelRangeSelection(4)
     sleep(3)
     template_management_page.verify_only_selected_rows_displayed_in_label_range("4")
     """Cannot automate - navigate to check that only the select rows can be previewed-has to be verified manually"""
     template_management_page.verify_label_navigation()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     if template_management_page.get_total_labels_printing() == "4":
         pass
     else:
@@ -494,15 +578,19 @@ def test_DataSources_TestcaseID_45737():
     """Cannot automate - navigate to check different preview images are correct-has to be verified manually"""
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     data_sources_page.labelRangeSelection(4)
     sleep(3)
     template_management_page.verify_only_selected_rows_displayed_in_label_range("4")
     """Cannot automate - navigate to check that only the select rows can be previewed-has to be verified manually"""
     template_management_page.verify_label_navigation()
-    while not poco("Print").exists():
+    count=5
+    while not poco("Print").exists() and count!=0:
         poco.scroll()
+        count-=1
     if template_management_page.get_total_labels_printing() == "4":
         pass
     else:
@@ -1323,7 +1411,6 @@ def test_DataSources_TestcaseID_45757():
     others_page.capture_the_image_button()
     data_sources_page.clickOk()
 
-
     """Part of step 4 is to check the preview is correct unable to verify preview has to be done manually"""
     """Print the photo"""
     while not poco("Print", enabled=True).exists():
@@ -1368,9 +1455,9 @@ def test_DataSources_TestcaseID_45759():
     """Verify if 'filename' is already linked pop up appears"""
     data_sources_page.checkIsAlreadyLinkedPopUp()
     sleep(3)
-    # """remove file for next execution"""
-    # data_sources_page.searchName(existing_file)
-    # data_sources_page.remove_File_Based_On_DataSource("Google Drive", existing_file)
+    """remove file for next execution"""
+    data_sources_page.searchName(existing_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", existing_file)
     """ One Drive """
     """Click Add file"""
     data_sources_page.click_Add_File()
@@ -1404,9 +1491,9 @@ def test_DataSources_TestcaseID_45759():
     """Verify if 'filename' is already linked pop up appears"""
     data_sources_page.checkIsAlreadyLinkedPopUp()
     sleep(3)
-    # """remove file for next execution"""
-    # data_sources_page.searchName(existing_file)
-    # data_sources_page.remove_File_Based_On_DataSource("OneDrive", existing_file)
+    """remove file for next execution"""
+    data_sources_page.searchName(existing_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", existing_file)
     common_method.Stop_The_App()
 
 
@@ -1607,12 +1694,16 @@ def test_DataSources_TestcaseID_45758():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
         if poco(text="Signed in to Google as").exists():
-            while not poco(text="Add account to device").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
                 poco.scroll()
+                count-=1
             registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
     """Click hamburger icon to expand menu"""
@@ -1832,12 +1923,16 @@ def test_DataSources_TestcaseID_47937():
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
-        while not poco(text="Use another account").exists():
+        count = 5
+        while not poco(text="Use another account").exists() and count!=0:
             poco.scroll()
+            count-=1
         login_page.click_GooglemailId()
         if poco(text="Signed in to Google as").exists():
-            while not poco(text="Add account to device").exists():
+            count = 5
+            while not poco(text="Add account to device").exists() and count!=0:
                 poco.scroll()
+                count-=1
             registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("zsbswdvt1@1234", "zsbswdvt1@gmail.com")
     try:
@@ -2277,21 +2372,22 @@ def test_DataSources_TestcaseID_45749():
     """Remove files for next execution"""
     data_sources_page.searchName("")
     data_sources_page.searchName(png_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
     data_sources_page.searchName("")
     data_sources_page.searchName(jpg_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", jpg_file)
     data_sources_page.searchName("")
     data_sources_page.searchName(txt_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
     data_sources_page.searchName("")
     data_sources_page.searchName(bmp_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
     data_sources_page.searchName("")
     common_method.Stop_The_App()
 
 
 """Facebook"""
+
 
 def test_DataSources_TestcaseID_45750():
     pass
@@ -2403,6 +2499,22 @@ def test_DataSources_TestcaseID_45750():
     sleep(5)
     data_sources_page.searchName(bmp_file)
     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    """Remove Files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
     common_method.Stop_The_App()
 
 

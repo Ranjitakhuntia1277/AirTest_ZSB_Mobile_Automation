@@ -83,12 +83,15 @@ class SSO_Token_Renewal_Screen:
         else:
             raise Exception("There is a token information about \" : flutter: getLocalTokens : access_token: \" in the adb log.")
 
-    def runBatchFileToFetchLogs(self):
-        file_path = "C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\\\ZSB_Mobile\\ADB_logs"
-        batch_file_name = "Logcat.bat"
+    def runBatchFileToFetchLogs(self, file_path="C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\\\ZSB_Mobile\\ADB_logs", batch_file_name="Logcat.bat"):
         os.chdir(file_path)
         process = subprocess.Popen(batch_file_name, shell=True)
-        time.sleep(20)
+        return process
+
+    def terminateBatchFileProcess(self, process, wait_time=None):
+        if wait_time is not None:
+            sleep(wait_time)
+        sleep(2)
         process.terminate()
 
     def check_if_user_is_logged_in(self):

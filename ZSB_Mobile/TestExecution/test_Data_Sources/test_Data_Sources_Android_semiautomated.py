@@ -1,17 +1,17 @@
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ZSB_Mobile.PageObject.Login_Screen import *
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Login_Screen import *
 
-from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
-from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
-from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
-from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
-from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
+from ...PageObject.Help_Screen.Help_Screen import Help_Screen
+from ...Common_Method import Common_Method
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
+from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
+from ...PageObject.Others_Screen.Others_Screen import Others
 
 
 class Android_App_Data_Sources:
@@ -36,8 +36,7 @@ others_page = Others(poco)
 
 
 def test_DataSources_TestcaseID_45731():
-    """""""""test"""""
-
+    pass
     common_method.Start_The_App()
     try:
         common_method.wait_for_element_appearance("Sign In", 20)
@@ -170,6 +169,22 @@ def test_DataSources_TestcaseID_45731():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    """Remove Files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -182,8 +197,8 @@ def test_DataSources_TestcaseID_45731():
     registration_page.wait_for_element_appearance("Sign In", 10)
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    """Enter OTP manually"""
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+    username = "zsbswdvt@gmail.com"
+    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", username)
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
@@ -288,6 +303,22 @@ def test_DataSources_TestcaseID_45731():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    """Remove Files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -404,6 +435,22 @@ def test_DataSources_TestcaseID_45731():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    """Remove Files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -542,6 +589,22 @@ def test_DataSources_TestcaseID_45732():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -652,6 +715,22 @@ def test_DataSources_TestcaseID_45732():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -761,6 +840,22 @@ def test_DataSources_TestcaseID_45732():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -1028,6 +1123,22 @@ def test_DataSources_TestcaseID_45751():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "Google Drive", True)
+    """Remove Files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
     common_method.Stop_The_App()
 
 
@@ -1144,4 +1255,20 @@ def test_DataSources_TestcaseID_45754():
     data_sources_page.searchName(bmp_file)
     sleep(5)
     data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
+    """Remove files for next execution"""
+    data_sources_page.searchName("")
+    data_sources_page.searchName(png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(jpg_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     common_method.Stop_The_App()

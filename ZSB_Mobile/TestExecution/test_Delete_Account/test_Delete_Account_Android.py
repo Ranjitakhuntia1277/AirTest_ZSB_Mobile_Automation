@@ -3,7 +3,7 @@ from airtest.core.api import *
 
 from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Others_Screen.Others_Screen import Others
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
