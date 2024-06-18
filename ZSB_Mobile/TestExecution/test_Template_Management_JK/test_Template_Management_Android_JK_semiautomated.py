@@ -13,7 +13,7 @@ from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen i
 from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
 from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
-
+from ...TestSuite.api_call import *
 
 class Android_App_Registration:
     pass
