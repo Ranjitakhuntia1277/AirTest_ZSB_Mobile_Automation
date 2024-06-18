@@ -1423,47 +1423,6 @@ class Test_Android_device_networks():
 
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Smoke_Test_TestcaseID_45897():
-    """Adding New network: Add Essids by using another phone."""
-
-
-    """"start the app"""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Printer_Settings()
-    app_settings_page.click_PrinterName_On_Printersettings()
-    app_settings_page.click_wifi_tab()
-    app_settings_page.click_Manage_Networks_Btn()
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
-    app_settings_page.click_Add_Network()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Security_Open()
-    app_settings_page.click_WPA_PSK()
-    app_settings_page.click_Keyboard_back_Icon()
-    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    app_settings_page.Verify_Added_Network()
-    """stop the app"""
-    common_method.Stop_The_App()
-# # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-
-
-
-
-
-
 
 
 

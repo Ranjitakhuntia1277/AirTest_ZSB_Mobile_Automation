@@ -1,6 +1,9 @@
 from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 # from setuptools import logging
 from ...PageObject.Robofinger import test_robo_finger
 from ...Common_Method import Common_Method
@@ -8,6 +11,7 @@ from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
@@ -27,7 +31,9 @@ app_settings_page = App_Settings_Screen(poco)
 add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
-
+registration_page = Registration_Screen(poco)
+data_sources_page = Data_Sources_Screen(poco)
+smoke_test_android = Smoke_Test_Android(poco)
 """""""""""""""""""""""Change Password part needs to be verified manually"""""""""""""""""""""""""""""
 
 
@@ -35,22 +41,22 @@ aps_notification = APS_Notification(poco)
 def test_AppSettings_TestcaseID_47913():
     """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
     #
-    # common_method.tearDown()
-    # # test_robo_finger()
-    # # sleep(6)
-    # common_method.Clear_App()
-    # common_method.Start_The_App()
-    # login_page.click_LoginAllow_Popup()
-    # login_page.click_Allow_ZSB_Series_Popup()
-    # login_page.click_loginBtn()
-    # login_page.click_LoginAllow_Popup()
-    # login_page.click_Allow_ZSB_Series_Popup()
-    # login_page.click_Loginwith_Google()
-    # login_page.Loginwith_Added_Email_Id()
-    # """"verify home text is displaying on the home screen"""
-    # app_settings_page.Home_text_is_present_on_homepage()
-    # """click on the hamburger icon"""
-    # login_page.click_Menu_HamburgerICN()
+    common_method.tearDown()
+    # test_robo_finger()
+    # sleep(6)
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    """"verify home text is displaying on the home screen"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
     """"click on Add printer tab"""""
     add_a_printer_screen.click_Add_A_Printer()
     """"click on the start button"""
@@ -328,7 +334,7 @@ def test_AppSettings_TestcaseID_45688():
     """stop the app"""
     common_method.Stop_The_App()
 
-##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+##"""""""""""""""""""""""""""""END"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Smoke_Test_TestcaseID_45876():
     """	Check basic functions work well after upgrading"""
@@ -457,8 +463,6 @@ def test_Smoke_Test_TestcaseID_45901():
     app_settings_page.Verify_Darkness_Updated_Message()
     """Verify auto Label Feed On Printer Cover Close value enable/disable option"""
     app_settings_page.Check_toggle_button()
-    """click on the toggle button"""
-    app_settings_page.click_toggle_button()
     """stop the app"""
     common_method.Stop_The_App()
     """""""web portal part needs to be verified Manually"""""""
@@ -502,67 +506,6 @@ def test_Smoke_Test_TestcaseID_45882():
     common_method.Show_popup_For_Design_Verification_On_Web_Portal_Manually()
 
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-
-def test_Smoke_Test_TestcaseID_45885():
-    """Add a printer- use a printer which has ever been registered before and require a decommission."""
-
-
-    """Step 1 needs to be verifiedManually """
-    """""1.Turn on the testing printer, wait about 1 min, use a toothpick to press the button on the printer back for about 30s to do a decommission
-    Check during this process, the power button is flashing yellow light and then white light, finally turn to blue flashing light and will auto feed the barcode info label. """
-
-    """"decommission the added printer and then execute"""
-    """start the app"""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    add_a_printer_screen.click_Add_A_Printer()
-    """"click on the start button"""
-    add_a_printer_screen.click_Start_Button()
-    login_page.click_Allow_ZSB_Series_Popup()
-    add_a_printer_screen.Verify_Lets_Make_Sure_Text()
-    add_a_printer_screen.Click_Next_Button()
-    """"Verify searching for your printer text"""
-    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
-    """"verify select your printer text"""
-    add_a_printer_screen.Verify_Select_your_printer_Text()
-    """"select 2nd printer which you want to add"""
-    add_a_printer_screen.click_2nd_Printer_Details_To_Add()
-    """""click on select button"""
-    add_a_printer_screen.click_Select_Button_On_Select_Your_Printer_Screen()
-    """"verify pairing your printer text"""
-    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    """"verify pairing your printer text"""
-    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    """Verify Connect Wi-fi Network Text"""
-    add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
-    """"click on connect button on connect wifi network screen"""
-    add_a_printer_screen.click_Connect_Btn_On_Connect_Wifi_Network_Screen()
-    add_a_printer_screen.click_Password_Field_On_Join_Network()
-    add_a_printer_screen.click_Submit_Button_ON_Join_Network()
-    """"verify need the printer driver text"""
-    add_a_printer_screen.Verify_Need_the_Printer_Driver_Text()
-    """""verify registering your printer text"""
-    add_a_printer_screen.Verify_Registering_your_Printer_Text()
-    """"click on finish setup button"""
-    add_a_printer_screen.click_Finish_Setup_Button()
-    common_method.Stop_The_App()
-    common_method.Start_The_App()
-    app_settings_page.Verify_Printer_is_already_added()
-    """stop the app"""
-    common_method.Stop_The_App()
-# # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-# #
 
 def test_Smoke_Test_TestcaseID_45900():
     """Update Auto label feed setting(enable), check setting sync in mobile and web portal, open and close printer cover, then print a test label"""
@@ -599,3 +542,210 @@ def test_Smoke_Test_TestcaseID_45900():
     """""""POP UP FOR MANUAL INTERVENTION"""""""""""""""
     common_method.Show_popup_For_Darkness_Level_Verification_On_Web_Portal_Manually()
 # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45886():
+    """Check Mobile App can display correct printer status and notifications when printer status updates"""
+
+
+    common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    sleep(5)
+    """Turn off the printer manually"""
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Turn_OFF_The_Printer_Manually()
+    aps_notification.Verify_Printer_Status_AS_Offline()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Notifications_Tab()
+    app_settings_page.Verify_Offline_Notification()
+    """Head open on the printer manually """
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Open_The_Printer_Head_Manually()
+    aps_notification.Verify_Printer_Status_AS_HeadOpen()
+    app_settings_page.Verify_HeadOpen_Notification()
+    """"Make the status as paper out manually """
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Remove_The_Cartridge_Manually()
+    aps_notification.Verify_Printer_Status_AS_Paper_Out()
+    app_settings_page.Verify_Paper_Out_Notification()
+    """"Make the status as media low manually """
+    """""""POP UP FOR MANUAL INTERVENTION"""""""
+    common_method.Show_popup_To_Make_The_Status_AS_LowMedia_Manually()
+    aps_notification.Verify_Printer_Status_AS_Media_LOW()
+    app_settings_page.Verify_Media_LOW_Notification()
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Insert_Different_Cartridge_Manually()
+    """"Check the preview page and the label would be re-sized in the preview page"""""
+    """"POP UP FOR MANUAL INTERVENTION"""""
+    common_method.Show_popup_To_Make_The_Status_AS_Online()
+    app_settings_page.Verify_Online_Notification()
+    common_method.Stop_The_App()
+## #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45887():
+    """	User modify the printer's darkness setting and perform test print"""
+
+    """start the app"""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """"verify printer is already added"""
+    app_settings_page.Verify_Printer_is_already_added()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Printer settings tab"""
+    app_settings_page.click_Printer_Settings()
+    """"click on printer name on the printer settings page"""
+    app_settings_page.click_PrinterName_On_Printersettings()
+    """verify general tab text"""
+    app_settings_page.Verify_General_Tab_Text()
+    """"verify printer name text"""
+    app_settings_page.Verify_Printer_Name_Text()
+    """verify darkness level bar is present & change the darkness level"""
+    app_settings_page.Verify_Darkness_Level_Bar()
+    """"change the darkness level"""
+    app_settings_page.Change_Darkness_Level_Bar()
+    """verify the darkness updated message"""
+    app_settings_page.Verify_Darkness_Updated_Message()
+    """Verify auto Label Feed On Printer Cover Close value enable/disable option"""
+    app_settings_page.click_Test_Print_Button()
+    """""Log into web portal and ensure darkness level is updated Manually""""""
+    """"POP UP FOR MANUAL INTERVENTION"""
+    common_method.Show_popup_To_Verify_Darkness_level_On_Web_Portal_Manually()
+    """"Keep on the page and install another type of cartridge, such as LC1, LC4 Manually"""
+    """"POP UP FOR MANUAL INTERVENTION"""
+    common_method.Show_popup_To_Insert_Different_CartridgeLC1_4_Manually()
+    app_settings_page.click_Test_Print_Button()
+    """stop the app"""""
+    common_method.Stop_The_App()
+    """""Check it should print the template which matches the new cartridge Manually"""""""""""""
+   """""""Test Print" button in the Printer Settings should be dimmed and inactive when the printer is offline for Mobile, to match Portal"""
+# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45877():
+    """	Verify create a brand new user with unregistered user in Mobile App."""
+
+#
+    """"Setup:
+    1. Create a new email address
+    (Need to match the new register email format, for IDC, it should be soho_swdvt_xxxx@xxxx.com, for CDC, it should be soho_swdvt_xxxx@xxxx.com)
+    2. Install the target build of ZSB app on mobile device"""""
+
+    """start the app"""""
+    common_method.tearDown()
+    common_method.Clear_App()
+    Common_Method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    common_method.show_message("Create new email before running")
+    common_method.tearDown()
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.verifyLinksInSignInPage()
+    registration_page.registerEmail()
+    try:
+        registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+    except:
+        raise Exception("register user page dint show")
+    email = common_method.get_user_input("Create a new google account and enter the mail-id in the input box")
+
+    registration_page.enter_user_email_for_registering(email)
+    try:
+        registration_page.wait_for_element_appearance("Resend Verification Code.", 10)
+    except:
+        raise Exception("Page to enter verification code did not appear. ")
+    """Enter verification code manually"""
+    common_method.show_message(
+        "Enter verification code on the device ,verification code received in the newly created google account")
+    """Enter the User Email"""
+    registration_page.click_on_next()
+    sleep(2)
+    """Enter the first Name last name and the password"""
+    first_n = "Zebra"
+    last_n = "Z"
+    password = "Zebra#123456789"
+    registration_page.enter_the_fields(first_n, last_n, password)
+    registration_page.select_the_country("India")
+    registration_page.select_the_check_boxes()
+    registration_page.click_submit_and_continue()
+    sleep(2)
+    registration_page.check_sign_up_successful()
+    registration_page.click_continue_registration_page()
+    registration_page.wait_for_element_appearance("Sign In")
+    registration_page.clickSignIn()
+    registration_page.wait_for_element_appearance_text("Continue with Google", 10)
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email(email, password, 1, 0)
+    registration_page.verify_if_on_EULA_page()
+    registration_page.click_accept()
+    registration_page.clickClose()
+    registration_page.clickExit()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    registration_page.click_on_profile_edit()
+    poco.scroll()
+    registration_page.click_log_out_button()
+    try:
+        registration_page.wait_for_element_appearance("Sign In", 5)
+    except:
+        raise Exception("Did not redirect to the login page")
+# # ## """"""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+def test_Smoke_Test_TestcaseID_45889():
+    """	Check user can upload or link file to My Data"""
+
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.click_MyData_Tab()
+    smoke_test_android.click_Plus_icon()
+    smoke_test_android.click_Upload_icon()
+    smoke_test_android.Upload_First_Image()
+    """""Login web portal and go to My Data page,Check the uploaded files from mobile app display in the my data page in web portal Manually""""""""""""
+    """"Check switch to different menu or press F5 should be able to refresh the file list Manually"""""""""""""
+    """"POP UP FOR MANUAL INTERVENTION"""
+    common_method.Show_popup_For_Web_Portal_Verification_Manually()
+    smoke_test_android.click_Plus_icon()
+    smoke_test_android.click_LinkFile()
+    smoke_test_android.click_Microsoft_OneDrive_Tab()
+    smoke_test_android.click_Google_Drive()
+    smoke_test_android.click_On_PNG_File()
+    smoke_test_android.click_On_Select_Btn()
+    smoke_test_android.Verify_TheLinked_PNG_IS_Present()
+    smoke_test_android.click_Plus_icon()
+    smoke_test_android.click_LinkFile()
+    smoke_test_android.click_Microsoft_OneDrive_Tab()
+    smoke_test_android.click_Google_Drive()
+    smoke_test_android.click_On_Jpg_File()
+    smoke_test_android.click_On_Select_Btn()
+    smoke_test_android.Verify_TheLinked_JPG_IS_Present()
+    smoke_test_android.Verify_Uploaded_Date_Is_Displaying()
+    smoke_test_android.Verify_Name_Is_Present()
+# # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
