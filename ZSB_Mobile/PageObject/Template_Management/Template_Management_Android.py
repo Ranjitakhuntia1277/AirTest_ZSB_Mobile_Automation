@@ -913,7 +913,7 @@ class Template_Management_Android:
             temp.append(a[0])
         return temp
 
-    def wait_for_element_appearance_name_matches_all(self,element, time_out=20):
+    def wait_for_element_appearance_name_matches_all(self, element, time_out=20):
         self.poco(nameMatches="(?s).*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def scroll_till_print_enabled(self):

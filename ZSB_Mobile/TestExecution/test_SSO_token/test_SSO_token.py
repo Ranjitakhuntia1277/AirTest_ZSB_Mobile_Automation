@@ -44,34 +44,34 @@ sso_token_renewal_page = SSO_Token_Renewal_Screen(poco)
 
 def test_SSO_Token_Renewal_TestcaseID_49905():
     pass
-    # """clear app data"""
-    # data_sources_page.clearAppData()
-    # common_method.tearDown()
-    # data_sources_page.allowPermissions()
-    # """Login Again"""
-    # registration_page.clickSignIn()
-    # registration_page.click_Google_Icon()
-    # try:
-    #     registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-    # except:
-    #     raise Exception("Did not navigate to Sign In with google page")
-    # account = "zsbtestsso@gmail.com"
-    # if template_management_page.checkIfAccPresent(account):
-    #     help_page.chooseAcc(account)
-    # else:
-    #     while not poco(text="Use another account").exists():
-    #         poco.scroll()
-    #     login_page.click_GooglemailId()
-    #     while not poco(text="Add account to device").exists():
-    #         poco.scroll()
-    #     registration_page.addAccountToDevice()
-    #     registration_page.sign_In_With_Google("Zebra#123456789", account)
-    # """verify if logged in successfully"""
-    # data_sources_page.checkIfOnHomePage()
-    # process = sso_token_renewal_page.runBatchFileToFetchLogs()
-    # sso_token_renewal_page.terminateBatchFileProcess(process, 20)
-    # """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}"
-    # in the adb log or tidevice syslog"""
+    """clear app data"""
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    """Login Again"""
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
+    account = "zsbtestsso@gmail.com"
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        while not poco(text="Add account to device").exists():
+            poco.scroll()
+        registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process, 20)
+    """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}"
+    in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     x=1/0
     """Check that there is token information about " : flutter: getLocalTokens : access_token: " in the adb log or
@@ -91,106 +91,112 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     template_management_page.select_design_common_designs()
     template_management_page.select_label_common_designs()
     data_sources_page.clickPrint()
-    # data_sources_page.scroll_till_print()
-    # data_sources_page.clickPrint()
-    # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    # data_sources_page.clickBackArrow()
-    # data_sources_page.clickBackArrow()
-    # login_page.click_Menu_HamburgerICN()
-    # registration_page.click_on_profile_edit()
-    # registration_page.scroll_till_log_out()
-    # registration_page.click_log_out_button()
-    # help_page.checkIfOnSignInPage()
-    # """Login Again"""
-    # registration_page.clickSignIn()
-    # registration_page.click_Google_Icon()
-    # try:
-    #     registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-    # except:
-    #     raise Exception("Did not navigate to Sign In with google page")
-    # account = "zsbtestsso@gmail.com"
-    # template_management_page.checkIfAccPresent(account)
-    # help_page.chooseAcc(account)
-    # """verify if logged in successfully"""
-    # data_sources_page.checkIfOnHomePage()
-    # sso_token_renewal_page.runBatchFileToFetchLogs()
-    # """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
-    # sso_token_renewal_page.check_if_exchangeCode_message_present()
-    # """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
-    # sso_token_renewal_page.check_if_getLocalTokens_information_present()
-    # """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
-    # old_token = sso_token_renewal_page.get_token()
-    # sleep(3120)
-    # sso_token_renewal_page.runBatchFileToFetchLogs()
-    # sso_token_renewal_page.checkTokenRefreshed(old_token)
-    # """Click hamburger icon to expand menu"""
-    # login_page.click_Menu_HamburgerICN()
-    # """Swipe up"""
-    # poco.scroll()
-    # """Click Help dropdown to expand Help options"""
-    # help_page.click_Help_dropdown_option()
-    # sso_token_renewal_page.checkIfHelpPagesArePresent()
-    # template_management_page.click_scrim()
-    # registration_page.click_on_profile_edit()
-    # registration_page.scroll_till_log_out()
-    # registration_page.click_log_out_button()
-    # help_page.checkIfOnSignInPage()
-    # """Sign in"""
-    # registration_page.clickSignIn()
-    # data_sources_page.signInWithEmail()
-    # registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
-    # """verify if logged in successfully"""
-    # data_sources_page.checkIfOnHomePage()
-    # sso_token_renewal_page.runBatchFileToFetchLogs()
-    # """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
-    # sso_token_renewal_page.check_if_exchangeCode_message_present()
-    # """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
-    # sso_token_renewal_page.check_if_getLocalTokens_information_present()
-    # """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
-    # old_token = sso_token_renewal_page.get_token()
-    # sleep(3120)
-    # sso_token_renewal_page.runBatchFileToFetchLogs()
-    # sso_token_renewal_page.checkTokenRefreshed(old_token)
-    # """Click hamburger icon to expand menu"""
-    # login_page.click_Menu_HamburgerICN()
-    # template_management_page.clickCommonDesigns()
-    # template_management_page.select_design_common_designs()
-    # template_management_page.select_label_common_designs()
-    # data_sources_page.clickPrint()
-    # data_sources_page.scroll_till_print()
-    # data_sources_page.clickPrint()
-    # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    # data_sources_page.clickBackArrow()
-    # data_sources_page.clickBackArrow()
-    # login_page.click_Menu_HamburgerICN()
-    # registration_page.click_on_profile_edit()
-    # registration_page.scroll_till_log_out()
-    # registration_page.click_log_out_button()
-    # help_page.checkIfOnSignInPage()
-    # """Login Again"""
-    # registration_page.clickSignIn()
-    # data_sources_page.signInWithEmail()
-    # registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
-    # """verify if logged in successfully"""
-    # data_sources_page.checkIfOnHomePage()
-    # sso_token_renewal_page.runBatchFileToFetchLogs()
-    # """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
-    # sso_token_renewal_page.check_if_exchangeCode_message_present()
-    # """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
-    # sso_token_renewal_page.check_if_getLocalTokens_information_present()
-    # """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
-    # old_token = sso_token_renewal_page.get_token()
-    # sleep(3120)
-    # sso_token_renewal_page.runBatchFileToFetchLogs()
-    # sso_token_renewal_page.checkTokenRefreshed(old_token)
-    # """Click hamburger icon to expand menu"""
-    # login_page.click_Menu_HamburgerICN()
-    # """Swipe up"""
-    # poco.scroll()
-    # """Click Help dropdown to expand Help options"""
-    # help_page.click_Help_dropdown_option()
-    # sso_token_renewal_page.checkIfHelpPagesArePresent()
-    # common_method.Stop_The_App()
+    data_sources_page.scroll_till_print()
+    data_sources_page.clickPrint()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    data_sources_page.clickBackArrow()
+    data_sources_page.clickBackArrow()
+    login_page.click_Menu_HamburgerICN()
+    registration_page.click_on_profile_edit()
+    registration_page.scroll_till_log_out()
+    registration_page.click_log_out_button()
+    help_page.checkIfOnSignInPage()
+    """Login Again"""
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
+    account = "zsbtestsso@gmail.com"
+    template_management_page.checkIfAccPresent(account)
+    help_page.chooseAcc(account)
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
+    """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
+    sso_token_renewal_page.check_if_exchangeCode_message_present()
+    """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
+    sso_token_renewal_page.check_if_getLocalTokens_information_present()
+    """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
+    old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sleep(3120)
+    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.checkTokenRefreshed(old_token)
+    """Click hamburger icon to expand menu"""
+    login_page.click_Menu_HamburgerICN()
+    """Swipe up"""
+    poco.scroll()
+    """Click Help dropdown to expand Help options"""
+    help_page.click_Help_dropdown_option()
+    sso_token_renewal_page.checkIfHelpPagesArePresent()
+    template_management_page.click_scrim()
+    registration_page.click_on_profile_edit()
+    registration_page.scroll_till_log_out()
+    registration_page.click_log_out_button()
+    help_page.checkIfOnSignInPage()
+    """Sign in"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
+    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.check_if_exchangeCode_message_present()
+    """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
+    sso_token_renewal_page.check_if_getLocalTokens_information_present()
+    """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
+    old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sleep(3120)
+    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.checkTokenRefreshed(old_token)
+    """Click hamburger icon to expand menu"""
+    login_page.click_Menu_HamburgerICN()
+    template_management_page.clickCommonDesigns()
+    template_management_page.select_design_common_designs()
+    template_management_page.select_label_common_designs()
+    data_sources_page.clickPrint()
+    data_sources_page.scroll_till_print()
+    data_sources_page.clickPrint()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    data_sources_page.clickBackArrow()
+    data_sources_page.clickBackArrow()
+    login_page.click_Menu_HamburgerICN()
+    registration_page.click_on_profile_edit()
+    registration_page.scroll_till_log_out()
+    registration_page.click_log_out_button()
+    help_page.checkIfOnSignInPage()
+    """Login Again"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
+    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.check_if_exchangeCode_message_present()
+    """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
+    sso_token_renewal_page.check_if_getLocalTokens_information_present()
+    """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
+    old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sleep(3120)
+    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.checkTokenRefreshed(old_token)
+    """Click hamburger icon to expand menu"""
+    login_page.click_Menu_HamburgerICN()
+    """Swipe up"""
+    poco.scroll()
+    """Click Help dropdown to expand Help options"""
+    help_page.click_Help_dropdown_option()
+    sso_token_renewal_page.checkIfHelpPagesArePresent()
+    common_method.Stop_The_App()
 
 
 def test_SSO_Token_Renewal_TestcaseID_49907():
@@ -233,16 +239,18 @@ def test_SSO_Token_Renewal_TestcaseID_49908():
     registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     """Check if still on logged in page"""
     sso_token_renewal_page.check_if_user_is_logged_in()
@@ -424,15 +432,17 @@ def test_SSO_Token_Renewal_TestcaseID_49911():
     data_sources_page.click_My_Data()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickHome()
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     sso_token_renewal_page.noErrorOccurredAfterSwitchingApps()
     login_page.click_Menu_HamburgerICN()
@@ -572,15 +582,17 @@ def test_SSO_Token_Renewal_TestcaseID_49914():
     common_method.Start_The_App()
     """Check if user still logged in"""
     sso_token_renewal_page.check_if_user_is_logged_in()
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
@@ -687,15 +699,17 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
         registration_page.sign_In_With_Google("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     new_token = sso_token_renewal_page.checkTokenRefreshed(old_token)
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
@@ -731,7 +745,8 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
         registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("Zebra#123456789", account)
     data_sources_page.checkIfOnHomePage()
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check token refreshed after logout and login"""
@@ -804,15 +819,17 @@ def test_SSO_Token_Renewal_TestcaseID_49918():
     sleep(120)
     """Connect to network"""
     template_management_page_1.turn_on_wifi()
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
+    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.terminateBatchFileProcess(process)
     new_token = sso_token_renewal_page.checkTokenRefreshed(old_token)
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()

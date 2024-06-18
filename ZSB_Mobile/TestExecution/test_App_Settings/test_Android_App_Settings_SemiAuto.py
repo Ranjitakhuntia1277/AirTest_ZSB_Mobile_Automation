@@ -231,7 +231,7 @@ def test_AppSettings_TestcaseID_49711():
 
 def test_AppSettings_TestcaseID_50326():
     """Manage Network- Check able to add/delete/sort network when printer bt paired/unpaired in device""""""
-    
+
     """"App should be in logged in condition & printer should be added """"
     """"""connect with Another wifi Network except NESTWIFI"""
 
@@ -328,11 +328,11 @@ def test_AppSettings_TestcaseID_45688():
     """stop the app"""
     common_method.Stop_The_App()
 
+
 ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Smoke_Test_TestcaseID_45876():
     """	Check basic functions work well after upgrading"""
-
 
     """"Setup:
     1. The previous version has already been installed in test device
@@ -428,6 +428,8 @@ def test_Smoke_Test_TestcaseID_45876():
     """""""POP UP FOR MANUAL INTERVENTION"""""""""""""""
     common_method.Show_popup_To_Close_The_Printer_Cover_Manually()
     aps_notification.Verify_Printer_Status_Is_Present()
+
+
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Smoke_Test_TestcaseID_45901():
@@ -464,6 +466,8 @@ def test_Smoke_Test_TestcaseID_45901():
     """""""web portal part needs to be verified Manually"""""""
     """""""POP UP FOR MANUAL INTERVENTION"""""""""""""""
     common_method.Show_popup_For_Web_Portal_Verification_Manually()
+
+
 # ## #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Smoke_Test_TestcaseID_45882():
@@ -501,12 +505,12 @@ def test_Smoke_Test_TestcaseID_45882():
     """""""POP UP FOR MANUAL INTERVENTION"""""""""""""""
     common_method.Show_popup_For_Design_Verification_On_Web_Portal_Manually()
 
+
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 
 def test_Smoke_Test_TestcaseID_45885():
     """Add a printer- use a printer which has ever been registered before and require a decommission."""
-
 
     """Step 1 needs to be verifiedManually """
     """""1.Turn on the testing printer, wait about 1 min, use a toothpick to press the button on the printer back for about 30s to do a decommission
@@ -561,6 +565,8 @@ def test_Smoke_Test_TestcaseID_45885():
     app_settings_page.Verify_Printer_is_already_added()
     """stop the app"""
     common_method.Stop_The_App()
+
+
 # # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # #
 

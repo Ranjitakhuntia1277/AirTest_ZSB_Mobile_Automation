@@ -185,8 +185,10 @@ class Data_Sources_Screen:
         set_up_design.click()
 
     def scroll_till_print(self):
-        while not self.poco(self.Print_Btn).exists():
+        count = 5
+        while not self.poco(self.Print_Btn).exists() and count != 0:
             self.poco.scroll()
+            count -= 1
         self.poco.scroll()
         sleep(2)
 
@@ -443,9 +445,9 @@ class Data_Sources_Screen:
                 break
             prev = curr
             self.poco.scroll()
-            while not self.poco("NAME").exists():
-                scroll_view = self.poco("android.view.View")
-                scroll_view.swipe("down")
+        while not self.poco("NAME").exists():
+            scroll_view = self.poco("android.view.View")
+            scroll_view.swipe("down")
         return File_List
 
     def selectFileWithExtension(self, extension):
@@ -480,7 +482,7 @@ class Data_Sources_Screen:
 
     def verifyDesign(self, labelname):
         label_name_len = len(labelname)
-        if len(poco("android.view.View")[5].child()) == 1:
+        if len(self.poco("android.view.View")[5].child()) == 1:
             return
         else:
             print("Label created not found")
@@ -521,6 +523,22 @@ class Data_Sources_Screen:
             else:
                 print("Files are not filtered")
                 return 1 / 0
+
+    def checkFileNotRemovedAfterClickingCancel(self, filename, datasource):
+        try:
+            self.verifyFilePresentInList(filename, datasource, True)
+        except:
+            raise Exception("File removed even after clicking cancel")
+
+    def checkFileRemovedSuccessfully(self, filename, datasource):
+        try:
+            self.verifyFilePresentInList(filename, datasource, True)
+            x = 1 / 0
+        except ZeroDivisionError:
+            raise Exception("File not removed")
+        except Exception as e:
+            pass
+        sleep(3)
 
     def generateRandomWord(self, length):
         return ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(length))
@@ -833,6 +851,10 @@ class Data_Sources_Screen:
             self.poco(text="Sign In with your email").wait_for_appearance(timeout=20)
             self.poco(text="Sign In with your email").click()
             print("Successfully clicked Sign In With Email")
+        sleep(2)
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
         sleep(2)
 
     def clickBackArrow(self):
