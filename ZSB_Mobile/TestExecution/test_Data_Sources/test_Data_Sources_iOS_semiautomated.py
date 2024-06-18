@@ -1,37 +1,36 @@
-from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+from airtest.core.api import connect_device, auto_setup, start_app, sleep, text, stop_app
+from poco.drivers.ios import iosPoco
+from self import self
 from airtest.core.api import *
 
-from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ...PageObject.Login_Screen import *
+from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen_iOS import Data_Sources_Screen
 
-from ...PageObject.Help_Screen.Help_Screen import Help_Screen
-from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
-from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
-from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
-from ...PageObject.Others_Screen.Others_Screen import Others
+from ZSB_Mobile.PageObject.Help_Screen.Help_Screen_iOS import Help_Screen
+from ZSB_Mobile.Common_Method import Common_Method
+from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
+from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen_iOS import Registration_Screen
+from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK_iOS import \
+    Template_Management_Screen
+from ZSB_Mobile.PageObject.Others.Others_iOS import Others
+import pytest
 
 
-class Android_App_Data_Sources:
+class iOS_App_Data_Sources:
     pass
 
 
-poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+uuid = "00008101-00051D400144001E"
+Bonding = connect_device("ios:///http+usbmux://" + uuid)
+poco = iosPoco(device=Bonding)
+auto_setup(logdir="./", compress=3,
+           devices=[f"ios:///http+usbmux://{uuid}"])
 
-connect_device("Android:///")
-wake()
-# start_app("com.zebra.soho_app")
-# sleep(2.0)
 common_method = Common_Method(poco)
-login_page = Login_Screen(poco)
+login_page = Login_Screen_iOS(poco)
 help_page = Help_Screen(poco)
-printer_management_page = Printer_Management_Screen(poco)
 data_sources_page = Data_Sources_Screen(poco)
 registration_page = Registration_Screen(poco)
 template_management_page = Template_Management_Screen(poco)
-template_management_page_1 = Template_Management_Android(poco)
 others_page = Others(poco)
 
 
@@ -507,7 +506,7 @@ def test_DataSources_TestcaseID_45732():
     """Click Link File"""
     data_sources_page.click_Link_File()
     """ One drive """
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -519,7 +518,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -534,7 +533,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -549,7 +548,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -564,7 +563,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -579,7 +578,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -633,7 +632,7 @@ def test_DataSources_TestcaseID_45732():
     """Click Link File"""
     data_sources_page.click_Link_File()
     """ One drive """
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -645,7 +644,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -660,7 +659,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -675,7 +674,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -690,7 +689,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -705,7 +704,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -758,7 +757,7 @@ def test_DataSources_TestcaseID_45732():
     """Click Link File"""
     data_sources_page.click_Link_File()
     """ One drive """
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -770,7 +769,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -785,7 +784,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -800,7 +799,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -815,7 +814,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -830,7 +829,7 @@ def test_DataSources_TestcaseID_45732():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -922,12 +921,12 @@ def test_DataSources_TestcaseID_45738():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(3)
     data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     data_sources_page.clickBackArrow()
     sleep(3)
@@ -967,7 +966,7 @@ def test_DataSources_TestcaseID_45738():
     """Check the print preview, the data has been  added or removed-has to be done manually"""
     data_sources_page.labelRangeSelection(4)
     data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    template_management_page.wait_for_element_appearance_name_matches_all("Print complete")
     data_sources_page.clickBackArrow()
     """One Drive"""
     common_method.wait_for_element_appearance_namematches("Showing")
@@ -1002,7 +1001,7 @@ def test_DataSources_TestcaseID_45738():
     """Check the print preview, the data has been  added or removed-has to be done manually"""
     data_sources_page.labelRangeSelection(4)
     data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    template_management_page.wait_for_element_appearance_name_matches_all("Print complete")
     common_method.Stop_The_App()
 
 
@@ -1173,7 +1172,7 @@ def test_DataSources_TestcaseID_45754():
     sleep(2)
     """ One drive """
     data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -1185,7 +1184,7 @@ def test_DataSources_TestcaseID_45754():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -1200,7 +1199,7 @@ def test_DataSources_TestcaseID_45754():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -1215,7 +1214,7 @@ def test_DataSources_TestcaseID_45754():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -1230,7 +1229,7 @@ def test_DataSources_TestcaseID_45754():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)
@@ -1245,7 +1244,7 @@ def test_DataSources_TestcaseID_45754():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(5)

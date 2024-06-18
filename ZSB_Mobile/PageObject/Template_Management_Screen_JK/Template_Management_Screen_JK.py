@@ -377,6 +377,18 @@ class Template_Management_Screen:
     def click_from_data_file(self):
         self.poco(text="   From Data File").focus([0.0, 0.5]).click()
 
+    def checkIfZebraGalleryLoaded(self):
+        try:
+            self.wait_for_element_appearance_type("android.widget.ImageView")
+        except:
+            raise Exception("Zebra Gallery did not load.")
+
+    def checkIfAllIconsShowedUp(self, iconsAfterClickingSearch, defaultIcons):
+        if iconsAfterClickingSearch == defaultIcons:
+            pass
+        else:
+            raise Exception("All Icons did not show up after clearing search text.")
+
     def clickAddText(self):
         self.poco(text="Add text").click()
 
