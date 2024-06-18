@@ -1211,10 +1211,28 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         messagebox.showinfo("Notification", "Verify The Darkness Level On_Web Portal Manually")
 
+    def Show_popup_To_Verify_Darkness_level_On_Web_Portal_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        messagebox.showinfo("Notification", "Verify darkness level is updated on Web Portal")
+
+    def Show_popup_To_Insert_Different_CartridgeLC1_4_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        messagebox.showinfo("Notification", "Insert different Cartridge LC1 & LC4 Manually")
+
+    def Show_popup_To_Make_The_Status_AS_Online(self):
+            sleep(2)
+            a = self.poco(textMatches="(?s).*Online.*")
+            if a.exists():
+                a.get_text()
+                return a
 
 
-
-
+    def Show_popup_For_Web_Portal_Verification_On_Uploaded_File_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        messagebox.showinfo("Notification", "Check the uploaded files from mobile app display on Web Portal")
 
 
 

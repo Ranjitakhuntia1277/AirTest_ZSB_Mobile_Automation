@@ -6,11 +6,11 @@ import pytest
 from airtest.core.android import Android
 from airtest.core.api import exists, sleep
 from poco import poco
-from ...Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException, PocoTargetTimeout
 from pocoui_lib.android.kotoComponent import poco
 import subprocess
 from time import sleep
+
 
 def Basic_path(a):
     return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Add_A_Printer", a)
@@ -67,6 +67,14 @@ class Add_A_Printer_Screen:
         self.Submit_Button_ON_Join_Network = "Submit"
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
+        self.ZSB_Printer_images = Template(Basic_path("tpl1706510933463.png"), record_pos=(-0.334, -0.229),
+                                           resolution=(1080, 2400))
+
+        self.Connect_Wifi_Network_Text = "Connect Wi-Fi Network"
+        self.UI_Of_The_Slideleft_Page = Template(Basic_path("tpl1718627231606.png"), record_pos=(-0.096, 0.12), resolution=(1080, 2400))
+
+
+
 
         # ##""""""""""""""""""""""""""""""""""""""""""""""""smoke test-need to add""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -74,6 +82,11 @@ class Add_A_Printer_Screen:
         self.Print_Button = "Print"
         self.Back_Icon_Of_Print_Review_Screen = "android.widget.Button"
         self.Common_Design_Tab = "Common Designs"
+        self.Design_Preview_With_Details = Template(Basic_path("tpl1707902210476.png"), record_pos=(0.047, 0.202),
+                                                    resolution=(1170, 2532))
+        self.SecondOne_In_MyDesign = ""
+
+        self.FirstOne_In_MyDesign = ""
 
     ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def disable_bluetooth(self):
@@ -234,7 +247,6 @@ class Add_A_Printer_Screen:
         bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2)
         bluetooth_pairing_popup2.click()
 
-
     def Verify_Searching_for_wifi_networks_Text(self):
         sleep(2)
         searching_for_wifi_networks_Text = self.poco(self.Searching_for_wifi_networks_Text)
@@ -255,7 +267,7 @@ class Add_A_Printer_Screen:
         sleep(2)
         discovered_devices_Text = self.poco(self.Discovered_Devices_Text)
         if discovered_devices_Text.exists():
-           discovered_devices_Text.get_text()
+            discovered_devices_Text.get_text()
         print(" Discovered Devices Text is displaying:", discovered_devices_Text)
         return discovered_devices_Text
 
@@ -263,8 +275,8 @@ class Add_A_Printer_Screen:
         sleep(1)
         a = self.poco(nameMatches="(?s).*ZSB-DP12.*")
         if a.exists():
-           a.get_name()
-           print(a)
+            a.get_name()
+            print(a)
 
     def Verify_Already_Added_Printer_IS_Not_Displaying(self):
         sleep(5)
@@ -279,12 +291,6 @@ class Add_A_Printer_Screen:
         sleep(4)
         second_printer = self.poco(name="android.widget.RadioButton")
         second_printer.click()
-
-    # def Accept_Bluetooth_pairing_Popup1(self):
-    #     while wait:
-    #
-    #     bluetooth_popup1 = self.poco(self.Bluetooth_pairing_Popup1)
-    #     bluetooth_popup1.click()
 
     def Accept_Bluetooth_pairing_Popup1(self):
         sleep(2)
@@ -378,16 +384,6 @@ class Add_A_Printer_Screen:
             print("Current Network Text is not present.")
             assert False
 
-    # def click_Finish_Setup_Button(self):
-    #     sleep(20)
-    #     try:
-    #         finish_btn = self.poco(self.Finish_Setup_Button)
-    #         finish_btn.wait(20).visible().click()
-    #
-    #     except PocoTargetTimeout:
-    #         print("Finish button did not become visible within 20 seconds.")
-    #         sleep(3)
-
     def click_Finish_Setup_Button(self):
         sleep(25)
         finish_btn = self.poco(self.Finish_Setup_Button)
@@ -431,9 +427,8 @@ class Add_A_Printer_Screen:
 
     def Verify_Design_Preview_Screen_With_Details(self):
         sleep(3)
-        a= self.poco(nameMatches="(?s).*Label.*").get_name()
+        a = self.poco(nameMatches="(?s).*Label.*").get_name()
         print(a)
-
 
     def click_The_Back_Icon_Of_Print_Review_Screen(self):
         sleep(2)
@@ -481,4 +476,146 @@ class Add_A_Printer_Screen:
     def click_Exit_Btn_On_Exit_Printer_Setup(self):
         sleep(1)
         self.poco(name="Exit").click()
+
+    # ---------------------------------------------------------------------------
+
+    def disable_bluetooth(self):
+        os.system('adb shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE> nul 2>&1')
+        # os.system(f"adb -s {device_id} shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE")
+
+        shell_element = poco(text="Allow")
+        try:
+            shell_element.exists()
+            shell_element.click()
+            sleep(1)
+        except Exception as e:
+            print(f"An error occurred: {e}. Skipping.")
+
+    # ####
+    def disable_bluetooth(self):
+        try:
+            # Disable Bluetooth using ADB
+            subprocess.run(
+                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            # Check for the 'Allow' element using poco
+            shell_element = poco(text="Allow")
+            if shell_element.exists():
+                shell_element.click()
+                sleep(1)
+            else:
+                print("No 'Allow' element found. Skipping.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"ADB command failed with error: {e}. Skipping.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}. Skipping.")
+
+    def enable_bluetooth(self):
+        try:
+            subprocess.run(
+                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
+                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            # Check for the 'Allow' element using poco
+            shell_element = poco(text="Allow")
+            if shell_element.exists():
+                shell_element.click()
+                sleep(1)
+            else:
+                print("No 'Allow' element found. Skipping.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"ADB command failed with error: {e}. Skipping.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}. Skipping.")
+
+
+    # def Verify_same_ZSB_image_for_all_items(self):
+    #
+    #     # if assert_exists(self.ZSB_Printer_images, "Only ZSB Printers are present"):
+    #     if (self.ZSB_Printer_images, "Only ZSB Printers are present").exists():
+    #         print("ZSB Printers are present for all items.")
+    #     else:
+    #         print("ZSB Printers are not present for all items.")
+
+    def Verify_same_ZSB_image_for_all_items(self):
+        if self.ZSB_Printer_images.exists():
+            print("ZSB Printers are present for all items.")
+        else:
+            print("ZSB Printers arem present for all items.")
+
+    def Verify_UI_Of_The_Slideleft_Page_Is_Correct(self):
+        sleep(2)
+        assert_exists(self.UI_Of_The_Slideleft_Page, "UI Of The Slideleft Page is Correct")
+
+    def Verify_Setup_Your_Printer_Page_Is_Displaying(self):
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*Set up your printer.*")
+        a.get_name()
+        print(a)
+
+    def Verify_MoneyBadger_Image_Is_Displaying(self):
+        if self.poco(name="android.widget.ImageView").exists():
+            print("MoneyBadger Image is present.")
+            assert True
+        else:
+            print("MoneyBadger Image is not present.")
+            assert False
+
+    def Verify_TurnOn_Bluetooth_PromptMessage(self):
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*Turn on Bluetooth to Allow.*")
+        a.get_name()
+        print(a)
+
+    def click_On_Cancel_Btn(self):
+        sleep(3)
+        self.poco(name="Cancel").click()
+
+    # def Verify_Slideleft_Page_Is_Present(self):
+    #     sleep(2)
+    #     if self.poco(name="Add A Printer").exists():
+    #        print("Add Printer Tab is displaying")
+    #     else:
+    #         assert_false()
+
+    def Verify_Slideleft_Page_Is_Present(self):
+        try:
+            # Wait for the element to be present for up to 10 seconds
+            if self.poco(name="Add A Printer").wait_for_appearance(timeout=3):
+                print("Add Printer Tab is displaying")
+            else:
+                assert False, "Add Printer Tab is not displaying"
+        except Exception as e:
+            assert False, f"An error occurred: {str(e)}"
+
+    def Verify_Unable_To_Find_Printers_Text_Is_Displaying(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Unable to find printer(s).*")
+        if a.exists():
+            a.get_name()
+            print(a)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

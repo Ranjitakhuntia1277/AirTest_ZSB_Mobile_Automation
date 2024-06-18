@@ -1263,7 +1263,7 @@ def test_AppSettings_TestcaseID_47881():
 
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_AppSettings_TestcaseID_47928():
+def test_AppSettings_TestcaseID_47928_Bug1888():
     """UI warning and confirmation verification when printer is deleted before decommissioned(Android)"""
     """"Account should be having 2 printers"""
 
