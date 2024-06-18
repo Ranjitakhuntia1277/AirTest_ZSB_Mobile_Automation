@@ -292,6 +292,7 @@ def test_Smoke_Test_TestcaseID_45881():
     # smoke_test_android.click_Continue_As_Zebra()
     # login_page.click_Menu_HamburgerICN()
     # smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+    # login_page.click_Continue_On_Facebbok_Login_Page()
     # app_settings_page.click_My_Design()
     # add_a_printer_screen.click_FirstOne_In_MyDesign()
     # add_a_printer_screen.click_Print_Option()
@@ -356,56 +357,58 @@ def test_Smoke_Test_TestcaseID_45882():
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-# def test_Smoke_Test_TestcaseID_45883():
-#     """Verify sign in sign out with registered social accounts in Mobile App."""
-#
-#
-#     """start the app"""
-#     common_method.tearDown()
-#       login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     login_page.click_Menu_HamburgerICN()
-#     app_settings_page.click_pen_Icon_near_UserName()
-#     app_settings_page.Scroll_till_Delete_Account()
-#     app_settings_page.click_Logout_Btn()
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     login_page.click_loginBtn()
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
-#     smoke_test_android.Verify_SignIn_With_Text_Is_Present()
-#     smoke_test_android.click_Continue_With_Facebook_Option()
-#     """""due to some issue, it is directly login to the facebook account without asking for password"""
-#     login_page.click_Menu_HamburgerICN()
-#     smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
-#     app_settings_page.click_pen_Icon_near_UserName()
-#     app_settings_page.Scroll_till_Delete_Account()
-#     app_settings_page.click_Logout_Btn()
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     login_page.click_loginBtn()
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     smoke_test_android.click_Continue_With_Apple_Option()
-#     smoke_test_android.click_Continue_With_Password_ForApple_Login()
-#     smoke_test_android.click_On_Password_Textfield()
-#     smoke_test_android.click_On_Sign_In_Option()
-#     login_page.click_Menu_HamburgerICN()
-#     smoke_test_android.Verify_Apple_UserName_Is_Displaying()
-#     app_settings_page.click_pen_Icon_near_UserName()
-#     app_settings_page.Scroll_till_Delete_Account()
-#     app_settings_page.click_Logout_Btn()
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     login_page.click_loginBtn()
-#     login_page.click_LoginAllow_Popup()
-#     login_page.click_Allow_ZSB_Series_Popup()
-#     login_page.click_Loginwith_Google()
-#     login_page.Loginwith_Added_Email_Id()
-#     smoke_test_android.Verify_Google_UserName_Is_Displaying()
-#     common_method.Stop_The_App()
-#
+def test_Smoke_Test_TestcaseID_45883():
+    """Verify sign in sign out with registered social accounts in Mobile App."""
+
+
+    # """start the app"""
+    # common_method.tearDown()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_Menu_HamburgerICN()
+    # app_settings_page.click_pen_Icon_near_UserName()
+    # app_settings_page.Scroll_till_Delete_Account()
+    # app_settings_page.click_Logout_Btn()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_loginBtn()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
+    smoke_test_android.Verify_SignIn_With_Text_Is_Present()
+    smoke_test_android.click_Continue_With_Facebook_Option()
+    """""due to some issue, it is directly login to the facebook account without asking for password"""
+    login_page.click_Continue_On_Facebbok_Login_Page()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+    login_page.click_Continue_On_Facebbok_Login_Page()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    smoke_test_android.click_Continue_With_Apple_Option()
+    smoke_test_android.click_Continue_With_Password_ForApple_Login()
+    smoke_test_android.click_On_Password_Textfield()
+    smoke_test_android.click_On_Sign_In_Option()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.Verify_Apple_UserName_Is_Displaying()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    smoke_test_android.Verify_Google_UserName_Is_Displaying()
+    common_method.Stop_The_App()
+
 #
 # # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
