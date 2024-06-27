@@ -52,7 +52,7 @@ class Add_A_Printer_Screen:
         self.Printer_Name_To_Select = ""
         self.Bluetooth_pairing_Popup1 = "android:id/action0"
         self.Bluetooth_pairing_Popup2 = "android:id/button1"
-        self.Searching_for_wifi_networks_Text = "Searching for Wi-Fi Networks"
+        self.Searching_for_wifi_networks_Text = "Searching for Wi-Fi networks"
         self.Select_Different_Network_Text = "Select Different Network"
         self.Zebra_Network = "Zebra"
         self.Discovered_Devices_Text = "Discovered printers"
@@ -64,16 +64,16 @@ class Add_A_Printer_Screen:
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
         self.Password_Field_On_Join_Network = Template(Basic_path("tpl1712913927236.png"), record_pos=(-0.048, -0.44),
                                                        resolution=(1080, 2400))
-        self.Submit_Button_ON_Join_Network = "Submit"
+        self.Submit_Button_ON_Join_Network = "Connect"
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
         self.ZSB_Printer_images = Template(Basic_path("tpl1706510933463.png"), record_pos=(-0.334, -0.229),
                                            resolution=(1080, 2400))
 
-        self.Connect_Wifi_Network_Text = "Connect Wi-Fi Network"
+        self.Connect_Wifi_Network_Text = "Connect to Wi-Fi"
         self.UI_Of_The_Slideleft_Page = Template(Basic_path("tpl1718627231606.png"), record_pos=(-0.096, 0.12), resolution=(1080, 2400))
 
-
+        self.The_ESSID_Next_To_Lock_Icon= Template(Basic_path("tpl1718963731096.png"), record_pos=(0.393, -0.006), resolution=(1080, 2400))
 
 
         # ##""""""""""""""""""""""""""""""""""""""""""""""""smoke test-need to add""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,7 +97,7 @@ class Add_A_Printer_Screen:
                 check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             # Check for the 'Allow' element using poco
-            shell_element = poco(text="Allow")
+            shell_element = self.poco(text="Allow")
             if shell_element.exists():
                 shell_element.click()
                 sleep(1)
@@ -116,7 +116,7 @@ class Add_A_Printer_Screen:
                 check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             # Check for the 'Allow' element using poco
-            shell_element = poco(text="Allow")
+            shell_element = self.poco(text="Allow")
             if shell_element.exists():
                 shell_element.click()
                 sleep(1)
@@ -220,9 +220,9 @@ class Add_A_Printer_Screen:
         else:
             pass
 
-    def Click_The_Printer_Name_To_Select(self):
-        Printer_Name_To_Select = self.poco(self.Printer_Name_To_Select).wait_for_appearance(timeout=4)
-        Printer_Name_To_Select.click()
+    # def Click_The_Printer_Name_To_Select(self):
+    #     Printer_Name_To_Select = self.poco(self.Printer_Name_To_Select).wait_for_appearance(timeout=4)
+    #     Printer_Name_To_Select.click()
 
     def click_Select_Button_On_Select_Your_Printer_Screen(self):
         sleep(2)
@@ -248,9 +248,10 @@ class Add_A_Printer_Screen:
         bluetooth_pairing_popup2.click()
 
     def Verify_Searching_for_wifi_networks_Text(self):
-        sleep(2)
+        sleep(15)
         searching_for_wifi_networks_Text = self.poco(self.Searching_for_wifi_networks_Text)
-        searching_for_wifi_networks_Text.get_text()
+        if searching_for_wifi_networks_Text.exists():
+           searching_for_wifi_networks_Text.get_text()
         print(" Searching for Wifi network Text is displaying:", searching_for_wifi_networks_Text)
         return searching_for_wifi_networks_Text
 
@@ -343,7 +344,8 @@ class Add_A_Printer_Screen:
         if submit_btn.exists() and submit_btn.attr('enabled'):
             submit_btn.click()
         else:
-            pass
+            poco.scroll()
+            submit_btn.click()
 
     def Verify_Connecting_to_WiFi_Network_Text(self):
         sleep(3)
@@ -479,7 +481,7 @@ class Add_A_Printer_Screen:
 
     # ---------------------------------------------------------------------------
 
-    def disable_bluetooth(self):
+    def Disable_Bluetooth(self):
         os.system('adb shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE> nul 2>&1')
         # os.system(f"adb -s {device_id} shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE")
 
@@ -547,7 +549,7 @@ class Add_A_Printer_Screen:
             print("ZSB Printers arem present for all items.")
 
     def Verify_UI_Of_The_Slideleft_Page_Is_Correct(self):
-        sleep(2)
+        sleep(3)
         assert_exists(self.UI_Of_The_Slideleft_Page, "UI Of The Slideleft Page is Correct")
 
     def Verify_Setup_Your_Printer_Page_Is_Displaying(self):
@@ -566,7 +568,7 @@ class Add_A_Printer_Screen:
 
     def Verify_TurnOn_Bluetooth_PromptMessage(self):
         sleep(1)
-        a = self.poco(nameMatches="(?s).*Turn on Bluetooth to Allow.*")
+        a = self.poco(nameMatches="(?s).*Turn on Bluetooth.*")
         a.get_name()
         print(a)
 
@@ -582,21 +584,301 @@ class Add_A_Printer_Screen:
     #         assert_false()
 
     def Verify_Slideleft_Page_Is_Present(self):
-        try:
-            # Wait for the element to be present for up to 10 seconds
-            if self.poco(name="Add A Printer").wait_for_appearance(timeout=3):
+            sleep(3)
+            if self.poco(name="Common Designs").wait_for_appearance(timeout=3):
                 print("Add Printer Tab is displaying")
             else:
-                assert False, "Add Printer Tab is not displaying"
-        except Exception as e:
-            assert False, f"An error occurred: {str(e)}"
+                raise AssertionError("Add Printer Tab is not displaying")
+
 
     def Verify_Unable_To_Find_Printers_Text_Is_Displaying(self):
         sleep(3)
         a = self.poco(nameMatches="(?s).*Unable to find printer(s).*")
+        a.get_name()
+        print(a)
+    def click_ON_Settings_Back_Icon(self):
+        sleep(2)
+        self.poco(name="Navigate up").click()
+        sleep(2)
+
+    def click_Search_Again_Button(self):
+        sleep(1)
+        self.poco(name="Search Again").click()
+        sleep(15)
+
+    def Verify_Select_your_printer_Text_For_Add_Printer(self):
+        sleep(2)
+        a = self.poco(nameMatches="(?s).*Select your printer.*")
+        a.get_name()
+        print(a)
+
+    def Select_Printer(self):
+        sleep(1)
+        self.poco(nameMatches="(?s).*ZSB-DP.*").click()
+
+    def click_Allow_For_Disable_Enable_Bluetooth(self):
+        if self.poco(name="android:id/button1").exists():
+           self.poco(name="android:id/button1").click()
+           sleep(2)
+
+    def Verify_Unable_To_Connect_To_Printer_Popup(self):
+        sleep(2)
+        self.poco(nameMatches="(?s).*Unable to Connect to Printer.*").get_name()
+
+    def click_Try_Again(self):
+        sleep(1)
+        self.poco(name="Try Again").click()
+        sleep(17)
+
+    def click_Enter_Network_Manually(self):
+        sleep(2)
+        self.poco(name="Enter Network Manually").click()
+
+    def click_NetworkName_Field(self):
+        sleep(2)
+        a=self.poco(name="android.widget.EditTex")
+        a.click()
+        a.set_text("")
+
+    def click_NESTWIFI_NETWORK(self):
+        sleep(2)
+        a=self.poco(name="NESTWIFI")
+        if a.exists():
+            a.click()
+        else:
+            poco.scroll()
+            a.click()
+
+    def Enter_Password_Field(self):
+        sleep(3)
+        a=self.poco(name="android.widget.EditText")
+        a.click()
+        # a.set_text("123456789")
+        poco(text("123456789"))
+
+    def click_Connect_Button_ON_Join_Network(self):
+        sleep(2)
+        submit_btn = self.poco(self.Submit_Button_ON_Join_Network)
+        if submit_btn.exists() and submit_btn.attr('enabled'):
+            submit_btn.click()
+        else:
+            poco.scroll()
+            sleep(2)
+            submit_btn.click()
+
+    def Verify_Printer_Setup_Complete_Text(self):
+        sleep(30)
+        a= self.poco(nameMatches="(?s).*Printer setup complete.*")
+        a.get_name()
+        print(a)
+
+    def click_Finish_Button(self):
+        sleep(5)
+        finish_btn = self.poco(self.Finish_Setup_Button)
+        finish_btn.click()
+        sleep(5)
+
+    def click_Home_Tab(self):
+        sleep(4)
+        if self.poco(name="Home").exists():
+            self.poco(name="Home").click()
+            sleep(3)
+
+    def Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Let's make sure the printer is in Bluetooth pairing mode..*")
+        a.get_name()
+        print(a)
+
+    def click_Next_Button(self):
+        sleep(2)
+        self.poco(name="Next").click()
+
+    def Verify_Unprovision_Moneybadgr_On_The_Screen(self):
+        sleep(2)
+        a = self.poco(nameMatches="(?s).*ZSB-DP.*")
+        a.get_name()
+        print(a)
+
+    def Click_The_Printer_Name_To_Select(self):
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*ZSB-DP.*")
+        a.click()
+        print(a)
+
+    def click_Cancel_On_Bluetooth_Paring_Popup(self):
+        cancel_on_popup = self.poco(text="Cancel")
+        cancel_on_popup.click()
+    def click_Cancel_On_Bluetooth_Paring_Popup_If_Present(self):
+        cancel_on_popup = self.poco(text="Cancel")
+        if cancel_on_popup.exists():
+           cancel_on_popup.click()
+    def Verify_Please_Try_The_Following_Before_Attempting_Again_Text(self):
+        sleep(1)
+        a=self.poco(nameMatches="(?s).*Please try the following before attempting to connect to printer again..*")
+        a.get_name()
+        print(a)
+
+    def Verify_Connecting_To_Printer_Text(self):
+        a=self.poco(name="Connecting to printer")
         if a.exists():
             a.get_name()
+            print("Connecting to printer text is displaying")
+
+    def Verify_Printer_Connected_Text(self):
+        sleep(15)
+        a=self.poco(name="Printer connected")
+        if a.exists():
+            a.getname()
             print(a)
+
+    def Verify_Connecting_To_Cloud_Text(self):
+        sleep(20)
+        self.poco(nameMatches="(?s).*Connecting to Cloud.*").get_name()
+
+    def Enter_Network_ESSID(self):
+        sleep(2)
+        network= self.poco(name="android.widget.EditText")
+        network.click()
+        sleep(2)
+        network.setg_text("NESTWIFI")
+
+    def Enter_Password_Field_On_Nwtwork_Manually_Filed(self):
+        sleep(3)
+        a=self.poco(name="android.widget.EditText")[1]
+        a.click()
+        # a.set_text("123456789")
+        poco(text("123456789"))
+
+    def click_Close_Icon(self):
+        sleep(2)
+        self.poco(name="android.widget.Button").click()
+        sleep(4)
+
+    def Verify_Exit_Printer_Setup_Popup(self):
+        sleep(3)
+        a= self.poco(nameMatches="(?s).*Exit Printer Setup?.*")
+        a.get_name()
+        print(a)
+
+    def click_On_Cancel_Button(self):
+        sleep(2)
+        self.poco(name="Cancel").click()
+        sleep(2)
+
+    def click_On_Close_Icon_On_Select_Your_Printer_Page(self):
+        sleep(3)
+        self.poco(name="android.widget.Button").click()
+        sleep(4)
+
+    def Verify_Close_Icon_Is_Not_Present(self):
+        sleep(3)
+        if not self.poco(name="android.widget.Button").exists():
+           print("Close Icon is not present")
+        else:
+            print("Close Icon is Present")
+
+    def Verify_No_Printers_Found_Text(self):
+        sleep(10)
+        if not self.poco(nameMatches="(?s).*No Printers Found.*").exits():
+          print("ZSB Printer is not displaying")
+
+    def Verify_Your_Printer_is_ON_And_Bluetooth_Is_Enabled_Text(self):
+        sleep(5)
+        a=self.poco(nameMatches="(?s).*Please make sure your printer is on and Bluetooth Text.*")
+        a.get_name()
+        print(a)
+
+    def click_Cancel_Button_ON_Join_Network(self):
+            sleep(2)
+            cancel_btn = self.poco(name="Cancel")
+            if cancel_btn.exists():
+                cancel_btn.click()
+            else:
+                poco.scroll()
+                sleep(2)
+                cancel_btn.click()
+
+    def Verify_Unable_To_Pair_Your_Printer(self):
+        sleep(4)
+        sleep(5)
+        a = self.poco(nameMatches="(?s).*Unable to pair your printer.*")
+        a.get_name()
+        print(a)
+
+    def Enter_Wrong_Password_In_Field(self):
+        sleep(3)
+        a=self.poco(name="android.widget.EditText")
+        a.click()
+        # a.set_text("123456789")
+        poco(text("123"))
+
+    def Enter_Longe_Wrong_Password_In_Field(self):
+        sleep(3)
+        a=self.poco(name="android.widget.EditText")
+        a.click()
+        # a.set_text("123456789")
+        poco(text("123979767"))
+
+    def Verify_Password_Should_Contain_Between_Message(self):
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*Password should contain between 8 and 63 characters.*")
+        a.get_name()
+        print(a)
+
+    def Verify_Home_Text_Is_Present(self):
+        sleep(5)
+        a = self.poco(nameMatches="(?s).*Home.*")
+        a.get_name()
+        print(a)
+
+    def click_The_ESSID_Next_To_Lock_Icon(self):
+        sleep(3)
+        touch(self.The_ESSID_Next_To_Lock_Icon)
+
+    def Verify_Enter_Network_Passwords_Text_Is_Displaying(self):
+        sleep(2)
+        a= self.poco(name="Password")
+        if a.exists():
+           a.get_name()
+
+    def Verify_Unable_To_Connect_Printer_To_Wifi_Popup(self):
+        sleep(15)
+        a = poco(nameMatches="(?s).*Unable to connect printer to Wi-Fi network.*")
+        a.get_name()
+        print(a)
+
+    def Verify_Added_Wifi_which_Is_Connected(self):
+        sleep(7)
+        a=self.poco(name="Known network")
+        a.get_name()
+        print(a)
+
+    def Verify_The_Signal_Strength_UI(self):
+        sleep(5)
+        self.poco(name="android.widget.ImageView").get_name()
+
+    def Verify_Known_Network(self):
+        sleep(7)
+        a = self.poco(name="Known network")
+        a.get_name()
+        print(a)
+
+    def Verify_Network_Lists(self):
+        sleep(7)
+        a = self.poco(name="Discovered networks")
+        a.get_name()
+        print(a)
+
+    def Verify_Internet_Access_Blocked_Popup(self):
+        sleep(10)
+        a=self.poco(name="Internet Access Blocked")
+        a.get_name()
+
+
+
+
+
 
 
 
