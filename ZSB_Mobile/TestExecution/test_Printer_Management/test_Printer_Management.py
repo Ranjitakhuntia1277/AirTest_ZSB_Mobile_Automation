@@ -189,7 +189,21 @@ def test_Smoke_Test_TestcaseID_45888():
     app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
     """click on unpair bluetooth dropdown list"""""
     app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    app_settings_page.click_Unpair_Icon()
+    app_settings_page.click_On_Unpair()
+    app_settings_page.click_Confirm_Delete_Popup()
+    aps_notification.Stop_Android_App()
+    common_method.Start_The_App()
     app_settings_page.click_Done_Btn()
+    app_settings_page.Verify_Printer_Is_Not_Displaying()
+    """stop the app"""
     common_method.Stop_The_App()
     """"10. Check printer is also being deleted in web portal and printer tool Manually"""
 # # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

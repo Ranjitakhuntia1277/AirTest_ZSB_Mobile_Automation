@@ -1,3 +1,5 @@
+import subprocess
+
 import requests
 # import self
 from airtest.core.api import *
@@ -1665,7 +1667,7 @@ class App_Settings_Screen:
         sleep(8)
 
     def click_Done_Btn(self):
-        sleep(4)
+        sleep(5)
         unpair = self.poco(name="Done")
         unpair.click()
 
@@ -1730,5 +1732,16 @@ class App_Settings_Screen:
             a.get_name()
             print(a)
 
+    def Disable_Bluetooth(self):
+        sleep(2)
+        subprocess.run(
+            ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    def Enable_Bluetooth(self):
+        sleep(2)
+        subprocess.run(
+            ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
+            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 

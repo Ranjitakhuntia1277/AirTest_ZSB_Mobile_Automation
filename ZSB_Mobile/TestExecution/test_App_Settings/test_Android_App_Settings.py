@@ -409,7 +409,7 @@ def test_AppSettings_TestcaseID_45692():
 # # # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_AppSettings_TestcaseID_Blocked_45705():
+def test_AppSettings_TestcaseID_45705():
     """""""""Verify account profile update for non-Zebra user"""""
 
 
@@ -1287,22 +1287,24 @@ def test_AppSettings_TestcaseID_47928_Bug1888():
     app_settings_page.click_Delete_Printer_Button()
     """"click yes delete button"""
     app_settings_page.click_Yes_Delete_Button()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify UI of unpair bluetooth dropdown list """
     app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
     """click on unpair bluetooth dropdown list"""""
     app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
-    # ##common_method.Stop_The_App()
-    # ##aps_notification.Stop_Android_App()
-    # ##aps_notification.click_Mobile_SearchBar()
-    # ###aps_notification.click_On_Searchbar2()
-    # ###aps_notification.Enter_Settings_Text_On_SearchBar()
-    #### aps_notification.click_Settings()
-    # ###aps_notification.click_Connected_Devices()
-    # ###app_settings_page.click_Unpair_Icon()
-    #### app_settings_page.click_On_Unpair()
-    # ###app_settings_page.click_Confirm_Delete_Popup()
-    #### aps_notification.Stop_Android_App()
-    #### common_method.Start_The_App()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    app_settings_page.click_Unpair_Icon()
+    app_settings_page.click_On_Unpair()
+    app_settings_page.click_Confirm_Delete_Popup()
+    aps_notification.Stop_Android_App()
+    common_method.Start_The_App()
     app_settings_page.click_Done_Btn()
     app_settings_page.Verify_Printer_Is_Not_Displaying()
     """stop the app"""

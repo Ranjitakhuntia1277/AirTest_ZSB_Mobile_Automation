@@ -1482,14 +1482,14 @@ class App_Settings_Screen_iOS:
 
     def click_Enter_Network_Manually(self):
         sleep(8)
-        scroll_view = poco("ScrollView")
+        scroll_view = self.poco("ScrollView")
         # Set the maximum number of swipes to avoid an infinite loop
         max_swipes = 20
         for _ in range(max_swipes):
             # Swipe up on the ScrollView
             scroll_view.swipe("up", duration=0.2)
             # Check if the "Accept" element is present and enabled
-            Enter_Network_Manually = poco(name="Enter Network Manually...")
+            Enter_Network_Manually = self.poco(name="Enter Network Manually...")
             if Enter_Network_Manually.exists() and Enter_Network_Manually.attr('enabled'):
                 Enter_Network_Manually.click()
                 # Accept button is visible and enabled, break out of the loop
