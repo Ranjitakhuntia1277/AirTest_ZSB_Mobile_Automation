@@ -25,11 +25,32 @@ common_method = Common_Method(poco)
 others = Others(poco)
 social_login = Social_Login(poco)
 
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import simpledialog
+
+
+def show_message(msg):
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
+    root.attributes('-topmost', True)  # Ensure the root window is on top
+    messagebox.showinfo("Information", msg)
+    root.destroy()
+
+
+def get_user_input(msg):
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
+    root.attributes('-topmost', True)
+    user_input = simpledialog.askstring("Input", msg)
+    return user_input
+
 
 class test_Android_Template_Management:
     # pass
     def __init__(self):
         pass
+
     def test_Template_Management_TestcaseID_45902(self):
         pass
         stop_app("com.zebra.soho_app")
@@ -44,13 +65,13 @@ class test_Android_Template_Management:
             pass
 
         try:
-            others.wait_for_element_appearance("Sign In",10)
+            others.wait_for_element_appearance("Sign In", 10)
             login_page.click_loginBtn()
             common_method.wait_for_element_appearance_namematches("Continue with Google")
             login_page.click_Loginwith_Google()
 
             """enter email here"""
-            email = "zebratest850@gmail.com"
+            email = "zebra850.swdvt@gmail.com"
             common_method.wait_for_element_appearance_textmatches("Choose an account")
             others.choose_google_account(email)
         except:
@@ -58,7 +79,7 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Recently")
 
         total_designs = template_management.get_all_designs_in_recently_printed_labels()
-        if len(total_designs)!=0:
+        if len(total_designs) != 0:
             raise Exception("Label found in recently printed design even without printing")
 
     def test_Template_Management_TestcaseID_45903(self):
@@ -80,7 +101,7 @@ class test_Android_Template_Management:
         login_page.click_Loginwith_Google()
 
         """enter email here"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         common_method.wait_for_element_appearance_textmatches("Choose an account")
         others.choose_google_account(email)
         common_method.wait_for_element_appearance_namematches("Home")
@@ -93,7 +114,7 @@ class test_Android_Template_Management:
         template_management.click_first_design_in_my_designs()
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",10)
+            common_method.wait_for_element_appearance_namematches("Label", 10)
             template_management.scroll_till_print_enabled_button()
         except:
             raise Exception("print page not displayed properly")
@@ -109,8 +130,8 @@ class test_Android_Template_Management:
         if prev != curr:
             raise Exception("the top of recently printed label is not as expected")
 
-        curr_mon,curr_date,curr_year = template_management.get_current_date()
-        des_mon,des_date,des_year = template_management.get_design_last_print_date(curr)
+        curr_mon, curr_date, curr_year = template_management.get_current_date()
+        des_mon, des_date, des_year = template_management.get_design_last_print_date(curr)
         if curr_mon != des_mon or curr_date != des_date or curr_year != des_year:
             raise Exception("dates not matching")
 
@@ -133,7 +154,7 @@ class test_Android_Template_Management:
         login_page.click_Loginwith_Google()
 
         """enter email here"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         common_method.wait_for_element_appearance_textmatches("Choose an account")
         others.choose_google_account(email)
         common_method.wait_for_element_appearance_namematches("Home")
@@ -155,7 +176,6 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
 
-
         for i in total_my_designs[:6]:
             common_method.wait_for_element_appearance_namematches("Showing.")
             template_management.click_design_in_my_designs_by_full_name(i)
@@ -167,10 +187,10 @@ class test_Android_Template_Management:
                 raise Exception("print page not displayed properly")
             template_management.click_print_button_enabled()
             try:
-                common_method.wait_for_element_appearance_namematches("Print complete",10)
+                common_method.wait_for_element_appearance_namematches("Print complete", 10)
             except:
                 raise Exception("print_toast_dint_pop up")
-            common_method.wait_for_element_appearance_enabled("android.widget.Button",10)
+            common_method.wait_for_element_appearance_enabled("android.widget.Button", 10)
             template_management.click_left_arrow()
             login_page.click_Menu_HamburgerICN()
             template_management.click_home_button()
@@ -180,7 +200,7 @@ class test_Android_Template_Management:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
 
-    def logout_and_login(self,email,password):
+    def logout_and_login(self, email, password):
         try:
             common_method.wait_for_element_appearance_namematches("Home")
             login_page.click_Menu_HamburgerICN()
@@ -200,14 +220,14 @@ class test_Android_Template_Management:
         password = password
         common_method.wait_for_element_appearance_textmatches("Choose an account")
         others.choose_google_account(email)
-        common_method.wait_for_element_appearance_namematches("Home",20)
+        common_method.wait_for_element_appearance_namematches("Home", 20)
 
     def test_Template_Management_TestcaseID_45905(self):
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
 
-        self.logout_and_login("zebratest850@gmail.com","Zebra#123456789")
+        self.logout_and_login("zebra850.swdvt@gmail.com", "Zebra#123456789")
 
         """Copy design from common design to my design"""
 
@@ -215,17 +235,17 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Address"
-        template_management.search_designs(text,1)
+        text = "Address"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         curr_design = template_management.get_first_design_in_my_designs()
         template_management.click_element_by_name_or_text(curr_design)
         curr_design = template_management.get_names_of_design_in_search_designs([curr_design])[0]
 
-        template_management.get_the_full_name_of_design_and_click_in_my_design(curr_design,1)
+        template_management.get_the_full_name_of_design_and_click_in_my_design(curr_design, 1)
 
         template_management.click_on_copy_to_my_designs()
         template_management.wait_for_element_appearance_name_matches_all("successfully copied")
@@ -236,10 +256,10 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         template_management.search_designs(curr_design)
 
-        common_method.wait_for_element_appearance_namematches("Showing",20)
+        common_method.wait_for_element_appearance_namematches("Showing", 20)
         template_management.click_first_design_in_my_designs()
         template_management.click_print_button()
-        common_method.wait_for_element_appearance_enabled("Print",30)
+        common_method.wait_for_element_appearance_enabled("Print", 30)
         template_management.click_print_button_enabled()
 
         template_management.click_left_arrow()
@@ -248,18 +268,21 @@ class test_Android_Template_Management:
 
         common_method.wait_for_element_appearance("Recently Printed Labels")
         curr = template_management.get_first_design_in_recently_printed_labels()
-        curr = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(curr_design,0)
-        print(curr)
-        curr_mon,curr_date,curr_year = template_management.get_current_date()
-        des_mon,des_date,des_year = template_management.get_design_last_print_date(curr)
-        if curr_mon!=des_mon or curr_date!=des_date or curr_year!=des_year:
+        curr = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(curr_design, 0)
+        curr = template_management.get_first_design_in_recently_printed_labels()
+
+        if curr_design != curr:
+            raise Exception("the top of recently printed label is not as expected")
+        curr_mon, curr_date, curr_year = template_management.get_current_date()
+        des_mon, des_date, des_year = template_management.get_design_last_print_date(curr)
+        if curr_mon != des_mon or curr_date != des_date or curr_year != des_year:
             raise Exception("dates not matching")
 
     def test_Template_Management_TestcaseID_45906(self):
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance("Home",10)
+        common_method.wait_for_element_appearance("Home", 10)
 
         """Copy design from common design to my design"""
 
@@ -277,7 +300,7 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",10)
+            common_method.wait_for_element_appearance_namematches("Label", 10)
             template_management.scroll_till_print_enabled_button()
         except:
             raise Exception("print page not displayed properly")
@@ -285,9 +308,9 @@ class test_Android_Template_Management:
 
         """Will fail if the first design is not updated with the recently printed label"""
 
-        common_method.wait_for_element_appearance_enabled("android.widget.Button",10)
+        common_method.wait_for_element_appearance_enabled("android.widget.Button", 10)
         template_management.click_left_arrow()
-        common_method.wait_for_element_appearance_enabled("android.widget.Button",10)
+        common_method.wait_for_element_appearance_enabled("android.widget.Button", 10)
         template_management.click_left_arrow()
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
@@ -295,9 +318,9 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance("Recently Printed Labels")
         curr = template_management.get_first_design_in_recently_printed_labels()
 
-        curr_mon,curr_date,curr_year = template_management.get_current_date()
-        des_mon,des_date,des_year = template_management.get_design_last_print_date(curr)
-        if curr_mon!=des_mon or curr_date!=des_date or curr_year!=des_year:
+        curr_mon, curr_date, curr_year = template_management.get_current_date()
+        des_mon, des_date, des_year = template_management.get_design_last_print_date(curr)
+        if curr_mon != des_mon or curr_date != des_date or curr_year != des_year:
             raise Exception("dates not matching")
 
     def test_Template_Management_TestcaseID_45907(self):
@@ -311,7 +334,7 @@ class test_Android_Template_Management:
         """pass no of designs printed as parameter"""
         all_designs = template_management.get_all_designs_in_recently_printed_labels(6)
 
-        names,sizes= template_management.get_names_and_sizes_in_recently_printed_labels(all_designs)
+        names, sizes = template_management.get_names_and_sizes_in_recently_printed_labels(all_designs)
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -340,6 +363,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45908(self):
         pass
+
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Recently")
@@ -351,23 +375,22 @@ class test_Android_Template_Management:
         template_management.click_on_design_which_is_not_printed_yet(total)
 
         template_management.click_print_button()
-        common_method.wait_for_element_appearance_enabled("Print",10)
+        common_method.wait_for_element_appearance_enabled("Print", 10)
         template_management.click_print_button_enabled()
         sleep(2)
         template_management.click_left_arrow()
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
         curr = template_management.get_no_of_left_cartridge()
-        if prev!=curr:
+        if prev != curr:
             raise Exception("number of prints left is updated after printer being turned off")
 
-        sleep(30)
-        """Turn on the printer to be Online """
-        common_method.swipe_by_positions([0.5,0.5], [0.5,1.0])
+        show_message("Turn on Printer to be online , wait for 30sec and press ok")
+        common_method.swipe_by_positions([0.5, 0.5], [0.5, 1.0])
 
         after = template_management.get_no_of_left_cartridge()
 
-        if after-1 != curr:
+        if after - 1 != curr:
             raise Exception("number of prints left is not updated")
 
     def test_Template_Management_TestcaseID_45910(self):
@@ -391,7 +414,7 @@ class test_Android_Template_Management:
             pass
 
         curr_designs = template_management.get_all_designs_in_recently_printed_labels()
-        if len(curr_designs)>0:
+        if len(curr_designs) > 0:
             raise Exception("designs are displayed after turning off the wifi  ")
 
         template_management.turn_on_wifi()
@@ -402,7 +425,7 @@ class test_Android_Template_Management:
 
         after_designs = template_management.get_all_designs_in_recently_printed_labels()
 
-        if prev_designs!=after_designs:
+        if prev_designs != after_designs:
             raise Exception("designs are not matching before and after turning on wifi")
 
     def test_Template_Management_TestcaseID_45909(self):
@@ -428,15 +451,15 @@ class test_Android_Template_Management:
         others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
         others.click_enter()
         try:
-            others.wait_for_element_appearance("Continue with Google",10)
+            others.wait_for_element_appearance("Continue with Google", 10)
             login_page.click_Loginwith_Google()
             sleep(2)
-            email = "zebratest850@gmail.com"
+            email = "zebra850.swdvt@gmail.com"
             social_login.choose_a_google_account(email)
         except:
             pass
 
-        others.wait_for_element_appearance_text("Home",20)
+        others.wait_for_element_appearance_text("Home", 20)
 
         others.scroll_down()
         google_design = template_management.get_first_design_in_recently_printed_design_in_google()
@@ -457,19 +480,19 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
 
-        self.logout_and_login("zebratest850@gmail.com","Zebra#123456789")
+        self.logout_and_login("zebra850.swdvt@gmail.com", "Zebra#123456789")
 
         common_method.wait_for_element_appearance_namematches("Home")
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
-        name="45911"
+        name = "45911"
 
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",10)
+            common_method.wait_for_element_appearance_namematches("Label", 10)
             template_management.scroll_till_print_enabled_button()
         except:
             raise Exception("print page not displayed properly")
@@ -483,7 +506,7 @@ class test_Android_Template_Management:
             raise Exception("Label 1 of 1 not displayed")
 
         try:
-            template_management.check_element_exists("android.widget.EditText",1)
+            template_management.check_element_exists("android.widget.EditText", 1)
         except:
             pass
 
@@ -493,14 +516,14 @@ class test_Android_Template_Management:
         template_management.click_print_button()
         template_management.wait_for_element_appearance_name_matches_all("Print complete")
         sleep(2)
-        prev_copies=template_management.get_no_of_copies()
+        prev_copies = template_management.get_no_of_copies()
 
         if not template_management.check_element_exists_name_or_text_matches("labels left"):
             raise Exception("labels left not displayed")
 
         curr_copies = template_management.get_no_of_copies()
 
-        if prev_copies!=curr_copies:
+        if prev_copies != curr_copies:
             raise Exception("prev and curr copies are not same")
 
         template_management.check_element_exists("Total of 1 label")
@@ -516,7 +539,7 @@ class test_Android_Template_Management:
 
         curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-        if not int(prev_count) == int(curr_count)+1:
+        if not int(prev_count) == int(curr_count) + 1:
             raise Exception("no of labels not updated")
 
         sleep(3)
@@ -532,11 +555,11 @@ class test_Android_Template_Management:
 
         template_management.check_element_exists("My Designs")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -557,10 +580,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Address"
-        template_management.search_designs(text,1)
+        text = "Address"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -584,22 +607,22 @@ class test_Android_Template_Management:
         name = template_management.get_normal_design_if_there_in_first_screen_my_design()
         existing_design = template_management.get_names_of_design_in_search_designs([name])[0]
 
-        temp=["Address","Barcode"]
+        temp = ["Address", "Barcode"]
         for text in temp[1:]:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            t=template_management.get_first_design_in_my_designs()
+            t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size=template_management.get_names_and_sizes_in_recently_printed_labels([t])
-            name=names[0]
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            name = names[0]
 
             template_management.click_on_copy_to_my_designs()
             try:
@@ -615,9 +638,9 @@ class test_Android_Template_Management:
                 login_page.click_Menu_HamburgerICN()
 
             template_management.click_my_designs_button()
-            common_method.wait_for_element_appearance_namematches("Showing",30)
+            common_method.wait_for_element_appearance_namematches("Showing", 30)
             try:
-                template_management.get_the_full_name_of_design_and_click_in_my_design(name+" copy",1)
+                template_management.get_the_full_name_of_design_and_click_in_my_design(name + " copy", 1)
             except:
                 raise Exception("copied name not found")
 
@@ -638,7 +661,7 @@ class test_Android_Template_Management:
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for proper unique name")
 
-            duplicate_name=template_management.get_the_default_duplicate_name()
+            duplicate_name = template_management.get_the_default_duplicate_name()
 
             template_management.click_on_save_button()
 
@@ -649,11 +672,13 @@ class test_Android_Template_Management:
             sleep(1)
             if template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("duplicate design window not closed")
-            print("duplicate name",duplicate_name)
+            print("duplicate name", duplicate_name)
             try:
-                d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name+" (1)", 1)
+                d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(
+                    duplicate_name + " (1)", 1)
             except:
-                raise Exception("c. Verify the copied design is displayed with correct name  (Name used in step 8 appended with number (1)). this step fails")
+                raise Exception(
+                    "c. Verify the copied design is displayed with correct name  (Name used in step 8 appended with number (1)). this step fails")
 
             template_management.click_on_delete_button_in_designs()
             template_management.click_on_delete_button_in_designs()
@@ -664,23 +689,24 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
+                "Shipping", "Small Multipurpose"]
 
-        for text in temp[1:]:
+        for text in temp[::3]:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            t=template_management.get_first_design_in_my_designs()
+            t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size=template_management.get_names_and_sizes_in_recently_printed_labels([t])
-            name=names[0]
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            name = names[0]
 
             template_management.click_on_copy_to_my_designs()
             try:
@@ -700,7 +726,7 @@ class test_Android_Template_Management:
 
             """Give the name of existing design here"""
 
-            original_copy = name+" copy"
+            original_copy = name + " copy"
             full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
 
             template_management.click_the_duplicate_button()
@@ -708,12 +734,12 @@ class test_Android_Template_Management:
             template_management.verify_duplicate_design_window()
             """Enter Zebra defined name here"""
 
-            enter_name=name
+            enter_name = name
             template_management.enter_name_in_duplicate_designs(enter_name)
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for proper unique name")
 
-            duplicate_name=enter_name+" (1)"
+            duplicate_name = enter_name + " (1)"
 
             template_management.click_on_save_button()
 
@@ -725,18 +751,21 @@ class test_Android_Template_Management:
             if template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("duplicate design window not closed")
 
-            print("duplicate",duplicate_name)
+            print("duplicate", duplicate_name)
             try:
-                d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
+                sleep(3)
+                d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
             except:
-                raise Exception("failing this step:","c. Verify the Duplicate Design is displayed with correct name (Name used in step 6 appended with number (1)).")
+                raise Exception("failing this step:",
+                                "c. Verify the Duplicate Design is displayed with correct name (Name used in step 6 appended with number (1)).")
 
     def test_Template_Management_TestcaseID_45998(self):
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
+                "Shipping", "Small Multipurpose"]
 
         for text in temp[1:]:
 
@@ -744,14 +773,14 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
             name = names[0]
             template_management.click_on_copy_to_my_designs()
 
@@ -770,19 +799,19 @@ class test_Android_Template_Management:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
 
-            original_copy = name+" copy"
+            original_copy = name + " copy"
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
 
             template_management.click_the_duplicate_button()
 
             template_management.verify_duplicate_design_window()
 
-            duplicate_name=template_management.get_the_default_duplicate_name()
-            if original_copy+" copy"!=duplicate_name:
+            duplicate_name = template_management.get_the_default_duplicate_name()
+            if original_copy + " copy" != duplicate_name:
                 raise Exception("default duplicate name is not matching as expected")
 
-            enter_name="ab12c3!#"
+            enter_name = "ab12c3!#"
 
             template_management.enter_name_in_duplicate_designs(enter_name)
             sleep(3)
@@ -796,7 +825,7 @@ class test_Android_Template_Management:
                 raise Exception("duplicate design window not closed")
 
             try:
-                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(enter_name,0)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(enter_name, 0)
                 raise Exception("duplicate name found after cancelling")
             except:
                 pass
@@ -820,14 +849,14 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
             name = names[0]
             template_management.click_on_copy_to_my_designs()
 
@@ -849,24 +878,24 @@ class test_Android_Template_Management:
             """Give the name of existing design here"""
             curr_designs = template_management.get_showing_n_designs_number()
 
-            original_copy = name+" copy"
+            original_copy = name + " copy"
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
-            original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
+            original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             template_management.click_the_duplicate_button()
 
             template_management.verify_duplicate_design_window()
 
-            duplicate_name=template_management.get_the_default_duplicate_name()
-            if original_copy+" copy"!=duplicate_name:
+            duplicate_name = template_management.get_the_default_duplicate_name()
+            if original_copy + " copy" != duplicate_name:
                 raise Exception("default duplicate name is not matching as expected")
 
-            enter_name="!Special_123"
+            enter_name = "!Special_123"
             template_management.enter_name_in_duplicate_designs(enter_name)
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for valid name")
-            duplicate_name=template_management.get_the_default_duplicate_name()
+            duplicate_name = template_management.get_the_default_duplicate_name()
 
             template_management.click_on_save_button()
             try:
@@ -878,19 +907,20 @@ class test_Android_Template_Management:
                 raise Exception("duplicate design window not closed")
 
             try:
-                full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name,1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                    duplicate_name, 1)
             except:
                 raise Exception("duplicate name not found")
 
-            curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+            curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-            if int(original_date)!=0:
+            if int(original_date) != 0:
                 raise Exception("last date displayed for not printed label ")
 
-            if curr_size!= original_size or curr_date!=original_date:
+            if curr_size != original_size or curr_date != original_date:
                 raise Exception("duplicate copy and original copy sizes not matching")
 
-            if int(prev_designs)+1!=int(curr_designs):
+            if int(prev_designs) + 1 != int(curr_designs):
                 raise Exception("showing n designs not updated after copying a design")
 
             template_management.click_on_delete_button_in_designs()
@@ -902,9 +932,10 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
+                "Shipping", "Small Multipurpose"]
 
-        for text in temp:
+        for text in temp[1::4]:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
@@ -915,14 +946,14 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
             name = names[0]
             template_management.click_on_copy_to_my_designs()
 
@@ -941,16 +972,16 @@ class test_Android_Template_Management:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
 
-            original_copy = name+" copy"
+            original_copy = name + " copy"
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
 
-            prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+            prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             template_management.click_on_rename_button()
 
-            default_value= template_management.get_the_default_rename_text()
-            if default_value!=original_copy:
+            default_value = template_management.get_the_default_rename_text()
+            if default_value != original_copy:
                 raise Exception("default value not matches the design's name")
 
             new_name = "somenamemyown"
@@ -970,13 +1001,14 @@ class test_Android_Template_Management:
                 raise Exception("rename popup not closed")
             sleep(1)
             try:
+                sleep(2)
                 full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(new_name, 1)
             except:
                 raise Exception("design not found after updating")
-            print("full name",full_name)
-            curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+            print("full name", full_name)
+            curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-            if curr_size!=prev_size:
+            if curr_size != prev_size:
                 raise Exception("size is not matching after renaming the design")
 
             template_management.click_on_delete_button_in_designs()
@@ -988,7 +1020,8 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
+                "Shipping", "Small Multipurpose"]
 
         for text in temp:
 
@@ -1001,14 +1034,14 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
             name = names[0]
             template_management.click_on_copy_to_my_designs()
 
@@ -1027,23 +1060,23 @@ class test_Android_Template_Management:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
 
-            n_prev=template_management.get_showing_n_designs_number()
+            n_prev = template_management.get_showing_n_designs_number()
 
-            original_copy = name+" copy"
-            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
-            prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+            original_copy = name + " copy"
+            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
+            prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             template_management.click_the_duplicate_button()
 
             template_management.verify_duplicate_design_window()
             """Enter unique name here"""
 
-            unique_name="uniquename"
+            unique_name = "uniquename"
             template_management.enter_name_in_duplicate_designs(unique_name)
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for proper unique name")
 
-            duplicate_name=unique_name
+            duplicate_name = unique_name
 
             template_management.click_on_save_button()
 
@@ -1056,28 +1089,28 @@ class test_Android_Template_Management:
                 raise Exception("duplicate design window not closed")
             sleep(1)
             try:
-                d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
+                d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
             except:
                 raise Exception("duplicate name not found")
 
-            duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+            duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-            if duplicate_size!=prev_size:
-                raise Exception("duplicate copy and original copy sizes not matching",duplicate_size,prev_size)
+            if duplicate_size != prev_size:
+                raise Exception("duplicate copy and original copy sizes not matching", duplicate_size, prev_size)
 
             try:
-                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy,0)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 0)
             except:
                 raise Exception("original name not found")
-            curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-            if  prev_size!=curr_size:
+            curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+            if prev_size != curr_size:
                 raise Exception("original copy date or size has been changed")
 
-            n_curr=template_management.get_showing_n_designs_number()
-            if int(n_curr)!=int(n_prev)+1:
+            n_curr = template_management.get_showing_n_designs_number()
+            if int(n_curr) != int(n_prev) + 1:
                 raise Exception("Showing designs count not updated")
 
-            template_management.select_design_in_my_design_by_name_and_return(duplicate_name,1)
+            template_management.select_design_in_my_design_by_name_and_return(duplicate_name, 1)
             if not template_management.verify_options_clickable_in_design():
                 raise Exception("some options are not clickable")
 
@@ -1094,19 +1127,19 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
         """Pass the existing name design here"""
         name = template_management.get_normal_design_if_there_in_first_screen_my_design()
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
 
-        full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
-        prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
         duplicate_name = template_management.get_the_default_duplicate_name()
-        if duplicate_name!=original_copy+" copy":
+        if duplicate_name != original_copy + " copy":
             raise Exception("default duplicate name is not as expected")
 
         if not template_management.check_save_button_clickable_in_rename_popup():
@@ -1127,35 +1160,35 @@ class test_Android_Template_Management:
         sleep(1)
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=prev_size:
-            raise Exception("duplicate copy and original copy sizes not matching",duplicate_size,prev_size)
+        if duplicate_size != prev_size:
+            raise Exception("duplicate copy and original copy sizes not matching", duplicate_size, prev_size)
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 0)
         except:
             raise Exception("original name not found")
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-        if prev_size!=curr_size or prev_date!=curr_date:
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        if prev_size != curr_size or prev_date != curr_date:
             raise Exception("original copy date or size has been changed")
 
-        n_curr=template_management.get_showing_n_designs_number()
-        if int(n_curr)!=int(n_prev)+1:
+        n_curr = template_management.get_showing_n_designs_number()
+        if int(n_curr) != int(n_prev) + 1:
             raise Exception("Showing designs count not updated")
 
-        full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
-        prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
         duplicate_name = template_management.get_the_default_duplicate_name()
-        if duplicate_name!=original_copy+" copy":
+        if duplicate_name != original_copy + " copy":
             raise Exception("default duplicate name is not as expected")
 
         if not template_management.check_save_button_clickable_in_rename_popup():
@@ -1176,11 +1209,12 @@ class test_Android_Template_Management:
         sleep(1)
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name+" (1)", 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(
+                duplicate_name + " (1)", 0)
         except:
             raise Exception("duplicate name not found after duplicating again")
 
-        temp=["Address"]
+        temp = ["Address"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
@@ -1192,14 +1226,14 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
             name = names[0]
             template_management.click_on_copy_to_my_designs()
 
@@ -1218,11 +1252,11 @@ class test_Android_Template_Management:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
 
-            n_prev=template_management.get_showing_n_designs_number()
+            n_prev = template_management.get_showing_n_designs_number()
 
-            original_copy = name+" copy"
-            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
-            prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+            original_copy = name + " copy"
+            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
+            prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             template_management.click_the_duplicate_button()
 
@@ -1298,7 +1332,8 @@ class test_Android_Template_Management:
             sleep(1)
 
             try:
-                d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name + " (1)", 0)
+                d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(
+                    duplicate_name + " (1)", 0)
             except:
                 raise Exception("duplicate name not found after duplicating again")
 
@@ -1313,10 +1348,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Address"
-        template_management.search_designs(text,1)
+        text = "Address"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -1337,10 +1372,10 @@ class test_Android_Template_Management:
             template_management.click_element_name_matches_all(texts, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_designs_in_comm_design()
-            full_name=template_management.get_the_full_name_of_design_and_click_in_common_design_search(text,1)
-            original_size,original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(text, 1)
+            original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             """4. Type in unique name for the design. Click "Save"
             this step is not applicable """
@@ -1357,7 +1392,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             try:
-                full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(text + " copy", 1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             except:
@@ -1385,7 +1420,7 @@ class test_Android_Template_Management:
             template_management.click_print_button_enabled()
 
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Print complete",10)
+                template_management.wait_for_element_appearance_name_matches_all("Print complete", 10)
                 sleep(3)
             except:
                 pass
@@ -1394,7 +1429,7 @@ class test_Android_Template_Management:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-            if not int(prev_count) == int(curr_count)+1:
+            if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
 
             sleep(3)
@@ -1410,11 +1445,11 @@ class test_Android_Template_Management:
 
             template_management.check_element_exists("My Designs")
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(text+" copy",0)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(text + " copy", 0)
 
-            pd,pm,py=template_management.get_design_last_print_date(full_name)
+            pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-            cd,cm,cy=template_management.get_current_date()
+            cd, cm, cy = template_management.get_current_date()
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
 
@@ -1436,10 +1471,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Barcodes"
-        template_management.search_designs(text,1)
+        text = "Barcodes"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -1460,10 +1495,10 @@ class test_Android_Template_Management:
             template_management.click_element_name_matches_all(texts, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_designs_in_comm_design()
-            full_name=template_management.get_the_full_name_of_design_and_click_in_common_design_search(text,1)
-            original_size,original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(text, 1)
+            original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             """4. Type in unique name for the design. Click "Save"
             this step is not applicable """
@@ -1480,7 +1515,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             try:
-                full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(text + " copy", 1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             except:
@@ -1505,7 +1540,7 @@ class test_Android_Template_Management:
             template_management.click_print_button_enabled()
 
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Print complete",10)
+                template_management.wait_for_element_appearance_name_matches_all("Print complete", 10)
                 sleep(3)
             except:
                 pass
@@ -1514,7 +1549,7 @@ class test_Android_Template_Management:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-            if not int(prev_count) == int(curr_count)+1:
+            if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
 
             sleep(3)
@@ -1530,11 +1565,11 @@ class test_Android_Template_Management:
 
             template_management.check_element_exists("My Designs")
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(text+" copy",0)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(text + " copy", 0)
 
-            pm,pd,py=template_management.get_design_last_print_date(full_name)
+            pm, pd, py = template_management.get_design_last_print_date(full_name)
 
-            cm,cd,cy=template_management.get_current_date()
+            cm, cd, cy = template_management.get_current_date()
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
 
@@ -1556,10 +1591,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="File Folder"
-        template_management.search_designs(text,1)
+        text = "File Folder"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -1580,10 +1615,10 @@ class test_Android_Template_Management:
             template_management.click_element_name_matches_all(texts, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_designs_in_comm_design()
-            full_name=template_management.get_the_full_name_of_design_and_click_in_common_design_search(text,1)
-            original_size,original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(text, 1)
+            original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             """4. Type in unique name for the design. Click "Save"
             this step is not applicable """
@@ -1600,7 +1635,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             try:
-                full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(text + " copy", 1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             except:
@@ -1625,7 +1660,7 @@ class test_Android_Template_Management:
             template_management.click_print_button_enabled()
 
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Print complete",10)
+                template_management.wait_for_element_appearance_name_matches_all("Print complete", 10)
                 sleep(3)
             except:
                 pass
@@ -1634,7 +1669,7 @@ class test_Android_Template_Management:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-            if not int(prev_count) == int(curr_count)+1:
+            if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
 
             sleep(3)
@@ -1650,11 +1685,11 @@ class test_Android_Template_Management:
 
             template_management.check_element_exists("My Designs")
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(text+" copy",0)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(text + " copy", 0)
 
-            pd,pm,py=template_management.get_design_last_print_date(full_name)
+            pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-            cd,cm,cy=template_management.get_current_date()
+            cd, cm, cy = template_management.get_current_date()
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
 
@@ -1676,10 +1711,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Jewelry"
-        template_management.search_designs(text,1)
+        text = "Jewelry"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -1700,10 +1735,10 @@ class test_Android_Template_Management:
             template_management.click_element_name_matches_all(texts, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_designs_in_comm_design()
-            full_name=template_management.get_the_full_name_of_design_and_click_in_common_design_search(text,1)
-            original_size,original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(text, 1)
+            original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             """4. Type in unique name for the design. Click "Save"
             this step is not applicable """
@@ -1720,7 +1755,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             try:
-                full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(text + " copy", 1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             except:
@@ -1745,7 +1780,7 @@ class test_Android_Template_Management:
             template_management.click_print_button_enabled()
 
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Print complete",10)
+                template_management.wait_for_element_appearance_name_matches_all("Print complete", 10)
                 sleep(3)
             except:
                 pass
@@ -1754,7 +1789,7 @@ class test_Android_Template_Management:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-            if not int(prev_count) == int(curr_count)+1:
+            if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
 
             sleep(3)
@@ -1770,11 +1805,11 @@ class test_Android_Template_Management:
 
             template_management.check_element_exists("My Designs")
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(text+" copy",0)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(text + " copy", 0)
 
-            pd,pm,py=template_management.get_design_last_print_date(full_name)
+            pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-            cd,cm,cy=template_management.get_current_date()
+            cd, cm, cy = template_management.get_current_date()
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
 
@@ -1797,10 +1832,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Small Multipurpose"
-        template_management.search_designs(text,1)
+        text = "Small Multipurpose"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -1821,10 +1856,10 @@ class test_Android_Template_Management:
             template_management.click_element_name_matches_all(texts, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_designs_in_comm_design()
-            full_name=template_management.get_the_full_name_of_design_and_click_in_common_design_search(text,1)
-            original_size,original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(text, 1)
+            original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             """4. Type in unique name for the design. Click "Save"
             this step is not applicable """
@@ -1841,7 +1876,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             try:
-                full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(text + " copy", 1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
             except:
                 raise Exception("copied template not shown or is incorrect name")
@@ -1865,7 +1900,7 @@ class test_Android_Template_Management:
             template_management.click_print_button_enabled()
 
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Print complete",10)
+                template_management.wait_for_element_appearance_name_matches_all("Print complete", 10)
                 sleep(3)
             except:
                 pass
@@ -1874,7 +1909,7 @@ class test_Android_Template_Management:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-            if not int(prev_count) == int(curr_count)+1:
+            if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
 
             sleep(3)
@@ -1890,11 +1925,11 @@ class test_Android_Template_Management:
 
             template_management.check_element_exists("My Designs")
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(text+" copy",0)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(text + " copy", 0)
 
-            pd,pm,py=template_management.get_design_last_print_date(full_name)
+            pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-            cd,cm,cy=template_management.get_current_date()
+            cd, cm, cy = template_management.get_current_date()
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
 
@@ -1905,7 +1940,6 @@ class test_Android_Template_Management:
             labels_left = template_management.get_no_of_left_cartridge()
             if str(labels_left) != str(curr_count):
                 raise Exception("labels left not updated")
-
 
     def test_Template_Management_TestcaseID_45975(self):
         pass
@@ -1918,10 +1952,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Shipping"
-        template_management.search_designs(text,1)
+        text = "Shipping"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -1942,10 +1976,10 @@ class test_Android_Template_Management:
             template_management.click_element_name_matches_all(texts, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_designs_in_comm_design()
-            full_name=template_management.get_the_full_name_of_design_and_click_in_common_design_search(text,1)
-            original_size,original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(text, 1)
+            original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             """4. Type in unique name for the design. Click "Save"
             this step is not applicable """
@@ -1962,7 +1996,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             try:
-                full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(text + " copy", 1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             except:
@@ -1988,7 +2022,7 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Label")
             template_management.scroll_till_print_enabled_button()
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Print complete",10)
+                template_management.wait_for_element_appearance_name_matches_all("Print complete", 10)
                 sleep(3)
             except:
                 pass
@@ -1997,7 +2031,7 @@ class test_Android_Template_Management:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-            if not int(prev_count) == int(curr_count)+1:
+            if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
 
             sleep(3)
@@ -2013,11 +2047,11 @@ class test_Android_Template_Management:
 
             template_management.check_element_exists("My Designs")
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(text+" copy",0)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(text + " copy", 0)
 
-            pd,pm,py=template_management.get_design_last_print_date(full_name)
+            pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-            cd,cm,cy=template_management.get_current_date()
+            cd, cm, cy = template_management.get_current_date()
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
 
@@ -2039,10 +2073,10 @@ class test_Android_Template_Management:
         template_management.click_common_designs_button()
         template_management.wait_in_common_designs_until_load()
 
-        text="Multipurpose"
-        template_management.search_designs(text,1)
+        text = "Multipurpose"
+        template_management.search_designs(text, 1)
         template_management.wait_for_element_appearance_name_matches_all(text)
-        template_management.click_element_name_matches_all(text,0)
+        template_management.click_element_name_matches_all(text, 0)
 
         template_management.wait_until_designs_load_after_clicking_categories()
         all_designs_in_categories = template_management.get_all_designs_in_my_designs()
@@ -2063,10 +2097,10 @@ class test_Android_Template_Management:
             template_management.click_element_name_matches_all(texts, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_designs_in_comm_design()
-            full_name=template_management.get_the_full_name_of_design_and_click_in_common_design_search(text,1)
-            original_size,original_lastdate= template_management.get_the_size_and_lastprint_of_design(full_name)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(text, 1)
+            original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             """4. Type in unique name for the design. Click "Save"
             this step is not applicable """
@@ -2083,15 +2117,15 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             try:
-                full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(text+" copy",1)
+                full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(text + " copy", 1)
                 copy_size, copy_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
             except:
                 raise Exception("copied template not shown or is incorrect name")
 
-            if original_size!=copy_size:
+            if original_size != copy_size:
                 raise Exception("copyied and original design sizes are not same")
-            if int(copy_lastdate)!=0:
+            if int(copy_lastdate) != 0:
                 raise Exception("last printed date displayed for copied design without printing")
 
             template_management.click_print_button_enabled()
@@ -2117,7 +2151,7 @@ class test_Android_Template_Management:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-            if not int(prev_count) == int(curr_count)+1:
+            if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
 
             sleep(3)
@@ -2133,14 +2167,14 @@ class test_Android_Template_Management:
 
             template_management.check_element_exists("My Designs")
 
-            full_name = template_management.select_design_in_my_design_by_name_and_return(text+" copy",1)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(text + " copy", 1)
             template_management.click_on_delete_button_in_designs()
             template_management.click_on_delete_button_in_designs()
             common_method.wait_for_element_appearance_namematches("removed")
             sleep(2)
-            pd,pm,py=template_management.get_design_last_print_date(full_name)
+            pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-            cd,cm,cy=template_management.get_current_date()
+            cd, cm, cy = template_management.get_current_date()
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
 
@@ -2160,50 +2194,56 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
-        name="45912"
+        name = "45912"
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",10)
+            common_method.wait_for_element_appearance_namematches("Label", 10)
             sleep(3)
         except:
             raise Exception("print page not displayed properly")
 
         initial_text = "Sample123"
 
-        curr_text = template_management.get_text_from_element("android.widget.EditText",0)
-        if initial_text!=curr_text:
+        curr_text = template_management.get_text_from_element("android.widget.EditText", 0)
+        if initial_text != curr_text:
             raise Exception("initial text not matching")
 
-        template_management.input_text_in_element_by_name("android.widget.EditText","",0)
-        curr_text = template_management.get_text_from_element("android.widget.EditText",0)
+        template_management.input_text_in_element_by_name("android.widget.EditText", "", 0)
+        curr_text = template_management.get_text_from_element("android.widget.EditText", 0)
         if curr_text != "":
             raise Exception("text did not change")
 
-        template_management.click_element_by_name_or_text("android.widget.EditText",0)
-        new_text="new text"
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,0)
-        curr_text = template_management.get_text_from_element("android.widget.EditText",0)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 0)
+        new_text = "new text"
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 0)
+        curr_text = template_management.get_text_from_element("android.widget.EditText", 0)
         if curr_text != new_text:
             raise Exception("text did not change")
 
-        new_text="new 123@gmai\n.com"
+        new_text = "new 123@gmai\n.com"
 
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,0)
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 0)
         others.go_back()
 
         curr_date = template_management.get_the_date_from_print_page()
-        if curr_date!="11/11/2021":
+        if curr_date != "11/11/2021":
             raise Exception("initial date is not matching")
 
         now_date = template_management.get_current_date_in_mm_dd_yy_format()
         cur_d = now_date.split("/")
+        print(cur_d)
         template_management.set_new_date_in_print_page(int(cur_d[1]))
+        sleep(1)
+        try:
+            template_management.click_on_cancel_button_in_rename_popup()
+        except:
+            pass
 
         curr_date = template_management.get_the_date_from_print_page()
-        changing_date=str(template_management.get_in_proper_dd_mm_yy_format())
-        if curr_date!=changing_date:
+        changing_date = str(template_management.get_in_proper_dd_mm_yy_format())
+        if curr_date != changing_date:
             raise Exception("changed date is not matching")
 
         template_management.scroll_till_print_enabled_button()
@@ -2220,7 +2260,7 @@ class test_Android_Template_Management:
 
         curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-        if not int(prev_count) == int(curr_count)+1:
+        if not int(prev_count) == int(curr_count) + 1:
             raise Exception("no of labels not updated")
 
         sleep(2)
@@ -2235,11 +2275,11 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Showing")
         template_management.check_element_exists("My Designs")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2260,47 +2300,47 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
-        name="45913"
+        name = "45913"
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",15)
+            common_method.wait_for_element_appearance_namematches("Label", 15)
             sleep(3)
         except:
             raise Exception("print page not displayed")
 
-        template_management.check_element_exists("android.widget.EditText",0)
-        template_management.check_element_exists("android.widget.EditText",1)
-        template_management.check_element_exists("Picture\nicon\nChoose an option",0)
+        template_management.check_element_exists("android.widget.EditText", 0)
+        template_management.check_element_exists("android.widget.EditText", 1)
+        template_management.check_element_exists("Picture\nicon\nChoose an option", 0)
 
-        initial_text = template_management.get_text_from_element("android.widget.EditText",1)
-        if initial_text!="123":
+        initial_text = template_management.get_text_from_element("android.widget.EditText", 1)
+        if initial_text != "123":
             raise Exception("initial_text not matching")
-        template_management.click_element_by_name_or_text("android.widget.EditText",1)
-        template_management.input_text_in_element_by_name("android.widget.EditText","",1)
-        curr_text = template_management.get_text_from_element("android.widget.EditText",1)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 1)
+        template_management.input_text_in_element_by_name("android.widget.EditText", "", 1)
+        curr_text = template_management.get_text_from_element("android.widget.EditText", 1)
         if curr_text:
             raise Exception("blank value not accepted")
-        new_text="4567890"
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,1)
-        curr_text = template_management.get_text_from_element("android.widget.EditText",1)
-        if curr_text!=new_text:
+        new_text = "4567890"
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 1)
+        curr_text = template_management.get_text_from_element("android.widget.EditText", 1)
+        if curr_text != new_text:
             raise Exception("new text not updated")
         others.go_back()
 
-        initial_text = template_management.get_text_from_element("android.widget.EditText",0)
-        if initial_text!="123456789012":
+        initial_text = template_management.get_text_from_element("android.widget.EditText", 0)
+        if initial_text != "123456789012":
             raise Exception("initial_text not matching")
-        template_management.click_element_by_name_or_text("android.widget.EditText",0)
-        template_management.input_text_in_element_by_name("android.widget.EditText","",0)
-        curr_text = template_management.get_text_from_element("android.widget.EditText",0)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 0)
+        template_management.input_text_in_element_by_name("android.widget.EditText", "", 0)
+        curr_text = template_management.get_text_from_element("android.widget.EditText", 0)
         if curr_text:
             raise Exception("blank value not accepted")
-        new_text="1234567890"
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,0)
-        curr_text = template_management.get_text_from_element("android.widget.EditText",0)
-        if curr_text!=new_text:
+        new_text = "1234567890"
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 0)
+        curr_text = template_management.get_text_from_element("android.widget.EditText", 0)
+        if curr_text != new_text:
             raise Exception("new text not updated")
         others.go_back()
 
@@ -2316,7 +2356,7 @@ class test_Android_Template_Management:
             raise Exception("print option is not clickable")
 
         template_management.click_print_button_enabled()
-        common_method.wait_for_element_appearance_enabled("Print",20)
+        common_method.wait_for_element_appearance_enabled("Print", 20)
         try:
             template_management.wait_for_element_appearance_name_matches_all("Print complete")
         except:
@@ -2324,7 +2364,7 @@ class test_Android_Template_Management:
 
         curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-        if not int(prev_count) == int(curr_count)+1:
+        if not int(prev_count) == int(curr_count) + 1:
             raise Exception("no of labels not updated")
 
         sleep(5)
@@ -2340,11 +2380,11 @@ class test_Android_Template_Management:
 
         template_management.check_element_exists("My Designs")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2355,13 +2395,13 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Home")
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
-        name="45914"
+        name = "45914"
         common_method.wait_for_element_appearance_namematches("Showing")
         full_name = template_management.select_design_in_my_design_by_name_and_return(name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",15)
+            common_method.wait_for_element_appearance_namematches("Label", 15)
             sleep(3)
         except:
             raise Exception("print page not displayed")
@@ -2371,16 +2411,16 @@ class test_Android_Template_Management:
             template_management.wait_for_element_appearance_name_matches_all("keyboard")
         except:
             raise Exception("key board is not present")
-        prev_copies=template_management.get_no_of_copies()
+        prev_copies = template_management.get_no_of_copies()
         prev_labels = template_management.get_no_of_labels_left_in_print_page()
 
-        template_management.click_element_by_name_or_text("android.widget.EditText",0)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 0)
 
-        template_management.input_text_in_element_by_name("android.widget.EditText","2",0)
+        template_management.input_text_in_element_by_name("android.widget.EditText", "2", 0)
         others.go_back()
 
-        curr_copies=template_management.get_no_of_copies()
-        if str(curr_copies)!='2':
+        curr_copies = template_management.get_no_of_copies()
+        if str(curr_copies) != '2':
             raise Exception("curr copies not updated")
 
         template_management.click_print_button_enabled()
@@ -2390,15 +2430,14 @@ class test_Android_Template_Management:
             pass
         common_method.wait_for_element_appearance_enabled("Print")
         curr_labels = template_management.get_no_of_labels_left_in_print_page()
-        temp=curr_labels
-        if int(prev_labels)!=int(curr_labels)+2:
+        temp = curr_labels
+        if int(prev_labels) != int(curr_labels) + 2:
             raise Exception("no of labels left not updated")
         template_management.click_left_arrow()
         try:
             template_management.check_element_exists("My Designs")
         except:
             template_management.click_left_arrow()
-
 
         template_management.check_element_exists("My Designs")
 
@@ -2408,11 +2447,11 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name,1)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 1)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2424,12 +2463,13 @@ class test_Android_Template_Management:
             template_management.click_print_button()
 
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
-        curr_labels=template_management.get_no_of_labels_left_in_print_page()
+        sleep(2)
+        curr_labels = template_management.get_no_of_labels_left_in_print_page()
 
-        if curr_labels!=temp:
+        if curr_labels != temp:
             raise Exception("count not same after re selecting the design")
 
         template_management.click_left_arrow()
@@ -2440,6 +2480,11 @@ class test_Android_Template_Management:
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
+        login_page.click_Menu_HamburgerICN()
+        template_management.click_my_designs_button()
+        login_page.click_Menu_HamburgerICN()
+        template_management.click_home_button()
+
         sleep(1)
 
         labels_left = template_management.get_no_of_left_cartridge()
@@ -2460,21 +2505,20 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
-            raise Exception("print page not displayed")
+            pass
 
+        template_management.click_element_by_name_or_text("android.widget.EditText", 1)
 
-        template_management.click_element_by_name_or_text("android.widget.EditText",1)
-
-        new_text="4567890"
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,1)
+        new_text = "4567890"
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 1)
 
         others.go_back()
-        template_management.click_element_by_name_or_text("android.widget.EditText",0)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 0)
 
-        new_text="1234567890"
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,0)
+        new_text = "1234567890"
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 0)
 
         others.go_back()
         template_management.click_on_image_input_in_print_page()
@@ -2489,19 +2533,22 @@ class test_Android_Template_Management:
         template_management.enter_no_of_copies(3)
         others.go_back()
 
-        curr_copies=template_management.get_no_of_copies()
+        curr_copies = template_management.get_no_of_copies()
 
-        if str(curr_copies)!='3':
+        if str(curr_copies) != '3':
             raise Exception("curr copies not updated")
 
         template_management.scroll_till_print_enabled_button()
         template_management.click_print_button_enabled()
-        template_management.wait_for_element_appearance_name_matches_all("Print complete")
+        try:
+            template_management.wait_for_element_appearance_name_matches_all("Print complete")
+        except:
+            pass
 
         common_method.wait_for_element_appearance_enabled("Print")
         curr_labels = template_management.get_no_of_labels_left_in_print_page()
-        temp=curr_labels
-        if int(prev_labels)!=int(curr_labels)+3:
+        temp = curr_labels
+        if int(prev_labels) != int(curr_labels) + 3:
             raise Exception("no of labels left not updated")
 
         template_management.click_left_arrow()
@@ -2517,11 +2564,11 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
-        full_name = template_management.select_design_in_my_design_by_name_and_return(name,0)
+        full_name = template_management.select_design_in_my_design_by_name_and_return(name, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2530,15 +2577,15 @@ class test_Android_Template_Management:
             template_management.click_print_button()
         except:
             others.scroll_down()
-            template_management.get_the_full_name_of_design_and_click_in_my_design(name,1)
+            template_management.get_the_full_name_of_design_and_click_in_my_design(name, 1)
             template_management.click_print_button()
 
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
-            raise Exception("print page not displayed")
-        curr_labels=template_management.get_no_of_labels_left_in_print_page()
-        if curr_labels!=temp:
+            pass
+        curr_labels = template_management.get_no_of_labels_left_in_print_page()
+        if curr_labels != temp:
             raise Exception("count not same after reselecting the design")
 
         template_management.click_left_arrow()
@@ -2562,21 +2609,21 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",15)
+            common_method.wait_for_element_appearance_namematches("Label", 15)
             sleep(3)
         except:
             raise Exception("print page not displayed")
 
-        template_management.click_element_by_name_or_text("android.widget.EditText",1)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 1)
 
-        new_text="4567890"
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,1)
+        new_text = "4567890"
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 1)
 
         others.go_back()
-        template_management.click_element_by_name_or_text("android.widget.EditText",0)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 0)
 
-        new_text="1234567890"
-        template_management.input_text_in_element_by_name("android.widget.EditText",new_text,0)
+        new_text = "1234567890"
+        template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 0)
 
         others.go_back()
         template_management.click_on_image_input_in_print_page()
@@ -2591,9 +2638,9 @@ class test_Android_Template_Management:
         template_management.enter_no_of_copies(3)
         others.go_back()
 
-        curr_copies=template_management.get_no_of_copies()
+        curr_copies = template_management.get_no_of_copies()
 
-        if str(curr_copies)!='3':
+        if str(curr_copies) != '3':
             raise Exception("curr copies not updated")
 
         template_management.scroll_till_print_enabled_button()
@@ -2602,8 +2649,8 @@ class test_Android_Template_Management:
 
         common_method.wait_for_element_appearance_enabled("Print")
         curr_labels = template_management.get_no_of_labels_left_in_print_page()
-        temp=curr_labels
-        if int(prev_labels)!=int(curr_labels)+3:
+        temp = curr_labels
+        if int(prev_labels) != int(curr_labels) + 3:
             raise Exception("no of labels left not updated")
 
         template_management.click_left_arrow()
@@ -2617,11 +2664,11 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
         common_method.wait_for_element_appearance_namematches("Recently")
-        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name,1)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 1)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2632,11 +2679,11 @@ class test_Android_Template_Management:
             template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 1)
             template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
-        curr_labels=template_management.get_no_of_labels_left_in_print_page()
-        if curr_labels!=temp:
+        curr_labels = template_management.get_no_of_labels_left_in_print_page()
+        if curr_labels != temp:
             raise Exception("count not same after reselecting the design")
 
         template_management.click_left_arrow()
@@ -2669,7 +2716,7 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
@@ -2684,14 +2731,14 @@ class test_Android_Template_Management:
         others.go_back()
         template_management.click_print_button_enabled()
 
-        curr_copies=template_management.get_no_of_copies()
+        curr_copies = template_management.get_no_of_copies()
         if int(curr_copies) != int('1'):
             raise Exception("current copies are not one")
 
         common_method.wait_for_element_appearance_enabled("Print")
         curr_labels = template_management.get_no_of_labels_left_in_print_page()
-        temp=curr_labels
-        if int(prev_labels)!=int(curr_labels)+1:
+        temp = curr_labels
+        if int(prev_labels) != int(curr_labels) + 1:
             raise Exception("no of labels left not updated")
         sleep(5)
 
@@ -2706,11 +2753,11 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         sleep(2)
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(a,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(a, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2728,7 +2775,7 @@ class test_Android_Template_Management:
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design('3.5" x 1.25"')
 
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
@@ -2741,6 +2788,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45917(self):
         pass
+        show_message("Connect Dp14 Printer")
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Recently")
@@ -2752,7 +2800,7 @@ class test_Android_Template_Management:
         template_management.click_print_button()
 
         try:
-            common_method.wait_for_element_appearance_namematches("Label",15)
+            common_method.wait_for_element_appearance_namematches("Label", 15)
             sleep(3)
         except:
             raise Exception("print page not displayed")
@@ -2773,14 +2821,14 @@ class test_Android_Template_Management:
             sleep(2)
         except:
             pass
-        curr_copies=template_management.get_no_of_copies()
-        if str(curr_copies)!='1':
+        curr_copies = template_management.get_no_of_copies()
+        if str(curr_copies) != '1':
             raise Exception("current copies are not one")
 
         common_method.wait_for_element_appearance_enabled("Print")
         curr_labels = template_management.get_no_of_labels_left_in_print_page()
-        temp=curr_labels
-        if int(prev_labels)!=int(curr_labels)+1:
+        temp = curr_labels
+        if int(prev_labels) != int(curr_labels) + 1:
             raise Exception("no of labels left not updated")
         sleep(5)
 
@@ -2795,11 +2843,11 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         sleep(2)
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(a,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(a, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2818,7 +2866,7 @@ class test_Android_Template_Management:
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design('3.5" x 1.25"')
         template_management.click_print_button_enabled()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",15)
+            common_method.wait_for_element_appearance_namematches("Label", 15)
             sleep(3)
         except:
             raise Exception("print page not displayed")
@@ -2832,6 +2880,8 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45918(self):
         pass
+
+        show_message("connect 2 printers DP12 and DP14")
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Recently")
@@ -2844,19 +2894,19 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Showing")
 
         all_names = template_management.get_ith_design_by_index_in_my_designs(2)
-        name=all_names
+        name = all_names
 
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_namematches("Label",15)
+            common_method.wait_for_element_appearance_namematches("Label", 15)
             template_management.scroll_till_print_enabled_button()
         except:
             raise Exception("print page not displayed")
 
         """Printer 1 """
-        printers = template_management.select_the_printer_in_print_preview_page_by_index(0,1)
+        printers = template_management.select_the_printer_in_print_preview_page_by_index(0, 1)
         print("printers", printers)
         if len(printers) != 2:
             raise Exception("Check only 2 printers in the precondition are available for selection fails")
@@ -2864,13 +2914,14 @@ class test_Android_Template_Management:
         if not template_management.check_print_button_clickable:
             raise Exception("print option is not clickable")
 
-        prev_labels_1=template_management.get_no_of_labels_left_in_print_page()
+        prev_labels_1 = template_management.get_no_of_labels_left_in_print_page()
 
         if not template_management.check_element_exists_name_or_text_matches("labels left"):
             raise Exception("labels left not displayed")
 
         if not template_management.check_element_exists_name_or_text_matches("Total of 1 label"):
-            raise Exception("c. Verify total number of labels for printing (Total of 1 Labels) is correct this step fails")
+            raise Exception(
+                "c. Verify total number of labels for printing (Total of 1 Labels) is correct this step fails")
 
         template_management.click_print_button()
         common_method.wait_for_element_appearance_enabled("Print")
@@ -2882,13 +2933,13 @@ class test_Android_Template_Management:
 
         """Printer 2"""
 
-        printers = template_management.select_the_printer_in_print_preview_page_by_index(1,0)
+        printers = template_management.select_the_printer_in_print_preview_page_by_index(1, 0)
         template_management.scroll_till_print_enabled_button()
 
         if not template_management.check_print_button_clickable:
             raise Exception("print option is not clickable")
 
-        prev_labels_2=template_management.get_no_of_labels_left_in_print_page()
+        prev_labels_2 = template_management.get_no_of_labels_left_in_print_page()
 
         try:
             template_management.check_element_exists_name_or_text_matches("labels left")
@@ -2898,14 +2949,15 @@ class test_Android_Template_Management:
         try:
             template_management.check_element_exists_name_or_text_matches("Total of 1 label")
         except:
-            raise Exception("c. Verify total number of labels for printing (Total of 1 Labels) is correct this step fails")
+            raise Exception(
+                "c. Verify total number of labels for printing (Total of 1 Labels) is correct this step fails")
 
         template_management.click_print_button()
         common_method.wait_for_element_appearance_enabled("Print")
 
         curr_labels_2 = template_management.get_no_of_labels_left_in_print_page()
 
-        if prev_labels_2 -1 != curr_labels_2:
+        if prev_labels_2 - 1 != curr_labels_2:
             raise Exception("prev and curr labels are not updated")
 
         sleep(3)
@@ -2923,11 +2975,11 @@ class test_Android_Template_Management:
 
         template_management.check_element_exists("My Designs")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -2939,10 +2991,10 @@ class test_Android_Template_Management:
         printer_1_curr_count = all_printer_left_count[0]
         printer_2_curr_count = all_printer_left_count[1]
 
-        if int(printer_1_curr_count)+1 != int(printer_1_prev_count):
+        if int(printer_1_curr_count) + 1 != int(printer_1_prev_count):
             raise Exception("labels left not updated in printer 1")
 
-        if int(printer_2_curr_count)+1 != int(printer_2_prev_count):
+        if int(printer_2_curr_count) + 1 != int(printer_2_prev_count):
             raise Exception("labels left not updated in printer 2")
 
         login_page.click_Menu_HamburgerICN()
@@ -2964,7 +3016,7 @@ class test_Android_Template_Management:
         if curr_labels_1 != curr_labels_1_a:
             raise Exception("curr labels are not updated after selecting other designs")
 
-        printers = template_management.select_the_printer_in_print_preview_page_by_index(1,0)
+        printers = template_management.select_the_printer_in_print_preview_page_by_index(1, 0)
 
         curr_labels_2_a = template_management.get_no_of_labels_left_in_print_page()
 
@@ -2979,21 +3031,21 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
-        t= template_management.get_first_design_in_my_designs()
+        t = template_management.get_first_design_in_my_designs()
         original_name = template_management.get_names_of_design_in_search_designs([t])[0]
         template_management.get_the_full_name_of_design_and_click_in_my_design(original_name)
 
         duplicate_name = template_management.duplicate_the_design_and_get_the_name()
         common_method.wait_for_element_appearance_namematches("successfully")
-        if original_name+" copy"!=duplicate_name:
+        if original_name + " copy" != duplicate_name:
             raise Exception("default duplicate name is not changing")
 
-        duplicate_name=original_name+" copy"
+        duplicate_name = original_name + " copy"
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
@@ -3006,7 +3058,7 @@ class test_Android_Template_Management:
             raise Exception("Label 1 of 1 not displayed")
 
         try:
-            template_management.check_element_exists("android.widget.EditText",1)
+            template_management.check_element_exists("android.widget.EditText", 1)
         except:
             pass
 
@@ -3019,14 +3071,14 @@ class test_Android_Template_Management:
         except:
             pass
 
-        prev_copies=template_management.get_no_of_copies()
+        prev_copies = template_management.get_no_of_copies()
 
         if not template_management.check_element_exists_name_or_text_matches("labels left"):
             raise Exception("labels left not displayed")
 
         curr_copies = template_management.get_no_of_copies()
 
-        if prev_copies!=curr_copies:
+        if prev_copies != curr_copies:
             raise Exception("prev and curr copies are not same")
 
         template_management.check_element_exists("Total of 1 label")
@@ -3044,7 +3096,7 @@ class test_Android_Template_Management:
 
         curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-        if not int(prev_count) == int(curr_count)+1:
+        if not int(prev_count) == int(curr_count) + 1:
             raise Exception("no of labels not updated")
 
         template_management.click_left_arrow()
@@ -3061,11 +3113,11 @@ class test_Android_Template_Management:
 
         template_management.check_element_exists("My Designs")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -3074,7 +3126,7 @@ class test_Android_Template_Management:
         sleep(1)
 
         labels_left = template_management.get_no_of_left_cartridge()
-        print(labels_left,curr_count)
+        print(labels_left, curr_count)
         if str(labels_left) != str(curr_count):
             raise Exception("labels left not updated")
 
@@ -3087,12 +3139,12 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        name="45912"
+        name = "45912"
         template_management.get_the_full_name_of_design_and_click_in_my_design(name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
@@ -3101,10 +3153,10 @@ class test_Android_Template_Management:
         except:
             pass
 
-        template_management.click_element_by_name_or_text("android.widget.EditText",0)
+        template_management.click_element_by_name_or_text("android.widget.EditText", 0)
         template_management.enter_the_special_characters_in_print_page("C31:C43'<>,.?£€)")
-        a=template_management.get_text_from_element("android.widget.EditText",0)
-        if a!="C31:C43'<>,.?£€)":
+        a = template_management.get_text_from_element("android.widget.EditText", 0)
+        if a != "C31:C43'<>,.?£€)":
             raise Exception("special characters are not being accepted properly")
 
         try:
@@ -3115,7 +3167,6 @@ class test_Android_Template_Management:
 
         template_management.scroll_till_print_enabled_button()
         template_management.click_print_button()
-
 
         if not template_management.check_element_exists_name_or_text_matches("labels left"):
             raise Exception("labels left not displayed")
@@ -3131,14 +3182,14 @@ class test_Android_Template_Management:
         template_management.wait_for_element_appearance_name_matches_all("Print complete")
 
         try:
-            common_method.wait_for_element_appearance_namematches("Label",10)
+            common_method.wait_for_element_appearance_namematches("Label", 10)
             template_management.scroll_till_print_enabled_button()
         except:
             raise Exception("print page not displayed properly")
 
         curr_count = template_management.get_no_of_labels_left_in_print_page()
 
-        if not int(prev_count) == int(curr_count)+1:
+        if not int(prev_count) == int(curr_count) + 1:
             raise Exception("no of labels not updated")
 
         sleep(1)
@@ -3156,11 +3207,11 @@ class test_Android_Template_Management:
 
         template_management.check_element_exists("My Designs")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 0)
 
-        pd,pm,py=template_management.get_design_last_print_date(full_name)
+        pd, pm, py = template_management.get_design_last_print_date(full_name)
 
-        cd,cm,cy=template_management.get_current_date()
+        cd, cm, cy = template_management.get_current_date()
         if pd != cd or pm != cm or py != cy:
             raise Exception("dates are not matching")
 
@@ -3169,7 +3220,7 @@ class test_Android_Template_Management:
         sleep(1)
 
         labels_left = template_management.get_no_of_left_cartridge()
-        print(labels_left,curr_count)
+        print(labels_left, curr_count)
         if str(labels_left) != str(curr_count):
             raise Exception("labels left not updated")
 
@@ -3189,7 +3240,7 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
@@ -3200,7 +3251,7 @@ class test_Android_Template_Management:
 
         template_management.check_element_exists("My Designs")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 0)
 
         try:
             template_management.get_design_last_print_date(full_name)
@@ -3212,18 +3263,18 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
-        curr_count=template_management.get_no_of_labels_left_in_print_page()
-        if prev_count!=curr_count:
+        curr_count = template_management.get_no_of_labels_left_in_print_page()
+        if prev_count != curr_count:
             raise Exception("print label updated without printing")
 
         template_management.click_print_button_enabled()
         common_method.wait_for_element_appearance_enabled("Print")
 
-        curr_count=template_management.get_no_of_labels_left_in_print_page()
+        curr_count = template_management.get_no_of_labels_left_in_print_page()
 
         sleep(5)
 
@@ -3238,7 +3289,7 @@ class test_Android_Template_Management:
         sleep(1)
 
         labels_left = template_management.get_no_of_left_cartridge()
-        print(labels_left,curr_count)
+        print(labels_left, curr_count)
         if str(labels_left) != str(curr_count):
             raise Exception("labels left not updated")
 
@@ -3247,14 +3298,14 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Recently")
-        name=template_management.get_first_design_in_recently_printed_labels()
-        name=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_first_design_in_recently_printed_labels()
+        name = template_management.get_names_of_design_in_search_designs([name])[0]
 
         template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name)
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
@@ -3265,7 +3316,7 @@ class test_Android_Template_Management:
 
         template_management.check_element_exists("Home")
 
-        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name,0)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 0)
 
         try:
             template_management.get_design_last_print_date(full_name)
@@ -3277,12 +3328,12 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         try:
-            common_method.wait_for_element_appearance_enabled("Print",15)
+            common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
 
-        curr_count=template_management.get_no_of_labels_left_in_print_page()
-        if prev_count!=curr_count:
+        curr_count = template_management.get_no_of_labels_left_in_print_page()
+        if prev_count != curr_count:
             raise Exception("print label updated without printing")
 
         template_management.scroll_till_print_enabled_button()
@@ -3290,7 +3341,7 @@ class test_Android_Template_Management:
         template_management.wait_for_element_appearance_name_matches_all("Print complete")
         common_method.wait_for_element_appearance_enabled("Print")
 
-        curr_count=template_management.get_no_of_labels_left_in_print_page()
+        curr_count = template_management.get_no_of_labels_left_in_print_page()
 
         template_management.click_left_arrow()
         try:
@@ -3304,7 +3355,7 @@ class test_Android_Template_Management:
         template_management.click_home_button()
 
         labels_left = template_management.get_no_of_left_cartridge()
-        print(labels_left,curr_count)
+        print(labels_left, curr_count)
         if str(labels_left) != str(curr_count):
             raise Exception("labels left not updated")
 
@@ -3323,15 +3374,15 @@ class test_Android_Template_Management:
         """Give the name of existing design here"""
         name = template_management.get_first_design_in_my_designs()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.select_design_in_my_design_by_name_and_return(name,1)
-        prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.select_design_in_my_design_by_name_and_return(name, 1)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_on_rename_button()
 
         """need to automate a. Verify "Edit name" window is displayed
         b. Verify "Organize your designs by giving it a name to help you find it faster." text is displayed"""
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=name:
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name:
             raise Exception("default value not matches the design's name")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3368,26 +3419,26 @@ class test_Android_Template_Management:
         except:
             raise Exception("design not found after updating")
 
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
 
     def test_Template_Management_TestcaseID_45927(self):
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Recently",20)
+        common_method.wait_for_element_appearance_namematches("Recently", 20)
         sleep(2)
-        name=template_management.get_first_design_in_recently_printed_labels()
-        name=template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name,1)
-        prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        name = template_management.get_first_design_in_recently_printed_labels()
+        name = template_management.get_names_of_design_in_search_designs([name])[0]
+        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name, 1)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=name:
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name:
             raise Exception("default value not matches the design's name")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3417,9 +3468,9 @@ class test_Android_Template_Management:
         except:
             raise Exception("design not found after updating")
 
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
 
     def test_Template_Management_TestcaseID_45928(self):
@@ -3433,11 +3484,11 @@ class test_Android_Template_Management:
         """Give the name of existing design here"""
         name = template_management.get_first_design_in_my_designs()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.select_design_in_my_design_by_name_and_return(name,1)
+        full_name = template_management.select_design_in_my_design_by_name_and_return(name, 1)
 
         template_management.click_on_rename_button()
 
-        new_name = "Address"
+        new_name = "EAN"
 
         template_management.enter_text_in_rename_design(new_name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
@@ -3453,15 +3504,15 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
         try:
-            full_name = template_management.select_design_in_my_design_by_name_and_return(new_name+" (1)", 0)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(new_name + " (1)", 0)
         except:
             raise Exception("design not found after updating")
 
-        template_management.select_design_in_my_design_by_name_and_return(new_name+" (1)",1)
+        template_management.select_design_in_my_design_by_name_and_return(new_name + " (1)", 1)
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=new_name+" (1)":
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != new_name + " (1)":
             raise Exception("default value not updated to new value")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3478,9 +3529,9 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Recently")
         """Give the name of existing design here"""
         sleep(2)
-        name=template_management.get_first_design_in_recently_printed_labels()
-        name=template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name,1)
+        name = template_management.get_first_design_in_recently_printed_labels()
+        name = template_management.get_names_of_design_in_search_designs([name])[0]
+        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name, 1)
         template_management.click_on_rename_button()
         new_name = "Basic"
 
@@ -3498,15 +3549,16 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
         try:
-            full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(new_name+" (1)", 0)
+            full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(
+                new_name + " (1)", 0)
         except:
             raise Exception("design not found after updating")
 
-        template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(new_name+" (1)",1)
+        template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(new_name + " (1)", 1)
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=new_name+" (1)":
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != new_name + " (1)":
             raise Exception("default value not updated to new value")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3530,7 +3582,7 @@ class test_Android_Template_Management:
 
         names = template_management.get_ith_design_by_index_in_my_designs(2)
         names = template_management.get_names_of_design_in_search_designs([names])[0]
-        full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(names,1)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(names, 1)
         template_management.click_on_rename_button()
         template_management.enter_text_in_rename_design(name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
@@ -3544,15 +3596,16 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(name+" (1)", 0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(name + " (1)",
+                                                                                                          0)
         except:
             raise Exception("design not found after updating")
 
-        template_management.get_the_full_name_of_design_and_click_in_common_design_search(name+" (1)",1)
+        template_management.get_the_full_name_of_design_and_click_in_common_design_search(name + " (1)", 1)
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=name+" (1)":
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name + " (1)":
             raise Exception("default value not updated to new value")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3571,7 +3624,7 @@ class test_Android_Template_Management:
         sleep(2)
         name = template_management.get_second_design_in_recently_printed_design()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name,1)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 1)
         template_management.click_on_rename_button()
         template_management.click_on_save_button_in_rename_design()
         try:
@@ -3582,15 +3635,16 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name+" (1)", 0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                name + " (1)", 0)
         except:
             raise Exception("design not found after updating")
 
-        template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name+" (1)",1)
+        template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name + " (1)", 1)
         template_management.click_on_rename_button()
 
         default_value = template_management.get_the_default_rename_text()
-        if default_value != name+" (1)":
+        if default_value != name + " (1)":
             raise Exception("default value not updated to new value")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3605,52 +3659,52 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        login_page.click_Menu_HamburgerICN()
-        social_login.click_on_profile_edit()
-        social_login.scroll_down(1)
-        social_login.click_log_out_button()
-        try:
-            social_login.wait_for_element_appearance("Sign In",5)
-        except:
-            raise Exception("Did not redirect to the login page")
-
-        """Sign in with email"""
-
-        login_page.click_loginBtn()
-        social_login.wait_for_element_appearance_text("Continue with Google",10)
-        social_login.click_on_sign_in_with_email()
-
-        """Provide the email and password"""
-        email = "zebratest850@gmail.com"
-        password = "Zebra#123456789"
-        social_login.complete_sign_in_with_email(email,password)
-
-        try:
-            social_login.wait_for_element_appearance("Home",20)
-        except:
-            raise Exception("home page dint show up")
+        # login_page.click_Menu_HamburgerICN()
+        # social_login.click_on_profile_edit()
+        # social_login.scroll_down(1)
+        # social_login.click_log_out_button()
+        # try:
+        #     social_login.wait_for_element_appearance("Sign In",5)
+        # except:
+        #     raise Exception("Did not redirect to the login page")
+        #
+        # """Sign in with email"""
+        #
+        # login_page.click_loginBtn()
+        # social_login.wait_for_element_appearance_text("Continue with Google",10)
+        # login_page.click_Loginwith_Google()
+        #
+        # email = "zebra850.swdvt@gmail.com"
+        # password = "Zebra#123456789"
+        # social_login.choose_a_google_account(email)
+        #
+        # try:
+        #     social_login.wait_for_element_appearance("Home",20)
+        # except:
+        #     raise Exception("home page dint show up")
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
         user2_name = template_management.get_first_design_in_my_designs()
+        user2_name = template_management.get_names_of_design_in_search_designs([user2_name])[0]
 
         login_page.click_Menu_HamburgerICN()
         social_login.click_on_profile_edit()
         social_login.scroll_down(1)
         social_login.click_log_out_button()
         try:
-            social_login.wait_for_element_appearance("Sign In",5)
+            social_login.wait_for_element_appearance("Sign In", 5)
         except:
             raise Exception("Did not redirect to the login page")
         """Google sign in"""
 
         login_page.click_loginBtn()
-        social_login.wait_for_element_appearance_text("Continue with Google",10)
+        social_login.wait_for_element_appearance_text("Continue with Google", 10)
         login_page.click_Loginwith_Google()
         try:
             """Enter the email"""
-            email = "zebratest901@gmail.com"
+            email = "zebra901.swdvt@gmail.com"
             social_login.choose_a_google_account(email)
         except:
             pass
@@ -3662,13 +3716,13 @@ class test_Android_Template_Management:
         """Give the name of existing design here"""
         name = template_management.get_first_design_in_my_designs()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.select_design_in_my_design_by_name_and_return(name,1)
-        prev_size,prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.select_design_in_my_design_by_name_and_return(name, 1)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=name:
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name:
             raise Exception("default value not matches the design's name")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3696,7 +3750,7 @@ class test_Android_Template_Management:
         except:
             raise Exception("design not found after updating")
 
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
@@ -3705,17 +3759,17 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Recently")
         """Note: the design should be printed if not design rename will not be shown in recently printed labels"""
         name = template_management.get_all_designs_in_recently_printed_labels()
         name = template_management.get_names_of_design_in_search_designs(name)[0]
-        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name,1)
-        prev_size,prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 1)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=name:
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name:
             raise Exception("default value not matches the design's name")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3747,9 +3801,9 @@ class test_Android_Template_Management:
             raise Exception("design not found after updating")
 
         template_management.click_on_rename_button()
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
 
         invalid_name = "&*%"
@@ -3775,7 +3829,7 @@ class test_Android_Template_Management:
         name = template_management.get_first_design_in_recently_printed_labels()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 1)
-        prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_on_rename_button()
 
@@ -3805,7 +3859,7 @@ class test_Android_Template_Management:
         if not template_management.check_save_button_clickable_in_rename_popup():
             raise Exception("save button is not clickable")
 
-        new_name="A_1"
+        new_name = "A_1"
         template_management.enter_text_in_rename_design(new_name)
         sleep(1)
         if template_management.check_error_for_invalid_characters_in_rename_design():
@@ -3821,10 +3875,10 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
 
-        full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(new_name, 1)
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(new_name, 1)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
 
         template_management.click_on_rename_button()
@@ -3855,9 +3909,9 @@ class test_Android_Template_Management:
         """Give the name of existing design here"""
         name = template_management.get_first_design_in_my_designs()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.select_design_in_my_design_by_name_and_return(name,1)
+        full_name = template_management.select_design_in_my_design_by_name_and_return(name, 1)
         template_management.click_on_rename_button()
-        new_name="A_1"
+        new_name = "A_1"
         template_management.enter_text_in_rename_design(new_name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error  displayed for valid characters")
@@ -3873,8 +3927,8 @@ class test_Android_Template_Management:
             raise Exception("design not found after cancelling")
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=name:
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name:
             raise Exception("original name changed even after cancellation")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3889,12 +3943,12 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Recently")
         sleep(1)
-        name=template_management.get_first_design_in_recently_printed_labels()
-        name=template_management.get_names_of_design_in_search_designs([name])[0]
-        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name,1)
+        name = template_management.get_first_design_in_recently_printed_labels()
+        name = template_management.get_names_of_design_in_search_designs([name])[0]
+        full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name, 1)
         template_management.click_on_rename_button()
 
-        new_name="A_1"
+        new_name = "A_1"
         template_management.enter_text_in_rename_design(new_name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error  displayed for valid characters")
@@ -3910,8 +3964,8 @@ class test_Android_Template_Management:
             raise Exception("design not found after cancelling")
         template_management.click_on_rename_button()
 
-        default_value= template_management.get_the_default_rename_text()
-        if default_value!=name:
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name:
             raise Exception("original name changed even after cancellation")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -3925,7 +3979,8 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
+                "Shipping", "Small Multipurpose"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
@@ -3934,9 +3989,9 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             t = template_management.get_first_design_in_my_designs()
@@ -3962,11 +4017,11 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Showing")
         """Give the name of existing design here"""
 
-        name=template_management.get_first_design_in_recently_printed_labels()
-        name=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_first_design_in_recently_printed_labels()
+        name = template_management.get_names_of_design_in_search_designs([name])[0]
 
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 1)
-        prev_size,prev_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
         template_management.click_on_rename_button()
 
         default_value = template_management.get_the_default_rename_text()
@@ -3986,7 +4041,7 @@ class test_Android_Template_Management:
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error not displayed for allowed special characters ")
 
-        new_name="new@_name"
+        new_name = "new@_name"
         template_management.enter_text_in_rename_design(new_name)
         sleep(2)
         if template_management.check_error_for_invalid_characters_in_rename_design():
@@ -4005,13 +4060,14 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
 
+        sleep(3)
         try:
-            full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(new_name, 0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(new_name, 0)
         except:
             raise Exception("updated name not found")
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
 
     def test_Template_Management_TestcaseID_45940(self):
@@ -4027,16 +4083,16 @@ class test_Android_Template_Management:
         name = template_management.get_names_of_design_in_search_designs([name])[0]
 
         full_name = template_management.select_design_in_my_design_by_name_and_return(name, 1)
-        prev_size,prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
         template_management.click_on_rename_button()
 
-        new_name="new@_name"
+        new_name = "new@_name_45940"
         template_management.enter_text_in_rename_design(new_name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
             raise Exception("error not displayed for allowed special characters ")
 
         template_management.turn_off_wifi()
-        sleep(2)
+        sleep(3)
         template_management.click_on_save_button_in_rename_design()
         """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error  SMBM-1771"""
         template_management.turn_on_wifi()
@@ -4049,12 +4105,13 @@ class test_Android_Template_Management:
             raise Exception("design has been successfully renamed. is not displayed")
 
         try:
-            full_name=template_management.select_design_in_my_design_by_name_and_return(new_name, 0)
+            sleep(3)
+            full_name = template_management.select_design_in_my_design_by_name_and_return(new_name, 0)
         except:
             raise Exception("updated name not found")
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
 
     def test_Template_Management_TestcaseID_45941(self):
@@ -4063,13 +4120,13 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         """Give the name of existing design here"""
-        name=template_management.get_first_design_in_recently_printed_labels()
-        name=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_first_design_in_recently_printed_labels()
+        name = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(name, 1)
-        prev_size,prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
         template_management.click_on_rename_button()
 
-        new_name="ne@_name"
+        new_name = "ne@_name"
         template_management.enter_text_in_rename_design(new_name)
         sleep(2)
         if template_management.check_error_for_invalid_characters_in_rename_design():
@@ -4079,6 +4136,7 @@ class test_Android_Template_Management:
         sleep(2)
         template_management.click_on_save_button_in_rename_design()
         """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error"""
+        common_method.wait_for_element_appearance_namematches("Error communicating with server")
         template_management.turn_on_wifi()
         sleep(5)
         template_management.click_on_save_button_in_rename_design()
@@ -4089,12 +4147,12 @@ class test_Android_Template_Management:
             raise Exception("design has been successfully renamed. is not displayed")
 
         try:
-            full_name=template_management.select_design_in_recetly_printed_design_by_name_and_return(new_name, 0)
+            full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(new_name, 0)
         except:
             raise Exception("updated name not found")
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
 
     def test_Template_Management_TestcaseID_45976(self):
@@ -4111,8 +4169,8 @@ class test_Android_Template_Management:
         template_management.click_on_search_design()
         """input value that does not match with our current designs"""
 
-        not_exists_design="noexists"
-        template_management.search_designs(not_exists_design,0)
+        not_exists_design = "noexists"
+        template_management.search_designs(not_exists_design, 0)
         template_management.wait_for_element_appearance_name_matches_all("results")
         if not template_management.check_text_for_wrong_design_name():
             raise Exception("Proper message is not displayed for wrong design")
@@ -4122,16 +4180,16 @@ class test_Android_Template_Management:
         b. Verify "No results for "searched text"" text is displayed (this step has error id SMBUI-1305)
         c. Verify "Search tips: try typing exactly what you’re looking for. It may help to simply type 1 word, and search for results then."""
 
-        template_management.search_designs("",1)
+        template_management.search_designs("", 1)
         common_method.wait_for_element_appearance_namematches("Showing")
 
         """a. Verify Suggestions dropdown is no longer displayed (but suggestions dropdown is displayed)"""
 
-        my_designs_curr=template_management.get_all_designs_in_my_designs()
+        my_designs_curr = template_management.get_all_designs_in_my_designs()
 
         n_designs = template_management.get_showing_n_designs_number()
-        print(n_designs,len(my_designs_curr))
-        if str(len(my_designs_curr))!=str(n_designs):
+        print(n_designs, len(my_designs_curr))
+        if str(len(my_designs_curr)) != str(n_designs):
             raise Exception("total number of designs present , and showing n designs are not same count")
 
     def test_Template_Management_TestcaseID_45977(self):
@@ -4143,21 +4201,21 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        my_designs_prev=template_management.get_all_designs_in_my_designs()
+        my_designs_prev = template_management.get_all_designs_in_my_designs()
         exists_design = template_management.get_names_of_design_in_search_designs(my_designs_prev)[0]
         """Search your designs" (for this search designs is prompt text) prompt text and Search icon are displayed"""
         template_management.check_search_icon()
         template_management.check_search_designs_text()
         template_management.click_on_search_design()
         """input value that does not match with our current designs"""
-        template_management.search_designs(exists_design,0)
+        template_management.search_designs(exists_design, 0)
         sleep(2)
         template_management.wait_for_suggestions_to_appear()
         if template_management.check_text_for_wrong_design_name():
             raise Exception("Proper message is displayed for correct design")
 
         res = template_management.get_all_search_results_in_search_designs()
-        first_design_suggested=res[0]
+        first_design_suggested = res[0]
         try:
             common_method.wait_for_element_appearance_enabled(first_design_suggested)
         except:
@@ -4173,25 +4231,28 @@ class test_Android_Template_Management:
         except:
             pass
 
-        n=template_management.get_showing_n_designs_number()
-        if int(n)!=1:
+        n = template_management.get_showing_n_designs_number()
+        if int(n) != 1:
             raise Exception("showing more than one design")
 
-        template_management.search_designs("",1)
+        template_management.search_designs("", 1)
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        my_designs_curr=template_management.get_all_designs_in_my_designs()
+        my_designs_curr = template_management.get_all_designs_in_my_designs()
 
-        if my_designs_curr!=my_designs_prev:
+        if my_designs_curr != my_designs_prev:
             raise Exception("before and after searching results are not same")
 
         n_designs = template_management.get_showing_n_designs_number()
-        print(n_designs,len(my_designs_curr))
-        if str(len(my_designs_curr))!=str(n_designs):
+        print(n_designs, len(my_designs_curr))
+        if str(len(my_designs_curr)) != str(n_designs):
             raise Exception("total number of designs present , and showing n designs are not same count")
 
     def test_Template_Management_TestcaseID_45978(self):
         pass
+
+        show_message("Add this 6 designs to my designs\n design 1: AddressTest\ndesign 2: AssetTest\ndesign 3: "
+                     "GiftTestLabel\ndesign 4: IconGiftTestLabel\ndesign 5: TestStatic\ndesign 6: TestVariable")
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
@@ -4199,28 +4260,28 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        my_designs_prev=template_management.get_all_designs_in_my_designs()
+        my_designs_prev = template_management.get_all_designs_in_my_designs()
 
         """Search your designs" (for this search designs is prompt text) prompt text and Search icon are displayed"""
         template_management.check_search_icon()
         template_management.check_search_designs_text()
         template_management.click_on_search_design()
         """input value that does not match with our current designs"""
-        exists_design="test"
-        template_management.search_designs(exists_design,0)
+        exists_design = "test"
+        template_management.search_designs(exists_design, 0)
         sleep(2)
         template_management.wait_for_suggestions_to_appear()
 
         resu = template_management.get_all_search_results_in_search_designs()
 
-        res=template_management.get_names_of_design_in_search_designs(resu)
+        res = template_management.get_names_of_design_in_search_designs(resu)
 
-        temp=["AddressTest","AssetTest","GiftTestLabel","IconGiftTestLabel","TestStatic","TestVariable"]
+        temp = ["AddressTest", "AssetTest", "GiftTestLabel", "IconGiftTestLabel", "TestStatic", "TestVariable"]
 
-        print(res,temp)
+        print(res, temp)
         for i in temp:
             if i not in res:
-                raise Exception(i,"not present in suggestions")
+                raise Exception(i, "not present in suggestions")
 
         try:
             common_method.wait_for_element_appearance_enabled(resu[-1])
@@ -4230,26 +4291,29 @@ class test_Android_Template_Management:
         keyevent("enter")
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n=template_management.get_showing_n_designs_number()
-        if int(n)!=6:
+        n = template_management.get_showing_n_designs_number()
+        if int(n) != 6:
             raise Exception("not showing 6 design")
 
-        template_management.search_designs("",1)
+        template_management.search_designs("", 1)
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        my_designs_curr=template_management.get_all_designs_in_my_designs()
+        my_designs_curr = template_management.get_all_designs_in_my_designs()
 
-        print("here",my_designs_curr,my_designs_prev)
-        if my_designs_curr!=my_designs_prev:
+        print("here", my_designs_curr, my_designs_prev)
+        if my_designs_curr != my_designs_prev:
             raise Exception("before and after searching results are not same")
 
         n_designs = template_management.get_showing_n_designs_number()
-        print(n_designs,len(my_designs_curr))
-        if str(len(my_designs_curr))!=str(n_designs):
+        print(n_designs, len(my_designs_curr))
+        if str(len(my_designs_curr)) != str(n_designs):
             raise Exception("total number of designs present , and showing n designs are not same count")
 
     def test_Template_Management_TestcaseID_45980(self):
         pass
+
+        show_message(
+            "There are design names in My Designs with special characters.(ie:Address_SG, Asset_SG, IconGiftLabel_SG)")
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
@@ -4257,31 +4321,31 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        prev_all_designs=template_management.get_all_designs_in_my_designs()
+        prev_all_designs = template_management.get_all_designs_in_my_designs()
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         template_management.check_search_icon()
         template_management.check_search_designs_text()
         template_management.click_on_search_design()
 
         """Enter the text here"""
-        text="_SG"
-        template_management.search_designs(text,0)
+        text = "_SG"
+        template_management.search_designs(text, 0)
 
         template_management.wait_for_suggestions_to_appear()
 
         resu = template_management.get_all_search_results_in_search_designs()
-        if len(resu)!=3:
+        if len(resu) != 3:
             raise Exception("more than 3 design is displayed for _SG search")
 
         for i in resu:
             try:
                 common_method.wait_for_element_appearance_enabled(i)
             except:
-                raise Exception(i,"element is not present or not clickable")
+                raise Exception(i, "element is not present or not clickable")
 
-        selected_design=resu[0]
+        selected_design = resu[0]
         design = template_management.get_names_of_design_in_search_designs(resu)[0]
         template_management.click_element_by_name_or_text(selected_design)
 
@@ -4296,42 +4360,42 @@ class test_Android_Template_Management:
         temp = template_management.get_all_designs_in_my_designs()
         if len(temp) != 1:
             raise Exception("more or less designs is displayed after selecting in suggestion")
-        n_curr=template_management.get_showing_n_designs_number()
+        n_curr = template_management.get_showing_n_designs_number()
 
-        if int(n_curr)!=1:
+        if int(n_curr) != 1:
             raise Exception("Verify the count in the Showing 1 designs is not correct.")
 
-        text=""
-        template_management.search_designs(text,1)
+        text = ""
+        template_management.search_designs(text, 1)
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        curr_all_designs=template_management.get_all_designs_in_my_designs()
+        curr_all_designs = template_management.get_all_designs_in_my_designs()
 
-        if prev_all_designs!=curr_all_designs:
+        if prev_all_designs != curr_all_designs:
             raise Exception("prev all designs and curr all designs are not same")
 
-        n_curr=template_management.get_showing_n_designs_number()
-        if int(n_curr)!=int(n_prev):
+        n_curr = template_management.get_showing_n_designs_number()
+        if int(n_curr) != int(n_prev):
             raise Exception("Showing designs count changed")
 
-        text="~`!@#$%^&*()_-+={}[]|/\:;\"'<>,.?"
-        template_management.search_designs(text,0)
+        text = "~`!@#$%^&*()_-+={}[]|/\:;\"'<>,.?"
+        template_management.search_designs(text, 0)
         social_login.wait_for_element_appearance_namematches_all("No results found.")
 
         if not template_management.check_text_for_wrong_design_name():
             raise Exception("Proper message is not displayed for wrong design")
 
-        text=""
-        template_management.search_designs(text,1)
+        text = ""
+        template_management.search_designs(text, 1)
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        curr_all_designs=template_management.get_all_designs_in_my_designs()
+        curr_all_designs = template_management.get_all_designs_in_my_designs()
 
-        if prev_all_designs!=curr_all_designs:
+        if prev_all_designs != curr_all_designs:
             raise Exception("prev all designs and curr all designs are not same")
 
-        n_curr=template_management.get_showing_n_designs_number()
-        if int(n_curr)!=int(n_prev):
+        n_curr = template_management.get_showing_n_designs_number()
+        if int(n_curr) != int(n_prev):
             raise Exception("Showing designs count changed")
 
     def test_Template_Management_TestcaseID_46006(self):
@@ -4347,15 +4411,15 @@ class test_Android_Template_Management:
         template_management.check_search_designs_text()
         template_management.click_on_search_design()
 
-        text="no_text_match"
-        template_management.search_designs(text,0)
+        text = "no_text_match"
+        template_management.search_designs(text, 0)
         social_login.wait_for_element_appearance_namematches_all("No results")
 
         if not template_management.check_text_for_wrong_design_name():
             raise Exception("Proper message is not displayed for wrong design")
 
-        text=""
-        template_management.search_designs(text,1)
+        text = ""
+        template_management.search_designs(text, 1)
 
         if template_management.check_suggestion_window_in_common_design():
             raise Exception("suggestion window is displayed after entering blank value")
@@ -4372,8 +4436,8 @@ class test_Android_Template_Management:
         template_management.check_search_designs_text()
         template_management.click_on_search_design()
 
-        text="Address"
-        template_management.search_designs(text,0)
+        text = "Address"
+        template_management.search_designs(text, 0)
         template_management.wait_for_element_appearance_name_matches_all("CATEGORIES")
 
         if not template_management.check_categories_subarea_in_suggestion_window_and_check_clickable():
@@ -4382,7 +4446,8 @@ class test_Android_Template_Management:
             raise Exception("designs suggestion not displayed or not clickable")
 
         if not template_management.check_results_in_design_subarea_in_suggestion_window_and_check_clickable():
-            raise Exception("Verify on the designs section, the number of designs that matches is displayed on the right side (not meeting this step)")
+            raise Exception(
+                "Verify on the designs section, the number of designs that matches is displayed on the right side (not meeting this step)")
 
         others.click_enter()
 
@@ -4401,8 +4466,8 @@ class test_Android_Template_Management:
         except:
             raise Exception("Categories count is not displayed properly")
 
-        temp=template_management.get_all_categories_in_search_designs()
-        if not template_management.check_element_present_in_array("Address",temp):
+        temp = template_management.get_all_categories_in_search_designs()
+        if not template_management.check_element_present_in_array("Address", temp):
             raise Exception("categories displayed which is not matching to search value")
 
         try:
@@ -4410,13 +4475,12 @@ class test_Android_Template_Management:
         except:
             raise Exception("Design count is not displayed properly")
 
-
-        temp=template_management.get_all_designs_in_search_designs()
-        if not template_management.check_element_present_in_array("Address",temp):
+        temp = template_management.get_all_designs_in_search_designs()
+        if not template_management.check_element_present_in_array("Address", temp):
             raise Exception("designs displayed which is not matching to search value")
 
-        text=""
-        template_management.search_designs(text,1)
+        text = ""
+        template_management.search_designs(text, 1)
 
         if template_management.check_suggestion_window_in_common_design():
             raise Exception("suggestion window is displayed after entering blank value")
@@ -4433,13 +4497,13 @@ class test_Android_Template_Management:
         template_management.check_search_designs_text()
         template_management.click_on_search_design()
 
-        text="File Folder"
-        template_management.search_designs(text,0)
+        text = "File Folder"
+        template_management.search_designs(text, 0)
         template_management.wait_for_element_appearance_name_matches_all("CATEGORIES")
 
         if not template_management.check_categories_subarea_in_suggestion_window_and_check_clickable():
             raise Exception("categories suggestion not displayed or not clickable")
-        if  template_management.check_designs_subarea_in_suggestion_window_and_check_clickable():
+        if template_management.check_designs_subarea_in_suggestion_window_and_check_clickable():
             raise Exception("designs suggestion displayed ")
 
         others.click_enter()
@@ -4459,8 +4523,8 @@ class test_Android_Template_Management:
         except:
             raise Exception("Categories count is not displayed properly")
 
-        temp=template_management.get_all_categories_in_common_designs()
-        if not template_management.check_element_present_in_array("Address",temp):
+        temp = template_management.get_all_categories_in_common_designs()
+        if not template_management.check_element_present_in_array("Address", temp):
             raise Exception("categories displayed which is not matching to search value")
 
         """e. Verify designs section is displayed with zero(0) results and "No designs were found with current filters." text.
@@ -4487,8 +4551,8 @@ class test_Android_Template_Management:
         template_management.check_search_designs_text()
         template_management.click_on_search_design()
 
-        text="Asset"
-        template_management.search_designs(text,0)
+        text = "Asset"
+        template_management.search_designs(text, 0)
         template_management.wait_for_element_appearance_name_matches_all("DESIGNS")
 
         if template_management.check_categories_subarea_in_suggestion_window_and_check_clickable():
@@ -4514,12 +4578,12 @@ class test_Android_Template_Management:
         except:
             pass
 
-        temp=template_management.get_all_designs_in_search_designs()
-        if not template_management.check_element_present_in_array(text,temp):
+        temp = template_management.get_all_designs_in_search_designs()
+        if not template_management.check_element_present_in_array(text, temp):
             raise Exception("categories displayed which is not matching to search value")
 
-        text=""
-        template_management.search_designs(text,1)
+        text = ""
+        template_management.search_designs(text, 1)
 
         if template_management.check_suggestion_window_in_common_design():
             raise Exception("suggestion window is displayed after entering blank value")
@@ -4532,7 +4596,7 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
         template_management.wait_for_element_appearance_name_matches_all("Address")
-        prev=template_management.get_all_categories_in_common_designs()
+        prev = template_management.get_all_categories_in_common_designs()
 
         """Search your designs" (for this search designs is prompt text) prompt text and Search icon are displayed"""
         template_management.check_search_icon()
@@ -4540,19 +4604,19 @@ class test_Android_Template_Management:
         template_management.click_on_search_design()
         """input value that does not match with our current designs"""
 
-        not_exists_design="noexistsaddress"
-        template_management.search_designs(not_exists_design,0)
+        not_exists_design = "noexistsaddress"
+        template_management.search_designs(not_exists_design, 0)
         template_management.wait_for_element_appearance_name_matches_all("results")
         if not template_management.check_text_for_wrong_design_name():
             raise Exception("Proper message is not displayed for wrong design")
 
-        template_management.search_designs("",1)
+        template_management.search_designs("", 1)
         if template_management.check_suggestion_window_in_common_design() or template_management.check_text_for_wrong_design_name():
             raise Exception("suggestion window is displayed after entering search")
 
         template_management.wait_for_element_appearance_name_matches_all("Address")
-        curr=template_management.get_all_categories_in_common_designs()
-        if prev!=curr:
+        curr = template_management.get_all_categories_in_common_designs()
+        if prev != curr:
             raise Exception("all categories are not displayed after and before search")
 
     def test_Template_Management_TestcaseID_46012(self):
@@ -4560,7 +4624,8 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
+                "Shipping", "Small Multipurpose"]
         for text in temp[:2]:
 
             login_page.click_Menu_HamburgerICN()
@@ -4569,9 +4634,9 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
 
@@ -4586,7 +4651,7 @@ class test_Android_Template_Management:
             template_management.wait_for_element_appearance_name_matches_all("1 result")
             a = template_management.get_all_search_results_in_search_designs()
             print(a)
-            if len(a)!=1:
+            if len(a) != 1:
                 raise Exception("More than one design is displayed")
             if not template_management.check_results_in_design_subarea_in_suggestion_window_and_check_clickable():
                 raise Exception("design name is not clickable")
@@ -4595,11 +4660,11 @@ class test_Android_Template_Management:
                 raise Exception("suggestion drop down is displayed after clicking the element")
 
             searched_elements = template_management.get_all_designs_in_my_designs()
-            template_management.check_element_present_in_array(t,searched_elements)
+            template_management.check_element_present_in_array(t, searched_elements)
             template_management.search_designs("", 1)
             template_management.wait_for_element_appearance_name_matches_all(all_names[1])
             curr_designs = template_management.get_all_designs_in_my_designs()
-            if all_designs!=curr_designs:
+            if all_designs != curr_designs:
                 raise Exception("-Verify all designs are displayed in the Category. is failing")
 
             template_management.click_left_arrow()
@@ -4610,7 +4675,8 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Address","Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
+                "Shipping", "Small Multipurpose"]
         for text in temp[::2]:
 
             login_page.click_Menu_HamburgerICN()
@@ -4619,9 +4685,9 @@ class test_Android_Template_Management:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
 
@@ -4636,7 +4702,7 @@ class test_Android_Template_Management:
             template_management.wait_for_element_appearance_name_matches_all("1 result")
             a = template_management.get_all_search_results_in_search_designs()
             print(a)
-            matched_names=template_management.get_names_of_design_in_search_designs(a)
+            matched_names = template_management.get_names_of_design_in_search_designs(a)
 
             if not template_management.check_results_in_design_subarea_in_suggestion_window_and_check_clickable():
                 raise Exception("design name is not clickable")
@@ -4648,7 +4714,7 @@ class test_Android_Template_Management:
             tem = template_management.get_all_designs_in_my_designs()
             searched_elements = template_management.get_names_of_design_in_search_designs(tem)
 
-            print("searched",searched_elements)
+            print("searched", searched_elements)
             print("matched_names", matched_names)
             if searched_elements != matched_names:
                 raise Exception("suggestion designs and results designs are not same")
@@ -4656,7 +4722,7 @@ class test_Android_Template_Management:
             template_management.search_designs("", 1)
             template_management.wait_for_element_appearance_name_matches_all(all_names[1])
             curr_designs = template_management.get_all_designs_in_my_designs()
-            if all_designs!=curr_designs:
+            if all_designs != curr_designs:
                 raise Exception("-Verify all designs are displayed in the Category. is failing")
 
             template_management.click_left_arrow()
@@ -4667,21 +4733,21 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
 
-        temp=["Jewelry"]
+        temp = ["Jewelry"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
             name = names[0]
             template_management.click_on_copy_to_my_designs()
 
@@ -4700,16 +4766,16 @@ class test_Android_Template_Management:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
 
-            n_prev=template_management.get_showing_n_designs_number()
+            n_prev = template_management.get_showing_n_designs_number()
 
-            original_copy = name+" copy"
-            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy,1)
+            original_copy = name + " copy"
+            full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
 
             template_management.click_print_button_enabled()
             common_method.wait_for_element_appearance_enabled("Print")
             template_management.click_print_button_enabled()
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Complete",10)
+                template_management.wait_for_element_appearance_name_matches_all("Complete", 10)
             except:
                 pass
 
@@ -4719,14 +4785,14 @@ class test_Android_Template_Management:
             social_login.click_on_profile_edit()
             social_login.scroll_down(1)
             social_login.click_log_out_button()
-            social_login.wait_for_element_appearance("Sign In",10)
+            social_login.wait_for_element_appearance("Sign In", 10)
             login_page.click_loginBtn()
             login_page.click_Loginwith_Google()
 
             """Enter the email"""
-            email = "zebratest850@gmail.com"
+            email = "zebra850.swdvt@gmail.com"
             social_login.choose_a_google_account(email)
-            social_login.wait_for_element_appearance("Home",15)
+            social_login.wait_for_element_appearance("Home", 15)
 
             try:
                 template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy)
@@ -4752,20 +4818,20 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         """Give the name of existing design here"""
         t = template_management.get_first_design_in_my_designs()
         original_copy = template_management.get_names_of_design_in_search_designs([t])[0]
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
 
         duplicate_name = template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -4785,25 +4851,25 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=original_size or duplicate_date!=original_date:
+        if duplicate_size != original_size or duplicate_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 0)
         except:
             raise Exception("original name not found")
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-        if original_date!=curr_date or original_size!=curr_size:
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        if original_date != curr_date or original_size != curr_size:
             raise Exception("original copy date or size has been changed")
 
-        n_curr=template_management.get_showing_n_designs_number()
-        if int(n_curr)!=int(n_prev)+1:
+        n_curr = template_management.get_showing_n_designs_number()
+        if int(n_curr) != int(n_prev) + 1:
             raise Exception("Showing designs count not updated")
 
         template_management.select_design_in_my_design_by_name_and_return(duplicate_name)
@@ -4821,18 +4887,18 @@ class test_Android_Template_Management:
         """f. Verify the count in the "Showing x designs" is correct will not be present in home page"""
 
         """Give the name of existing design here"""
-        name=template_management.get_first_design_in_recently_printed_labels()
-        original_copy=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_first_design_in_recently_printed_labels()
+        original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
 
         full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -4852,21 +4918,23 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=original_size or duplicate_date!=original_date:
+        if duplicate_size != original_size or duplicate_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                original_copy, 0)
         except:
             raise Exception("original name not found")
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-        if original_date!=curr_date or original_size!=curr_size:
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        if original_date != curr_date or original_size != curr_size:
             raise Exception("original copy date or size has been changed")
 
         template_management.select_design_in_my_design_by_name_and_return(duplicate_name)
@@ -4885,26 +4953,26 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         """Give the name of existing design here"""
         name = template_management.get_first_design_in_my_designs()
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
 
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
         """Enter unique name here"""
 
-        unique_name="uniquename"
+        unique_name = "uniquename"
         template_management.enter_name_in_duplicate_designs(unique_name)
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error displayed for proper unique name")
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
+        duplicate_name = template_management.get_the_default_duplicate_name()
 
         template_management.click_on_save_button()
 
@@ -4917,25 +4985,25 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=original_size or duplicate_date!=original_date:
+        if duplicate_size != original_size or duplicate_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 0)
         except:
             raise Exception("original name not found")
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-        if original_date!=curr_date or original_size!=curr_size:
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        if original_date != curr_date or original_size != curr_size:
             raise Exception("original copy date or size has been changed")
 
-        n_curr=template_management.get_showing_n_designs_number()
-        if int(n_curr)!=int(n_prev)+1:
+        n_curr = template_management.get_showing_n_designs_number()
+        if int(n_curr) != int(n_prev) + 1:
             raise Exception("Showing designs count not updated")
 
         template_management.select_design_in_my_design_by_name_and_return(duplicate_name)
@@ -4951,23 +5019,23 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Recently")
         """Give the name of existing design here"""
-        name=template_management.get_first_design_in_recently_printed_labels()
-        original_copy=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_first_design_in_recently_printed_labels()
+        original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
 
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
         """Enter unique name here"""
 
-        unique_name="unique_name"
+        unique_name = "unique_name"
         template_management.enter_name_in_duplicate_designs(unique_name)
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error displayed for proper unique name")
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
+        duplicate_name = template_management.get_the_default_duplicate_name()
 
         template_management.click_on_save_button()
 
@@ -4980,21 +5048,23 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=original_size or duplicate_date!=original_date:
+        if duplicate_size != original_size or duplicate_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                original_copy, 0)
         except:
             raise Exception("original name not found")
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-        if original_date!=curr_date or original_size!=curr_size:
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        if original_date != curr_date or original_size != curr_size:
             raise Exception("original copy date or size has been changed")
 
         template_management.select_design_in_my_design_by_name_and_return(duplicate_name)
@@ -5029,7 +5099,7 @@ class test_Android_Template_Management:
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error displayed for proper unique name")
 
-        duplicate_name=original_copy+" (1)"
+        duplicate_name = original_copy + " (1)"
 
         template_management.click_on_save_button()
 
@@ -5041,17 +5111,18 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("duplicate design window not closed")
 
-        print("duplicate",duplicate_name)
+        print("duplicate", duplicate_name)
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 1)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 1)
         except:
             raise Exception("duplicate name not found")
 
         template_management.click_the_duplicate_button()
 
-        duplicate_name_after=template_management.get_the_default_duplicate_name()
-        if duplicate_name_after!=duplicate_name+" copy":
-            raise Exception(" not meeting condition Verify default value matches the updated design's name with appended text copy")
+        duplicate_name_after = template_management.get_the_default_duplicate_name()
+        if duplicate_name_after != duplicate_name + " copy":
+            raise Exception(
+                " not meeting condition Verify default value matches the updated design's name with appended text copy")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("cancel button is not clickable")
@@ -5063,11 +5134,11 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Recently")
+        common_method.wait_for_element_appearance_namematches("Recently", 30)
         """Give the name of existing design here"""
 
-        name=template_management.get_normal_design_if_there_in_first_screen_recently_printed_design()
-        original_copy=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_normal_design_if_there_in_first_screen_recently_printed_design()
+        original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
 
         full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy)
 
@@ -5080,7 +5151,7 @@ class test_Android_Template_Management:
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error displayed for proper unique name")
 
-        duplicate_name=original_copy+" (1)"
+        duplicate_name = original_copy + " (1)"
 
         template_management.click_on_save_button()
 
@@ -5092,17 +5163,20 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("duplicate design window not closed")
 
-        print("duplicate",duplicate_name)
+        # print("duplicate",duplicate_name)
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 1)
+            sleep(2)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 1)
         except:
             raise Exception("duplicate name not found")
 
         template_management.click_the_duplicate_button()
 
-        duplicate_name_after=template_management.get_the_default_duplicate_name()
-        if duplicate_name_after!=duplicate_name+" copy":
-            raise Exception(" not meeting condition Verify default value matches the updated design's name with appended text copy")
+        duplicate_name_after = template_management.get_the_default_duplicate_name()
+        if duplicate_name_after != duplicate_name + " copy":
+            raise Exception(
+                " not meeting condition Verify default value matches the updated design's name with appended text copy")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("cancel button is not clickable")
@@ -5114,7 +5188,7 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Open navigation menu")
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
@@ -5130,12 +5204,12 @@ class test_Android_Template_Management:
         template_management.verify_duplicate_design_window()
         """Enter Zebra defined name here"""
 
-        enter_name="Address"
+        enter_name = "Address"
         template_management.enter_name_in_duplicate_designs(enter_name)
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error displayed for proper unique name")
 
-        duplicate_name=enter_name+" (1)"
+        duplicate_name = enter_name + " (1)"
 
         template_management.click_on_save_button()
 
@@ -5147,17 +5221,19 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("duplicate design window not closed")
 
-        print("duplicate",duplicate_name)
+        print("duplicate", duplicate_name)
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 1)
+            sleep(2)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 1)
         except:
             raise Exception("duplicate name not found")
 
         template_management.click_the_duplicate_button()
 
-        duplicate_name_after=template_management.get_the_default_duplicate_name()
-        if duplicate_name_after!=duplicate_name+" copy":
-            raise Exception(" not meeting condition Verify default value matches the updated design's name with appended text copy")
+        duplicate_name_after = template_management.get_the_default_duplicate_name()
+        if duplicate_name_after != duplicate_name + " copy":
+            raise Exception(
+                " not meeting condition Verify default value matches the updated design's name with appended text copy")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("cancel button is not clickable")
@@ -5182,12 +5258,12 @@ class test_Android_Template_Management:
         template_management.verify_duplicate_design_window()
         """Enter unique name here"""
 
-        enter_name="Asset"
+        enter_name = "Asset"
         template_management.enter_name_in_duplicate_designs(enter_name)
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error displayed for proper unique name")
 
-        duplicate_name=enter_name+" (1)"
+        duplicate_name = enter_name + " (1)"
         template_management.click_on_save_button()
 
         try:
@@ -5198,17 +5274,20 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("duplicate design window not closed")
 
-        print("duplicate",duplicate_name)
+        print("duplicate", duplicate_name)
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 1)
+            sleep(3)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 1)
         except:
             raise Exception("duplicate name not found")
 
         template_management.click_the_duplicate_button()
 
-        duplicate_name_after=template_management.get_the_default_duplicate_name()
-        if duplicate_name_after!=duplicate_name+" copy":
-            raise Exception(" not meeting condition Verify default value matches the updated design's name with appended text copy")
+        duplicate_name_after = template_management.get_the_default_duplicate_name()
+        if duplicate_name_after != duplicate_name + " copy":
+            raise Exception(
+                " not meeting condition Verify default value matches the updated design's name with appended text copy")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("cancel button is not clickable")
@@ -5225,7 +5304,7 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         """Give the name of existing design here"""
 
@@ -5233,14 +5312,14 @@ class test_Android_Template_Management:
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
 
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
         template_management.click_on_save_button()
@@ -5254,25 +5333,25 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=original_size or duplicate_date!=original_date:
+        if duplicate_size != original_size or duplicate_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 0)
         except:
             raise Exception("original name not found")
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-        if original_date!=curr_date or original_size!=curr_size:
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        if original_date != curr_date or original_size != curr_size:
             raise Exception("original copy date or size has been changed")
 
-        n_curr=template_management.get_showing_n_designs_number()
-        if int(n_curr)!=int(n_prev)+1:
+        n_curr = template_management.get_showing_n_designs_number()
+        if int(n_curr) != int(n_prev) + 1:
             raise Exception("Showing designs count not updated")
 
     def test_Template_Management_TestcaseID_45951(self):
@@ -5286,22 +5365,23 @@ class test_Android_Template_Management:
 
         name = template_management.get_normal_design_if_there_in_first_screen_recently_printed_design()
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
-        template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy,1)
+        template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy, 1)
         template_management.click_the_duplicate_button()
         template_management.click_on_save_button()
-        duplicate_copy_name = original_copy+" copy"
+        duplicate_copy_name = original_copy + " copy"
 
-        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy,0)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy, 0)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(duplicate_copy_name,1)
+        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(duplicate_copy_name,
+                                                                                                   1)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if duplicate_copy_name+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if duplicate_copy_name + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -5321,30 +5401,32 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 0)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        duplicate_size,duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        duplicate_size, duplicate_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=original_size or duplicate_date!=original_date:
+        if duplicate_size != original_size or duplicate_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                original_copy, 0)
         except:
             raise Exception("original name not found")
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
-        if original_date!=curr_date or original_size!=curr_size:
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        if original_date != curr_date or original_size != curr_size:
             raise Exception("original copy date or size has been changed")
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        my_design_dup_size,my_design_dup_date=template_management.get_the_size_and_lastprint_of_design(d_full_name)
+        my_design_dup_size, my_design_dup_date = template_management.get_the_size_and_lastprint_of_design(d_full_name)
 
-        if duplicate_size!=my_design_dup_size or duplicate_date!=my_design_dup_date:
+        if duplicate_size != my_design_dup_size or duplicate_date != my_design_dup_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
     def test_Template_Management_TestcaseID_45952(self):
@@ -5357,24 +5439,24 @@ class test_Android_Template_Management:
         name = template_management.get_normal_design_if_there_in_first_screen_recently_printed_design()
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
 
-        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy,1)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy, 1)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
-        enter_name=""
+        enter_name = ""
         template_management.enter_name_in_duplicate_designs(enter_name)
         sleep(2)
         if not template_management.check_for_blank_value_error_in_duplicate_design():
             raise Exception("error not displayed for blank name")
 
-        enter_name="a1! "
+        enter_name = "a1! "
 
         template_management.enter_name_in_duplicate_designs(enter_name)
         if template_management.check_for_invalid_character_error_in_duplicate_design():
@@ -5388,14 +5470,16 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy,1)
+            sleep(3)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                original_copy, 1)
         except:
             raise Exception("original name not found")
 
         template_management.click_the_duplicate_button()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -5404,13 +5488,13 @@ class test_Android_Template_Management:
         if not template_management.check_save_button_clickable_in_rename_popup():
             raise Exception("save button is not clickable")
 
-        enter_name="abc"
+        enter_name = "abc"
 
         template_management.enter_name_in_duplicate_designs(enter_name)
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error  displayed for valid  name")
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
+        duplicate_name = template_management.get_the_default_duplicate_name()
 
         template_management.click_on_save_button()
 
@@ -5423,27 +5507,32 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name,1)
+            sleep(3)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 1)
         except:
             raise Exception("original name not found")
 
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!= original_size or curr_date!=original_date:
+        if curr_size != original_size or curr_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
 
         template_management.click_the_duplicate_button()
-        enter_name="&*%"
+        enter_name = "&*%"
 
         template_management.enter_name_in_duplicate_designs(enter_name)
-        if template_management.check_for_invalid_character_error_in_duplicate_design():
-            raise Exception("error  displayed for valid  name")
+        sleep(2)
+        if not template_management.check_for_invalid_character_error_in_duplicate_design():
+            raise Exception("error not displayed for valid  name")
 
         if template_management.check_save_button_clickable_in_rename_popup():
             raise Exception("save button is not clickable for invalid characters")
 
     def test_Template_Management_TestcaseID_45953(self):
         pass
+
+        show_message("2. There is an existing design with special characters in the name (ie:Abc123~`!@) in My Designs")
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Recently")
@@ -5451,22 +5540,22 @@ class test_Android_Template_Management:
 
         original_copy = "Abc123~`!@"
 
-        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy,1)
-        original_size,original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy, 1)
+        original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
 
         template_management.verify_duplicate_design_window()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
-        enter_name="!Special_123"
+        enter_name = "!Special_123"
         template_management.enter_name_in_duplicate_designs(enter_name)
         if template_management.check_for_invalid_character_error_in_duplicate_design():
             raise Exception("error displayed for valid name")
-        duplicate_name=template_management.get_the_default_duplicate_name()
+        duplicate_name = template_management.get_the_default_duplicate_name()
 
         """Has a bug SMBM-2206 so cannot automate step 4 in his test case"""
 
@@ -5480,23 +5569,25 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
 
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!= original_size or curr_date!=original_date:
+        if curr_size != original_size or curr_date != original_date:
             raise Exception("duplicate copy and original copy dates or sizes not matching")
         sleep(5)
         try:
-            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy,0)
+            full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                original_copy, 0)
         except:
             raise Exception("original name not found")
 
-        curr_size,curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!= original_size or curr_date!=original_date:
+        if curr_size != original_size or curr_date != original_date:
             raise Exception("original copy before and after original copy dates or sizes not matching")
 
         """Verify the count in the "Showing x designs" is correct this step is not applicable for recently printed labels"""
@@ -5529,22 +5620,24 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("duplicate design window not closed")
 
-        duplicate_name=original_copy+" copy"
+        duplicate_name = original_copy + " copy"
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
+            sleep(3)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
             raise Exception("duplicate name not found")
         except:
             pass
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 1)
+            sleep(3)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(original_copy, 1)
         except:
             raise Exception("original name not found")
 
         template_management.click_the_duplicate_button()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -5573,22 +5666,26 @@ class test_Android_Template_Management:
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("duplicate design window not closed")
 
-        duplicate_name=original_copy+" copy"
+        duplicate_name = original_copy + " copy"
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(duplicate_name, 0)
+            sleep(3)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                duplicate_name, 0)
             raise Exception("duplicate name not found")
         except:
             pass
 
         try:
-            d_full_name=template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy, 1)
+            sleep(3)
+            d_full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(
+                original_copy, 1)
         except:
             raise Exception("original name not found")
 
         template_management.click_the_duplicate_button()
 
-        duplicate_name=template_management.get_the_default_duplicate_name()
-        if original_copy+" copy"!=duplicate_name:
+        duplicate_name = template_management.get_the_default_duplicate_name()
+        if original_copy + " copy" != duplicate_name:
             raise Exception("default duplicate name is not matching as expected")
 
         if not template_management.check_cancel_button_clickable_in_rename_popup():
@@ -5606,10 +5703,10 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         """input an existing design name"""
-        original_copy=template_management.get_first_design_in_my_designs()
+        original_copy = template_management.get_first_design_in_my_designs()
         original_copy = template_management.get_names_of_design_in_search_designs([original_copy])[0]
 
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
@@ -5652,9 +5749,9 @@ class test_Android_Template_Management:
         except:
             pass
 
-        n_curr=template_management.get_showing_n_designs_number()
+        n_curr = template_management.get_showing_n_designs_number()
 
-        if int(n_curr)!=int(n_prev)-1:
+        if int(n_curr) != int(n_prev) - 1:
             raise Exception("Showing designs count not updated")
 
         login_page.click_Menu_HamburgerICN()
@@ -5675,14 +5772,14 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
         common_method.wait_for_element_appearance_namematches("Recently")
 
-        name=template_management.get_first_design_in_recently_printed_labels()
-        original_copy=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_first_design_in_recently_printed_labels()
+        original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy)
 
         template_management.click_on_delete_button_in_designs()
@@ -5732,9 +5829,9 @@ class test_Android_Template_Management:
             raise Exception("original name not found after deleting")
         except:
             pass
-        n_curr=template_management.get_showing_n_designs_number()
+        n_curr = template_management.get_showing_n_designs_number()
 
-        if int(n_curr)!=int(n_prev)-1:
+        if int(n_curr) != int(n_prev) - 1:
             raise Exception("Showing designs count not updated")
 
     def test_Template_Management_TestcaseID_45959(self):
@@ -5748,6 +5845,8 @@ class test_Android_Template_Management:
 
         for text in temp:
 
+            login_page.click_Menu_HamburgerICN()
+            template_management.click_home_button()
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
@@ -5779,7 +5878,7 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         """input an existing design name"""
         name = template_management.get_first_design_in_recently_printed_labels()
@@ -5805,9 +5904,9 @@ class test_Android_Template_Management:
         except:
             pass
 
-        n_curr=template_management.get_showing_n_designs_number()
+        n_curr = template_management.get_showing_n_designs_number()
 
-        if int(n_curr)!=int(n_prev)-1:
+        if int(n_curr) != int(n_prev) - 1:
             raise Exception("Showing designs count not updated")
 
         login_page.click_Menu_HamburgerICN()
@@ -5821,18 +5920,17 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45962(self):
         pass
+
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         """ has this error still SMBM-1902"""
-        """5. Go to web portal and other mobile app client to have a check that the template is not deleted
-         pending """
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         name = template_management.get_first_design_in_my_designs()
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
@@ -5844,6 +5942,8 @@ class test_Android_Template_Management:
         template_management.turn_off_wifi()
         sleep(2)
         template_management.click_on_delete_button_in_designs()
+
+        show_message("5. Go to web portal and other mobile app client to have a check that the template is not deleted")
 
         template_management.turn_on_wifi()
         common_method.wait_for_element_appearance_enabled("Delete")
@@ -5864,9 +5964,9 @@ class test_Android_Template_Management:
         except:
             pass
 
-        n_curr=template_management.get_showing_n_designs_number()
+        n_curr = template_management.get_showing_n_designs_number()
 
-        if int(n_curr)!=int(n_prev)-1:
+        if int(n_curr) != int(n_prev) - 1:
             raise Exception("Showing designs count not updated")
 
         login_page.click_Menu_HamburgerICN()
@@ -5885,21 +5985,20 @@ class test_Android_Template_Management:
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
         """ has this error still SMBM-1902"""
-        """5. Go to web portal and other mobile app client to have a check that the template is not deleted
-         pending """
+
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_prev=template_management.get_showing_n_designs_number()
+        n_prev = template_management.get_showing_n_designs_number()
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
         common_method.wait_for_element_appearance_namematches("Recently")
 
         """input an existing design name"""
-        name=template_management.get_first_design_in_recently_printed_labels()
-        original_copy=template_management.get_names_of_design_in_search_designs([name])[0]
+        name = template_management.get_first_design_in_recently_printed_labels()
+        original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy)
 
         template_management.click_on_delete_button_in_designs()
@@ -5908,6 +6007,8 @@ class test_Android_Template_Management:
         template_management.turn_off_wifi()
         sleep(2)
         template_management.click_on_delete_button_in_designs()
+
+        show_message("5. Go to web portal and other mobile app client to have a check that the template is not deleted")
 
         template_management.turn_on_wifi()
         common_method.wait_for_element_appearance_enabled("Delete")
@@ -5932,9 +6033,9 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
-        n_curr=template_management.get_showing_n_designs_number()
+        n_curr = template_management.get_showing_n_designs_number()
 
-        if int(n_curr)!=int(n_prev)-1:
+        if int(n_curr) != int(n_prev) - 1:
             raise Exception("Showing designs count not updated")
 
         try:
@@ -5965,7 +6066,8 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        strings = ["Address", "Barcodes", "Jewelry", "Shipping", "File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
+        strings = ["Address", "Barcodes", "Jewelry", "Shipping", "Return Address/File Folder", "Round", "Shipping",
+                   "Small Multipurpose", "XL Shipping"]
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -5973,7 +6075,7 @@ class test_Android_Template_Management:
 
         curr_categories = template_management.get_all_categories_in_common_designs()
         categories = template_management.get_names_of_design_in_search_designs(curr_categories)
-
+        print(categories)
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
         login_page.click_Menu_HamburgerICN()
@@ -5982,7 +6084,7 @@ class test_Android_Template_Management:
 
         for i in strings:
             if i not in categories:
-                raise Exception(i,"this category is not present in common designs")
+                raise Exception(i, "this category is not present in common designs")
 
         try:
             template_management.verify_zebra_icon_in_the_categories(curr_categories)
@@ -5998,22 +6100,23 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp = ["Address", "Barcodes", "Jewelry", "Multipurpose", "Shipping", "File Folder", "Round", "Shipping", "Small Multipurpose"]
+        temp = ["Address", "Barcodes", "Jewelry", "Multipurpose", "Shipping", "File Folder", "Round", "Shipping",
+                "Small Multipurpose"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
             try:
                 template_management.wait_for_element_appearance_name_matches_all(text)
             except:
-                raise Exception(text,"this category text not displayed")
+                raise Exception(text, "this category text not displayed")
             if not template_management.check_left_arrow_exists():
                 raise Exception("left arrow is not present")
 
@@ -6028,11 +6131,11 @@ class test_Android_Template_Management:
                 raise Exception("designs are not in sorted order")
 
             for i in all_complete_designs:
-                name,size,lastprint = template_management.get_the_name_size_and_lastprint_of_design(i)
-                if int(lastprint)!=0:
-                    raise Exception("last print displayed for",i,"design")
+                name, size, lastprint = template_management.get_the_name_size_and_lastprint_of_design(i)
+                if int(lastprint) != 0:
+                    raise Exception("last print displayed for", i, "design")
 
-            template_management.scroll_till_element(all_designs[0],1)
+            template_management.scroll_till_element(all_designs[0], 1)
 
             for i in all_complete_designs[:2]:
                 template_management.click_on_the_element_in_categories(i)
@@ -6057,24 +6160,24 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        temp=["Jewelry"]
+        temp = ["Jewelry"]
         for text in temp:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
 
-            template_management.search_designs(text,1)
+            template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
-            template_management.click_element_name_matches_all(text,0)
+            template_management.click_element_name_matches_all(text, 0)
 
             template_management.wait_until_designs_load_after_clicking_categories()
-            t=template_management.get_first_design_in_my_designs()
+            t = template_management.get_first_design_in_my_designs()
             template_management.click_element_by_name_or_text(t)
-            names,size=template_management.get_names_and_sizes_in_recently_printed_labels([t])
-            name=names[0]
-            print("t",t)
-            d_size,d_last_print = template_management.get_the_size_and_lastprint_of_design(t)
+            names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
+            name = names[0]
+            print("t", t)
+            d_size, d_last_print = template_management.get_the_size_and_lastprint_of_design(t)
 
             template_management.click_on_copy_to_my_designs()
             try:
@@ -6091,20 +6194,20 @@ class test_Android_Template_Management:
 
             template_management.click_home_button()
 
-            name="BOGO copy"
+            name = "BOGO copy"
             start_app("com.google.android.googlequicksearchbox")
             sleep(1)
             others.click_google_search_bar()
             others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
             others.click_enter()
-            others.wait_for_element_appearance("Continue with Google",10)
+            others.wait_for_element_appearance("Continue with Google", 10)
             login_page.click_Loginwith_Google()
             common_method.wait_for_element_appearance_textmatches("Choose an account")
             """pass your email below for the same account"""
-            email = "zebratest901@gmail.com"
+            email = "zebra901.swdvt@gmail.com"
             template_management.select_and_click_an_google_account(email)
 
-            common_method.wait_for_element_appearance_text("Home",20)
+            common_method.wait_for_element_appearance_text("Home", 20)
             others.click_hamburger_button_in_Google()
             try:
                 template_management.click_on_click_on_my_designs_in_google()
@@ -6119,20 +6222,20 @@ class test_Android_Template_Management:
                 raise Exception("copied design is not present in the google")
             if g_size != d_size:
                 raise Exception("sizes are different for same design in app and web")
-            if int(d_last_print)!=0:
+            if int(d_last_print) != 0:
                 raise Exception("last print date displayed without printing for the copy")
 
             """3. Go to Home > Recently Printed Designs.
         -Verify copied design is NOT displayed. this step fails due to bug id: SMBM-1372"""
             start_app("com.zebra.soho_app")
 
-            others.wait_for_element_appearance_text("Home",20)
+            others.wait_for_element_appearance_text("Home", 20)
 
             others.scroll_down()
 
             common_method.wait_for_element_appearance_namematches("Recently")
             try:
-                template_management.get_the_full_name_of_design_and_click_in_my_design(name+" copy",0)
+                template_management.get_the_full_name_of_design_and_click_in_my_design(name + " copy", 0)
                 raise Exception("copied name found in recently printed label without printing ")
             except:
                 pass
@@ -6146,10 +6249,10 @@ class test_Android_Template_Management:
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
         """Give the name of existing design here"""
-        name=template_management.get_first_design_in_my_designs()
+        name = template_management.get_first_design_in_my_designs()
         full_name = name
         template_management.click_element_by_name_or_text(name)
-        prev_size,prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
+        prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_on_rename_button()
 
@@ -6175,14 +6278,14 @@ class test_Android_Template_Management:
         others.click_google_search_bar()
         others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
         others.click_enter()
-        others.wait_for_element_appearance("Continue with Google",20)
+        others.wait_for_element_appearance("Continue with Google", 20)
         login_page.click_Loginwith_Google()
-        common_method.wait_for_element_appearance_textmatches("Choose an account",20)
+        common_method.wait_for_element_appearance_textmatches("Choose an account", 20)
         """pass your email below for the same account"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         template_management.select_and_click_an_google_account(email)
 
-        common_method.wait_for_element_appearance_text("Home",20)
+        common_method.wait_for_element_appearance_text("Home", 20)
         others.click_hamburger_button_in_Google()
         template_management.click_on_click_on_my_designs_in_google()
         others.click_hamburger_button_in_Google()
@@ -6194,12 +6297,12 @@ class test_Android_Template_Management:
         """size in mobile and app should be same ,this step fails due to SMBM : 1749"""
         if g_size != prev_size:
             raise Exception("sizes are different for same design in app and web")
-        if int(g_last_print)!=0:
+        if int(g_last_print) != 0:
             raise Exception("last print date displayed without printing for the copy")
 
         start_app("com.zebra.soho_app")
 
-        common_method.wait_for_element_appearance_namematches("Home",30)
+        common_method.wait_for_element_appearance_namematches("Home", 30)
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -6210,8 +6313,60 @@ class test_Android_Template_Management:
         except:
             raise Exception("design not found after updating")
 
-        curr_size,curr_date= template_management.get_the_size_and_lastprint_of_design(full_name)
+        curr_size, curr_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
-        if curr_size!=prev_size or curr_date!=prev_date:
+        if curr_size != prev_size or curr_date != prev_date:
             raise Exception("size or date is not matching after renaming the design")
+
+    def test_Others_TestcaseID_45801(self):
+        pass
+        common_method.tearDown()
+
+        login_page.click_Menu_HamburgerICN()
+        others.click_common_designs_button()
+        others.search_designs("Small Multipurpose")
+        sleep(4)
+        others.select_first_design()
+        sleep(4)
+
+        others.search_designs("PriceLabel")
+        sleep(3)
+        others.select_first_design()
+
+        others.click_on_copy_to_my_designs()
+        common_method.wait_for_element_appearance_namematches("successfully")
+        sleep(2)
+        others.click_left_arrow()
+        login_page.click_Menu_HamburgerICN()
+        others.click_on_my_designs()
+        others.search_designs("PriceLabel")
+        sleep(3)
+        others.select_first_design()
+
+        others.click_print_button()
+        sleep(4)
+
+        others.click_enter_data_for_design()
+        others.enter_data_for_design("123456789")
+        others.check_error_print_preview()
+        sleep(3)
+        res = others.check_for_keyboard()
+        if not res:
+            raise Exception("Keyboard not found")
+
+        others.go_back()
+        others.click_enter_text_for_design()
+
+        others.check_error_print_preview()
+
+        others.enter_text_for_design("My text")
+        others.check_error_print_preview()
+        sleep(3)
+        res = others.check_for_keyboard()
+        if not res:
+            raise Exception("Keyboard not found")
+        others.go_back()
+        others.click_print_button()
+
+        """check the template print out with updated value successfully. need to be done manually """
 

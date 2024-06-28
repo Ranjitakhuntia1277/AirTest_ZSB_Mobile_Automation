@@ -1,15 +1,11 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-from ...PageObject.Feed_on_Head_Close.Feed_on_HeadClose import Feed_on_HeadClose
-from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-from ...Common_Method import Common_Method
-from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-
+# from ZSB_Automation.ZSB_Mobile.Common_Method import Common_Method
+# from ZSB_Automation.ZSB_Mobile.PageObject.APP_Settings_Screen import App_Settings_Screen
+from ZSB_Mobile.PageObject.Feed_on_Head_Close.Feed_on_HeadClose import Feed_on_HeadClose
+from ...PageObject.Login_Screen import Login_Screen
+from ...PageObject.Others.Others import Others
+from ...Common_Method import *
 
 class test_Feed_On_HeadClose():
     pass
@@ -20,22 +16,55 @@ poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=Fa
 connect_device("Android:///")
 start_app("com.zebra.soho_app")
 sleep(3.0)
-
-login_page = Login_Screen(poco)
-app_settings_page = App_Settings_Screen(poco)
-add_a_printer_screen = Add_A_Printer_Screen(poco)
+others = Others(poco)
 common_method = Common_Method(poco)
-smoke_test_android = Smoke_Test_Android(poco)
-registration_page = Registration_Screen(poco)
-data_sources_page = Data_Sources_Screen(poco)
-aps_notification = APS_Notification(poco)
+
+
+def test_Others_TestcaseID_47972():
+    pass
+
+    stop_app("com.zebra.soho_app")
+    start_app("com.zebra.soho_app")
+    try:
+        common_method.wait_for_element_appearance_namematches("Home")
+    except:
+        pass
+
+    login_page.click_Menu_HamburgerICN()
+
+    sleep(1)
+
+    """ Select the Printer Settings """
+    others.click_Printer_Settings()
+
+    others.swipe_left()
+    """ Select a printer """
+    others.select_first_printer()
+    sleep(2)
+
+    """ Click on the icon """
+    others.click_icon()
+    sleep(1)
+
+    """Click On the Demo video"""
+    others.click_demo_video()
+    sleep(5)
+
+    others.click_on_the_vedio_while_playing()
+
+    """Close The Demo Video"""
+    others.close_demo_video()
+
+    """Check if closed"""
+    if not others.check_demo_video_closed():
+        raise Exception("demo video not closed")
 
 
 def test_Feed_on_HeadClose_TestcaseID_45790():
     """"Create the object for Login page & Common_Method page to reuse the methods"""""
 
 
-
+login_page = Login_Screen(poco)
 feed_on_close = Feed_on_HeadClose(poco)
 
 #login_page.click_LoginAllow_Popup()
@@ -152,6 +181,5 @@ feed_on_close.click_to_exit_demo_video()
 # sleep(2)
 """ FURTHER CANNOT BE AUTOMATED DUE TO THE BUG ID: SMBM-1684, SMBM-1236"""
 
-# ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

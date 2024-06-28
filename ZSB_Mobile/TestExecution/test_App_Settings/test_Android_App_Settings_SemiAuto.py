@@ -1,9 +1,6 @@
 from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
-from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 # from setuptools import logging
 from ...PageObject.Robofinger import test_robo_finger
 from ...Common_Method import Common_Method
@@ -11,8 +8,7 @@ from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
-
+from ...PageObject.Others.Others import Others
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
@@ -31,28 +27,20 @@ app_settings_page = App_Settings_Screen(poco)
 add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
-registration_page = Registration_Screen(poco)
-data_sources_page = Data_Sources_Screen(poco)
-smoke_test_android = Smoke_Test_Android(poco)
+
 """""""""""""""""""""""Change Password part needs to be verified manually"""""""""""""""""""""""""""""
 
 
 # #### bug id-SMBM-2773
 def test_AppSettings_TestcaseID_47913():
     """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
-    #
+
+
     common_method.tearDown()
-    # test_robo_finger()
-    # sleep(6)
-    common_method.Clear_App()
-    common_method.Start_The_App()
+    #test_robo_finger()
+    sleep(6)
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on the hamburger icon"""
@@ -96,7 +84,6 @@ def test_AppSettings_TestcaseID_47913():
     add_a_printer_screen.Verify_Registering_your_Printer_Text()
     """"Turn OFF the WIFI & Turn on again after some time (approx. 2 min)"""
     aps_notification.disable_wifi()
-    sleep(120)
     aps_notification.enable_wifi()
     sleep(7)
     """"click on finish setup button"""
@@ -104,13 +91,14 @@ def test_AppSettings_TestcaseID_47913():
     """stop the app"""
     common_method.Stop_The_App()
 
-
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 ####### bug id---SMBM-2778
 def test_AppSettings_TestcaseID_50031():
     """Check the error message prompted when print test page and printer head open or offline"""
+
+
 
     """printer should be online"""
     """start the app"""
@@ -130,20 +118,15 @@ def test_AppSettings_TestcaseID_50031():
     app_settings_page.Verify_Printer_Name_Text()
     """click test print button"""
     app_settings_page.click_Test_Print_Button()
-    """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_To_Verify_Printout_Manually()
     """"Verify Printed successfully text"""
     app_settings_page.Verify_Printed_Successfully_Text()
     """"Open the printer cover manually"""
-    """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_To_Open_The_Printer_Cover_Manually()
+    sleep(15)
     """click test print button"""
     app_settings_page.click_Test_Print_Button()
     """""verify error message of cover open"""
     app_settings_page.Verify_ErrorMessage_Text()
     """""Cover close on the printer manually"""""
-    """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_To_Close_The_Printer_Cover_Manually()
     """"click on test print"""
     app_settings_page.click_Test_Print_Button()
     """"Verify Printed successfully text"""
@@ -158,6 +141,7 @@ def test_AppSettings_TestcaseID_50031():
 # ###bug id-SMBM-2160
 def test_AppSettings_TestcaseID_49709():
     """Manage network- Check able to manage network with long name"""
+
 
     """"printer should be online & wifi should be connected"""
     """start the app"""
@@ -194,13 +178,14 @@ def test_AppSettings_TestcaseID_49709():
     """stop the app"""
     common_method.Stop_The_App()
 
-
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 # ####bug id-SMBM-2163
 def test_AppSettings_TestcaseID_49711():
     """Manage networks- Check there is a prompt message when applying to the network which can't resolve Zebra host"""
+
+
 
     """start the app"""
     common_method.tearDown()
@@ -225,13 +210,9 @@ def test_AppSettings_TestcaseID_49711():
     app_settings_page.Verify_Long_Network_UserName()
     app_settings_page.click_Apply_Chnages_Button()
     """""Currently there is no error message displaying so Couldnot automate, it is blocked due to SMBM-2163"""""""""""
-    """"Verify The error message manually if it is displaying"""
-    """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_For_Error_Message_Manually()
-    ### app_settings_page.Verify_The_Invalid_Network_Error_Message()
+    app_settings_page.Verify_The_Invalid_Network_Error_Message()
     """stop the app"""
     common_method.Stop_The_App()
-
 
 ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -240,6 +221,8 @@ def test_AppSettings_TestcaseID_50326():
     
     """"App should be in logged in condition & printer should be added """"
     """"""connect with Another wifi Network except NESTWIFI"""
+
+
 
     """"start the app"""
     common_method.tearDown()
@@ -270,70 +253,229 @@ def test_AppSettings_TestcaseID_50326():
     app_settings_page.Verify_Printer_is_already_added()
     """stop the app"""
     common_method.Stop_The_App()
-
-
 #
 # # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_AppSettings_TestcaseID_45688():
-    """""""""Verify Wifi Settings"""""
+def test_AppSettings_TestcaseID_50325():
+    """Manage Network-Check able to add/delete/sort network when printer bt paired/unpaired in device"""
 
-    """""Install the latest production app on the phone & printer should be added and it should be connected to wifi"""""""""
-    """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
-    #
-    # :
-    """""Check whether App is installed or not"""
+
+    """"App should be in logged in condition & printer should be added """
+
+
+
+    """"start the app"""
     common_method.tearDown()
-    """" Allow pop up before login for the fresh installation"""""
-    login_page.click_LoginAllow_Popup()
-    """""for the first installation click on the zsb series popup"""
-    login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
-    """""click on the printer settings tab"""
     app_settings_page.click_Printer_Settings()
-    """""click on the printer tab"""
     app_settings_page.click_PrinterName_On_Printersettings()
-    app_settings_page.click_General_Tab()
-    """"Verify the Test print button text & tab"""
-    app_settings_page.Test_Print_button_is_present_on_printer_settings_page()
-    """""""""" click on the wifi tab option"""""""""""
     app_settings_page.click_wifi_tab()
-    """""""""validate the Current network text"""""
-    app_settings_page.test_CurrentNetwork_Txt_is_present_on_printer_settings_page()
-    """""""Validate the Network status text is present on the printer settings screen"""""""
-    app_settings_page.test_Network_Status_Txt_is_present_on_printer_settings_page()
-    """"validate network status result text on the printer settings screen"""
-    app_settings_page.get_text_Network_Status_Result_Txt()
-    """"""""" Verify IP address text is present on the printer settings screen"""""""""
-    app_settings_page.get_text_IPAddress_Txt()
-    """""""""Verify the message You can save upto 5 network profiles to your saved networks after Manage Networks"""
-    app_settings_page.IS_Present_Save_Network_Message_Txt()
-    """""""verify manage networks text is present & clickable"""""""
     app_settings_page.click_Manage_Networks_Btn()
-    """""""""""""Click on continue button on the Bluetooth Connection required popup"""""""
-    app_settings_page.accept_Continue_popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """""""""Verify the Cancel button on the Bluetooth_Connection_Failed_Popup"""""
-    app_settings_page.Cancel_is_present_on_Bluetooth_Connection_Failed_Popup()
-    """"""""""verify the continue button and click on that"""""
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
-    """"""""""Verify the red remove icon next to the network name"""""
-    app_settings_page.click_Red_Icon_to_remove_network()
-    sleep(5)
-    """"""""""Verify the Add Network text & button & click on that"""""""""""
+    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
     app_settings_page.click_Add_Network()
-    sleep(3)
-    """""""""""""Verify Add network page is opening and verify the text"""""""
-    app_settings_page.get_text_Add_Network()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Security_Open()
+    app_settings_page.click_WPA_PSK()
+    app_settings_page.click_Keyboard_back_Icon()
+    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
     app_settings_page.click_Enter_Network_Manually()
     app_settings_page.click_Network_UserName()
     app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    """""test case 7 to 10 need to check on Web portal manually"""
-    """""""POP UP FOR MANUAL INTERVENTION"""""""""""""""
-    common_method.Show_popup_For_Web_Portal_Verification_Manually()
+    app_settings_page.Verify_Added_Network()
     """stop the app"""
     common_method.Stop_The_App()
 
+
+
+def test_Others_TestcaseID_51703():
+    pass
+    common_method.show_message("Install the testing build on device")
+
+    sleep(2)
+    common_method.tearDown()
+
+    others.check_allow_permission_for_location()
+    login_page.click_loginBtn()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        login_page.click_Loginwith_Google()
+        common_method.wait_for_element_appearance_textmatches("Choose an account")
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Home",30)
+    res = others.check_home_page()
+    if not res:
+        raise Exception("Not in Home page")
+
+    others.uninstall_and_install_zsb_series_on_google_play()
+    common_method.wait_for_element_appearance_namematches("Uninstall",30)
+    stop_app("com.android.vending")
+
+    poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    while(1):
+        if others.check_zsb_app_icon():
+            t='present'
+            break
+        else:
+            others.scroll_down()
+
+    others.click_zsb_app_icon()
+    sleep(5)
+
+    try:
+        others.check_allow_permission_for_location()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+
+    try:
+        login_page.click_loginBtn()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        login_page.click_Loginwith_Google()
+        common_method.wait_for_element_appearance_textmatches("Choose an account")
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Home",30)
+
+    res = others.check_home_page()
+    if not res:
+        raise Exception("Not in Home page")
+
+def test_Others_TestcaseID_51704(self):
+    pass
+
+    common_method.show_message("Install the older build in phone")
+    common_method.show_message("now install 1. Install the new build, ")
+
+    sleep(10)
+
+    start_app("com.zebra.soho_app")
+    common_method.wait_for_element_appearance_textmatches("location")
+    others.check_allow_permission_for_location()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    others.click_on_older_login()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Continue with Google")
+    login_page.click_Loginwith_Google()
+    common_method.wait_for_element_appearance_textmatches("Choose an account")
+    try:
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+        common_method.wait_for_element_appearance_namematches("Home",20)
+    except:
+        pass
+    try:
+        others.check_continue_button_and_click_enter()
+        others.check_continue_button_and_click_enter()
+    except:
+        pass
+    res = others.check_home_page()
+
+    if not res:
+        raise Exception("Not in Home page")
+
+    cmd ='adb uninstall com.zebra.soho_app'
+    res = others.run_the_command(cmd)
+    print(res)
+
+    common_method.show_message("install older build and new build again")
+    sleep(15)
+    poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    while(1):
+        if others.check_zsb_app_icon():
+            t='present'
+            break
+        else:
+            others.scroll_down()
+
+    others.click_zsb_app_icon()
+    sleep(5)
+
+    others.check_allow_permission_for_location()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    login_page.click_loginBtn()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Continue with Google")
+    login_page.click_Loginwith_Google()
+    common_method.wait_for_element_appearance_textmatches("Choose an account")
+    try:
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+        common_method.wait_for_element_appearance_namematches("Home",20)
+    except:
+        pass
+
+    try:
+        others.check_continue_button_and_click_enter()
+        others.check_continue_button_and_click_enter()
+    except:
+        pass
+
+    res = others.check_home_page()
+
+    if not res:
+        raise Exception("Not in Home page")
+
+
+def test_Others_TestcaseID_45874(self):
+    pass
+
+    stop_app("com.zebra.soho_app")
+    start_app("com.zebra.soho_app")
+    try:
+        common_method.wait_for_element_appearance_namematches("Home")
+    except:
+        pass
+
+    expected_version_no = common_method.get_user_input("enter the version number to be expected")
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+
+    """get the version number of the current device"""
+    actual_version_no = others.get_the_version_no()
+
+    """If version number not same generate error"""
+    if expected_version_no != actual_version_no:
+        raise Exception("Version no did not match")
+
+
+###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ##"""""""""""""""""""""""""""""END"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Smoke_Test_TestcaseID_45876():
@@ -748,4 +890,31 @@ def test_Smoke_Test_TestcaseID_45889():
 
 
 
+def test_Others_TestcaseID_45799():
+    pass
+
+    common_method.show_message("test this manually in android 8.0 device")
+
+    # start_app("com.android.documentsui")
+    # t=''
+    # others.install_the_zsb_apk_in_files_android_8()
+    # sleep(3)
+    # res = others.check_app_is_installed_on_android_8()
+    # if res:
+    #     raise Exception("app is installed but it should not")
+    #
+    # others.go_back()
+    # others.go_back()
+    #
+    # poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    # while(1):
+    #     if others.check_zsb_app_icon():
+    #         t='present'
+    #         break
+    #     else:
+    #         others.scroll_down()
+    #
+    # if t == 'present':
+    #     raise Exception("app present")
 

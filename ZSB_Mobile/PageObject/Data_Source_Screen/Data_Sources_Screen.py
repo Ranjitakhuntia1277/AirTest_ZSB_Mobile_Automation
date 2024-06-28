@@ -259,7 +259,10 @@ class Data_Sources_Screen:
         keyevent("Enter")
 
     def click_Menu_HamburgerICNWeb(self):
-        self.poco("android.widget.Image").click()
+        try:
+            self.poco("zsbportal.zebra").click()
+        except:
+            self.poco("android.widget.Image").click()
 
     def clickCreateDesignBtn(self):
         if self.poco(text=self.Create_Btn).exists():
@@ -722,10 +725,15 @@ class Data_Sources_Screen:
 
     def verifySignInWithGoogle(self):
         try:
-            assert_exists(self.Sign_In_With_Google_Template)
+            sleep(2)
+            self.poco("Sign in with Google").exists()
             return True
         except:
-            return False
+            try:
+                assert_exists(self.Sign_In_With_Google_Template)
+                return True
+            except:
+                return False
 
     def signInWithMicrosoft(self, username, password, click_template=True):
         # if self.poco(self.Sign_In_With_Microsoft).exists():
@@ -1612,6 +1620,8 @@ class Data_Sources_Screen:
     def get_current_date(self):
         year = datetime.date.today().year
         date = datetime.date.today().day
+        if len(str(date)) == 1:
+            date = "0"+str(date)
         month = self.Month[datetime.date.today().month]
         current_date = str(month) + " " + str(date) + ", " + str(year)
         return current_date

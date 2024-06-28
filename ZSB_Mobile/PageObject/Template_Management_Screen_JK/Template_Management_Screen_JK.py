@@ -266,9 +266,11 @@ class Template_Management_Screen:
         self.poco("android.widget.EditText").set_text(design_name)
 
     def select_design_common_designs(self):
+        sleep(3)
         self.poco("android.view.View")[7].child()[1].child().click()
 
     def select_design_common_designs_Web(self):
+        sleep(3)
         if self.poco("android.widget.Image")[1].exists():
             self.poco("android.widget.Image")[1].click()
 
@@ -277,6 +279,8 @@ class Template_Management_Screen:
             self.poco("android.widget.Image")[2].click()
 
     def select_label_common_designs(self):
+        sleep(2)
+
         self.poco("android.view.View").child(type="android.widget.ImageView").wait_for_appearance(timeout=10)
         label_name = self.poco("android.view.View").child(type="android.widget.ImageView").get_name().split("\n")[0]
         self.poco("android.view.View").child(type="android.widget.ImageView").click()
@@ -546,6 +550,9 @@ class Template_Management_Screen:
 
     def get_total_labels_printing(self):
         return self.poco(nameMatches=".*Total.*").get_name().split(" ")[2]
+
+    def get_total_contacts(self):
+        return self.poco(nameMatches=".*Label 1 of.*").get_name().split(" ")[3]
 
     def choose_label_print_range(self):
         self.poco("android.widget.ScrollView").child()[-7].click()
