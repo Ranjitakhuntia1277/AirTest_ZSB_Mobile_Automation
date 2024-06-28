@@ -27,7 +27,7 @@ def new_execution(station_name, user_name):
         "testDataSource": "ZSB Mobile Automation",
         "resultsSchema": "INProgress"
     }
-    api_response = session.post(new_execution_url, json=new_execution_json, timeout=60)
+    api_response = session.post(new_execution_url, json=new_execution_json, timeout=60,verify=False)
     exec_id = api_response.json()
     print("this is the execution ID:", exec_id)
 
@@ -104,7 +104,7 @@ def start_main(exec_id,leftId):
     session.put(start_main_loop_url, json=start_main_json, timeout=60,verify=False)
 
 
-def end_main(exec_id,leftId,exec_time):
+def end_main(exec_id,leftId,exec_time=0):
     start_main_loop_url = path + "ExecEngineMain/EndMain"
     start_main_json = {
         "executionId": exec_id,
@@ -169,7 +169,7 @@ def insert_case_details(execid, report_text, errmsg):
     session.post(insert_case_details_url, json=insert_case_details_json, timeout=60)
 
 
-def insert_case_results(execid, loopindex, leftId, result, exec_time, reportext, errormsg):
+def insert_case_results(execid, leftId, result, exec_time, reportext, errormsg):
     """
     Update the execution result for each case.
     :param total_suite_result_list:
@@ -179,7 +179,7 @@ def insert_case_results(execid, loopindex, leftId, result, exec_time, reportext,
 
     insert_case_results_loop_json = {
         "executionId": execid,
-        "loopIndex": loopindex,
+        "loopIndex": 1,
         "leftID": leftId,
         "result": result,
         "executionTime": exec_time,
@@ -236,7 +236,7 @@ def end_execution(exec_id):
     session.post(end_execution_url, timeout=60)
 
 
-def get_test_case(exec_id):
+def get_case_hierarchy(exec_id):
     url = path + "ExecEngineHierarchy/Get_CasesHierarchy/" + str(exec_id)
     # print(u)
     # requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -245,7 +245,9 @@ def get_test_case(exec_id):
     # print(response.content)
 
     resp = session.get(url, verify=False)
-    return resp
+    print(resp)
+    print(resp.content)
+    return resp.content
 
 
 # get_test_case(912240)
@@ -351,12 +353,13 @@ def insert_stepDetails(exec_id, left_id, ordinal_number, report_text, error_msg)
 
     session.put(insert_step_url, json=insert_step_json, timeout=60)
 
-#
+
 # deviceDetails(execID,"Pixel 7 Pro","14.0.11")
 # insert_tool_version(execID,"2")
 #
-initialize_cases_hierarchy(execID, "0,47972,Verify the Label Alignment Demo feature|47972,47973,Verify the Printer Demo feature|0,45678,sample1|45678,45789,sample2|0,46897,outer sample")
+# initialize_cases_hierarchy(execID, "0,47972,Verify the Label Alignment Demo feature|47972,47973,Verify the Printer Demo feature|0,45678,sample1|45678,45789,sample2|0,46897,outer sample")
 #
+
 # start_execution_loop(execID)
 #
 # start_main(execID,2)

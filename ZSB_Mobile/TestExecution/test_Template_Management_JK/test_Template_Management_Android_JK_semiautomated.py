@@ -1,3 +1,5 @@
+import inspect
+
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
@@ -14,6 +16,8 @@ from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Regist
 from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
 from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
 from ...TestSuite.api_call import *
+from ...TestSuite.store import *
+
 
 class Android_App_Registration:
     pass
@@ -37,6 +41,69 @@ template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 
 
+def test_Template_Management_TestcaseID_45921():
+    pass
+
+    """Turn off printer"""
+    common_method.show_message("Turn off printer associated with the account zebra02.swdvt@gmail.com")
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickMyDesigns()
+    data_sources_page.checkIfDesignsLoaded()
+
+    data_sources_page.selectDesignCreatedAtSetUp()
+    data_sources_page.clickPrint()
+    sleep(5)
+    try:
+        common_method.wait_for_element_appearance_namematches("Label")
+    except:
+        raise Exception("Print page did not pop up.")
+
+    raise Exception("Blocked due to bug SMBM-884 ")
+    data_sources_page.scroll_till_print()
+    remaining_label_count = template_management_page.get_remaining_label_count()
+
+    data_sources_page.clickPrint()
+    new_label_count = template_management_page.get_remaining_label_count()
+    if remaining_label_count == new_label_count:
+        pass
+    else:
+        raise Exception("Label count changed even when printer is offline.")
+
+    data_sources_page.clickBackArrow()
+    try:
+        registration_page.wait_for_element_appearance("My Designs")
+    except:
+        raise Exception("Did not return to \"My Designs\" page")
+
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickHome()
+
+    no_of_prints_in_printer_info = template_management_page.get_Labels_left_in_printer_info()
+    if no_of_prints_in_printer_info == new_label_count:
+        pass
+    else:
+        raise Exception(
+            "number of labels left (x of x prints left) is updated in the Printer information even when the printer is offline.")
+    common_method.show_message("Turn on printer associated with the account zebra02.swdvt@gmail.com")
+    common_method.show_message("Wait until the printer is online")
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
+    if no_of_prints_in_printer_info == new_label_count - 1:
+        pass
+    else:
+        raise Exception(
+            "number of labels left (x of x prints left) is not updated in the Printer information even after turning on the printer.")
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickMyDesigns()
+    data_sources_page.checkIfDesignsLoaded()
+    design = template_management_page.get_all_designs_in_my_designs()
+    design_last_print_date = design[0].split("\n")[2].split(":")[1].strip()
+    if design_last_print_date == data_sources_page.get_current_date():
+        pass
+    else:
+        raise Exception("Last printed date is not up to date.")
+    common_method.Stop_The_App()
+
+
 def test_Template_Management_TestcaseID_46031():
     pass
 
@@ -51,7 +118,7 @@ def test_Template_Management_TestcaseID_46031():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -61,7 +128,7 @@ def test_Template_Management_TestcaseID_46031():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -79,12 +146,12 @@ def test_Template_Management_TestcaseID_46031():
     poco("Accept").wait_for_appearance(timeout=10)
     template_management_page.clickAccept()
     """ google contacts """
-    account = "zsbswdvt@gmail.com"
+    account = "zebra03.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:
         poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
         sleep(2)
     common_method.wait_for_element_appearance_namematches("Label", 20)
     sleep(10)
@@ -179,7 +246,6 @@ def test_Template_Management_TestcaseID_46031():
     scroll_view = poco("android.widget.ScrollView")
     """verify label range navigation works"""
     template_management_page.verify_label_navigation()
-    common_method.show_message("")
     """cannot automate -
     check all the link column values are correct, the preview image is correct
     check the delete contact is not shown
@@ -199,7 +265,7 @@ def test_Template_Management_TestcaseID_46031():
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
     """delete the created contacts"""
-    common_method.show_message("Delete 2 contacts\n 1st - firstname-z, lastname-1, wnd firstname-y, lastname-1")
+    common_method.show_message("Delete 2 contacts\n 1st - firstname-z, lastname-1, wnd firstname-y, lastname-1, , account-zebra02.swdvt@gmail.com, Zebra#123456789")
     common_method.Stop_The_App()
 
 
@@ -209,8 +275,10 @@ def test_Template_Management_TestcaseID_46021():
     common_method.tearDown()
     """Step 1-4 pending due to web inconsistency - has to be executed manually"""
     """Step 5-6  - has to be executed manually"""
-    common_method.show_message("Update the 46021.xlsx file present in google drive by adding more rows or columns. It is present in the account zsbswdvt@gmail.com")
-    common_method.show_message("Remove the current 46021.xlsx file present in my data and re link the updated file from google drive.")
+    common_method.show_message(
+        "Update the 46021.xlsx file present in google drive by adding more rows or columns. It is present in the account zebra03.swdvt@gmail.com")
+    common_method.show_message(
+        "Remove the current 46021.xlsx file present in my data and re link the updated file from google drive.zebra03.swdvt@gmail.com")
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -221,13 +289,15 @@ def test_Template_Management_TestcaseID_46021():
     data_sources_page.clickPrint()
     """Select column"""
     if poco(text="Choose an account").exists():
-        help_page.chooseAcc("zsbswdvt@gmail.com")
+        help_page.chooseAcc("zebra03.swdvt@gmail.com")
     template_management_page.selectChooseAnOption(3)
     data_sources_page.clickContinue()
     """Step 10 -11  - has to be executed manually"""
-    common_method.show_message("Again Update the 46021.xlsx file present in google drive by adding more rows or columns. It is present in the account zsbswdvt@gmail.com")
+    common_method.show_message(
+        "Again Update the 46021.xlsx file present in google drive by adding more rows or columns. It is present in the account zebra03.swdvt@gmail.com")
     sleep(2)
-    common_method.show_message("Remove the current 46021.xlsx file present in my data and re link the updated file from google drive.")
+    common_method.show_message(
+        "Remove the current 46021.xlsx file present in my data and re link the updated file from google drive.")
     sleep(2)
     common_method.show_message("check that the contents are not updated with new data added")
     """check that the label contents are not updated to the latest data source values - cannot be automated and has to be verified manually"""
@@ -237,7 +307,8 @@ def test_Template_Management_TestcaseID_46021():
         poco.scroll()
     data_sources_page.clickPrint()
     sleep(2)
-    common_method.show_message("check that the labels can be printed out correctly with the values, not the latest ones")
+    common_method.show_message(
+        "check that the labels can be printed out correctly with the values, not the latest ones")
     """check that the labels can be printed out correctly with the values, not the latest one - cannot be automated and has to be verified manually"""
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     sleep(3)
@@ -284,7 +355,7 @@ def test_Template_Management_TestcaseID_48547():
     # sleep(3)
     # try:
     #     poco(text="Sign In With").wait_for_appearance(timeout=15)
-    #     account = "zebraidctest@gmail.com"
+    #     account = "zebra02.swdvt@gmail.com"
     #     registration_page.click_Google_Icon()
     #     try:
     #         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
@@ -299,7 +370,7 @@ def test_Template_Management_TestcaseID_48547():
     #         while not poco(text="Add account to device").exists():
     #             poco.scroll()
     #         registration_page.addAccountToDevice()
-    #         registration_page.sign_In_With_Google("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
+    #         registration_page.sign_In_With_Google("zsbswdvt1@gmail.com", "Zebra#123456789")
     # except:
     #     pass
     # common_method.wait_for_element_appearance_text("Got It", 20)
@@ -391,7 +462,7 @@ def test_Template_Management_TestcaseID_48547():
     data_sources_page.checkIfDesignsLoaded()
 
     common_method.show_message(
-        f"Update objects in the design {design_created} on web. Make sure if objects like barcode, textbox, etc are added provide a fixed value instead of prompt on print.")
+        f"Update objects in the design {design_created} on web. Make sure if objects like barcode, textbox, etc are added provide a fixed value instead of prompt on print., account-zebra02.swdvt@gmail.com, Zebra#123456789")
 
     common_method.Start_The_App()
     login_page.click_Menu_HamburgerICN()
@@ -458,7 +529,7 @@ def test_Template_Management_TestcaseID_45925():
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Printer cover closed")
     sleep(20)
-    common_method.show_message("Load another cartridge in the printer.")
+    common_method.show_message("Load another cartridge in the printer.-zebra02.swdvt@gmail.com")
     """Load another cartridge in the printer. Resume printing.-has to be done manually"""
     sleep(5)
     remainingLabels = template_management_page.get_remaining_label_count()
@@ -552,7 +623,8 @@ def test_Template_Management_TestcaseID_46016():
     else:
         raise Exception("Label range navigation is present.")
     """Step 7 pending"""
-    common_method.show_message("Click the first text box and try inserting a sticker/GIF and check if there is any error pop up. Then close the keyboard pop up.")
+    common_method.show_message(
+        "Click the first text box and try inserting a sticker/GIF and check if there is any error pop up. Then close the keyboard pop up.")
     template_management_page.fillOrganizationId("abcd")
     keyevent("back")
     template_management_page.fillIndex("xyz")
@@ -572,8 +644,8 @@ def test_Template_Management_TestcaseID_46030():
 
     """Step 1-5 pending due to web automation"""
     """Select google account
-    email-zsbswdvt@gmail.com
-    password - zsbswdvt@1234 in while creating template in web"""
+    email-zebra03.swdvt@gmail.com
+    password - Zebra#123456789 in while creating template in web"""
     data_sources_page.clearAppData()
     common_method.Start_The_App()
     data_sources_page.allowPermissions()
@@ -583,7 +655,7 @@ def test_Template_Management_TestcaseID_46030():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -593,7 +665,7 @@ def test_Template_Management_TestcaseID_46030():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -608,12 +680,12 @@ def test_Template_Management_TestcaseID_46030():
     poco("Accept").wait_for_appearance(timeout=10)
     template_management_page.clickAccept()
     """ google contacts """
-    account = "zsbswdvt1@gmail.com"
+    account = "zebra06.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:
         poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("zsbswdvt1@1234", account)
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
         sleep(2)
     common_method.wait_for_element_appearance_namematches("Label", 20)
     sleep(10)
@@ -623,7 +695,8 @@ def test_Template_Management_TestcaseID_46030():
     label_range = 4
     data_sources_page.labelRangeSelection(label_range)
     "Unable to automate step 9 - has to be verified manually"
-    common_method.show_message("check the table info is the same as your google contact info in this different google account\n \"zsbswdvt1@gmail.com\"")
+    common_method.show_message(
+        "check the table info is the same as your google contact info in this different google account\n \"zebra06.swdvt@gmail.com\"")
     for i in range(label_range):
         data_sources_page.clickNext()
     template_management_page_1.check_element_exists_enabled("Next")
@@ -631,7 +704,8 @@ def test_Template_Management_TestcaseID_46030():
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
     """Step 12 pending due to web automation - has to be executed manually"""
-    common_method.show_message("go to web portal, click print at template in my recently printed labels in home page do the similar things as step 8-11 check the contacts info is still the same as the original google account\n\"zsbswdvt@gmail.com\"\n at web portal check labels printed out correctly\ntest_id-46030")
+    common_method.show_message(
+        "go to web portal, click print at template in my recently printed labels in home page do the similar things as step 8-11 check the contacts info is still the same as the original google account\n\"zebra03.swdvt@gmail.com\"\n at web portal check labels printed out correctly\ntest_id-46030")
 
 
 def test_Template_Management_TestcaseID_46034():
@@ -647,7 +721,7 @@ def test_Template_Management_TestcaseID_46034():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -657,7 +731,7 @@ def test_Template_Management_TestcaseID_46034():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@gmail.com", "zebraidctest@1234")
+        registration_page.sign_In_With_Google("zebra02.swdvt@gmail.com", "Zebra#123456789")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -701,7 +775,7 @@ def test_Template_Management_TestcaseID_46034():
     while not poco("Print").exists():
         poco.scroll()
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == 1:
+    if number_of_labels == 0:
         pass
     else:
         error = f"There are {number_of_labels} labels printing even when connected to google account with no contacts."
@@ -722,9 +796,9 @@ def test_Template_Management_TestcaseID_46034():
 
     """Cannot automate adding new contact to office 365 contacts-has to be done manually"""
     """Manual interruption required to add contacts in office 365"""
-    """Account username - zsbswdvt@1234
-    password- hmWepX4AUMLa"""
-    common_method.show_message("Create a contact in this Office365 account.")
+    """Account username - Zebra#123456789
+    password- Zebra#123456789"""
+    common_method.show_message("Create a contact in this Office365 account.zebra02.swdvt@gmail.com")
     registration_page.wait_for_element_appearance("Recently Printed Labels", 20)
     """Yet to execute as recently printed labels has bug"""
     raise Exception(
@@ -750,7 +824,7 @@ def test_Template_Management_TestcaseID_46034():
     """Step - 7 pending as input fields are not editable."""
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    common_method.show_message("Remove the newly added contact in the office 365 account")
+    common_method.show_message("Remove the newly added contact in the office 365 account-zebra02.swdvt@gmail.com")
     common_method.Stop_The_App()
 
 
@@ -759,7 +833,7 @@ def test_Template_Management_TestcaseID_46035():
 
     """Step 1-5 pending due to web automation"""
     """Select Office 365 account
-    email-zsbswdvt1@gmail.com
+    email-zebra06.swdvt@gmail.com
     password - Zebra#123456789 in while creating template in web"""
     common_method.tearDown()
     try:
@@ -777,7 +851,7 @@ def test_Template_Management_TestcaseID_46035():
     template_management_page.clickAccept()
     """ google contacts """
     """ Office 365 contacts """
-    account = "zsbswdvt1@gmail.com"
+    account = "zebra06.swdvt@gmail.com"
     data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     common_method.wait_for_element_appearance_namematches("Label", 20)
     sleep(10)
@@ -786,7 +860,8 @@ def test_Template_Management_TestcaseID_46035():
         poco.scroll()
     label_range = 4
     data_sources_page.labelRangeSelection(label_range)
-    common_method.show_message("check the table info is the same as your Office365 contact info in this different Microsoft account ")
+    common_method.show_message(
+        "check the table info is the same as your Office365 contact info in this different Microsoft account - zebra06.swdvt@gmail.com")
     "Unable to automate -check the table info is the same as your Office365 contact info in this different Microsoft account has to be done manually"
     for i in range(label_range):
         data_sources_page.clickNext()
@@ -794,7 +869,8 @@ def test_Template_Management_TestcaseID_46035():
     poco.scroll()
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
-    common_method.show_message("go to web portal, click print at template in my recently printed labels in home page do the similar things as step 8-11 check the contacts info is still the same as the original Microsoft account at web portal check labels printed out correctly\"zsbswdvt@gmail.com")
+    common_method.show_message(
+        "go to web portal, click print at template in my recently printed labels in home page do the similar things as step 8-11 check the contacts info is still the same as the original Microsoft account at web portal check labels printed out correctly\"zebra03.swdvt@gmail.com")
     """Step 12 pending due to web automation - has to be executed manually"""
 
 
@@ -812,7 +888,7 @@ def test_Template_Management_TestcaseID_46036():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -822,7 +898,7 @@ def test_Template_Management_TestcaseID_46036():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -840,8 +916,8 @@ def test_Template_Management_TestcaseID_46036():
     poco("Accept").wait_for_appearance(timeout=10)
     template_management_page.clickAccept()
     """google contacts """
-    account = "zsbswdvt@gmail.com"
-    data_sources_page.signInWithMicrosoft(account, "hmWepX4AUMLa!9E", False)
+    account = "zebra03.swdvt@gmail.com"
+    data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     common_method.wait_for_element_appearance_namematches("Label", 20)
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
@@ -877,7 +953,7 @@ def test_Template_Management_TestcaseID_46036():
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickHome()
     """Cannot automate adding new contact to office 365 contacts-has to be done manually"""
-    common_method.show_message("Create 3 new contacts in this Office365 account.")
+    common_method.show_message("Create 3 new contacts in this Office365 account., zebra03.swdvt@gmail.com")
     registration_page.wait_for_element_appearance("Home", 20)
     registration_page.wait_for_element_appearance("Recently Printed Labels", 20)
     """Yet to execute as recently printed labels has bug"""
@@ -891,10 +967,10 @@ def test_Template_Management_TestcaseID_46036():
     while not poco("Print").exists():
         poco.scroll()
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == 30:
+    if number_of_labels == 18:
         pass
     else:
-        if number_of_labels > 30:
+        if number_of_labels > 18:
             raise Exception("Label amount is more than the number of contacts.")
         else:
             raise Exception("Label amount is less than the number of contacts.")
@@ -919,5 +995,5 @@ def test_Template_Management_TestcaseID_46036():
         poco.scroll()
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
-    common_method.show_message("Remove the 3 newly added contacts in the office 365 account.")
+    common_method.show_message("Remove the 3 newly added contacts in the office 365 account.zebra03.swdvt@gmail.com")
     common_method.Stop_The_App()

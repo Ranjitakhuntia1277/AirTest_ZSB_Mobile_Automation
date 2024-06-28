@@ -55,7 +55,7 @@ def test_SSO_Token_Renewal_TestcaseID_49906():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbtestsso@gmail.com"
+    account = "zebra07.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -97,7 +97,7 @@ def test_SSO_Token_Renewal_TestcaseID_49906():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbtestsso@gmail.com"
+    account = "zebra07.swdvt@gmail.com"
     template_management_page.checkIfAccPresent(account)
     help_page.chooseAcc(account)
     """verify if logged in successfully"""
@@ -123,7 +123,7 @@ def test_SSO_Token_Renewal_TestcaseID_49906():
     """Apple login"""
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -151,7 +151,7 @@ def test_SSO_Token_Renewal_TestcaseID_49906():
     """Login Again"""
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -175,7 +175,7 @@ def test_SSO_Token_Renewal_TestcaseID_49906():
     """Facebook Login"""
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
-    registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+    registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -203,7 +203,7 @@ def test_SSO_Token_Renewal_TestcaseID_49906():
     """Login Again"""
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
-    registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+    registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -230,7 +230,7 @@ def test_SSO_Token_Renewal_TestcaseID_49919():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -258,7 +258,7 @@ def test_SSO_Token_Renewal_TestcaseID_49919():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()

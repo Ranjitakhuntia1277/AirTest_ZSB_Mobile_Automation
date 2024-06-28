@@ -15,7 +15,16 @@ from airtest.core.api import device as current_device
 from ...Common_Method import *
 from datetime import datetime, time
 import pytest
+from poco.exceptions import PocoTargetTimeout
+import platform
 
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 common_method = Common_Method(poco)
 
 
@@ -37,14 +46,14 @@ class Help_Screen:
         self.BeginChat_btn = "Begin chat"
         self.Chat_subject = "Workspace"
         self.Start_chat = "Start Chatting"
-        self.Help_icon = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1704698945082.png"), record_pos=(-0.385, 0.553), resolution=(1080, 2340))
-        self.Help_text = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1704699099813.png"), record_pos=(-0.267, 0.55), resolution=(1080, 2340))
-        self.Dropdown_for_help = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1704697680422.png"), record_pos=(0.205, 0.552), resolution=(1080, 2340))
+        self.Help_icon = Template(Basic_path("tpl1704698945082.png"), record_pos=(-0.385, 0.553), resolution=(1080, 2340))
+        self.Help_text = Template(Basic_path("tpl1704699099813.png"), record_pos=(-0.267, 0.55), resolution=(1080, 2340))
+        self.Dropdown_for_help = Template(Basic_path("tpl1704697680422.png"), record_pos=(0.205, 0.552), resolution=(1080, 2340))
         self.Dropdown_for_subject = "Select from dropdown"
         self.Dropdown_for_affected_printer = "Select from dropdown"
         self.browser = {"chrome": "android.chrome", "edge": "microsoft.emmx"}
         self.Desc = "android.widget.EditText"
-        self.Account = "swdvt zsb zsbswdvt@gmail.com"
+        self.Account = "swdvt zsb zebra03.swdvt@gmail.com"
         self.Back_Arrow = "android.widget.Button"
         self.Go_To_Chat_Btn = "Go to chat"
         self.Chat_Hours = "Available 7am to 7pm ET"
@@ -185,7 +194,7 @@ class Help_Screen:
         else:
             raise Exception("URL not matching")
 
-    def chooseAcc(self, Acc_Name="zsbswdvt@gmail.com"):
+    def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
         account = self.poco(text=Acc_Name)
         while not account.exists():
             self.poco.scroll()

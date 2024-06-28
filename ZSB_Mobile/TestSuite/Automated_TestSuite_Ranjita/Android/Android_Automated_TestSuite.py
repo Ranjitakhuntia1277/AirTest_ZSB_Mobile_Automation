@@ -2,6 +2,8 @@ import sys
 
 import pytest
 import os
+import subprocess
+import platform
 # import sys
 # sys.path.append(r'C:\Users\rk1277\Desktop\ZSB_Automation')
 
@@ -12,25 +14,48 @@ import os
 4. Microsoft OneDrive Account-: swdvt.zebra@outlook.com///Swdvt@123
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if platform.system() == "Windows":
 
+    cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Notification.py --html=reports/report_test_APS_Notification.py.html --self-contained-html"
+    a = os.system(cmd)
 
-cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Notification.py --html=reports/report_test_APS_Notification.py.html --self-contained-html"
-a = os.system(cmd)
+    cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Printing.py --html=reports/report_test_APS_Printing.py.html --self-contained-html"
+    a = os.system(cmd)
 
-cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Printing.py --html=reports/report_test_APS_Printing.py.html --self-contained-html"
-a = os.system(cmd)
+    cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Settings_And_APS_Others.py --html=reports/report_test_APS_Settings_And_APS_Others.py.html --self-contained-html"
+    a = os.system(cmd)
 
-cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Settings_And_APS_Others.py --html=reports/report_test_APS_Settings_And_APS_Others.py.html --self-contained-html"
-a = os.system(cmd)
+    cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Print_Preview_Options.py --html=reports/report_test_APS_Print_Preview_Options.py.html --self-contained-html"
+    a = os.system(cmd)
 
-cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Print_Preview_Options.py --html=reports/report_test_APS_Print_Preview_Options.py.html --self-contained-html"
-a = os.system(cmd)
+    cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Printer_Discover.py --html=reports/report_test_APS_Printer_Discover.py.html --self-contained-html"
+    a = os.system(cmd)
 
-cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_APS_Testcases && pytest test_APS_Printer_Discover.py --html=reports/report_test_APS_Printer_Discover.py.html --self-contained-html"
-a = os.system(cmd)
+    cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_App_Settings && pytest test_Android_App_Settings.py --html=reports/report_test_Android_App_Settings.py.html --self-contained-html"
+    a = os.system(cmd)
+    # #
+    cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_PDF_Printing && pytest test_Android_PDF_Printing.py --html=reports/report_test_Android_PDF_Printing.py.html --self-contained-html"
+    a = os.system(cmd)
 
-cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_App_Settings && pytest test_Android_App_Settings.py --html=reports/report_test_Android_App_Settings.py.html --self-contained-html"
-a = os.system(cmd)
-# #
-cmd = "cd C:\\Users\\rk1277\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_PDF_Printing && pytest test_Android_PDF_Printing.py --html=reports/report_test_Android_PDF_Printing.py.html --self-contained-html"
-a = os.system(cmd)
+else:
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_APS_Testcases && pytest test_APS_Notification.py --html=reports/report_test_APS_Notification.py.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_APS_Testcases && pytest test_APS_Printing.py --html=reports/report_test_APS_Printing.py.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_APS_Testcases && pytest test_APS_Settings_And_APS_Others.py --html=reports/report_test_APS_Settings_And_APS_Others.py.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_APS_Testcases && pytest test_APS_Print_Preview_Options.py --html=reports/report_test_APS_Print_Preview_Options.py.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_APS_Testcases && pytest test_APS_Printer_Discover.py --html=reports/report_test_APS_Printer_Discover.py.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_App_Settings && pytest test_Android_App_Settings.py --html=reports/report_test_Android_App_Settings.py.html --self-contained-html"
+    a = os.system(cmd)
+    # #
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_PDF_Printing && pytest test_Android_PDF_Printing.py --html=reports/report_test_Android_PDF_Printing.py.html --self-contained-html"
+    a = os.system(cmd)

@@ -38,7 +38,7 @@ template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 
 
-"""zebraidctest@gmail.com"""
+"""zebra02.swdvt@gmail.com"""
 
 
 def test_Template_Management_TestcaseID_46015():
@@ -54,7 +54,7 @@ def test_Template_Management_TestcaseID_46015():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -69,7 +69,7 @@ def test_Template_Management_TestcaseID_46015():
                 poco.scroll()
                 count-=1
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -223,9 +223,9 @@ def test_Template_Management_TestcaseID_46032():
     if poco("Accept").exists():
         template_management_page.clickAccept()
     """ Office 365 contacts """
-    account = "zsbswdvt@gmail.com"
+    account = "zebra03.swdvt@gmail.com"
     try:
-        data_sources_page.signInWithMicrosoft(account, "hmWepX4AUMLa!9E", False)
+        data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     except:
         pass
     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
@@ -281,7 +281,7 @@ def test_Template_Management_TestcaseID_46029():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -296,7 +296,7 @@ def test_Template_Management_TestcaseID_46029():
                 poco.scroll()
                 count-=1
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -1300,7 +1300,7 @@ def test_Template_Management_TestcaseID_46027():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -1315,7 +1315,7 @@ def test_Template_Management_TestcaseID_46027():
                 poco.scroll()
                 count -= 1
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 15)
     except:
@@ -1335,12 +1335,12 @@ def test_Template_Management_TestcaseID_46027():
     """ google drive """
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-    account = "zsbswdvt@gmail.com"
+    account = "zebra03.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:
         poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
         sleep(2)
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     data_sources_page.clickBackArrow()
@@ -1482,7 +1482,7 @@ def test_Template_Management_TestcaseID_46020():
     data_sources_page.clickPrint()
     """Select column"""
     if poco(text="Choose an account").exists():
-        help_page.chooseAcc("zsbswdvt@gmail.com")
+        help_page.chooseAcc("zebra03.swdvt@gmail.com")
     data_sources_page.clickBackArrow()
     data_sources_page.clickContinue()
     data_sources_page.first_row_header(True)
@@ -1594,7 +1594,7 @@ def test_Template_Management_TestcaseID_46022():
     """Issue in step 7 due to bug SMBM-2202"""
     selected_file_name = template_management_page.select_file_update_data_connections("Drive")
     if poco(text="Choose an account").exists():
-        data_sources_page.chooseAccToLinkFile("zsbswdvt@gmail.com")
+        data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
     data_sources_page.clickContinue()
     data_sources_page.first_row_header(True)
     template_management_page.selectChooseAnOption(1)
@@ -1725,12 +1725,12 @@ def test_Template_Management_TestcaseID_46026():
     """ google drive """
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-        account = "zsbswdvt@gmail.com"
+        account = "zebra03.swdvt@gmail.com"
         if data_sources_page.checkIfAccPresentLink(account):
             help_page.chooseAcc(account)
         else:
             poco("com.google.android.gms:id/add_account_chip_title").click()
-            registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+            registration_page.sign_In_With_Google("Zebra#123456789", account)
             sleep(2)
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(2)
@@ -2851,7 +2851,7 @@ def test_Template_Management_TestcaseID_46014():
     common_method.Stop_The_App()
 
 
-"""sohozsb@gmail.com"""
+"""zebra04.swdvt@gmail.com"""
 
 
 def test_Template_Management_TestcaseID_45966():
@@ -2869,7 +2869,7 @@ def test_Template_Management_TestcaseID_45966():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "sohozsb@gmail.com"
+    account = "zebra04.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -2884,7 +2884,7 @@ def test_Template_Management_TestcaseID_45966():
                 poco.scroll()
                 count-=1
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("sohozsb@1234", account)
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -3283,7 +3283,7 @@ def test_Template_Management_TestcaseID_48266():
     data_sources_page.lock_phone()
     wake()
     try:
-        data_sources_page.signInWithGoogle("zsbswdvt@gmail.com", "zsbswdvt@1234")
+        data_sources_page.signInWithGoogle("zebra03.swdvt@gmail.com", "Zebra#123456789")
         data_sources_page.lock_phone()
     except:
         pass
@@ -3428,7 +3428,7 @@ def test_Template_Management_TestcaseID_45965():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbswdvt1@gmail.com"
+    account = "zebra06.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -3443,7 +3443,7 @@ def test_Template_Management_TestcaseID_45965():
                 poco.scroll()
                 count-=1
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zsbswdvt1@1234", account)
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:

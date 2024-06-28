@@ -48,8 +48,8 @@ def test_Help_TestcaseID_45789():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-    registration_page.sign_In_With_Google("Zebra#123456789", "zebra03.swdvt@gmail.com", True)
-    registration_page.sign_In_With_Google("zebra03.swdvt@gmail.com")
+    registration_page.sign_In_With_Google("Zebra#12345678", "zebra03.swdvt@gmail.com", True)
+    registration_page.sign_In_With_Google("Zebra#12345678")
     data_sources_page.checkIfOnHomePage()
     sleep(2)
     """Click hamburger icon to expand menu"""

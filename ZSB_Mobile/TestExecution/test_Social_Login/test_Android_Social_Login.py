@@ -197,7 +197,7 @@ class test_Android_Social_Login():
         social_login.click_on_reset_password()
         social_login.wait_for_element_appearance_text("Password Recovery", 20)
         sleep(1)
-        username = "zebratest850@gmail.com"
+        username = common_method.get_user_input("enter the user email here")
         social_login.enter_user_name_to_change_password(username)
         social_login.click_on_submit_button()
 
@@ -210,10 +210,11 @@ class test_Android_Social_Login():
         """Semi automated here pass temp password"""
 
         """Part2"""
+
         common_method.wait_for_element_appearance_textmatches("Reset Password", 30)
-        sleep(30)
-        new_pass = "Zebra#@85085085"
-        social_login.enter_the_new_password_with_temporary_password(new_pass)
+        sleep(3)
+
+        common_method.show_message("enter the temp password and new password here")
 
         social_login.click_on_submit_button()
 
@@ -229,12 +230,69 @@ class test_Android_Social_Login():
             pass
         common_method.wait_for_element_appearance_namematches("Continue with Google", 15)
         social_login.click_on_sign_in_with_email()
-        social_login.complete_sign_in_with_email("zebratest850@gmail.com", new_pass)
+        common_method.show_message("enter the email and password and continue till home page")
 
         try:
             social_login.wait_for_element_appearance("Home", 20)
         except:
             raise Exception("dint sign in properly")
+
+    def test_Others_TestcaseID_45802(self):
+        pass
+        common_method.tearDown()
+        try:
+            social_login.click_on_allow_for_notification()
+        except:
+            pass
+        self.setup_logout()
+        common_method.wait_for_element_appearance_namematches("Sign In")
+
+        login_page.click_loginBtn()
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        others.click_on_sign_in_with_email()
+        common_method.wait_for_element_appearance_textmatches("Sign In")
+
+        email = "zebratest851@gmail.com"
+        password = "Zebra#85185180"
+        social_login.complete_sign_in_with_email(email, password, 0)
+
+        sleep_time = 60 * 29
+        sleep(sleep_time)
+
+        others.click_on_sign_in()
+        common_method.wait_for_element_appearance_namematches("Home", 30)
+
+        login_page.click_Menu_HamburgerICN()
+        others.click_Printer_Settings()
+        login_page.click_Menu_HamburgerICN()
+
+    def test_Others_TestcaseID_45872(self):
+        pass
+
+        common_method.tearDown()
+        self.setup_logout()
+        common_method.wait_for_element_appearance_namematches("Sign In")
+
+        login_page.click_loginBtn()
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        others.click_on_sign_in_with_email()
+        sleep(1)
+        others.go_back()
+
+        others.enter_user_name_in_sign_with_email("zebratest851@gmail.com")
+
+        others.enter_password_in_sign_with_email("Zebra#85185180")
+
+        sleep_time = 60 * 31
+        sleep(sleep_time)
+
+        others.click_on_sign_in()
+
+        try:
+            others.wait_for_element_appearance("Home", 10)
+            raise Exception("The page does not timeout")
+        except ZeroDivisionError:
+            pass
 
     def test_Social_Login_TestcaseID_48473(self):
         pass
@@ -308,7 +366,7 @@ class test_Android_Social_Login():
 
         """Semi automated """
         """Enter Verification code"""
-        verification_code = "31RPAG"
+        verification_code = common_method.get_user_input("enter the code which is got through testzebra141@gmail.com")
         social_login.enter_the_verification_code(verification_code)
         social_login.scroll_down(1)
         social_login.click_on_next()
@@ -358,16 +416,16 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48482(self):
         pass
 
+        common_method.show_message("Prepare an external account which hasn't been signed in once in ZSB series app (new registered)")
         self.setup_logout()
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         social_login.click_on_sign_in_with_email()
 
         """Provide new_user name and password which is not registered"""
-        email = "testzebra120@gmail.com"
-        password = "Zebra#123456789"
-        first_name = "Zebra"
-        last_name = "Z"
+        email = common_method.get_user_input("enter the new email")
+        password = common_method.get_user_input("enter the password")
+
 
         social_login.complete_sign_in_with_email(email, password)
         social_login.wait_for_element_appearance_namematches_all("ZSB Terms of Use and License Agreement", 20)
@@ -383,7 +441,7 @@ class test_Android_Social_Login():
         social_login.click_on_profile_edit()
         """Pass the first name last name and email to be expected"""
 
-        social_login.validate_the_details_of_account(first_name, last_name, email)
+        common_method.show_message("check the user first name and last name")
         social_login.scroll_down(1)
         social_login.click_log_out_button()
         try:
@@ -432,7 +490,7 @@ class test_Android_Social_Login():
         common_method.wait_for_element_appearance_textmatches("Choose an account")
 
         """Enter the email"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         password = "Zebra#123456789"
         social_login.choose_a_google_account(email)
         social_login.wait_for_element_appearance("Home", 30)
@@ -465,7 +523,7 @@ class test_Android_Social_Login():
         common_method.wait_for_element_appearance_textmatches("Choose an account")
 
         """Enter the email"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         social_login.choose_a_google_account(email)
         social_login.wait_for_element_appearance("Home", 20)
         login_page.click_Menu_HamburgerICN()
@@ -495,7 +553,7 @@ class test_Android_Social_Login():
         sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         """Enter the email and password"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         password = 'Zebra#123456789'
 
         social_login.click_on_sign_in_with_email()
@@ -654,12 +712,13 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48470(self):
         pass
 
+        common_method.show_message("add a new google account to the phone")
         self.setup_logout()
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account")
-        email = "testzebra118@gmail.com"
+        email = common_method.get_user_input("enter the new gmail account")
         social_login.choose_a_google_account(email)
         sleep(3)
         try:
@@ -688,12 +747,7 @@ class test_Android_Social_Login():
 
         login_page.click_Menu_HamburgerICN()
         social_login.click_on_profile_edit()
-        """Semi automated check manually"""
-        """Pass the first name last name and email to be expected"""
-        # first_name = "Zebra"
-        # last_name = "Test"
-        # if not social_login.check_the_email_in_profile_page(email):
-        #     raise Exception("emails are not matching ")
+        common_method.show_message("check the first name last name and email are matching as provided")
         social_login.scroll_down(1)
         social_login.click_log_out_button()
         try:
@@ -714,9 +768,10 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48472(self):
         pass
 
+        common_method.show_message("create a new facebook account")
         self.setup_logout()
-        email = "testswdvt@gmail.com"
-        password = "Zebra#123456789"
+        email = common_method.get_user_input("enter the new facebook email here")
+        password = common_method.get_user_input("enter the new password here")
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
 
@@ -752,11 +807,8 @@ class test_Android_Social_Login():
         social_login.click_on_profile_edit()
         """Pass the first name last name and email to be expected"""
         """Semi automated"""
-        # first_name = "Zebra"
-        # last_name = "Zebra"
-        # # social_login.validate_the_details_of_account(first_name, last_name, email)
-        # if not social_login.check_the_email_in_profile_page(email):
-        #     raise Exception("email not matching")
+        common_method.show_message("check the email, first name and last name is as expected")
+
         social_login.scroll_down(1)
         social_login.click_log_out_button()
         try:
@@ -884,6 +936,8 @@ class test_Android_Social_Login():
         except:
             pass
 
+        common_method.show_message("if the page ask for otp or code provide that and continue till the homr page")
+
         try:
             social_login.continue_in_facebook()
         except:
@@ -926,11 +980,13 @@ class test_Android_Social_Login():
         except:
             pass
 
+        common_method.show_message("if not signed in , then sign in")
+
         social_login.continue_in_facebook()
 
         social_login.wait_for_element_appearance("Home", 20)
 
-        sleep(60 * 5)
+        common_method.show_message("add a printer to this account")
         """Semi automated"""
         # login_page.click_Menu_HamburgerICN()
         # add_a_printer_page.click_Add_A_Printer()
@@ -1076,10 +1132,12 @@ class test_Android_Social_Login():
 
     def test_Social_Login_TestcaseID_48471(self):
         pass
+
+        common_method.show_message("Create a new apple account")
         self.setup_logout()
         """Need to create a new apple account"""
-        apple_id = "testzebra101@gmail.com"
-        password = "Zebra#123456789"
+        apple_id = common_method.get_user_input("Enter the new apple account")
+        password = common_method.get_user_input("Enter the password for the apple account")
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
 
@@ -1096,7 +1154,7 @@ class test_Android_Social_Login():
             pass
 
         """Enter the two factor authentication code sent in phone """
-        a = "183795"
+        a = common_method.get_user_input("enter the code")
         try:
             social_login.two_factor_authentication_for_apple(a)
         except:
@@ -1128,13 +1186,7 @@ class test_Android_Social_Login():
         social_login.click_on_profile_edit()
         """Semi automated check manually"""
         """Pass the first name last name and email to be expected"""
-        # first_name = "Zebra"
-        # last_name = "Zebra"
-        # email = "testzebra101@gmail.com"
-        # social_login.validate_the_details_of_account(first_name, last_name, email)
-        # """if you hide email in the first time sign in process email cannot be validated"""
-        # if not social_login.check_the_email_in_profile_page(email):
-        #     print("email did not match")
+        common_method.show_message("check the email , first name and last name are as expected")
 
         social_login.scroll_down(1)
         social_login.click_log_out_button()
@@ -1181,7 +1233,7 @@ class test_Android_Social_Login():
         try:
             common_method.wait_for_element_appearance_textmatches("Two-factor authentication", 4)
             # social_login.go_back()
-            code = "902509"
+            code = common_method.get_user_input("Enter the apple id code")
             social_login.two_factor_authentication_for_apple(code)
         except:
             pass
@@ -1224,7 +1276,7 @@ class test_Android_Social_Login():
         social_login.enter_apple_id_and_password(apple_id, password)
 
         try:
-            code = "259063"
+            code = common_method.show_message("enter the code")
             social_login.two_factor_authentication_for_apple(code)
         except:
             pass
@@ -1237,7 +1289,7 @@ class test_Android_Social_Login():
         social_login.click_on_continue()
         social_login.wait_for_element_appearance("Home", 30)
 
-        sleep(60 * 5)
+        common_method.show_message("add a printer to this account")
         """Semi automated"""
         # login_page.click_Menu_HamburgerICN()
         # add_a_printer_page.click_Add_A_Printer()
@@ -1311,7 +1363,7 @@ class test_Android_Social_Login():
         social_login.enter_apple_id_and_password(apple_id, password)
 
         try:
-            code = "259063"
+            code = common_method.get_user_input("enter the code here")
             social_login.two_factor_authentication_for_apple(code)
         except:
             pass
@@ -1329,12 +1381,14 @@ class test_Android_Social_Login():
 
     def test_Social_Login_TestcaseID_50223(self):
         pass
+
+        common_method.show_message("create a new google account")
         self.setup_logout()
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account")
-        email = "testzebra265@gmail.com"
+        email = common_method.get_user_input("enter the new email account")
         social_login.choose_a_google_account(email)
         sleep(3)
         try:
@@ -1364,7 +1418,7 @@ class test_Android_Social_Login():
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account")
 
-        social_login.choose_a_google_account("zebratest850@gmail.com")
+        social_login.choose_a_google_account("zebra850.swdvt@gmail.com")
         social_login.wait_for_element_appearance("Home", 10)
 
         login_page.click_Menu_HamburgerICN()
@@ -1441,7 +1495,7 @@ class test_Android_Social_Login():
         login_page.click_Loginwith_Google()
 
         """Enter the email"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         social_login.choose_a_google_account(email)
         social_login.wait_for_element_appearance("Home", 20)
         login_page.click_Menu_HamburgerICN()
@@ -1538,65 +1592,66 @@ class test_Android_Social_Login():
         login_page.click_Loginwith_Google()
 
         """Enter the email"""
-        email = "zebratest850@gmail.com"
+        email = "zebra850.swdvt@gmail.com"
         social_login.choose_a_google_account(email)
         social_login.wait_for_element_appearance("Home", 20)
 
-        sleep(60 * 5)
-        login_page.click_Menu_HamburgerICN()
-        add_a_printer_page.click_Add_A_Printer()
-
-        add_a_printer_page.click_Start_Button()
-        add_a_printer_page.click_Show_All_Printers()
-        sleep(4)
-
-        social_login.selectPrinter("ZSB-DP12\n6CC28F")
-        social_login.clickSelect()
-        try:
-            add_a_printer_page.click_Bluetooth_pairing_Popup1()
-        except:
-            pass
-        try:
-            social_login.click_Bluetooth_pairing_Popup2()
-        except:
-            pass
-
-        social_login.clickConnect()
-        sleep(2)
-        social_login.Enter_Password_Join_Network("123456789")
-        sleep(2)
-        poco(text("123456789"))
+        common_method.show_message("add a printer to this account")
+        # sleep(60 * 5)
+        # login_page.click_Menu_HamburgerICN()
+        # add_a_printer_page.click_Add_A_Printer()
         #
-        common_method.wait_for_element_appearance("Submit")
-
-        social_login.clickSubmit()
-        social_login.clickFinishSetup()
-
-        login_page.click_Menu_HamburgerICN()
-        social_login.click_Printer_Settings()
-        social_login.click_on_first_printer()
-        social_login.click_test_print()
-        sleep(3)
-        login_page.click_Menu_HamburgerICN()
-        social_login.click_home_button()
-        social_login.click_three_dots_in_printer()
-        social_login.click_delete_button()
-        social_login.click_delete_button()
-
-        social_login.confirm_delete_printer()
-        add_a_printer_page.disable_bluetooth()
-
-        try:
-            social_login.click_element_by_text("ALLOW")
-        except:
-            try:
-                social_login.click_element_by_text("Allow")
-            except:
-                pass
-        sleep(2)
-
-        social_login.click_done_enabled()
-        sleep(5)
+        # add_a_printer_page.click_Start_Button()
+        # add_a_printer_page.click_Show_All_Printers()
+        # sleep(4)
+        #
+        # social_login.selectPrinter("ZSB-DP12\n6CC28F")
+        # social_login.clickSelect()
+        # try:
+        #     add_a_printer_page.click_Bluetooth_pairing_Popup1()
+        # except:
+        #     pass
+        # try:
+        #     social_login.click_Bluetooth_pairing_Popup2()
+        # except:
+        #     pass
+        #
+        # social_login.clickConnect()
+        # sleep(2)
+        # social_login.Enter_Password_Join_Network("123456789")
+        # sleep(2)
+        # poco(text("123456789"))
+        # #
+        # common_method.wait_for_element_appearance("Submit")
+        #
+        # social_login.clickSubmit()
+        # social_login.clickFinishSetup()
+        #
+        # login_page.click_Menu_HamburgerICN()
+        # social_login.click_Printer_Settings()
+        # social_login.click_on_first_printer()
+        # social_login.click_test_print()
+        # sleep(3)
+        # login_page.click_Menu_HamburgerICN()
+        # social_login.click_home_button()
+        # social_login.click_three_dots_in_printer()
+        # social_login.click_delete_button()
+        # social_login.click_delete_button()
+        #
+        # social_login.confirm_delete_printer()
+        # add_a_printer_page.disable_bluetooth()
+        #
+        # try:
+        #     social_login.click_element_by_text("ALLOW")
+        # except:
+        #     try:
+        #         social_login.click_element_by_text("Allow")
+        #     except:
+        #         pass
+        # sleep(2)
+        #
+        # social_login.click_done_enabled()
+        # sleep(5)
         login_page.click_Menu_HamburgerICN()
         social_login.click_on_profile_edit()
 

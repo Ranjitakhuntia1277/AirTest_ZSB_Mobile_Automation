@@ -1,3 +1,5 @@
+import inspect
+
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 
@@ -13,6 +15,7 @@ from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK i
 from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
 from ...PageObject.Others_Screen.Others_Screen import Others
 from ...TestSuite.api_call import *
+from ...TestSuite.store import *
 
 
 class Android_App_Data_Sources:
@@ -35,12 +38,12 @@ template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 others_page = Others(poco)
 
-execID = 0
-leftId = {"0": "7"}
-
 
 def test_DataSources_TestcaseID_45731():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Facebook account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -58,6 +61,9 @@ def test_DataSources_TestcaseID_45731():
         13: [13, 'Repeat this test case, at step 1 login as Apple account user'],
         14: [14, 'Repeat this test case, at step 1 login as Google account user']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -77,7 +83,7 @@ def test_DataSources_TestcaseID_45731():
         """Facebook Login"""
         registration_page.clickSignIn()
         registration_page.click_Facebook_Icon()
-        registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+        registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
         """Click hamburger icon to expand menu"""
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
@@ -88,7 +94,8 @@ def test_DataSources_TestcaseID_45731():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -102,7 +109,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select File page will open
@@ -112,7 +120,8 @@ def test_DataSources_TestcaseID_45731():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select Google drive
@@ -122,7 +131,8 @@ def test_DataSources_TestcaseID_45731():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Click Back button
@@ -131,7 +141,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check mobile app return back to My Data page and no file is linked
@@ -141,7 +152,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click + button at bottom and select Link File
@@ -154,7 +166,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: On Google Drive page, check only supported file types are listed
@@ -170,7 +183,8 @@ def test_DataSources_TestcaseID_45731():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Select a file and click Select
@@ -181,7 +195,8 @@ def test_DataSources_TestcaseID_45731():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check mobile app return to My Data page and file is linked
@@ -191,7 +206,8 @@ def test_DataSources_TestcaseID_45731():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the details of file icon, file name, Date added and Data source field (Google Drive) are correct
@@ -200,7 +216,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat for another 2 to 3 supported file types
@@ -297,7 +314,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Repeat this test case, at step 1 login as Apple account user
@@ -309,8 +327,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.checkIfInLoginPage()
         registration_page.clickSignIn()
         registration_page.click_Apple_Icon()
-        username = "zsbswdvt@gmail.com"
-        registration_page.login_Apple("DLpwhvr@JCQ5Gkx", username)
+        username = "zebra03.swdvt@gmail.com"
+        registration_page.login_Apple("Zebra#123456789", username)
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         sleep(2)
@@ -441,7 +459,8 @@ def test_DataSources_TestcaseID_45731():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Repeat this test case, at step 1 login as Google account user
@@ -454,7 +473,7 @@ def test_DataSources_TestcaseID_45731():
             registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
             raise Exception("Did not navigate to Sign In with google page")
-        account = "zebraidctest@gmail.com"
+        account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
         else:
@@ -464,7 +483,7 @@ def test_DataSources_TestcaseID_45731():
             while not poco(text="Add account to device").exists():
                 poco.scroll()
             registration_page.addAccountToDevice()
-            registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+            registration_page.sign_In_With_Google("Zebra#123456789", "zebra03.swdvt@gmail.com")
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         sleep(2)
@@ -596,16 +615,26 @@ def test_DataSources_TestcaseID_45731():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45731"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45732():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Google account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -621,6 +650,9 @@ def test_DataSources_TestcaseID_45732():
         12: [12, 'Repeat this test case, at step 1 login as Facebook account user'],
         13: [13, 'Repeat this test case, at step 1 login as Apple account user']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -645,7 +677,7 @@ def test_DataSources_TestcaseID_45732():
             registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
             raise Exception("Did not navigate to Sign In with google page")
-        account = "zebraidctest@gmail.com"
+        account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
         else:
@@ -655,7 +687,7 @@ def test_DataSources_TestcaseID_45732():
             while not poco(text="Add account to device").exists():
                 poco.scroll()
             registration_page.addAccountToDevice()
-            registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+            registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
         """Click hamburger icon to expand menu"""
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
@@ -665,7 +697,8 @@ def test_DataSources_TestcaseID_45732():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -679,7 +712,8 @@ def test_DataSources_TestcaseID_45732():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select File page will open and click Microsoft tap. Check only supported files are listed
@@ -692,7 +726,8 @@ def test_DataSources_TestcaseID_45732():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click Back button
@@ -701,7 +736,8 @@ def test_DataSources_TestcaseID_45732():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check mobile app return back to My Data page and no file is linked
@@ -711,7 +747,8 @@ def test_DataSources_TestcaseID_45732():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click + button at bottom and select Link File
@@ -724,7 +761,8 @@ def test_DataSources_TestcaseID_45732():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Select Microsoft tap
@@ -736,7 +774,8 @@ def test_DataSources_TestcaseID_45732():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Select a file and click Select
@@ -747,7 +786,8 @@ def test_DataSources_TestcaseID_45732():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Check mobile app return to My Data page and file is linked
@@ -757,7 +797,8 @@ def test_DataSources_TestcaseID_45732():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check the details of file icon, file name, Date added and Data source field are correct
@@ -766,7 +807,8 @@ def test_DataSources_TestcaseID_45732():
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Repeat for another 2 to 3 supported file types
@@ -855,7 +897,8 @@ def test_DataSources_TestcaseID_45732():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat this test case, at step 1 login as Facebook account user
@@ -865,7 +908,7 @@ def test_DataSources_TestcaseID_45732():
 
         registration_page.clickSignIn()
         registration_page.click_Facebook_Icon()
-        registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+        registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
         try:
             registration_page.wait_for_element_appearance("Home", 30)
         except:
@@ -987,7 +1030,8 @@ def test_DataSources_TestcaseID_45732():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Repeat this test case, at step 1 login as Apple account user
@@ -998,7 +1042,7 @@ def test_DataSources_TestcaseID_45732():
         registration_page.clickSignIn()
         registration_page.click_Apple_Icon()
         """Enter OTP manually"""
-        registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+        registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
         try:
             registration_page.wait_for_element_appearance("Home", 30)
         except:
@@ -1121,16 +1165,26 @@ def test_DataSources_TestcaseID_45732():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45732"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45738():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Designs page'],
         2: [2, 'Select the label design in precondition and print'],
@@ -1142,6 +1196,9 @@ def test_DataSources_TestcaseID_45738():
         8: [8, 'Select one or several rows to print. Check the printed-out labels are correct'],
         9: [9, 'Repeat this test case for OneDrive']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1158,7 +1215,7 @@ def test_DataSources_TestcaseID_45738():
             registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
             raise Exception("Did not navigate to Sign In with google page")
-        account = "zebraidctest@gmail.com"
+        account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
         else:
@@ -1168,7 +1225,7 @@ def test_DataSources_TestcaseID_45738():
             while not poco(text="Add account to device").exists():
                 poco.scroll()
             registration_page.addAccountToDevice()
-            registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+            registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         sleep(2)
@@ -1185,12 +1242,12 @@ def test_DataSources_TestcaseID_45738():
         """ google drive """
         if data_sources_page.verifySignInWithGoogle():
             registration_page.click_Google_Icon()
-        account = "zsbswdvt@gmail.com"
+        account = "zebra03.swdvt@gmail.com"
         if data_sources_page.checkIfAccPresentLink(account):
             help_page.chooseAcc(account)
         else:
             poco("com.google.android.gms:id/add_account_chip_title").click()
-            registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+            registration_page.sign_In_With_Google("Zebra#123456789", account)
             sleep(2)
         common_method.wait_for_element_appearance_namematches("NAME", 20)
         data_sources_page.clickBackArrow()
@@ -1205,7 +1262,7 @@ def test_DataSources_TestcaseID_45738():
         """ One drive """
         data_sources_page.clickMicrosoftOneDrive()
         sleep(3)
-        data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         data_sources_page.clickMicrosoftOneDrive()
         data_sources_page.clickBackArrow()
@@ -1216,7 +1273,8 @@ def test_DataSources_TestcaseID_45738():
         common_method.wait_for_element_appearance_namematches("Showing", 15)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Select the label design in precondition and print
@@ -1235,7 +1293,8 @@ def test_DataSources_TestcaseID_45738():
         sleep(10)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Check the print preview of the label and the data contents are shown correctly
@@ -1245,7 +1304,8 @@ def test_DataSources_TestcaseID_45738():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Close the print preview
@@ -1254,7 +1314,8 @@ def test_DataSources_TestcaseID_45738():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Go to Google Drive and update the file, add or remove the data entry
@@ -1262,10 +1323,11 @@ def test_DataSources_TestcaseID_45738():
 
         """Cannot automate - 5. Go to Google Drive and update the file, add or remove the data entry has to be done manually."""
         common_method.show_message(
-            "Go to Google Drive and update the file, add or remove the data entry.\n Filename = 45738.xlsx account = zsbswdvt@gmail.com, password = zsbswdvt@1234. Keep the app in the same page for continuing execution")
+            "Go to Google Drive and update the file, add or remove the data entry.\n Filename = 45738.xlsx account = zebra03.swdvt@gmail.com, password = Zebra#123456789. Keep the app in the same page for continuing execution")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: After update, print the same label design again
@@ -1277,7 +1339,8 @@ def test_DataSources_TestcaseID_45738():
         data_sources_page.clickPrint()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check the print preview, the data has been added or removed
@@ -1295,7 +1358,8 @@ def test_DataSources_TestcaseID_45738():
         data_sources_page.scroll_till_print()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Select one or several rows to print. Check the printed-out labels are correct
@@ -1307,7 +1371,8 @@ def test_DataSources_TestcaseID_45738():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Repeat this test case for OneDrive
@@ -1330,7 +1395,7 @@ def test_DataSources_TestcaseID_45738():
         data_sources_page.clickBackArrow()
         """Cannot automate - 5. Go to Google Drive and update the file, add or remove the data entry has to be done manually."""
         common_method.show_message(
-            "Go to One Drive and update the file, add or remove the data entry.\n Filename = 45738_1.xlsx account = zsbswdvt@gmail.com, password = hmWepX4AUMLa!9E. Keep the app in the same page for continuing execution")
+            "Go to One Drive and update the file, add or remove the data entry.\n Filename = 45738_1.xlsx account = zebra03.swdvt@gmail.com, password = Zebra#123456789. Keep the app in the same page for continuing execution")
         common_method.wait_for_element_appearance_namematches("Showing")
         data_sources_page.selectDesignCreatedAtSetUp()
         sleep(2)
@@ -1351,16 +1416,26 @@ def test_DataSources_TestcaseID_45738():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45738"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45751():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Apple account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -1377,6 +1452,9 @@ def test_DataSources_TestcaseID_45751():
         12: [12, 'Repeat for all supported file types']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -1392,7 +1470,7 @@ def test_DataSources_TestcaseID_45751():
         registration_page.clickSignIn()
         registration_page.click_Apple_Icon()
         """Enter OTP manually"""
-        registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+        registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         sleep(2)
@@ -1402,7 +1480,8 @@ def test_DataSources_TestcaseID_45751():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -1416,7 +1495,8 @@ def test_DataSources_TestcaseID_45751():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: At Cloud service sign in page, click Sign in with Google
@@ -1425,17 +1505,19 @@ def test_DataSources_TestcaseID_45751():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Sign in with Google account
         start_time = time.time()
 
-        data_sources_page.signInWithGoogle("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
+        data_sources_page.signInWithGoogle("zebra06.swdvt@gmail.com", "Zebra#123456789")
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: After signed in Google account, check supported files are listed in Google Drive
@@ -1445,7 +1527,8 @@ def test_DataSources_TestcaseID_45751():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click Back button
@@ -1454,7 +1537,8 @@ def test_DataSources_TestcaseID_45751():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check mobile app returns back to My Data page and no file is linked
@@ -1464,7 +1548,8 @@ def test_DataSources_TestcaseID_45751():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click + button at bottom and select Link File
@@ -1477,7 +1562,8 @@ def test_DataSources_TestcaseID_45751():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click any supported file and click Select button to link
@@ -1493,7 +1579,8 @@ def test_DataSources_TestcaseID_45751():
         data_sources_page.selectFileDrive(png_file)
         sleep(5)
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check mobile app returns to My Data page and file is linked
@@ -1503,7 +1590,8 @@ def test_DataSources_TestcaseID_45751():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the details of file icon, file name, Date added and Data source field (Google Drive) are correct
@@ -1512,7 +1600,8 @@ def test_DataSources_TestcaseID_45751():
         data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat for all supported file types
@@ -1605,16 +1694,26 @@ def test_DataSources_TestcaseID_45751():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45751"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45754():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Apple account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -1632,6 +1731,9 @@ def test_DataSources_TestcaseID_45754():
         14: [14, 'Repeat for other 2 to 3 supported file types']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -1647,7 +1749,7 @@ def test_DataSources_TestcaseID_45754():
         registration_page.clickSignIn()
         registration_page.click_Apple_Icon()
         """Enter OTP manually"""
-        registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+        registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
         try:
             registration_page.wait_for_element_appearance("Home", 30)
         except:
@@ -1659,7 +1761,8 @@ def test_DataSources_TestcaseID_45754():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -1674,7 +1777,8 @@ def test_DataSources_TestcaseID_45754():
         """ One drive """
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Cloud Service Sign in page will open and let user select which service to login
@@ -1683,18 +1787,20 @@ def test_DataSources_TestcaseID_45754():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click Sign in with Microsoft account
         start_time = time.time()
 
-        data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: After signed in Microsoft account, check supported files are listed in One Drive
@@ -1704,7 +1810,8 @@ def test_DataSources_TestcaseID_45754():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click Back button
@@ -1713,7 +1820,8 @@ def test_DataSources_TestcaseID_45754():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Mobile app return to My Data page
@@ -1722,7 +1830,8 @@ def test_DataSources_TestcaseID_45754():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Check no file is uploaded
@@ -1732,7 +1841,8 @@ def test_DataSources_TestcaseID_45754():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click + button at bottom and select Link File
@@ -1745,7 +1855,8 @@ def test_DataSources_TestcaseID_45754():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click Microsoft One Drive
@@ -1757,7 +1868,8 @@ def test_DataSources_TestcaseID_45754():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Select any of the supported file types to link
@@ -1768,7 +1880,8 @@ def test_DataSources_TestcaseID_45754():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check the selected file is linked
@@ -1778,7 +1891,8 @@ def test_DataSources_TestcaseID_45754():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Check the file icon, file name, Date added and Data source field are correct
@@ -1787,7 +1901,8 @@ def test_DataSources_TestcaseID_45754():
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Repeat for other 2 to 3 supported file types
@@ -1871,9 +1986,16 @@ def test_DataSources_TestcaseID_45754():
         data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45754"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)

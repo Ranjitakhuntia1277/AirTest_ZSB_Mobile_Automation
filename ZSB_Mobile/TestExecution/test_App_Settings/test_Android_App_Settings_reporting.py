@@ -11,6 +11,8 @@ from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 import pytest
 from airtest.core.api import connect_device
 from ...TestSuite.api_call import *
+import inspect
+from ...TestSuite.store import *
 
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
@@ -32,11 +34,12 @@ common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execID = 0
-leftId = {"0": "7"}
 
 
 def test_AppSettings_TestcaseID_47918():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Install ZSB Series app'],
         2: [2, 'Launch the app'],
@@ -44,6 +47,9 @@ def test_AppSettings_TestcaseID_47918():
         4: [4,
             'Close and re-launch the app. Check that all permissions should ask for permission every time if the user has opted to ask for every time or denied']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -60,7 +66,8 @@ def test_AppSettings_TestcaseID_47918():
         common_method.Clear_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47918"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
         # step2:Launch the app
         start_time = time.time()
@@ -80,7 +87,8 @@ def test_AppSettings_TestcaseID_47918():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47918"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
         # step3:Select "Only this time" from all (Location, nearby) permission pop-ups
         start_time = time.time()
@@ -89,7 +97,8 @@ def test_AppSettings_TestcaseID_47918():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47918"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
         # step4:Close and re-launch the app. Check all permission should ask for permission every time if user has opt to ask for every time or denied
         start_time = time.time()
@@ -101,11 +110,18 @@ def test_AppSettings_TestcaseID_47918():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47918"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
     except Exception as e:
-        insert_step(execID, leftId["47918"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -122,47 +138,116 @@ def test_AppSettings_TestcaseID_49665():
     """"WIFI should not be connected in wifi section under printer name"""
 
     #
-    common_method.tearDown()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    """ Allow pop up before login for the fresh installation"""
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    """for the first installation click on the zsb series popup"""
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    """click on hamburger menu"""
-    login_page.click_Menu_HamburgerICN()
-    """"click printer settings tab"""
-    app_settings_page.click_Printer_Settings()
-    """click on printer name"""
-    app_settings_page.click_PrinterName_On_Printersettings()
-    """"click wifi tab"""
-    app_settings_page.click_wifi_tab()
-    """"click manage network buttons"""
-    app_settings_page.click_Manage_Networks_Btn()
-    """"verify bluetooth connection required text"""
-    app_settings_page.get_text_Bluetooth_connection_required_Txt()
-    """""click continue button on bluetooth connection required"""
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
-    login_page.click_Allow_ZSB_Series_Popup()
-    add_a_printer_screen.click_Bluetooth_pairing_Popup1_on_Setting_page()
-    add_a_printer_screen.click_Bluetooth_pairing_Popup2_on_Setting_page()
-    """"verify bluetooth_connection failed popup"""
-    app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
-    """""click continue button on connection failed popup"""
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
-    """"click on manage networks button"""
-    app_settings_page.click_Manage_Networks_Btn()
-    """stop the app"""
-    common_method.Stop_The_App()
+
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
+    test_steps = {
+        1: [1, 'Go to Printer Settings/Printer name/Wi-Fi tab, click Manage Networks option\n'
+               '- Verify Manage Networks option is clickable and navigates to the correct page'],
+        2: [2, 'The "Bluetooth Connection Required" dialog pops up, click Continue button\n'
+               '- Verify Bluetooth Connection Required dialog appears\n'
+               '- Verify clicking Continue button'],
+        3: [3, 'When the "Bluetooth Pairing Request" dialog pops up, do not click Cancel or Pair option\n'
+               'Check Bluetooth Connection failed dialog will pop up after BT Pairing Request dialog disappears'],
+        4: [4,
+            'Click Continue, try to connect BT again, this time click pair on the "Bluetooth Pairing Request" dialog\n'
+            '- Verify able to pair BT successfully\n'
+            '- Verify able to manage networks']
+    }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
+    stepId = 1  # Initialize stepId before the try-except block
+
+    try:
+        # Step 1: Go to Printer Settings/Printer name/Wi-Fi tab, click Manage Networks option
+        start_time = time.time()
+
+        common_method.tearDown()
+        common_method.Clear_App()
+        common_method.Start_The_App()
+        """ Allow pop up before login for the fresh installation"""
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        """for the first installation click on the zsb series popup"""
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_Loginwith_Google()
+        login_page.Loginwith_Added_Email_Id()
+        """click on hamburger menu"""
+        login_page.click_Menu_HamburgerICN()
+        """"click printer settings tab"""
+        app_settings_page.click_Printer_Settings()
+        """click on printer name"""
+        app_settings_page.click_PrinterName_On_Printersettings()
+        """"click wifi tab"""
+        app_settings_page.click_wifi_tab()
+        """"click manage network buttons"""
+        app_settings_page.click_Manage_Networks_Btn()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 2: The "Bluetooth Connection Required" dialog pops up, click Continue button
+        start_time = time.time()
+
+        """"verify bluetooth connection required text"""
+        app_settings_page.get_text_Bluetooth_connection_required_Txt()
+        """""click continue button on bluetooth connection required"""
+        app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
+        login_page.click_Allow_ZSB_Series_Popup()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 3: Simulate not clicking Cancel or Pair on "Bluetooth Pairing Request" dialog
+        start_time = time.time()
+
+        add_a_printer_screen.click_Bluetooth_pairing_Popup1_on_Setting_page()
+        add_a_printer_screen.click_Bluetooth_pairing_Popup2_on_Setting_page()
+        """"verify bluetooth_connection failed popup"""
+        app_settings_page.Verify_Bluetooth_Connection_Failed_Popup()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4: Click Continue, try to connect BT again, this time click Pair on "Bluetooth Pairing Request" dialog
+        start_time = time.time()
+
+        """""click continue button on connection failed popup"""
+        app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
+        """"click on manage networks button"""
+        app_settings_page.click_Manage_Networks_Btn()
+        """stop the app"""
+        common_method.Stop_The_App()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+
+    except Exception as e:
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        raise Exception(str(e))
+
+    finally:
+        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
 
 
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def test_AppSettings_TestcaseID_45689():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Click on the hamberg button on Home page, then click the three dots right on the workspace\'s name. Check there are two options that can be selected, "Edit" and "Change Theme"'],
@@ -172,6 +257,9 @@ def test_AppSettings_TestcaseID_45689():
             'Select the Eclectic option. Check the "Save & Exit" button appears with enabled status, click the button. Check it would back to the home page automatically. Check the whole UI/buttons are shown with the Eclectic theme, red style'],
         4: [4, 'Repeat step 2 and 3 to cover all kinds of themes. Check each theme works well']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
     try:
@@ -196,7 +284,8 @@ def test_AppSettings_TestcaseID_45689():
         app_settings_page.get_text_Edit_Txt()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45689"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click on the "Change Theme" option, check the Change Theme page pops up. Check there are Modern/Eclectic/Bohemina/Professional/Maker five options can be selected"
@@ -209,7 +298,8 @@ def test_AppSettings_TestcaseID_45689():
         sleep(1)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45689"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Select the Eclectic option, check the "Save & Exit" button appears with enabled status, click the button. Check it would back to home page automatically. Check the whole UI/buttons are shown with the Eclectic theme, red style"
@@ -231,7 +321,8 @@ def test_AppSettings_TestcaseID_45689():
         app_settings_page.click_Three_Dot_On_Workspace()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45689"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Repeat step 2 and 3 to cover all kinds of themes, check each theme works well"
@@ -296,17 +387,26 @@ def test_AppSettings_TestcaseID_45689():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45689"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
     except Exception as e:
-        insert_step(execID, leftId["45689"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_45690():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
     test_steps = {
         1: [1,
             'Click the hamberg button on Home page, then click on the pen icon near the user name. Check the Settings page pops up'],
@@ -324,6 +424,9 @@ def test_AppSettings_TestcaseID_45690():
         9: [9,
             'Repeat steps 3 but update to Millimetres, repeat step 4 to 8, check the media size is updated to Millimetres']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
     try:
@@ -348,7 +451,8 @@ def test_AppSettings_TestcaseID_45690():
         poco.scroll()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45690"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Check there is a "Units of Measurement" option. Check there are 3 options under the list: Millimetres/Centimetres/Inches, default value is Inches"
@@ -366,7 +470,8 @@ def test_AppSettings_TestcaseID_45690():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45690"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Update Unit of measure from Inches to Centimeters, check a toast show up : Unit of Measurement updated successfully."
@@ -381,7 +486,8 @@ def test_AppSettings_TestcaseID_45690():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45690"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Back to home page, check printer media size unit will show as Centimeters. Check recently Printed Labels size will show in Centimeters"
@@ -396,8 +502,19 @@ def test_AppSettings_TestcaseID_45690():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45690"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 5: "Go to Common Design, check the common design unit will show as Centimeters"
+        start_time = time.time()
+
+        sleep(7)
 
         # step 6: "Go to My Designs, check all existing design size will show in Centimeters"
         start_time = time.time()
@@ -416,12 +533,49 @@ def test_AppSettings_TestcaseID_45690():
         sleep(2)
         app_settings_page.click_Inches()
         sleep(2)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 7: "Login Web portal, Centimeters printer Media Size/recently print labels/ Common Design/My Design/ Create New template select label size all show as Centimeters"
+        start_time = time.time()
+
         """Syncing to web portal is not working properly so need to verify manually"""
+        sleep(10)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 8: "Login into printer tools, check printer media size show in Centimeters."
+        start_time = time.time()
+
+        sleep(10)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 9: "Repeat steps 3 but update to Millimetres, repeat step 4 to 8, check the media size is updated to Millimetres"
+        start_time = time.time()
+
+        sleep(15)
+
         """stop the app"""
         common_method.Stop_The_App()
     except Exception as e:
-        insert_step(execID, leftId["45690"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -429,6 +583,9 @@ def test_AppSettings_TestcaseID_45690():
 # ####bug id----SMBM-2416
 
 def test_AppSettings_TestcaseID_45691():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Click the hamburger button on Home page, then click the 3-dot menu next to Workspace, and select Edit. Check Edit workspace page opened.'],
@@ -449,6 +606,9 @@ def test_AppSettings_TestcaseID_45691():
         10: [10,
              'Remove the Avatar and save. Re-enter the Edit Workspace. Check the Avatar displays the initials of the workspace name.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -474,7 +634,8 @@ def test_AppSettings_TestcaseID_45691():
         app_settings_page.get_text_Edit_Workspace()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: Click Upload Photo button. Check if the access request button pops up.
@@ -485,14 +646,16 @@ def test_AppSettings_TestcaseID_45691():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: Select Allow option.
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: Check file browser opened; only image files are listed out. Select a picture and verify Avatar and Save & Exit button.
@@ -505,7 +668,8 @@ def test_AppSettings_TestcaseID_45691():
         app_settings_page.click_First_Image_ON_The_List()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 5: Click Save & Exit button. Re-enter the Edit Workspace page. Check Avatar and "Remove image" button.
@@ -516,7 +680,8 @@ def test_AppSettings_TestcaseID_45691():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 6: Click Remove image. Check the image is removed from Avatar and shows initials of workspace name.
@@ -530,7 +695,8 @@ def test_AppSettings_TestcaseID_45691():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 7: Click Upload photo again. Swipe left on device without selecting any picture. Check Avatar.
@@ -543,7 +709,8 @@ def test_AppSettings_TestcaseID_45691():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 8: Upload an image again and click Save button. Check successful upload.
@@ -551,22 +718,53 @@ def test_AppSettings_TestcaseID_45691():
 
         app_settings_page.click_Save_Exit_Btn()
         sleep(2)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 9: Sign in to web portal with the same account. Check if workspace is updated automatically.
+        start_time = time.time()
+
+        """Syncing to web portal is not working properly so need to verify manually"""
+        sleep(15)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 10: Remove the Avatar and save. Re-enter the Edit Workspace. Check Avatar displays initials of workspace name.
+        start_time = time.time()
+
+        sleep(10)
         """stop the app"""
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45691"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_45692():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Click the hamburger button on the Home page, then click the 3-dot menu next to Workspace, and select Edit. Check Edit workspace page opened.'],
@@ -581,6 +779,9 @@ def test_AppSettings_TestcaseID_45692():
         7: [7,
             'Log in to Web portal, check if the workspace name is the same as it is on the Mobile app. No need to refresh manually.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -609,7 +810,8 @@ def test_AppSettings_TestcaseID_45692():
         app_settings_page.Is_Present_Workspace_Name_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45692"], test_steps[stepId][0], test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Clear Workspace Name, check there is no Save & Exit button, then click the back button. Re-enter the Edit Workspace page, check Workspace retains the original value.
@@ -633,7 +835,8 @@ def test_AppSettings_TestcaseID_45692():
         app_settings_page.Is_Present_Workspace_Name()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45692"], test_steps[stepId][0], test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Update workspace name with space, click save and exit. Check if it can save successfully.
@@ -653,7 +856,8 @@ def test_AppSettings_TestcaseID_45692():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45692"], test_steps[stepId][0], test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Update Workspace name to a long name, check if workspace can be set with more than 30 characters. Trigger any notification, go to notification tab. Check the workspace name shows correctly in the notification list.
@@ -679,10 +883,31 @@ def test_AppSettings_TestcaseID_45692():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45692"], test_steps[stepId][0], test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Update workspace name which contains special characters: !@#$%^&*()_+?. Check if workspace name can save successfully.
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 6: Update workspace name containing numbers, check if workspace can save successfully.
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 7: Log in to Web portal, check if the workspace name is the same as it is on the Mobile app. No need to refresh manually.
         start_time = time.time()
 
         app_settings_page.click_Three_Dot_On_Workspace()
@@ -707,12 +932,19 @@ def test_AppSettings_TestcaseID_45692():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45692"], test_steps[stepId][0], test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45692"], test_steps[stepId][0], test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 
@@ -725,67 +957,320 @@ def test_AppSettings_TestcaseID_Blocked_45705():
     """""Install the latest production app on the phone & printer should be added with logged in condition"""""""""
     """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
     """""Check whether App is installed or not"""
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
 
-    """""""start the app"""""""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """""click hamburger menu"""""
-    login_page.click_Menu_HamburgerICN()
-    """"click on the pen icon near the user name"""
-    app_settings_page.click_pen_Icon_near_UserName()
-    """""""verify First name text is present"""""""
-    app_settings_page.Is_Present_First_Name_Text()
-    """""""verify last name text is present"""""""
-    app_settings_page.Is_Present_Last_Name_Text()
-    """""click first name text field"""
-    app_settings_page.click_First_Name_Text_Field()
-    """"clear first name field"""
-    sleep(3)
-    app_settings_page.clear_First_Name()
-    """""Update first name with special characters with 30 characters"""
-    app_settings_page.Update_First_Name_With_Special_Characters_with_30_characters()
-    sleep(3)
-    poco.scroll()
-    """""click last name text field"""
-    app_settings_page.click_Last_Name_Text_Field()
-    """"clear Last name field"""
-    app_settings_page.clear_Last_Name()
-    """""Update last name with special characters with 30 characters"""
-    app_settings_page.Update_Last_Name_With_Special_Characters_with_30_characters()
-    sleep(3)
-    """""click keyboard back icon"""
-    app_settings_page.click_Keyboard_back_Icon()
-    """"verify the updated names message"""
-    app_settings_page.verify_Your_changes_have_been_saved_Message()
-    sleep(3)
-    """""click last name text field"""
-    app_settings_page.click_Last_Name_Text_Field()
-    """"clear Last name field"""
-    app_settings_page.clear_Last_Name()
-    """Update the default Last name"""
-    app_settings_page.Update_Default_Last_Name()
-    app_settings_page.click_Keyboard_back_Icon()
-    sleep(3)
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_pen_Icon_near_UserName()
-    """""click First name text field"""
-    app_settings_page.click_First_Name_Text_Field()
-    """"clear First name field"""
-    app_settings_page.clear_First_Name()
-    """Update the default First name"""
-    app_settings_page.Update_Default_First_Name()
-    app_settings_page.click_Keyboard_back_Icon()
-    """""""change password link is not opening the correct page---SMBM-1098, due to this bug could not automate"""""
-    """""""change email is not yet implemented so could not automate this"""""""""
-    """stop the app"""
-    common_method.Stop_The_App()
+    test_steps = {
+        1: [1, 'Go to Account Profile page.'],
+        2: [2, 'Clear First Name and Last Name text boxes.'],
+        3: [3,
+            'Go to Home page then back again to Account Profile page.\nVerify the original values for First Name and Last Name are displayed.'],
+        4: [4,
+            'Edit First Name with a name containing more than 30 characters.\nVerify First Name is updated and alert message "User account updated" is displayed.\nVerify Profile Account is updated.'],
+        5: [5,
+            'Edit First Name with a name containing special characters.!@#$%^&*()_+?,\nVerify First Name is updated and alert message "User account updated" is displayed.\nVerify Profile Account is updated.'],
+        6: [6,
+            'Edit First Name with a name containing numbers.\nVerify First Name is updated and alert message "User account updated" is displayed.\nVerify Profile Account is updated.'],
+        7: [7,
+            'Edit First Name with a name containing space.\nVerify First Name is updated and alert message "User account updated" is displayed.\nVerify Profile Account is updated.'],
+        8: [8, 'Repeat steps 5-8 for Last Name textbox.'],
+        9: [9,
+            'Click Change Password link.\nVerify Password Recovery page is displayed.\nNotes: BUG SMBM-1098 when the user clicks on the Change Password link on the Account Settings page, they are brought to a Password Recovery page where they need to enter their username to continue. This is the wrong page. after this bug fixed, this cases should be updated at that time'],
+        10: [10,
+             'Input invalid username.\nVerify error message "Please enter a valid email address or username." is displayed.'],
+        11: [11, 'Input valid username then click Submit.\nVerify Change Password page is displayed.'],
+        12: [12,
+             'Input invalid old password, valid new password. Click Submit.\nVerify error message "The current password provided for the user is invalid" is displayed.'],
+        13: [13,
+             'Go to Change Password page, input valid old password, invalid new password.\nVerify error message "Password MUST contain one lowercase, one uppercase letter, one number and a special character. Password MUST NOT contain spaces or tabs." is displayed.'],
+        14: [14,
+             'Input valid old password, valid new password, different value for confirm password.\nVerify error message "Password and Confirm Password must match." is displayed.'],
+        15: [15, 'Input valid old/new/confirm passwords. Click Submit.\nVerify Success page is displayed.'],
+        16: [16,
+             'Click "Click here" link to login with the new password.\nVerify user is redirected to the homepage. [SMBIT-291]'],
+        17: [17, 'Click Return to Login button.\nVerify login page is displayed. [SMBIT-291]'],
+        18: [18,
+             'Verify change email is NOT yet currently implemented. [Note: Steps to be updated once it is already implemented.]'],
+        19: [19,
+             'Login to Web Portal.\nVerify the updated First Name, Last Name and Password performed via Mobile App is reflected correctly in the Web Portal.']
+    }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
+    stepId = 1
+
+    try:
+        # Step 1: Go to Account Profile page
+        start_time = time.time()
+
+        """""""start the app"""""""
+        common_method.tearDown()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        """""click hamburger menu"""""
+        login_page.click_Menu_HamburgerICN()
+        """"click on the pen icon near the user name"""
+        app_settings_page.click_pen_Icon_near_UserName()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 2: Clear First Name and Last Name text boxes
+        start_time = time.time()
+
+        """""""verify First name text is present"""""""
+        app_settings_page.Is_Present_First_Name_Text()
+        """""""verify last name text is present"""""""
+        app_settings_page.Is_Present_Last_Name_Text()
+        """""click first name text field"""
+        app_settings_page.click_First_Name_Text_Field()
+        """"clear first name field"""
+        sleep(3)
+        app_settings_page.clear_First_Name()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 3: Go to Home page then back again to Account Profile page
+        # Verify the original values for First Name and Last Name are displayed
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4: Edit First Name with a name containing more than 30 characters
+        # Verify First Name is updated and alert message "User account updated" is displayed
+        # Verify Profile Account is updated
+        start_time = time.time()
+
+        """""Update first name with special characters with 30 characters"""
+        app_settings_page.Update_First_Name_With_Special_Characters_with_30_characters()
+        sleep(3)
+        poco.scroll()
+        """""click last name text field"""
+        app_settings_page.click_Last_Name_Text_Field()
+        """"clear Last name field"""
+        app_settings_page.clear_Last_Name()
+        """""Update last name with special characters with 30 characters"""
+        app_settings_page.Update_Last_Name_With_Special_Characters_with_30_characters()
+        sleep(3)
+        """""click keyboard back icon"""
+        app_settings_page.click_Keyboard_back_Icon()
+        """"verify the updated names message"""
+        app_settings_page.verify_Your_changes_have_been_saved_Message()
+        sleep(3)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 5: Edit First Name with a name containing special characters
+        # Verify First Name is updated and alert message "User account updated" is displayed
+        # Verify Profile Account is updated
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 6: Edit First Name with a name containing numbers
+        # Verify First Name is updated and alert message "User account updated" is displayed
+        # Verify Profile Account is updated
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 7: Edit First Name with a name containing space
+        # Verify First Name is updated and alert message "User account updated" is displayed
+        # Verify Profile Account is updated
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 8: Repeat steps 5-8 for Last Name textbox
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 9: Click Change Password link
+        # Verify Password Recovery page is displayed
+        start_time = time.time()
+
+        sleep(5)
+
+
+        """""click last name text field"""
+        app_settings_page.click_Last_Name_Text_Field()
+        """"clear Last name field"""
+        app_settings_page.clear_Last_Name()
+        """Update the default Last name"""
+        app_settings_page.Update_Default_Last_Name()
+        app_settings_page.click_Keyboard_back_Icon()
+        sleep(3)
+        login_page.click_Menu_HamburgerICN()
+        app_settings_page.click_pen_Icon_near_UserName()
+        """""click First name text field"""
+        app_settings_page.click_First_Name_Text_Field()
+        """"clear First name field"""
+        app_settings_page.clear_First_Name()
+        """Update the default First name"""
+        app_settings_page.Update_Default_First_Name()
+        app_settings_page.click_Keyboard_back_Icon()
+        """""""change password link is not opening the correct page---SMBM-1098, due to this bug could not automate"""""
+        """""""change email is not yet implemented so could not automate this"""""""""
+        """stop the app"""
+        common_method.Stop_The_App()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 10: Input invalid username
+        # Verify error message "Please enter a valid email address or username." is displayed
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 11: Input valid username then click Submit
+        # Verify Change Password page is displayed
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 12: Input invalid old password, valid new password. Click Submit
+        # Verify error message "The current password provided for the user is invalid" is displayed
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 13: Go to Change Password page, input valid old password, invalid new password
+        # Verify error message "Password MUST contain one lowercase, one uppercase letter, one number and a special character. Password MUST NOT contain spaces or tabs." is displayed
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 14: Input valid old password, valid new password, different value for confirm password
+        # Verify error message "Password and Confirm Password must match." is displayed
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 15: Input valid old/new/confirm passwords. Click Submit
+        # Verify Success page is displayed
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 16: Click "Click here" link to login with the new password
+        # Verify user is redirected to the homepage [SMBIT-291]
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 17: Click Return to Login button
+        # Verify login page is displayed [SMBIT-291]
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 18: Verify change email is NOT yet currently implemented
+        # [Note: Steps to be updated once it is already implemented]
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 19: Login to Web Portal
+        # Verify the updated First Name, Last Name and Password performed via Mobile App is reflected correctly in the Web Portal
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+    except Exception as e:
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47810():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Launch ZSB mobile app'],
         2: [2, 'Navigate to left slide page to click the button \'Add a Printer\''],
@@ -794,6 +1279,9 @@ def test_AppSettings_TestcaseID_47810():
         5: [5,
             'Verify "Recently Printed Labels" text is displayed. Check "Recently Printed Labels" text is displayed properly. There should not be any overlap in text.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -811,21 +1299,24 @@ def test_AppSettings_TestcaseID_47810():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47810"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Navigate to left slide page to click the button 'Add a Printer'"
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47810"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Register printer to mobile app"
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47810"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Go to Home > Recently Printed Designs."
@@ -841,7 +1332,8 @@ def test_AppSettings_TestcaseID_47810():
         sleep(1)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47810"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 5: "Verify "Recently Printed Labels" text is displayed. Check "Recently Printed Labels" text is displayed properly. There should not be any overlap in text."
@@ -857,21 +1349,34 @@ def test_AppSettings_TestcaseID_47810():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47810"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
     except Exception as e:
-        insert_step(execID, leftId["47810"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47820():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Open the app and login the account to go to the overview page (recently printed labels).'],
         2: [2, 'Scroll to the bottom of the list. Check all designs are fully visible in Home page.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -904,7 +1409,8 @@ def test_AppSettings_TestcaseID_47820():
         app_settings_page.Is_Present_Firstone_In_Recently_Printed_Label()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47820"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Scroll to the bottom of the list. Check all designs are fully visible in Home page."
@@ -918,18 +1424,28 @@ def test_AppSettings_TestcaseID_47820():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47820"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47820"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47825():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Mobile App'],
         2: [2, 'In home page, click pen icon go to user setting page'],
@@ -942,6 +1458,9 @@ def test_AppSettings_TestcaseID_47825():
         8: [8,
             'Re-login Mobile App, check user can login without issue. Check ZSB app shouldn\'t throw any logout error in any scenarios']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -964,7 +1483,8 @@ def test_AppSettings_TestcaseID_47825():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47825"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "In home page, click pen icon go to user setting page"
@@ -978,7 +1498,8 @@ def test_AppSettings_TestcaseID_47825():
         app_settings_page.Is_Present_User_Settings_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47825"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Check on the bottom of the page, "Delete Account" button shows next to Logout button"
@@ -990,7 +1511,8 @@ def test_AppSettings_TestcaseID_47825():
         app_settings_page.Is_Present_Logout_Btn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47825"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Click Delete Account button, check Delete Account page shows up. There are 3 items that need acknowledgement and checking before continuing."
@@ -1012,7 +1534,8 @@ def test_AppSettings_TestcaseID_47825():
         app_settings_page.verify_Security_Message_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47825"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 5: "Click Cancel button, check Delete Account page closed and user setting page is shown"
@@ -1024,7 +1547,8 @@ def test_AppSettings_TestcaseID_47825():
         app_settings_page.Is_Present_User_Settings_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47825"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 6: "Click Delete Account button again, check Delete Account page shows up again"
@@ -1037,12 +1561,30 @@ def test_AppSettings_TestcaseID_47825():
         """""verify & click on second checkbox """
         app_settings_page.click_Second_Checkbox()
         app_settings_page.click_Third_Checkbox()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 7: "Click Cancel button and logout"
+        start_time = time.time()
+
         """"click on the confirm button to delete the account"""
         app_settings_page.click_Confirm_Btn_To_DeleteAccount()
         """"verify zebra logo is present"""
         app_settings_page.Is_Present_Zebra_Logo()
         """verify ZSB printer image is displaying"""""
         app_settings_page.Is_Present_ZSB_Printer_Icon()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 8: "Re-login Mobile App, check user can login without issue. Check ZSB app shouldn't throw any logout error in any scenarios"
+        start_time = time.time()
+
         """""Verify login page Important messsage text"""
         app_settings_page.Verify_Login_Page_Important_Message_Text()
         """click on login button"""
@@ -1062,24 +1604,37 @@ def test_AppSettings_TestcaseID_47825():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47825"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47825"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47879():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Mobile App'],
         2: [2, 'Click Add a Printer button'],
         3: [3,
             'Click Start button. It will go Searching for your printer page, check the search for your printer page UI.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1098,7 +1653,8 @@ def test_AppSettings_TestcaseID_47879():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47879"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Add a Printer button"
@@ -1109,7 +1665,8 @@ def test_AppSettings_TestcaseID_47879():
         add_a_printer_screen.click_Add_A_Printer()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47879"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click Start button. It will go Searching for your printer page, check the search for your printer page UI."
@@ -1132,18 +1689,28 @@ def test_AppSettings_TestcaseID_47879():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47879"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47879"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47880():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Mobile App'],
         2: [2, 'Click Add a Printer button'],
@@ -1151,6 +1718,9 @@ def test_AppSettings_TestcaseID_47880():
         4: [4,
             'Click the Blue text message on the bottom of the searching page "My Printer\'s LED Is Not Flashing Blue What Does The LED Light Indicator Mean", check Printer LED Guide dialog pops up.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1166,7 +1736,8 @@ def test_AppSettings_TestcaseID_47880():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47880"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Add a Printer button"
@@ -1178,7 +1749,8 @@ def test_AppSettings_TestcaseID_47880():
         add_a_printer_screen.click_Add_A_Printer()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47880"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click Start button. It will go Searching for your printer page"
@@ -1189,7 +1761,8 @@ def test_AppSettings_TestcaseID_47880():
         add_a_printer_screen.Verify_Lets_Make_Sure_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47880"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: 'Click the Blue text message on the bottom of the searching page "My Printer\'s LED Is Not Flashing Blue What Does The LED Light Indicator Mean", check Printer LED Guide dialog pops up.'
@@ -1205,12 +1778,19 @@ def test_AppSettings_TestcaseID_47880():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47880"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47880"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1218,6 +1798,9 @@ def test_AppSettings_TestcaseID_47880():
 
 # ###bug id-SMBM-1684
 def test_AppSettings_TestcaseID_47911():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Log in to the ZSB App with printer added.'],
         2: [2, 'Click Printer Settings'],
@@ -1226,6 +1809,9 @@ def test_AppSettings_TestcaseID_47911():
         5: [5,
             'Try Changing darkness level or Change "Auto Label Feed on Printer Cover" value.Check auto Label Feed On Printer Cover Close value should show Enable / Disable not in loading or in progress.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1242,7 +1828,8 @@ def test_AppSettings_TestcaseID_47911():
         app_settings_page.Verify_Printer_is_already_added()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47911"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Printer Settings"
@@ -1254,7 +1841,8 @@ def test_AppSettings_TestcaseID_47911():
         app_settings_page.click_Printer_Settings()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47911"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click printer tab"
@@ -1264,7 +1852,8 @@ def test_AppSettings_TestcaseID_47911():
         app_settings_page.click_PrinterName_On_Printersettings()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47911"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Check printer General tab information"
@@ -1276,7 +1865,8 @@ def test_AppSettings_TestcaseID_47911():
         app_settings_page.Verify_Printer_Name_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47911"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 5: "Try Changing darkness level or Change 'Auto Label Feed on Printer Cover' value. Check auto Label Feed On Printer Cover Close value should show Enable / Disable not in loading or in progress."
@@ -1296,24 +1886,37 @@ def test_AppSettings_TestcaseID_47911():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47911"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47911"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47914():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'A printer has been paired, Click the burger icon and click Add A Printer button. No paired printer: Click Add A Printer in Home Page'],
         2: [2,
             'Click Start button and check the printer list. Check it discovers and displays all printer information accurately']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1333,7 +1936,8 @@ def test_AppSettings_TestcaseID_47914():
         login_page.click_Menu_HamburgerICN()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47914"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Start button and check the printer list. Check it discovers and displays all printer information accurately"
@@ -1357,18 +1961,28 @@ def test_AppSettings_TestcaseID_47914():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47914"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47914"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47915():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Log in to the app with an account that has added a printer'],
         2: [2, 'Click "Add A Printer" and enter the Bluetooth list of printer'],
@@ -1376,6 +1990,9 @@ def test_AppSettings_TestcaseID_47915():
         4: [4,
             'Click show all printers to compare the list with the one in which show all printers is not selected. Check If "show all printers" is not selected, the added printers will not be displayed']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1394,7 +2011,8 @@ def test_AppSettings_TestcaseID_47915():
         app_settings_page.Home_text_is_present_on_homepage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47915"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click 'Add A Printer' and enter the Bluetooth list of printer"
@@ -1411,19 +2029,45 @@ def test_AppSettings_TestcaseID_47915():
         add_a_printer_screen.Click_Next_Button()
         """"Verify searching for your printer text"""
         add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 3: "Browse the printer Bluetooth list to see if you can find the printer you have added"
+        start_time = time.time()
+
         """"verify select your printer text"""
         add_a_printer_screen.Verify_Select_your_printer_Text()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 4: "Click show all printers to compare the list with the one in which show all printers is not selected. Check If "show all printers" is not selected, the added printers will not be displayed"
+        start_time = time.time()
+
+        sleep(10)
         """"select 2nd printer which you want to add"""
         ### add_a_printer_screen.click_2nd_Printer_Details_To_Add()
         """stop the app"""
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47911"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
     except Exception as e:
-        insert_step(execID, leftId["47915"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1431,6 +2075,9 @@ def test_AppSettings_TestcaseID_47915():
 
 # ######bug id---SMBM-2644
 def test_AppSettings_TestcaseID_47917():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login into ZSB Mobile App'],
         2: [2, 'Go to Mobile app -> Printer Settings'],
@@ -1440,6 +2087,9 @@ def test_AppSettings_TestcaseID_47917():
         6: [6,
             'Go to other page (like home page). Check When the printer name is longer than 30 characters then we suggest it should remind users that the printer\'s name is too long to save. App navigates to other page smoothly.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1455,7 +2105,8 @@ def test_AppSettings_TestcaseID_47917():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47917"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Go to Mobile app -> Printer Settings"
@@ -1469,7 +2120,8 @@ def test_AppSettings_TestcaseID_47917():
         app_settings_page.click_Printer_Settings()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47917"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click the printer tab at printer settings page"
@@ -1478,7 +2130,8 @@ def test_AppSettings_TestcaseID_47917():
         app_settings_page.click_PrinterName_On_Printersettings()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47917"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Rename the Printer Name with a long text (more than 30 characters)"
@@ -1490,14 +2143,18 @@ def test_AppSettings_TestcaseID_47917():
         app_settings_page.Rename_PrinterName_With30_Characters()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47917"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 5: "After printer's name updated, click printer's name tab and swipe left and right at the tab"
         start_time = time.time()
 
+        sleep(5)
+
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47917"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 6: "Go to other page (like home page). Check When the printer name is longer than 30 characters then we suggest it should remind users that the printer's name is too long to save. App navigates to other page smoothly."
@@ -1515,18 +2172,28 @@ def test_AppSettings_TestcaseID_47917():
         """stop the app"""
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47917"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47917"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # ###bug id---SMBM-2243
 def test_AppSettings_TestcaseID_50333():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Sign in test account, add a printer'],
         2: [2, 'Go to Printer Settings/Printer name/Wi-Fi tab'],
@@ -1538,6 +2205,9 @@ def test_AppSettings_TestcaseID_50333():
         7: [7,
             'Click Device’s Back button. Check the “Bluetooth Connection Failed” dialog would disappear and stay at Wi-Fi tab since user clicked back button']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1554,7 +2224,8 @@ def test_AppSettings_TestcaseID_50333():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Go to Printer Settings/Printer name/Wi-Fi tab"
@@ -1570,7 +2241,8 @@ def test_AppSettings_TestcaseID_50333():
         app_settings_page.click_wifi_tab()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click Manage Networks"
@@ -1580,7 +2252,8 @@ def test_AppSettings_TestcaseID_50333():
         app_settings_page.click_Manage_Networks_Btn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "The “Bluetooth Connection Required” dialog pops up, click Device’s Back button. Check the “Bluetooth Connection Required” dialog would disappear and stay at Wi-Fi tab since user clicked back button"
@@ -1592,7 +2265,8 @@ def test_AppSettings_TestcaseID_50333():
         app_settings_page.click_Keyboard_back_Icon()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 5: "Click manage network again, when the “Bluetooth Connection Required” dialog pops up, click continue"
@@ -1600,7 +2274,8 @@ def test_AppSettings_TestcaseID_50333():
         """""Due to bug id SMBM-2243, step 5 is blocked"""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 6: "Turn off printer. Check the "Bluetooth Connection Failed" pops up"
@@ -1609,7 +2284,8 @@ def test_AppSettings_TestcaseID_50333():
         """Turn off printer Manually"""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 7: "Click Device’s Back button. Check the “Bluetooth Connection Failed” dialog would disappear and stay at Wi-Fi tab since user clicked back button"
@@ -1625,12 +2301,19 @@ def test_AppSettings_TestcaseID_50333():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["50333"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 #
@@ -1638,12 +2321,18 @@ def test_AppSettings_TestcaseID_50333():
 
 
 def test_AppSettings_TestcaseID_47923():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login the account A to Android, iOS, and web portal client.'],
         2: [2, 'Log out the account A from the Android version.'],
         3: [3, 'Click the "login" button of the Android version.'],
         4: [4, 'It would open the browser, and click the "reset password" link to reset the password of the account A.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1659,7 +2348,8 @@ def test_AppSettings_TestcaseID_47923():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47923"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Log out the account A from the Android version."
@@ -1671,7 +2361,8 @@ def test_AppSettings_TestcaseID_47923():
         app_settings_page.click_Logout_Btn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47923"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click the "login" button of the Android version."
@@ -1682,6 +2373,15 @@ def test_AppSettings_TestcaseID_47923():
         login_page.click_Password_TextField()
         login_page.Enter_Zebra_Password()
         login_page.click_SignIn_Button()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 4: "It would open the browser, and click the "reset password" link to reset the password of the account A."
+        start_time = time.time()
+
         login_page.click_Menu_HamburgerICN()
         app_settings_page.click_pen_Icon_near_UserName()
         app_settings_page.Scroll_till_Delete_Account()
@@ -1693,18 +2393,28 @@ def test_AppSettings_TestcaseID_47923():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47923"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47923"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47956():
+
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
 
     test_steps = {
         1: [1, 'Log in to ZSB Series App'],
@@ -1714,6 +2424,9 @@ def test_AppSettings_TestcaseID_47956():
         5: [5, 'In the default file list page, find the image file and click on it to upload it'],
         6: [6, 'The upload progress is displayed and the image is uploaded successfully']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1729,7 +2442,8 @@ def test_AppSettings_TestcaseID_47956():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47956"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click on the burger menu in the upper left corner, and then click on the pencil icon to enter the user information setting page"
@@ -1743,7 +2457,8 @@ def test_AppSettings_TestcaseID_47956():
         app_settings_page.Is_Present_User_Settings_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47956"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click the "Upload Photo" button under "Avatar" and select "Photo Gallery""
@@ -1755,8 +2470,36 @@ def test_AppSettings_TestcaseID_47956():
         app_settings_page.click_Mobile_Camera()
         """""click allow if it is present"""
         app_settings_page.Click_Allow_popup()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 4: "In the upper left corner of the window that opens, click on the Burger menu and then click on the One Drive icon to open the default file list page"
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 5: "In the default file list page, find the image file and click on it to upload it"
+        start_time = time.time()
+
         """"click on click picture icon"""
         app_settings_page.click_picture()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 6: "The upload progress is displayed and the image is uploaded successfully"
+        start_time = time.time()
+
         """"Verify photo uploaded message"""""
         app_settings_page.Verify_Photo_Uploaded_Message()
         """"click user photo remove image"""
@@ -1764,17 +2507,27 @@ def test_AppSettings_TestcaseID_47956():
         """stop the app"""
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47956"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47956"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_50325():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Sign in test account, go to Printer settings/Printer name/Wi-fi tab'],
         2: [2, 'Click Manage network, pair bluetooth if needed. Check able to see the "Add network" option'],
@@ -1791,6 +2544,9 @@ def test_AppSettings_TestcaseID_50325():
             'Exit Manage network, go back to home page. Check printer is online status. Check the wi-fi signal is correct'],
         9: [9, 'Try to print a test label or any design. Check able to print label']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1810,7 +2566,8 @@ def test_AppSettings_TestcaseID_50325():
         app_settings_page.click_wifi_tab()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50325"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Manage network, pair bluetooth if needed. Check able to see the 'Add network' option"
@@ -1820,7 +2577,8 @@ def test_AppSettings_TestcaseID_50325():
         app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50325"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click on Add network button. Check the network list will show up and available networks are listed"
@@ -1829,7 +2587,8 @@ def test_AppSettings_TestcaseID_50325():
         app_settings_page.click_Add_Network()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50325"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Click the 'Enter network manually' option, input an open essid, click Cancel button. Check it will stay in the network list"
@@ -1840,7 +2599,8 @@ def test_AppSettings_TestcaseID_50325():
         app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50325"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 5: "Click the 'Enter network manually' option, input an essid with pw, input correct pw, click Cancel button. Check it will stay in the network list"
@@ -1854,7 +2614,18 @@ def test_AppSettings_TestcaseID_50325():
         app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50325"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 6: "Click the 'Enter network manually' option, input an open essid, click Join button. Check it will go back to manage network page. Check the input essid will show up in the added network list"
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 7: "Click Add network button again, click the 'Enter network manually' option, input an essid with pw, input correct pw, click join button. Check it will go back to manage network page. Check the input essid will show up in the added network list"
@@ -1866,27 +2637,59 @@ def test_AppSettings_TestcaseID_50325():
         app_settings_page.Verify_Added_Network()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["50325"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
+        # step 8: "Exit Manage network, go back to home page. Check printer is online status. Check the wi-fi signal is correct"
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 9: "Try to print a test label or any design. Check able to print label"
+        start_time = time.time()
+
+        sleep(5)
         """stop the app"""
         common_method.Stop_The_App()
 
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
     except Exception as e:
-        insert_step(execID, leftId["50325"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_49960():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Mobile App with Test account'],
         2: [2, 'Click Pen icon go to user profile page'],
         3: [3,
             'Click Change password, check it will open a new window show change password page (SMBUI-2648). Check the URL should be updated to https://stagec-signup.zebra.com/content/userreg/change-password-landing.html. Check the change password page URL contains: callback url, response_type, client_id, and redirect_url parameters']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1914,7 +2717,8 @@ def test_AppSettings_TestcaseID_49960():
         login_page.click_SignIn_Button()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["49960"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Pen icon go to user profile page"
@@ -1924,7 +2728,8 @@ def test_AppSettings_TestcaseID_49960():
         app_settings_page.click_pen_Icon_near_UserName()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["49960"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click Change password, check it will open a new window show change password page (SMBUI-2648). Check the URL should be updated to https://stagec-signup.zebra.com/content/userreg/change-password-landing.html. Check the change password page URL contains: callback url, response_type, client_id, and redirect_url parameters"
@@ -1937,12 +2742,19 @@ def test_AppSettings_TestcaseID_49960():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["49960"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["49960"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 
@@ -1950,6 +2762,9 @@ def test_AppSettings_TestcaseID_49960():
 
 # ####bug id---SMBM-2234
 def test_AppSettings_TestcaseID_49961():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Mobile App with Test account'],
         2: [2, 'Click Pen icon go to user profile page'],
@@ -1961,6 +2776,9 @@ def test_AppSettings_TestcaseID_49961():
         8: [8, 'Input username and new password, click sign check user login success'],
         9: [9, 'Click Return to login button or click "Click here", it will navigate to login page']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1976,7 +2794,8 @@ def test_AppSettings_TestcaseID_49961():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["49961"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Pen icon go to user profile page"
@@ -1987,7 +2806,8 @@ def test_AppSettings_TestcaseID_49961():
         app_settings_page.Scroll_till_Delete_Account()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["49961"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Click Change password, check it will open a new window show change password page"
@@ -1998,10 +2818,53 @@ def test_AppSettings_TestcaseID_49961():
         app_settings_page.Verify_Password_Recovery_Text_Is_Displaying()
         app_settings_page.click_Password_Recovery_Email_TextField()
         app_settings_page.click_Submit_On_Password_Recovery_Screen()
+
+        raise Exception("Step 4 - 9 blocked due to bug SMBM-2234 & SMBM-1098")
         """"other steps are blocked due to SMBM-2234 & SMBM-1098"""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["49961"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 4: "Check username auto populate in Password Recovery page"
+        start_time = time.time()
+        # Add your step implementation here
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 5: "Click Submit button, check it will go next page: change password"
+        start_time = time.time()
+        # Add your step implementation here
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 6: "Input Old password, new password, confirm password"
+        start_time = time.time()
+        # Add your step implementation here
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 7: "Click Submit button, check it will go Success page"
+        start_time = time.time()
+        # Add your step implementation here
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 8: "Input username and new password, click sign check user login success"
+        start_time = time.time()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 9: "Click Return to login button or click "Click here", it will navigate to login page"
@@ -2012,18 +2875,28 @@ def test_AppSettings_TestcaseID_49961():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["49961"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["49961"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_51702():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Sign in the test account, go to Notification Settings tab. Check the toggle buttons under this tab are correct (The color of round dot part is much darker, the left part is lighter)'],
@@ -2032,6 +2905,9 @@ def test_AppSettings_TestcaseID_51702():
         3: [3,
             'Change to another theme, repeat step 1 and 2. Check the toggle buttons are updated to the theme color accordingly']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2060,7 +2936,8 @@ def test_AppSettings_TestcaseID_51702():
         app_settings_page.Verify_NotificationSettings_Toggle_Buttons_Text_Present()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51702"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click on Messages tab. Check the toggle buttons under this tab are correct (The color of round dot part is much darker, the left part is lighter)"
@@ -2074,7 +2951,8 @@ def test_AppSettings_TestcaseID_51702():
         app_settings_page.Verify_Messages_Text_And_Toggle_Buttons()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51702"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Change to another theme, repeat step 1 and 2. Check the toggle buttons are updated to the theme color accordingly"
@@ -2114,18 +2992,28 @@ def test_AppSettings_TestcaseID_51702():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51702"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["51702"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 #
 def test_AppSettings_TestcaseID_51788():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Open Web Portal/Mobile App/Windows Driver/Mac Driver and go sign in page.'],
         2: [2, 'Click "Sign In with your email" button in the login page. Check user will be navigate to sign in page'],
@@ -2134,6 +3022,9 @@ def test_AppSettings_TestcaseID_51788():
         4: [4,
             'Go to user profile click Log out button. Check user is successfully log out and navigate to the logout page with prompt "You have successfully signed off."']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2151,7 +3042,28 @@ def test_AppSettings_TestcaseID_51788():
         login_page.click_Allow_ZSB_Series_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51702"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 2: 'Click "Sign In with your email" button in the login page. Check user will be navigate to sign in page'
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # step 3: 'Enter registered non-zebra account username with correct password. Check user is successfully login and display current username'
+        start_time = time.time()
+
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Go to user profile click Log out button. Check user is successfully log out and navigate to the logout page with prompt 'You have successfully signed off.'"
@@ -2176,18 +3088,29 @@ def test_AppSettings_TestcaseID_51788():
         app_settings_page.Home_text_is_present_on_homepage()
         """stop the app"""
         common_method.Stop_The_App()
+
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51702"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["51702"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_51705():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Sign in test account, click pen icon to open user settings page. Check the user settings page shows up'],
@@ -2197,6 +3120,9 @@ def test_AppSettings_TestcaseID_51705():
         4: [4,
             'Click the Use Photo option. Check the photo can be uploaded successfully. Check the user avatar is updated']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2219,7 +3145,8 @@ def test_AppSettings_TestcaseID_51705():
         app_settings_page.Is_Present_User_Settings_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51705"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 2: "Click Upload Photo option, select Camera option (Allow access if needed). Check the camera is opened"
@@ -2233,7 +3160,8 @@ def test_AppSettings_TestcaseID_51705():
         app_settings_page.Click_Allow_popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51705"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 3: "Take a photo, after taking the photo, click on the photo anywhere (This is the key step to reproduce the issue). Check there is no odd behavior"
@@ -2243,7 +3171,8 @@ def test_AppSettings_TestcaseID_51705():
         app_settings_page.click_picture()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51705"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # step 4: "Click the Use Photo option. Check the photo can be uploaded successfully. Check the user avatar is updated"
@@ -2257,12 +3186,19 @@ def test_AppSettings_TestcaseID_51705():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["51705"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["51705"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -2270,6 +3206,9 @@ def test_AppSettings_TestcaseID_51705():
 
 # #####bug id----SMBM-951
 def test_AppSettings_TestcaseID_47924():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Login tray app with user with 2+ printers (different names). Check that both printers are shown in printers and scanners dialog'],
@@ -2277,6 +3216,9 @@ def test_AppSettings_TestcaseID_47924():
             'Modify the printers with the same name via web portal or mobile app and save. Check that the printers are updated with the same name in Tray app'],
         3: [3, 'Open printers and scanners dialog. The printer names remain the previous ones']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2309,7 +3251,8 @@ def test_AppSettings_TestcaseID_47924():
         add_a_printer_screen.click_Exit_Btn_On_Exit_Printer_Setup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47924"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: "Modify the printers with the same name via web portal or mobile app and save. Check that the printers are updated with the same name in Tray app"
@@ -2333,7 +3276,8 @@ def test_AppSettings_TestcaseID_47924():
         app_settings_page.click_Continue_Button_On_Printer_Update_Failed_Popup()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47924"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: "Open printers and scanners dialog. The printer names remain the previous ones"
@@ -2348,12 +3292,19 @@ def test_AppSettings_TestcaseID_47924():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47924"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47924"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -2361,6 +3312,9 @@ def test_AppSettings_TestcaseID_47924():
 
 # ###bug id---SMBM-1937
 def test_AppSettings_TestcaseID_47910():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login in mobile app with test account already added one printer'],
         2: [2, 'Check printer current prints left count'],
@@ -2369,6 +3323,9 @@ def test_AppSettings_TestcaseID_47910():
         4: [4,
             'Pull down screen to refresh home page. Check after pull down screen, home page will refresh and the print left count will be updated']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2385,7 +3342,8 @@ def test_AppSettings_TestcaseID_47910():
         app_settings_page.Verify_Printer_is_already_added()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47910"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: "Check printer current prints left count"
@@ -2396,7 +3354,8 @@ def test_AppSettings_TestcaseID_47910():
         print(previous)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47910"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: "Press printer button to feed one label or print a label from web portal with the same test account or print a label from another test device with the same test account"
@@ -2417,7 +3376,8 @@ def test_AppSettings_TestcaseID_47910():
             sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47910"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: "Pull down screen to refresh home page. Check after pull down screen, home page will refresh and the print left count will be updated"
@@ -2443,18 +3403,28 @@ def test_AppSettings_TestcaseID_47910():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47910"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47910"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 def test_AppSettings_TestcaseID_47881():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Mobile App with user already added printer'],
         2: [2, 'Click 3-dot menu of the target printer and select delete option'],
@@ -2462,6 +3432,9 @@ def test_AppSettings_TestcaseID_47881():
         4: [4,
             'Check the second Delete Printer dialog pop up, click "Yes, Delete" button. Check with small size screen device, the "How to unpair Bluetooth" drop down list is fully displayed and click on it, it shouldn\'t extend out of UX design.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2484,7 +3457,8 @@ def test_AppSettings_TestcaseID_47881():
         app_settings_page.Home_text_is_present_on_homepage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47881"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: "Click 3-dot menu of the target printer and select delete option"
@@ -2496,7 +3470,8 @@ def test_AppSettings_TestcaseID_47881():
         app_settings_page.click_Delete_Printer_Button()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47881"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: "Check the first Delete dialog pop up, click 'Delete' button on the dialog"
@@ -2505,22 +3480,42 @@ def test_AppSettings_TestcaseID_47881():
         """verify delete printer page"""
         app_settings_page.Verify_Delete_Printer_Page()
         """"click Cancel on printer button"""
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4: "Check the second Delete Printer dialog pop up, click "Yes, Delete" button. Check with small size screen device, the "How to unpair Bluetooth" drop down list is fully displayed and click on it, it shouldn\'t extend out of UX design."
+        start_time = time.time()
+
         app_settings_page.Click_Cancel_On_Delete_Printer_Page()
+        sleep(5)
         """stop the app"""
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47881"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47881"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_AppSettings_TestcaseID_47928():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Dashboard'],
         2: [2, 'Click Delete on 3 dots on top right of Printer pane window'],
@@ -2531,6 +3526,9 @@ def test_AppSettings_TestcaseID_47928():
             'Clicking on Delete takes user to another window with the same label containing text "Are you sure you want to delete your printer" and 2 options "Cancel" and "Yes, Delete"'],
         6: [6, 'Once user confirms, homepage is displayed with the Printer removed']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2550,7 +3548,8 @@ def test_AppSettings_TestcaseID_47928():
         app_settings_page.Verify_Printer_Text()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47928"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: "Click Delete on 3 dots on top right of Printer pane window"
@@ -2561,7 +3560,8 @@ def test_AppSettings_TestcaseID_47928():
         app_settings_page.click_Delete_Printer_Button()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47928"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: 'Window labeled "Delete Printer" pops up with content as per Figma Link "https://www.figma.com/file/nb0snywkjEs0aqGhRveDMn/SMB-Visual-Designs?node-id=0-1" with 2 options "Cancel" and "Delete"'
@@ -2571,7 +3571,8 @@ def test_AppSettings_TestcaseID_47928():
         app_settings_page.Verify_Delete_Printer_Page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47928"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: "Clicking on Cancel takes user back to Dashboard with no changes"
@@ -2580,7 +3581,8 @@ def test_AppSettings_TestcaseID_47928():
         app_settings_page.Click_Cancel_On_Delete_Printer_Page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47928"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: 'Clicking on Delete takes user to another window with the same label containing text "Are you sure you want to delete your printer" and 2 options "Cancel" and "Yes, Delete"'
@@ -2611,7 +3613,8 @@ def test_AppSettings_TestcaseID_47928():
         app_settings_page.click_Done_Btn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47928"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: "Once user confirms, homepage is displayed with the Printer removed"
@@ -2622,10 +3625,17 @@ def test_AppSettings_TestcaseID_47928():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47928"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47928"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 ###""""""""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""

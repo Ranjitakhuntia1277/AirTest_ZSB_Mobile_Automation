@@ -11,6 +11,15 @@ from airtest.core.api import *
 from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 from poco.exceptions import PocoTargetTimeout
+import platform
+
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 from ...Common_Method import Common_Method
 from ...PageObject.Help_Screen.Help_Screen import Help_Screen
@@ -48,7 +57,7 @@ class Data_Sources_Screen:
         self.Camera_Shutter = "com.google.android.GoogleCamera:id/shutter_button"
         self.google_search_feild = "com.google.android.googlequicksearchbox:id/googleapp_hint_text"
         self.google_text_field = "com.google.android.googlequicksearchbox:id/googleapp_search_box"
-        self.Bar_Code_Location = Template(r"tpl1707978279280.png", record_pos=(-0.055, 0.03), resolution=(1080, 2340))
+        self.Bar_Code_Location = Template(Basic_path(r"tpl1707978279280.png"), record_pos=(-0.055, 0.03), resolution=(1080, 2340))
         self.File_Info_Device = []
         self.use_image_button = "com.android.camera:id/done_button"
         self.File_Info_App = []
@@ -62,26 +71,22 @@ class Data_Sources_Screen:
         self.Confirm_Btn = "Confirm"
         self.Label_Range = 0
         self.Use_Local_Contacts = "Use Local Contacts"
-        self.Search_Files = Template(r"tpl1705645360605.png", record_pos=(-0.261, -0.571), resolution=(1080, 2340))
+        self.Search_Files = Template(Basic_path(r"tpl1705645360605.png"), record_pos=(-0.261, -0.571), resolution=(1080, 2340))
         self.expectedSearchList = ["Tes1.jpg", "Test2.png", "Test3.bmp"]
         self.Sign_In_With_Microsoft = "Sign in with Microsoft"
-        self.Sign_In_With_Microsoft_Template = Template(
-            os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
-                         "Microsoft_Icon.png"), record_pos=(0.002, 0.183),
+        self.Sign_In_With_Microsoft_Template = Template(Basic_path("Microsoft_Icon.png"), record_pos=(0.002, 0.183),
             resolution=(1080, 2340))
-        self.test_45738 = Template(r"tpl1706683702494.png", record_pos=(0.0, -0.264), resolution=(1080, 2340))
+        self.test_45738 = Template(Basic_path(r"tpl1706683702494.png"), record_pos=(0.0, -0.264), resolution=(1080, 2340))
         self.Sign_In_With_Google = "Sign in with Google"
-        self.Sign_In_With_Google_Template = Template(
-            os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
-                         "Google_Icon.png"), record_pos=(-0.006, 0.017),
+        self.Sign_In_With_Google_Template = Template(Basic_path("Google_Icon.png"), record_pos=(-0.006, 0.017),
             resolution=(1080, 2340))
         self.Select = "Select"
         self.File_Name_Web = ""
         # self.search_File_Name = ""
-        self.is_already_linked = Template(r"tpl1706012736859.png", record_pos=(-0.139, 0.898), resolution=(1080, 2340))
+        self.is_already_linked = Template(Basic_path(r"tpl1706012736859.png"), record_pos=(-0.139, 0.898), resolution=(1080, 2340))
         self.Use_Your_Password_Instead = "idA_PWD_SwitchToPassword"
-        self.Enter_Password = Template(r"Password.png", record_pos=(-0.063, -0.556), resolution=(1080, 2340))
-        self.search_Files_In_Link_Files = Template(r"search_files_link_files.png", record_pos=(-0.247, -0.567),
+        self.Enter_Password = Template(Basic_path(r"Password.png"), record_pos=(-0.063, -0.556), resolution=(1080, 2340))
+        self.search_Files_In_Link_Files = Template(Basic_path(r"search_files_link_files.png"), record_pos=(-0.247, -0.567),
                                                    resolution=(1080, 2340))
 
     def click_My_Data(self):
@@ -259,7 +264,10 @@ class Data_Sources_Screen:
         keyevent("Enter")
 
     def click_Menu_HamburgerICNWeb(self):
-        self.poco("android.widget.Image").click()
+        try:
+            self.poco("zsbportal.zebra").click()
+        except:
+            self.poco("android.widget.Image").click()
 
     def clickCreateDesignBtn(self):
         if self.poco(text=self.Create_Btn).exists():
@@ -303,7 +311,7 @@ class Data_Sources_Screen:
         self.poco(text="Add text").click()
 
     def placeText(self):
-        touch(Template(r"Text_Location.png", record_pos=(0.072, 0.32), resolution=(1080, 2400)))
+        touch(Template(Basic_path(r"Text_Location.png"), record_pos=(0.072, 0.32), resolution=(1080, 2400)))
 
     def exitDesigner(self):
         self.poco("android.widget.Button").wait_for_appearance(timeout=10)
@@ -722,10 +730,15 @@ class Data_Sources_Screen:
 
     def verifySignInWithGoogle(self):
         try:
-            assert_exists(self.Sign_In_With_Google_Template)
+            sleep(2)
+            self.poco("Sign in with Google").exists()
             return True
         except:
-            return False
+            try:
+                assert_exists(self.Sign_In_With_Google_Template)
+                return True
+            except:
+                return False
 
     def signInWithMicrosoft(self, username, password, click_template=True):
         # if self.poco(self.Sign_In_With_Microsoft).exists():
@@ -749,7 +762,7 @@ class Data_Sources_Screen:
         except:
             self.poco("i0116").wait_for_appearance(timeout=20)
             self.poco("i0116").click()
-            # username = "zsbswdvt@gmail.com"
+            # username = "zebra03.swdvt@gmail.com"
             self.poco("i0116").set_text(username)
         self.poco(text="Next").click()
         sleep(3)
@@ -762,7 +775,7 @@ class Data_Sources_Screen:
         self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(password)
-        # password = "hmWepX4AUMLa!9E"
+        # password = "Zebra#123456789"
         # self.poco(text(password))
         self.poco(text="Sign in").click()
         if self.poco("Continue").exists():
@@ -780,7 +793,7 @@ class Data_Sources_Screen:
         except:
             self.poco("i0116").wait_for_appearance(timeout=20)
             self.poco("i0116").click()
-            # username = "zsbswdvt@gmail.com"
+            # username = "zebra03.swdvt@gmail.com"
             self.poco("i0116").set_text(username)
         self.poco(text="Next").click()
         sleep(3)
@@ -1393,7 +1406,7 @@ class Data_Sources_Screen:
         add_acc = self.poco(text="Add account to device")
         add_acc.click()
 
-    def chooseAcc(self, Acc_Name="zsbswdvt@gmail.com"):
+    def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
         account = self.poco(text=Acc_Name)
         count = 5
         while not account.exists() and count != 0:
@@ -1461,14 +1474,14 @@ class Data_Sources_Screen:
     def signIn_if_on_SSO_page_web(self):
         sleep(3)
         if self.poco(textMatches="(?s).*pi.zebra.com/as/authorization.oauth2.*").exists():
-            touch(Template(r"Google_Icon.png", record_pos=(-0.319, -0.173), resolution=(1080, 2340)))
+            touch(Template(Basic_path(r"Google_Icon.png"), record_pos=(-0.319, -0.173), resolution=(1080, 2340)))
             self.lock_phone()
             wake()
             try:
                 self.poco(text="Sign in with Google").wait_for_appearance(timeout=15)
             except:
                 raise Exception("Did not navigate to Sign In with google page")
-            account = "zebraidctest@gmail.com"
+            account = "zebra02.swdvt@gmail.com"
             if self.checkIfAccPresent(account):
                 self.chooseAcc(account)
             else:
@@ -1483,7 +1496,7 @@ class Data_Sources_Screen:
                         self.poco.scroll()
                         count-=1
                     self.addAccountToDevice()
-                self.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+                self.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
 
     def checkIfDesignsLoaded(self):
         sleep(10)
@@ -1612,6 +1625,8 @@ class Data_Sources_Screen:
     def get_current_date(self):
         year = datetime.date.today().year
         date = datetime.date.today().day
+        if len(str(date)) == 1:
+            date = "0"+str(date)
         month = self.Month[datetime.date.today().month]
         current_date = str(month) + " " + str(date) + ", " + str(year)
         return current_date
@@ -1638,7 +1653,7 @@ class Data_Sources_Screen:
         self.poco(text="Add picture").click()
 
     def placePhoto(self):
-        touch(Template(r"place_pic.png", record_pos=(-0.008, 0.287), resolution=(1080, 2280)))
+        touch(Template(Basic_path(r"place_pic.png"), record_pos=(-0.008, 0.287), resolution=(1080, 2280)))
 
     def selectFileDrive(self, file_name):
         curr = []
