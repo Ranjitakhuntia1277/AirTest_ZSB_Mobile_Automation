@@ -16,7 +16,7 @@ common_method = Common_Method(poco)
 
 
 def Basic_path(a):
-    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates", a)
+    return os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
 
 
 class Social_Login:
@@ -109,6 +109,7 @@ class Social_Login:
         return temp
 
     def check_zebra_logo(self):
+        sleep(2)
         a = self.poco(type="android.widget.Image", text="Zebra Logo").exists()
         return a
 
@@ -291,6 +292,7 @@ class Social_Login:
         self.poco(nameMatches="(?s).*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def check_username_and_password_feilds(self):
+        sleep(2)
         a = self.poco(text="Username*").exists()
         b = self.poco(text="Password*").exists()
         return a & b

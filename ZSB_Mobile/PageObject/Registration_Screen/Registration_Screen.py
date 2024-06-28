@@ -3,7 +3,8 @@ import os
 import time
 import random
 import string
-
+import tkinter as tk
+from tkinter import messagebox
 from airtest.core.api import *
 # import pytest
 # from pipes import Template
@@ -11,7 +12,6 @@ from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 
 from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen import Login_Screen
 
 common_method = Common_Method(poco)
 
@@ -35,6 +35,13 @@ class Registration_Screen:
         self.Try_Again = "Try Again"
         self.Login = "Login"
 
+    def show_message(self, msg):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)  # Ensure the root window is on top
+        messagebox.showinfo("Notification", msg)
+        root.destroy()
+
     def clickSignIn(self):
         sleep(2)
         signInBtn = self.poco("Sign In")
@@ -49,14 +56,46 @@ class Registration_Screen:
         self.poco(self.Register_Email).wait_for_appearance(timeout=10)
         self.poco(self.Register_Email).click()
 
+    def checkIfOnRegistrationPage(self):
+        try:
+            self.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+        except:
+            raise Exception("register user page didn't show up.")
+
     def click_on_reset_password(self):
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
         self.poco(" Reset Password").focus([0.2, 0.3]).click()
+
+    def checkIfOnSSOLoginPage(self):
+        try:
+            self.wait_for_element_appearance_text("Sign In With")
+        except:
+            raise Exception("Page not at Login with username.")
+        sleep(2)
 
     def check_if_in_password_recovery_page(self):
         try:
             self.wait_for_element_appearance_text("Password Recovery", 20)
         except:
             raise Exception("Did not navigate to 'Password Recovery' Page")
+        sleep(2)
+
+    def checkInvalidCredentialsMessage(self):
+        try:
+            self.wait_for_element_appearance_text(
+                "We didn't recognize the username or password you entered. Please try again.")
+        except:
+            raise Exception(
+                "\"We didn't recognize the username or password you entered. Please try again.\" message did not appear.")
+        sleep(2)
+
+    def check_if_reached_page_to_enter_verification_code(self):
+        try:
+            self.wait_for_element_appearance("Resend Verification Code.", 10)
+        except:
+            raise Exception("Page to enter verification code did not appear. ")
 
     def Enter_Username_password_recovery_page(self, email):
         self.poco("android.widget.EditText").set_text(email)
@@ -65,7 +104,21 @@ class Registration_Screen:
         self.poco(text="SUBMIT").click()
 
     def check_submit_is_clickable(self):
-        return self.poco(text="SUBMIT", enabled=True).exists()
+        if self.poco(text="SUBMIT", enabled=True).exists():
+            pass
+        else:
+            raise Exception("Submit is not clickable.")
+
+    def acceptPermissions(self):
+        try:
+            self.poco(textMatches=".*Allow.*").wait_for_appearance(timeout=20)
+            self.poco(textMatches=".*Allow.*").click()
+        except:
+            try:
+                self.poco(nameMatches=".*Allow.*").wait_for_appearance(timeout=20)
+                self.poco(nameMatches=".*Allow.*").click()
+            except:
+                pass
 
     def check_if_in_login_page(self):
         return self.poco(self.Login).exists()
@@ -203,6 +256,12 @@ class Registration_Screen:
             self.poco.swipe(start_point, end_point, duration=0.1)
         self.poco(text="SUBMIT AND CONTINUE").click()
 
+    def check_submit_and_continue_enabled(self):
+        if self.poco(text="SUBMIT AND CONTINUE", enabled=True).exists():
+            pass
+        else:
+            raise Exception("SUBMIT AND CONTINUE button is not enable.")
+
     def check_sign_up_successful(self):
         self.poco("CONTINUE").wait_for_appearance(timeout=30)
         self.poco("CONTINUE").wait_for_appearance(timeout=30)
@@ -298,7 +357,10 @@ class Registration_Screen:
             raise Exception("Did not reach EULA page")
 
     def check_user_does_not_exist_error(self):
-        return self.poco(text="User does not exist.").exists()
+        if self.poco(text="User does not exist.").exists():
+            pass
+        else:
+            raise Exception("User does not exist' error did not show up even after entering a non registered email.")
 
     def click_accept(self):
         self.poco("Accept").click()
@@ -371,14 +433,21 @@ class Registration_Screen:
             try:
                 scrolls = 5
                 while scrolls != 0:
-                    poco.scroll()
+                    self.poco.scroll()
+                    scrolls-=1
                 if self.poco(text="Skip").exists():
                     self.poco(text="Skip").click()
             except:
                 pass
-            while not self.poco(text="I agree").exists():
-                self.poco.scroll()
-            self.poco(text="I agree").click()
+            try:
+                scrolls = 5
+                while scrolls != 0:
+                    self.poco.scroll()
+                    scrolls-=1
+                if self.poco(text="I agree").exists():
+                    self.poco(text="I agree").click()
+            except:
+                pass
             try:
                 self.poco(text="Not now").wait_for_appearance(timeout=15)
                 self.poco(text="Not now").click()
@@ -431,7 +500,7 @@ class Registration_Screen:
                 print("Error message not displayed for wrong password.")
                 raise Exception("Error message not displayed for wrong password.")
         "Enter OTP manually"
-        sleep(60)
+        self.show_message(f"Enter otp for AppleId received in the phone number \'9751025169\'")
         try:
             self.poco(text="Trust").wait_for_appearance(timeout=40)
             self.poco(text="Trust").click()
@@ -527,7 +596,10 @@ class Registration_Screen:
         self.poco(self.Try_Again).click()
 
     def check_if_on_success_page(self):
-        return self.poco(text="Success!").exists()
+        try:
+            self.wait_for_element_appearance_text("Success!", 10)
+        except:
+            raise Exception("Not on Success page.")
 
     def check_message_on_success_page(self):
         return_message = False
@@ -538,6 +610,7 @@ class Registration_Screen:
             return
         else:
             raise Exception("Expected message not found on password reset success page.")
+        sleep(2)
 
     def checkClickHerePresent(self):
         if self.poco("Click here ").exists():
@@ -568,7 +641,10 @@ class Registration_Screen:
             if self.poco("android.widget.TextView")[2].get_text() == "This field is required.":
                 if self.poco("android.widget.TextView")[3].get_text() == "This field is required.":
                     return_message = True
-        return return_message
+        if return_message:
+            pass
+        else:
+            raise Exception("Error messages not as expected.")
 
     def fillPasswordResetCode(self, resetCode):
         self.poco("android.widget.EditText").set_text(resetCode)
@@ -580,7 +656,11 @@ class Registration_Screen:
         self.poco("android.widget.EditText")[2].set_text(password)
 
     def checkWrongConfirmPasswordErrorMessage(self):
-        return self.poco("android.widget.TextView")[1].get_text() == "Fields do not match."
+        if self.poco("android.widget.TextView")[1].get_text() == "Fields do not match.":
+            pass
+        else:
+            raise Exception(
+                "\"Fields do not match.\" not displayed when entered different 'New Password' and 'Confirm Password'")
 
     def check_OTExpiredMessage(self):
         return_message = False
@@ -588,7 +668,10 @@ class Registration_Screen:
             if self.poco("click here").exists():
                 if self.poco(text=" to regenerate OTP.").exists():
                     return_message = True
-        return return_message
+        if return_message:
+            pass
+        else:
+            raise Exception("Expected OTP expired message not displayed.")
 
     def check_successful_password_reset_page_message(self):
         self.wait_for_element_appearance_text("Success!", 20)
@@ -605,6 +688,12 @@ class Registration_Screen:
     def check_if_in_zebra_network_account_password_reset_page(self):
         title = self.poco("android.widget.TextView")[3].get_text().split('\n')
         return title[0] == "Reset your Zebra network account (Active Directory) password."
+
+    def verify_if_password_reset_error_appears(self):
+        try:
+            self.wait_for_element_appearance_text("Password Reset Error", 15)
+        except:
+            raise Exception("Did not redirected to a page \"Password Reset Error\" page.")
 
     def check_fields_in_zebra_network_account_password_reset_page(self):
         self.poco(text="User name").exists()
@@ -641,8 +730,10 @@ class Registration_Screen:
 
     def create_google_account(self):
         os.system("adb shell am start -a android.settings.SYNC_SETTINGS")
-        while not self.poco(text="Add account").exists():
+        count = 5
+        while not self.poco(text="Add account").exists() and count!=0:
             self.poco.scroll()
+            count-=1
         self.poco(text="Add account").click()
         self.poco(text="Google").wait_for_appearance(timeout=20)
         self.poco(text="Google").click()
@@ -695,15 +786,19 @@ class Registration_Screen:
             self.poco(text="Next").click()
         username = name + '@gmail.com'
         print(username)
-        while not self.poco(text="I agree").exists():
+        count = 5
+        while not self.poco(text="I agree").exists() and count!=0:
             self.poco.scroll()
+            count-=1
         self.poco(text="I agree").click()
         self.wait_for_element_appearance_text("Add account", 20)
         return username, password
 
     def verifyLinksInSignInPage(self):
-        while not self.poco("Legal Notice").exists():
+        count = 5
+        while not self.poco("Legal Notice").exists() and count!=0:
             self.poco.scroll()
+            count-=1
         link_1 = self.poco("Zebra.com", enabled=True).exists()
         link_2 = self.poco("Legal Notice", enabled=True).exists()
         link_3 = self.poco("Privacy Statement", enabled=True).exists()
@@ -755,12 +850,15 @@ class Registration_Screen:
             error = f'{wifi_name}not found.'
             raise Exception(error)
 
+
     def enterPasswordWifi(self, password="123456789"):
         self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(password)
         sleep(2)
-        self.poco("Connect").click()
+        self.clickConnect()
 
     def scrollTillLogOutAppears(self):
-        while not self.poco("Log Out").exists():
+        count = 5
+        while not self.poco("Log Out").exists() and count!=0:
             self.poco.scroll()
+            count-=1

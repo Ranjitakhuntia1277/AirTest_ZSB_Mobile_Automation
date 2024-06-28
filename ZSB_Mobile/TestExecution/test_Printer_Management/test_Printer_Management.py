@@ -1,19 +1,18 @@
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
-
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ...PageObject.Login_Screen import *
-
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
 from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
 from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-from ...PageObject.Others.Others import Others
 import pytest
 
 
@@ -28,7 +27,7 @@ start_app("com.zebra.soho_app")
 sleep(2.0)
 
 common_method = Common_Method(poco)
-login_page = Login_Screen(poco)
+# login_page = Login_Screen(poco)
 app_settings_page = App_Settings_Screen(poco)
 data_sources_page = Data_Sources_Screen(poco)
 add_a_printer_screen = Add_A_Printer_Screen(poco)
@@ -37,8 +36,9 @@ printer_management_page = Printer_Management_Screen(poco)
 template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 registration_page = Registration_Screen(poco)
-others = Others(poco)
-
+login_page = Login_Screen(poco)
+smoke_test_android = Smoke_Test_Android(poco)
+aps_notification = APS_Notification(poco)
 
 def test_PrinterManagement_TestcaseID_47920():
     pass
@@ -79,122 +79,6 @@ def test_PrinterManagement_TestcaseID_47920():
     """Unable to verify due to BUG"""
     printer_management_page.verifyPrinterNameAfterRenaming(printer_2_name)
     common_method.Stop_The_App()
-
-def test_Others_TestcaseID_47955():
-    pass
-    common_method.tearDown()
-    common_method.wait_for_element_appearance_namematches("Open navigation menu")
-    login_page.click_Menu_HamburgerICN()
-    others.click_Printer_Settings()
-    names, id = others.get_printer_names()
-    print(names, id)
-    others.select_printer_1(id[1])
-    others.rename_printer(id[1], names[2])
-    sleep(1)
-    keyevent("enter")
-    res = others.verify_text_update_printer_name_fail()
-    print(res)
-    if not res:
-        raise Exception("printer update failed not raised")
-
-
-def test_Others_TestcaseID_47946():
-    pass
-
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
-    try:
-        common_method.wait_for_element_appearance_namematches("Home")
-    except:
-        pass
-    """take the previous number of cartridges"""
-    previous = others.get_no_of_left_cartridge()
-
-    """click on navigation option"""
-    login_page.click_Menu_HamburgerICN()
-
-    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
-    others.click_Printer_Settings()
-    others.select_first_printer()
-    sleep(2)
-    n = 2
-
-    """test the printer to print the label"""
-    for i in range(n):
-        others.click_test_print()
-        others.wait_for_appearance_all("Print complete")
-        sleep(2)
-    sleep(5)
-    """Go to the Home Page"""
-    login_page.click_Menu_HamburgerICN()
-    others.click_home_button()
-    sleep(2)
-
-    """After printing Get the number of cartridges"""
-    after = others.get_no_of_left_cartridge()
-
-    """Check wheather the cartridges are updated"""
-    res = others.check_auto_update_cartridge(previous, after, n)
-    if not res:
-        raise Exception("number of cartridge count not updated")
-
-def test_Others_TestcaseID_47945(self):
-    pass
-
-    """Has bug id: SMBM-2247"""
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
-    try:
-        common_method.wait_for_element_appearance_namematches("Home")
-    except:
-        pass
-    login_page.click_Menu_HamburgerICN()
-    others.click_Printer_Settings()
-
-    names, id = others.get_printer_names()
-    others.select_printer_1(id[1])
-
-    others.rename_printer(id[1],"")
-    others.click_enter()
-
-    res = others.get_null_name_error_and_space_for_printer_name()
-    if res:
-        print("ok")
-    else:
-        raise Exception("proper error msg not displayed for null value")
-
-    others.rename_printer(id[1],"    ")
-    others.click_enter()
-
-    if res:
-        print("ok")
-    else:
-        raise Exception("Space  accepted")
-def test_Others_TestcaseID_49203():
-    pass
-
-    common_method.tearDown()
-    try:
-        common_method.wait_for_element_appearance_namematches("Home")
-    except:
-        pass
-    """Click On the Three dots of the Home page Printer"""
-    others.click_three_dots()
-
-    """Click on the Delete Button"""
-    others.click_delete_button()
-
-    """Verify the text image (Currently The text cannot be extracted so verifying using the name)"""
-    try:
-        others.verify_delete_printer_text()
-    except:
-        raise Exception("step 2-2 fails, which does not match the wordings")
-
-    """Check cancel and delete button exists"""
-    others.check_cancel_and_delete_button()
-
-    """cancel the delete printer dialogue"""
-    others.click_cancel_delete_printer()
 
 
 def test_PrinterManagement_TestcaseID_47785():
@@ -266,3 +150,60 @@ def test_PrinterManagement_TestcaseID_47882():
     sleep(2)
     """Close the pop up"""
     common_method.Stop_The_App()
+
+# ####"""""""""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_Smoke_Test_TestcaseID_45888():
+    """	Check user can delete a printer from Mobile App"""
+
+    common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    sleep(5)
+    """"verify home text is displaying on the home screen"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """click on three dot on added printer on home page"""
+    app_settings_page.Verify_Printer_Text()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
+    """""click on delete printer button"""
+    app_settings_page.click_Delete_Printer_Button()
+    """verify delete printer page"""
+    app_settings_page.Verify_Delete_Printer_Page()
+    app_settings_page.Click_Cancel_On_Delete_Printer_Page()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
+    """"click delete printer button"""
+    app_settings_page.click_Delete_Printer_Button()
+    """"click yes delete button"""
+    app_settings_page.click_Yes_Delete_Button()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """"verify UI of unpair bluetooth dropdown list """
+    app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
+    """click on unpair bluetooth dropdown list"""""
+    app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    app_settings_page.click_Unpair_Icon()
+    app_settings_page.click_On_Unpair()
+    app_settings_page.click_Confirm_Delete_Popup()
+    aps_notification.Stop_Android_App()
+    common_method.Start_The_App()
+    app_settings_page.click_Done_Btn()
+    app_settings_page.Verify_Printer_Is_Not_Displaying()
+    """stop the app"""
+    common_method.Stop_The_App()
+    """"10. Check printer is also being deleted in web portal and printer tool Manually"""
+# # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

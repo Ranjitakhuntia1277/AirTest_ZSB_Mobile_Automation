@@ -1,13 +1,17 @@
 import time
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ...PageObject.Social_Login.Social_Login import Social_Login
 from ...Common_Method import *
 import os
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Others.Others import Others
+from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 
 import tkinter as tk
 from tkinter import simpledialog
@@ -26,12 +30,18 @@ connect_device("Android:///")
 # start_app("com.zebra.soho_app")
 # sleep(3.0)
 
-login_page = Login_Screen(poco)
 social_login = Social_Login(poco)
 add_a_printer_page = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 others = Others(poco)
 data_sources_page = Data_Sources_Screen(poco)
+help_page = Help_Screen(poco)
+login_page = Login_Screen(poco)
+app_settings_page = App_Settings_Screen(poco)
+add_a_printer_screen = Add_A_Printer_Screen(poco)
+smoke_test_android = Smoke_Test_Android(poco)
+registration_page = Registration_Screen(poco)
+aps_notification = APS_Notification(poco)
 
 
 class test_Android_Social_Login():
@@ -127,7 +137,7 @@ class test_Android_Social_Login():
         login_page.click_loginBtn()
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         social_login.click_on_benefits_of_zebra_account()
-        sleep(2)
+        sleep(5)
         res = social_login.check_the_text_of_benefits_of_free_account_page()
         if not res:
             raise Exception("the page text dint match")
@@ -145,9 +155,6 @@ class test_Android_Social_Login():
         pass
         self.setup_logout()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         try:
             social_login.open_in_chrome()
@@ -160,19 +167,19 @@ class test_Android_Social_Login():
         wake()
         sleep(2)
         social_login.click_on_zebra_link()
-        if not social_login.verify_the_url("zebra.com"):
+        if not help_page.verify_url("zebra.com"):
             raise Exception("zebra.com url not present")
         social_login.go_back()
         social_login.swith_back_the_app()
         social_login.click_on_legal_notice_link()
-        if not social_login.verify_the_url("zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html"):
+        if not help_page.verify_url("zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html"):
             raise Exception("\"zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html\" url not present")
         social_login.go_back()
         social_login.swith_back_the_app()
         sleep(1)
         social_login.click_on_privacy_statement_link()
-        if not social_login.verify_the_url(
-                "zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html"):
+        # old_url = "zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html"
+        if not help_page.verify_url("https://www.zebra.com/uss/en/about-zebra/company-information/compliance/information-privacy/privacy-statement.html"):
             raise Exception("\"zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html\" url not present")
 
     def test_Social_Login_TestcaseID_48475(self):
@@ -299,7 +306,9 @@ class test_Android_Social_Login():
             keyevent("back")
         except:
             pass
-
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         if not social_login.check_zebra_logo():
             raise Exception("Zebra Logo not present")
 
@@ -454,6 +463,9 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         social_login.click_on_sign_in_with_email()
 
@@ -502,6 +514,9 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
 
         login_page.click_Loginwith_Google()
@@ -533,7 +548,9 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
-
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         """Enter the email and password"""
         email = "zebra850.swdvt@gmail.com"
@@ -553,10 +570,12 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
-
         """Enter the email and password"""
         email = ""
         password = ''
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
 
         social_login.click_on_sign_in_with_email()
@@ -583,6 +602,9 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         social_login.click_on_sign_in_with_email()
 
@@ -816,9 +838,12 @@ class test_Android_Social_Login():
 
     def test_Social_Login_TestcaseID_48481(self):
         pass
-
+        # Log in to your Facebook account to connect with Zebra Technologies
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
 
         social_login.click_login_with_facebook()
@@ -1652,6 +1677,9 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(2)
         social_login.wait_for_element_appearance("Continue with Google")
         login_page.click_Loginwith_Google()
         social_login.sign_in_with_google()
@@ -1661,3 +1689,65 @@ class test_Android_Social_Login():
         social_login.click_on_next_in_google_sing_in()
         if not social_login.check_for_incorrect_username_in_google():
             raise Exception("error not found for incorrect email")
+    #   ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    def test_Smoke_Test_TestcaseID_45883(self):
+        """Verify sign in sign out with registered social accounts in Mobile App."""
+
+        """start the app"""
+        common_method.tearDown()
+        common_method.Clear_App()
+        common_method.Start_The_App()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_Loginwith_Google()
+        login_page.Loginwith_Added_Email_Id()
+        login_page.click_Menu_HamburgerICN()
+        app_settings_page.click_pen_Icon_near_UserName()
+        app_settings_page.Scroll_till_Delete_Account()
+        app_settings_page.click_Logout_Btn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
+        smoke_test_android.Verify_SignIn_With_Text_Is_Present()
+        smoke_test_android.click_Continue_With_Facebook_Option()
+        """""due to some issue, it is directly login to the facebook account without asking for password"""
+        login_page.click_Continue_On_Facebbok_Login_Page()
+        login_page.click_Menu_HamburgerICN()
+        smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+        login_page.click_Continue_On_Facebbok_Login_Page()
+        app_settings_page.click_pen_Icon_near_UserName()
+        app_settings_page.Scroll_till_Delete_Account()
+        app_settings_page.click_Logout_Btn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        smoke_test_android.click_Continue_With_Apple_Option()
+        smoke_test_android.Enter_Apple_Login_Email()
+        smoke_test_android.click_Continue_For_Apple_Password()
+        smoke_test_android.click_Continue_With_Password_ForApple_Login()
+        smoke_test_android.click_On_Sign_In_Option()
+        common_method.Stop_The_App()
+        common_method.Clear_App()
+        common_method.Start_The_App()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_Loginwith_Google()
+        login_page.Loginwith_Added_Email_Id()
+        login_page.click_Menu_HamburgerICN()
+        smoke_test_android.Verify_Google_UserName_Is_Displaying()
+        common_method.Stop_The_App()
+
+    #
+    # # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    #

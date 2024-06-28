@@ -14,7 +14,7 @@ from ...PageObject.Login_Screen import Login_Screen
 from airtest.core.api import device as current_device
 from ...Common_Method import *
 from datetime import datetime, time
-import pytz
+import pytest
 
 common_method = Common_Method(poco)
 
@@ -172,12 +172,16 @@ class Help_Screen:
                 assert False
 
     def verify_url(self, expected_url):
-        self.poco("com.android.chrome:id/security_button").click()
+        sleep(5)
+        try:
+            self.poco("com.android.chrome:id/security_button").click()
+        except:
+            self.poco("com.android.chrome:id/location_bar_status_icon").click()
         self.poco("com.android.chrome:id/page_info_truncated_url").click()
         url_on_screen = self.poco("com.android.chrome:id/page_info_url").get_text()
         if expected_url in url_on_screen:
             keyevent("back")
-            return
+            return True
         else:
             raise Exception("URL not matching")
 
