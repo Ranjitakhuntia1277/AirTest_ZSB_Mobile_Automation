@@ -55,7 +55,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbtestsso@gmail.com"
+    account = "zebra07.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -108,7 +108,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbtestsso@gmail.com"
+    account = "zebra07.swdvt@gmail.com"
     template_management_page.checkIfAccPresent(account)
     help_page.chooseAcc(account)
     """verify if logged in successfully"""
@@ -140,7 +140,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -174,7 +174,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -208,7 +208,7 @@ def test_SSO_Token_Renewal_TestcaseID_49907():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """wait for 53 min"""
@@ -236,7 +236,7 @@ def test_SSO_Token_Renewal_TestcaseID_49908():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -274,7 +274,7 @@ def test_SSO_Token_Renewal_TestcaseID_49909():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     sleep(3000)
@@ -340,12 +340,12 @@ def test_SSO_Token_Renewal_TestcaseID_49909():
     sleep(2)
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-    account = "zsbswdvt@gmail.com"
+    account = "zebra03.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:
         poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
         sleep(2)
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(2)
@@ -362,7 +362,7 @@ def test_SSO_Token_Renewal_TestcaseID_49909():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
@@ -384,7 +384,7 @@ def test_SSO_Token_Renewal_TestcaseID_49910():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """Open a different app"""
@@ -417,7 +417,7 @@ def test_SSO_Token_Renewal_TestcaseID_49911():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """Open a different app"""
@@ -475,7 +475,7 @@ def test_SSO_Token_Renewal_TestcaseID_49912():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """Open a different app"""
@@ -540,7 +540,7 @@ def test_SSO_Token_Renewal_TestcaseID_49912():
 #     """Sign in"""
 #     registration_page.clickSignIn()
 #     data_sources_page.signInWithEmail()
-#     registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+#     registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
 #     """verify if logged in successfully"""
 #     data_sources_page.checkIfOnHomePage()
 #     """Open a different app"""
@@ -571,7 +571,7 @@ def test_SSO_Token_Renewal_TestcaseID_49914():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """Force quit the app"""
@@ -615,7 +615,7 @@ def test_SSO_Token_Renewal_TestcaseID_49915():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """Force quit the app"""
@@ -686,7 +686,7 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbswdvt1@gmail.com"
+    account = "zebra06.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -696,7 +696,7 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
+        registration_page.sign_In_With_Google("zebra06.swdvt@gmail.com", "Zebra#123456789")
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     process = sso_token_renewal_page.runBatchFileToFetchLogs()
@@ -733,7 +733,7 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbtestsso@gmail.com"
+    account = "zebra07.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -782,7 +782,7 @@ def test_SSO_Token_Renewal_TestcaseID_49917():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     template_management_page_1.turn_off_wifi()
@@ -808,7 +808,7 @@ def test_SSO_Token_Renewal_TestcaseID_49918():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbtestsso@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """Wait for 50 min"""
@@ -866,7 +866,7 @@ def test_Registration_TestcaseID_47786():
     poco("Continue with Google").wait_for_appearance(timeout=10)
     registration_page.click_Google_Icon()
     sleep(2)
-    help_page.chooseAcc("zsbswdvt@gmail.com")
+    help_page.chooseAcc("zebra03.swdvt@gmail.com")
     data_sources_page.checkIfOnHomePage()
     # others_page.uninstall_and_install_zsb_series_on_google_play(True, True)
     data_sources_page.clearAppData()
@@ -879,7 +879,7 @@ def test_Registration_TestcaseID_47786():
     poco("Continue with Google").wait_for_appearance(timeout=10)
     registration_page.click_Google_Icon()
     sleep(2)
-    help_page.chooseAcc("zsbswdvt@gmail.com")
+    help_page.chooseAcc("zebra03.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -900,8 +900,8 @@ def test_Registration_TestcaseID_45870():
     login_page.click_GooglemailId()
     registration_page.wait_for_element_appearance_text("Add account to device")
     registration_page.addAccountToDevice()
-    registration_page.sign_In_With_Google("zsbswdvt@123", "zsbswdvt@gmail.com", True)
-    registration_page.sign_In_With_Google("zsbswdvt@1234")
+    registration_page.sign_In_With_Google("zsbswdvt@123", "zebra03.swdvt@gmail.com", True)
+    registration_page.sign_In_With_Google("Zebra#123456789")
     data_sources_page.checkIfOnHomePage()
     sleep(7200)
     data_sources_page.checkIfOnHomePage()

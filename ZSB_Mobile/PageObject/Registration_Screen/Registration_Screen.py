@@ -9,7 +9,16 @@ from airtest.core.api import *
 # import pytest
 # from pipes import Template
 from poco import poco
-from poco.exceptions import PocoNoSuchNodeException
+from poco.exceptions import PocoTargetTimeout
+import platform
+
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 from ...Common_Method import Common_Method
 
@@ -23,12 +32,12 @@ class Registration_Screen:
         self.poco = poco
         self.Register_Email = " Register Your Email Now"
         self.log_out_button = "Log Out"
-        self.Google_Icon = Template(r"Google_Icon.png", record_pos=(-0.319, -0.173), resolution=(1080, 2340))
-        self.Facebook_Icon = Template(r"Facebook_Icon.png", record_pos=(-0.316, 0.094), resolution=(1080, 2340))
-        self.Apple_Icon = Template(r"Apple_Icon.png", record_pos=(-0.317, -0.043), resolution=(1080, 2340))
+        self.Google_Icon = Template(Basic_path(r"Google_Icon.png"), record_pos=(-0.319, -0.173), resolution=(1080, 2340))
+        self.Facebook_Icon = Template(Basic_path(r"Facebook_Icon.png"), record_pos=(-0.316, 0.094), resolution=(1080, 2340))
+        self.Apple_Icon = Template(Basic_path(r"Apple_Icon.png"), record_pos=(-0.317, -0.043), resolution=(1080, 2340))
         self.Buy_More_Labels = "Buy More Labels"
         self.Connect = "Connect"
-        self.Join_Network_Password_TextBox = Template(r"Join_Network_Password_TextBox.png", record_pos=(-0.127, 0.118),
+        self.Join_Network_Password_TextBox = Template(Basic_path(r"Join_Network_Password_TextBox.png"), record_pos=(-0.127, 0.118),
                                                       resolution=(1080, 2340))
         self.submit = "Submit"
         self.Finish_Setup = "Finish Setup"
@@ -60,7 +69,10 @@ class Registration_Screen:
         try:
             self.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
         except:
-            raise Exception("register user page didn't show up.")
+            try:
+                self.wait_for_element_appearance_text("ZSB Account Registration", 20)
+            except:
+                raise Exception("register user page dint show")
 
     def click_on_reset_password(self):
         if self.poco("com.android.chrome:id/coordinator").exists():
@@ -104,6 +116,7 @@ class Registration_Screen:
         self.poco(text="SUBMIT").click()
 
     def check_submit_is_clickable(self):
+        sleep(5)
         if self.poco(text="SUBMIT", enabled=True).exists():
             pass
         else:
@@ -773,7 +786,7 @@ class Registration_Screen:
         self.poco(text="Create your own Gmail address").click()
         self.poco("android.widget.EditText").set_text(name)
         keyevent("Enter")
-        password = self.generate_random_word(10) + '@1234'
+        password = "Zebra#123456789"
         self.poco("android.widget.EditText").wait_for_appearance(timeout=20)
         sleep(2)
         self.poco("android.widget.EditText").set_text(password)

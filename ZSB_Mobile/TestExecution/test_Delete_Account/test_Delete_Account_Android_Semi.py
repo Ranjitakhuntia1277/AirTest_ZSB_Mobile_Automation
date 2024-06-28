@@ -43,11 +43,11 @@ device_network_page = Device_Networks_Android(poco)
 
 def test_Delete_Account_TestcaseID_45765():
     """Add 2 printer to this account before executing
-    username - deletezsb@gmail.com
-    password - deletezsb@1234"""
+    username - zebra05.swdvt@gmail.com
+    password - Zebra#123456789"""
     pass
     common_method.show_message(
-        "Add 2 printer to this account before executing\nusername - deletezsb@gmail.com\npassword - deletezsb@1234, make sure one is oline and other is offline")
+        "Add 2 printer to this account before executing\nusername - zebra05.swdvt@gmail.com\npassword - Zebra#123456789, make sure one is oline and other is offline")
     """clear app data"""
     data_sources_page.clearAppData()
     common_method.tearDown()
@@ -55,7 +55,7 @@ def test_Delete_Account_TestcaseID_45765():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     "In home page 2 printer show in printer list , one is online and one is offline, click pen icon go to user setting page-pending"
     """Verify that there is 1 offline printer in the account"""
@@ -109,7 +109,7 @@ def test_Delete_Account_TestcaseID_45765():
     delete_account_page.verifyImportantMessageOnSignInPage()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     try:
@@ -130,7 +130,7 @@ def test_Delete_Account_TestcaseID_45765():
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     registration_page.verify_if_on_EULA_page()
     """Accept EULA for future execution"""
@@ -158,7 +158,7 @@ def test_Delete_Account_TestcaseID_45768():
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    registration_page.login_Apple("Zebra#123456789", "deletezsbapple@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra08.swdvt@gmail.com")
     """Enter OTP manually."""
     sleep(30)
     if poco(text="Trust").exists():
@@ -227,7 +227,7 @@ def test_Delete_Account_TestcaseID_45768():
     """Login Again"""
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    registration_page.login_Apple("Zebra#123456789", "deletezsbapple@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra08.swdvt@gmail.com")
     """Enter OTP manually."""
     sleep(60)
     if poco(text="Trust").exists():
@@ -254,7 +254,7 @@ def test_Delete_Account_TestcaseID_45768():
     """Login Again"""
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    registration_page.login_Apple("Zebra#123456789", "deletezsbapple@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra08.swdvt@gmail.com")
     if poco(text="Trust").exists():
         poco(text="Trust").click()
     sleep(3)
@@ -279,7 +279,7 @@ def test_Delete_Account_TestcaseID_45771():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
@@ -340,7 +340,7 @@ def test_Delete_Account_TestcaseID_45771():
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     try:
         common_method.wait_for_element_appearance(
@@ -360,11 +360,11 @@ def test_Delete_Account_TestcaseID_45771():
     """Cannot automate
     11. Open Printer Tools click sign button check Login page show up, input the deleted user name and password click Sign in, check user can login printer tools successfully and no printer show in printer list.
     has to be executed manually"""
-    common_method.show_message("11. Open Printer Tools click sign button check Login page show up, input the deleted user name and password click Sign in, check user can login printer tools successfully and no printer show in printer list.\nAccount info - username - deletezsb@gmail.com password- Zebra#123456789")
+    common_method.show_message("11. Open Printer Tools click sign button check Login page show up, input the deleted user name and password click Sign in, check user can login printer tools successfully and no printer show in printer list.\nAccount info - username - zebra05.swdvt@gmail.com password- Zebra#123456789")
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     registration_page.verify_if_on_EULA_page()
     """Accept EULA for future execution"""
     """Check the EULA would be display with the new fonts and styles. pending"""
@@ -380,8 +380,9 @@ def test_Delete_Account_TestcaseID_45785():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
-    data_sources_page.checkIfOnHomePage()    # """Click Hamburger Icon"""
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    data_sources_page.checkIfOnHomePage()
+    # """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
     registration_page.click_on_profile_edit()
@@ -488,7 +489,7 @@ def test_Delete_Account_TestcaseID_45785():
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     try:
         common_method.wait_for_element_appearance(
@@ -508,7 +509,7 @@ def test_Delete_Account_TestcaseID_45785():
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     registration_page.verify_if_on_EULA_page()
     """Accept EULA for future execution"""
     """Check the EULA would be display with the new fonts and styles. pending"""
@@ -550,7 +551,7 @@ def test_Delete_Account_TestcaseID_45779():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     """Execute in Device A"""
     """Click Hamburger Icon"""
@@ -606,7 +607,7 @@ def test_Delete_Account_TestcaseID_45779():
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     delete_account_page.verifyDeleteAccountDialogPopUp()
 
@@ -620,7 +621,7 @@ def test_Delete_Account_TestcaseID_45779():
 #     # """Sign in"""
 #     # registration_page.clickSignIn()
 #     # data_sources_page.signInWithEmail()
-#     # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+#     # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
 #     # data_sources_page.checkIfOnHomePage()
 #     # """Execute in device B"""
 #     # """Click Hamburger Icon"""
@@ -676,7 +677,7 @@ def test_Delete_Account_TestcaseID_45779():
 #     # """Login Again"""
 #     # registration_page.clickSignIn()
 #     # data_sources_page.signInWithEmail()
-#     # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+#     # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
 #     # """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
 #     # delete_account_page.verifyDeleteAccountDialogPopUp()
 
@@ -712,7 +713,7 @@ def test_Delete_Account_TestcaseID_45773():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
@@ -773,7 +774,7 @@ def test_Delete_Account_TestcaseID_45773():
 #     # data_sources_page.allowPermissions()
 #     # registration_page.clickSignIn()
 #     # data_sources_page.signInWithEmail()
-#     # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+#     # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
 #     # """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
 #     # try:
 #     #     common_method.wait_for_element_appearance(
@@ -794,7 +795,7 @@ def test_Delete_Account_TestcaseID_45773():
 #     # data_sources_page.allowPermissions()
 #     # registration_page.clickSignIn()
 #     # data_sources_page.signInWithEmail()
-#     # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+#     # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
 #     # """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
 #     # try:
 #     #     common_method.wait_for_element_appearance(
@@ -821,7 +822,7 @@ def test_Delete_Account_TestcaseID_45772():
     # """Sign in"""
     # registration_page.clickSignIn()
     # data_sources_page.signInWithEmail()
-    # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     # data_sources_page.checkIfOnHomePage()
     # """Execute on device B"""
     # data_sources_page.clearAppData()
@@ -829,7 +830,7 @@ def test_Delete_Account_TestcaseID_45772():
     # data_sources_page.allowPermissions()
     # registration_page.clickSignIn()
     # data_sources_page.signInWithEmail()
-    # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     # start_app("com.android.chrome")
     # sleep(2)
     # poco("com.android.chrome:id/tab_switcher_button").click()
@@ -845,7 +846,7 @@ def test_Delete_Account_TestcaseID_45772():
     # data_sources_page.clickEnter()
     # sleep(2)
     # data_sources_page.signInWithEmail()
-    # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     # data_sources_page.checkIfOnHomePageWeb()
 
 
@@ -859,7 +860,7 @@ def test_Delete_Account_TestcaseID_45772():
 #     # """Sign in"""
 #     # registration_page.clickSignIn()
 #     # data_sources_page.signInWithEmail()
-#     # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+#     # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
 #     # data_sources_page.checkIfOnHomePage()
 #     # """Click Hamburger Icon"""
 #     # login_page.click_Menu_HamburgerICN()
@@ -920,7 +921,7 @@ def test_Delete_Account_TestcaseID_45772():
 #     # """Login Again"""
 #     # registration_page.clickSignIn()
 #     # data_sources_page.signInWithEmail()
-#     # registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+#     # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
 #     # """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
 #     # try:
 #     #     common_method.wait_for_element_appearance(
@@ -951,15 +952,15 @@ def test_Delete_Account_TestcaseID_45772():
 def test_Delete_Account_TestcaseID_45766():
     pass
     """Add a printer to this account before executing
-#     username - deletezsb@gmail.com
-#     password - deletezsb@1234"""
+#     username - zebra05.swdvt@gmail.com
+#     password - Zebra#123456789"""
     common_method.tearDown()
     data_sources_page.clearAppData()
     common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
-    help_page.chooseAcc("deletezsb@gmail.com")
+    help_page.chooseAcc("zebra05.swdvt@gmail.com")
     data_sources_page.checkIfOnHomePage()
     """Verify that there is 1 offline printer in the account"""
     delete_account_page.checkIfThereIs1PrinterWithOfflineStatus()
@@ -1012,7 +1013,7 @@ def test_Delete_Account_TestcaseID_45766():
     delete_account_page.verifyImportantMessageOnSignInPage()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
-    help_page.chooseAcc("deletezsb@gmail.com")
+    help_page.chooseAcc("zebra05.swdvt@gmail.com")
     data_sources_page.checkIfOnHomePage()
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     try:
@@ -1033,7 +1034,7 @@ def test_Delete_Account_TestcaseID_45766():
     """Login Again"""
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
-    help_page.chooseAcc("deletezsb@gmail.com")
+    help_page.chooseAcc("zebra05.swdvt@gmail.com")
     data_sources_page.checkIfOnHomePage()
     registration_page.verify_if_on_EULA_page()
     """Accept EULA for future execution"""
@@ -1064,7 +1065,7 @@ def test_Delete_Account_TestcaseID_45788():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
@@ -1123,7 +1124,7 @@ def test_Delete_Account_TestcaseID_45788():
     """Login Again"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     try:
         common_method.wait_for_element_appearance(
@@ -1149,7 +1150,7 @@ def test_Delete_Account_TestcaseID_45788():
     poco.scroll()
     registration_page.click_on_reset_password()
     registration_page.check_if_in_password_recovery_page()
-    registration_page.Enter_Username_password_recovery_page("deletezsb@gmail.com")
+    registration_page.Enter_Username_password_recovery_page("zebra05.swdvt@gmail.com")
     registration_page.click_SUBMIT()
     registration_page.wait_for_element_appearance_text("Success!", 10)
     registration_page.check_message_on_success_page()
@@ -1168,7 +1169,7 @@ def test_Delete_Account_TestcaseID_45788():
     except:
         raise Exception("Did not reach Sign in page")
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("deletezsb@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     registration_page.verify_if_on_EULA_page()
     """Accept EULA for future execution"""
     registration_page.click_accept()

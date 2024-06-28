@@ -8,8 +8,16 @@ from airtest.core.api import *
 # import pytest
 # from pipes import Template
 from poco import poco
-from poco.exceptions import PocoNoSuchNodeException
+from poco.exceptions import PocoTargetTimeout
+import platform
 
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 from ...Common_Method import Common_Method
 from ...PageObject.Login_Screen.Login_Screen import Login_Screen
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
@@ -27,6 +35,8 @@ class Delete_Account_Screen:
         self.deleteAccount = "Delete Account"
         self.logOut = "Log Out"
         self.delete = "Delete"
+        self.first_name = "Delete"
+        self.last_name = "Zsb"
 
     def checkIfDeleteAccountIsNextToLogOut(self):
         if self.poco(self.logOut).parent().child()[0].get_name() == "Delete Account":
@@ -183,13 +193,13 @@ class Delete_Account_Screen:
     def verifyDefaultSettings(self):
         return_message = False
         try:
-            assert_exists(Template(r"tpl1714996894841.png", record_pos=(-0.343, -0.588), resolution=(1080, 2340)),
+            assert_exists(Template(Basic_path(r"tpl1714996894841.png"), record_pos=(-0.343, -0.588), resolution=(1080, 2340)),
                           "Please fill in the test point.")
         except:
             raise Exception("Profile photo is not default")
         if self.poco("android.widget.EditText").get_text() == self.first_name:
             if self.poco("android.widget.EditText")[1].get_text() == self.last_name:
-                if self.poco(textMatches=".*.com.*").get_text() == "deletezsb@gmail.com":
+                if self.poco(textMatches=".*.com.*").get_text() == "zebra05.swdvt@gmail.com":
                     return_message = True
         if not return_message:
             raise Exception("First name, Last name, Email not matching expected values.")
@@ -201,7 +211,7 @@ class Delete_Account_Screen:
 
     def verifyDefaultWorkspaceSettings(self):
         try:
-            assert_exists(Template(r"tpl1714998188897.png", record_pos=(-0.343, -0.588), resolution=(1080, 2340)),
+            assert_exists(Template(Basic_path(r"tpl1714998188897.png"), record_pos=(-0.343, -0.588), resolution=(1080, 2340)),
                           "Please fill in the test point.")
         except:
             raise Exception("Workspace photo is not default")

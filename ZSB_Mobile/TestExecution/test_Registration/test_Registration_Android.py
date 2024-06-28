@@ -49,10 +49,13 @@ def test_Registration_TestcaseID_45855():
     try:
         registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
     except:
-        raise Exception("register user page dint show")
+        try:
+            registration_page.wait_for_element_appearance_text("ZSB Account Registration", 20)
+        except:
+            raise Exception("register user page dint show")
 
     """Enter the User Email"""
-    registration_page.enter_user_email_for_registering("zsbswdvt@gmail.com")
+    registration_page.enter_user_email_for_registering("zebra03.swdvt@gmail.com")
     registration_page.click_on_next()
     """header \"This email already exist\" and message \"It looks like this email has already been registered. Please try logging in with your credentials. not matching with displayed text"""
     """Verify Account already exists page title"""
@@ -70,8 +73,7 @@ def test_Registration_TestcaseID_45855():
 
 
 def test_Registration_TestcaseID_45859():
-    """""""""test"""""
-
+    pass
     common_method.tearDown()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
@@ -95,7 +97,7 @@ def test_Registration_TestcaseID_45860():
     common_method.tearDown()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#1234567890", 1, 0, True)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#1234567890", 1, 0, True)
     sleep(3)
     try:
         registration_page.wait_for_element_appearance_text(
@@ -104,7 +106,7 @@ def test_Registration_TestcaseID_45860():
         raise Exception(
             "Error message : \"We didn't recognize the username or password you entered. Please try again.\" not shown")
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#123456789", 1, 0, False, True)
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0, False, True)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
@@ -130,7 +132,7 @@ def test_Registration_TestcaseID_45861():
     registration_page.click_Google_Icon()
     try:
         poco(text="Choose an account").wait_for_appearance(timeout=20)
-        help_page.chooseAcc("zsbswdvt@gmail.com")
+        help_page.chooseAcc("zebra03.swdvt@gmail.com")
     except:
         pass
     try:
@@ -155,8 +157,8 @@ def test_Registration_TestcaseID_45863():
     common_method.tearDown()
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
-    registration_page.login_Facebook("zsbswdvt@123", "zsbswdvt@gmail.com", True)
-    registration_page.login_Facebook("zsbswdvt@1234")
+    registration_page.login_Facebook("Zebra#12345678", "zebra03.swdvt@gmail.com", True)
+    registration_page.login_Facebook("Zebra#123456789")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -195,7 +197,7 @@ def test_Registration_TestcaseID_45868():
     # help_page.verify_url("https://stagec-signup.zebra.com/content/userreg/reset-password-landing.html")
     help_page.verify_url("https://signup.zebra.com/content/userreg/reset-password-landing.html")
     sleep(2)
-    registration_page.Enter_Username_password_recovery_page("zsbswdvt1@gmail.com")
+    registration_page.Enter_Username_password_recovery_page("zebra06.swdvt@gmail.com")
     if registration_page.check_submit_is_clickable():
         pass
     else:
@@ -389,3 +391,5 @@ def test_Registration_TestcaseID_45862():
 """UP -TO DATE"""
 # ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# # ## """"""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""
+#

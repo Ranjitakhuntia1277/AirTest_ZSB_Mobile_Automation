@@ -1,3 +1,5 @@
+import inspect
+
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 
@@ -14,6 +16,7 @@ from ...PageObject.Template_Management.Template_Management_Android import Templa
 from ...PageObject.Others_Screen.Others_Screen import Others
 import pytest
 from ...TestSuite.api_call import *
+from ...TestSuite.store import *
 
 
 class Android_App_Data_Sources:
@@ -36,12 +39,13 @@ template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 others_page = Others(poco)
 
-execID = 0
-leftId = {"0": "7"}
 
 
 def test_DataSources_TestcaseID_45729():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Sign in the account and click My Data option.'],
         2: [2, 'Click + button at bottom and select Link File.'],
@@ -54,6 +58,9 @@ def test_DataSources_TestcaseID_45729():
         7: [7, 'Repeat this test case for OneDrive.'],
         8: [8, 'Also check Account Settings page should provide user management of Google and OneDrive accounts.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -71,7 +78,7 @@ def test_DataSources_TestcaseID_45729():
             registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
             raise Exception("Did not navigate to Sign In with google page")
-        account = "zsbswdvt@gmail.com"
+        account = "zebra03.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
         else:
@@ -86,7 +93,7 @@ def test_DataSources_TestcaseID_45729():
                     poco.scroll()
                     count -= 1
                 registration_page.addAccountToDevice()
-            registration_page.sign_In_With_Google("zsbswdvt@1234", "zsbswdvt@gmail.com")
+            registration_page.sign_In_With_Google("Zebra#123456789", "zebra03.swdvt@gmail.com")
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         """Click My Data"""
@@ -94,7 +101,8 @@ def test_DataSources_TestcaseID_45729():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File.
@@ -108,10 +116,11 @@ def test_DataSources_TestcaseID_45729():
         data_sources_page.click_Link_File()
         """ google drive """
         registration_page.click_Google_Icon()
-        help_page.chooseAcc("zsbswdvt@gmail.com")
+        help_page.chooseAcc("zebra03.swdvt@gmail.com")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Google Drive will be opened and let user select file to link.
@@ -122,7 +131,8 @@ def test_DataSources_TestcaseID_45729():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select the file with Special character from Google Drive. Check the selected file is linked. Check the details of the File name, Source and Date added (Today) of the linked file are shown correctly.
@@ -136,7 +146,8 @@ def test_DataSources_TestcaseID_45729():
         data_sources_page.verify_File_Data(special_char_file, "Google Drive")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Select the file with long file name from Google Drive. Check the selected file is linked. Check the details of the File name, Source and Date added (Today) of the linked file are shown correctly.
@@ -156,7 +167,8 @@ def test_DataSources_TestcaseID_45729():
         data_sources_page.verify_File_Data(long_file, "Google Drive")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Remove these 2 files. Check these 2 files are able to remove.
@@ -178,7 +190,8 @@ def test_DataSources_TestcaseID_45729():
         """"""""""""""""""""""""""""""""""""""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Repeat this test case for OneDrive.
@@ -194,7 +207,7 @@ def test_DataSources_TestcaseID_45729():
         """ One drive """
         data_sources_page.clickMicrosoftOneDrive()
         sleep(2)
-        data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
         common_method.wait_for_element_appearance("NAME")
         """Select file with special characters"""
         sleep(5)
@@ -230,7 +243,8 @@ def test_DataSources_TestcaseID_45729():
         data_sources_page.checkIfListIsEmpty()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Also check Account Settings page should provide user management of Google and OneDrive accounts.
@@ -239,12 +253,20 @@ def test_DataSources_TestcaseID_45729():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45729"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
+
 
 
 # def test_DataSources_TestcaseID_45733():
@@ -265,7 +287,7 @@ def test_DataSources_TestcaseID_45729():
 #         common_method.wait_for_element_appearance("NAME", 20)
 #     except:
 #         registration_page.click_Google_Icon()
-#         help_page.chooseAcc("zsbswdvt@gmail.com")
+#         help_page.chooseAcc("zebra03.swdvt@gmail.com")
 #         common_method.wait_for_element_appearance("NAME")
 #     """searchTest re check"""
 #     data_sources_page.searchFilesInLinkFiles("test")
@@ -295,6 +317,9 @@ def test_DataSources_TestcaseID_45729():
 
 def test_DataSources_TestcaseID_45734():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -307,6 +332,9 @@ def test_DataSources_TestcaseID_45734():
             'Select a same file name which already existed in app to upload Check there is a prompt message for telling user the file is existed, like "file name is already linked"'],
         8: [8, 'Repeat this test case for OneDrive, check it works same for OneDrive file']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -321,7 +349,8 @@ def test_DataSources_TestcaseID_45734():
         data_sources_page.click_My_Data()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -335,7 +364,8 @@ def test_DataSources_TestcaseID_45734():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select Google drive
@@ -344,7 +374,8 @@ def test_DataSources_TestcaseID_45734():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Google Drive page will open and let user select file to link
@@ -356,7 +387,8 @@ def test_DataSources_TestcaseID_45734():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Select a not-supported file types to link (Check only supported files are listed)
@@ -367,7 +399,8 @@ def test_DataSources_TestcaseID_45734():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Select a supported file type but file size exceed maximum allowed size (Max file size is 28.4 MB) Check there is a prompt message for telling user the file is too big
@@ -380,7 +413,8 @@ def test_DataSources_TestcaseID_45734():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Select a same file name which already existed in app to upload Check there is a prompt message for telling user the file is existed, like "file name is already linked"
@@ -401,7 +435,8 @@ def test_DataSources_TestcaseID_45734():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Repeat this test case for OneDrive, check it works same for OneDrive file
@@ -440,16 +475,26 @@ def test_DataSources_TestcaseID_45734():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45734"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45735():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Zebra account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -464,6 +509,9 @@ def test_DataSources_TestcaseID_45735():
         11: [11, 'Check the details of file icon, file name, Date added and Data source field (One Drive) are correct'],
         12: [12, 'Repeat for another 2 to 3 supported file types']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -480,7 +528,8 @@ def test_DataSources_TestcaseID_45735():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -496,7 +545,8 @@ def test_DataSources_TestcaseID_45735():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select File page will open
@@ -506,7 +556,8 @@ def test_DataSources_TestcaseID_45735():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select One Drive
@@ -517,7 +568,8 @@ def test_DataSources_TestcaseID_45735():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Click Back button
@@ -526,7 +578,8 @@ def test_DataSources_TestcaseID_45735():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check mobile app return back to My Data page and no file is linked
@@ -536,7 +589,8 @@ def test_DataSources_TestcaseID_45735():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click + button at bottom and select Link File
@@ -549,7 +603,8 @@ def test_DataSources_TestcaseID_45735():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: On One Drive page, check only supported file types are listed
@@ -564,7 +619,8 @@ def test_DataSources_TestcaseID_45735():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Select a file and click Select
@@ -575,7 +631,8 @@ def test_DataSources_TestcaseID_45735():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check mobile app return to My Data page and file is linked
@@ -584,7 +641,8 @@ def test_DataSources_TestcaseID_45735():
         data_sources_page.searchName(png_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the details of file icon, file name, Date added and Data source field (One Drive) are correct
@@ -593,7 +651,8 @@ def test_DataSources_TestcaseID_45735():
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat for another 2 to 3 supported file types
@@ -661,16 +720,26 @@ def test_DataSources_TestcaseID_45735():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45735"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45736():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click the 3 dot menu from a file which linked from Google Drive'],
@@ -686,6 +755,9 @@ def test_DataSources_TestcaseID_45736():
         11: [11, 'Repeat the test case and remove linked file from One Drive']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -699,7 +771,8 @@ def test_DataSources_TestcaseID_45736():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click the 3 dot menu from a file which linked from Google Drive
@@ -739,7 +812,8 @@ def test_DataSources_TestcaseID_45736():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select Remove option
@@ -749,7 +823,8 @@ def test_DataSources_TestcaseID_45736():
         data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file, True, True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: A confirmation pop up "Remove linked file - Are you sure you want to remove the linked file? All fields using this data source will need to be reconnected to a data source."
@@ -758,7 +833,8 @@ def test_DataSources_TestcaseID_45736():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Select Cancel button
@@ -767,7 +843,8 @@ def test_DataSources_TestcaseID_45736():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check the linked file is not removed
@@ -779,7 +856,8 @@ def test_DataSources_TestcaseID_45736():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click the 3 dot menu from a file which linked from Google Drive
@@ -788,7 +866,8 @@ def test_DataSources_TestcaseID_45736():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Select Remove button
@@ -799,7 +878,8 @@ def test_DataSources_TestcaseID_45736():
         data_sources_page.searchName(txt_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Check the linked file is removed
@@ -808,14 +888,18 @@ def test_DataSources_TestcaseID_45736():
         data_sources_page.checkFileRemovedSuccessfully(txt_file, "Google Drive")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Log into web portal and check the linked file is removed
         start_time = time.time()
 
+        sleep(10)
+
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Repeat the test case and remove linked file from One Drive
@@ -832,20 +916,30 @@ def test_DataSources_TestcaseID_45736():
         data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
         data_sources_page.searchName("")
         data_sources_page.searchName(png_file)
-        data_sources_page.checkFileRemovedSuccessfully(png_file, "OneDrive", True)
+        data_sources_page.checkFileRemovedSuccessfully(png_file, "OneDrive")
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45736"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45737():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click the 3 dot menu from a file which linked from Google Drive'],
@@ -864,6 +958,9 @@ def test_DataSources_TestcaseID_45737():
         12: [12, 'Repeat the test case and remove linked file in step 2 from One Drive']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -879,7 +976,7 @@ def test_DataSources_TestcaseID_45737():
             registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
             raise Exception("Did not navigate to Sign In with google page")
-        account = "zebraidctest@gmail.com"
+        account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
         else:
@@ -894,7 +991,7 @@ def test_DataSources_TestcaseID_45737():
                     poco.scroll()
                     count -= 1
                 registration_page.addAccountToDevice()
-            registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+            registration_page.sign_In_With_Google("Zebra#123456789", "zebra03.swdvt@gmail.com")
         try:
             registration_page.wait_for_element_appearance("Home", 20)
         except:
@@ -904,7 +1001,8 @@ def test_DataSources_TestcaseID_45737():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click the 3 dot menu from a file which linked from Google Drive
@@ -914,7 +1012,8 @@ def test_DataSources_TestcaseID_45737():
         data_sources_page.searchName(removed_file_name)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select Remove option
@@ -923,7 +1022,8 @@ def test_DataSources_TestcaseID_45737():
         data_sources_page.remove_File_Based_On_DataSource("Google Drive", removed_file_name, False, True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: A confirmation pop up "Remove linked file - Are you sure you want to remove the linked file? All fields using this data source will convert to manual input fields."
@@ -932,7 +1032,8 @@ def test_DataSources_TestcaseID_45737():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Select Remove button
@@ -941,7 +1042,8 @@ def test_DataSources_TestcaseID_45737():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check the linked file is removed.
@@ -953,7 +1055,8 @@ def test_DataSources_TestcaseID_45737():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Print the label design, mobile app will prompt user to Update Data Connections
@@ -974,7 +1077,8 @@ def test_DataSources_TestcaseID_45737():
             pass
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Choose the linked excel file in precondition step 4, click next
@@ -984,7 +1088,8 @@ def test_DataSources_TestcaseID_45737():
         data_sources_page.clickContinue()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Choose the new column, click next. Check that preview dialog shown. Navigate to check different preview images are correct
@@ -998,7 +1103,8 @@ def test_DataSources_TestcaseID_45737():
         data_sources_page.scroll_till_print()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click print, then click label range field, just select some rows, click confirm. Check that only the selected row number are shown in the label range field. Navigate to check that only the select rows can be previewed. Check that the total number is correct and the same as your selected row amount
@@ -1016,7 +1122,8 @@ def test_DataSources_TestcaseID_45737():
             raise Exception("The total number is not the same as your selected row amount")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Click print. Check that only the selected row data are printed out
@@ -1027,7 +1134,8 @@ def test_DataSources_TestcaseID_45737():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat the test case and remove linked file in step 2 from One Drive
@@ -1043,8 +1151,8 @@ def test_DataSources_TestcaseID_45737():
         except:
             pass
         template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
-        account = "zsbswdvt@gmail.com"
-        data_sources_page.signInWithMicrosoft(account, "hmWepX4AUMLa!9E", False)
+        account = "zebra03.swdvt@gmail.com"
+        data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
         sleep(5)
         if template_management_page.continueDisabled() and not template_management_page.checkIfOnRelinkDataSourcesPage:
             template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
@@ -1085,12 +1193,12 @@ def test_DataSources_TestcaseID_45737():
         sleep(5)
         if data_sources_page.verifySignInWithGoogle():
             registration_page.click_Google_Icon()
-            account = "zsbswdvt@gmail.com"
+            account = "zebra03.swdvt@gmail.com"
             if data_sources_page.checkIfAccPresentLink(account):
                 help_page.chooseAcc(account)
             else:
                 poco("com.google.android.gms:id/add_account_chip_title").click()
-                registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+                registration_page.sign_In_With_Google("Zebra#123456789", account)
                 sleep(2)
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         sleep(5)
@@ -1101,16 +1209,26 @@ def test_DataSources_TestcaseID_45737():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45737"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45739():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click + button at bottom and select Upload File'],
@@ -1123,6 +1241,9 @@ def test_DataSources_TestcaseID_45739():
             'Login to web portal->Data Sources page. Check the uploaded files from mobile app display in the my data page in web portal. Check switch to different menu or press F5 should be able to refresh the file list.'],
         8: [8, 'Repeat for all supported file types']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1138,7 +1259,8 @@ def test_DataSources_TestcaseID_45739():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Upload File
@@ -1151,30 +1273,46 @@ def test_DataSources_TestcaseID_45739():
         data_sources_page.click_Upload_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: A page will be opened and let user select file to upload
         start_time = time.time()
 
         sleep(3)
+        if poco("My Data").exists():
+            raise Exception("Page to select file to upload not opened.")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click back button to return to mobile app. Check no file is uploaded
         start_time = time.time()
 
+        while not poco("My Data").exists():
+            keyevent("back")
+            sleep(2)
+
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Click + button at bottom and select Upload File
         start_time = time.time()
 
+        """Click Add file"""
+        data_sources_page.click_Add_File()
+        sleep(2)
+        """Click Upload File"""
+        data_sources_page.click_Upload_File()
+
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Select any of the following supported file types to upload. Check File is uploaded with correct icon, name, data source type and create date. Note: Data files should use file icons, images files should use image icons. Check there is notification " has been successfully uploaded"
@@ -1193,7 +1331,8 @@ def test_DataSources_TestcaseID_45739():
             data_sources_page.verifyFilePresentInList(name, "Local File", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Login to web portal->Data Sources page. Check the uploaded files from mobile app display in the my data page in web portal. Check switch to different menu or press F5 should be able to refresh the file list.
@@ -1253,23 +1392,34 @@ def test_DataSources_TestcaseID_45739():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Repeat for all supported file types
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45739"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45744():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click + button at the bottom, and select Upload File'],
@@ -1279,6 +1429,9 @@ def test_DataSources_TestcaseID_45744():
         5: [5,
             'Select a file which name is same as the file existing uploaded from cloud. Check the file can be uploaded successfully']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1294,7 +1447,8 @@ def test_DataSources_TestcaseID_45744():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45744"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at the bottom, and select Upload File
@@ -1307,7 +1461,8 @@ def test_DataSources_TestcaseID_45744():
         data_sources_page.click_Upload_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45744"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: A page will be opened and let user select file to upload
@@ -1316,7 +1471,8 @@ def test_DataSources_TestcaseID_45744():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45744"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select a file which name is same as the file existing uploaded from local. Check it allow user to upload same file and add suffix(1) to the later upload file name
@@ -1345,7 +1501,8 @@ def test_DataSources_TestcaseID_45744():
             raise Exception("Re-uploading not appended '(1)' to file name")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45744"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         "remove file for next execution"
@@ -1387,16 +1544,26 @@ def test_DataSources_TestcaseID_45744():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45744"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45744"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45740():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click + button at bottom and select Upload File'],
@@ -1407,6 +1574,9 @@ def test_DataSources_TestcaseID_45740():
         6: [6,
             'Login to web portal->Data Sources page. Check the uploaded files from mobile app display in the my data page in web portal.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1422,7 +1592,8 @@ def test_DataSources_TestcaseID_45740():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45740"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Upload File
@@ -1435,7 +1606,8 @@ def test_DataSources_TestcaseID_45740():
         data_sources_page.click_Upload_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45740"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: A page will be opened and let user select file to upload
@@ -1444,7 +1616,8 @@ def test_DataSources_TestcaseID_45740():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45740"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select any of the following supported file types to upload
@@ -1454,7 +1627,8 @@ def test_DataSources_TestcaseID_45740():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45740"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Upload more than 20 files. Check all files can be uploaded successfully. Check File is uploaded with correct icon, name, data source type and create date. Note: Data files should use file icons, images files should use image icons.
@@ -1470,7 +1644,8 @@ def test_DataSources_TestcaseID_45740():
             data_sources_page.verifyFilePresentInList(name, "Local File", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45740"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Login to web portal->Data Sources page. Check the uploaded files from mobile app display in the my data page in web portal.
@@ -1521,16 +1696,26 @@ def test_DataSources_TestcaseID_45740():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45740"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45740"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45741():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click 3 dots menu for a local file'],
@@ -1546,6 +1731,9 @@ def test_DataSources_TestcaseID_45741():
         11: [11, 'Go to web portal to check if the file is removed from web portal as well.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -1560,7 +1748,8 @@ def test_DataSources_TestcaseID_45741():
         data_sources_page.click_My_Data()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click 3 dots menu for a local file
@@ -1578,7 +1767,8 @@ def test_DataSources_TestcaseID_45741():
         data_sources_page.searchName(selected_file_name)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Click Remove
@@ -1587,7 +1777,8 @@ def test_DataSources_TestcaseID_45741():
         data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file_name, True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Message prompt "Remove local file" to let user to confirm
@@ -1596,7 +1787,8 @@ def test_DataSources_TestcaseID_45741():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Click Cancel
@@ -1605,7 +1797,8 @@ def test_DataSources_TestcaseID_45741():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check the selected file has not been deleted
@@ -1614,7 +1807,8 @@ def test_DataSources_TestcaseID_45741():
         data_sources_page.checkFileNotRemovedAfterClickingCancel(selected_file_name, "Local File")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click 3 dots menu for selected file again
@@ -1623,7 +1817,8 @@ def test_DataSources_TestcaseID_45741():
         data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file_name)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click Remove
@@ -1632,7 +1827,8 @@ def test_DataSources_TestcaseID_45741():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Message prompt "Remove local file" to let user to confirm
@@ -1641,7 +1837,8 @@ def test_DataSources_TestcaseID_45741():
         sleep(4)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click Delete button. Check the selected file is deleted from the list (no need to refresh the page manually)
@@ -1652,7 +1849,8 @@ def test_DataSources_TestcaseID_45741():
         data_sources_page.checkFileRemovedSuccessfully(selected_file_name, "Local File")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Go to web portal to check if the file is removed from web portal as well.
@@ -1696,16 +1894,26 @@ def test_DataSources_TestcaseID_45741():
         stop_app("com.android.chrome")
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45741"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45742():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click 3 dots menu for a local file'],
@@ -1723,6 +1931,9 @@ def test_DataSources_TestcaseID_45742():
         13: [13,
              'Try to link a new file or input data manually when print the template. Check user can link a new file or input data manually and print out successfully.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1746,28 +1957,32 @@ def test_DataSources_TestcaseID_45742():
         data_sources_page.remove_File_Based_On_DataSource("Local File", remove_file_name, True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Click Remove
         start_time = time.time()
         # Implement step 3
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Message prompt "Remove local file" to let user to confirm
         start_time = time.time()
         # Implement step 4
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Click Cancel
         start_time = time.time()
         # Implement step 5
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check the selected file is not been deleted
@@ -1776,7 +1991,8 @@ def test_DataSources_TestcaseID_45742():
         data_sources_page.checkFileNotRemovedAfterClickingCancel(remove_file_name, "Local File")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click 3 dots menu for selected file again
@@ -1785,21 +2001,24 @@ def test_DataSources_TestcaseID_45742():
         data_sources_page.remove_File_Based_On_DataSource("Local File", remove_file_name)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click Remove
         start_time = time.time()
         # Implement step 8
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Message prompt "Remove local file" to let user to confirm
         start_time = time.time()
         # Implement step 9
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click Delete button. Check the selected file is deleted from the list (no need to refresh the page manually)
@@ -1810,7 +2029,8 @@ def test_DataSources_TestcaseID_45742():
         data_sources_page.checkFileRemovedSuccessfully(remove_file_name, "Local File")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Go to web portal to check if the file is removed from web portal as well.
@@ -1849,7 +2069,8 @@ def test_DataSources_TestcaseID_45742():
             raise Exception("File is not removed from the web portal.")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Print the template and check it should prompt user to link or input data manually.
@@ -1872,7 +2093,8 @@ def test_DataSources_TestcaseID_45742():
         data_sources_page.clickContinueWeb()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Try to link a new file or input data manually when print the template. Check user can link a new file or input data manually and print out successfully.
@@ -1901,22 +2123,35 @@ def test_DataSources_TestcaseID_45742():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45742"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45743():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Goto Mobile app -> My Data page'],
         2: [2,
             'Click + button at bottom. For iOS: Check only the supported file types can be selectable. For Android: In Android, if you selects a third party file browser, eg. Files in huawei, or ES, then you will be able to select those unsupported files types, then select an unsupported file. If you open the default file browser then only the supported file types can be selectable.'],
         3: [3, 'click or double click on the grey out files. Check the file is not able to selected.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1932,7 +2167,8 @@ def test_DataSources_TestcaseID_45743():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45743"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom. For iOS: Check only the supported file types can be selectable. For Android: In Android, if you selects a third party file browser, eg. Files in huawei, or ES, then you will be able to select those unsupported files types, then select an unsupported file. If you open the default file browser then only the supported file types can be selectable.
@@ -1946,7 +2182,8 @@ def test_DataSources_TestcaseID_45743():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45743"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: click or double click on the grey out files. Check the file is not able to selected.
@@ -1965,16 +2202,26 @@ def test_DataSources_TestcaseID_45743():
         keyevent("back")
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45743"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45743"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45745():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Goto Mobile app -> My Data page'],
         2: [2, 'Click + button at the bottom, and select Upload File'],
@@ -1983,6 +2230,9 @@ def test_DataSources_TestcaseID_45745():
             'Select a file with below special characters to upload @ & () $ ! ^ = ~ {} [] ; "" _ - # % and Chinese. [Vicky] there will be no error for invalid characters, and those characters are just ignored in the name. Check the file can be uploaded successfully without error'],
         5: [5, 'Repeat to upload files to cover all above special characters.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -1998,7 +2248,8 @@ def test_DataSources_TestcaseID_45745():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45745"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at the bottom, and select Upload File
@@ -2011,7 +2262,8 @@ def test_DataSources_TestcaseID_45745():
         data_sources_page.click_Upload_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45745"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: A page will be opened and let user select file to upload
@@ -2020,7 +2272,8 @@ def test_DataSources_TestcaseID_45745():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45745"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select a file with below special characters to upload @ & () $ ! ^ = ~ {} [] ; "" _ - # % and Chinese. [Vicky] there will be no error for invalid characters, and those characters are just ignored in the name. Check the file can be uploaded successfully without error
@@ -2039,7 +2292,8 @@ def test_DataSources_TestcaseID_45745():
         data_sources_page.verifyFilePresentInList(special_char_file1)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45745"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Repeat to upload files to cover all above special characters.
@@ -2061,16 +2315,26 @@ def test_DataSources_TestcaseID_45745():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45745"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45745"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45746():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click + button at the bottom, and select Upload File'],
@@ -2079,6 +2343,9 @@ def test_DataSources_TestcaseID_45746():
         5: [5, 'Check it can be uploaded successfully.'],
         6: [6, 'Check the file icon, file name, Date added and Data source field are correct']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2094,7 +2361,8 @@ def test_DataSources_TestcaseID_45746():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45746"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at the bottom, and select Upload File
@@ -2107,7 +2375,8 @@ def test_DataSources_TestcaseID_45746():
         data_sources_page.click_Upload_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45746"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: A page will be opened and let user select file to upload
@@ -2116,7 +2385,8 @@ def test_DataSources_TestcaseID_45746():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45746"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select a file with 64 characters in the file name
@@ -2128,7 +2398,8 @@ def test_DataSources_TestcaseID_45746():
         sleep(7)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45746"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check it can be uploaded successfully.
@@ -2137,7 +2408,8 @@ def test_DataSources_TestcaseID_45746():
         data_sources_page.searchName(long_name_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45746"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check the file icon, file name, Date added and Data source field are correct
@@ -2150,16 +2422,26 @@ def test_DataSources_TestcaseID_45746():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45746"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45746"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45747():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click + button at the bottom, and select Upload File'],
@@ -2168,6 +2450,9 @@ def test_DataSources_TestcaseID_45747():
         5: [5, 'Repeat the test with file size 28.3MB and 28.4MB.'],
         6: [6, 'Check the file can be uploaded successfully.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2186,7 +2471,8 @@ def test_DataSources_TestcaseID_45747():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45747"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at the bottom, and select Upload File
@@ -2198,7 +2484,8 @@ def test_DataSources_TestcaseID_45747():
         data_sources_page.click_Upload_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45747"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select a file with exceed maximum allowed size (eg. size is 28.5 MB, Max file size is 28.4 MB)
@@ -2210,7 +2497,8 @@ def test_DataSources_TestcaseID_45747():
         sleep(20)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45747"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Check the file can not be uploaded.
@@ -2228,7 +2516,8 @@ def test_DataSources_TestcaseID_45747():
         """unable to verify error as there is no error popping up if file exceeds 28.4mb"""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45747"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Repeat the test with file size 28.3MB and 28.4MB.
@@ -2253,7 +2542,8 @@ def test_DataSources_TestcaseID_45747():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45747"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check the file can be uploaded successfully.
@@ -2271,12 +2561,19 @@ def test_DataSources_TestcaseID_45747():
         data_sources_page.remove_File_Based_On_DataSource("Local File", large_file)
         common_method.tearDown()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45747"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45747"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # def test_DataSources_TestcaseID_45748():
@@ -2311,6 +2608,9 @@ def test_DataSources_TestcaseID_45747():
 
 def test_DataSources_TestcaseID_45755():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Google account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -2327,6 +2627,9 @@ def test_DataSources_TestcaseID_45755():
         13: [13, 'Check the file icon, file name, Date added and Data source field are correct'],
         14: [14, 'Repeat for other 2 to 3 supported file types']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2347,7 +2650,8 @@ def test_DataSources_TestcaseID_45755():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -2362,7 +2666,8 @@ def test_DataSources_TestcaseID_45755():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Cloud Service Sign in page will open and let user select which service to login
@@ -2371,7 +2676,8 @@ def test_DataSources_TestcaseID_45755():
         sleep(4)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click Sign in with Microsoft account
@@ -2382,7 +2688,8 @@ def test_DataSources_TestcaseID_45755():
         data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: After signed in Microsoft account, check supported files are listed in One Drive
@@ -2393,7 +2700,8 @@ def test_DataSources_TestcaseID_45755():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click Back button
@@ -2402,7 +2710,8 @@ def test_DataSources_TestcaseID_45755():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Mobile app return to My Data page
@@ -2411,7 +2720,8 @@ def test_DataSources_TestcaseID_45755():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Check no file is uploaded
@@ -2421,7 +2731,8 @@ def test_DataSources_TestcaseID_45755():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click + button at bottom and select Link File
@@ -2434,7 +2745,8 @@ def test_DataSources_TestcaseID_45755():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click Microsoft One Drive
@@ -2445,7 +2757,8 @@ def test_DataSources_TestcaseID_45755():
         data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Select any of the supported file types to link
@@ -2458,7 +2771,8 @@ def test_DataSources_TestcaseID_45755():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check the selected file is linked
@@ -2467,7 +2781,8 @@ def test_DataSources_TestcaseID_45755():
         data_sources_page.searchName(png_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Check the file icon, file name, Date added and Data source field are correct
@@ -2476,7 +2791,8 @@ def test_DataSources_TestcaseID_45755():
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Repeat for other 2 to 3 supported file types
@@ -2559,12 +2875,19 @@ def test_DataSources_TestcaseID_45755():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45755"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 # def test_DataSources_TestcaseID_45756():
@@ -2619,6 +2942,9 @@ def test_DataSources_TestcaseID_45755():
 
 def test_DataSources_TestcaseID_45757():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Designs'],
         2: [2, 'Select the design created in Setup'],
@@ -2626,6 +2952,9 @@ def test_DataSources_TestcaseID_45757():
         4: [4, 'Choose Camera option, take a photo and upload it, check the preview is correct'],
         5: [5, 'Click the print button, check the printed label is correct']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2642,7 +2971,8 @@ def test_DataSources_TestcaseID_45757():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45757"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Select the design created in Setup
@@ -2655,7 +2985,8 @@ def test_DataSources_TestcaseID_45757():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45757"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Click the print button, check there is an option for choosing a picture object
@@ -2671,7 +3002,8 @@ def test_DataSources_TestcaseID_45757():
         data_sources_page.expandPhotoOptions()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45757"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Choose Camera option, take a photo and upload it, check the preview is correct
@@ -2691,7 +3023,8 @@ def test_DataSources_TestcaseID_45757():
         """Part of step 4 is to check the preview is correct unable to verify preview has to be done manually"""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45757"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Click the print button, check the printed label is correct
@@ -2703,16 +3036,26 @@ def test_DataSources_TestcaseID_45757():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45757"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45757"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45759():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login to Mobile App'],
         2: [2, 'Go to My Data page'],
@@ -2722,6 +3065,9 @@ def test_DataSources_TestcaseID_45759():
         6: [6, 'Repeat step 3-4, select the same file to link, validate message "xxx(file name) is already linked"'],
         7: [7, 'Repeat step 3 to 6 to cover OneDrive, check it works well']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -2733,7 +3079,8 @@ def test_DataSources_TestcaseID_45759():
         data_sources_page.checkIfOnHomePage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Go to My Data page
@@ -2745,7 +3092,8 @@ def test_DataSources_TestcaseID_45759():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Click on the 'link file' button and follow the link to the Google Drive file
@@ -2759,7 +3107,8 @@ def test_DataSources_TestcaseID_45759():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click on Google drive login on with prepared google account
@@ -2770,7 +3119,8 @@ def test_DataSources_TestcaseID_45759():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Select one file from Google Drive file list, check file shows in My Data list
@@ -2782,7 +3132,8 @@ def test_DataSources_TestcaseID_45759():
         data_sources_page.verifyFilePresentInList(existing_file, "Google Drive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Repeat step 3-4, select the same file to link, validate message "xxx(file name) is already linked"
@@ -2807,7 +3158,8 @@ def test_DataSources_TestcaseID_45759():
         data_sources_page.remove_File_Based_On_DataSource("Google Drive", existing_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Repeat step 3 to 6 to cover OneDrive, check it works well
@@ -2823,7 +3175,7 @@ def test_DataSources_TestcaseID_45759():
         data_sources_page.clickMicrosoftOneDrive()
         sleep(2)
         if data_sources_page.verifySignInWithMicrosoft():
-            data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+            data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
             sleep(2)
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         data_sources_page.clickMicrosoftOneDrive()
@@ -2852,16 +3204,26 @@ def test_DataSources_TestcaseID_45759():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45759"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_47830():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login in mobile app'],
         2: [2, 'Go to My Design Page'],
@@ -2874,6 +3236,9 @@ def test_DataSources_TestcaseID_47830():
             'Go back to Mobile App, My Data page file list does not update. Check screen pull-down to refresh/update on My Design/My File Page works']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -2884,7 +3249,8 @@ def test_DataSources_TestcaseID_47830():
         common_method.tearDown()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Go to My Design Page
@@ -2897,7 +3263,8 @@ def test_DataSources_TestcaseID_47830():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Login to Web Portal with same test account, create a new design
@@ -2944,7 +3311,8 @@ def test_DataSources_TestcaseID_47830():
         data_sources_page.exitDesigner()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Go back to Mobile App
@@ -2954,12 +3322,14 @@ def test_DataSources_TestcaseID_47830():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: In My Design page, the newly created design in Step 4 does not show in the list
         start_time = time.time()
 
+        raise Exception("No pull down to refresh option due to bug SMBM-1710")
         """No pull down to refresh option due to bug SMBM-1710"""
         data_sources_page.searchMyDesigns(label_name)
         try:
@@ -2972,7 +3342,8 @@ def test_DataSources_TestcaseID_47830():
             raise Exception("New Design created in web is present without the need to refresh.")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Open My Data page
@@ -2984,7 +3355,8 @@ def test_DataSources_TestcaseID_47830():
         data_sources_page.click_My_Data()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: In Web Portal, upload or link a new file in My Data page
@@ -3017,13 +3389,15 @@ def test_DataSources_TestcaseID_47830():
         selected_file_name = data_sources_page.selectFileToUploadWeb()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Go back to Mobile App, My Data page file list does not update.Check screen pull-down to refresh/update on My Design/My File Page works
         start_time = time.time()
 
         stop_app("com.android.chrome")
+        raise Exception("No pull down to refresh option due to bug SMBM-1710")
         """No pull down to refresh option due to bug SMBM-1710"""
         sleep(5)
         data_sources_page.searchName(selected_file_name)
@@ -3034,16 +3408,26 @@ def test_DataSources_TestcaseID_47830():
             raise Exception("New File updated in web is present without the need to refresh.")
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47830"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_47936():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go To My Data'],
         2: [2, 'Click on + sign on bottom right'],
@@ -3057,6 +3441,9 @@ def test_DataSources_TestcaseID_47936():
         9: [9, 'Confirm the same'],
         10: [10, 'File should be removed along with a notification updated for the same.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -3072,7 +3459,8 @@ def test_DataSources_TestcaseID_47936():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click on + sign on bottom right
@@ -3083,7 +3471,8 @@ def test_DataSources_TestcaseID_47936():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Click on Upload File
@@ -3094,7 +3483,8 @@ def test_DataSources_TestcaseID_47936():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select a supported File
@@ -3106,7 +3496,8 @@ def test_DataSources_TestcaseID_47936():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check that on My Data page, the selected file should be reflected along with a notification updated for the same.
@@ -3117,7 +3508,8 @@ def test_DataSources_TestcaseID_47936():
         print(selected_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Go to My Data page again
@@ -3126,7 +3518,8 @@ def test_DataSources_TestcaseID_47936():
         data_sources_page.searchName(selected_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click on 3 dots corresponding to any file
@@ -3135,7 +3528,8 @@ def test_DataSources_TestcaseID_47936():
         data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click Remove
@@ -3144,7 +3538,8 @@ def test_DataSources_TestcaseID_47936():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Confirm the same
@@ -3153,7 +3548,8 @@ def test_DataSources_TestcaseID_47936():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: File should be removed along with a notification updated for the same.
@@ -3165,16 +3561,26 @@ def test_DataSources_TestcaseID_47936():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47936"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_47942():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Open the app and login'],
         2: [2, 'Slide the left slide page to choose "Data Sources" item'],
@@ -3183,6 +3589,9 @@ def test_DataSources_TestcaseID_47942():
         5: [5,
             'It should pop up the progress indicator, and dismiss until the file appears at the "Data Sources" page.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -3194,7 +3603,8 @@ def test_DataSources_TestcaseID_47942():
         data_sources_page.checkIfOnHomePage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47942"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Slide the left slide page to choose "Data Sources" item
@@ -3208,7 +3618,8 @@ def test_DataSources_TestcaseID_47942():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47942"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Click the "+" button at the bottom, and choose "upload file"
@@ -3222,7 +3633,8 @@ def test_DataSources_TestcaseID_47942():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47942"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Choose the file (about 1 MB) to upload
@@ -3233,7 +3645,8 @@ def test_DataSources_TestcaseID_47942():
         data_sources_page.searchFileInLocalStorage(selected_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47942"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: It should pop up the progress indicator, and dismiss until the file appears at the "Data Sources" page.
@@ -3251,16 +3664,26 @@ def test_DataSources_TestcaseID_47942():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47942"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47942"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_47944():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Open the app and login'],
         2: [2, 'Slide left slide page and click My Data'],
@@ -3269,6 +3692,9 @@ def test_DataSources_TestcaseID_47944():
         5: [5,
             'It should pop up the error dialog saying the file you uploaded has some issue, uploading this file failed. The file should not appear in My Data.']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -3280,7 +3706,8 @@ def test_DataSources_TestcaseID_47944():
         common_method.tearDown()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47944"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Slide left slide page and click My Data
@@ -3292,7 +3719,8 @@ def test_DataSources_TestcaseID_47944():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47944"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Click the + button to choose Upload File
@@ -3303,7 +3731,8 @@ def test_DataSources_TestcaseID_47944():
         data_sources_page.click_Upload_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47944"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Choose the file "4-BMP.BMP" which is mentioned in the precondition
@@ -3315,7 +3744,8 @@ def test_DataSources_TestcaseID_47944():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47944"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: It should pop up the error dialog saying the file you uploaded has some issue, uploading this file failed. The file should not appear in My Data.
@@ -3329,16 +3759,26 @@ def test_DataSources_TestcaseID_47944():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47944"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47944"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45758():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Go to Mobile app -> My Data page'],
         2: [2, 'Click Link File button and Select a Data Source window opened'],
@@ -3348,6 +3788,9 @@ def test_DataSources_TestcaseID_45758():
         6: [6, 'Check the Select button is disabled'],
         7: [7, 'Repeat for OneDrive']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -3364,7 +3807,7 @@ def test_DataSources_TestcaseID_45758():
             registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
             raise Exception("Did not navigate to Sign In with google page")
-        account = "zebraidctest@gmail.com"
+        account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
         else:
@@ -3379,7 +3822,7 @@ def test_DataSources_TestcaseID_45758():
                     poco.scroll()
                     count -= 1
                 registration_page.addAccountToDevice()
-            registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+            registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
         """Click hamburger icon to expand menu"""
         try:
             registration_page.wait_for_element_appearance("Home", 30)
@@ -3392,7 +3835,8 @@ def test_DataSources_TestcaseID_45758():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click Link File button and Select a Data Source window opened
@@ -3407,7 +3851,8 @@ def test_DataSources_TestcaseID_45758():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select Open Google Drive / Open OneDrive
@@ -3425,7 +3870,8 @@ def test_DataSources_TestcaseID_45758():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Google Drive / OneDrive explorer is opened
@@ -3435,7 +3881,8 @@ def test_DataSources_TestcaseID_45758():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check there is no file listed and "No documents" shown
@@ -3444,7 +3891,8 @@ def test_DataSources_TestcaseID_45758():
         data_sources_page.checkDriveEmpty()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check the Select button is disabled
@@ -3455,7 +3903,8 @@ def test_DataSources_TestcaseID_45758():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Repeat for OneDrive
@@ -3484,12 +3933,19 @@ def test_DataSources_TestcaseID_45758():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45758"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 """zebraloginzsb@gmail"""
@@ -3497,6 +3953,9 @@ def test_DataSources_TestcaseID_45758():
 
 def test_DataSources_TestcaseID_47937():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Launch ZSB Series App.'],
         2: [2, 'Click "Sign In/Register" button.'],
@@ -3518,6 +3977,9 @@ def test_DataSources_TestcaseID_47937():
              'Check user is successfully log out of Money Badger Home Page and is being navigate to the ZSB Login Page.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -3530,7 +3992,8 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.allowPermissions()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click "Sign In/Register" button.
@@ -3539,7 +4002,8 @@ def test_DataSources_TestcaseID_47937():
         registration_page.clickSignIn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Check user is navigated to "Login with username" page.
@@ -3548,16 +4012,18 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.signInWithEmail()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Enter login name (E.g MW12345) with correct password and click Sign in button. This time sign in with Zebra account.
         start_time = time.time()
 
-        registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#123456789", 1, 0, False)
+        registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0, False)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check user is successfully login to Money Badger Home Page and is navigated to Overview landing page.
@@ -3566,7 +4032,8 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.checkIfOnHomePage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Go to My Data page
@@ -3578,7 +4045,8 @@ def test_DataSources_TestcaseID_47937():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click + button at bottom and select Link File
@@ -3592,7 +4060,8 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Cloud Service Sign in page will open and let user select which service to login
@@ -3602,19 +4071,21 @@ def test_DataSources_TestcaseID_47937():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click Sign in with Microsoft
         start_time = time.time()
 
-        data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
         sleep(2)
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Select two or three supported files to upload
@@ -3653,7 +4124,8 @@ def test_DataSources_TestcaseID_47937():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check File is linked without issue
@@ -3663,7 +4135,8 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.verifyFilePresentInList(csv_file, "OneDrive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Select the file linked from OneDrive and Remove
@@ -3672,7 +4145,8 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Check the linked file removed from My Data page
@@ -3690,7 +4164,8 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.searchName("")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Repeat step 7 to step 13 but to link Google Drive file
@@ -3704,12 +4179,12 @@ def test_DataSources_TestcaseID_47937():
         sleep(5)
         if data_sources_page.verifySignInWithGoogle():
             registration_page.click_Google_Icon()
-        account = "zsbswdvt@gmail.com"
+        account = "zebra03.swdvt@gmail.com"
         if data_sources_page.checkIfAccPresentLink(account):
             help_page.chooseAcc(account)
         else:
             poco("com.google.android.gms:id/add_account_chip_title").click()
-            registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+            registration_page.sign_In_With_Google("Zebra#123456789", account)
             sleep(2)
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         sleep(5)
@@ -3758,7 +4233,8 @@ def test_DataSources_TestcaseID_47937():
         data_sources_page.searchName("")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 15: Click on the hamburger icon follow by Settings and click Log out button
@@ -3771,7 +4247,8 @@ def test_DataSources_TestcaseID_47937():
         registration_page.click_log_out_button()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 16: Check user is successfully log out of Money Badger Home Page and is being navigate to the ZSB Login Page.
@@ -3781,16 +4258,26 @@ def test_DataSources_TestcaseID_47937():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["47937"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45752():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Zebra account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -3808,13 +4295,15 @@ def test_DataSources_TestcaseID_45752():
         14: [14, 'Repeat for other 2 to 3 supported file types']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
         # Step 1: Login Zebra account in Mobile app and go to My Data page
         start_time = time.time()
 
-        """Remove if one drive account - zsbswdvt@gmail.com present"""
         common_method.tearDown()
         try:
             registration_page.wait_for_element_appearance("Home", 20)
@@ -3827,7 +4316,8 @@ def test_DataSources_TestcaseID_45752():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -3842,7 +4332,8 @@ def test_DataSources_TestcaseID_45752():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Cloud Service Sign in page will open and let user select which service to login
@@ -3852,7 +4343,8 @@ def test_DataSources_TestcaseID_45752():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click Sign in with Microsoft account
@@ -3861,7 +4353,8 @@ def test_DataSources_TestcaseID_45752():
         data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: After signed in Microsoft account, check supported files are listed in One Drive
@@ -3872,7 +4365,8 @@ def test_DataSources_TestcaseID_45752():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click Back button
@@ -3881,7 +4375,8 @@ def test_DataSources_TestcaseID_45752():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Mobile app return to My Data page
@@ -3890,7 +4385,8 @@ def test_DataSources_TestcaseID_45752():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Check no file is uploaded
@@ -3900,7 +4396,8 @@ def test_DataSources_TestcaseID_45752():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click + button at bottom and select Link File
@@ -3913,7 +4410,8 @@ def test_DataSources_TestcaseID_45752():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click Microsoft One Drive
@@ -3924,7 +4422,8 @@ def test_DataSources_TestcaseID_45752():
         data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Select any of the supported file types to link
@@ -3937,7 +4436,8 @@ def test_DataSources_TestcaseID_45752():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check the selected file is linked
@@ -3946,7 +4446,8 @@ def test_DataSources_TestcaseID_45752():
         data_sources_page.searchName(png_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Check the file icon, file name, Date added and Data source field are correct
@@ -3955,7 +4456,8 @@ def test_DataSources_TestcaseID_45752():
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Repeat for other 2 to 3 supported file types
@@ -4037,16 +4539,26 @@ def test_DataSources_TestcaseID_45752():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45752"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45730():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Zebra account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -4064,6 +4576,9 @@ def test_DataSources_TestcaseID_45730():
         12: [12, 'Repeat for another 2 to 3 supported file types']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -4080,7 +4595,8 @@ def test_DataSources_TestcaseID_45730():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -4094,7 +4610,8 @@ def test_DataSources_TestcaseID_45730():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Select File page will open
@@ -4104,7 +4621,8 @@ def test_DataSources_TestcaseID_45730():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Select Google Drive
@@ -4114,7 +4632,8 @@ def test_DataSources_TestcaseID_45730():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Click Back button
@@ -4123,7 +4642,8 @@ def test_DataSources_TestcaseID_45730():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check mobile app return back to My Data page and no file is linked
@@ -4133,7 +4653,8 @@ def test_DataSources_TestcaseID_45730():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click + button at bottom and select Link File
@@ -4147,7 +4668,8 @@ def test_DataSources_TestcaseID_45730():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: On Google Drive page select file page. Check the Google Drive title is shown completely. Check only supported file types are listed
@@ -4158,7 +4680,8 @@ def test_DataSources_TestcaseID_45730():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Select a file and click Select
@@ -4169,7 +4692,8 @@ def test_DataSources_TestcaseID_45730():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check mobile app return to My Data page and file is linked
@@ -4178,7 +4702,8 @@ def test_DataSources_TestcaseID_45730():
         data_sources_page.searchName(png_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the details of file icon, file name, Date added and Data source field (Google Drive) are correct
@@ -4187,7 +4712,8 @@ def test_DataSources_TestcaseID_45730():
         data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat for another 2 to 3 supported file types
@@ -4254,16 +4780,26 @@ def test_DataSources_TestcaseID_45730():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45730"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45749():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Zebra account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -4279,6 +4815,9 @@ def test_DataSources_TestcaseID_45749():
              'Check the details of file icon, file name, Date added and Data source field (Google Drive) are correct'],
         12: [12, 'Repeat for all supported file types']
     }
+
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
     stepId = 1
 
@@ -4296,7 +4835,8 @@ def test_DataSources_TestcaseID_45749():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -4310,7 +4850,8 @@ def test_DataSources_TestcaseID_45749():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: At Cloud service sign in page, click Sign in with Google
@@ -4319,7 +4860,8 @@ def test_DataSources_TestcaseID_45749():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Sign in Google account
@@ -4328,7 +4870,8 @@ def test_DataSources_TestcaseID_45749():
         sleep(4)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: After signed in Google account, check supported files are listed in Google Drive
@@ -4338,7 +4881,8 @@ def test_DataSources_TestcaseID_45749():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click Back button
@@ -4347,7 +4891,8 @@ def test_DataSources_TestcaseID_45749():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check mobile app return back to My Data page and no file is linked
@@ -4357,7 +4902,8 @@ def test_DataSources_TestcaseID_45749():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click + button at bottom and select Link File
@@ -4375,7 +4921,8 @@ def test_DataSources_TestcaseID_45749():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click any supported file and click Select button to link
@@ -4386,7 +4933,8 @@ def test_DataSources_TestcaseID_45749():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check mobile app return to My Data page and file is linked
@@ -4395,7 +4943,8 @@ def test_DataSources_TestcaseID_45749():
         data_sources_page.searchName(png_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the details of file icon, file name, Date added and Data source field (Google Drive) are correct
@@ -4404,7 +4953,8 @@ def test_DataSources_TestcaseID_45749():
         data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat for all supported file types
@@ -4487,12 +5037,19 @@ def test_DataSources_TestcaseID_45749():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45749"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 """Facebook"""
@@ -4500,6 +5057,9 @@ def test_DataSources_TestcaseID_45749():
 
 def test_DataSources_TestcaseID_45750():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Facebook account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -4516,6 +5076,9 @@ def test_DataSources_TestcaseID_45750():
         12: [12, 'Repeat for all supported file types']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -4530,7 +5093,7 @@ def test_DataSources_TestcaseID_45750():
         registration_page.wait_for_element_appearance("Sign In", 10)
         registration_page.clickSignIn()
         registration_page.click_Facebook_Icon()
-        registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+        registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
         try:
             registration_page.wait_for_element_appearance("Home", 30)
         except:
@@ -4543,7 +5106,8 @@ def test_DataSources_TestcaseID_45750():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -4558,7 +5122,8 @@ def test_DataSources_TestcaseID_45750():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: At Cloud service sign in page, click Sign in with Google
@@ -4567,17 +5132,19 @@ def test_DataSources_TestcaseID_45750():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Sign in Google account
         start_time = time.time()
 
-        data_sources_page.signInWithGoogle("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
+        data_sources_page.signInWithGoogle("zebra06.swdvt@gmail.com", "Zebra#123456789")
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: After signed in Google account, check supported files are listed in Google Drive
@@ -4587,7 +5154,8 @@ def test_DataSources_TestcaseID_45750():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click Back button
@@ -4596,7 +5164,8 @@ def test_DataSources_TestcaseID_45750():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check mobile app return back to My Data page and no file is linked
@@ -4606,7 +5175,8 @@ def test_DataSources_TestcaseID_45750():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click + button at bottom and select Link File
@@ -4624,7 +5194,8 @@ def test_DataSources_TestcaseID_45750():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click any supported file and click Select button to link
@@ -4635,7 +5206,8 @@ def test_DataSources_TestcaseID_45750():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check mobile app return to My Data page and file is linked
@@ -4644,7 +5216,8 @@ def test_DataSources_TestcaseID_45750():
         sleep(4)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the details of file icon, file name, Date added and Data source field (Google Drive) are correct
@@ -4654,7 +5227,8 @@ def test_DataSources_TestcaseID_45750():
         data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Repeat for all supported file types
@@ -4739,16 +5313,26 @@ def test_DataSources_TestcaseID_45750():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45750"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_DataSources_TestcaseID_45753():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Login Facebook account in Mobile app and go to My Data page'],
         2: [2, 'Click + button at bottom and select Link File'],
@@ -4766,6 +5350,9 @@ def test_DataSources_TestcaseID_45753():
         14: [14, 'Repeat for other 2 to 3 supported file types']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -4782,7 +5369,8 @@ def test_DataSources_TestcaseID_45753():
         initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click + button at bottom and select Link File
@@ -4797,7 +5385,8 @@ def test_DataSources_TestcaseID_45753():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Cloud Service Sign in page will open and let user select which service to login
@@ -4806,19 +5395,21 @@ def test_DataSources_TestcaseID_45753():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click Sign in with Microsoft account
         start_time = time.time()
 
         """ One drive """
-        data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: After signed in Microsoft account, check supported files are listed in One Drive
@@ -4829,7 +5420,8 @@ def test_DataSources_TestcaseID_45753():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Click Back button
@@ -4838,7 +5430,8 @@ def test_DataSources_TestcaseID_45753():
         data_sources_page.clickBackArrow()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Mobile app return to My Data page
@@ -4847,7 +5440,8 @@ def test_DataSources_TestcaseID_45753():
         sleep(4)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Check no file is uploaded
@@ -4857,7 +5451,8 @@ def test_DataSources_TestcaseID_45753():
         data_sources_page.checkNoChangeInFileCount(initial_file_count)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Click + button at bottom and select Link File
@@ -4870,7 +5465,8 @@ def test_DataSources_TestcaseID_45753():
         data_sources_page.click_Link_File()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click Microsoft One Drive
@@ -4883,7 +5479,8 @@ def test_DataSources_TestcaseID_45753():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Select any of the supported file types to link
@@ -4894,7 +5491,8 @@ def test_DataSources_TestcaseID_45753():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check the selected file is linked
@@ -4903,7 +5501,8 @@ def test_DataSources_TestcaseID_45753():
         data_sources_page.searchName(png_file)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Check the file icon, file name, Date added and Data source field are correct
@@ -4912,7 +5511,8 @@ def test_DataSources_TestcaseID_45753():
         data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Repeat for other 2 to 3 supported file types
@@ -4997,9 +5597,16 @@ def test_DataSources_TestcaseID_45753():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45753"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
