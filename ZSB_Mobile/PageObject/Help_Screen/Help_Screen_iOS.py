@@ -25,7 +25,7 @@ class Help_Screen:
     def __init__(self, poco):
         self.poco = poco
 
-    def chooseAcc(self, Acc_Name="zsbswdvt@gmail.com"):
+    def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
         account = self.poco(Acc_Name)
         account.click()
 

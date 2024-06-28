@@ -35,7 +35,7 @@ registration_page = Registration_Screen(poco)
 #         others.wait_for_element_appearance("Continue with Google", 10)
 #         login_page.click_Loginwith_Google()
 #         common_method.wait_for_element_appearance_textmatches("Choose an account")
-#         others.click_an_google_account("zsbswdvt@gmail.com")
+#         others.click_an_google_account("zebra03.swdvt@gmail.com")
 #     except:
 #         pass
 #
@@ -674,7 +674,7 @@ def test_Others_TestcaseID_45795():
     login_page.click_Loginwith_Google()
 
     """enter email here"""
-    email = "zsbswdvt@gmail.com"
+    email = "zebra03.swdvt@gmail.com"
     common_method.wait_for_element_appearance_textmatches("Choose an account")
     others.choose_google_account(email)
 
@@ -699,7 +699,7 @@ def test_Others_TestcaseID_45795():
     login_page.click_Loginwith_Google()
 
     """pass email here"""
-    email = "zsbswdvt@gmail.com"
+    email = "zebra03.swdvt@gmail.com"
     common_method.wait_for_element_appearance_textmatches("Choose an account")
     others.choose_google_account(email)
 

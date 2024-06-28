@@ -78,6 +78,8 @@ class Registration_Screen:
 
     def click_Apple_Icon(self):
         touch(self.Apple_Icon)
+        if self.poco(nameMatches=".*Do you want to sign in to ZSB Series with your Apple.*").exists():
+            self.poco(nameMatches=".*Use a different Apple.*").click()
 
     def click_on_next(self):
         self.poco(text="Next").click()
@@ -178,20 +180,15 @@ class Registration_Screen:
 
     def login_Apple(self, password, username=False, wrong_password=False):
         if username:
-            self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
-            self.poco("android.widget.EditText").set_text(username)
-            self.poco("android.widget.Button")[1].click()
-            if self.poco("com.android.chrome:id/coordinator").exists():
-                self.poco("com.android.chrome:id/coordinator").click()
-        self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
-        self.poco("android.widget.EditText")[1].set_text(password)
-        self.poco(text="Sign In").click()
+            self.poco("Email or Phone Number").wait_for_appearance(timeout=10)
+            self.poco("Email or Phone Number").click()
+            text(username)
+        self.poco("password").wait_for_appearance(timeout=10)
+        self.poco("password").click()
+        text(password)
         # changed during datasources test id- 45731
         if wrong_password:
-            self.poco("android.widget.TextView")[7].click()
-            error_message = [self.poco("android.widget.TextView")[11].get_text()][0]
-            print(error_message)
-            if error_message == "Your Apple\xa0ID or password was incorrect.":
+            if self.poco(nameMatches="Your Apple.*ID or password was incorrect.").exists():
                 print("Successfully displayed Error message for wrong password")
                 return
             else:
@@ -200,13 +197,13 @@ class Registration_Screen:
         "Enter OTP manually"
         sleep(60)
         try:
-            self.poco(text="Trust").wait_for_appearance(timeout=40)
-            self.poco(text="Trust").click()
+            self.poco("Trust").wait_for_appearance(timeout=40)
+            self.poco("Trust").click()
         except:
             pass
         try:
-            self.poco(text="Continue").wait_for_appearance(timeout=20)
-            self.poco(text="Continue").click()
+            self.poco("Continue").wait_for_appearance(timeout=20)
+            self.poco("Continue").click()
         except:
             pass
 

@@ -1,3 +1,5 @@
+import inspect
+
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
@@ -16,6 +18,7 @@ from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK i
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 import pytest
 from ...TestSuite.api_call import *
+from ...TestSuite.store import *
 
 
 class Android_App_Registration:
@@ -37,12 +40,12 @@ others_page = Others(poco)
 template_management_page = Template_Management_Screen(poco)
 app_settings_page = App_Settings_Screen(poco)
 
-execID = 0
-leftId = {"0": "7"}
-
 
 def test_Registration_TestcaseID_45856():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Launch ZSB Series App, click Login button and click Register now link. During the process: slide down the screen of each page, and check the 3 links at the bottom all can work. ("copyright", "Terms & Conditions" and "Privacy Policy")'],
@@ -74,6 +77,9 @@ def test_Registration_TestcaseID_45856():
         17: [17, 'Check user is able to login and logout of Money Badger successfully.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -89,7 +95,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.registerEmail()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Check user is directed to Account Registration Page (https://stage-signup.zebra.com/register.html?appId=ZEMB)
@@ -99,7 +106,8 @@ def test_Registration_TestcaseID_45856():
         help_page.verify_url("signup.zebra.com/content/userreg/us/en/register.html?appId=ZEMB")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Enter new zebra user email test123@zebra.com and click NEXT button. Check the following error message is displayed: This site is for external users only. Please contact your local system administrator for application access requests.
@@ -111,7 +119,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.check_zebra_mail_registration_error()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Repeat step 1 to 2.
@@ -128,7 +137,8 @@ def test_Registration_TestcaseID_45856():
         help_page.verify_url("signup.zebra.com/content/userreg/us/en/register.html?appId=ZEMB")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Enter new external user email and click NEXT button.
@@ -139,7 +149,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.click_on_next()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check user is directed to page with header "Email Verification" and message "Your request has been received. We have sent an email to verify your account. Please click on the verification link in your email to finish registration. Can't find your link? Please check your junk mail or click this link: Resend Verification Email."
@@ -149,7 +160,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.check_email_verification_page_message()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check user has received a "User Verification Account" email from Zebra and user is provided with a verification code to enter
@@ -159,7 +171,8 @@ def test_Registration_TestcaseID_45856():
             "Check user has recieved a \"User Verification Account\" email from Zebra and user is provided with a verification code to enter")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Enter the verification code provided by the email to the mobile app after 10 minutes and click SUBMIT button.
@@ -173,7 +186,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.click_on_next()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Check user need to re-register as a user again. Error message: Mobile Verification code is invalid. RESEND VERIFICATION CODE button is available
@@ -190,7 +204,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.click_resend_verification_code_btn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check user has received another set of verification code in mailbox after user clicks RESEND VERIFICATION CODE button
@@ -200,7 +215,8 @@ def test_Registration_TestcaseID_45856():
             "Check user has received another set of verification code in mailbox after user clicks RESEND VERIFICATION CODE button")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Enter the verification code and click SUBMIT button.
@@ -212,7 +228,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.click_on_next()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check user is navigated to "User Information and Account Security" to enter details for registration.
@@ -221,7 +238,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.verify_user_information_and_account_security_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Complete the registration with the following: Proceed to enter First Name (E.g: John). Proceed to enter Last Name (E.g: Loke). Proceed to enter password (E.g: Zebratest123?) in Password *. Proceed to enter the match password (E.g: Zebratest123?) in Confirm Password *. Proceed to select a country (E.g: "Canada") from Select Country * drop down list box. Enable check boxes "I have read and agree to the Terms and Conditions".
@@ -237,7 +255,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.click_submit_and_continue()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Click SUBMIT AND CONTINUE button will navigate user to "Account Created" page.
@@ -247,7 +266,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.check_sign_up_successful()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 15: Check user is navigated to "Account Created" page with the message "Success! Click "continue" to log into your account."
@@ -256,7 +276,8 @@ def test_Registration_TestcaseID_45856():
         registration_page.click_continue_registration_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 16: Check user will be navigated to Money Badger Sign In Page after user clicks CONTINUE button.
@@ -265,7 +286,8 @@ def test_Registration_TestcaseID_45856():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 17: Check user is able to login and logout of Money Badger successfully.
@@ -290,16 +312,26 @@ def test_Registration_TestcaseID_45856():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45856"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_Registration_TestcaseID_45857():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Launch ZSB Series App, click Login button, select Sign in with your email option, click Register Your Email Now option'],
@@ -343,6 +375,9 @@ def test_Registration_TestcaseID_45857():
         26: [26, 'Check user is able to login and logout of Money Badger successfully.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -355,7 +390,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.registerEmail()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Check user is directed to Account Registration Page. (SMBUI-2648) Check the URL should be updated to https://stagec-signup.zebra.com/content/userreg/us/en/register.html?appId=ZEMB
@@ -366,7 +402,8 @@ def test_Registration_TestcaseID_45857():
         help_page.verify_url("https://signup.zebra.com/content/userreg/us/en/register.html?appId=ZEMB")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Login to newly created user email account.
@@ -377,7 +414,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.click_on_next()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Enter the verification code (E.g: 3CRL5N) provided by the email to the mobile app and click SUBMIT button.
@@ -391,7 +429,8 @@ def test_Registration_TestcaseID_45857():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Check user is navigated to "User Information and Account Security" to enter details for registration. Check message display "Email verified successfully!". Check the page has the following mandatory fields that require user to enter for submission: First Name, Last Name, Password, Confirmed Password and Select Country. Check boxes: "I'd like to receive marketing emails". "I have read and agree to the Terms and Conditions". CLEAR and SUBMIT AND CONTINUE button.
@@ -414,7 +453,8 @@ def test_Registration_TestcaseID_45857():
         scroll_view.swipe("down")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Enter alphanumeric with special characters on First Name (e.g: John123!).
@@ -426,7 +466,8 @@ def test_Registration_TestcaseID_45857():
             raise Exception("No error for using special character in First Name field.")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Check First Name does not allow numeric and special characters. Error message "Please do not use special characters.". Proceed to enter First Name (E.g: John) that comply with first name entry requirement.
@@ -435,7 +476,8 @@ def test_Registration_TestcaseID_45857():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Enter alphanumeric with special characters on Last Name (e.g: Loke123!).
@@ -448,7 +490,8 @@ def test_Registration_TestcaseID_45857():
             raise Exception("No error for using special character in Last Name field.")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Check Last Name does not allow numeric and special characters. Error message display "Please do not use special characters.". Proceed to enter Last Name (E.g: Loke) that comply with last name entry requirement.
@@ -457,7 +500,8 @@ def test_Registration_TestcaseID_45857():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Enter all alpha characters (e.g: abcdefg) / all numeric values (e.g: 12345678) in Password *.
@@ -475,7 +519,8 @@ def test_Registration_TestcaseID_45857():
             raise Exception("No error when entered only alphabets in password field.")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check Password is only allowed for entry values meeting SSO password requirement rules. SSO password requirement "Password MUST contain one lowercase, one uppercase letter, one number and a special character. Password must not contain spaces or tabs." is displayed. Proceed to enter password (E.g: Zebratest123?) that complied with IT SSO password requirement.
@@ -484,7 +529,8 @@ def test_Registration_TestcaseID_45857():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Enter mismatch password in Confirmed Password *.
@@ -507,7 +553,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.fill_confirm_password_field("sss?")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Check password entered in Password * and Confirm Password * must match. Error message display "Password and Confirm Password must match.". Proceed to enter the match password (E.g: Zebratest123?) in Confirm Password *.
@@ -518,7 +565,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.fill_confirm_password_field(password)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 15: Select country from Select Country * drop down list box (E.g: "Canada").
@@ -527,7 +575,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.select_the_country("India")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 16: Enable check boxes "I have read and agree to the Terms and Conditions".
@@ -536,7 +585,8 @@ def test_Registration_TestcaseID_45857():
         poco("android.widget.CheckBox")[1].click()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 17: Check SUBMIT AND CONTINUE button is enabled.
@@ -545,7 +595,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.check_submit_and_continue_enabled()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 18: Enable and disable check boxes "I'd like to receive marketing emails".
@@ -555,7 +606,8 @@ def test_Registration_TestcaseID_45857():
         poco("android.widget.CheckBox")[0].click()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 19: Check SUBMIT AND CONTINUE button remains enabled, disabling check boxes "I'd like to receive marketing emails" does not grey out SUBMIT AND CONTINUE button.
@@ -564,7 +616,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.check_submit_and_continue_enabled()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 20: Check clicking CLEAR will clear all entered fields and clicking SUBMIT AND CONTINUE button will navigate user to "Account Created" page.
@@ -578,7 +631,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.click_submit_and_continue()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 21: Check user is navigated to "Account Created" page with the message "Success! Click "continue" to log into your account.".
@@ -589,7 +643,8 @@ def test_Registration_TestcaseID_45857():
         registration_page.click_continue_registration_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 22: Check user will be navigated to Money Badger Sign In Page after user clicks CONTINUE button.
@@ -598,7 +653,8 @@ def test_Registration_TestcaseID_45857():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 23: Check user is able to login and logout of Money Badger successfully. Login to email (Created in Precondition).
@@ -622,7 +678,8 @@ def test_Registration_TestcaseID_45857():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 24: Check user receives an email from Zebra Technologies with the following caption: Welcome to the ZSB Series Printer Meet the label printer that just...works
@@ -631,7 +688,8 @@ def test_Registration_TestcaseID_45857():
         common_method.show_message("Check user receives an email from Zebra Technologies with the following caption: Welcome to the ZSB Series Printer Meet the label printer that just...works")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 25: Click on the link "Download Driver" or "Design your first label". Check it will open Money Badger home page (https://www.zprinthubz-stage.zebra.com/login).
@@ -640,7 +698,8 @@ def test_Registration_TestcaseID_45857():
         common_method.show_message("Click on the link \"Download Driver\" or \"Design your first label\". Check it will open Money Badger home page (https://www.zprinthubz-stage.zebra.com/login)")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 26: Check user is able to login and logout of Money Badger successfully.
@@ -665,15 +724,26 @@ def test_Registration_TestcaseID_45857():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
+
     except Exception as e:
-        insert_step(execID, leftId["45857"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_Registration_TestcaseID_45858():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1,
             'Launch ZSB Series App, click Login button and click Register now link. During the process: slide down the screen of each page, and check the 3 links at the bottom all can work. ("copyright", "Terms & Conditions" and "Privacy Policy")'],
@@ -699,6 +769,9 @@ def test_Registration_TestcaseID_45858():
              'Check user is successfully log out of Money Badger Home Page and is being navigate to ZSB Login Page.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -713,7 +786,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.registerEmail()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Check user is directed to Account Registration Page.
@@ -722,7 +796,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.checkIfOnRegistrationPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Enter new user email and click NEXT button.
@@ -733,7 +808,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.enter_user_email_for_registering(email)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Login to newly created user email account.
@@ -742,7 +818,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.check_if_reached_page_to_enter_verification_code()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Enter the verification code (E.g: 3CRL5N) provided by the email to the mobile app and click SUBMIT button.
@@ -756,7 +833,8 @@ def test_Registration_TestcaseID_45858():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: At "User Information and Account Security" Page. Proceed to enter First Name (E.g: John) that comply with first name entry requirement. Proceed to enter Last Name (E.g: Loke) that comply with last name entry requirement. Proceed to select Country (E.g: Canada) from Select Country * drop down list. Proceed to enter password and confirmed password (E.g: soho_dvtxxxxx?) that complied with IT SSO password requirement. Proceed to enable check boxes "I have read and agree to the Terms and Conditions".
@@ -771,7 +849,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.select_the_check_boxes()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Click SUBMIT AND CONTINUE button.
@@ -781,7 +860,8 @@ def test_Registration_TestcaseID_45858():
         sleep(2)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click on CONTINUE button when user is navigated to "Account Created" page with the message "Success! Click "continue" to log into your account."
@@ -791,7 +871,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.click_continue_registration_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Check user is navigated to Money Pager "Sign In/Register" Page.
@@ -800,7 +881,8 @@ def test_Registration_TestcaseID_45858():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click Sign In/Register button, enter email and password and click Sign in button at "Login with username" page.
@@ -812,7 +894,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.complete_sign_in_with_email(email, password, 1, 0)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the user is NOT able to log in if not accepting EULA, and then the user accept it (check there is no layout error on the EULA page), and log into successfully.
@@ -822,7 +905,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.click_accept()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check user is successfully login to Money Badger Home Page and navigated to the overview page with initial name display e.g.: "Hey soho_dvtxxxxx!" and a "Add a Printer" button id provided to add printer.
@@ -833,7 +917,8 @@ def test_Registration_TestcaseID_45858():
         data_sources_page.checkIfOnHomePage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: Click on the hamburger icon then Settings follow by Log out button.
@@ -845,7 +930,8 @@ def test_Registration_TestcaseID_45858():
         registration_page.click_log_out_button()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Check user is successfully log out of Money Badger Home Page and is being navigate to ZSB Login Page.
@@ -854,11 +940,18 @@ def test_Registration_TestcaseID_45858():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
     except Exception as e:
-        insert_step(execID, leftId["45858"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 
@@ -905,6 +998,9 @@ def test_Registration_TestcaseID_45858():
 
 def test_Registration_TestcaseID_45866():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Launch ZSB Series App and click Login button.'],
         2: [2, 'Click Reset Password.'],
@@ -943,6 +1039,9 @@ def test_Registration_TestcaseID_45866():
         24: [24, 'Check user is able to login to Money Badger.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -955,7 +1054,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.clickSignIn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click Reset Password.
@@ -966,7 +1066,8 @@ def test_Registration_TestcaseID_45866():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Check user is navigated to Password Recovery Page. (SMBUI-2648) Check the URL should be updated to https://stagec-signup.zebra.com/content/userreg/reset-password-landing.html
@@ -975,7 +1076,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.check_if_in_password_recovery_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Enter unregister email (E.g: testing123@gmail.com) and click SUBMIT button.
@@ -986,7 +1088,8 @@ def test_Registration_TestcaseID_45866():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check Error message: "User does not exist".
@@ -995,7 +1098,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.check_user_does_not_exist_error()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Repeat Step 1 to 3 and entered a registered email account and click SUBMIT button.
@@ -1012,7 +1116,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.click_SUBMIT()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check user is navigated to Success! page. Check Success! page is populated with the following message: An email with a Password Reset Code has been sent to your email address. The OTP will expired in 10 minutes. Click here to set your password using the Password Reset Code.
@@ -1026,7 +1131,8 @@ def test_Registration_TestcaseID_45866():
         """An email with a Password Reset Code has been sent to your email address. The OTP will expired in 10 minutes.- cannot be automated."""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Click on Click here.
@@ -1035,7 +1141,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.click_on_Click_here()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Check user is navigate to the Reset Password page and Reset Password page has the following field. Password Reset Code *, New Password * and Confirm Password *.
@@ -1045,7 +1152,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.check_fields_on_Reset_Password_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click SUBMIT key without entering password reset code.
@@ -1054,7 +1162,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.click_SUBMIT()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check the following display error message : Password Reset Code *: "This field is required". New Password *: "Password MUST contain one lowercase, one uppercase letter, one number and a special character. Password MUST NOT contain spaces or tabs.". Confirm Password *: "This field is required".
@@ -1063,7 +1172,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.check_error_message_on_fields_on_Reset_Password_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 12: Check user receive an email containing a Password Resets Code from Ping Identity. E.g: Your Zebra Account Password Resets Code is: 865l0hzy
@@ -1075,7 +1185,8 @@ def test_Registration_TestcaseID_45866():
         password = "Zebra#123456789"
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 13: At Reset Password page, enter the following: Enter the provided password reset code to Password Reset Code * field. Enter new password that meets IT SSO requirement (E.g: Zebratest456?) to New Password * field. Enter a mismatch password to Confirm Password * field.
@@ -1086,7 +1197,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.click_SUBMIT()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 14: Check Confirm Password * display the following error message: "Password and Confirm Password must match".
@@ -1095,7 +1207,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.checkWrongConfirmPasswordErrorMessage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 15: Enter password that matches Password * to Confirm Password * field and click SUBMIT button after 10 minutes.
@@ -1108,7 +1221,8 @@ def test_Registration_TestcaseID_45866():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 16: Check user has been navigated to page with the following message displayed: The OTP was invalid or expired. Please click here to regenerate OTP.
@@ -1117,7 +1231,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.check_OTExpiredMessage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 17: Click on click here to regenerate OTP.
@@ -1126,7 +1241,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.click_on_click_here()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 18: Click on Click here to login with your temporary password in Success! page.
@@ -1137,7 +1253,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.check_if_on_Reset_Password_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 19: At Reset Password page: Enter the provided password reset code from your email to Password Reset Code * field. Enter new password that meets IT SSO requirement (E.g: Zebratest456?) to New Password * field. Enter a match password to Confirm Password * field. Click SUBMIT button.
@@ -1151,7 +1268,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.click_SUBMIT()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 20: Check user is navigated to Success! page with the following message: Password changed successfully. Click here to login with your new password.
@@ -1161,7 +1279,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.check_successful_password_reset_page_message()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 21: Click on Click here to login with your new password.
@@ -1170,7 +1289,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.click_on_Click_here()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 22: Check user has been navigate to "Login with username" page.
@@ -1179,7 +1299,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.checkIfOnSSOLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 23: Enter username and the registered reset password.
@@ -1189,7 +1310,8 @@ def test_Registration_TestcaseID_45866():
         registration_page.complete_sign_in_with_email(email, password, 1, 0)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 24: Check user is able to login to Money Badger.
@@ -1198,16 +1320,27 @@ def test_Registration_TestcaseID_45866():
         data_sources_page.checkIfOnHomePage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45866"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 def test_Registration_TestcaseID_45867():
     pass
+
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Launch ZSB Series App and click Login button.'],
         2: [2, 'Click Reset Password.'],
@@ -1234,6 +1367,9 @@ def test_Registration_TestcaseID_45867():
              'Check user will be bypass from answering the security question and will be navigated directly to Password Reset Error Page.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -1244,7 +1380,8 @@ def test_Registration_TestcaseID_45867():
         registration_page.clickSignIn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click Reset Password.
@@ -1255,7 +1392,8 @@ def test_Registration_TestcaseID_45867():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Check user is navigated to Password Recovery Page.
@@ -1264,7 +1402,8 @@ def test_Registration_TestcaseID_45867():
         registration_page.check_if_in_password_recovery_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Enter unregistered zebra email (E.g: testing123@zebra.com) and click SUBMIT button.
@@ -1275,7 +1414,8 @@ def test_Registration_TestcaseID_45867():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check user will be navigated to a page "Reset your zebra network account (Active Directory) password or unlock your Zebra network account". Username field, CAPTHA (I'm not a robot) checkbox.
@@ -1285,7 +1425,8 @@ def test_Registration_TestcaseID_45867():
         registration_page.check_fields_in_zebra_network_account_password_reset_page()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Enable CAPTCHA (I'm not a robot) to solve the pictorial puzzle and enter invalid username E.g: tt1234 and click Next button.
@@ -1297,7 +1438,8 @@ def test_Registration_TestcaseID_45867():
         registration_page.click_on_next()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check user is directed to a page "Password Reset Error".
@@ -1306,7 +1448,8 @@ def test_Registration_TestcaseID_45867():
         registration_page.verify_if_password_reset_error_appears()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Repeat Step 1 to 3 and entered a registered zebra email account (E.g: kk.wong@zebra.com) and click SUBMIT button.
@@ -1323,7 +1466,8 @@ def test_Registration_TestcaseID_45867():
         sleep(3)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Enter a valid registered zebra email (E.g: KK.WONG@zebra.com) and click SUBMIT button.
@@ -1333,9 +1477,27 @@ def test_Registration_TestcaseID_45867():
         registration_page.check_fields_in_zebra_network_account_password_reset_page()
         registration_page.wait_for_element_appearance("android.widget.EditText", 10)
         registration_page.fill_username_in_zebra_network_account_password_reset_page("zebra03.swdvt@gmail.com")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 10: Enable * CAPTHA (I'm not a robot) to solve the pictorial puzzle and enter valid username E.g: kk1234 and click Next button.
+        start_time = time.time()
+
         registration_page.enableCaptcha()
         common_method.show_message("Complete captcha if asked.")
         sleep(2)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 11: Check user will be navigate to Security Verification Page.
+        start_time = time.time()
+
         while registration_page.checkSkipExists():
             registration_page.clickSkip()
             sleep(2)
@@ -1344,17 +1506,64 @@ def test_Registration_TestcaseID_45867():
         registration_page.click_on_next()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
+        # Step 12: Check failing to answer the security questions and click Next, user is navigated to Password Reset Error page. - Error Message Displayed: "Error: cannot verify user (kk1234). Number of attempt 1. Try again" - User required to answer a new sets of security questions.
+        start_time = time.time()
+
+        common_method.show_message("Check failing to answer the security questions and click Next, user is navigated to Password Reset Error page. - Error Message Displayed: \"Error: cannot verify user (kk1234). Number of attempt 1. Try again\" - User required to answer a new sets of security questions.")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
+        # Step 13: Repeat Step 12 until user exceed the attempt to reset the password. - Check the maximum attempt is 3. - Check user is navigated to Password Reset Error page. - Check the following error message is displayed. This user cannot use the configured Password Reset process. Possible reasons: User does not exist or is not enrolled. User is not part of the configured password reset process. User is blocked (exceeded the limit on reset attempts or reset password recently). User account is locked. Try again later. For immediate assistance, call the service desk.
+        start_time = time.time()
+
+        common_method.show_message("Step -12 Check failing to answer the security questions and click Next, user is navigated to Password Reset Error page.- Error Message Displayed: \"Error: cannot verify user (kk1234). Number of attempt 1. Try again\"- User required to answer a new sets of security questions.")
+        common_method.show_message("Repeat Step 12 until user exceed the attempt to reset the password. - Check the maximum attempt is 3. - Check user is navigated to Password Reset Error page. - Check the following error message is displayed. This user cannot use the configured Password Reset process. Possible reasons: User does not exist or is not enrolled. User is not part of the configured password reset process. User is blocked (exceeded the limit on reset attempts or reset password recently). User account is locked. Try again later. For immediate assistance, call the service desk.")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
+        # Step 14: Repeat the steps to reset password as a zebra user (Step 8 to 10) of test case 45867
+        start_time = time.time()
+
+        common_method.show_message("Repeat the steps to reset password as a zebra user (Step 8 to 10) of test case 45867")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
+        # Step 15: Check user will be bypass from answering the security question and will be navigated directly to Password Reset Error Page.
+        start_time = time.time()
+
+        Common_Method.show_message("Check user will be bypass from answering the security question and will be navigated directly to Password Reset Error Page.")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
     except Exception as e:
-        insert_step(execID, leftId["45867"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
+
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
 
 def test_Registration_TestcaseID_45871():
     pass
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
     test_steps = {
         1: [1, 'Launch ZSB Series App.'],
         2: [2,
@@ -1373,6 +1582,9 @@ def test_Registration_TestcaseID_45871():
              'Check user is able to successfully log out of Money Badger Home Page and is being navigate to the ZSB Login Page.']
     }
 
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
     stepId = 1
 
     try:
@@ -1382,7 +1594,8 @@ def test_Registration_TestcaseID_45871():
         common_method.tearDown()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Click Login button. During the process: slide down the screen of each page, and check the 3 links at the bottom.
@@ -1393,7 +1606,8 @@ def test_Registration_TestcaseID_45871():
         registration_page.verifyLinksInSignInPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Check user is navigated to "Login with username" page.
@@ -1405,7 +1619,8 @@ def test_Registration_TestcaseID_45871():
             scroll_view.swipe("down")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Click on Apple icon.
@@ -1414,7 +1629,8 @@ def test_Registration_TestcaseID_45871():
         registration_page.click_Apple_Icon()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Check user will be navigate to Apple Sign In Page.
@@ -1423,16 +1639,18 @@ def test_Registration_TestcaseID_45871():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 6: Enter registered Apple account username with incorrect password.
         start_time = time.time()
 
-        registration_page.login_Apple("zDLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com", True)
+        registration_page.login_Apple("Zebra#12345678", "zebra03.swdvt@gmail.com", True)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 7: Check user is not able to login to Money Badger Home Page.
@@ -1441,16 +1659,18 @@ def test_Registration_TestcaseID_45871():
         sleep(5)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 8: Enter registered Apple account username with correct password.
         start_time = time.time()
 
-        registration_page.login_Apple("DLpwhvr@JCQ5Gkx")
+        registration_page.login_Apple("Zebra#123456789")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 9: Check user is able to successfully login to Money Badger Page and the top left corner shows the login name.
@@ -1465,7 +1685,8 @@ def test_Registration_TestcaseID_45871():
             raise Exception("Login name does not match")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 10: Click on the hamburger icon follow by Settings and click Log out button.
@@ -1476,7 +1697,8 @@ def test_Registration_TestcaseID_45871():
         registration_page.click_log_out_button()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 11: Check user is able to successfully log out of Money Badger Home Page and is being navigate to the ZSB Login Page.
@@ -1485,116 +1707,123 @@ def test_Registration_TestcaseID_45871():
         data_sources_page.checkIfInLoginPage()
         common_method.Stop_The_App()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
     except Exception as e:
-        insert_step(execID, leftId["45871"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
         raise Exception(str(e))
 
+    finally:
+        exec_time = (time.time() - start_time_main) / 60
+        end_main(execID, leftId[test_case_id], exec_time)
 
 
-"""Ask about eula decline"""
+
+"""Ask about eula decline - yet to update reporting"""
 
 
-# def test_Registration_TestcaseID_50287():
-#     pass
-#
-#     common_method.tearDown()
-#     registration_page.clickSignIn()
-#     data_sources_page.signInWithEmail()
-#     registration_page.registerEmail()
-#     try:
-#         registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
-#     except:
-#         raise Exception("register user page dint show")
-#     email = common_method.get_user_input("Create a new google account and enter the mail-id in the input box")
-#     registration_page.enter_user_email_for_registering(email)
-#     registration_page.click_on_next()
-#     poco(text="Return to Previous Step").wait_for_appearance(timeout=20)
-#     """Enter verification code manually"""
-#     common_method.show_message(
-#         "Enter verification code on the device ,verification code received in the newly created google account")
-#     registration_page.click_on_next()
-#     sleep(5)
-#     if registration_page.check_email_verified_successfully_message():
-#         pass
-#     else:
-#         raise Exception("Email verified successfully message not present.")
-#     if registration_page.verify_user_information_and_account_security_page():
-#         pass
-#     else:
-#         raise Exception("Did not navigate to 'ZSB Printer User Information and Account Security' page.")
-#     first_name = "John"
-#     last_name = "Loke"
-#     registration_page.fill_first_name_field(first_name)
-#     registration_page.fill_last_name_field(last_name)
-#     while not poco(text="SUBMIT AND CONTINUE").exists():
-#         scroll_view = poco("android.view.View")
-#         scroll_view.swipe("up")
-#     password = "Zebra#123456789"
-#     registration_page.fill_password_field(password)
-#     registration_page.fill_confirm_password_field(password)
-#     registration_page.select_the_country("India")
-#     poco("android.widget.CheckBox")[0].click()
-#     poco("android.widget.CheckBox")[1].click()
-#     registration_page.click_submit_and_continue()
-#     sleep(4)
-#     registration_page.check_sign_up_successful()
-#     registration_page.click_continue_registration_page()
-#     try:
-#         registration_page.wait_for_element_appearance("Sign In", 10)
-#     except:
-#         raise Exception("Did not return to login page.")
-#     registration_page.clickSignIn()
-#     registration_page.wait_for_element_appearance_text("Continue with Google", 10)
-#     data_sources_page.signInWithEmail()
-#     """Provide the email and password"""
-#     registration_page.complete_sign_in_with_email(email, password, 1, 0)
-#     registration_page.verify_if_on_EULA_page()
-#     """No Delcine option on EULA page"""
-#     try:
-#         registration_page.wait_for_element_appearance("Welcome to ZSB Series", 20)
-#     except:
-#         raise Exception("Reached Home page without accepting EULA")
-#     registration_page.clickSignIn()
-#     registration_page.wait_for_element_appearance_text("Continue with Google", 10)
-#     data_sources_page.signInWithEmail()
-#     email = "smbmbzsb@gmail.com"
-#     password = "Zebratest123?"
-#     registration_page.complete_sign_in_with_email(email, password, 1, 0)
-#     try:
-#         registration_page.wait_for_element_appearance("Click ‘Accept’ to indicate that you have read and agree to the ",
-#                                                       20)
-#         raise Exception("Showing EULA page after logging in with existing account.")
-#     except:
-#         pass
-#     try:
-#         registration_page.wait_for_element_appearance("Home", 20)
-#     except:
-#         raise Exception("home page dint show up")
-#     login_page.click_Menu_HamburgerICN()
-#     registration_page.click_on_profile_edit()
-#     poco.scroll()
-#     registration_page.click_log_out_button()
-#     try:
-#         registration_page.wait_for_element_appearance("Sign In", 5)
-#     except:
-#         raise Exception("Did not redirect to the login page")
-#     try:
-#         registration_page.wait_for_element_appearance("Sign In", 10)
-#     except:
-#         raise Exception("Did not return to login page.")  # registration_page.clickSignIn()
-#     registration_page.wait_for_element_appearance_text("Continue with Google", 10)
-#     data_sources_page.signInWithEmail()
-#     """Provide the email and password"""
-#     password = "Smbzsbmb@1234"
-#     registration_page.complete_sign_in_with_email(email, password, 1, 0)
-#     try:
-#         registration_page.wait_for_element_appearance("End User\n License Agreement", 20)
-#         pass
-#     except:
-#         raise Exception("Showing EULA page after logging in with existing account.")
+def test_Registration_TestcaseID_50287():
+    pass
+
+    common_method.tearDown()
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.registerEmail()
+    try:
+        registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+    except:
+        raise Exception("register user page dint show")
+    email = common_method.get_user_input("Create a new google account and enter the mail-id in the input box")
+    registration_page.enter_user_email_for_registering(email)
+    registration_page.click_on_next()
+    poco(text="Return to Previous Step").wait_for_appearance(timeout=20)
+    """Enter verification code manually"""
+    common_method.show_message(
+        "Enter verification code on the device ,verification code received in the newly created google account")
+    registration_page.click_on_next()
+    sleep(5)
+    if registration_page.check_email_verified_successfully_message():
+        pass
+    else:
+        raise Exception("Email verified successfully message not present.")
+    if registration_page.verify_user_information_and_account_security_page():
+        pass
+    else:
+        raise Exception("Did not navigate to 'ZSB Printer User Information and Account Security' page.")
+    first_name = "John"
+    last_name = "Loke"
+    registration_page.fill_first_name_field(first_name)
+    registration_page.fill_last_name_field(last_name)
+    while not poco(text="SUBMIT AND CONTINUE").exists():
+        scroll_view = poco("android.view.View")
+        scroll_view.swipe("up")
+    password = "Zebra#123456789"
+    registration_page.fill_password_field(password)
+    registration_page.fill_confirm_password_field(password)
+    registration_page.select_the_country("India")
+    poco("android.widget.CheckBox")[0].click()
+    poco("android.widget.CheckBox")[1].click()
+    registration_page.click_submit_and_continue()
+    sleep(4)
+    registration_page.check_sign_up_successful()
+    registration_page.click_continue_registration_page()
+    try:
+        registration_page.wait_for_element_appearance("Sign In", 10)
+    except:
+        raise Exception("Did not return to login page.")
+    registration_page.clickSignIn()
+    registration_page.wait_for_element_appearance_text("Continue with Google", 10)
+    data_sources_page.signInWithEmail()
+    """Provide the email and password"""
+    registration_page.complete_sign_in_with_email(email, password, 1, 0)
+    registration_page.verify_if_on_EULA_page()
+    """No Delcine option on EULA page"""
+    try:
+        registration_page.wait_for_element_appearance("Welcome to ZSB Series", 20)
+    except:
+        raise Exception("Reached Home page without accepting EULA")
+    registration_page.clickSignIn()
+    registration_page.wait_for_element_appearance_text("Continue with Google", 10)
+    data_sources_page.signInWithEmail()
+    email = "smbmbzsb@gmail.com"
+    password = "Zebratest123?"
+    registration_page.complete_sign_in_with_email(email, password, 1, 0)
+    try:
+        registration_page.wait_for_element_appearance("Click ‘Accept’ to indicate that you have read and agree to the ",
+                                                      20)
+        raise Exception("Showing EULA page after logging in with existing account.")
+    except:
+        pass
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
+    login_page.click_Menu_HamburgerICN()
+    registration_page.click_on_profile_edit()
+    poco.scroll()
+    registration_page.click_log_out_button()
+    try:
+        registration_page.wait_for_element_appearance("Sign In", 5)
+    except:
+        raise Exception("Did not redirect to the login page")
+    try:
+        registration_page.wait_for_element_appearance("Sign In", 10)
+    except:
+        raise Exception("Did not return to login page.")  # registration_page.clickSignIn()
+    registration_page.wait_for_element_appearance_text("Continue with Google", 10)
+    data_sources_page.signInWithEmail()
+    """Provide the email and password"""
+    password = "Smbzsbmb@1234"
+    registration_page.complete_sign_in_with_email(email, password, 1, 0)
+    try:
+        registration_page.wait_for_element_appearance("End User\n License Agreement", 20)
+        pass
+    except:
+        raise Exception("Showing EULA page after logging in with existing account.")
 
 
 """Add Printer"""

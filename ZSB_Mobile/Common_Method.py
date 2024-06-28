@@ -1211,6 +1211,21 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         messagebox.showinfo("Notification", "Verify The Darkness Level On_Web Portal Manually")
 
+    def show_message(self, msg):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)  # Ensure the root window is on top
+        messagebox.showinfo("Information", msg)
+        root.destroy()
+
+    def get_user_input(self, msg):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        user_input = simpledialog.askstring("Input", msg)
+        return user_input
+
+
 
 
 

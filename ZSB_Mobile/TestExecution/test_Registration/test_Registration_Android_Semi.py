@@ -303,6 +303,69 @@ def test_Registration_TestcaseID_45858():
     except:
         raise Exception("Did not redirect to the login page")
 
+def test_Smoke_Test_TestcaseID_45877():
+    """	Verify create a brand new user with unregistered user in Mobile App."""
+
+#
+    """"Setup:
+    1. Create a new email address
+    (Need to match the new register email format, for IDC, it should be soho_swdvt_xxxx@xxxx.com, for CDC, it should be soho_swdvt_xxxx@xxxx.com)
+    2. Install the target build of ZSB app on mobile device"""""
+
+    common_method.show_message("Create new email before running")
+    common_method.tearDown()
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.verifyLinksInSignInPage()
+    registration_page.registerEmail()
+    try:
+        registration_page.wait_for_element_appearance_text("ZSB Printer Account Registration", 20)
+    except:
+        raise Exception("register user page dint show")
+    email = common_method.get_user_input("Create a new google account and enter the mail-id in the input box")
+
+    registration_page.enter_user_email_for_registering(email)
+    try:
+        registration_page.wait_for_element_appearance("Resend Verification Code.", 10)
+    except:
+        raise Exception("Page to enter verification code did not appear. ")
+    """Enter verification code manually"""
+    common_method.show_message(
+        "Enter verification code on the device ,verification code received in the newly created google account")
+    """Enter the User Email"""
+    registration_page.click_on_next()
+    sleep(2)
+    """Enter the first Name last name and the password"""
+    first_n = "Zebra"
+    last_n = "Z"
+    password = "Zebra#123456789"
+    registration_page.enter_the_fields(first_n, last_n, password)
+    registration_page.select_the_country("India")
+    registration_page.select_the_check_boxes()
+    registration_page.click_submit_and_continue()
+    sleep(2)
+    registration_page.check_sign_up_successful()
+    registration_page.click_continue_registration_page()
+    registration_page.wait_for_element_appearance("Sign In")
+    registration_page.clickSignIn()
+    registration_page.wait_for_element_appearance_text("Continue with Google", 10)
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email(email, password, 1, 0)
+    registration_page.verify_if_on_EULA_page()
+    registration_page.click_accept()
+    registration_page.clickClose()
+    registration_page.clickExit()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    registration_page.click_on_profile_edit()
+    poco.scroll()
+    registration_page.click_log_out_button()
+    try:
+        registration_page.wait_for_element_appearance("Sign In", 5)
+    except:
+        raise Exception("Did not redirect to the login page")
+
+
 
 # def test_Registration_TestcaseID_45864():
 #     pass
@@ -498,8 +561,8 @@ def test_Registration_TestcaseID_45871():
     while not poco(text="Sign In With"):
         scroll_view.swipe("down")
     registration_page.click_Apple_Icon()
-    registration_page.login_Apple("zDLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com", True)
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx")
+    registration_page.login_Apple("Zebra#12345678", "zebra03.swdvt@gmail.com", True)
+    registration_page.login_Apple("Zebra#123456789")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:

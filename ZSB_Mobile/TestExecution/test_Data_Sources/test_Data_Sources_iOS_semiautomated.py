@@ -52,7 +52,7 @@ def test_DataSources_TestcaseID_45731():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -62,7 +62,7 @@ def test_DataSources_TestcaseID_45731():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     """Click hamburger icon to expand menu"""
     try:
         registration_page.wait_for_element_appearance("Home", 30)
@@ -196,8 +196,8 @@ def test_DataSources_TestcaseID_45731():
     registration_page.wait_for_element_appearance("Sign In", 10)
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    username = "zsbswdvt@gmail.com"
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", username)
+    username = "zebra03.swdvt@gmail.com"
+    registration_page.login_Apple("Zebra#123456789", username)
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
@@ -329,7 +329,7 @@ def test_DataSources_TestcaseID_45731():
     registration_page.wait_for_element_appearance("Sign In", 10)
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
-    registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+    registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
@@ -478,7 +478,7 @@ def test_DataSources_TestcaseID_45732():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -488,7 +488,7 @@ def test_DataSources_TestcaseID_45732():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     """Click hamburger icon to expand menu"""
     try:
         registration_page.wait_for_element_appearance("Home", 30)
@@ -615,7 +615,7 @@ def test_DataSources_TestcaseID_45732():
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
     """Enter OTP manually"""
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
@@ -740,7 +740,7 @@ def test_DataSources_TestcaseID_45732():
 
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
-    registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+    registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
@@ -875,7 +875,7 @@ def test_DataSources_TestcaseID_45738():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -885,7 +885,7 @@ def test_DataSources_TestcaseID_45738():
         while not poco(text="Add account to device").exists():
             poco.scroll()
         registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -905,12 +905,12 @@ def test_DataSources_TestcaseID_45738():
     """ google drive """
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-    account = "zsbswdvt@gmail.com"
+    account = "zebra03.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:
-        poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+        poco("Use another account").click()
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
         sleep(2)
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     data_sources_page.clickBackArrow()
@@ -925,7 +925,7 @@ def test_DataSources_TestcaseID_45738():
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(3)
-    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     data_sources_page.clickBackArrow()
@@ -1017,7 +1017,7 @@ def test_DataSources_TestcaseID_45751():
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
     """Enter OTP manually"""
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
@@ -1035,7 +1035,7 @@ def test_DataSources_TestcaseID_45751():
     """Click Link File"""
     data_sources_page.click_Link_File()
     sleep(2)
-    data_sources_page.signInWithGoogle("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
+    data_sources_page.signInWithGoogle("zebra06.swdvt@gmail.com", "Zebra#123456789")
     sleep(5)
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -1153,7 +1153,7 @@ def test_DataSources_TestcaseID_45754():
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
     """Enter OTP manually"""
-    registration_page.login_Apple("DLpwhvr@JCQ5Gkx", "zsbswdvt@gmail.com")
+    registration_page.login_Apple("Zebra#123456789", "zebra03.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 30)
     except:
@@ -1171,7 +1171,7 @@ def test_DataSources_TestcaseID_45754():
     data_sources_page.click_Link_File()
     sleep(2)
     """ One drive """
-    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     data_sources_page.checkFilesShownAreSupported()

@@ -11,7 +11,16 @@ from ...Common_Method import Common_Method
 from airtest.core.assertions import assert_exists, assert_equal
 from airtest.core.api import *
 from ...PageObject.Login_Screen import Login_Screen
+from poco.exceptions import PocoTargetTimeout
+import platform
 
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 class Printer_Management_Screen:
     pass
@@ -20,10 +29,10 @@ class Printer_Management_Screen:
         self.poco = poco
         self.Printer_Name = "android.widget.EditText"
         self.Printer1 = "ZSB-DP12_2"
-        self.Three_Dot_Menu = Template(r"tpl1705378684557.png", record_pos=(0.402, -0.5), resolution=(1080, 2340))
+        self.Three_Dot_Menu = Template(Basic_path(r"tpl1705378684557.png"), record_pos=(0.402, -0.5), resolution=(1080, 2340))
         self.Delete = "Delete"
         self.Yes_Delete = "Yes, Delete"
-        self.Drop_Down_Menu_Icon = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", "tpl1705382553515.png"), record_pos=(0.334, 0.155), resolution=(1080, 2340))
+        self.Drop_Down_Menu_Icon = Template(Basic_path("tpl1705382553515.png"), record_pos=(0.334, 0.155), resolution=(1080, 2340))
         self.Drop_Down_Menu_Info = "1.\nOpen your mobile device Settings\n2.\nSelect Bluetooth\n3.\nEnable Bluetooth if it's OFF\n4.\nSelect Device info ZSB-DP14-C66CB7 from My Devices\n5.\nSelect Forget This Device"
         """name = drop_down_info.split("\n")[-3][19:-16]"""
         self.Buy_More_Labels = "Buy More Labels"

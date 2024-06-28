@@ -8,7 +8,16 @@ from airtest.core.api import *
 # import pytest
 # from pipes import Template
 from poco import poco
-from poco.exceptions import PocoNoSuchNodeException
+from poco.exceptions import PocoTargetTimeout
+import platform
+
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 from ...Common_Method import Common_Method
 from ...PageObject.Login_Screen.Login_Screen import Login_Screen
@@ -24,10 +33,10 @@ class Template_Management_Screen:
 
     def __init__(self, poco):
         self.poco = poco
-        self.Search_place_holder = Template(r"search_design_placeholder.png", record_pos=(-0.192, -0.609),
+        self.Search_place_holder = Template(Basic_path(r"search_design_placeholder.png"), record_pos=(-0.192, -0.609),
                                             resolution=(1080, 2280))
-        self.Search_icon = Template(r"search_Icon.png", record_pos=(-0.398, -0.605), resolution=(1080, 2280))
-        self.Search_files_place_holder = Template(r"search_files_place_holder.png", record_pos=(-0.203, -0.584),
+        self.Search_icon = Template(Basic_path(r"search_Icon.png"), record_pos=(-0.398, -0.605), resolution=(1080, 2280))
+        self.Search_files_place_holder = Template(Basic_path(r"search_files_place_holder.png"), record_pos=(-0.203, -0.584),
                                                   resolution=(1080, 2340))
 
     def turn_on_wifi(self):
@@ -393,7 +402,7 @@ class Template_Management_Screen:
         self.poco(text="Add text").click()
 
     def placeText(self):
-        touch(Template(r"tpl1708429167702.png", record_pos=(-0.109, 0.382), resolution=(1080, 2340)))
+        touch(Template(Basic_path(r"tpl1708429167702.png"), record_pos=(-0.109, 0.382), resolution=(1080, 2340)))
 
     def checkManualInput_checkbox(self):
         if self.poco("android.widget.CheckBox", checked=True):
@@ -402,7 +411,7 @@ class Template_Management_Screen:
             self.poco("android.widget.CheckBox").click()
 
     def verify_print_preview(self, preview_name):
-        assert_exists(Template(rf"{preview_name}.png", record_pos=(-0.001, -0.045), resolution=(1080, 2340)),
+        assert_exists(Template(Basic_path(rf"{preview_name}.png"), record_pos=(-0.001, -0.045), resolution=(1080, 2340)),
                       "Preview is present.")
 
     def verify_label_range_navigation_unavailable(self):
@@ -603,7 +612,7 @@ class Template_Management_Screen:
         return assert_exists(self.Search_files_place_holder, "Search placeholder is present")
 
     def clickSearchIconTextBox(self):
-        touch(Template(r"search_icon.png", record_pos=(-0.218, -0.723), resolution=(1080, 2280)))
+        touch(Template(Basic_path(r"search_icon.png"), record_pos=(-0.218, -0.723), resolution=(1080, 2280)))
 
     def clickSearchIcon(self):
         touch(self.Search_icon)
@@ -841,7 +850,7 @@ class Template_Management_Screen:
             pass
 
     def closeNotification(self):
-        touch(Template(r"close_notification.png", record_pos=(0.415, -0.896), resolution=(1080, 2280)))
+        touch(Template(Basic_path(r"close_notification.png"), record_pos=(0.415, -0.896), resolution=(1080, 2280)))
 
     def clickAccept(self):
         self.poco("Accept").click()

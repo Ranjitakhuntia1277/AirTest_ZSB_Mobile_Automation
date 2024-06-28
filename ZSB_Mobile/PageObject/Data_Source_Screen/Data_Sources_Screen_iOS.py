@@ -318,19 +318,34 @@ class Data_Sources_Screen:
         self.poco("Enter the password for " + username).click()
         text(password)
 
+    def wait_for_element_appearance_text(self, element, time_out=15):
+        self.poco(text=element).wait_for_appearance(timeout=time_out)
+
     def checkIfAccPresentLink(self, account):
-        start = 0
-        end = 1
-        while True:
-            for i in range(start, len(self.poco("com.google.android.gms:id/list").child()) - end):
-                if self.poco("com.google.android.gms:id/list").child()[i].child()[
-                    1].get_text() == "Add another account":
-                    return False
-                elif self.poco("com.google.android.gms:id/list").child()[i].child()[1].child()[1].get_text() == account:
-                    return True
-            start = 1
-            end = 0
-            self.poco.scroll()
+        if self.poco(label="username").exists():
+            self.poco(label="username").click()
+            return
+        sleep(5)
+
+    def sign_In_With_Google(self, password, username=None, wrong_password=False):
+        if username is not None:
+            self.poco(type="TextField").click()
+            text(username)
+            sleep(5)
+        self.poco(type="SecureTextField").click()
+        text(password)
+        sleep(5)
+        if wrong_password:
+            try:
+                self.wait_for_element_appearance_text(
+                    "Wrong password. Try again or click ‘Forgot password’ to reset it.")
+            except:
+                raise Exception(
+                    "Error message: \"Wrong password. Try again or click Forgot password to reset it.\" not displayed.")
+        swipe([0.5, 0.5], [0.5, 0.1])
+
+        self.poco("Continue").click()
+
 
     def signInWithGoogle(self, username, password):
         if self.poco(self.Sign_In_With_Google).exists():
@@ -339,35 +354,26 @@ class Data_Sources_Screen:
         else:
             touch(self.Sign_In_With_Google_Template)
         sleep(4)
-        if self.poco("com.google.android.gms:id/add_account_chip_title").exists():
-            self.poco("com.google.android.gms:id/add_account_chip_title").click()
-        self.poco("android.widget.TextView").wait_for_appearance(timeout=10)
-        self.poco("android.widget.TextView")[2].click()
-        sleep(3)
-        if self.poco(text="Close").exists():
-            self.poco(text="Close").click()
-        try:
-            self.poco("identifierId").set_text(username)
-        except:
-            self.poco("android.widget.EditText").set_text(username)
-        sleep(3)
-        self.poco(text="Next").click()
-        sleep(3)
-        self.poco("android.widget.EditText").set_text(password)
-        sleep(3)
-        self.poco(text="Next").click()
-        self.poco.scroll()
-        if self.poco(text="Skip").exists():
-            self.poco(text="Skip").click()
-        if self.poco(text="I agree").exists():
-            self.poco(text="I agree").click()
-        self.poco.scroll()
-        if self.poco(text="Accept").exists():
-            self.poco(text="Accept").click()
-        if self.poco(text="Continue").exists():
-            self.poco(text="Continue").click()
-        if self.poco(text="Not now").exists():
-            self.poco(text="Not now").click()
+        if self.poco("Continue").exists():
+            self.poco("Continue").click()
+        self.poco("Choose an account").wait_for_appearance(timeout=10)
+        if self.poco(label="username").exists():
+            self.poco(label="username").click()
+            return
+        swipe([0.5, 0.5], [0.5, 0.1])
+        if self.poco(label="username").exists():
+            self.poco(label="username").click()
+            return
+        sleep(5)
+        self.poco("Use another account").click()
+        self.poco(type="TextField").click()
+        text(username)
+        sleep(5)
+        self.poco(type="SecureTextField").click()
+        text(password)
+        sleep(5)
+        swipe([0.5, 0.5], [0.5, 0.1])
+        self.poco("Continue").click()
 
     def signInWithEmail(self):
         try:
@@ -577,17 +583,7 @@ class Data_Sources_Screen:
         return selected_file_name
 
     def selectUnSupportedFile(self):
-        self.poco(self.HamburgerMenuLocalStorage).click()
-        self.poco(name="android:id/title", textMatches=".*Document.*").wait_for_appearance(timeout=10)
-        self.poco(name="android:id/title", textMatches=".*Download.*").parent().parent().parent().child()[5].click()
-        sleep(2)
-        self.poco(desc="Search").click()
-        sleep(2)
-        self.poco("com.google.android.documentsui:id/search_src_text").set_text(".zpl")
-        sleep(2)
-        self.clickEnter()
-        file = self.poco("com.google.android.documentsui:id/item_root")[0]
-        file.click()
+        """Yet to write"""
 
     def selectFilesInLocal(self):
         file_list = []
@@ -773,25 +769,11 @@ class Data_Sources_Screen:
 
     def signIn_if_on_SSO_page_web(self):
         sleep(3)
-        if self.poco(textMatches="(?s).*pi.zebra.com/as/authorization.oauth2.*").exists():
+        if self.poco("pi.zebra.com").exists():
             touch(Template(r"Google_Icon.png", record_pos=(-0.319, -0.173), resolution=(1080, 2340)))
             try:
-                self.poco(text="Sign in with Google").wait_for_appearance(timeout=15)
+                self.poco("Sign in with Google").wait_for_appearance(timeout=15)
             except:
                 raise Exception("Did not navigate to Sign In with google page")
-            account = "zebraidctest@gmail.com"
-            if self.checkIfAccPresent(account):
-                self.chooseAcc(account)
-            else:
-                count = 5
-                while not self.poco(text="Use another account").exists() and count != 0:
-                    self.poco.scroll()
-                    count -= 1
-                self.click_GooglemailId()
-                if self.poco(text="Signed in to Google as").exists():
-                    count = 5
-                    while not self.poco(text="Add account to device").exists() and count != 0:
-                        self.poco.scroll()
-                        count-=1
-                    self.addAccountToDevice()
-                self.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+            account = "zebra02.swdvt@gmail.com"
+            self.sign_In_With_Google("Zebra#123456789", account)

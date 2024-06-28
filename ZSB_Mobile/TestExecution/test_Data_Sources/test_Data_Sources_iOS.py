@@ -41,7 +41,7 @@ def test_DataSources_TestcaseID_45729():
     common_method.tearDown_iOS()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zsbswdvt@gmail.com", "Zebra#123456789")
+    registration_page.complete_sign_in_with_email("zebra03.swdvt@gmail.com", "Zebra#123456789")
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
@@ -56,12 +56,12 @@ def test_DataSources_TestcaseID_45729():
     """ google drive """
     registration_page.click_Google_Icon()
     common_method.wait_for_element_appearance("Choose an account")
-    account = "zsbswdvt@gmail.com"
+    account = "zebra03.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
         login_page.click_GooglemailId()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     common_method.wait_for_element_appearance("NAME")
     """Select file with special characters"""
@@ -135,7 +135,7 @@ def test_DataSources_TestcaseID_45729():
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     sleep(2)
-    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """Select file with special characters"""
     data_sources_page.selectFileDrive(special_char_file)
@@ -218,7 +218,7 @@ def test_DataSources_TestcaseID_45729():
 #         common_method.wait_for_element_appearance("NAME", 20)
 #     except:
 #         registration_page.click_Google_Icon()
-#         help_page.chooseAcc("zsbswdvt@gmail.com")
+#         help_page.chooseAcc("zebra03.swdvt@gmail.com")
 #         common_method.wait_for_element_appearance("NAME")
 #     """searchTest re check"""
 #     data_sources_page.searchFilesInLinkFiles("test")
@@ -501,7 +501,7 @@ def test_DataSources_TestcaseID_45737():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -510,7 +510,7 @@ def test_DataSources_TestcaseID_45737():
             vector = (0.5, 0.4)
             swipe(start_point, vector)
         login_page.click_GooglemailId()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
@@ -567,8 +567,8 @@ def test_DataSources_TestcaseID_45737():
     except:
         pass
     template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
-    account = "zsbswdvt@gmail.com"
-    data_sources_page.signInWithMicrosoft(account, "hmWepX4AUMLa!9E", False)
+    account = "zebra03.swdvt@gmail.com"
+    data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     sleep(5)
     if template_management_page.continueDisabled() and not template_management_page.checkIfOnRelinkDataSourcesPage:
         template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
@@ -609,12 +609,12 @@ def test_DataSources_TestcaseID_45737():
     sleep(5)
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-        account = "zsbswdvt@gmail.com"
+        account = "zebra03.swdvt@gmail.com"
         if data_sources_page.checkIfAccPresentLink(account):
             help_page.chooseAcc(account)
         else:
-            poco("com.google.android.gms:id/add_account_chip_title").click()
-            registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+            poco("Use another account").click()
+            registration_page.sign_In_With_Google("Zebra#123456789", account)
             sleep(2)
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(5)
@@ -1403,7 +1403,7 @@ def test_DataSources_TestcaseID_45759():
     data_sources_page.clickMicrosoftOneDrive()
     sleep(2)
     if data_sources_page.verifySignInWithMicrosoft():
-        data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
         sleep(2)
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
@@ -1601,7 +1601,7 @@ def test_DataSources_TestcaseID_45758():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebraidctest@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -1616,7 +1616,7 @@ def test_DataSources_TestcaseID_45758():
                 vector = (0.5, 0.4)
                 swipe(start_point, vector)
             registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zebraidctest@1234", "zebraidctest@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
     """Click hamburger icon to expand menu"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -1638,7 +1638,7 @@ def test_DataSources_TestcaseID_45758():
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:
-        poco("com.google.android.gms:id/add_account_chip_title").click()
+        poco("Use another account").click()
         registration_page.sign_In_With_Google("Zebra#123456789", account)
     sleep(2)
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
@@ -1680,7 +1680,7 @@ def test_DataSources_TestcaseID_47937():
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebraloginzsb@gmail.com", "Zebra#123456789")
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789")
     try:
         registration_page.wait_for_element_appearance_text("Continue", 30)
         data_sources_page.clickContinueWeb()
@@ -1699,7 +1699,7 @@ def test_DataSources_TestcaseID_47937():
     data_sources_page.click_Link_File()
     """ One drive """
     sleep(2)
-    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     sleep(2)
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
@@ -1750,12 +1750,12 @@ def test_DataSources_TestcaseID_47937():
     sleep(5)
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-    account = "zsbswdvt@gmail.com"
+    account = "zebra03.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:
-        poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("zsbswdvt@1234", account)
+        poco("Use another account").click()
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
         sleep(2)
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(5)
@@ -1812,7 +1812,7 @@ def test_DataSources_TestcaseID_47937():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zsbswdvt1@gmail.com"
+    account = "zebra06.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:
@@ -1827,7 +1827,7 @@ def test_DataSources_TestcaseID_47937():
                 vector = (0.5, 0.4)
                 swipe(start_point, vector)
             registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("zsbswdvt1@1234", "zsbswdvt1@gmail.com")
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra06.swdvt@gmail.com")
     try:
         registration_page.wait_for_element_appearance("Home", 20)
     except:
@@ -1931,7 +1931,7 @@ def test_DataSources_TestcaseID_47937():
 def test_DataSources_TestcaseID_45752():
     """test"""
 
-    """Remove if one drive account - zsbswdvt@gmail.com present"""
+    """Remove if one drive account - zebra03.swdvt@gmail.com present"""
     common_method.tearDown_iOS()
     try:
         registration_page.wait_for_element_appearance("Home", 20)
@@ -2300,7 +2300,7 @@ def test_DataSources_TestcaseID_45750():
     registration_page.wait_for_element_appearance("Sign In", 10)
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
-    registration_page.login_Facebook("zsbswdvt@1234", "zsbswdvt@gmail.com")
+    registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -2315,7 +2315,7 @@ def test_DataSources_TestcaseID_45750():
     """Click Link File"""
     data_sources_page.click_Link_File()
     sleep(2)
-    data_sources_page.signInWithGoogle("zsbswdvt1@gmail.com", "zsbswdvt1@1234")
+    data_sources_page.signInWithGoogle("zebra06.swdvt@gmail.com", "Zebra#123456789")
     sleep(5)
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -2418,7 +2418,7 @@ def test_DataSources_TestcaseID_45753():
     data_sources_page.click_Link_File()
     sleep(2)
     """ One drive """
-    data_sources_page.signInWithMicrosoft("zsbswdvt@gmail.com", "hmWepX4AUMLa!9E")
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     template_management_page.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     common_method.wait_for_element_appearance("NAME")

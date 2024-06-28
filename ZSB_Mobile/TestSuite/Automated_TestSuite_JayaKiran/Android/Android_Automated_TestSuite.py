@@ -1,28 +1,45 @@
+import sys
+
 import pytest
 import os
+import subprocess
+import platform
+# import sys
+# sys.path.append(r'C:\Users\rk1277\Desktop\ZSB_Automation')
 
-# Define the paths to your test files
-# Loop through the test files and run each one
-os.system("adb shell screenrecord /storage/emulated/0/Download/help_page.mp4")
 
-# cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Help && pytest test_Help_Android.py"
-# a = os.system(cmd)
+"""""""""""""""""PreConditions-: Printer should be added to these 2 accounts. 
+    run ------ python3 -m pip install pytz on terminal before executing
+# #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Printer_Management && pytest test_Printer_Management.py"
-# a = os.system(cmd)
-#
-# cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Registration && pytest test_Registration_Android.py"
-# a = os.system(cmd)
-#
-# cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Template_Management_JK && pytest test_Template_Management_Android_JK.py"
-# a = os.system(cmd)
-#
-# cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Data_Sources && pytest test_Data_Sources_Android.py"
-# a = os.system(cmd)
-#
-# cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Delete_Account && pytest test_Delete_Account_Android.py"
-# a = os.system(cmd)
+if platform.system() == "Windows":
+    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Help && pytest test_Help_Android.py --html=report_test_Help.html --self-contained-html"
+    a = os.system(cmd)
 
-pid = os.system("adb shell pidof screenrecord")
-os.system(f"adb shell kill {pid}")
-os.system("adb pull /storage/emulated/0/Download/screenrecord.mp4")
+    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Printer_Management && pytest test_Printer_Management.py --html=report_test_Printer_Management.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Registration && pytest test_Registration_Android.py --html=report_test_Registration.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Delete_Account && pytest test_Delete_Account_Android.py --html=report_test_Delete_Account.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Data_Sources && pytest test_Data_Sources_Android.py --html=report_test_Data_Sources.html --self-contained-html"
+    a = os.system(cmd)
+
+else:
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Help && pytest test_Help_Android.py --html=report_test_Help.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Printer_Management && pytest test_Printer_Management.py --html=report_test_Printer_Management.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Registration && pytest test_Registration_Android.py --html=report_test_Registration.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Delete_Account && pytest test_Delete_Account_Android.py --html=report_test_Delete_Account.html --self-contained-html"
+    a = os.system(cmd)
+
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Data_Sources && pytest test_Data_Sources_Android.py --html=report_test_Data_Sources.html --self-contained-html"
+    a = os.system(cmd)

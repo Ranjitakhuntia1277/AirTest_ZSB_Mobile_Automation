@@ -1,27 +1,33 @@
-import os
+import sys
+
 import pytest
-# from bs4 import BeautifulSoup
+import os
+import subprocess
+import platform
+# import sys
+# sys.path.append(r'C:\Users\rk1277\Desktop\ZSB_Automation')
 
-# Define the paths to your test files
-# test_files = [
-#     "C:\\Users\\tr5927\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Template_Management\\test_Android_Template_Management_Exec.py",
-#     "C:\\Users\\tr5927\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Social_Login\\test_Android_Social_Login_Exec.py"
-# ]
-#
-# for index, test_file in enumerate(test_files, start=1):
-#     html_report_filename = f"report_test_{index}.html"
-#     pytest.main([test_file, f"--html={html_report_filename}", "--self-contained-html"])
+"""""""""""""""""PreConditions-: 
+    zebratest850@gmail.com
+    Zebratest901@gmail.com
+    Zebra#123456789
+    Both accounts should have one printer each , 850account should have only 4 designs od 40611,12,13,14 and 901 should not have any design in mydesigns
+# #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if platform.system() == "Windows":
+    cmd = "cd C:\\Users\\tr5927\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Social_Login && pytest test_Android_Social_Login_Exec.py --html=report_test_social_loginpy.html --self-contained-html"
+    a = os.system(cmd)
 
-# cmd = "cd C:\\Users\\tr5927\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Template_Management && pytest test_Android_Template_Management_Exec.py"
-# # Run the combined command
-# a = os.system(cmd)
+    cmd = "cd C:\\Users\\tr5927\\Desktop\\ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Others && pytest test_Android_Others.py --html=report_test_others.html --self-contained-html"
+    a = os.system(cmd)
 
-cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Social_Login && pytest test_Android_Social_Login_Exec.py"
-a = os.system(cmd)
+else:
 
-cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Others && pytest test_Android_Others.py"
-a = os.system(cmd)
+    # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Template_Management && pytest test_Android_Template_Management_Exec.py --html=report_test_template_management_exec.html --self-contained-html"
+    # a = os.system(cmd)
 
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Social_Login && pytest test_Android_Social_Login_Exec.py --html=report_test_social_loginpy.html --self-contained-html"
+    a = os.system(cmd)
 
-
+    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Others && pytest test_Android_Others.py --html=report_test_others.html --self-contained-html"
+    a = os.system(cmd)
