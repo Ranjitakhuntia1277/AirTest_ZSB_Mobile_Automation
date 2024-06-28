@@ -1,4 +1,4 @@
-from api_call import *
+from api_calls import *
 import webbrowser
 import pandas as pd
 import sys
@@ -28,9 +28,8 @@ df = pd.read_csv('Testcases.csv')  # Change 'test_cases.xlsx' to your actual fil
 # Step 2: Extract distinct subareas
 distinct_subareas = df['Subarea'].unique()
 
-# generated_list_json = sys.argv[1]
-# generated_list = json.loads(generated_list_json)
-generated_list = []
+generated_list_json = sys.argv[1]
+generated_list = json.loads(generated_list_json)
 
 if len(generated_list) == 0:
 

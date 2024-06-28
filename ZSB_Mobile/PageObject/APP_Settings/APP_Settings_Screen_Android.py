@@ -1,3 +1,5 @@
+import subprocess
+
 import requests
 # import self
 from airtest.core.api import *
@@ -1192,8 +1194,10 @@ class App_Settings_Screen:
 
     def Verify_Printed_Successfully_Text(self):
         sleep(1)
-        a = self.poco(nameMatches=".*Printer is offline. Please check the printer connection and try again..*")
-        print(a)
+        a = self.poco(nameMatches=".*Printed Successfully..*")
+        if a.exists():
+            a.get_name()
+            print(a)
 
     def Verify_ErrorMessage_Text(self):
         a = self.poco(nameMatches=".*Printer is offline. Please check the printer connection and try again..*")
@@ -1663,7 +1667,7 @@ class App_Settings_Screen:
         sleep(8)
 
     def click_Done_Btn(self):
-        sleep(4)
+        sleep(5)
         unpair = self.poco(name="Done")
         unpair.click()
 
@@ -1692,4 +1696,52 @@ class App_Settings_Screen:
         if forget_device.exists():
            forget_device.click()
            sleep(3)
+
+    def Verify_Offline_Notification(self):
+        sleep(4)
+        a=self.poco(nameMatches="(?s).*Offline.*")
+        if a.exists():
+            a.get_name()
+            print(a)
+
+    def Verify_Paper_Out_Notification(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Paper Out.*")
+        if a.exists():
+            a.get_name()
+            print(a)
+
+    def Verify_Media_LOW_Notification(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Media Low.*")
+        if a.exists():
+            a.get_name()
+            print(a)
+
+    def Verify_HeadOpen_Notification(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Head Open.*")
+        if a.exists():
+            a.get_name()
+            print(a)
+
+    def Verify_Online_Notification(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Online.*")
+        if a.exists():
+            a.get_name()
+            print(a)
+
+    def Disable_Bluetooth(self):
+        sleep(2)
+        subprocess.run(
+            ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    def Enable_Bluetooth(self):
+        sleep(2)
+        subprocess.run(
+            ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
+            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
 

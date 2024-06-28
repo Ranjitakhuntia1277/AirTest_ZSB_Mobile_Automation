@@ -1,45 +1,32 @@
-import sys
-
 import pytest
 import os
-import subprocess
-import platform
-# import sys
-# sys.path.append(r'C:\Users\rk1277\Desktop\ZSB_Automation')
+
+import sys
+
+args = sys.argv[1:]
+
+# Filter arguments that start with a hyphen
+hyphen_args = [arg.lstrip('-') for arg in args if arg.startswith('-')]
+
+# Print the filtered arguments
+print("Arguments starting with a hyphen:", hyphen_args)
+
+hm = {"Help" : "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Help && pytest test_Help_Android.py",
+"Printer Management" : "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Printer_Management && pytest test_Printer_Management.py",
+"Registration" : "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Registration && pytest test_Registration_Android.py",
+"Data Sources" : "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Data_Sources && pytest test_Data_Sources_Android.py",
+"Delete Account" : "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Delete_Account && pytest test_Delete_Account_Android.py"}
 
 
-"""""""""""""""""PreConditions-: Printer should be added to these 2 accounts. 
-    run ------ python3 -m pip install pytz on terminal before executing
-# #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+for cmd in hyphen_args:
+    if cmd in hm:
+        print(hm[cmd])
+        a = os.system(cmd)
 
-if platform.system() == "Windows":
-    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Help && pytest test_Help_Android.py --html=report_test_Help.html --self-contained-html"
-    a = os.system(cmd)
+if len(hyphen_args)==0:
+    for key,value in hm.items():
+        print(value)
+        os.system(value)
 
-    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Printer_Management && pytest test_Printer_Management.py --html=report_test_Printer_Management.html --self-contained-html"
-    a = os.system(cmd)
 
-    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Registration && pytest test_Registration_Android.py --html=report_test_Registration.html --self-contained-html"
-    a = os.system(cmd)
 
-    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Delete_Account && pytest test_Delete_Account_Android.py --html=report_test_Delete_Account.html --self-contained-html"
-    a = os.system(cmd)
-
-    cmd = "cd C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\ZSB_Mobile\\TestExecution\\test_Data_Sources && pytest test_Data_Sources_Android.py --html=report_test_Data_Sources.html --self-contained-html"
-    a = os.system(cmd)
-
-else:
-    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Help && pytest test_Help_Android.py --html=report_test_Help.html --self-contained-html"
-    a = os.system(cmd)
-
-    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Printer_Management && pytest test_Printer_Management.py --html=report_test_Printer_Management.html --self-contained-html"
-    a = os.system(cmd)
-
-    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Registration && pytest test_Registration_Android.py --html=report_test_Registration.html --self-contained-html"
-    a = os.system(cmd)
-
-    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Delete_Account && pytest test_Delete_Account_Android.py --html=report_test_Delete_Account.html --self-contained-html"
-    a = os.system(cmd)
-
-    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Data_Sources && pytest test_Data_Sources_Android.py --html=report_test_Data_Sources.html --self-contained-html"
-    a = os.system(cmd)

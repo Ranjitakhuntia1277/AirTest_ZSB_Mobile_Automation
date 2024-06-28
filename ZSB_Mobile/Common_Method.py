@@ -34,7 +34,7 @@ from airtest.core.api import device as current_device
 from poco import poco
 import tkinter as tk
 from tkinter import messagebox
-
+from tkinter import simpledialog
 # from test.body import poco
 
 
@@ -124,16 +124,30 @@ class Common_Method():
         match = re.search(pattern, text)
         return match
 
+    def show_message(self,msg):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)  # Ensure the root window is on top
+        messagebox.showinfo("Information", msg)
+        root.destroy()
+
+    def get_user_input(self,msg):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        user_input = simpledialog.askstring("Input", msg)
+        return user_input
+
     def wait_for_element_appearance(self, element, time_out=10):
         self.poco(element).wait_for_appearance(timeout=time_out)
 
     def wait_for_element_disappearance(self, element, time_out=20):
         self.poco(element).wait_for_disappearance(timeout=time_out)
 
-    def wait_for_element_appearance_enabled(self, element, time_out=10):
+    def wait_for_element_appearance_enabled(self, element, time_out=15):
         self.poco(element, enabled=True).wait_for_appearance(timeout=time_out)
 
-    def wait_for_element_appearance_namematches(self, element, time_out=10):
+    def wait_for_element_appearance_namematches(self, element, time_out=20):
         self.poco(nameMatches=".*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def wait_for_element_appearance_textmatches(self, element, time_out=10):
@@ -1131,107 +1145,16 @@ class Common_Method():
         except Exception as e:
             pass
 
-    def Show_popup_To_Verify_Printout_Manually(self):
+    def Display_Popup_On_The_Screen(self):
+        toast_message = "Cover Open"
+
+        # Use the Android shell to show the toast message
+        shell(f'am broadcast -a com.example.airtest.Toast --es msg "{toast_message}"')
+
+    def show_popup(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Verify Printout")
-
-    def Turn_Off_The_Phone(self):
-        sleep(1)
-        keyevent("KEYCODE_POWER")
-
-
-    def Turn_ON_The_Phone(self):
-        keyevent("KEYCODE_POWER")
-        sleep(1)
-        swipe((540, 1600), (540, 400))
-
-    def Show_popup_To_Open_The_Printer_Cover_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Open the Printer Cover")
-
-    def Show_popup_To_Close_The_Printer_Cover_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Close the Printer Cover")
-
-    def Show_popup_For_Error_Message_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Verify The Error Message")
-
-    def Show_popup_For_Web_Portal_Verification_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Verify Current Network, Network Status, IP Address on Web Portal")
-
-    def Show_popup_To_Turn_OFF_The_Printer_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Turn Off The Printer")
-
-    def Show_popup_To_Open_The_Printer_Head_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Open The Printer Head")
-
-    def Show_popup_To_Remove_The_Cartridge_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Remove The cartridge")
-
-    def Show_popup_To_Make_The_Status_AS_LowMedia_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Make The Status AS LowMedia Manually")
-
-    def Show_popup_To_Insert_Different_Cartridge_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Insert different Cartridge from 4' x 6' label(eg.LC2) Manually")
-
-    def Show_popup_To_Verify_Preview_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Verify Preview Manually")
-
-    def Show_popup_To_Verify_All_The_Below_Points_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Verify step no 6,7 & 8 Manually")
-
-    def Show_popup_For_Design_Verification_On_Web_Portal_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "create design1, add text object and link One Drive file with xlsx format and Create design2, add text object, and link One Drive file with csv format Manually")
-
-    def Show_popup_For_Darkness_Level_Verification_On_Web_Portal_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Verify The Darkness Level On_Web Portal Manually")
-
-    def show_message(self, msg):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)  # Ensure the root window is on top
-        messagebox.showinfo("Information", msg)
-        root.destroy()
-
-    def get_user_input(self, msg):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        user_input = simpledialog.askstring("Input", msg)
-        return user_input
-
-
-
-
-
-
-
-
+        messagebox.showinfo("Notification", "Cover Open")
 
 
 

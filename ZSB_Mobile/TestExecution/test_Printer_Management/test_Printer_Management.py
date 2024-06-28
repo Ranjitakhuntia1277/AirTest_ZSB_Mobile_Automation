@@ -151,80 +151,23 @@ def test_PrinterManagement_TestcaseID_47882():
     """Close the pop up"""
     common_method.Stop_The_App()
 
-# ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# ####"""""""""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Smoke_Test_TestcaseID_45886():
-    """Check Mobile App can display correct printer status and notifications when printer status updates"""
-
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    res = smoke_test_android.check_printer_online_status()
-    if res == "Online":
-        print("ok")
-    else:
-        raise Exception("Printer is not in Online state")
-
-    smoke_test_android.select_first_label_from_home()
-    smoke_test_android.click_print_button()
-    sleep(3)
-    smoke_test_android.check_error_print_preview()
-
-    smoke_test_android.click_print_button()
-    sleep(4)
-    smoke_test_android.click_left_arrow()
-
-    res = smoke_test_android.check_printer_online_status()
-    if res == "Cover Open":
-        print("ok")
-    else:
-        raise Exception("Printer is not in Cover Open state")
-    common_method.Start_The_App()
-
-#
-## #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_Smoke_Test_TestcaseID_45887():
-    """	User modify the printer's darkness setting and perform test print"""
-
-    """start the app"""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """"verify printer is already added"""
-    app_settings_page.Verify_Printer_is_already_added()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on Printer settings tab"""
-    app_settings_page.click_Printer_Settings()
-    """"click on printer name on the printer settings page"""
-    app_settings_page.click_PrinterName_On_Printersettings()
-    """verify general tab text"""
-    app_settings_page.Verify_General_Tab_Text()
-    """"verify printer name text"""
-    app_settings_page.Verify_Printer_Name_Text()
-    """verify darkness level bar is present & change the darkness level"""
-    app_settings_page.Verify_Darkness_Level_Bar()
-    """"change the darkness level"""
-    app_settings_page.Change_Darkness_Level_Bar()
-    """verify the darkness updated message"""
-    app_settings_page.Verify_Darkness_Updated_Message()
-    """Verify auto Label Feed On Printer Cover Close value enable/disable option"""
-    app_settings_page.Check_toggle_button()
-    """click on the toggle button"""
-    app_settings_page.click_toggle_button()
-    """stop the app"""
-    common_method.Stop_The_App()
-# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Smoke_Test_TestcaseID_45888():
     """	Check user can delete a printer from Mobile App"""
 
-
     common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    sleep(5)
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on three dot on added printer on home page"""
@@ -240,6 +183,8 @@ def test_Smoke_Test_TestcaseID_45888():
     app_settings_page.click_Delete_Printer_Button()
     """"click yes delete button"""
     app_settings_page.click_Yes_Delete_Button()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     """"verify UI of unpair bluetooth dropdown list """
     app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
     """click on unpair bluetooth dropdown list"""""
@@ -250,12 +195,15 @@ def test_Smoke_Test_TestcaseID_45888():
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Settings_Text_On_SearchBar()
     aps_notification.click_Settings()
-    app_settings_page.click_Bluetooth()
+    aps_notification.click_Connected_Devices()
     app_settings_page.click_Unpair_Icon()
     app_settings_page.click_On_Unpair()
+    app_settings_page.click_Confirm_Delete_Popup()
+    aps_notification.Stop_Android_App()
     common_method.Start_The_App()
     app_settings_page.click_Done_Btn()
     app_settings_page.Verify_Printer_Is_Not_Displaying()
     """stop the app"""
     common_method.Stop_The_App()
+    """"10. Check printer is also being deleted in web portal and printer tool Manually"""
 # # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

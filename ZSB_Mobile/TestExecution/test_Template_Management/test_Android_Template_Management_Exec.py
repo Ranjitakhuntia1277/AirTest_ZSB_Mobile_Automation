@@ -3837,6 +3837,9 @@ def test_Smoke_Test_TestcaseID_45881():
     login_page.click_Continue_On_Facebbok_Login_Page()
     login_page.click_Menu_HamburgerICN()
     smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+    login_page.click_Continue_On_Facebbok_Login_Page()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
     app_settings_page.click_My_Design()
     add_a_printer_screen.click_FirstOne_In_MyDesign()
     add_a_printer_screen.click_Print_Option()
@@ -3863,38 +3866,6 @@ def test_Smoke_Test_TestcaseID_45881():
     login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
-
-
-# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_Smoke_Test_TestcaseID_45882():
-    """Verify sign in with non-Zebra account, check the design linked different format file from One Drive can be printed out successfully"""
-
-    common_method.tearDown()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_My_Design()
-    add_a_printer_screen.click_FirstOne_In_MyDesign()
-    add_a_printer_screen.click_Print_Option()
-    add_a_printer_screen.Verify_Design_Preview_Screen_With_Details()
-    add_a_printer_screen.click_Print_Button()
-    """"Verify manually it should print successfully"""
-    add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
-    add_a_printer_screen.click_SecondOne_In_MyDesign()
-    add_a_printer_screen.click_Print_Option()
-    add_a_printer_screen.click_Print_Button()
-    """"Verify manually it should print successfully"""
-    common_method.Stop_The_App()
-    """""The below step needs to be verified manually"""
-    """"""""""2. Sign in the same account on Web portal, create design1, add text object, and link One Drive file with xlsx format. Create design2, add text object, and link One Drive file with csv format"""""""""
 
 
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

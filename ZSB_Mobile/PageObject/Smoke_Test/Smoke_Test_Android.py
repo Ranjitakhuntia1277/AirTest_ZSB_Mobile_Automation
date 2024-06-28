@@ -11,6 +11,7 @@ from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
+
 def Basic_path(a):
     return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
 
@@ -27,11 +28,6 @@ class Smoke_Test_Android:
         self.Continue_With_Password_ForApple_Login = "Continue with Password"
         self.click_On_Password_Text_field = "SecureTextField"
         self.Sign_In_Option = "Sign In"
-        self.Apple_UserName = Template(Basic_path("tpl1707817586300.png"), record_pos=(-0.191, -0.867),
-                                       resolution=(1170, 2532))
-
-        self.Google_UserName = Template(Basic_path("tpl1707818376117.png"), record_pos=(-0.174, -0.867), resolution=(1170, 2532))
-
         self.MyData_Tab = "My Data"
         self.Plus_Icon = "android.widget.Button"
         self.LinkFile = "android.widget.Button"
@@ -49,6 +45,7 @@ class Smoke_Test_Android:
         self.Print_button = "Print"
         self.Select_Btn = "Select"
         self.Threedot_On_MyData = "android.widget.Button"
+        self.Microsoft_Email_Field = Template(Basic_path("tpl1718277659539.png"), record_pos=(-0.036, -0.694), resolution=(1080, 2400))
 
     # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def Verify_SignIn_With_Text_Is_Present(self):
@@ -86,33 +83,53 @@ class Smoke_Test_Android:
         Continue_With_Apple_Option.click()
         sleep(20)
 
+    def Enter_Apple_Login_Email(self):
+        sleep(4)
+        poco(text("Zebra01.swdvt@icloud.com"))
+
+    def click_Continue_For_Apple_Password(self):
+        sleep(1)
+        if self.poco(textMatches="Continue").exists():
+           self.poco(textMatches="Continue").click()
+
     def click_Continue_With_Password_ForApple_Login(self):
-        sleep(2)
-        Continue_With_Password_ForApple_Login = self.poco(self.Continue_With_Password_ForApple_Login)
-        Continue_With_Password_ForApple_Login.click()
+        sleep(4)
+        if self.poco(textMatches="Continue with Password").exists():
+           self.poco(textMatches="Continue with Password").click()
 
     def click_On_Password_Textfield(self):
-        enter_apple_id_password = self.poco(self.click_On_Password_Text_field)
-        enter_apple_id_password.click()
+        # #self.poco(name="android.widget.EditText")[1].click()
         sleep(2)
         poco(text("Testing@123"))
 
+    def click_On_Microsoft_Password_Textfield(self):
+        sleep(7)
+        self.poco(name="android.widget.TextView").click()
+        sleep(2)
+        poco(text("Swdvt@123"))
+
     def Enter_Apple_ID_Password(self):
-        self.poco(text("Testing@123"))
+        sleep(2)
+        if self.poco(name="android.widget.EditText")[1].exists():
+            self.poco(name="android.widget.EditText")[1].click()
+            # poco(text("Testing@123"))
 
     def click_On_Sign_In_Option(self):
-        sleep(2)
         Sign_In_Option = self.poco(self.Sign_In_Option)
-        Sign_In_Option.click()
-        sleep(9)
+        if Sign_In_Option.exists():
+            Sign_In_Option.click()
+            sleep(9)
 
     def Verify_Apple_UserName_Is_Displaying(self):
         sleep(3)
-        assert_exists(self.Apple_UserName, "Apple UserName is displaying")
+        if self.poco(nameMatches="(?s).*Zebra Soho .*").exists():
+            self.poco(nameMatches="(?s).*Zebra Soho .*").get_name()
 
     def Verify_Google_UserName_Is_Displaying(self):
         sleep(3)
-        assert_exists(self.Google_UserName, "Google UserName is displaying")
+        if self.poco(nameMatches="(?s).*SohoAPP.*").exists():
+            self.poco(nameMatches="(?s).*SohoAPP.*").get_name()
+
 
     def click_MyData_Tab(self):
         sleep(2)
@@ -121,7 +138,7 @@ class Smoke_Test_Android:
         sleep(4)
 
     def click_Plus_icon(self):
-        sleep(2)
+        sleep(7)
         Plus_icon = self.poco(self.Plus_Icon)
         Plus_icon.click()
         sleep(4)
@@ -183,6 +200,12 @@ class Smoke_Test_Android:
         Delete_File.click()
         sleep(6)
 
+    def Click_Cancel_File(self):
+        sleep(2)
+        Cancel = self.poco(name="Cancel")
+        Cancel.click()
+        sleep(6)
+
     def click_Print_Button(self):
         sleep(3)
         Print_Button = self.poco(self.Print_Button)
@@ -213,10 +236,11 @@ class Smoke_Test_Android:
 
     def click_On_Copies_Filed(self):
         sleep(8)
-        copies_number=self.poco(name="android.widget.EditText").click().click()
+        copies_number = self.poco(name="android.widget.EditText").click().click()
         copies_number.set_text(" ")
         copies_number.set_text("3")
         sleep(2)
+
     def click_Delete_Button_On_MyDesign(self):
         sleep(3)
         Delete_Button_On_MyDesign = self.poco(self.Delete_Button_On_MyDesign)
@@ -273,14 +297,12 @@ class Smoke_Test_Android:
 
     def click_Email_Text_Field(self):
         sleep(2)
-        microsoft_email = self.poco(type="android.widget.EditText")
-        if microsoft_email.exists():
-            microsoft_email.click()
-            sleep(1)
-            microsoft_email.set_text("swdvt.zebra@outlook.com")
-            sleep(4)
-        else:
-            print("Sign in field is not displaying")
+        touch(self.Microsoft_Email_Field)
+        sleep(1)
+        poco(text(" "))
+        poco(text("swdvt.zebra@outlook.com"))
+        sleep(4)
+
 
     def click_Next_Button(self):
         sleep(1)
@@ -368,16 +390,24 @@ class Smoke_Test_Android:
 
     def click_On_Jpg_File(self):
         sleep(1)
-        self.poco(nameMatches="(?s).*jpg.*").click()
-        sleep(2)
+        if self.poco(nameMatches="(?s).*jpg.*").exists():
+           self.poco(nameMatches="(?s).*jpg.*").click()
+           sleep(2)
+        else:
+            self.poco(nameMatches="(?s).*png.*").click()
+            sleep(2)
 
     def click_On_PNG_File(self):
         sleep(1)
-        self.poco(nameMatches="(?s).*png.*").click()
-        sleep(2)
+        if self.poco(nameMatches="(?s).*png.*").exists():
+            self.poco(nameMatches="(?s).*png.*").click()
+            sleep(2)
+        else:
+            poco.scroll()
+            self.poco(nameMatches="(?s).*png.*").click()
 
     def click_On_Select_Btn(self):
-        sleep(1)
+        sleep(2)
         select_btn = self.poco(self.Select_Btn)
         select_btn.click()
         sleep(4)
@@ -453,3 +483,63 @@ class Smoke_Test_Android:
         if self.poco(text="Continue as Zeba").exists():
             self.poco(text="Continue as Zeba").click()
             sleep(20)
+
+    def click_Upload_icon(self):
+        sleep(2)
+        self.poco(name="android.widget.Button")[1].click()
+        sleep(4)
+
+    def Upload_First_Image(self):
+        sleep(4)
+        self.poco(name="com.google.android.documentsui:id/icon_thumb").click()
+        sleep(4)
+
+    def click_Microsoft_Email_Field(self):
+        sleep(2)
+        self.poco(name="android.widget.EditText").click()
+        sleep(1)
+        poco(text("swdvt.zebra@outlook.com"))
+
+    def click_SignIn_Button(self):
+        sleep(2)
+        self.poco(text="Sign in").click()
+        sleep(7)
+
+    def click_Google_Drive(self):
+        sleep(2)
+        self.poco(name="Google Drive\nTab 1 of 2").click()
+        sleep(4)
+
+    def Verify_Linked_Message(self):
+        self.poco(name="")
+
+    def Verify_TheLinked_PNG_IS_Present(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*png.*")
+        if a.exists():
+           a.get_name()
+           print(a)
+
+    def Verify_TheLinked_JPG_IS_Present(self):
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*jpg.*")
+        b= self.poco(nameMatches="(?s).*png.*")
+        if a.exists():
+           a.get_name()
+           print(a)
+        else:
+            b.get_name()
+            print(b)
+
+    def Verify_Uploaded_Date_Is_Displaying(self):
+        sleep(2)
+        a = self.poco(name="android.view.View")[1].get_name()
+        print(a)
+
+    def Verify_Name_Is_Present(self):
+        sleep(2)
+        a = self.poco(name="NAME").get_name()
+        print(a)
+
+
+

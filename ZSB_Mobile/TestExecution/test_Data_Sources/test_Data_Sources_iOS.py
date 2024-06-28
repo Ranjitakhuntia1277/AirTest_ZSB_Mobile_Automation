@@ -1634,7 +1634,7 @@ def test_DataSources_TestcaseID_45758():
     """ google drive """
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-    account = "zebratest850@gmail.com"
+    account = "zebra850.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     else:

@@ -173,6 +173,7 @@ def test_Smoke_Test_TestcaseID_45878():
     smoke_test_android.click_MyData_Tab()
     smoke_test_android.click_Plus_icon()
     smoke_test_android.click_LinkFile()
+    smoke_test_android.click_Microsoft_OneDrive_Tab()
     smoke_test_android.click_SignIn_With_Microsoft()
     smoke_test_android.click_Email_Text_Field()
     smoke_test_android.click_Next_Button()
@@ -190,8 +191,8 @@ def test_Smoke_Test_TestcaseID_45878():
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
     common_method.Stop_The_App()
-#     ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
+# #     ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# #
 def test_Smoke_Test_TestcaseID_45879():
     """Verify sign in as non-zebra, check link and delete one/google drive file works well"""
 
@@ -207,6 +208,9 @@ def test_Smoke_Test_TestcaseID_45879():
     login_page.Loginwith_Added_Email_Id()
     login_page.click_Menu_HamburgerICN()
     smoke_test_android.click_MyData_Tab()
+    smoke_test_android.click_Plus_icon()
+    smoke_test_android.click_Upload_icon()
+    smoke_test_android.Upload_First_Image()
     smoke_test_android.click_Plus_icon()
     smoke_test_android.click_LinkFile()
     smoke_test_android.click_SignIn_With_Google_Drive()
@@ -232,12 +236,12 @@ def test_Smoke_Test_TestcaseID_45879():
     login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
 #
-#     ## """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# #     ## """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# #
 #
+# def test_Smoke_Test_TestcaseID_45880():
+#     """Verify sign in with non-zebra account, check the design linked different format file from local can be printed out successfully"""
 #
-def test_Smoke_Test_TestcaseID_45880():
-    """Verify sign in with non-zebra account, check the design linked different format file from local can be printed out successfully"""
-
 
 #
 #     """""Sign in the same account on Web portal, create design1, add text object, and link Local file with csv format.
@@ -271,8 +275,8 @@ def test_Smoke_Test_TestcaseID_45880():
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-def test_Smoke_Test_TestcaseID_45881():
-    """Verify sign in with social account, check the design linked different format file from Google Drive can be printed out successfully"""
+# def test_Smoke_Test_TestcaseID_45881():
+#     """Verify sign in with social account, check the design linked different format file from Google Drive can be printed out successfully"""
 
     # """start the app"""
     # common_method.tearDown()
@@ -324,8 +328,8 @@ def test_Smoke_Test_TestcaseID_45881():
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-def test_Smoke_Test_TestcaseID_45882():
-    """Verify sign in with non-Zebra account, check the design linked different format file from One Drive can be printed out successfully"""
+# def test_Smoke_Test_TestcaseID_45882():
+#     """Verify sign in with non-Zebra account, check the design linked different format file from One Drive can be printed out successfully"""
 
     # common_method.tearDown()
     # common_method.Clear_App()
@@ -357,59 +361,66 @@ def test_Smoke_Test_TestcaseID_45882():
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-def test_Smoke_Test_TestcaseID_45883():
-    """Verify sign in sign out with registered social accounts in Mobile App."""
-
-
-    # """start the app"""
-    # common_method.tearDown()
-    # login_page.click_LoginAllow_Popup()
-    # login_page.click_Allow_ZSB_Series_Popup()
-    # login_page.click_Menu_HamburgerICN()
-    # app_settings_page.click_pen_Icon_near_UserName()
-    # app_settings_page.Scroll_till_Delete_Account()
-    # app_settings_page.click_Logout_Btn()
-    # login_page.click_LoginAllow_Popup()
-    # login_page.click_Allow_ZSB_Series_Popup()
-    # login_page.click_loginBtn()
-    # login_page.click_LoginAllow_Popup()
-    # login_page.click_Allow_ZSB_Series_Popup()
-    """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
-    smoke_test_android.Verify_SignIn_With_Text_Is_Present()
-    smoke_test_android.click_Continue_With_Facebook_Option()
-    """""due to some issue, it is directly login to the facebook account without asking for password"""
-    login_page.click_Continue_On_Facebbok_Login_Page()
-    login_page.click_Menu_HamburgerICN()
-    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
-    login_page.click_Continue_On_Facebbok_Login_Page()
-    app_settings_page.click_pen_Icon_near_UserName()
-    app_settings_page.Scroll_till_Delete_Account()
-    app_settings_page.click_Logout_Btn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    smoke_test_android.click_Continue_With_Apple_Option()
-    smoke_test_android.click_Continue_With_Password_ForApple_Login()
-    smoke_test_android.click_On_Password_Textfield()
-    smoke_test_android.click_On_Sign_In_Option()
-    login_page.click_Menu_HamburgerICN()
-    smoke_test_android.Verify_Apple_UserName_Is_Displaying()
-    app_settings_page.click_pen_Icon_near_UserName()
-    app_settings_page.Scroll_till_Delete_Account()
-    app_settings_page.click_Logout_Btn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    smoke_test_android.Verify_Google_UserName_Is_Displaying()
-    common_method.Stop_The_App()
+# def test_Smoke_Test_TestcaseID_45883():
+#     """Verify sign in sign out with registered social accounts in Mobile App."""
 
 #
+#     """start the app"""
+#     common_method.tearDown()
+#     common_method.Clear_App()
+#     common_method.Start_The_App()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_loginBtn()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_Loginwith_Google()
+#     login_page.Loginwith_Added_Email_Id()
+#     login_page.click_Menu_HamburgerICN()
+#     app_settings_page.click_pen_Icon_near_UserName()
+#     app_settings_page.Scroll_till_Delete_Account()
+#     app_settings_page.click_Logout_Btn()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_loginBtn()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
+#     smoke_test_android.Verify_SignIn_With_Text_Is_Present()
+#     smoke_test_android.click_Continue_With_Facebook_Option()
+#     """""due to some issue, it is directly login to the facebook account without asking for password"""
+#     login_page.click_Continue_On_Facebbok_Login_Page()
+#     login_page.click_Menu_HamburgerICN()
+#     smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+#     login_page.click_Continue_On_Facebbok_Login_Page()
+#     app_settings_page.click_pen_Icon_near_UserName()
+#     app_settings_page.Scroll_till_Delete_Account()
+#     app_settings_page.click_Logout_Btn()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_loginBtn()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     smoke_test_android.click_Continue_With_Apple_Option()
+#     smoke_test_android.Enter_Apple_Login_Email()
+#     smoke_test_android.click_Continue_For_Apple_Password()
+#     smoke_test_android.click_Continue_With_Password_ForApple_Login()
+#     smoke_test_android.click_On_Sign_In_Option()
+#     common_method.Stop_The_App()
+#     common_method.Clear_App()
+#     common_method.Start_The_App()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_loginBtn()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     login_page.click_Loginwith_Google()
+#     login_page.Loginwith_Added_Email_Id()
+#     login_page.click_Menu_HamburgerICN()
+#     smoke_test_android.Verify_Google_UserName_Is_Displaying()
+#     common_method.Stop_The_App()
+#
+# #
 # # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
@@ -599,49 +610,51 @@ def test_Smoke_Test_TestcaseID_45883():
 # # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-# def test_Smoke_Test_TestcaseID_45889():
-#     """	Check user can upload or link file to My Data"""
-#
-#     #
-#     common_method.tearDown()
-#       login_page.click_LoginAllow_Popup()
-#       login_page.click_Allow_ZSB_Series_Popup()
-#     login_page.click_Menu_HamburgerICN()
-#
-#     """Click My Data"""
-#
-#     data_sources_page.click_My_Data()
-#     sleep(2)
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     """Test for Google Drive"""
-#     data_sources_page.clickGoogleDrive()
-#     sleep(2)
-#     data_sources_page.checkFilesShownAreSupported()
-#     sleep(2)
-#     large_file = data_sources_page.selectLargeFile()
-#     sleep(2)
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     data_sources_page.clickGoogleDrive()
-#     """Upload a file"""
-#     existing_file = data_sources_page.selectExistingFile()
-#     sleep(5)
-#     data_sources_page.click_Add_File()
-#     sleep(2)
-#     data_sources_page.click_Link_File()
-#     sleep(2)
-#     data_sources_page.clickGoogleDrive()
-#     common_method.Stop_The_App()
-#
+def test_Smoke_Test_TestcaseID_45889():
+    """	Check user can upload or link file to My Data"""
+
+    #
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+
+
+    """Click My Data"""
+
+    data_sources_page.click_My_Data()
+    sleep(2)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(2)
+
+    """Test for Google Drive"""
+    data_sources_page.clickGoogleDrive()
+    sleep(2)
+    data_sources_page.checkFilesShownAreSupported()
+    sleep(2)
+    large_file = data_sources_page.selectLargeFile()
+    sleep(2)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.clickGoogleDrive()
+    """Upload a file"""
+    existing_file = data_sources_page.selectExistingFile()
+    sleep(5)
+    data_sources_page.click_Add_File()
+    sleep(2)
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.clickGoogleDrive()
+    common_method.Stop_The_App()
+
 # # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
-def test_Smoke_Test_TestcaseID_45890():
-    """	Print template with static information in Recently Printed Template list"""
+# def test_Smoke_Test_TestcaseID_45890():
+#     """	Print template with static information in Recently Printed Template list"""
 
     # common_method.tearDown()
     # login_page.click_LoginAllow_Popup()
@@ -685,8 +698,8 @@ def test_Smoke_Test_TestcaseID_45890():
 #
 # # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
-def test_Smoke_Test_TestcaseID_45891():
-    """	Print multiple copies of template with variable data in Workspace"""
+# def test_Smoke_Test_TestcaseID_45891():
+#     """	Print multiple copies of template with variable data in Workspace"""
 
 #     # common_method.tearDown()
 #     # login_page.click_LoginAllow_Popup()
@@ -772,8 +785,8 @@ def test_Smoke_Test_TestcaseID_45891():
 # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-def test_Smoke_Test_TestcaseID_45892():
-    """	Delete template in Workspace"""
+# def test_Smoke_Test_TestcaseID_45892():
+#     """	Delete template in Workspace"""
 
     # """"Setup:
     # 1. There is an existing template in My Designs."""""
@@ -796,8 +809,8 @@ def test_Smoke_Test_TestcaseID_45892():
 #
 # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
-def test_Smoke_Test_TestcaseID_45893():
-    """	To Verify View Zebra defined categories in Common Designs"""
+# def test_Smoke_Test_TestcaseID_45893():
+#     """	To Verify View Zebra defined categories in Common Designs"""
     #
     # common_method.tearDown()
     # login_page.click_LoginAllow_Popup()
@@ -814,8 +827,8 @@ def test_Smoke_Test_TestcaseID_45893():
 # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-def test_Smoke_Test_TestcaseID_45894():
-    """	View list of Zebra templates in Common Designs"""
+# def test_Smoke_Test_TestcaseID_45894():
+#     """	View list of Zebra templates in Common Designs"""
 
     # common_method.tearDown()
     # login_page.click_LoginAllow_Popup()
@@ -844,8 +857,8 @@ def test_Smoke_Test_TestcaseID_45894():
 # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-def test_Smoke_Test_TestcaseID_45895():
-    """Print Zebra templates after Copy the template which needs to upload a picture from Library to Workspace (eg: Address->AddressWithIcon; Small Multipurpose->pickImage)"""
+# def test_Smoke_Test_TestcaseID_45895():
+#     """Print Zebra templates after Copy the template which needs to upload a picture from Library to Workspace (eg: Address->AddressWithIcon; Small Multipurpose->pickImage)"""
 
     #
     # common_method.Start_The_App()
@@ -890,8 +903,8 @@ def test_Smoke_Test_TestcaseID_45895():
 # # # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
-def test_Smoke_Test_TestcaseID_45896():
-    """Print a label from Common Design."""
+# def test_Smoke_Test_TestcaseID_45896():
+#     """Print a label from Common Design."""
 
     # common_method.tearDown()
     # login_page.click_LoginAllow_Popup()
