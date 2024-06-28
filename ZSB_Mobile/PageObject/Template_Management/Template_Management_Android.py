@@ -65,8 +65,10 @@ class Template_Management_Android:
             a = total[i].split("\n")
             temp[a[0]] = total[i]
 
-        while(not self.poco(temp[name]).exists()):
+        count=0
+        while(not self.poco(temp[name]).exists()) and count<30:
             self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
+            count+=1
 
         if click:
             try:

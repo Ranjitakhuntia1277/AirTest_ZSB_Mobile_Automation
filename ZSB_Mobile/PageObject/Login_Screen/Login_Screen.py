@@ -5,7 +5,7 @@ import pytest
 from airtest.core.android import Android
 from airtest.core.api import *
 from poco import poco
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 
 
 class Login_Screen:

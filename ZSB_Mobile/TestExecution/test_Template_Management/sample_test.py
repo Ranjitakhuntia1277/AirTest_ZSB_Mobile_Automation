@@ -4,7 +4,7 @@
 
 import pytest
 
-from ...TestExecution.test_Template_Management.test_Android_Template_Management import test_Android_Template_Management
+from ...TestExecution.test_Template_Management.test_Android_Template_Management_Reporting import test_Android_Template_Management
 
 tm_a = test_Android_Template_Management()
 

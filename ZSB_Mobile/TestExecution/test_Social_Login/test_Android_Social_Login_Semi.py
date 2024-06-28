@@ -1,6 +1,6 @@
 import pytest
 
-from ...TestExecution.test_Social_Login.test_Android_Social_Login import test_Android_Social_Login
+from ...TestExecution.test_Social_Login.test_Android_Social_Login_Reporting import test_Android_Social_Login
 
 t_sl = test_Android_Social_Login()
 
@@ -40,4 +40,11 @@ def test_Social_Login_TestcaseID_48482():
 def test_Social_Login_TestcaseID_50223():
     t_sl.test_Social_Login_TestcaseID_50223()
 #
-#
+
+"""Semi"""
+def test_Social_Login_TestcaseID_48484():
+    t_sl.test_Social_Login_TestcaseID_48484()
+
+"""Semi"""
+def test_Social_Login_TestcaseID_48480():
+    t_sl.test_Social_Login_TestcaseID_48480()

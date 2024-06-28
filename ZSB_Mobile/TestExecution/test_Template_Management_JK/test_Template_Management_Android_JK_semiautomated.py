@@ -684,7 +684,7 @@ def test_Template_Management_TestcaseID_46035():
         registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
     except:
         raise Exception("Did not navigate to Sign In with google page")
-    account = "zebratest850@gmail.com"
+    account = "zebra850.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
     else:

@@ -8,7 +8,7 @@ from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-
+from ...PageObject.Others.Others import Others
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
@@ -27,9 +27,12 @@ app_settings_page = App_Settings_Screen(poco)
 add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
+others = Others(poco)
 
 """""""""""""""""""""""Change Password part needs to be verified manually"""""""""""""""""""""""""""""
 
+
+# #### bug id-SMBM-2773
 def test_AppSettings_TestcaseID_47913():
     """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
 
@@ -92,6 +95,7 @@ def test_AppSettings_TestcaseID_47913():
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+####### bug id---SMBM-2778
 def test_AppSettings_TestcaseID_50031():
     """Check the error message prompted when print test page and printer head open or offline"""
 
@@ -134,6 +138,8 @@ def test_AppSettings_TestcaseID_50031():
 
 ## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# ###bug id-SMBM-2160
 def test_AppSettings_TestcaseID_49709():
     """Manage network- Check able to manage network with long name"""
 
@@ -175,6 +181,8 @@ def test_AppSettings_TestcaseID_49709():
 
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# ####bug id-SMBM-2163
 def test_AppSettings_TestcaseID_49711():
     """Manage networks- Check there is a prompt message when applying to the network which can't resolve Zebra host"""
 
@@ -282,6 +290,219 @@ def test_AppSettings_TestcaseID_50325():
     """stop the app"""
     common_method.Stop_The_App()
 
+
+
+def test_Others_TestcaseID_51703():
+    pass
+    common_method.show_message("Install the testing build on device")
+
+    sleep(2)
+    common_method.tearDown()
+
+    others.check_allow_permission_for_location()
+    login_page.click_loginBtn()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        login_page.click_Loginwith_Google()
+        common_method.wait_for_element_appearance_textmatches("Choose an account")
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Home",30)
+    res = others.check_home_page()
+    if not res:
+        raise Exception("Not in Home page")
+
+    others.uninstall_and_install_zsb_series_on_google_play()
+    common_method.wait_for_element_appearance_namematches("Uninstall",30)
+    stop_app("com.android.vending")
+
+    poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    while(1):
+        if others.check_zsb_app_icon():
+            t='present'
+            break
+        else:
+            others.scroll_down()
+
+    others.click_zsb_app_icon()
+    sleep(5)
+
+    try:
+        others.check_allow_permission_for_location()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+
+    try:
+        login_page.click_loginBtn()
+    except:
+        pass
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    try:
+        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        login_page.click_Loginwith_Google()
+        common_method.wait_for_element_appearance_textmatches("Choose an account")
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Home",30)
+
+    res = others.check_home_page()
+    if not res:
+        raise Exception("Not in Home page")
+
+def test_Others_TestcaseID_51704(self):
+    pass
+
+    common_method.show_message("Install the older build in phone")
+    common_method.show_message("now install 1. Install the new build, ")
+
+    sleep(10)
+
+    start_app("com.zebra.soho_app")
+    common_method.wait_for_element_appearance_textmatches("location")
+    others.check_allow_permission_for_location()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    others.click_on_older_login()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Continue with Google")
+    login_page.click_Loginwith_Google()
+    common_method.wait_for_element_appearance_textmatches("Choose an account")
+    try:
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+        common_method.wait_for_element_appearance_namematches("Home",20)
+    except:
+        pass
+    try:
+        others.check_continue_button_and_click_enter()
+        others.check_continue_button_and_click_enter()
+    except:
+        pass
+    res = others.check_home_page()
+
+    if not res:
+        raise Exception("Not in Home page")
+
+    cmd ='adb uninstall com.zebra.soho_app'
+    res = others.run_the_command(cmd)
+    print(res)
+
+    common_method.show_message("install older build and new build again")
+    sleep(15)
+    poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    while(1):
+        if others.check_zsb_app_icon():
+            t='present'
+            break
+        else:
+            others.scroll_down()
+
+    others.click_zsb_app_icon()
+    sleep(5)
+
+    others.check_allow_permission_for_location()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    login_page.click_loginBtn()
+    try:
+        others.click_on_allow()
+    except:
+        pass
+    common_method.wait_for_element_appearance_namematches("Continue with Google")
+    login_page.click_Loginwith_Google()
+    common_method.wait_for_element_appearance_textmatches("Choose an account")
+    try:
+        others.click_an_google_account("zebra850.swdvt@gmail.com")
+        common_method.wait_for_element_appearance_namematches("Home",20)
+    except:
+        pass
+
+    try:
+        others.check_continue_button_and_click_enter()
+        others.check_continue_button_and_click_enter()
+    except:
+        pass
+
+    res = others.check_home_page()
+
+    if not res:
+        raise Exception("Not in Home page")
+
+
+def test_Others_TestcaseID_45874(self):
+    pass
+
+    stop_app("com.zebra.soho_app")
+    start_app("com.zebra.soho_app")
+    try:
+        common_method.wait_for_element_appearance_namematches("Home")
+    except:
+        pass
+
+    expected_version_no = common_method.get_user_input("enter the version number to be expected")
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+
+    """get the version number of the current device"""
+    actual_version_no = others.get_the_version_no()
+
+    """If version number not same generate error"""
+    if expected_version_no != actual_version_no:
+        raise Exception("Version no did not match")
+
+
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_Others_TestcaseID_45799():
+    pass
+
+    common_method.show_message("test this manually in android 8.0 device")
+
+    # start_app("com.android.documentsui")
+    # t=''
+    # others.install_the_zsb_apk_in_files_android_8()
+    # sleep(3)
+    # res = others.check_app_is_installed_on_android_8()
+    # if res:
+    #     raise Exception("app is installed but it should not")
+    #
+    # others.go_back()
+    # others.go_back()
+    #
+    # poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
+
+    # while(1):
+    #     if others.check_zsb_app_icon():
+    #         t='present'
+    #         break
+    #     else:
+    #         others.scroll_down()
+    #
+    # if t == 'present':
+    #     raise Exception("app present")
 

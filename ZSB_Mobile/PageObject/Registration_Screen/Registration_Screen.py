@@ -36,12 +36,14 @@ class Registration_Screen:
         self.Login = "Login"
 
     def clickSignIn(self):
+        sleep(2)
         signInBtn = self.poco("Sign In")
         signInBtn.click()
         if self.poco("Allow").exists():
             self.poco("Allow").click()
         elif self.poco(text="Allow").exists():
             self.poco(text="Allow").click()
+        sleep(4)
 
     def registerEmail(self):
         self.poco(self.Register_Email).wait_for_appearance(timeout=10)
@@ -271,11 +273,17 @@ class Registration_Screen:
         self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
         self.poco("android.widget.EditText")[1].set_text(password)
         # self.poco(text="Sign In").click()
+        keyevent("Enter")
+        sleep(2)
         if click_on_sign_in:
-            self.poco("android.widget.Button")[1].click()
+            try:
+                self.poco("android.widget.Button")[1].click()
+            except:
+                x=1/0
+                self.poco(text="Sign In").click()
         if wrong_password:
             try:
-                self.poco("We didn't recognize the username or password you entered. Please try again.")
+                self.poco("We didn't recognize the username or password you entered. Please try again.").wait_for_appearance(timeout=15)
             except:
                 raise Exception("Error message not displayed for wrong password.")
 
@@ -307,16 +315,12 @@ class Registration_Screen:
         log_out_btn.click()
 
     def click_Google_Icon(self):
+        sleep(2)
         try:
-            sleep(2)
-            self.poco(nameMatches=".*Continue with Google.*").click()
+            self.poco("Sign in with Google").click()
         except:
-            try:
-                self.poco(nameMatches=".*Sign in with Google.*").click()
-            except:
-                touch(self.Google_Icon)
-                sleep(2)
-
+            touch(self.Google_Icon)
+        sleep(2)
 
     def click_Facebook_Icon(self):
         sleep(2)
@@ -356,8 +360,12 @@ class Registration_Screen:
                 self.wait_for_element_appearance_text(
                     "Wrong password. Try again or click ‘Forgot password’ to reset it.")
             except:
-                raise Exception(
-                    "Error message: \"Wrong password. Try again or click Forgot password to reset it.\" not displayed.")
+                try:
+                    self.wait_for_element_appearance_text(
+                        "Wrong password. Try again or click Forgot password to reset it.")
+                except:
+                    raise Exception(
+                        "Error message: \"Wrong password. Try again or click Forgot password to reset it.\" not displayed.")
         else:
             # self.poco("android.widget.Button")[-1].click()
             try:

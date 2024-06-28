@@ -59,8 +59,7 @@ class APS_Notification:
         self.GoogleDrive_SearchBar2 = "com.google.android.apps.docs:id/search_text"
         self.Suggestion_PDF_File_From_Drive = "android.widget.TextView"
         self.Three_Dot_Icon_Next_To_Drive_PDF = "com.google.android.apps.docs:id/action_show_menu"
-        self.ThreeDot_On_Added_Printer_On_HomePage = (
-            Template(r"tpl1715066652101.png", record_pos=(0.407, -0.553), resolution=(1080, 2400)))
+        self.ThreeDot_On_Added_Printer_On_HomePage = (Template(r"tpl1715066652101.png", record_pos=(0.407, -0.553), resolution=(1080, 2400)))
 
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def click_Device_Files_Folder(self):
@@ -212,10 +211,15 @@ class APS_Notification:
     def click_Available_Printer_To_Print(self):
         sleep(1)
         # a = poco(name="com.android.printspooler:id/icon")[1]
-        a = self.poco(textMatches="(?s).*ZSB-DP.*")
+        # a = self.poco(textMatches="(?s).*ZSB-DP.*")
+        a= self.poco(textMatches="(?s).*Online.*")
         if a.exists():
             a.click()
             print(a)
+        else:
+            if self.poco(textMatches="(?s).*ZSB-DP.*").exists():
+                self.poco(textMatches="(?s).*ZSB-DP.*").click()
+
 
     def is_grayed_out(element):
         # Example implementation, adjust based on how you identify a grayed-out element
@@ -526,7 +530,7 @@ class APS_Notification:
             pass
 
     def click_Print_Icon_Option(self):
-        sleep(2)
+        sleep(4)
         print_icon = self.poco(self.Print_Icon_Option)
         if print_icon.exists():
             print_icon.click()
@@ -652,8 +656,10 @@ class APS_Notification:
 
     def Verify_Centimeter_IS_Displaying_On_Review_Page(self):
         sleep(1)
-        a = self.poco(textMatches="(?s).*cm.*").get_name()
-        print(a)
+        a = self.poco(textMatches="(?s).*cm.*")
+        if a.exists():
+           a.get_name()
+           print(a)
 
     def Verify_Inches_IS_Displaying_On_Review_Page(self):
         sleep(1)

@@ -2,7 +2,7 @@ from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # from setuptools import logging
-# from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
+# from ...PageObject.Robofinger import test_robo_finger
 from ...Common_Method import Common_Method
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
@@ -65,6 +65,7 @@ def test_AppSettings_TestcaseID_47918():
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# ####bug id----SMBM-2120
 def test_AppSettings_TestcaseID_49665():
     """Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared"""
 
@@ -269,7 +270,7 @@ def test_AppSettings_TestcaseID_45690():
 
 # # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+# ####bug id----SMBM-2416
 
 def test_AppSettings_TestcaseID_45691():
     """""""""Edit Workspace - upload and remove image"""""
@@ -676,6 +677,7 @@ def test_AppSettings_TestcaseID_47880():
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# ###bug id-SMBM-1684
 def test_AppSettings_TestcaseID_47911():
     """ Verify auto Label Feed On Printer Cover Close value doesn't retrieve in progress after changing darkness level."""
 
@@ -774,6 +776,7 @@ def test_AppSettings_TestcaseID_47915():
 ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# ######bug id---SMBM-2644
 def test_AppSettings_TestcaseID_47917():
     """Verify Printer’s name is too long which should not causes app get stuck and style error at Printer Settings page."""
 
@@ -808,6 +811,7 @@ def test_AppSettings_TestcaseID_47917():
 
 ## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# ###bug id---SMBM-2243
 def test_AppSettings_TestcaseID_50333():
     """Android only- Check it will back to manage network after clicking device’s back button"""""
 
@@ -868,7 +872,7 @@ def test_AppSettings_TestcaseID_47923():
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Change_Password_Btn()
     app_settings_page.Verify_Password_Recovery_Text_Is_Displaying()
-    app_settings_page.click_Close_Icon()
+    app_settings_page.click_Close_Icon_On_Password_Recovery_Page()
     """After changing the password, it should logged out. this needs to be validated Manually"""""
     """stop the app"""
     common_method.Stop_The_App()
@@ -998,6 +1002,7 @@ def test_AppSettings_TestcaseID_49960():
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# ####bug id---SMBM-2234
 def test_AppSettings_TestcaseID_49961():
     """Check after change password, click return to login will navigate to login page and user able to login with new password success"""
 
@@ -1147,6 +1152,8 @@ def test_AppSettings_TestcaseID_51705():
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# #####bug id----SMBM-951
 def test_AppSettings_TestcaseID_47924():
     """Verify Should not allow same printer name in all the clients.."""
     #
@@ -1197,6 +1204,8 @@ def test_AppSettings_TestcaseID_47924():
     common_method.Stop_The_App()
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# ###bug id---SMBM-1937
 def test_AppSettings_TestcaseID_47910():
     """""Verify pull-down screen twice then the prints left value can refresh success in home page."""""
 
@@ -1260,7 +1269,6 @@ def test_AppSettings_TestcaseID_47881():
 
     """start the app"""
     common_method.tearDown()
-    sleep(3)
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     """"verify home text is displaying on the home screen"""

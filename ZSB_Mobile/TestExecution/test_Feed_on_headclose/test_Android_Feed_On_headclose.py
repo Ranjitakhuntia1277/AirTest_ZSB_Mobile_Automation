@@ -3,8 +3,9 @@ from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # from ZSB_Automation.ZSB_Mobile.Common_Method import Common_Method
 # from ZSB_Automation.ZSB_Mobile.PageObject.APP_Settings_Screen import App_Settings_Screen
 from ZSB_Mobile.PageObject.Feed_on_Head_Close.Feed_on_HeadClose import Feed_on_HeadClose
-from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
-
+from ...PageObject.Login_Screen import Login_Screen
+from ...PageObject.Others.Others import Others
+from ...Common_Method import *
 
 class test_Feed_On_HeadClose():
     pass
@@ -15,8 +16,48 @@ poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=Fa
 connect_device("Android:///")
 start_app("com.zebra.soho_app")
 sleep(3.0)
+others = Others(poco)
+common_method = Common_Method(poco)
 
 
+def test_Others_TestcaseID_47972():
+    pass
+
+    stop_app("com.zebra.soho_app")
+    start_app("com.zebra.soho_app")
+    try:
+        common_method.wait_for_element_appearance_namematches("Home")
+    except:
+        pass
+
+    login_page.click_Menu_HamburgerICN()
+
+    sleep(1)
+
+    """ Select the Printer Settings """
+    others.click_Printer_Settings()
+
+    others.swipe_left()
+    """ Select a printer """
+    others.select_first_printer()
+    sleep(2)
+
+    """ Click on the icon """
+    others.click_icon()
+    sleep(1)
+
+    """Click On the Demo video"""
+    others.click_demo_video()
+    sleep(5)
+
+    others.click_on_the_vedio_while_playing()
+
+    """Close The Demo Video"""
+    others.close_demo_video()
+
+    """Check if closed"""
+    if not others.check_demo_video_closed():
+        raise Exception("demo video not closed")
 
 
 def test_Feed_on_HeadClose_TestcaseID_45790():

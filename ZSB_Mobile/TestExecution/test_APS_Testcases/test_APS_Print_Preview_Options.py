@@ -2,7 +2,7 @@ from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # from setuptools import logging
-from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
+from ...PageObject.Robofinger import test_robo_finger
 import pytest
 from airtest.core.api import connect_device
 from ...Common_Method import Common_Method
@@ -10,6 +10,7 @@ from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
@@ -33,12 +34,14 @@ aps_notification = APS_Notification(poco)
 Password: Swdvt@#123""""""
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_APS_Print_Preview_TestcaseID_49141():
     """Check the print options in the printing page when sharing a file to print and selecting the ZSB printer"""
 
     common_method.tearDown()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
+    ##### common_method.show_popup()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
     aps_notification.Enter_Files_Text_On_SearchBar()
@@ -66,6 +69,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49141():
     aps_notification.click_Print_Icon_Option()
     aps_notification.click_OK_On_Confirmation_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
+
+
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49142():
@@ -102,6 +107,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49142():
     aps_notification.Verify_Print_job_sent_successfully_Message()
     after = app_settings_page.Check_no_of_left_cartridge()
     print(after)
+
+
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -141,6 +148,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49146():
     print(after)
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_APS_Print_Preview_TestcaseID_49147():
     """Check the user can set the printing range in the preview page in APS"""
 
@@ -166,6 +174,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49147():
     aps_notification.click_Available_Printer_To_Print()
     aps_notification.click_Expand_Icon()
     aps_notification.click_Expand_Icon()
+
 
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -200,6 +209,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49148():
     aps_notification.click_OK_On_Confirmation_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_Android_APS_Print_Preview_TestcaseID_49149():
     """Check the Rotation option works when printing in APS"""
@@ -236,6 +246,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49149():
     aps_notification.click_Print_Icon_Option()
     aps_notification.click_OK_On_Confirmation_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
+
+
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49150():
@@ -264,6 +276,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49150():
     aps_notification.click_Expand_Icon()
     aps_notification.Verify_Black_And_White_Text()
     aps_notification.click_Expand_Icon()
+
+
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49151():
@@ -293,6 +307,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49151():
     aps_notification.click_Expand_Icon()
     # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_APS_Print_Preview_TestcaseID_49152():
     """	Check the Scaling Percentage option disabled in printing for APS"""
     common_method.tearDown()
@@ -318,6 +333,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49152():
     aps_notification.click_Expand_Icon()
     aps_notification.Verify_Percentage_Is_Not_Present()
     aps_notification.click_Expand_Icon()
+
+
 #     ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49153():
@@ -352,6 +369,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49153():
     aps_notification.Verify_Labels_Left_Count()
     aps_notification.Verify_Printer_Status()
     aps_notification.Verify_PaperSize()
+
+
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def test_Android_APS_Print_Preview_TestcaseID_49159():
     """Check it works that APS can print 1 copy with multiple pages of the supported shared file with default settings"""
@@ -387,6 +406,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49159():
     aps_notification.Verify_Print_job_sent_successfully_Message()
     after = app_settings_page.Check_no_of_left_cartridge()
     print(after)
+
+
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49165():
@@ -421,6 +442,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49165():
     aps_notification.Verify_Print_job_sent_successfully_Message()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_APS_Print_Preview_TestcaseID_49173():
     """	Check it can not print when inputting out of page range in the printing page"""
     common_method.tearDown()
@@ -448,6 +470,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49173():
     aps_notification.Select_Range_Of_Option()
     aps_notification.Select_Start_And_End_Page_Number()
     aps_notification.Verify_Cannot_Select_Greater_than_Maximunpage()
+
+
 #     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49174():
@@ -490,6 +514,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49174():
     aps_notification.click_OK_On_Confirmation_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
     """""Verify Print results manually"""
+
+
 #     ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49191():
@@ -539,6 +565,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49191():
     aps_notification.click_Print_Icon_Option()
     aps_notification.click_OK_On_Confirmation_Popup()
     aps_notification.Verify_Print_job_sent_successfully_Message()
+
+
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Android_APS_Print_Preview_TestcaseID_49725():
@@ -573,6 +601,8 @@ def test_Android_APS_Print_Preview_TestcaseID_49725():
     aps_notification.click_Landscape_Option()
     aps_notification.click_Expand_Icon()
     aps_notification.Verify_Landscape_View_Is_Displaying()
+
+
 #     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -602,10 +632,13 @@ def test_Android_APS_Print_Preview_TestcaseID_49786():
     aps_notification.Verify_Print_job_sent_successfully_Message()
     # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def test_Android_APS_Print_Preview_TestcaseID_49790():
     """Check print failed when turn off APS ZSB series at print preview page"""
 
     common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
@@ -614,7 +647,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49790():
     aps_notification.click_Drive_Folder()
     aps_notification.click_Mobile_Footer_Back_Icon()
     aps_notification.click_Google_Drive_SearchBar2()
-    aps_notification.click_JPG_Image_File_From_The_Google_DriveList()
+    aps_notification.click_PDF_File_From_The_Google_DriveList()
     aps_notification.click_Suggestion_PDF_File_From_Drive()
     aps_notification.click_ON_Three_Dot_To_Print()
     poco.scroll()
@@ -639,7 +672,7 @@ def test_Android_APS_Print_Preview_TestcaseID_49790():
     aps_notification.click_Drive_Folder()
     aps_notification.click_Mobile_Footer_Back_Icon()
     aps_notification.click_Google_Drive_SearchBar2()
-    aps_notification.click_JPG_Image_File_From_The_Google_DriveList()
+    aps_notification.click_PDF_File_From_The_Google_DriveList()
     aps_notification.click_Suggestion_PDF_File_From_Drive()
     aps_notification.click_ON_Three_Dot_To_Print()
     poco.scroll()
@@ -660,4 +693,3 @@ def test_Android_APS_Print_Preview_TestcaseID_49790():
     aps_notification.Stop_Android_App()
 
 #    #######""""""""""""""""""""END""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-

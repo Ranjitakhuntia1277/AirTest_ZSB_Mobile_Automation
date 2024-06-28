@@ -92,9 +92,10 @@ class App_Settings_Screen:
 
         self.Cancel_on_Delete_Account_Popup = "Cancel"
 
+        # self.ThreeDot_On_Added_Printer_On_HomePage = Template(r"tpl1717516073248.png", record_pos=(0.396, -0.555), resolution=(1080, 2400))
+
         self.ThreeDot_On_Added_Printer_On_HomePage = Template(r"tpl1705915293017.png", record_pos=(0.402, -0.553),
                                                               resolution=(1080, 2400))
-
         self.Delete_Printer_Button = "Delete"
 
         self.Yes_Delete_Button = "Yes, Delete"
@@ -723,11 +724,11 @@ class App_Settings_Screen:
             back_icon.click()
             sleep(2)
 
-    def click_Close_Icon(self):
+    def click_Close_Icon_On_Password_Recovery_Page(self):
         sleep(2)
-        cancel_btn = self.poco(nameMatches="(?s).*Cancel.*")
-        if cancel_btn.exists():
-            cancel_btn.click()
+        if self.poco(nameMatches="(?s).*com.android.chrome:id/close_button.*").exists():
+            self.poco(nameMatches="(?s).*com.android.chrome:id/close_button.*").click()
+            sleep(2)
 
     def Is_Present_Workspace_Name_Text(self):
         workspaceName_Text = self.poco(self.Workspace_Name_Text)
@@ -1081,7 +1082,7 @@ class App_Settings_Screen:
         touch(self.Continue_with_Google)
 
     def click_Three_Dot_On_Added_Printer_On_HomePage(self):
-        sleep(1)
+        sleep(3)
         touch(self.ThreeDot_On_Added_Printer_On_HomePage)
 
     def click_Delete_Printer_Button(self):
@@ -1598,7 +1599,7 @@ class App_Settings_Screen:
         return Change_Password_PageURL
 
     def Verify_Password_Recovery_Text_Is_Displaying(self):
-        sleep(2)
+        sleep(7)
         Password_Recovery_Text = self.poco(text="Password Recovery")
         if Password_Recovery_Text.exists():
             Password_Recovery_Text.get_text()
@@ -1678,8 +1679,8 @@ class App_Settings_Screen:
 
     def click_Close_Icon(self):
         sleep(1)
-        if self.poco(name="").exists():
-            self.poco(name="").click()
+        if self.poco(name="Cancel").exists():
+            self.poco(name="Cancel").click()
 
     def click_First_Image_ON_The_List(self):
         sleep(2)

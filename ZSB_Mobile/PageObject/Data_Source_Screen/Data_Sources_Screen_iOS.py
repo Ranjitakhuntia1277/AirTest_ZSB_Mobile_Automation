@@ -350,72 +350,13 @@ class Data_Sources_Screen:
     def fileListDisplayed(self, no_of_swipes=False):
         File_List = []
         if self.poco("You don’t have any files").exists():
-            print(1, File_List)
             return File_List
-        scroll_view = self.poco("android.widget.HorizontalScrollView")
-        while not self.poco("NAME").exists():
-            scroll_view.swipe("right")
-        for i in range(5):
-            scroll_view.swipe("right")
-        temp = []
-        swipe_count = 0
-        if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
-            if self.poco("android.widget.HorizontalScrollView").child()[2].get_name() == "DATA SOURCE":
-                if self.poco("android.widget.HorizontalScrollView").child()[-1].get_name() == "android.view.View":
-                    current_last_child = self.poco("android.widget.HorizontalScrollView").child()[-4].get_name()
-                else:
-                    current_last_child = self.poco("android.widget.HorizontalScrollView").child()[-3].get_name()
-            else:
-                current_last_child = self.poco("android.widget.HorizontalScrollView").child()[-2].get_name()
-        else:
-            current_last_child = self.poco("android.widget.HorizontalScrollView").child()[-1].get_name()
-        for i in range(1, self.getCurrCount() + 1):
-            if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
-                if self.poco("android.widget.HorizontalScrollView").child()[2].get_name() == "DATA SOURCE":
-                    File_List.append(self.poco("android.widget.HorizontalScrollView").child()[3 * i].get_name())
-                else:
-                    File_List.append(self.poco("android.widget.HorizontalScrollView").child()[2 * i].get_name())
-            else:
-                File_List.append(self.poco("android.widget.HorizontalScrollView").child()[i].get_name())
-        while True:
-            self.poco.scroll()
-            swipe_count += 1
-            for i in range(1, self.getCurrCount() + 1):
-                if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
-                    if self.poco("android.widget.HorizontalScrollView").child()[2].get_name() == "DATA SOURCE":
-                        temp.append(self.poco("android.widget.HorizontalScrollView").child()[3 * i].get_name())
-                    else:
-                        temp.append(self.poco("android.widget.HorizontalScrollView").child()[2 * i].get_name())
-                else:
-                    temp.append(self.poco("android.widget.HorizontalScrollView").child()[i].get_name())
-            if self.poco("android.widget.HorizontalScrollView").child()[1].get_name() == "DATE ADDED":
-                if self.poco("android.widget.HorizontalScrollView").child()[2].get_name() == "DATA SOURCE":
-                    if self.poco("android.widget.HorizontalScrollView").child()[-1].get_name() == "android.view.View":
-                        new_last_child = self.poco("android.widget.HorizontalScrollView").child()[-4].get_name()
-                    else:
-                        new_last_child = self.poco("android.widget.HorizontalScrollView").child()[-3].get_name()
-                else:
-                    new_last_child = self.poco("android.widget.HorizontalScrollView").child()[-2].get_name()
-            else:
-                new_last_child = self.poco("android.widget.HorizontalScrollView").child()[-1].get_name()
-            if current_last_child in temp:
-                index_from = temp.index(current_last_child) + 1
-                for i in range(index_from, len(temp)):
-                    File_List.append(temp[i])
-                if temp[-1] == current_last_child:
-                    break
-            else:
-                for i in range(len(temp)):
-                    File_List.append(temp[i])
-                current_last_child = new_last_child
-            temp = []
-        while not self.poco("NAME").exists():
-            scroll_view = self.poco("android.view.View")
-            scroll_view.swipe("down")
-        if not no_of_swipes:
-            return File_List
-        else:
-            return File_List, swipe_count
+        for child in self.poco("ScrollView")[1].parent().child():
+            if ((".png" in child.get_name()) or (".jpg" in child.get_name()) or (".txt" in child.get_name()) or (
+                    ".csv" in child.get_name()) or (".xlsx" in child.get_name()) or (
+                    "bnp" in child.get_name())):
+                File_List.append(child.get_name())
+        return File_List
 
     def selectFileWithExtension(self, extension):
         prev_last_child = None
@@ -496,6 +437,12 @@ class Data_Sources_Screen:
             self.poco(self.List_Empty).wait_for_appearance(timeout=10)
         except:
             raise Exception("List not empty")
+
+    def log_out_for_current_execution_ios(self):
+        self.poco("Open navigation menu").click()
+        self.poco("Button").click()
+        self.poco.scroll()
+        self.poco("Log Out").click()
 
     def searchRandomWord(self):
         random_word = self.generateRandomWord(64)
@@ -685,22 +632,11 @@ class Data_Sources_Screen:
         self.poco("Enter your email, phone, or Skype.").wait_for_appearance(timeout=20)
         self.poco("Enter your email, phone, or Skype.").click()
         text(username)
-        self.poco(text="Next").click()
+        self.poco("Next").click()
         sleep(3)
-        self.lock_phone()
-        sleep(2)
-        wake()
-        if self.poco(self.Use_Your_Password_Instead).exists():
-            self.poco(self.Use_Your_Password_Instead).click()
-            sleep(2)
-        self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
-        self.poco("android.widget.EditText").click()
-        self.poco("android.widget.EditText").set_text(password)
-        # password = "hmWepX4AUMLa!9E"
-        # self.poco(text(password))
-        self.poco(text="Sign in").click()
-        if self.poco("Continue").exists():
-            self.clickContinue()
+        self.poco("Enter the password for " + username).wait_for_appearance(timeout=10)
+        self.poco("Enter the password for " + username).click()
+        text(password)
 
     def checkIfAccPresentLink(self, account):
         start = 0
@@ -767,7 +703,7 @@ class Data_Sources_Screen:
             print("Successfully clicked Sign In With Email")
 
     def clickBackArrow(self):
-        back_arrow = self.poco(name="android.widget.Button", enabled=True)
+        back_arrow = self.poco(name="Button", enabled=True)
         back_arrow.wait_for_appearance(timeout=20)
         back_arrow.click()
         sleep(4)

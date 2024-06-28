@@ -1,6 +1,6 @@
 import pytest
 
-from ...TestExecution.test_Social_Login.test_Android_Social_Login import test_Android_Social_Login
+from ...TestExecution.test_Social_Login.test_Android_Social_Login_Reporting import test_Android_Social_Login
 
 t_sl = test_Android_Social_Login()
 
@@ -22,8 +22,6 @@ def test_Social_Login_TtestcaseID_48473():
 def test_Social_Login_TtestcaseID_48479():
     t_sl.test_Social_Login_TestcaseID_48479()
 
-def test_Social_Login_TtestcaseID_48480():
-    t_sl.test_Social_Login_TestcaseID_48480()
 
 def test_Social_Login_TtestcaseID_48481():
     t_sl.test_Social_Login_TestcaseID_48481()
@@ -31,12 +29,9 @@ def test_Social_Login_TtestcaseID_48481():
 def test_Social_Login_TtestcaseID_48483():
     t_sl.test_Social_Login_TestcaseID_48483()
 
-def test_Social_Login_TtestcaseID_48484():
-    t_sl.test_Social_Login_TestcaseID_48484()
-
 def test_Social_Login_TtestcaseID_48485():
     t_sl.test_Social_Login_TestcaseID_48485()
-
+#########################################################
 def test_Social_Login_TtestcaseID_48486():
     t_sl.test_Social_Login_TestcaseID_48486()
 
@@ -51,3 +46,9 @@ def test_Social_Login_TtestcaseID_50643():
 
 def test_Social_Login_TtestcaseID_50646():
     t_sl.test_Social_Login_TestcaseID_50646()
+
+def test_Social_Login_TtestcaseID_45802():
+    t_sl.test_Others_TestcaseID_45802()
+
+def test_Social_Login_TtestcaseID_45872():
+    t_sl.test_Others_TestcaseID_45872()
