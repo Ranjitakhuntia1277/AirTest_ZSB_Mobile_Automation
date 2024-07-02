@@ -31,7 +31,7 @@ others = Others
 aps_notification = APS_Notification(poco)
 
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49138():
+def test_APS_Settings_TestcaseID_49138():
     """Check the APS can be turn on/off"""
 
     common_method.tearDown()
@@ -129,7 +129,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49185():
+def test_APS_Settings_TestcaseID_49185():
     """Check turn off APS then update install ZSB app, it’s still turn off"""
 
     common_method.tearDown()
@@ -170,7 +170,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49185():
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49784():
+def test_APS_Settings_TestcaseID_49784():
     """After print a test label , check printer labels left is correct in APS available devices list"""
 
     common_method.tearDown()
@@ -200,7 +200,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49784():
 
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-def test_APS_Settings_And_APS_Others_TestcaseID_49791():
+def test_APS_Settings_TestcaseID_49791():
     """Check the measure unit can be updated after change a different unit via change ZSB workspace settings - change to inch ,cm,mm"""
 
     common_method.tearDown()
@@ -296,92 +296,92 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
 # ##"""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49156():
-    """Check APS would be deleted after deleting ZSB Series app"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    #### common_method.uninstall_app()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    aps_notification.ZSB_Series_Is_Not_Present()
-    aps_notification.Stop_Android_App()
-
-
-# ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_APS_Settings_And_APS_Others_TestcaseID_49540():
-    """Check ZSB printers are fetched out in ZSB APS after keep ZSB APP idle for more than 1 day"""
-    common_method.tearDown()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """""""click on the left hamburger menu on the home page"""""""""
-    login_page.click_Menu_HamburgerICN()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    aps_notification.click_ZSB_Series()
-    """""4. Back to homepage keep ZSB APP running in background for more than 1 day needs to be verified Manually"""
-
-
-# ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_APS_Settings_And_APS_Others_TestcaseID_49788():
-    """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    aps_notification.click_ZSB_Series()
-    """"Turn off the printer option"""
-    aps_notification.Verify_And_Turn_OFF_APS()
-
-
-#     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_APS_Settings_And_APS_Others_TestcaseID_49789():
-    """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    aps_notification.click_Connection_Preferences()
-    aps_notification.click_Printing_Tab()
-    aps_notification.click_ZSB_Series()
-    """"Turn on the printer option"""
-    aps_notification.Verify_And_Turn_ON_APS()
-    aps_notification.Stop_Android_App()
-    # ##"""""""""""""""""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-# #######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# def test_APS_Settings_And_APS_Others_TestcaseID_49156():
+#     """Check APS would be deleted after deleting ZSB Series app"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     #### common_method.uninstall_app()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Settings_Text_On_SearchBar()
+#     aps_notification.click_Settings()
+#     aps_notification.click_Connected_Devices()
+#     aps_notification.click_Connection_Preferences()
+#     aps_notification.click_Printing_Tab()
+#     aps_notification.ZSB_Series_Is_Not_Present()
+#     aps_notification.Stop_Android_App()
+#
+#
+# # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+# def test_APS_Settings_And_APS_Others_TestcaseID_49540():
+#     """Check ZSB printers are fetched out in ZSB APS after keep ZSB APP idle for more than 1 day"""
+#     common_method.tearDown()
+#     common_method.Start_The_App()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     """""""click on the left hamburger menu on the home page"""""""""
+#     login_page.click_Menu_HamburgerICN()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Settings_Text_On_SearchBar()
+#     aps_notification.click_Settings()
+#     aps_notification.click_Connected_Devices()
+#     aps_notification.click_Connection_Preferences()
+#     aps_notification.click_Printing_Tab()
+#     aps_notification.click_ZSB_Series()
+#     """""4. Back to homepage keep ZSB APP running in background for more than 1 day needs to be verified Manually"""
+#
+#
+# # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+# def test_APS_Settings_And_APS_Others_TestcaseID_49788():
+#     """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Settings_Text_On_SearchBar()
+#     aps_notification.click_Settings()
+#     aps_notification.click_Connected_Devices()
+#     aps_notification.click_Connection_Preferences()
+#     aps_notification.click_Printing_Tab()
+#     aps_notification.click_ZSB_Series()
+#     """"Turn off the printer option"""
+#     aps_notification.Verify_And_Turn_OFF_APS()
+#
+#
+# #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+# def test_APS_Settings_And_APS_Others_TestcaseID_49789():
+#     """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
+#
+#     common_method.tearDown()
+#     login_page.click_LoginAllow_Popup()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     common_method.Stop_The_App()
+#     aps_notification.Stop_Android_App()
+#     aps_notification.click_Mobile_SearchBar()
+#     aps_notification.click_On_Searchbar2()
+#     aps_notification.Enter_Settings_Text_On_SearchBar()
+#     aps_notification.click_Settings()
+#     aps_notification.click_Connected_Devices()
+#     aps_notification.click_Connection_Preferences()
+#     aps_notification.click_Printing_Tab()
+#     aps_notification.click_ZSB_Series()
+#     """"Turn on the printer option"""
+#     aps_notification.Verify_And_Turn_ON_APS()
+#     aps_notification.Stop_Android_App()
+#     # ##"""""""""""""""""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# # #######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
