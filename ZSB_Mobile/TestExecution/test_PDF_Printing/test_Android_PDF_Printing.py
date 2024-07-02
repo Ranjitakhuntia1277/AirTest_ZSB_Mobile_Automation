@@ -69,9 +69,6 @@ def test_Android_PDF_Printing_TestcaseID_45808():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -93,9 +90,6 @@ def test_Android_PDF_Printing_TestcaseID_45808():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -127,9 +121,6 @@ def test_Android_PDF_Printing_TestcaseID_45809():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -152,9 +143,6 @@ def test_Android_PDF_Printing_TestcaseID_45809():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
 
 
@@ -181,9 +169,6 @@ def test_Android_PDF_Printing_TestcaseID_45810():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_Label_Print_Range_Is_Selected_AS_All()
     pdf_printing.Verify_Current_Label_Print_Option_IS_Displaying()
@@ -220,9 +205,6 @@ def test_Android_PDF_Printing_TestcaseID_45811():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -261,9 +243,6 @@ def test_Android_PDF_Printing_TestcaseID_45812():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -299,9 +278,6 @@ def test_Android_PDF_Printing_TestcaseID_45813():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -349,9 +325,6 @@ def test_Android_PDF_Printing_TestcaseID_45814():
     login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
     sleep(4)
-    """""after the issue is fixed, need to delete the below function"""
-    # pdf_printing.Switch_To_Different_App()
-    # pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page_For_Printer_Online_And_Not_Added()
 
 
@@ -378,9 +351,6 @@ def test_Android_PDF_Printing_TestcaseID_45815():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -417,9 +387,6 @@ def test_Android_PDF_Printing_TestcaseID_45816():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -455,9 +422,6 @@ def test_Android_PDF_Printing_TestcaseID_45821():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -495,9 +459,6 @@ def test_Android_PDF_Printing_TestcaseID_45822():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -531,9 +492,6 @@ def test_Android_PDF_Printing_TestcaseID_45826():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -564,9 +522,6 @@ def test_Android_PDF_Printing_TestcaseID_45827():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -602,9 +557,6 @@ def test_Android_PDF_Printing_TestcaseID_45828():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -639,9 +591,6 @@ def test_Android_PDF_Printing_TestcaseID_45829():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -675,9 +624,6 @@ def test_Android_PDF_Printing_TestcaseID_45830():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -710,9 +656,6 @@ def test_Android_PDF_Printing_TestcaseID_45831():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Printer_Not_Found_Popup()
     pdf_printing.click_Continue_Button()
     pdf_printing.Verify_Print_Is_GreyedOut()
@@ -737,9 +680,6 @@ def test_Android_PDF_Printing_TestcaseID_45833():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -768,9 +708,6 @@ def test_Android_PDF_Printing_TestcaseID_45834():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -795,9 +732,6 @@ def test_Android_PDF_Printing_TestcaseID_45835():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -822,9 +756,6 @@ def test_Android_PDF_Printing_TestcaseID_45836():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     sleep(2)
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
@@ -856,9 +787,6 @@ def test_Android_PDF_Printing_TestcaseID_45837():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -890,9 +818,6 @@ def test_Android_PDF_Printing_TestcaseID_45840():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -933,9 +858,6 @@ def test_Android_PDF_Printing_TestcaseID_45841():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -957,9 +879,6 @@ def test_Android_PDF_Printing_TestcaseID_45841():
     aps_notification.click_ON_Three_Dot()
     pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -989,9 +908,6 @@ def test_Android_PDF_Printing_TestcaseID_45844():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1026,9 +942,6 @@ def test_Android_PDF_Printing_TestcaseID_45847():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_Default_Copies_Values_Is_1()
     pdf_printing.Update_Copies_Value()
@@ -1062,9 +975,6 @@ def test_Android_PDF_Printing_TestcaseID_45848():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_Default_Copies_Values_Is_1()
     pdf_printing.Update_Copies_Value_To_Special_Characters()
@@ -1097,9 +1007,6 @@ def test_Android_PDF_Printing_TestcaseID_45849():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_Default_Copies_Values_Is_1()
     pdf_printing.Update_Copies_Value()
@@ -1131,9 +1038,6 @@ def test_Android_PDF_Printing_TestcaseID_45850():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1167,9 +1071,6 @@ def test_Android_PDF_Printing_TestcaseID_45851():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Click_On_PDF_Print_Review_BackIcon()
     app_settings_page.Home_text_is_present_on_homepage()
@@ -1221,9 +1122,6 @@ def test_Android_PDF_Printing_TestcaseID_45853():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1254,9 +1152,6 @@ def test_Android_PDF_Printing_TestcaseID_45854():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1308,8 +1203,6 @@ def test_Android_PDF_Printing_TestcaseID_45873():
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1339,9 +1232,6 @@ def test_Android_PDF_Printing_TestcaseID_47938():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1407,9 +1297,6 @@ def test_Android_PDF_Printing_TestcaseID_47940():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1440,9 +1327,6 @@ def test_Android_PDF_Printing_TestcaseID_47950():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1475,9 +1359,6 @@ def test_Android_PDF_Printing_TestcaseID_47952():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
@@ -1516,9 +1397,6 @@ def test_Android_PDF_Printing_TestcaseID_47954():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
-    pdf_printing.Switch_To_Different_App()
-    pdf_printing.Switch_To_Different_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
