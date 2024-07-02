@@ -16,7 +16,9 @@ from airtest.core.api import connect_device
 from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 from ...TestSuite.api_call import insert_step, insert_case_results
 from ...TestSuite.api_call import *
-
+from ...TestSuite.api_call import *
+import inspect
+from ...TestSuite.store import *
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
@@ -38,8 +40,8 @@ aps_notification = APS_Notification(poco)
 pdf_printing_android = PDF_Printing_Screen(poco)
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execID = 0
-leftId = {"0": "7"}
+# execID = 0
+# leftId = {"0": "7"}
 
 
 def test_Addprinter_TestcaseID_45656():

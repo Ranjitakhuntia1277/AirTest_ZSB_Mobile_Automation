@@ -65,45 +65,45 @@ class Common_Method():
             pocoElemnt (_type_): _description_
             attr (_type_):
             For Android:
-            	type
-	            name
-	            desc
-	            enabled
-	            visible
-	            resourceId
-	            zOrders
-	            package
-	            anchorPoint
-	            dismissable
-	            checkable
-	            scale
-	            boundsInParent
-	            focusable
-	            touchable
-	            longClickable
-	            size
-	            pos
-	            focused
-	            checked
-	            editalbe
-	            selected
-	            scrollable
+                type
+                name
+                desc
+                enabled
+                visible
+                resourceId
+                zOrders
+                package
+                anchorPoint
+                dismissable
+                checkable
+                scale
+                boundsInParent
+                focusable
+                touchable
+                longClickable
+                size
+                pos
+                focused
+                checked
+                editalbe
+                selected
+                scrollable
 
             For iOS:
-            	type
-	            name
-	            visible
-	            label
-	            rawIdentifier
-	            value
-	            isEnabled
-	            isVisible
-	            isAccessible
-	            rect
-	            pos
-	            size
-	            zOrders
-	            anchorPoint
+                type
+                name
+                visible
+                label
+                rawIdentifier
+                value
+                isEnabled
+                isVisible
+                isAccessible
+                rect
+                pos
+                size
+                zOrders
+                anchorPoint
 
         Returns:
             _type_: _description_
@@ -1156,6 +1156,394 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         messagebox.showinfo("Notification", "Cover Open")
 
+    def Show_popup_To_Verify_Printout_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify Printout")
+        root.destroy()
 
+    def Turn_Off_The_Phone(self):
+        sleep(1)
+        keyevent("KEYCODE_POWER")
 
+    def Turn_ON_The_Phone(self):
+        keyevent("KEYCODE_POWER")
+        sleep(1)
+        swipe((540, 1600), (540, 400))
+
+    def Show_popup_To_Open_The_Printer_Cover_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Open the Printer Cover")
+        root.destroy()
+
+    def Show_popup_To_Close_The_Printer_Cover_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Close the Printer Cover")
+        root.destroy()
+
+    def Show_popup_For_Error_Message_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify The Error Message")
+        root.destroy()
+
+    def Show_popup_For_Web_Portal_Verification_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify Current Network, Network Status, IP Address on Web Portal")
+        root.destroy()
+
+    def Show_popup_To_Turn_OFF_The_Printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Turn Off The Printer")
+        root.destroy()
+
+    def Show_popup_To_Open_The_Printer_Head_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Open The Printer Head")
+        root.destroy()
+
+    def Show_popup_To_Remove_The_Cartridge_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Remove The cartridge")
+        root.destroy()
+
+    def Show_popup_To_Make_The_Status_AS_LowMedia_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Make The Status AS LowMedia Manually")
+        root.destroy()
+
+    def Show_popup_To_Insert_Different_Cartridge_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Insert different Cartridge from 4' x 6' label(eg.LC2) Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Preview_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify Preview Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_All_The_Below_Points_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify step no 6,7 & 8 Manually")
+        root.destroy()
+
+    def Show_popup_For_Design_Verification_On_Web_Portal_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "create design1, add text object and link One Drive file with xlsx format and Create design2, add text object, and link One Drive file with csv format Manually")
+        root.destroy()
+
+    def Show_popup_For_Darkness_Level_Verification_On_Web_Portal_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify The Darkness Level On_Web Portal Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Darkness_level_On_Web_Portal_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify darkness level is updated on Web Portal")
+        root.destroy()
+
+    def Show_popup_To_Insert_Different_CartridgeLC1_4_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Insert different Cartridge LC1 & LC4 Manually")
+        root.destroy()
+
+    def Show_popup_To_Make_The_Status_AS_Online(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Make The Status AS Online")
+        root.destroy()
+
+    def Show_popup_For_Web_Portal_Verification_On_Uploaded_File_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Check the uploaded files from mobile app display on Web Portal")
+        root.destroy()
+
+    def Show_popup_To_Turn_ON_The_Printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Turn ON The Printer and keep it in pairing mode,")
+        root.destroy()
+
+    def Show_popup_To_SignIn_PhoneA_And_B_Without_Printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Prepare two production users without adding any printer and sign in phone A and B Manually")
+        root.destroy()
+
+    def Show_popup_To_Connect_To_PhoneA_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Connect to phone A Manually")
+        root.destroy()
+
+    def Show_popup_To_Connect_To_PhoneB_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Use phone B, click the hamburger Icon and click on 'Add a Printer', click Start button Manually")
+        root.destroy()
+
+    def Show_popup_To_Navigate_Till_PrinterDiscovery_Page_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Navigate Till PrinterDiscovery Page/Printer Selected page Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Target_Printer_Is_Not_Displaying_On_Select_Your_PrinterPage_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Verify Target Printer Is Not Displaying On Select Your PrinterPage Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_There_Is_No_Moneybadger_In_Your_Area_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify there is no any moneybadger in your area Manually")
+        root.destroy()
+
+    def Show_popup_To_Reset_The_Printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Reset The Printer Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_No_Duplicat_Essids_And_Other_Details_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Check no duplicated Essids, all Essid is unique and only wpa psk and open securiy Essids in it Manually")
+        root.destroy()
+
+    def Show_popup_To_Start_The_Timer_On_Your_Device_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Start the timer on your device Manually")
+        root.destroy()
+
+    def Show_popup_To_Stop_The_Timer_On_Your_Device_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Stop the timer on your device Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_It_Should_Take_less_than_45_Seconds_to_pair_printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Check it would take less then 45 seconds to pair printer success Manually")
+        root.destroy()
+
+    def Show_popup_To_Make_The_Printer_To_Pairing_Mode_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Press target printer 3-5 second to enter pairing mode(blue light) Manually")
+        root.destroy()
+
+    def Show_popup_To_Delete_The_Printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Unpair & Delete the Printer Manually")
+        root.destroy()
+
+    def Show_popup_To_Shut_Down_One_Network_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Shut_Down_One_Network_Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_The_Shut_Down_Network_Not_showing_In_The_List_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify The Shut Down Network Not Showing In The List Manually")
+        root.destroy()
+
+    def Show_popup_To_Open_A_New_Network_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Open a new network(eg: personal hotspot) Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_The_New_Added_Network_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify The New Added Network Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Image_And_UI_With_Figma_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify Image And UI With Figma Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Connecting_To_Wifi_Network_Page_Fonts_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Connecting to Wi-Fi Network page displayed with new fonts and style Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Printer_Setup_Complete_Font_And_Style_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify Printer Setup Complete Font And Style Manually")
+        root.destroy()
+
+    def Show_popup_To_Select_A_WIFI_Without_Network_And_Chcek_The_Fonts_And_Style_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Select a Wi-Fi without network and verify the new fonts and style Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_New_Font_And_Style_Of_Registration_Page_Displayed_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify New Font And Style Of Registration Page Displayed Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_NewFonts_And_Style_Of_Internet_Access_Popup_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify NewFonts And Style Of Internet Access Popup Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Firmware_Update_Error_With_NewFonts_And_Style_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Verify Firmware update Error message with new fonts and style Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_The_Font_And_Style_Of_Select_Your_Printerpage_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        messagebox.showinfo("Notification", "Verify The Font And Style Of Select Your Printerpage Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Bluetoothpairing_your_printer_page_with_new_fonts_and_Style(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Verify Bluetoothpairing your printer page with new fonts and Style Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Unable_To_Connect_To_Printer_page_with_new_fonts_and_Style(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Verify Unable To Connect To Printer page with new fonts and Style Manually")
+        root.destroy()
+
+    def Show_popup_To_Disable_Location_Permission_On_The_Device_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Turn off the location permission on the device Manually")
+        root.destroy()
+
+    def Show_popup_To_Enable_Location_Permission_On_The_Device_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Turn on the location permission on the device Manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_Bluetooth_Permission_Popup_With_New_Design_On_The_Device_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Check the Bluetooth permission dialog display correctly with the new fonts and styles Manually")
+        root.destroy()
+
+    def Show_popup_To_Add_The_Cartridge_Without_Paper_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Add The Cartridge Without Paper Manually")
+        root.destroy()
+
+    def Show_popup_To_Put_The_Media_Back_Into_The_printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Put the media back into the printer manually")
+        root.destroy()
+
+    def Show_popup_To_Verify_the_view_of_pdf_screens_for_1stone_and_for_rest_it_will_be_different_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification",
+                            "Verify Manually the view of pdf screens for 1st one it will be different and for rest it will be different")
+        root.destroy()
+
+    def get_user_Details(self, msg):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        user_details = simpledialog.askstring("Input", msg)
+        return user_details
 
