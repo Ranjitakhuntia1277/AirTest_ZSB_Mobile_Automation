@@ -483,3 +483,94 @@ def test_Addprinter_TestcaseID_45656():
     finally:
         exec_time = (time.time() - start_time_main) / 60
         end_main(execID, leftId[test_case_id], exec_time)
+
+        # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    def test_Addprinter_TestcaseID_45657():
+        """"Check the cancle button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger"""
+
+        """"1.Open the app and login the account to go to the overview page."""""
+        common_method.tearDown()
+        common_method.Start_The_App()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        """2. Click the menu button at the left corner"""
+        login_page.click_Menu_HamburgerICN()
+        """3.Check the slide left page appear"""""
+        add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+        """"3. click the button 'Add a Printer'"""
+        add_a_printer_screen.click_Add_A_Printer()
+        """Check it would go to the page "Let's set up your printer"""
+        add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+        """""Check the moneybadger picture would appears at that page."""
+        add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+        """Click on Start setup button"""
+        add_a_printer_screen.click_Start_Button()
+        """"Verify Let's make sure the printer is in Bluetooth pairing mode. Text"""
+        add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
+        """""click on Next Button"""""
+        add_a_printer_screen.click_Next_Button()
+        """"Verify Searching For your Printer Text"""
+        add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+        """"Verify Select your Printer Text"""
+        add_a_printer_screen.Verify_Select_your_printer_Text()
+        """"Verify All the unprovision moneybadgr would appear at the page """
+        add_a_printer_screen.Verify_Unprovision_Moneybadgr_On_The_Screen()
+        """Select the Printer"""
+        add_a_printer_screen.Click_The_Printer_Name_To_Select()
+        """"Click on Next Button"""
+        add_a_printer_screen.click_Next_Button()
+        """Click on Cancel button on the bluetooth pairing popup"""
+        add_a_printer_screen.click_Cancel_On_Bluetooth_Paring_Popup()
+        """""Verify "Unable to pair your printer"" page pops up"""
+        add_a_printer_screen.Verify_Unable_To_Connect_To_Printer_Popup()
+        """Verify Please try the following before attempting to connect to printer again. Text"""""
+        add_a_printer_screen.Verify_Please_Try_The_Following_Before_Attempting_Again_Text()
+        """"Check there are ""Try again"", ""Watch Troubleshooting Video"" and ""Get Help"" three options on the page----This has to be removed from testcase"""
+        """"open your device's Bluetooth settings and unpair your connection to this printer before trying again."""""
+        common_method.Stop_The_App()
+        aps_notification.Stop_Android_App()
+        aps_notification.click_Mobile_SearchBar()
+        aps_notification.click_On_Searchbar2()
+        aps_notification.Enter_Settings_Text_On_SearchBar()
+        aps_notification.click_Settings()
+        aps_notification.click_Connected_Devices()
+        app_settings_page.click_Unpair_Icon()
+        app_settings_page.click_On_Unpair()
+        app_settings_page.click_Confirm_Delete_Popup()
+        aps_notification.Stop_Android_App()
+        common_method.Start_The_App()
+        """"click on Try Again button"""
+        add_a_printer_screen.click_Try_Again()
+        """""Check the printer can be paired successfully"""
+        add_a_printer_screen.click_Bluetooth_pairing_Popup1_on_Setting_page()
+        add_a_printer_screen.click_Bluetooth_pairing_Popup2_on_Setting_page()
+        add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+        add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+        sleep(5)
+        """""Verify Connecting to printer Text"""
+        add_a_printer_screen.Verify_Connecting_To_Printer_Text()
+        """""Verify Printer Connected Text"""
+        add_a_printer_screen.Verify_Printer_Connected_Text()
+        """"Verify Searching for Wifi network text is displaying"""
+        add_a_printer_screen.Verify_Searching_for_wifi_networks_Text()
+        """Verify Connect Wi-fi Network Text"""
+        add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+        """"click previous network """
+        add_a_printer_screen.click_NESTWIFI_NETWORK()
+        """click on enter password"""
+        add_a_printer_screen.Enter_Password_Field()
+        """"click on connect button on connect wifi network screen"""
+        add_a_printer_screen.click_Connect_Button_ON_Join_Network()
+        """Verify Connecting to Cloud Text"""
+        add_a_printer_screen.Verify_Connecting_To_Cloud_Text()
+        """"verify need the printer Setup Complete text"""
+        add_a_printer_screen.Verify_Printer_Setup_Complete_Text()
+        """"click on finish setup button"""
+        add_a_printer_screen.click_Finish_Button()
+        """"click home tab"""
+        add_a_printer_screen.click_Home_Tab()
+        """stop the app"""
+        common_method.Stop_The_App()
+
+    # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
