@@ -50,7 +50,7 @@ def get_user_input(msg):
     return user_input
 
 
-class test_Android_Template_Management:
+class test_Android_Template_Management_Reporting:
     # pass
     def __init__(self):
         pass
@@ -13159,8 +13159,5 @@ class test_Android_Template_Management:
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
-
-        
-
 
 
