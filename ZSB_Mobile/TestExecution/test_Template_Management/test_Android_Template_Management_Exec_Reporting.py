@@ -51,9 +51,9 @@ template_management_page = Template_Management_Screen(poco)
 template_management_page_1 = Template_Management_Android(poco)
 
 """zebra02.swdvt@gmail.com"""
-from ...TestExecution.test_Template_Management.test_Android_Template_Management import test_Android_Template_Management
+from ...TestExecution.test_Template_Management.test_Android_Template_Management_Reporting import test_Android_Template_Management_Reporting
 
-tm_a = test_Android_Template_Management()
+tm_a = test_Android_Template_Management_Reporting()
 
 
 def test_Template_Management_TestcaseID_46006():
