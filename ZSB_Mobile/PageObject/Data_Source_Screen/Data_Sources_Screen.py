@@ -90,8 +90,8 @@ class Data_Sources_Screen:
                                                    resolution=(1080, 2340))
 
     def click_My_Data(self):
+        sleep(3)
         my_data = self.poco(self.My_Data)
-        my_data.wait_for_appearance(timeout=10)
         my_data.click()
 
     def click_Add_File(self):
@@ -170,8 +170,8 @@ class Data_Sources_Screen:
         #         raise Exception("File data does not match")
 
     def clickMyDesigns(self):
+        sleep(6)
         my_designs = self.poco(self.My_Designs)
-        my_designs.wait_for_appearance(timeout=10)
         my_designs.click()
 
     def selectDesignCreatedAtSetUp(self):
@@ -264,6 +264,7 @@ class Data_Sources_Screen:
         keyevent("Enter")
 
     def click_Menu_HamburgerICNWeb(self):
+        sleep(3)
         try:
             self.poco("zsbportal.zebra").click()
         except:

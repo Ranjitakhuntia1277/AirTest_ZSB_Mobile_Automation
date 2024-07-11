@@ -371,6 +371,7 @@ def test_Delete_Account_TestcaseID_45771():
     registration_page.click_accept()
 
 
+# Existing bug:-
 def test_Delete_Account_TestcaseID_45785():
     pass
     """clear app data"""
@@ -542,6 +543,7 @@ def test_Delete_Account_TestcaseID_45785():
     common_method.Stop_The_App()
 
 
+# Existing bug:-
 def test_Delete_Account_TestcaseID_45779():
     pass
     """clear app data"""
@@ -813,6 +815,7 @@ def test_Delete_Account_TestcaseID_45773():
 #     # common_method.Stop_The_App()
 
 
+# Existing bug:-
 def test_Delete_Account_TestcaseID_45772():
     pass
     # """clear app data"""

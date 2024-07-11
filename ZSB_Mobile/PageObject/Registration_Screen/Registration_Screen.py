@@ -399,7 +399,8 @@ class Registration_Screen:
 
     def click_Facebook_Icon(self):
         sleep(2)
-        touch(self.Facebook_Icon)
+        # touch(self.Facebook_Icon)
+        self.poco(name="Continue with Facebook").click()
         sleep(2)
 
     def click_Apple_Icon(self):

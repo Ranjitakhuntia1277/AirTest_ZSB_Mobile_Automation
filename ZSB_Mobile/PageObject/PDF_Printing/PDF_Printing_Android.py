@@ -73,8 +73,15 @@ class PDF_Printing_Screen:
 
     def Verify_Print_Preview_page(self):
         sleep(10)
-        a = self.poco(nameMatches="(?s).*Edit Label.*").get_name()
-        print(a)
+        a = self.poco(nameMatches="(?s).*Edit Label.*")
+        if a.exists():
+           a.get_name()
+           print(a)
+        else:
+            poco.scroll()
+            sleep(3)
+            a.get_name()
+
 
     # def Verify_The_Printer_As_Online2(self):
     #     a = self.poco(nameMatches="(?s).*Online.*")
@@ -463,18 +470,18 @@ class PDF_Printing_Screen:
         poco(text("5"))
 
     def Update_Copies_Value_To_Special_Characters(self):
+        sleep(2)
+        self.poco(name="android.widget.EditText").click()
+        poco(text(" "))
         sleep(1)
-        Copies_Number_Field = self.poco(name="android.widget.EditText").click()
-        Copies_Number_Field.set_text(" ")
-        sleep(1)
-        Copies_Number_Field.set_text("@&777")
+        poco(text("@&777"))
 
     def Update_Copies_Value_To_10(self):
+        sleep(3)
+        self.poco(name="android.widget.EditText").click()
+        poco(text(" "))
         sleep(1)
-        Copies_Number_Field = self.poco(name="android.widget.EditText").click()
-        Copies_Number_Field.set_text(" ")
-        sleep(1)
-        Copies_Number_Field.set_text("10")
+        poco(text("10"))
 
     def Verify_Total_Labels(self):
         sleep(1)

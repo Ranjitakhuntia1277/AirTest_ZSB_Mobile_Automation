@@ -20,7 +20,10 @@ if platform.system() == "Windows":
 
 else:
     def Basic_path(a):
-        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
+        # return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
+        return os.path.join(os.path.expanduser('~'),
+                            "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings", a)
+
 
 class Printer_Management_Screen:
     pass
@@ -29,7 +32,8 @@ class Printer_Management_Screen:
         self.poco = poco
         self.Printer_Name = "android.widget.EditText"
         self.Printer1 = "ZSB-DP12_2"
-        self.Three_Dot_Menu = Template(Basic_path(r"tpl1705378684557.png"), record_pos=(0.402, -0.5), resolution=(1080, 2340))
+        self.Three_Dot_Menu = Template(Basic_path(r"tpl1720170900189.png"), record_pos=(0.414, -0.557), resolution=(1080, 2400))
+            # Template(Basic_path(r"tpl1705378684557.png"), record_pos=(0.402, -0.5), resolution=(1080, 2340)))
         self.Delete = "Delete"
         self.Yes_Delete = "Yes, Delete"
         self.Drop_Down_Menu_Icon = Template(Basic_path("tpl1705382553515.png"), record_pos=(0.334, 0.155), resolution=(1080, 2340))
@@ -224,3 +228,26 @@ class Printer_Management_Screen:
     def getPrinter2NameInPrinterSettings(self):
         return self.poco("android.widget.HorizontalScrollView").child()[2].get_name().split("\n")[0]
 
+    def Login_With_Email_Tab(self):
+            sleep(9)
+            zebra_login = self.poco(text="Sign In with your email")
+            zebra_login.click()
+            sleep(2)
+            self.poco(text(""))
+            self.poco(text("zebra04.swdvt@gmail.com"))
+            sleep(1)
+
+    def Enter_Zebra_Password(self):
+        password = self.poco("android.widget.EditText")[1]
+        password.set_text("Zebra#123456789")
+
+    def click_Password_TextField(self):
+        sleep(1)
+        # poco.scroll()
+        sleep(1)
+        self.poco(name="android.widget.EditText")[1].click()
+
+    def click_SignIn_Button(self):
+        sleep(1)
+        self.poco("android.widget.Button")[1].click()
+        sleep(10)
