@@ -986,8 +986,8 @@ class Common_Method():
             start_point = element_pos[0] + 200
             end_point = element_pos[0]
 
-        # Perform the drag
-        poco.swipe([start_point, element_pos[1]], [end_point, element_pos[1]], duration=duration)
+            # Perform the drag
+            poco.swipe([start_point, element_pos[1]], [end_point, element_pos[1]], duration=duration)
 
     def Stop_The_App(self):
         sleep(3)
@@ -1546,4 +1546,11 @@ class Common_Method():
         root.attributes('-topmost', True)
         user_details = simpledialog.askstring("Input", msg)
         return user_details
+
+    # def del_printer(self, function_fixture):
+    #     poco, dev, width, height, Bonding, initialBaseValue, emulator, sns = function_fixture
+    #     PrinterUtilities(poco, dev, width, height, Bonding).deletePrinter()
+
+
+
 

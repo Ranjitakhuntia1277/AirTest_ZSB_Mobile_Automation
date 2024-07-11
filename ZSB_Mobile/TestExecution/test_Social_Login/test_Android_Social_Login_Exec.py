@@ -1,6 +1,6 @@
 import pytest
 
-from ...TestExecution.test_Social_Login.test_Android_Social_Login_Reporting import test_Android_Social_Login
+from ...TestExecution.test_Social_Login.test_Android_Social_Login import test_Android_Social_Login
 
 t_sl = test_Android_Social_Login()
 

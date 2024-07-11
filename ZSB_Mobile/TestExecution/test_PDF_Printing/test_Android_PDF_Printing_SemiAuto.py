@@ -4,7 +4,7 @@ from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
-# from ZSB_Mobile.PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
+# from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 # from setuptools import logging
 # from ...PageObject.Robofinger import test_robo_finger
 import pytest

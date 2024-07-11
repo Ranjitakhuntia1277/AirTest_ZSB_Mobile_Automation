@@ -247,7 +247,7 @@ def test_Android_PDF_Printing_TestcaseID_45812():
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
-    pdf_printing.click_Edit_Option()
+    # pdf_printing.click_Edit_Option()
     pdf_printing.click_OK_Button_On_Popup()
     pdf_printing.Select_Text_Area_To_Edit()
     pdf_printing.click_Done_Btn()
@@ -743,6 +743,7 @@ def test_Android_PDF_Printing_TestcaseID_45836():
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     common_method.Stop_The_App()
+    common_method.Clear_App()
     aps_notification.Stop_Android_App()
     aps_notification.click_Mobile_SearchBar()
     aps_notification.click_On_Searchbar2()
@@ -1042,7 +1043,7 @@ def test_Android_PDF_Printing_TestcaseID_45850():
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
-    pdf_printing.click_Edit_Option()
+    # pdf_printing.click_Edit_Option()
     pdf_printing.click_OK_Button_On_Popup()
     pdf_printing.click_Rotation_Option()
     """""Close icon is not displaying on the popup"""
@@ -1202,7 +1203,6 @@ def test_Android_PDF_Printing_TestcaseID_45873():
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    """""after the issue is fixed, need to delete the below function"""
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
