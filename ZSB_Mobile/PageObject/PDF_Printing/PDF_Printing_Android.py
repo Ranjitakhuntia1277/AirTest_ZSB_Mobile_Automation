@@ -429,7 +429,20 @@ class PDF_Printing_Screen:
         if self.poco(name="1").exists():
             self.poco(name="1").click()
             sleep(1)
-            self.poco(name="6").click()
+            if self.poco(name="6").exists():
+               self.poco(name="6").click()
+            else:
+                last_item = self.poco("android.widget.ScrollView").offspring("android.view.View")[+1]
+                last_item.click()
+
+    def click_Change_End_Range_To_Last(self):
+        sleep(1)
+        if self.poco(name="1").exists():
+            self.poco(name="1").click()
+            sleep(1)
+            last_item = self.poco()[-1]  # Get the last item dynamically
+            last_item.click()
+
 
     def Verify_Range_1_Is_Displaying(self):
         sleep(1)
@@ -505,11 +518,19 @@ class PDF_Printing_Screen:
         self.poco(text="Search").click()
 
     def click_PDF_From_The_Adobe_List(self):
-            sleep(2)
-            self.poco(name="com.adobe.reader:id/search_src_text").click()
-            self.poco(text(" "))
+        sleep(2)
+        if self.poco(name="com.adobe.reader:id/search_src_text").exists():
+           self.poco(name="com.adobe.reader:id/search_src_text").click()
+           self.poco(text(" "))
+           sleep(3)
+           self.poco(text("pdf"))
+
+        else:
             sleep(3)
-            self.poco(text("pdf"))
+            if self.poco(text="pdf").exists():
+                self.poco(text="pdf").click()
+                sleep(3)
+
 
     def click_ON_Three_Dot_On_Adobe_PDF(self):
         sleep(8)
@@ -522,9 +543,11 @@ class PDF_Printing_Screen:
     def click_Share_On_Adobe(self):
         sleep(4)
         self.poco(name="com.adobe.reader:id/classic_viewer_share_file").click()
+        sleep(1)
+
 
     def click_Send_A_Copy_On_Adobe(self):
-        sleep(2)
+        sleep(6)
         self.poco(text="Send a copy").click()
 
     def click_Common_Design(self):
