@@ -70,7 +70,7 @@ class Conftest():
         self.poco = poco
 
     def test_conftest(self):
-        excel_file_path = 'Udidlisst.xlsx'
+        excel_file_path = 'Udidlist.xlsx'
         udid_list = []
 
         workbook = openpyxl.load_workbook(excel_file_path)
