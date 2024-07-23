@@ -632,6 +632,7 @@ def test_Android_PDF_Printing_TestcaseID_45830():
     pdf_printing.click_Start_Range_Filed()
     pdf_printing.click_Change_Start_Range_To_3()
     pdf_printing.click_Default_End_Range_Filed()
+    pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
