@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_JayaKiran/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_JayaKiran/Android/Android_Automated_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_JayaKiran/Android/Android_SemiAuto_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_JayaKiran/Android/Android_SemiAuto_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_Automated_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_SemiAuto_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_SemiAuto_TestSuite.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +42,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Android_Automated_TestSuite.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;rk1277__Ranjita&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/Test_Suite_Execution/test_Suite_Ranjita&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Android_Automated_TestSuite.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "rk1277__Ranjita",
+    "last_opened_file_path": "C:/Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/Test_Suite_Execution/test_Suite_Ranjita",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ZSB_Automation" is-module-sdk="true">
@@ -67,7 +74,7 @@
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_App_Settings" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729">
+  <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45830">
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -81,6 +88,54 @@
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45812" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ZSB_Automation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45812&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45828" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ZSB_Automation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45828&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45829" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ZSB_Automation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45829&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -100,61 +155,13 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45831" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="ZSB_Automation" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45831&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_47940" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="ZSB_Automation" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_47940&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Printer_Management.test_Printer_Management_Semi.test_Others_TestcaseID_45803" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="ZSB_Automation" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Printer_Management.test_Printer_Management_Semi.test_Others_TestcaseID_45803&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Printer_Management.test_Printer_Management_Semi.test_Others_TestcaseID_45803" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_47940" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45831" />
         <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45830" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45828" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45829" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45812" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729" />
       </list>
     </recent_temporary>
   </component>
