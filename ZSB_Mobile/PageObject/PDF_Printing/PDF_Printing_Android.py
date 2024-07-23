@@ -625,7 +625,7 @@ class PDF_Printing_Screen:
 
 
     def click_Share_On_Adobe(self):
-        sleep(4)
+        sleep(9)
         self.poco(name="com.adobe.reader:id/classic_viewer_share_file").click()
         sleep(1)
 
