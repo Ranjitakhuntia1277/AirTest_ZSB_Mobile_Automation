@@ -4,7 +4,7 @@ from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
-# from ZSB_Mobile.PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
+# from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 # from setuptools import logging
 # from ...PageObject.Robofinger import test_robo_finger
 import pytest
@@ -247,8 +247,8 @@ def test_Android_PDF_Printing_TestcaseID_45812():
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
-    # pdf_printing.click_Edit_Option()
-    pdf_printing.click_OK_Button_On_Popup()
+    ###pdf_printing.click_Edit_Option()
+    #### pdf_printing.click_OK_Button_On_Popup()
     pdf_printing.Select_Text_Area_To_Edit()
     pdf_printing.click_Done_Btn()
     pdf_printing.click_Print_Option_On_PDF_Printing()
@@ -330,7 +330,7 @@ def test_Android_PDF_Printing_TestcaseID_45814():
 
 # #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-#### bug id-SMBM-922
+#### bug id-SMBM-922(but in step it is not there so in automation it will pass)
 def test_Android_PDF_Printing_TestcaseID_45815():
     """change cropper window direction for the pdf file has more than 1 label (apply to current)"""
 
@@ -536,7 +536,7 @@ def test_Android_PDF_Printing_TestcaseID_45827():
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-# ###Bug id- SMBM-1936
+# ###Bug id- SMBM-1936-on iOS
 def test_Android_PDF_Printing_TestcaseID_45828():
     """Mulit-page PDF share to ZSB Serial, select Custom and select a range, check selected pages can print out success"""
 
@@ -564,8 +564,8 @@ def test_Android_PDF_Printing_TestcaseID_45828():
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
     pdf_printing.click_Change_Start_Range_To_3()
-    pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Change_End_Range_To_6()
+    pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Print_Option_On_PDF_Printing()
 
 
@@ -597,8 +597,8 @@ def test_Android_PDF_Printing_TestcaseID_45829():
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
-    pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Change_End_Range_To_6()
+    pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Print_Option_On_PDF_Printing()
 
 
@@ -630,6 +630,7 @@ def test_Android_PDF_Printing_TestcaseID_45830():
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
+    pdf_printing.click_Change_Start_Range_To_3()
     pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
@@ -1044,7 +1045,7 @@ def test_Android_PDF_Printing_TestcaseID_45850():
     pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     # pdf_printing.click_Edit_Option()
-    pdf_printing.click_OK_Button_On_Popup()
+    # pdf_printing.click_OK_Button_On_Popup()
     pdf_printing.click_Rotation_Option()
     """""Close icon is not displaying on the popup"""
 
