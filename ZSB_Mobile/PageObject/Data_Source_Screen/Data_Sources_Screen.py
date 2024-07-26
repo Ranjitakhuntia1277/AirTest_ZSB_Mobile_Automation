@@ -1747,3 +1747,12 @@ class Data_Sources_Screen:
             self.poco(text="Home").wait_for_appearance(timeout=20)
         except:
             raise Exception("Did not reach home page.")
+
+    def Login_With_Email_Tab(self):
+        sleep(12)
+        zebra_login = self.poco(text="Sign In with your email")
+        zebra_login.click()
+        sleep(4)
+        self.poco(text(""))
+        self.poco(text("zebra03.swdvt@gmail.com"))
+        sleep(1)

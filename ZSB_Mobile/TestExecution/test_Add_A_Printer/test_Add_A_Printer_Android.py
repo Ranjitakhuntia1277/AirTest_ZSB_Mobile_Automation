@@ -1147,6 +1147,7 @@ def test_Addprinter_TestcaseID_47715_SemiAuto():
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+
 def test_Addprinter_TestcaseID_48436():
     """"Verify the Cancel button functionality on "Join Network Page" while connceting to already connected / newly connected network"""
 
