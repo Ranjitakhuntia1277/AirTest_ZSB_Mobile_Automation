@@ -55,6 +55,12 @@ class Template_Management_Screen:
         print("Command output:")
         print(result.stdout)
 
+    def turn_on_wifi(self):
+        command = "adb shell svc wifi enable"
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        print("Command output:")
+        print(result.stdout)
+
     def verify_default_sort_my_designs(self):
         return self.poco("Name (A to Z)").exists()
 

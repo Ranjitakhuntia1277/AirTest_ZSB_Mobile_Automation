@@ -1078,8 +1078,13 @@ class App_Settings_Screen_iOS:
         touch(self.Continue_with_Google)
 
     def click_Three_Dot_On_Added_Printer_On_HomePage(self):
-        sleep(1)
-        touch(self.ThreeDot_On_Added_Printer_On_HomePage)
+        sleep(3)
+        element = self.poco(nameMatches=".*\s.*\s.*\s.*\s.*\s.*prints left.*|.*\s.*\s.*\s.*\s.*prints left.*")
+        size = element.attr("size")
+        pos = element.attr("pos")
+        x = pos[0] + size[0] * 0.46
+        y = pos[1] - size[1] * 0.46
+        self.poco.click([x, y])
 
     def click_Delete_Printer_Button(self):
         Delete_printer = self.poco(self.Delete_Printer_Button)

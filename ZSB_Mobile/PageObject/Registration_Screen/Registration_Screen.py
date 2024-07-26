@@ -376,6 +376,7 @@ class Registration_Screen:
             raise Exception("User does not exist' error did not show up even after entering a non registered email.")
 
     def click_accept(self):
+        sleep(3)
         self.poco("Accept").click()
 
     def click_decline(self):

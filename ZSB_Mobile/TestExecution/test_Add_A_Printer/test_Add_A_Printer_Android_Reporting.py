@@ -3747,151 +3747,1121 @@ pdf_printing_android = PDF_Printing_Screen(poco)
 
 # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_Addprinter_TestcaseID_45682():
-    """"connect printer with PSK WPA Essid manually, then cancel'"""
-    pass
-    current_function_name = inspect.currentframe().f_code.co_name
-    test_case_id = current_function_name.split("_")[-1]
+# def test_Addprinter_TestcaseID_45682():
+#     """"connect printer with PSK WPA Essid manually, then cancel'"""
+#     pass
+#
+#     test_steps = {
+#         1: [1, 'Open the app and login the account to go to the overview page.'],
+#         2: [2, 'Click the menu button at the left corner.'],
+#         3: [3, 'Check the slide left page appear.'],
+#         4: [4, 'click the button Add a Printer.'],
+#         5: [5, 'Check it would go to the page Lets set up your printer.'],
+#         6: [6, 'Check the moneybadger picture would appears at that page.'],
+#         7: [7, 'Click on Start setup button.'],
+#         8: [8, 'Verify Lets make sure the printer is in Bluetooth pairing mode Text.'],
+#         9: [9, 'click on Next Button.'],
+#         10: [10, 'Verify Searching For your Printer Text.'],
+#         11: [11, 'Verify Select your Printer Text.'],
+#         12: [12, 'Select the Printer.'],
+#         13: [13, 'Click on Next Button.'],
+#         14: [14, 'Check the printer can be paired successfully.'],
+#         15: [15, 'Verify Connecting to printer Text.'],
+#         16: [16, 'Verify Printer Connected Text.'],
+#         17: [17, 'Verify Searching for Wifi network text is displaying'],
+#         18: [18, 'Verify Connect Wi-fi Network Text.'],
+#         19: [19, 'Check the page labelled  Connect Wi-Fi network pops up showing the wifi-to which device is connected.'],
+#         20: [20, 'Select a different one and Check it would pop upSearching for Wifi Networks page.'],
+#         21: [21, 'Click "Enter Network manually.'],
+#         22: [22, 'Enter an ESSID password.'],
+#         23: [23, 'Enter Password.'],
+#         24: [24, 'click on cancel button on connect wifi network screen.'],
+#         25: [25, 'Verify it would still at the Select your Wifi Network page.'],
+#         26: [26, 'Stop the App.']
+#
+#     }
+#     start_time_main = time.time()
+#     stepId = 1
+#     current_function_name = inspect.currentframe().f_code.co_name
+#     test_case_id = current_function_name.split("_")[-1]
+#     start_main(execID, leftId[test_case_id])
+#     try:
+#         """"1.Open the app and login the account to go to the overview page."""""
+#         start_time = time.time()
+#         common_method.tearDown()
+#         common_method.Start_The_App()
+#         login_page.click_LoginAllow_Popup()
+#         login_page.click_Allow_ZSB_Series_Popup()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """2. Click the menu button at the left corner"""
+#         start_time = time.time()
+#         login_page.click_Menu_HamburgerICN()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#
+#         """3.Check the slide left page appear"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"4. click the button 'Add a Printer'"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Add_A_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """5.Check it would go to the page "Let's set up your printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""6.Check the moneybadger picture would appears at that page."""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """7.Click on Start setup button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Start_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"8.Verify Let's make sure the printer is in Bluetooth pairing mode Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""9.click on Next Button"""""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"10.Verify Searching For your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"11.Verify Select your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Select_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """12.Select the Printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Click_The_Printer_Name_To_Select()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"13.Click on Next Button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""14.Check the printer can be paired successfully"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+#         sleep(5)
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""15.Verify Connecting to printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connecting_To_Printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""16.Verify Printer Connected Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Printer_Connected_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"17.Verify Searching for Wifi network text is displaying"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Searching_for_wifi_networks_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """18.Verify Connect Wi-fi Network Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""""19. Check the page labelled  Connect Wi-Fi network pops up showing the wifi-to which device is connected"""""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Added_Wifi_which_Is_Connected()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"20.Select a different one and Check it would pop upSearching for Wifi Networks page"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """21.Click "Enter Network manually"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Enter_Network_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""22.Enter an ESSID password"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Enter_Network_ESSID()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"23.Enter Password"""
+#         start_time = time.time()
+#         add_a_printer_screen.Enter_Password_Field_On_Nwtwork_Manually_Filed()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"24.click on cancel button on connect wifi network screen"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Cancel_Button_ON_Join_Network()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """25.Verify it would still at the Select your Wifi Network page"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"26.Stop the App"""
+#         start_time = time.time()
+#         common_method.Stop_The_App()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#     except Exception as e:
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+#         insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+#         insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+#         raise Exception(str(e))
+#
+#     finally:
+#         exec_time = (time.time() - start_time_main) / 60
+#         end_main(execID, leftId[test_case_id], exec_time)
+#     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-    test_steps = {
-        1: [1, 'Open the app and login the account to go to the overview page.'],
-        2: [2, '.'],
-        3: [3, '.'],
-        4: [4, '.'],
-        5: [5, '.'],
-        6: [6, '.'],
-        7: [7, '.'],
-        8: [8, '.'],
-        9: [9, '.'],
-        10: [10, '.'],
-        11: [11, '.'],
-        12: [12, '.'],
-        13: [13, '.'],
-        14: [14, '.'],
-        15: [15, '.'],
-        16: [16, '.'],
-        17: [17, ''],
-        18: [18, '.'],
-        19: [19, '.'],
-        20: [20, '.'],
-        21: [21, '.'],
-        22: [22, '.'],
-        23: [23, '.'],
-        24: [24, '.'],
-        25: [25, '.'],
-        26: [26, '.'],
-        27: [27, '.'],
-        28: [28, '.'],
-        29: [29, '.'],
-        30: [30, '.'],
-        31: [31, '.'],
-        32: [32, '.'],
-        33: [33, '.'],
-        34: [34, '.'],
-        35: [35, '.'],
-        36: [36, '.'],
-        37: [37, '.'],
-        38: [38, '.'],
-        39: [39, '.'],
-        40: [40, '.'],
-        41: [41, '.'],
-        42: [42, '.'],
-        43: [43, '.'],
-        44: [44, '.'],
-        45: [45, '.'],
-        46: [46, '.'],
-        47: [47, '.'],
-        48: [48, '.'],
-        49: [49, '.'],
-        50: [50, '.'],
-        51: [51, '.'],
-        52: [52, '.'],
-        53: [53, '.']
 
-    }
-    start_time_main = time.time()
-    start_main(execID, leftId[test_case_id])
-    stepId = 1
-    try:
-        """"1.Open the app and login the account to go to the overview page."""""
-        start_time = time.time()
-        common_method.tearDown()
-        common_method.Start_The_App()
-        login_page.click_LoginAllow_Popup()
-        login_page.click_Allow_ZSB_Series_Popup()
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-        """"1.Open the app and login the account to go to the overview page."""""
-        common_method.tearDown()
-        common_method.Start_The_App()
-        login_page.click_LoginAllow_Popup()
-        login_page.click_Allow_ZSB_Series_Popup()
-        """2. Click the menu button at the left corner"""
-        login_page.click_Menu_HamburgerICN()
-        """3.Check the slide left page appear"""""
-        add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
-        """"3. click the button 'Add a Printer'"""
-        add_a_printer_screen.click_Add_A_Printer()
-        """Check it would go to the page "Let's set up your printer"""
-        add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
-        """""Check the moneybadger picture would appears at that page."""
-        add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
-        """Click on Start setup button"""
-        add_a_printer_screen.click_Start_Button()
-        """"Verify Let's make sure the printer is in Bluetooth pairing mode. Text"""
-        add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
-        """""click on Next Button"""""
-        add_a_printer_screen.click_Next_Button()
-        """"Verify Searching For your Printer Text"""
-        add_a_printer_screen.Verify_Searching_for_your_printer_Text()
-        """"Verify Select your Printer Text"""
-        add_a_printer_screen.Verify_Select_your_printer_Text()
-        """Select the Printer"""
-        add_a_printer_screen.Click_The_Printer_Name_To_Select()
-        """"Click on Next Button"""
-        add_a_printer_screen.click_Next_Button()
-        """""Check the printer can be paired successfully"""
-        add_a_printer_screen.click_Bluetooth_pairing_Popup1()
-        add_a_printer_screen.click_Bluetooth_pairing_Popup2()
-        add_a_printer_screen.click_Bluetooth_pairing_Popup1()
-        add_a_printer_screen.click_Bluetooth_pairing_Popup2()
-        sleep(5)
-        """""Verify Connecting to printer Text"""
-        add_a_printer_screen.Verify_Connecting_To_Printer_Text()
-        """""Verify Printer Connected Text"""
-        add_a_printer_screen.Verify_Printer_Connected_Text()
-        """"Verify Searching for Wifi network text is displaying"""
-        add_a_printer_screen.Verify_Searching_for_wifi_networks_Text()
-        """Verify Connect Wi-fi Network Text"""
-        add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
-        """""""5. Check the page labelled  Connect Wi-Fi network pops up showing the wifi-to which device is connected"""""""
-        add_a_printer_screen.Verify_Added_Wifi_which_Is_Connected()
-        """"Select a different one and Check it would pop upSearching for Wifi Networks page"""
-        add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
-        """Click "Enter Network manually"""
-        add_a_printer_screen.click_Enter_Network_Manually()
-        """""Enter an ESSID password"""""
-        add_a_printer_screen.Enter_Network_ESSID()
-        """"Enter Password"""
-        add_a_printer_screen.Enter_Password_Field_On_Nwtwork_Manually_Filed()
-        """"click on cancel button on connect wifi network screen"""
-        add_a_printer_screen.click_Cancel_Button_ON_Join_Network()
+# def test_Addprinter_TestcaseID_47714_SemiAuto():
+#     """"Add printer BT pair Timeout : check when printer not in pair mode, check pair time"""
+#     pass
+#     test_steps = {
+#         1: [1, 'Open the app and login the account to go to the overview page.'],
+#         2: [2, 'Click the menu button at the left corner.'],
+#         3: [3, 'Check the slide left page appear.'],
+#         4: [4, 'click the button Add a Printer.'],
+#         5: [5, 'Check it would go to the page Lets set up your printer.'],
+#         6: [6, 'Check the moneybadger picture would appears at that page.'],
+#         7: [7, 'Click on Start setup button.'],
+#         8: [8, 'Verify Lets make sure the printer is in Bluetooth pairing mode Text.'],
+#         9: [9, 'add_a_printer_screen.click_Next_Button.'],
+#         10: [10, 'Verify Searching For your Printer Text.'],
+#         11: [11, 'Verify Select your Printer Text.'],
+#         12: [12, 'Select the Printer.'],
+#         13: [13, 'Click on Next Button.'],
+#         14: [14, 'Start the timer on your device after clicking on next button.'],
+#         15: [15, 'Check the printer can be paired successfully.'],
+#         16: [16, 'Verify Connecting to printer Text.'],
+#         17: [17, 'Verify Unable to pair your printer.'],
+#         18: [18, 'Stop the Timer Manually.'],
+#         19: [19, 'Verify Unable to pair your printer.'],
+#         20: [20, 'Check it would take less then 45 seconds to pair printer Manually.'],
+#         21: [21, 'Stop the App.']
+#     }
+#     start_time_main = time.time()
+#     stepId = 1
+#     current_function_name = inspect.currentframe().f_code.co_name
+#     test_case_id = current_function_name.split("_")[-1]
+#     start_main(execID, leftId[test_case_id])
+#     try:
+#         """"1.Open the app and login the account to go to the overview page."""""
+#         start_time = time.time()
+#         common_method.tearDown()
+#         common_method.Start_The_App()
+#         login_page.click_LoginAllow_Popup()
+#         login_page.click_Allow_ZSB_Series_Popup()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#
+#         """2. Click the menu button at the left corner"""
+#         start_time = time.time()
+#         login_page.click_Menu_HamburgerICN()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """3.Check the slide left page appear"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"4. click the button 'Add a Printer'"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Add_A_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """5.Check it would go to the page "Let's set up your printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""6.Check the moneybadger picture would appears at that page."""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """7.Click on Start setup button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Start_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"8.Verify Let's make sure the printer is in Bluetooth pairing mode Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""9.click on Next Button"""""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"10.Verify Searching For your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"11.Verify Select your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Select_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """12.Select the Printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Click_The_Printer_Name_To_Select()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"13.Click on Next Button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"""""""14.Start the timer on your device after clicking on next button"""""
+#         start_time = time.time()
+#         common_method.Show_popup_To_Start_The_Timer_On_Your_Device_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""15.Check the printer can be paired successfully"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+#         sleep(5)
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """""16.Verify Connecting to printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connecting_To_Printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"17.Verify Unable to pair your printer"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Unable_To_Pair_Your_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"18.Stop the Timer Manually"""
+#         start_time = time.time()
+#         common_method.Show_popup_To_Stop_The_Timer_On_Your_Device_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"19.Verify Unable to pair your printer"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Unable_To_Pair_Your_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"20.Check it would take less then 45 seconds to pair printer Manually"""
+#         start_time = time.time()
+#         common_method.Show_popup_To_Verify_It_Should_Take_less_than_45_Seconds_to_pair_printer_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#
+#         stepId += 1
+#
+#         """"21.Stop the App"""
+#         start_time = time.time()
+#         common_method.Stop_The_App()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                             exec_time)
+#
+#         stepId += 1
+#
+#     except Exception as e:
+#                 insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+#                 insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+#                 insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+#                 raise Exception(str(e))
+#
+#     finally:
+#                 exec_time = (time.time() - start_time_main) / 60
+#                 end_main(execID, leftId[test_case_id], exec_time)
 
-        """Verify it would still at the "Select your Wifi Network" page"""
-        add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+#     ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-        """"Stop the App"""
-        common_method.Stop_The_App()
-    except Exception as e:
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
-        raise Exception(str(e))
 
-    finally:
-        exec_time = (time.time() - start_time_main) / 60
-        end_main(execID, leftId[test_case_id], exec_time)
-    # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# def test_Addprinter_TestcaseID_47715_SemiAuto():
+#     """"Add printer BT pair Timeout : check cancel Bluetooth Pairing request, check pair time"""
+#     pass
+#     test_steps = {
+#         1: [1, 'Open the app and login the account to go to the overview page.'],
+#         2: [2, 'Click the menu button at the left corner.'],
+#         3: [3, 'Check the slide left page appear.'],
+#         4: [4, 'click the button Add a Printer.'],
+#         5: [5, 'Check it would go to the page "Lets set up your printer.'],
+#         6: [6, 'Check the moneybadger picture would appears at that page.'],
+#         7: [7, 'Click on Start setup button.'],
+#         8: [8, 'Verify Lets make sure the printer is in Bluetooth pairing mode Text.'],
+#         9: [9, 'click on Next Button.'],
+#         10: [10, 'Verify Searching For your Printer Text.'],
+#         11: [11, 'Verify Select your Printer Text.'],
+#         12: [12, 'Press target printer 3-5 second to enter pairing mode(blue light) Manually.'],
+#         13: [13, 'Select the Printer.'],
+#         14: [14, 'Click on Next Button.'],
+#         15: [15, 'Check it would popup bluetooth pairing mode and click on cancel button.'],
+#         16: [16, 'Start the timer on your device after clicking on next button.'],
+#         17: [17, 'Verify Connecting to printer Text.'],
+#         18: [18, 'Verify Unable to pair your printer.'],
+#         19: [19, 'Stop the Timer Manually.'],
+#         20: [20, 'Verify Unable to pair your printer.'],
+#         21: [21, 'Check it would take less then 45 seconds to pair printer Manually.'],
+#         22: [22, 'Stop the App.']
+#     }
+#     start_time_main = time.time()
+#     stepId = 1
+#     current_function_name = inspect.currentframe().f_code.co_name
+#     test_case_id = current_function_name.split("_")[-1]
+#     start_main(execID, leftId[test_case_id])
+#     try:
+#         """"1.Open the app and login the account to go to the overview page."""""
+#         start_time = time.time()
+#         common_method.tearDown()
+#         common_method.Start_The_App()
+#         login_page.click_LoginAllow_Popup()
+#         login_page.click_Allow_ZSB_Series_Popup()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """2. Click the menu button at the left corner"""
+#         start_time = time.time()
+#         login_page.click_Menu_HamburgerICN()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """3.Check the slide left page appear"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"4. click the button 'Add a Printer'"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Add_A_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """5.Check it would go to the page "Let's set up your printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""6.Check the moneybadger picture would appears at that page."""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """7.Click on Start setup button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Start_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"8.Verify Let's make sure the printer is in Bluetooth pairing mode. Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""9.click on Next Button"""""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"10.Verify Searching For your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"11.Verify Select your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Select_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""12. Press target printer 3-5 second to enter pairing mode(blue light) Manually"""
+#         start_time = time.time()
+#         common_method.Show_popup_To_Make_The_Printer_To_Pairing_Mode_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """13.Select the Printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Click_The_Printer_Name_To_Select()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"14.Click on Next Button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """15.Check it would popup bluetooth pairing mode and click on cancel button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Cancel_On_Bluetooth_Paring_Popup()
+#         add_a_printer_screen.click_Cancel_On_Bluetooth_Paring_Popup_If_Present()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"""""""16.Start the timer on your device after clicking on next button"""""
+#         start_time = time.time()
+#         common_method.Show_popup_To_Start_The_Timer_On_Your_Device_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""17.Verify Connecting to printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connecting_To_Printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"18.Verify Unable to pair your printer"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Unable_To_Pair_Your_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"19.Stop the Timer Manually"""
+#         start_time = time.time()
+#         common_method.Show_popup_To_Stop_The_Timer_On_Your_Device_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"20.Verify Unable to pair your printer"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Unable_To_Pair_Your_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"21.Check it would take less then 45 seconds to pair printer Manually"""
+#         start_time = time.time()
+#         common_method.Show_popup_To_Verify_It_Should_Take_less_than_45_Seconds_to_pair_printer_Manually()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"22.Stop the App"""
+#         start_time = time.time()
+#         common_method.Stop_The_App()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#     except Exception as e:
+#                 insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+#                 insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+#                 insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+#                 raise Exception(str(e))
+#
+#     finally:
+#                 exec_time = (time.time() - start_time_main) / 60
+#                 end_main(execID, leftId[test_case_id], exec_time)
 
+#     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+# def test_Addprinter_TestcaseID_48436():
+#     """"Verify the Cancel button functionality on "Join Network Page" while connceting to already connected / newly connected network"""
+#
+#     pass
+#     test_steps = {
+#         1: [1, 'Open the app and login the account to go to the overview page.'],
+#         2: [2, 'Click the menu button at the left corner.'],
+#         3: [3, 'Check the slide left page appear.'],
+#         4: [4, 'click the button Add a Printer.'],
+#         5: [5, 'Check it would go to the page "Lets set up your printer.'],
+#         6: [6, 'Check the moneybadger picture would appears at that page.'],
+#         7: [7, 'Click on Start setup button.'],
+#         8: [8, 'Verify Lets make sure the printer is in Bluetooth pairing mode Text.'],
+#         9: [9, 'click on Next Button.'],
+#         10: [10, 'Verify Searching For your Printer Text.'],
+#         11: [11, 'Verify Select your Printer Text.'],
+#         12: [12, 'Select the Printer.'],
+#         13: [13, 'Click on Next Button.'],
+#         14: [14, 'Check the printer can be paired successfully.'],
+#         15: [15, 'Verify Connecting to printer Text.'],
+#         16: [16, 'Verify Printer Connected Text.'],
+#         17: [17, 'Verify Searching for Wifi network text is displaying.'],
+#         18: [18, 'Verify Connect Wi-fi Network Text.'],
+#         19: [19, 'click previous network.'],
+#         20: [20, 'In The "Join Network" page, click a password that is incompatible from length point of view.'],
+#         21: [21, 'The user should be shown message "Password should contain between 8 and 63 characters.'],
+#         22: [22, 'click on cancel button on connect wifi network screen.'],
+#         23: [23, 'The user should be navigated back to previous screen.'],
+#         24: [24, 'In The Join Network page, click a password that is incompatible from length point of view.'],
+#         25: [25, 'The user should be shown message "Password should contain between 8 and 63 characters.'],
+#         26: [26, 'click on cancel button on connect wifi network screen.'],
+#         27: [27, 'The user should be navigated back to previous screen.'],
+#         28: [28, 'Stop the App.']
+#     }
+#     start_time_main = time.time()
+#     stepId = 1
+#     current_function_name = inspect.currentframe().f_code.co_name
+#     test_case_id = current_function_name.split("_")[-1]
+#     start_main(execID, leftId[test_case_id])
+#     try:
+#         """"1.Open the app and login the account to go to the overview page."""""
+#         start_time = time.time()
+#         common_method.tearDown()
+#         common_method.Start_The_App()
+#         login_page.click_LoginAllow_Popup()
+#         login_page.click_Allow_ZSB_Series_Popup()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """2. Click the menu button at the left corner"""
+#         start_time = time.time()
+#         login_page.click_Menu_HamburgerICN()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """3.Check the slide left page appear"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"4. click the button 'Add a Printer'"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Add_A_Printer()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """5.Check it would go to the page "Let's set up your printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""6.Check the moneybadger picture would appears at that page."""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """7.Click on Start setup button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Start_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"8.Verify Let's make sure the printer is in Bluetooth pairing mode Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""9.click on Next Button"""""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"10.Verify Searching For your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"11.Verify Select your Printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Select_your_printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """12.Select the Printer"""
+#         start_time = time.time()
+#         add_a_printer_screen.Click_The_Printer_Name_To_Select()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"13.Click on Next Button"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Next_Button()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""14.Check the printer can be paired successfully"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+#         add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+#         sleep(5)
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""15.Verify Connecting to printer Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connecting_To_Printer_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """""16.Verify Printer Connected Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Printer_Connected_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"17.Verify Searching for Wifi network text is displaying"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Searching_for_wifi_networks_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """18.Verify Connect Wi-fi Network Text"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"19.click previous network """
+#         start_time = time.time()
+#         add_a_printer_screen.click_NESTWIFI_NETWORK()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """20. In The "Join Network" page, click a password that is incompatible from length point of view"""
+#         start_time = time.time()
+#         add_a_printer_screen.Enter_Wrong_Password_In_Field()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"21. The user should be shown message "Password should contain between 8 and 63 characters"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Password_Should_Contain_Between_Message()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"22.click on cancel button on connect wifi network screen"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Cancel_Button_ON_Join_Network()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"23. The user should be navigated back to previous screen"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+#         add_a_printer_screen.click_NESTWIFI_NETWORK()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """24. In The "Join Network" page, click a password that is incompatible from length point of view"""
+#         start_time = time.time()
+#         add_a_printer_screen.Enter_Wrong_Password_In_Field()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"25. The user should be shown message "Password should contain between 8 and 63 characters"""""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Password_Should_Contain_Between_Message()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"26.click on cancel button on connect wifi network screen"""
+#         start_time = time.time()
+#         add_a_printer_screen.click_Cancel_Button_ON_Join_Network()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """"27. The user should be navigated back to previous screen"""
+#         start_time = time.time()
+#         add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#         """28.stop the app"""
+#         start_time = time.time()
+#         common_method.Stop_The_App()
+#         exec_time = (time.time() - start_time) / 60
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+#                     exec_time)
+#         stepId += 1
+#
+#     except Exception as e:
+#                 insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+#                 insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+#                 insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+#                 raise Exception(str(e))
+#
+#     finally:
+#                 exec_time = (time.time() - start_time_main) / 60
+#                 end_main(execID, leftId[test_case_id], exec_time)
+
+# #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_Addprinter_TestcaseID_48438():
+    """"Verify the timeout scenario when user enters the password and does not Continue"""
+
+    """"1.Open the app and login the account to go to the overview page."""""
+    common_method.tearDown()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """2. Click the menu button at the left corner"""
+    login_page.click_Menu_HamburgerICN()
+    """3.Check the slide left page appear"""""
+    add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+    """"3. click the button 'Add a Printer'"""
+    add_a_printer_screen.click_Add_A_Printer()
+    """Check it would go to the page "Let's set up your printer"""
+    add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+    """""Check the moneybadger picture would appears at that page."""
+    add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+    """Click on Start setup button"""
+    add_a_printer_screen.click_Start_Button()
+    """"Verify Let's make sure the printer is in Bluetooth pairing mode. Text"""
+    add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
+    """""click on Next Button"""""
+    add_a_printer_screen.click_Next_Button()
+    """"Verify Searching For your Printer Text"""
+    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+    """"Verify Select your Printer Text"""
+    add_a_printer_screen.Verify_Select_your_printer_Text()
+    """Select the Printer"""
+    add_a_printer_screen.Click_The_Printer_Name_To_Select()
+    """"Click on Next Button"""
+    add_a_printer_screen.click_Next_Button()
+    """""Check the printer can be paired successfully"""
+    add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+    add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+    add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+    add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+    sleep(5)
+    """""Verify Connecting to printer Text"""
+    add_a_printer_screen.Verify_Connecting_To_Printer_Text()
+    """""Verify Printer Connected Text"""
+    add_a_printer_screen.Verify_Printer_Connected_Text()
+    """"Verify Searching for Wifi network text is displaying"""
+    add_a_printer_screen.Verify_Searching_for_wifi_networks_Text()
+    """Verify Connect Wi-fi Network Text"""
+    add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+    """"click previous network """
+    add_a_printer_screen.click_NESTWIFI_NETWORK()
+    """click on enter password"""
+    add_a_printer_screen.Enter_Password_Field()
+    """""Minimize the app for 3o minutes"""
+    common_method.Stop_The_App()
+    sleep(1800)
+    """""6  Launch the app after 30 mins . The user should not be auto-logged out and user should be able to proceed forward"""""
+    common_method.Start_The_App()
+    add_a_printer_screen.Enter_Password_Field()
+    """""Minimize the app for 3o minutes"""
+    common_method.Stop_The_App()
+    sleep(1800)
+    """""6  Launch the app after 30 mins . The user should not be auto-logged out and user should be able to proceed forward"""""
+    common_method.Start_The_App()
+    """"click on the Connect button on Join Network"""
+    add_a_printer_screen.click_Connect_Button_ON_Join_Network()
+    """"verify need the printer Setup Complete text"""
+    add_a_printer_screen.Verify_Printer_Setup_Complete_Text()
+    """"click on finish setup button"""
+    add_a_printer_screen.click_Finish_Button()
+    """"click home tab"""
+    add_a_printer_screen.click_Home_Tab()
+    """stop the app"""
+    common_method.Stop_The_App()
+
+
+#     ############""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
