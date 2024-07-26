@@ -2,7 +2,7 @@ import requests
 from airtest.core.assertions import assert_exists
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
-from pywinauto.mouse import scroll
+# from pywinauto.mouse import scroll
 from urllib3.util import url
 from airtest.core.api import sleep
 from poco import poco
