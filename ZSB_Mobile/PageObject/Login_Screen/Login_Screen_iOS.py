@@ -18,6 +18,7 @@ class Login_Screen_iOS:
         self.Google_MailID = "Use another account"
         self.Password_Nextbtn = "Next "
         self.Menu_Hamburger_Icn = "Open navigation menu"
+        self.Home = "Home"
         self.Google_UserID = "identifierId"
         self.Emailid_Nextbtn = "identifierNext"
         self.Google_Password = "Enter your password"
@@ -35,9 +36,20 @@ class Login_Screen_iOS:
 
 
 
-    def clcik_Login_Btn(self):
-        login_btn = self.poco(self.loginBtn)
-        login_btn.click()
+    def click_signin(self):
+        if self.poco.loginBtn.exists():
+            self.poco(self.loginBtn).click()
+            sleep(2)
+            self.poco(self.Continue_popup_to_login).click()
+            self.poco(self.Google_Login).click()
+        else:
+            pass
+
+    def click_Menu_HamburgerICN(self):
+        sleep(7)
+        self.poco(self.Menu_Hamburger_Icn).click()
+        if self.poco.Home.exists():
+            print("UI of the side left page is correct")
 
     def click_Continue_Btn_To_Login(self):
         sleep(2)
@@ -141,10 +153,7 @@ class Login_Screen_iOS:
         else:
             print("Next button is not present, proceeding with the next part of the code.")
 
-    def click_Menu_HamburgerICN(self):
-        sleep(7)
-        hamburgerIcn = self.poco(self.Menu_Hamburger_Icn)
-        hamburgerIcn.click()
+
 
     def click_Allow_Login_Popup(self):
         sleep(3)
