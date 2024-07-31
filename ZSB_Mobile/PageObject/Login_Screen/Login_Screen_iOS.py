@@ -2,15 +2,21 @@ from time import sleep
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
 from poco import poco
+from ...PageObject import APP_Settings
 # from ZSB_Mobile.TestExecution.temp.sample import poco
 from poco.drivers.ios import iosPoco
 # from pocoui_lib.ios.kotoComponent import poco
+
 class Login_Screen_iOS:
     pass
+
 
     def __init__(self, poco):
         self.poco = poco
         self.loginBtn = "Sign In"
+        self.Edit_pen = "Button"
+        # self.Edit = Template(r"tpl1722336635220.png", record_pos=(0.238, -0.865), resolution=(1170, 2532))
+        self.Edit = "Button"
         self.Continue_popup_to_login = "Continue"
         self.Enter_GoogleID_Field = "SohoApp Testing"
         self.Google_Login = "Continue with Google"
@@ -32,24 +38,29 @@ class Login_Screen_iOS:
         self.Password_Field = "SecureTextField"
         self.SignIn_Button = "Sign In"
         self.Login_With_ZebraEmail = "Sign In with your email"
-        self.Keyboard_back_Icon=""
+        self.Keyboard_back_Icon = ""
 
 
 
     def click_signin(self):
-        if self.poco.loginBtn.exists():
+        if self.poco(self.loginBtn).exists():
             self.poco(self.loginBtn).click()
             sleep(2)
             self.poco(self.Continue_popup_to_login).click()
             self.poco(self.Google_Login).click()
-        else:
-            pass
 
-    def click_Menu_HamburgerICN(self):
-        sleep(7)
+    def logout(self):
+        popup = self.poco(nameMatches="(?s).*Close.*")
+        if popup.exists():
+            popup.click()
+        if self.poco(self.loginBtn).exists():
+            return
         self.poco(self.Menu_Hamburger_Icn).click()
-        if self.poco.Home.exists():
-            print("UI of the side left page is correct")
+        self.poco(self.Edit).click()
+
+    def clcik_Login_Btn(self):
+        login_btn = self.poco(self.loginBtn)
+        login_btn.click()
 
     def click_Continue_Btn_To_Login(self):
         sleep(2)
@@ -153,8 +164,11 @@ class Login_Screen_iOS:
         else:
             print("Next button is not present, proceeding with the next part of the code.")
 
-
-
+    def click_Menu_HamburgerICN(self):
+        sleep(7)
+        self.poco(self.Menu_Hamburger_Icn).click()
+        if self.poco(self.Home).exists():
+            print("UI of the side left page is correct")
     def click_Allow_Login_Popup(self):
         sleep(3)
         Allow_ZSB_Series_Popup = self.poco(self.LoginAllow_Popup)

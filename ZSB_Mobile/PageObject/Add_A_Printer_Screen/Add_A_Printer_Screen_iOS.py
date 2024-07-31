@@ -5,6 +5,7 @@ from airtest.core.api import *
 import pytest
 from airtest.core.android import Android
 from airtest.core.api import exists, sleep
+from ...Common_Method import Common_Method
 from poco import poco
 # from pocoui_lib.ios.kotoComponent import poco
 from poco.exceptions import PocoNoSuchNodeException, PocoTargetTimeout
@@ -13,10 +14,20 @@ from poco.exceptions import PocoNoSuchNodeException, PocoTargetTimeout
 class Add_A_Printer_Screen_iOS:
     pass
 
+    common_method = Common_Method(poco)
+
     def __init__(self, poco):
         self.poco = poco
+        self.Bluetooth_setting = "Bluetooth"
         self.Add_A_Printer_Btn = "Add A Printer"
-        self.Start_Btn = "Start Setup"
+        self.Setup_your_printer = "Set up your printer"
+        self.Cancel_bluetooth = "Cancel"
+        self.Settings = "Settings"
+        self.Money_badger_pic = Template(r"tpl1722251176064.png", record_pos=(-0.013, -0.283), resolution=(1170, 2532))
+        self.Start_setup = "Start Setup"
+        self.Unable_to_find = "Unable to find printer(s)"
+        self.Search_again = "Search Again"
+        self.Continue_register = "Continue"
         self.Lets_Make_Sure_Text = "Let's make sure the printer is in Bluetooth pairing mode."
         self.Searching_For_Your_Printer_Tex = "Searching for your printer"
         self.Next_Button = "Next"
@@ -29,7 +40,7 @@ class Add_A_Printer_Screen_iOS:
         self.Printer_LED_Guide_Done_Btn = "Dismiss"
         self.Select_your_printer_Text = "Select your printer"
         self.Pairing_Your_Printer_Text = "Connecting to printer"
-        self.Printer_Name_To_Select = ""
+
         self.Bluetooth_pairing_Popup1 = "android:id/action0"
         self.Bluetooth_pairing_Popup2 = "android:id/button1"
         self.Searching_for_wifi_networks_Text = "Searching for Wi-Fi Networks"
@@ -42,7 +53,8 @@ class Add_A_Printer_Screen_iOS:
         self.Connect_Wifi_Network_Text = "Connect Wi-Fi Network"
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
-        self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44), resolution=(1080, 2400))
+        self.Password_Field_On_Join_Network = Template(r"tpl1712913927236.png", record_pos=(-0.048, -0.44),
+                                                       resolution=(1080, 2400))
         self.Submit_Button_ON_Join_Network = "Submit"
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
@@ -54,55 +66,99 @@ class Add_A_Printer_Screen_iOS:
         self.Back_Icon_Of_Print_Review_Screen = "android.widget.Button"
         self.Common_Design_Tab = "Common Designs"
 
-            ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     def enable_bluetooth(self):
-        try:
-            subprocess.run(
-                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
-                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-            # Check for the 'Allow' element using poco
-            shell_element = self.poco(text="Allow")
-            if shell_element.exists():
-                shell_element.click()
-                sleep(1)
-            else:
-                print("No 'Allow' element found. Skipping.")
-
-        except subprocess.CalledProcessError as e:
-            print(f"ADB command failed with error: {e}. Skipping.")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}. Skipping.")
+        start_app("com.apple.Preferences")
+        sleep(3)
+        bluetooth_setting_button = self.poco(name="Bluetooth")
+        bluetooth_setting_button.click()
+        sleep(5)
+        bluetooth_switch = self.poco(type="Switch", name="Bluetooth")
+        switch_value = bluetooth_switch.attr("value")
+        if switch_value == "On":
+            print("Bluetooth is already on")
+        else:
+            bluetooth_switch.click()
+            print("Bluetooth is now on.")
+        self.common_method.swipe_back_to_app_ios()
+        # start_app("com.zebra.soho")
 
     def disable_bluetooth(self):
-        try:
-            # Disable Bluetooth using ADB
-            subprocess.run(
-                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
-                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-            # Check for the 'Allow' element using poco
-            shell_element = self.poco(text="Allow")
-            if shell_element.exists():
-                shell_element.click()
-                sleep(1)
-            else:
-                print("No 'Allow' element found. Skipping.")
-
-        except subprocess.CalledProcessError as e:
-            print(f"ADB command failed with error: {e}. Skipping.")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}. Skipping.")
+        popup = self.poco(nameMatches="(?s).*Close.*")
+        if popup.exists():
+            popup.click()
+        start_app("com.apple.Preferences")
+        sleep(3)
+        bluetooth_setting_button = self.poco(name="Bluetooth")
+        bluetooth_setting_button.click()
+        sleep(5)
+        bluetooth_switch = self.poco(type="Switch", name="Bluetooth")
+        switch_value = bluetooth_switch.attr("value")
+        print(switch_value)
+        if switch_value == "On" or switch_value == "1":
+            bluetooth_switch.click()
+            print("Bluetooth was on. Turning it off.")
+        else:
+            print("Bluetooth is already off.")
+        self.common_method.swipe_back_to_app_ios()
+        # self.switch_to_different_app()
+        if popup.exists():
+            popup.click()
 
     def click_Add_A_Printer(self):
-        add_a_printer_btn = self.poco(self.Add_A_Printer_Btn)
-        add_a_printer_btn.click()
+        self.poco(self.Add_A_Printer_Btn).click()
+        if self.poco(self.Setup_your_printer).exists():
+            print("Setup your printer page present")
+        # if self.poco(self.Money_badger_pic).exists():
+        #     print("Money badger pic exists")
 
-    def click_Start_Button(self):
+    def cancel_bluetooth(self):
+        turn_on = self.poco(nameMatches="(?s).*Turn.*")
+        if turn_on.exists():
+            print("Turn on bluetooth exists")
+        self.poco(self.Cancel_bluetooth).click()
+
+    def setting_bluetooth(self):
+        turn_on = self.poco(nameMatches="(?s).*Turn.*")
+        if turn_on.exists():
+            print("Turn on bluetooth exists")
+        self.poco(self.Settings).click()
         sleep(2)
-        start_btn = self.poco(self.Start_Btn)
-        start_btn.click()
+        self.poco(self.Settings).click()
+
+    def click_start_button(self):
+        sleep(2)
+        self.poco(self.Start_setup).click()
+        sleep(10)
+        popup = self.poco(nameMatches="(?s).*Close.*")
+        if popup.exists():
+            popup.click()
+
+    def check_unable_to_find(self):
+        if self.poco(self.Unable_to_find).exists():
+            print("Unable to find printers displayed")
+
+    def click_search_again(self):
+        self.poco(self.Search_again).click()
+        if self.poco(self.Searching_For_Your_Printer_Tex).exists():
+            print("Searching for printer displayed")
+            sleep(10)
+
+    def click_the_printer_name_to_select(self, printer_name):
+        sleep(12)
+        printer_select = self.poco(nameMatches=f"(?s).*{printer_name}.*")
+        printer_select.click()
+
+    def click_next_button(self):
+        sleep(1)
+        Next_Button = self.poco(self.Next_Button)
+        Next_Button.click()
+        if self.poco(self.Continue_register).exists():
+            self.poco(self.Continue_register).click()
+        sleep(3)
+        if self.poco(self.Searching_for_wifi_networks_Text).exists():
+            print("Searching for wifi page appears")
 
     def Verify_Lets_Make_Sure_Text(self):
         Lets_Make_Sure_Text = self.poco(self.Lets_Make_Sure_Text)
@@ -186,10 +242,6 @@ class Add_A_Printer_Screen_iOS:
         else:
             pass
 
-    def Click_The_Printer_Name_To_Select(self):
-        Printer_Name_To_Select = self.poco(self.Printer_Name_To_Select).wait_for_appearance(timeout=4)
-        Printer_Name_To_Select.click()
-
     def click_Select_Button_On_Select_Your_Printer_Screen(self):
         sleep(2)
         select_btn = self.poco(self.Select_Button_on_Select_Your_Printer)
@@ -238,7 +290,6 @@ class Add_A_Printer_Screen_iOS:
         a = self.poco(nameMatches="(?s).*ZSB-DP12.*").get_name()
         a = a.split("\n")
         print(a)
-
 
     def Verify_Already_Added_Printer_IS_Not_Displaying(self):
         sleep(5)
@@ -431,10 +482,7 @@ class Add_A_Printer_Screen_iOS:
         sleep(5)
         self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
 
-    def Click_Next_Button(self):
-        sleep(1)
-        Next_Button = self.poco(self.Next_Button)
-        Next_Button.click()
+
 
     def click_LED_Guide_Button(self):
         sleep(1)
@@ -447,4 +495,3 @@ class Add_A_Printer_Screen_iOS:
         Text_Field_To_Edit.click()
         sleep(1)
         poco(text("1"))
-

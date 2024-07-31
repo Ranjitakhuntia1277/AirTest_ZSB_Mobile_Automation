@@ -1,14 +1,16 @@
-# from poco.drivers.ios import iosPoco
-import uuid
-
-import logdir
-# import logdir
-import poco.drivers.ios
-from airtest.core.api import *
-# from test.body import poco
-from airtest.core.api import connect_device, sleep
-from airtest.core.api import start_app
+from airtest.core.api import auto_setup, start_app, sleep, text, stop_app
 from poco.drivers.ios import iosPoco
+# from self import self
+
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Settings_Screen_iOS
+from ...PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
+# from poco import poco
+# from ...conftest import Conftest
+from ...PageObject.Robofinger import test_robo_finger
+import pytest
+from airtest.core.api import connect_device
 
 
 # Specify the device's platform (Android or iOS) and other details
@@ -17,80 +19,121 @@ class Add_A_PrinterScreen:
     pass
 
 
-device_info = {
-    # specify the device ID or name
-
-    "platform": "iOS",  # or "iOS"
-    "uuid": "00008101-00051D400144001E",
-}
-print(f"device_info: {device_info}")
-print(f"device function result: {device()}")
+# device_info = {
+#     # specify the device ID or name
+#
+#     "platform": "iOS",  # or "iOS"
+#     "uuid": "00008101-00051D400144001E",
+# }
+# print(f"device_info: {device_info}")
+# print(f"device function result: {device()}")
+# uuid = "00008101-00051D400144001E"
+# Bonding = connect_device("ios:///http+usbmux://"+uuid)
+# poco = iosPoco(device= Bonding)
+#
+# auto_setup(logdir=logdir, compress=3,
+#            devices=[f"ios:///http+usbmux://{uuid}"])
+# start_app("com.zebra.soho_app")
 uuid = "00008101-00051D400144001E"
-Bonding = connect_device("ios:///http+usbmux://"+uuid)
-poco = iosPoco(device= Bonding)
-
-auto_setup(logdir=logdir, compress=3,
+Bonding = connect_device("ios:///http+usbmux://" + uuid)
+poco = iosPoco(device=Bonding)
+auto_setup(logdir="./", compress=3,
            devices=[f"ios:///http+usbmux://{uuid}"])
-start_app("com.zebra.soho_app")
+start_app("com.zebra.soho")
 # sleep(2.0)
 # poco = poco.iosPoco()
 # poco = iosPoco()
+
+login_screen_ios = Login_Screen_iOS(poco)
+app_settings_iOS_page_ios = App_Settings_Screen_iOS(poco)
+add_a_printer_page_ios = Add_A_Printer_Screen_iOS(poco)
+common_method = Common_Method(poco)
 
 
 
 def test_Addprinter_TestcaseID_45656():
     """"Adding the moneybadger while the mobile devices bluetooth is disabled"""
+    """Precondition: Disable Bluetooth"""
+    login_screen_ios.logout()
+    app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+    app_settings_iOS_page_ios.click_Logout_Btn()
+    add_a_printer_page_ios.disable_bluetooth()
+    """Step 1"""
+    login_screen_ios.click_signin()
+    """Step 2"""
+    login_screen_ios.click_Menu_HamburgerICN()
+    """Step 3"""
+    add_a_printer_page_ios.click_Add_A_Printer()
+    add_a_printer_page_ios.cancel_bluetooth()
+    """Step 4"""
+    add_a_printer_page_ios.click_Add_A_Printer()
+    add_a_printer_page_ios.setting_bluetooth()
+    add_a_printer_page_ios.enable_bluetooth()
+    """Step 5"""
+    sleep(2)
+    add_a_printer_page_ios.disable_bluetooth()
+    add_a_printer_page_ios.click_start_button()
+    add_a_printer_page_ios.check_unable_to_find()
+    """Step 6"""
+    add_a_printer_page_ios.enable_bluetooth()
+    add_a_printer_page_ios.click_search_again()
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    add_a_printer_page_ios.click_next_button()
+    """Step 7"""
+    add_a_printer_page_ios.disable_bluetooth()
 
 
-poco("Login").click()
-sleep(1)
 
-poco("Continue").click()
-sleep(2)
-"""""""select the login with google option"""""""""
-poco("Continue with Google").click()
-sleep(4)
-"""""provide google user id & password"""
-poco(name="Use another account").click()
-sleep(3)
-poco(name="Email or phone").click()
-poco(text("soho.swdvt.01@gmail.com"))
-poco(name="Next").click()
-sleep(2)
-poco(name="Enter your password").click()
-poco(text("Swdvt@#123"))
-"""""""""""click on login option"""""""""
-# poco(text="Next").click()
-sleep(7)
-"""""""click on the left hamburger menu on the home page"""""""""
-poco(name="Open navigation menu").click()
-sleep(3)
-"""""""get text method need to add for zebra logo text & account details"""""""""
 
-"""""""click on add a printer"""""""
-poco("Add A Printer").click()
-sleep(2)
-
-poco(name="Cancel").click()
-sleep(3)
-#
-
-"""""""""click on add a printer"""""""""
-poco("Add A Printer").click()
-sleep(2)
-poco("Let’s set up your printer").get_text()
-sleep(2)
-"""""decomission the printer manually"""
-"""""""""click on add a printer"""""""""
-poco("Start").click()
-assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-sleep(5)
-poco(name="Select your printer").get_text()
-
-poco(name="android.widget.RadioButton").click()
-poco(name="Select").click()
-sleep(2)
-""""""""""""" accept the pair request and pair it with proper wifi"""""""""""""""""""""""""""
+    # poco("Login").click()
+    # sleep(1)
+    #
+    # poco("Continue").click()
+    # sleep(2)
+    # """""""select the login with google option"""""""""
+    # poco("Continue with Google").click()
+    # sleep(4)
+    # """""provide google user id & password"""
+    # poco(name="Use another account").click()
+    # sleep(3)
+    # poco(name="Email or phone").click()
+    # poco(text("soho.swdvt.01@gmail.com"))
+    # poco(name="Next").click()
+    # sleep(2)
+    # poco(name="Enter your password").click()
+    # poco(text("Swdvt@#123"))
+    # """""""""""click on login option"""""""""
+    # # poco(text="Next").click()
+    # sleep(7)
+    # """""""click on the left hamburger menu on the home page"""""""""
+    # poco(name="Open navigation menu").click()
+    # sleep(3)
+    # """""""get text method need to add for zebra logo text & account details"""""""""
+    #
+    # """""""click on add a printer"""""""
+    # poco("Add A Printer").click()
+    # sleep(2)
+    #
+    # poco(name="Cancel").click()
+    # sleep(3)
+    # #
+    #
+    # """""""""click on add a printer"""""""""
+    # poco("Add A Printer").click()
+    # sleep(2)
+    # poco("Let’s set up your printer").get_text()
+    # sleep(2)
+    # """""decomission the printer manually"""
+    # """""""""click on add a printer"""""""""
+    # poco("Start").click()
+    # assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
+    # sleep(5)
+    # poco(name="Select your printer").get_text()
+    #
+    # poco(name="android.widget.RadioButton").click()
+    # poco(name="Select").click()
+    # sleep(2)
+    # """"""""""""" accept the pair request and pair it with proper wifi"""""""""""""""""""""""""""
 
 # poco("Add A Printer", type="android.widget.Button").click()
 # sleep(2)

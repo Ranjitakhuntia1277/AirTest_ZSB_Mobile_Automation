@@ -15,6 +15,7 @@ class App_Settings_Screen_iOS:
 
     def __init__(self, poco):
         self.poco = poco
+        self.loginBtn = "Sign In"
         self.Printer_Settings_Btn = "Printer Settings"
         self.PrinterName_In_Printer_Settings = "ZSB-DP12\nTab 2 of 2"
         self.PrinterName1_In_Printer_Settings = "ZSB-DP12\nTab 2 of 3"
@@ -936,6 +937,8 @@ class App_Settings_Screen_iOS:
         return user_settings
 
     def Scroll_till_Delete_Account(self):
+        if self.poco(self.loginBtn).exists():
+            return
         sleep(2)
         start_point = (0.5, 0.9123222748815166)  # Example coordinates (x, y)
         # Specify the vector for swiping up
@@ -1367,6 +1370,8 @@ class App_Settings_Screen_iOS:
             scroll_view.swipe("right", duration=0.9)
 
     def click_Logout_Btn(self):
+        if self.poco(self.loginBtn).exists():
+            return
         sleep(2)
         Logout_Btn = self.poco(self.Logout_Btn)
         Logout_Btn.click()
