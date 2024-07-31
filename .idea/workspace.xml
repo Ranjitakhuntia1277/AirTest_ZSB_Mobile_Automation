@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_iOS_App_Settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_Android.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,20 +52,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_47918.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_iOS_App_Settings.test_AppSettings_TestcaseID_45688.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45770.executor": "Run",
-    "Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_45688.executor": "Run",
-    "Python.Android_Automated_TestSuite.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "tauqeer",
-    "last_opened_file_path": "C:/Users/mt5445/PycharmProjects/AirTest_ZSB_Mobile_Automation",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_Android_App_Settings.test_AppSettings_TestcaseID_47918.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_App_Settings.test_iOS_App_Settings.test_AppSettings_TestcaseID_45688.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45770.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_45688.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Android_Automated_TestSuite.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;tauqeer&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mt5445/PycharmProjects/AirTest_ZSB_Mobile_Automation&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ZSB_Automation" is-module-sdk="true">
