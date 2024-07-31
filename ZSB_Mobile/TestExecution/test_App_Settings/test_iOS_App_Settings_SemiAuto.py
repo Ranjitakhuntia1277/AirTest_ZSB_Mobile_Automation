@@ -2,13 +2,13 @@ from airtest.core.api import connect_device, auto_setup, start_app, sleep, text,
 from poco.drivers.ios import iosPoco
 from self import self
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Settings_Screen_iOS
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Settings_Screen_iOS
+from ...PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
 from poco import poco
-# from ZSB_Mobile.conftest import Conftest
-from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
+# from ...conftest import Conftest
+from ...PageObject.Robofinger import test_robo_finger
 import pytest
 
 class iOS_App_Settings:
@@ -48,10 +48,10 @@ def test_AppSettings_TestcaseID_47913():
     """"click on Add printer tab"""""
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_Start_Button()
+    add_a_printer_page_ios.click_start_button()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
-    add_a_printer_page_ios.Click_Next_Button()
+    add_a_printer_page_ios.click_next_button()
     """"Verify searching for your printer text"""
     add_a_printer_page_ios.Verify_Searching_for_your_printer_Text()
     """"verify select your printer text"""
@@ -109,10 +109,10 @@ def test_AppSettings_TestcaseID_47924():
     """"click on Add printer tab"""""
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_Start_Button()
+    add_a_printer_page_ios.click_start_button()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
-    add_a_printer_page_ios.Click_Next_Button()
+    add_a_printer_page_ios.click_next_button()
     """"Verify searching for your printer text"""
     add_a_printer_page_ios.Verify_Searching_for_your_printer_Text()
     """"verify select your printer text"""

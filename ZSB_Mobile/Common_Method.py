@@ -35,6 +35,8 @@ from poco import poco
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
+
+
 # from test.body import poco
 
 
@@ -124,14 +126,14 @@ class Common_Method():
         match = re.search(pattern, text)
         return match
 
-    def show_message(self,msg):
+    def show_message(self, msg):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)  # Ensure the root window is on top
         messagebox.showinfo("Information", msg)
         root.destroy()
 
-    def get_user_input(self,msg):
+    def get_user_input(self, msg):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
@@ -154,7 +156,6 @@ class Common_Method():
         self.poco(textMatches=".*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def swipe_by_positions(self, start_point, end_point):
-
         self.poco.swipe(start_point, end_point, duration=0.5)
 
     def swipe_screen(self, point1, point2, number_of_swipes):
@@ -166,6 +167,23 @@ class Common_Method():
         w2, h2 = x2 * w, y2 * h
         for i in range(number_of_swipes):
             swipe([w1, h1], [w2, h2])
+
+    def swipe_back_to_app_ios(self):
+        # Get the current display information
+        disp = current_device().display_info
+        w, h = [disp['width'], disp['height']]
+
+        # Define swipe start and end points as fractions of the screen size
+        x1, y1 = 0.5, 1  # Start near the bottom of the screen
+        x2, y2 = 0.5, 0.5  # End near the top of the screen
+
+        # Convert the fractions to absolute pixel coordinates
+        w1, h1 = x1 * w, y1 * h
+        w2, h2 = x2 * w, y2 * h
+
+        # Perform the swipe action
+        swipe([w1, h1], [w2, h2], duration=3)
+        touch((0.5, 0.5), 1)
 
     def wait_for_element_appearance_text(self, element, time_out=15):
         self.poco(text=element).wait_for_appearance(timeout=time_out)
@@ -1550,7 +1568,3 @@ class Common_Method():
     # def del_printer(self, function_fixture):
     #     poco, dev, width, height, Bonding, initialBaseValue, emulator, sns = function_fixture
     #     PrinterUtilities(poco, dev, width, height, Bonding).deletePrinter()
-
-
-
-
