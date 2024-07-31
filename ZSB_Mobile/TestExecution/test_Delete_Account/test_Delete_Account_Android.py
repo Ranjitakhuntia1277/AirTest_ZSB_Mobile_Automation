@@ -533,6 +533,137 @@ def test_Delete_Account_TestcaseID_45764():
     common_method.Stop_The_App()
 ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+def test_Delete_Account_TestcaseID_45770():
+    pass
+    common_method.tearDown()
+    """clear app data"""
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    template_management_page.turn_on_wifi()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    delete_account_page.Login_With_Email_Tab()
+    printer_management_page.click_Password_TextField()
+    printer_management_page.Enter_Zebra_Password()
+    login_page.click_SignIn_Button()
+    data_sources_page.checkIfOnHomePage()
+    """Click Hamburger Icon"""
+    login_page.click_Menu_HamburgerICN()
+    """Click on edit profile"""
+    registration_page.click_on_profile_edit()
+    while not poco("Log Out").exists():
+        poco.scroll()
+    """Check If Delete Account is beside Logout button"""
+    delete_account_page.checkIfDeleteAccountIsNextToLogOut()
+    """Click Delete Account"""
+    delete_account_page.clickDeleteAccount()
+    """Check Delete Account page show up"""
+    try:
+        common_method.wait_for_element_appearance(
+            "For your security, you must immediately sign back in one last time to finalize and confirm the deletion of your account. Select ‘Continue’ to sign out.",
+            20)
+    except:
+        raise Exception("Delete account page did not show up.")
+    """Check continue disabled"""
+    try:
+        template_management_page.wait_for_appearance_enabled("Continue")
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("Continue enabled without checking the three check boxes")
+    except Exception as e:
+        pass
+    """check there are 3 items need acknowledge """
+    try:
+        common_method.wait_for_element_appearance("Please acknowledge the following to continue:")
+        delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
+                                                                  "All data in your workspace will be removed.")
+        delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
+                                                                  "Your account will be de-identified, meaning it will not be associated with you.")
+        delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
+                                                                  "Ensure your printer is ON to factory reset your ZSB printer.")
+    except:
+        raise Exception("Three checkboxes not present to acknowledge.")
+    """Click the three checkBoxes"""
+    delete_account_page.checkThreeCheckboxesInDeleteAccountPage()
+    """Check continue enabled"""
+    try:
+        template_management_page.wait_for_appearance_enabled("Continue")
+    except:
+        raise Exception("Continue disabled even after checking the three check boxes")
+    """Click continue"""
+    data_sources_page.clickContinue()
+    """check mobile app will auto logout and show login screen with notice information:
+    Important: For security purposes, please login one last time to finalize the deletion of your account . Failure to do so will result in your account still being active."""
+    try:
+        common_method.wait_for_element_appearance(
+            "Important:For security purposes, please login one last time to finalize the deletion of your account. Failure to do so will result in your account still being active.",
+            20)
+    except:
+        raise Exception(
+            "Warning message \" Important: For security purposes, please login one last time to finalize the deletion of your account . Failure to do so will result in your account still being active.\" not displayed")
+    """Login Again"""
+    registration_page.clickSignIn()
+    delete_account_page.Login_With_Email_Tab()
+    printer_management_page.click_Password_TextField()
+    printer_management_page.Enter_Zebra_Password()
+    login_page.click_SignIn_Button()
+    """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
+    try:
+        common_method.wait_for_element_appearance(
+            "To complete the ZSB account deletion process, select Delete.",
+            20)
+    except:
+        raise Exception(
+            "User not taken to user settings page after login and no Delete Account Dialog pop up asking Final confirm user delete")
+    """CLick delete in final confirmation pop up"""
+    delete_account_page.clickDelete()
+    """Verify Account Deleted dialog pop up"""
+    delete_account_page.checkAccountDeletedDialog()
+    """CLick Ok"""
+    delete_account_page.clickOk()
+    """Check if logged out automatically after clicking Ok"""
+    data_sources_page.checkIfInLoginPage()
+    common_method.Stop_The_App()
+    start_app("com.android.chrome")
+    sleep(2)
+    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+    sleep(2)
+    data_sources_page.clickEnter()
+    sleep(2)
+    registration_page.clickSignIn()
+    delete_account_page.Login_With_Email_Tab()
+    printer_management_page.click_Password_TextField()
+    printer_management_page.Enter_Zebra_Password()
+    login_page.click_SignIn_Button()
+    delete_account_page.verifyIfOnEULAPageWeb()
+    delete_account_page.AcceptEULAWeb()
+    data_sources_page.clickGotItWeb()
+    registration_page.wait_for_element_appearance_text("Home", 10)
+    delete_account_page.verifyNoPrinterInAccountWeb()
+    poco.scroll()
+    data_sources_page.lock_phone()
+    wake()
+    delete_account_page.VerifyIfNoRecentlyPrintedDesignsPresent()
+    data_sources_page.click_Menu_HamburgerICNWeb()
+    data_sources_page.lock_phone()
+    wake()
+    sleep(2)
+    data_sources_page.click_My_Data()
+    data_sources_page.click_Menu_HamburgerICNWeb()
+    data_sources_page.lock_phone()
+    wake()
+    sleep(2)
+    delete_account_page.verifyMyDataEmpty()
+    data_sources_page.click_Menu_HamburgerICNWeb()
+    data_sources_page.lock_phone()
+    wake()
+    sleep(2)
+    data_sources_page.clickMyDesigns()
+    data_sources_page.click_Menu_HamburgerICNWeb()
+    delete_account_page.verifyMyDesignsEmptyWeb()
+    common_method.Stop_The_App()
+
 def test_Delete_Account_TestcaseID_45769():
     pass
     common_method.tearDown()
