@@ -1734,11 +1734,45 @@ class App_Settings_Screen:
             a.get_name()
             print(a)
 
+    def restart_adb_server():
+        try:
+            # Kill the existing adb server
+            subprocess.run(['adb', 'kill-server'], check=True)
+            # Start a new adb server
+            subprocess.run(['adb', 'start-server'], check=True)
+            print("ADB server restarted successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to restart ADB server: {e.stderr.decode()}")
+
+    def disable_bluetooth():
+        time.sleep(2)  # Sleep for 2 seconds
+
+        restart_adb_server()  # Restart the adb server to fix version mismatch issue
+
+        try:
+            # Send the intent to disable Bluetooth
+            result = subprocess.run(
+                ['adb', 'shell', 'am', 'broadcast', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            )
+
+            # Check the result
+            if result.returncode == 0:
+                print("Bluetooth disable request sent successfully.")
+            else:
+                print("Failed to send Bluetooth disable request.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"An error occurred: {e.stderr.decode()}")
+
     def Disable_Bluetooth(self):
         sleep(2)
+        # subprocess.run(
+        #     ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+        #     check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         subprocess.run(
-            ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
-            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                ['adb', 'shell', 'am', 'broadcast', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+        check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def Enable_Bluetooth(self):
         sleep(2)

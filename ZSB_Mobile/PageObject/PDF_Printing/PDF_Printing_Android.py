@@ -661,7 +661,7 @@ class PDF_Printing_Screen:
             self.poco(name="Print").click()
 
     def click_Back_Icon(self):
-        sleep(1)
+        sleep(7)
         self.poco(name="android.widget.Button").click()
 
     def click_And_Enter_Invalid_Number_In_Copies_Number_Field(self):

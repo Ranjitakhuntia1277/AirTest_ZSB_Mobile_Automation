@@ -56,19 +56,25 @@ class Login_Screen:
         sleep(3)
         login_btn = self.poco(self.loginBtn)
         if login_btn.exists():
-          login_btn.click()
+            login_btn.click()
         else:
             print("Login button is not present, , proceeding with the next part of the code.")
 
     def click_Loginwith_Google(self):
         sleep(20)
-        self.poco(text="Continue with Google").click()
-        sleep(12)
+        if self.poco(text="Continue with Google").exists():
+            self.poco(text="Continue with Google").click()
+            sleep(12)
+        else:
+            self.poco.swipe((500, 200), (500, 1000))
+            sleep(4)
+            self.poco(text="Continue with Google").click()
+            sleep(12)
 
 
     def Loginwith_Added_Email_Id(self):
         sleep(9)
-        added_email= self.poco(text="SohoApp Testing")
+        added_email = self.poco(text="SohoApp Testing")
         if added_email.exists():
             added_email.click()
             sleep(15)
@@ -92,10 +98,9 @@ class Login_Screen:
             sleep(2)
 
     def Add_Account_To_Device(self):
-           sleep(3)
-           add_account_to_device = self.poco(text= "Add account to device")
-           add_account_to_device.click()
-
+        sleep(3)
+        add_account_to_device = self.poco(text="Add account to device")
+        add_account_to_device.click()
 
     def click_GooglemailId(self):
         sleep(4)
@@ -104,7 +109,6 @@ class Login_Screen:
         if google_mailid.exists():
             google_mailid.click()
             sleep(9)
-
 
     def Enter_Google_Password(self):
         enter_google_password = self.poco(self.Google_Password)
@@ -123,15 +127,14 @@ class Login_Screen:
             sleep(9)
             poco(text("Swdvt@#123"))
         else:
-           print("Next button is not present, proceeding with the next part of the code.")
-
+            print("Next button is not present, proceeding with the next part of the code.")
 
     def click_Password_Nextbtn(self):
         sleep(2)
         password_nextbtn = self.poco(self.Password_Nextbtn)
         if password_nextbtn.exists():
-           password_nextbtn.click()
-           sleep(8)
+            password_nextbtn.click()
+            sleep(8)
         else:
             print("Next button is not present, proceeding with the next part of the code.")
 
@@ -164,12 +167,22 @@ class Login_Screen:
 
     def click_Login_With_Email_Tab(self):
         sleep(9)
-        zebra_login= self.poco(text="Sign In with your email")
-        zebra_login.click()
-        sleep(2)
-        poco(text(""))
-        poco(text("Zebra01.swdvt@icloud.com"))
-        sleep(1)
+        zebra_login = self.poco(text="Sign In with your email")
+        if zebra_login.exists():
+            zebra_login.click()
+            sleep(2)
+            poco(text(""))
+            poco(text("Zebra01.swdvt@icloud.com"))
+            sleep(1)
+        else:
+            self.poco.swipe((500, 200), (500, 1000))
+            sleep(4)
+            zebra_login.click()
+            sleep(2)
+            poco(text(""))
+            poco(text("Zebra01.swdvt@icloud.com"))
+            sleep(1)
+
 
     def click_UserName_TextField(self):
         username = self.poco(text="Continue with Google")
@@ -179,7 +192,7 @@ class Login_Screen:
         sleep(1)
         # poco.scroll()
         sleep(1)
-        self.poco(name="android.widget.EditText")[1].click()
+        self.poco(name="password").click()
         # password = self.poco(self.Password_Field)
         # password.click()
 
@@ -190,7 +203,7 @@ class Login_Screen:
 
     def click_SignIn_Button(self):
         sleep(1)
-        self.poco("android.widget.Button")[1].click()
+        self.poco(name="submit_id").click()
         sleep(10)
 
     def Check_loginBtn_IS_Present(self):
@@ -205,9 +218,8 @@ class Login_Screen:
             print("Login Button is not enabled.")
             return False
 
-
     def Enter_Zebra_Password(self):
-        password = self.poco("android.widget.EditText")[1]
+        password = self.poco(name="password")
         password.set_text("Testing@12345")
 
     def click_Continue_On_Facebbok_Login_Page(self):
@@ -216,6 +228,3 @@ class Login_Screen:
         if a.exists():
             a.click()
             print(a)
-
-
-

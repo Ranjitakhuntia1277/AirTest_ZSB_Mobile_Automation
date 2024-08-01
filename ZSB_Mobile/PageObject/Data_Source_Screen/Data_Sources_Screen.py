@@ -286,11 +286,12 @@ class Data_Sources_Screen:
 
     def clickContinue(self):
         try:
-            self.poco(self.Continue, enabled=True).wait_for_appearance(timeout=20)
+            sleep(20)
             self.poco(self.Continue).click()
         except:
-            self.poco("CONTINUE", enabled=True).wait_for_appearance(timeout=20)
-            self.poco("CONTINUE").click()
+            sleep(10)
+            self.poco(name="continueBtn").click()
+
 
     def clickContinueWeb(self):
         self.poco(text="Continue").wait_for_appearance(timeout=10)
