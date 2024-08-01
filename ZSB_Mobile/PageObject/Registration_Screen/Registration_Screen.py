@@ -110,9 +110,10 @@ class Registration_Screen:
             raise Exception("Page to enter verification code did not appear. ")
 
     def Enter_Username_password_recovery_page(self, email):
-        self.poco("android.widget.EditText").set_text(email)
+        self.poco(name="email").set_text(email)
 
     def click_SUBMIT(self):
+        sleep(2)
         self.poco(text="SUBMIT").click()
 
     def check_submit_is_clickable(self):
@@ -286,7 +287,7 @@ class Registration_Screen:
 
     def check_email_already_exists_page_title(self):
         try:
-            self.wait_for_element_appearance_text("ZSB Printer Account Already Exist.")
+            self.wait_for_element_appearance_text("ZSB Account Already Exist.")
         except:
             raise Exception("Email already exists message did not appear.")
 
@@ -338,12 +339,12 @@ class Registration_Screen:
             if self.poco("com.android.chrome:id/coordinator"):
                 self.poco("com.android.chrome:id/coordinator").click()
             keyevent("Enter")
-            self.poco("android.widget.EditText")[0].wait_for_appearance(timeout=10)
-            self.poco("android.widget.EditText")[0].set_text(user_name)
+            self.poco("username").wait_for_appearance(timeout=10)
+            self.poco("username").set_text(user_name)
             keyevent("Enter")
             # keyevent("back")
-        self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
-        self.poco("android.widget.EditText")[1].set_text(password)
+        self.poco("password").wait_for_appearance(timeout=10)
+        self.poco("password").set_text(password)
         # self.poco(text="Sign In").click()
         keyevent("Enter")
         sleep(2)
@@ -877,3 +878,78 @@ class Registration_Screen:
         while not self.poco("Log Out").exists() and count!=0:
             self.poco.scroll()
             count-=1
+
+    def Verify_SignIn_Page(self):
+        sleep(15)
+        a=self.poco(name="Sign In")
+        if a.exists():
+           a.get_name()
+        else:
+            raise Exception("Did not return to login page.")
+
+    def Verify_We_Didnot_recognize_Please_Try_Again(self):
+        sleep(5)
+        self.poco(text="We didn't recognize the username or password you entered. Please try again.").get_name()
+
+
+    def Verify_SignInwith_Page(self):
+        sleep(15)
+        a=self.poco(text="Sign In With")
+        if a.exists():
+           a.get_name()
+        else:
+            raise Exception("Did not return to login page.")
+
+    def Enter_Wrong_UserName(self):
+            sleep(9)
+            zebra_login = self.poco(text="Sign In with your email")
+            if zebra_login.exists():
+                zebra_login.click()
+                sleep(2)
+                self.poco(text(""))
+                self.poco(text("soho_dvtxxxxx@hotmail.com"))
+                sleep(1)
+            else:
+                self.poco.swipe((500, 200), (500, 1000))
+                sleep(4)
+                zebra_login.click()
+                sleep(2)
+                self.poco(text(""))
+                self.poco(text("soho_dvtxxxxx@hotmail.com"))
+                sleep(1)
+
+    def Enter_Wrong_Password(self):
+            sleep(1)
+            # poco.scroll()
+            sleep(1)
+            self.poco(name="password").click()
+            password = self.poco(name="password")
+            password.set_text("Testing@12345")
+            sleep(1)
+
+    def Enter_Correct_Username(self):
+        sleep(9)
+        zebra_login = self.poco(text="Sign In with your email")
+        if zebra_login.exists():
+            zebra_login.click()
+            sleep(2)
+            self.poco(text(""))
+            self.poco(text("zebra07.swdvt@gmail.com"))
+            sleep(1)
+        else:
+            self.poco.swipe((500, 200), (500, 1000))
+            sleep(4)
+            zebra_login.click()
+            sleep(2)
+            self.poco(text(""))
+            self.poco(text("zebra07.swdvt@gmail.com"))
+            sleep(1)
+
+    def Enter_Correct_Password(self):
+        sleep(1)
+        # poco.scroll()
+        sleep(1)
+        self.poco(name="password").click()
+        password = self.poco(name="password")
+        password.set_text("Zebra#123456789")
+        sleep(1)

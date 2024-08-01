@@ -90,7 +90,7 @@ def test_PrinterManagement_TestcaseID_47785():
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     """Click three dot menu of target printer"""
-    deletingPrinterName = printer_management_page.clickThreeDotMenu()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
     """Click on delete printer"""
     printer_management_page.clickDelete()
     """Verify first Delete dialog pop up window"""
@@ -114,22 +114,22 @@ def test_PrinterManagement_TestcaseID_47785():
     printer_management_page.clickDoneOption()
     common_method.wait_for_element_appearance("Home", 15)
     """Check if printer is decommissioned"""
-    printer_management_page.checkIfPrinterIsDecommissioned(deletingPrinterName)
+    app_settings_page.Verify_Printer_Is_Not_Displaying()
     common_method.Stop_The_App()
 
 
 def test_PrinterManagement_TestcaseID_47882():
     pass
-    # common_method.tearDown()
-    # common_method.Clear_App()
-    # common_method.Start_The_App()
-    # login_page.click_loginBtn()
-    # login_page.click_LoginAllow_Popup()
-    # login_page.click_Allow_ZSB_Series_Popup()
-    # login_page.click_Loginwith_Google()
-    # login_page.Loginwith_Added_Email_Id()
+    common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     """Click three dot menu of target printer"""
-    printer_management_page.clickThreeDotMenu()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
     sleep(5)
     """Click on delete printer"""
     printer_management_page.clickDelete()

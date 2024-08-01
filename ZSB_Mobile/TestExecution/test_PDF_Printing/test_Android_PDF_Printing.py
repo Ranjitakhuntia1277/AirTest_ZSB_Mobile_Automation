@@ -35,7 +35,7 @@ common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 pdf_printing = PDF_Printing_Screen(poco)
 """"""""""Printer should be added in Google account-zebra21.dvt@gmail.com
-Password: Swdvt@#123""""""
+Password: Swdvt@#123"""
 # delete_account.switch_to_different_app()
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -597,6 +597,7 @@ def test_Android_PDF_Printing_TestcaseID_45829():
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
+    pdf_printing.click_End_Range_Filed()
     pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Default_End_Range_Filed()
     pdf_printing.click_Print_Option_On_PDF_Printing()
@@ -792,13 +793,6 @@ def test_Android_PDF_Printing_TestcaseID_45837():
     login_page.click_Allow_ZSB_Series_Popup()
     pdf_printing.Verify_Print_Preview_page()
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-#
-def test_Android_PDF_Printing_TestcaseID_45838():
-    """	ZSB Serial login but not run on back ground, from Third App open PDF """""
-
-    """Blocked due to SMBM-640 SMBM-681 SMBM-792 & SMBM-2808"""
 
 
 def test_Android_PDF_Printing_TestcaseID_45840():
@@ -1372,7 +1366,7 @@ def test_Android_PDF_Printing_TestcaseID_47952():
     common_method.Turn_Off_The_Phone()
     sleep(2)
     common_method.Turn_ON_The_Phone()
-    poco.scroll()
+    ### poco.scroll()
     pdf_printing.Verify_Print_Preview_page()
 
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

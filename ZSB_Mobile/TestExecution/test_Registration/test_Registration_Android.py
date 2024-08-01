@@ -65,29 +65,19 @@ def test_Registration_TestcaseID_45855():
     """No RETURN TO LOGIN button."""
     """Click Continue"""
     data_sources_page.clickContinue()
-    try:
-        registration_page.wait_for_element_appearance("Sign In", 10)
-    except:
-        raise Exception("Did not return to login page.")
+    registration_page.Verify_SignIn_Page()
     common_method.Stop_The_App()
-
+# ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Registration_TestcaseID_45859():
     pass
     common_method.tearDown()
     registration_page.clickSignIn()
-    data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("soho_dvtxxxxx@hotmail.com", "soho_dvtxxxxx@hotmail.com", 1, 0, True)
-    try:
-        registration_page.wait_for_element_appearance_text(
-            "We didn't recognize the username or password you entered. Please try again.")
-    except:
-        raise Exception(
-            "\"We didn't recognize the username or password you entered. Please try again.\" message did not appear.")
-    try:
-        registration_page.wait_for_element_appearance_text("Sign In With")
-    except:
-        raise Exception("Page not at Login with username.")
+    registration_page.Enter_Wrong_UserName()
+    registration_page.Enter_Wrong_Password()
+    login_page.click_SignIn_Button()
+    registration_page.Verify_We_Didnot_recognize_Please_Try_Again()
+    registration_page.Verify_SignInwith_Page()
     common_method.Stop_The_App()
 
 
@@ -96,26 +86,20 @@ def test_Registration_TestcaseID_45860():
 
     common_method.tearDown()
     registration_page.clickSignIn()
+    registration_page.Enter_Correct_Username()
+    registration_page.Enter_Wrong_Password()
+    login_page.click_SignIn_Button()
+    registration_page.Verify_We_Didnot_recognize_Please_Try_Again()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#1234567890", 1, 0, True)
-    sleep(3)
-    try:
-        registration_page.wait_for_element_appearance_text(
-            "We didn't recognize the username or password you entered. Please try again.")
-    except:
-        raise Exception(
-            "Error message : \"We didn't recognize the username or password you entered. Please try again.\" not shown")
-    data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0, False, True)
+    registration_page.Enter_Correct_Username()
+    registration_page.Enter_Correct_Password()
+    login_page.click_SignIn_Button()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
     registration_page.click_log_out_button()
-    try:
-        registration_page.wait_for_element_appearance("Sign In", 5)
-    except:
-        raise Exception("Did not redirect to the login page")
+    registration_page.Verify_SignIn_Page()
     common_method.Stop_The_App()
 
 
@@ -198,10 +182,6 @@ def test_Registration_TestcaseID_45868():
     help_page.verify_url("https://signup.zebra.com/content/userreg/reset-password-landing.html")
     sleep(2)
     registration_page.Enter_Username_password_recovery_page("zebra06.swdvt@gmail.com")
-    if registration_page.check_submit_is_clickable():
-        pass
-    else:
-        raise Exception("Submit is not clickable.")
     registration_page.click_SUBMIT()
     common_method.Stop_The_App()
 

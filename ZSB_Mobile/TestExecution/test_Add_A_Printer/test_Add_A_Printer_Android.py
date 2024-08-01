@@ -10,7 +10,7 @@ from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 import pytest
 from airtest.core.api import connect_device
-
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 
 
@@ -32,7 +32,7 @@ add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 pdf_printing_android = PDF_Printing_Screen(poco)
-
+registration_page = Registration_Screen(poco)
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1878,3 +1878,102 @@ def test_Addprinter_TestcaseID_53072():
     """"Stop the App"""
     common_method.Stop_The_App()
 # #####################""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Registration_TestcaseID_46303():
+    """""""""To test the ZSB Wi-Fi performance Setup"""""
+
+    """"1.Open the app and login the account to go to the overview page."""""
+    common_method.tearDown()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Add printer tab"""""
+    add_a_printer_screen.click_Add_A_Printer()
+    """"click on the start button"""
+    add_a_printer_screen.click_Start_Button()
+    login_page.click_Allow_ZSB_Series_Popup()
+    add_a_printer_screen.Click_Next_Button()
+    """"Verify searching for your printer text"""
+    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+    """"verify select your printer text"""
+    add_a_printer_screen.Verify_Select_your_printer_Text()
+    """"select 2nd printer which you want to add"""
+    add_a_printer_screen.click_2nd_Printer_Details_To_Add()
+    """""click on select button"""
+    add_a_printer_screen.Click_Next_Button()
+    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """Verify Connect Wi-fi Network Text"""
+    common_method.wait_for_element_appearance("Connect to Wi-Fi", 30)
+    common_method.wait_for_element_appearance("Discovered networks", 30)
+    """"click on connect button on connect wi-fi network screen"""
+    registration_page.connectToWIfi()
+    registration_page.enterPasswordWifi()
+    """Store the time till wi-fi turn green."""
+    time_taken = registration_page.timeTillWiFiGreen()
+    print(time_taken)
+    """"click on finish setup button"""
+    common_method.wait_for_element_appearance("Printer registration was successful", 30)
+    add_a_printer_screen.click_Finish_Setup_Button()
+    common_method.Stop_The_App()
+
+
+"""Add printer"""
+def test_Registration_TestcaseID_46307():
+    """""""""To verify that user is able to continue with the printer after login with the different register login"""""
+
+    """"1.Open the app and login the account to go to the overview page."""""
+    common_method.tearDown()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Add printer tab"""""
+    add_a_printer_screen.click_Add_A_Printer()
+    """"click on the start button"""
+    add_a_printer_screen.click_Start_Button()
+    login_page.click_Allow_ZSB_Series_Popup()
+    add_a_printer_screen.Click_Next_Button()
+    """"Verify searching for your printer text"""
+    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+    """"verify select your printer text"""
+    add_a_printer_screen.Verify_Select_your_printer_Text()
+    """"select 2nd printer which you want to add"""
+    add_a_printer_screen.click_2nd_Printer_Details_To_Add()
+    """""click on select button"""
+    add_a_printer_screen.Click_Next_Button()
+    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """Verify Connect Wi-fi Network Text"""
+    common_method.wait_for_element_appearance("Connect to Wi-Fi", 20)
+    common_method.wait_for_element_appearance("Discovered networks", 30)
+    """"click on connect button on connect wi-fi network screen"""
+    registration_page.connectToWIfi()
+    registration_page.enterPasswordWifi()
+    """wait till wi-fi turn green."""
+    registration_page.timeTillWiFiGreen()
+    """"click on finish setup button"""
+    common_method.wait_for_element_appearance("Printer registration was successful", 30)
+    add_a_printer_screen.click_Finish_Setup_Button()
+    common_method.Stop_The_App()
+# ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
