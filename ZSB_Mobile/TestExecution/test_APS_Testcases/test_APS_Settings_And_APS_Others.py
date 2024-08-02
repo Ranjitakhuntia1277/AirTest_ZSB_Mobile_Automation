@@ -31,7 +31,7 @@ others = Others
 aps_notification = APS_Notification(poco)
 
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49138():
+def test_APS_Settings_TestcaseID_49138():
     """Check the APS can be turn on/off"""
 
     common_method.tearDown()
@@ -129,7 +129,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49138():
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49185():
+def test_APS_Settings_TestcaseID_49185():
     """Check turn off APS then update install ZSB app, it’s still turn off"""
 
     common_method.tearDown()
@@ -170,7 +170,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49185():
 
 ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49784():
+def test_APS_Settings_TestcaseID_49784():
     """After print a test label , check printer labels left is correct in APS available devices list"""
 
     common_method.tearDown()
@@ -200,7 +200,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49784():
 
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-def test_APS_Settings_And_APS_Others_TestcaseID_49791():
+def test_APS_Settings_TestcaseID_49791():
     """Check the measure unit can be updated after change a different unit via change ZSB workspace settings - change to inch ,cm,mm"""
 
     common_method.tearDown()
@@ -293,10 +293,10 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49791():
     sleep(4)
 
 
-# ##"""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+##"""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49156():
+def test_APS_Others_TestcaseID_49156():
     """Check APS would be deleted after deleting ZSB Series app"""
 
     common_method.tearDown()
@@ -319,7 +319,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49156():
 # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49540():
+def test_APS_Others_TestcaseID_49540():
     """Check ZSB printers are fetched out in ZSB APS after keep ZSB APP idle for more than 1 day"""
     common_method.tearDown()
     common_method.Start_The_App()
@@ -342,7 +342,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49540():
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49788():
+def test_APS_Others_TestcaseID_49788():
     """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
 
     common_method.tearDown()
@@ -364,7 +364,7 @@ def test_APS_Settings_And_APS_Others_TestcaseID_49788():
 
 #     ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def test_APS_Settings_And_APS_Others_TestcaseID_49789():
+def test_APS_Others_TestcaseID_49789():
     """Check user can disable ZSB series print service and cannot fetch any Money badger printer"""
 
     common_method.tearDown()

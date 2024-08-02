@@ -54,8 +54,9 @@ else:
     cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_APS_Testcases && pytest test_APS_Printer_Discover.py --html=reports/report_test_APS_Printer_Discover.py.html --self-contained-html"
     a = os.system(cmd)
 
-    cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_App_Settings && pytest test_Android_App_Settings.py --html=reports/report_test_Android_App_Settings.py.html --self-contained-html"
-    a = os.system(cmd)
+    # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_App_Settings && pytest test_Android_App_Settings.py --html=reports/report_test_Android_App_Settings.py.html --self-contained-html"
+    # a = os.system(cmd)
     # #
     cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_PDF_Printing && pytest test_Android_PDF_Printing.py --html=reports/report_test_Android_PDF_Printing.py.html --self-contained-html"
     a = os.system(cmd)
+

@@ -368,7 +368,7 @@ def test_Template_Management_TestcaseID_45932():
     tm_a.test_Template_Management_TestcaseID_45932()
 
 
-#hello
+# hello
 
 """JayKirans Code"""
 """zebra02.swdvt@gmail.com"""
@@ -3187,11 +3187,13 @@ def test_Template_Management_TestcaseID_46014():
 
 
 def test_Template_Management_TestcaseID_45966():
-    """Scroll design list in My Designs with more than 100 designs"""
+    pass
+
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
-    registration_page.scroll_till_log_out()
+    while not poco("Log Out").exists():
+        poco.scroll()
     registration_page.click_log_out_button()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
@@ -3215,13 +3217,22 @@ def test_Template_Management_TestcaseID_45966():
                 count -= 1
         registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("Zebra#123456789", account)
-    data_sources_page.checkIfOnHomePage()
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
-    data_sources_page.check_if_showing_100_designs_text()
+    if poco(nameMatches="Showing 100 Designs").exists():
+        pass
+    else:
+        raise Exception("\"Showing 100 designs\" text is not displayed.")
     design_list = template_management_page.get_all_designs_in_my_designs(True)
-    template_management_page.check_there_are_less_than_100_designs()
+    if len(design_list) <= 100:
+        pass
+    else:
+        raise Exception("There are more than 100 designs.")
     template_management_page.scroll_my_designs("down")
     template_management_page.verify_designs_are_according_to_sort_order(design_list)
     """Step 5, 6 yet to do"""
@@ -3233,7 +3244,10 @@ def test_Template_Management_TestcaseID_45966():
     template_management_page.clickDeleteDesign()
     data_sources_page.checkIfDesignsLoaded()
     design_list = template_management_page.get_all_designs_in_my_designs(True)
-    template_management_page.check_there_are_less_than_100_designs()
+    if len(design_list) <= 100:
+        pass
+    else:
+        raise Exception("There are more than 100 designs.")
     template_management_page.scroll_my_designs("down")
     template_management_page.verify_designs_are_according_to_sort_order(design_list)
     """Step 5, 6 yet to do"""
@@ -3246,7 +3260,10 @@ def test_Template_Management_TestcaseID_45966():
     template_management_page.clickSave()
     data_sources_page.checkIfDesignsLoaded()
     design_list = template_management_page.get_all_designs_in_my_designs(True)
-    template_management_page.check_there_are_less_than_100_designs()
+    if len(design_list) <= 100:
+        pass
+    else:
+        raise Exception("There are more than 100 designs.")
     template_management_page.scroll_my_designs("down")
     template_management_page.verify_designs_are_according_to_sort_order(design_list)
     """Step 5, 6 yet to do"""
@@ -3669,7 +3686,8 @@ def test_Template_Management_TestcaseID_48266():
 
 
 def test_Template_Management_TestcaseID_45979():
-    """Search designs in My Designs with more than 100 designs in the list"""
+    pass
+
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -4096,16 +4114,7 @@ def test_Smoke_Test_TestcaseID_45892():
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Menu_HamburgerICN()
-    """Add design to delete it"""
-    add_a_printer_screen.click_Common_Design_Tab()
-    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
-    design_selected = add_a_printer_screen.click_FirstOne_In_Common_Design()
-    others_page.click_on_copy_to_my_designs()
-    app_settings_page.click_Keyboard_back_Icon()
-    """"""
-    login_page.click_Menu_HamburgerICN()
     app_settings_page.click_My_Design()
-    others_page.search_designs(design_selected + " copy")
     add_a_printer_screen.click_FirstOne_In_MyDesign()
     smoke_test_android.click_Delete_Button_On_MyDesign()
     smoke_test_android.click_Cancel_Button_On_Delete_Popup()

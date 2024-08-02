@@ -40,6 +40,8 @@ login_page = Login_Screen(poco)
 smoke_test_android = Smoke_Test_Android(poco)
 aps_notification = APS_Notification(poco)
 
+
+# ###bug id-SMBM-1127
 def test_PrinterManagement_TestcaseID_47920():
     pass
     data_sources_page.clearAppData()
@@ -48,14 +50,15 @@ def test_PrinterManagement_TestcaseID_47920():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra04.swdvt@gmail.com", "Zebra#123456789", 1, 0)
-    """verify if logged in successfully"""
-    data_sources_page.checkIfOnHomePage()
+    printer_management_page.Login_With_Email_Tab()
+    printer_management_page.click_Password_TextField()
+    printer_management_page.Enter_Zebra_Password()
+    printer_management_page.click_SignIn_Button()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Swipe up"""
-    scroll_view = poco("android.widget.ScrollView")
+    poco.scroll_view = poco("android.widget.ScrollView")
     """Set the maximum number of swipes to avoid an infinite loop"""
     poco.scroll()
     """Open Printer settings"""
@@ -87,7 +90,7 @@ def test_PrinterManagement_TestcaseID_47785():
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     """Click three dot menu of target printer"""
-    deletingPrinterName = printer_management_page.clickThreeDotMenu()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
     """Click on delete printer"""
     printer_management_page.clickDelete()
     """Verify first Delete dialog pop up window"""
@@ -111,15 +114,22 @@ def test_PrinterManagement_TestcaseID_47785():
     printer_management_page.clickDoneOption()
     common_method.wait_for_element_appearance("Home", 15)
     """Check if printer is decommissioned"""
-    printer_management_page.checkIfPrinterIsDecommissioned(deletingPrinterName)
+    app_settings_page.Verify_Printer_Is_Not_Displaying()
     common_method.Stop_The_App()
 
 
 def test_PrinterManagement_TestcaseID_47882():
     pass
     common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     """Click three dot menu of target printer"""
-    printer_management_page.clickThreeDotMenu()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
     sleep(5)
     """Click on delete printer"""
     printer_management_page.clickDelete()
@@ -154,7 +164,7 @@ def test_PrinterManagement_TestcaseID_47882():
 # ####"""""""""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-def test_Smoke_Test_TestcaseID_45888():
+def test_PrinterManagement_TestcaseID_45888():
     """	Check user can delete a printer from Mobile App"""
 
     common_method.tearDown()

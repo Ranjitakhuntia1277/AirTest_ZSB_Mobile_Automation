@@ -14,7 +14,8 @@ import platform
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join("OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\templates", a)
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+
 else:
     def Basic_path(a):
         return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
@@ -109,9 +110,10 @@ class Registration_Screen:
             raise Exception("Page to enter verification code did not appear. ")
 
     def Enter_Username_password_recovery_page(self, email):
-        self.poco("android.widget.EditText").set_text(email)
+        self.poco(name="email").set_text(email)
 
     def click_SUBMIT(self):
+        sleep(2)
         self.poco(text="SUBMIT").click()
 
     def check_submit_is_clickable(self):
@@ -285,7 +287,7 @@ class Registration_Screen:
 
     def check_email_already_exists_page_title(self):
         try:
-            self.wait_for_element_appearance_text("ZSB Printer Account Already Exist.")
+            self.wait_for_element_appearance_text("ZSB Account Already Exist.")
         except:
             raise Exception("Email already exists message did not appear.")
 
@@ -340,15 +342,18 @@ class Registration_Screen:
             self.poco("username").wait_for_appearance(timeout=10)
             self.poco("username").set_text(user_name)
             keyevent("Enter")
+            # keyevent("back")
         self.poco("password").wait_for_appearance(timeout=10)
         self.poco("password").set_text(password)
+        # self.poco(text="Sign In").click()
         keyevent("Enter")
         sleep(2)
         if click_on_sign_in:
             try:
                 self.poco("android.widget.Button")[1].click()
             except:
-                self.poco("submit_id").click()
+                x=1/0
+                self.poco(text="Sign In").click()
         if wrong_password:
             try:
                 self.poco("We didn't recognize the username or password you entered. Please try again.").wait_for_appearance(timeout=15)
@@ -372,6 +377,7 @@ class Registration_Screen:
             raise Exception("User does not exist' error did not show up even after entering a non registered email.")
 
     def click_accept(self):
+        sleep(3)
         self.poco("Accept").click()
 
     def click_decline(self):
@@ -390,15 +396,13 @@ class Registration_Screen:
         try:
             self.poco("Sign in with Google").click()
         except:
-            try:
-                self.poco("Continue with Google").click()
-            except:
-                touch(self.Google_Icon)
+            touch(self.Google_Icon)
         sleep(2)
 
     def click_Facebook_Icon(self):
         sleep(2)
-        touch(self.Facebook_Icon)
+        # touch(self.Facebook_Icon)
+        self.poco(name="Continue with Facebook").click()
         sleep(2)
 
     def click_Apple_Icon(self):
@@ -874,3 +878,78 @@ class Registration_Screen:
         while not self.poco("Log Out").exists() and count!=0:
             self.poco.scroll()
             count-=1
+
+    def Verify_SignIn_Page(self):
+        sleep(15)
+        a=self.poco(name="Sign In")
+        if a.exists():
+           a.get_name()
+        else:
+            raise Exception("Did not return to login page.")
+
+    def Verify_We_Didnot_recognize_Please_Try_Again(self):
+        sleep(5)
+        self.poco(text="We didn't recognize the username or password you entered. Please try again.").get_name()
+
+
+    def Verify_SignInwith_Page(self):
+        sleep(15)
+        a=self.poco(text="Sign In With")
+        if a.exists():
+           a.get_name()
+        else:
+            raise Exception("Did not return to login page.")
+
+    def Enter_Wrong_UserName(self):
+            sleep(9)
+            zebra_login = self.poco(text="Sign In with your email")
+            if zebra_login.exists():
+                zebra_login.click()
+                sleep(2)
+                self.poco(text(""))
+                self.poco(text("soho_dvtxxxxx@hotmail.com"))
+                sleep(1)
+            else:
+                self.poco.swipe((500, 200), (500, 1000))
+                sleep(4)
+                zebra_login.click()
+                sleep(2)
+                self.poco(text(""))
+                self.poco(text("soho_dvtxxxxx@hotmail.com"))
+                sleep(1)
+
+    def Enter_Wrong_Password(self):
+            sleep(1)
+            # poco.scroll()
+            sleep(1)
+            self.poco(name="password").click()
+            password = self.poco(name="password")
+            password.set_text("Testing@12345")
+            sleep(1)
+
+    def Enter_Correct_Username(self):
+        sleep(9)
+        zebra_login = self.poco(text="Sign In with your email")
+        if zebra_login.exists():
+            zebra_login.click()
+            sleep(2)
+            self.poco(text(""))
+            self.poco(text("zebra07.swdvt@gmail.com"))
+            sleep(1)
+        else:
+            self.poco.swipe((500, 200), (500, 1000))
+            sleep(4)
+            zebra_login.click()
+            sleep(2)
+            self.poco(text(""))
+            self.poco(text("zebra07.swdvt@gmail.com"))
+            sleep(1)
+
+    def Enter_Correct_Password(self):
+        sleep(1)
+        # poco.scroll()
+        sleep(1)
+        self.poco(name="password").click()
+        password = self.poco(name="password")
+        password.set_text("Zebra#123456789")
+        sleep(1)

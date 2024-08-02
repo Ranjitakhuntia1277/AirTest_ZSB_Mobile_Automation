@@ -7,7 +7,7 @@ from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen import Login_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
 from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
@@ -40,7 +40,7 @@ registration_page = Registration_Screen(poco)
 others = Others(poco)
 
 
-def test_Others_TestcaseID_45803(self):
+def test_Others_TestcaseID_45803():
     pass
 
     common_method.tearDown()
@@ -101,7 +101,7 @@ def test_Others_TestcaseID_45803(self):
     else:
         raise Exception("Printer is in offline state turn it on")
 
-def test_Others_TestcaseID_45804(self):
+def test_Others_TestcaseID_45804():
     pass
 
     stop_app("com.zebra.soho_app")
@@ -153,7 +153,7 @@ def test_Others_TestcaseID_45804(self):
         raise Exception("Printer is not in Online state")
 
 
-def test_Others_TestcaseID_45805(self):
+def test_Others_TestcaseID_45805():
     pass
     """Has bugs SMBM 1801 ,and 997"""
     stop_app("com.zebra.soho_app")

@@ -2,13 +2,13 @@ from airtest.core.api import connect_device, auto_setup, start_app, sleep, text,
 from poco.drivers.ios import iosPoco
 from self import self
 
-from ZSB_Mobile.Common_Method import Common_Method
-from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Settings_Screen_iOS
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
-from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Settings_Screen_iOS
+from ...PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
 from poco import poco
-# from ZSB_Mobile.conftest import Conftest
-from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
+# from ....conftest import Conftest
+from ...PageObject.Robofinger import test_robo_finger
 import pytest
 import pytest
 from airtest.core.api import connect_device
@@ -17,7 +17,7 @@ from airtest.core.api import connect_device
 class iOS_App_Settings:
     pass
 
-
+# uuid= "00008103-000C718814E3401E"
 uuid = "00008101-00051D400144001E"
 Bonding = connect_device("ios:///http+usbmux://" + uuid)
 poco = iosPoco(device=Bonding)

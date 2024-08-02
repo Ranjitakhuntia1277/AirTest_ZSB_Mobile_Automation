@@ -2,11 +2,11 @@
 import time
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Others.Others import Others
-from ZSB_Mobile.Common_Method import *
-from ZSB_Mobile.PageObject.Social_Login.Social_Login import Social_Login
-from ZSB_Mobile.sphere_db import *
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ...PageObject.Others.Others import Others
+from ...Common_Method import *
+from ...PageObject.Social_Login.Social_Login import Social_Login
+from ...sphere_db import *
 
 import os
 from ...TestSuite.store import *
@@ -24,7 +24,7 @@ others = Others(poco)
 common_method=Common_Method(poco)
 social_login = Social_Login(poco)
 
-def test_Others_TestcaseID_47948(self):
+def test_Others_TestcaseID_47948():
     pass
     stop_app("com.zebra.soho_app")
     start_app("com.zebra.soho_app")

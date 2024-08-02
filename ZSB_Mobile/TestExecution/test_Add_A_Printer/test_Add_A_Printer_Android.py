@@ -10,7 +10,7 @@ from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 import pytest
 from airtest.core.api import connect_device
-
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 
 
@@ -32,7 +32,7 @@ add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 pdf_printing_android = PDF_Printing_Screen(poco)
-
+registration_page = Registration_Screen(poco)
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -698,7 +698,8 @@ def test_Addprinter_TestcaseID_45665():
     add_a_printer_screen.Verify_Searching_for_wifi_networks_Text()
     """Verify there is no close icon"""""
     add_a_printer_screen.Verify_Close_Icon_Is_Not_Present()
-
+    """"Stop the App"""
+    common_method.Stop_The_App()
 
 # ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -761,6 +762,8 @@ def test_Addprinter_TestcaseID_45670_SemiAuto():
     common_method.Show_popup_To_Navigate_Till_PrinterDiscovery_Page_Manually()
     """""Check the the target printer is not displayed on the "Select your printer" page"""
     common_method.Show_popup_To_Verify_Target_Printer_Is_Not_Displaying_On_Select_Your_PrinterPage_Manually()
+    """"Stop the App"""
+    common_method.Stop_The_App()
     # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1028,6 +1031,8 @@ def test_Addprinter_TestcaseID_45682():
     add_a_printer_screen.click_Cancel_Button_ON_Join_Network()
     """Verify it would still at the "Select your Wifi Network" page"""
     add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+    """"Stop the App"""
+    common_method.Stop_The_App()
     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1081,7 +1086,8 @@ def test_Addprinter_TestcaseID_47714_SemiAuto():
     add_a_printer_screen.Verify_Unable_To_Pair_Your_Printer()
     """"Check it would take less then 45 seconds to pair printer Manually"""
     common_method.Show_popup_To_Verify_It_Should_Take_less_than_45_Seconds_to_pair_printer_Manually()
-
+    """"Stop the App"""
+    common_method.Stop_The_App()
 
 #     ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1135,9 +1141,11 @@ def test_Addprinter_TestcaseID_47715_SemiAuto():
     add_a_printer_screen.Verify_Unable_To_Pair_Your_Printer()
     """"Check it would take less then 45 seconds to pair printer Manually"""
     common_method.Show_popup_To_Verify_It_Should_Take_less_than_45_Seconds_to_pair_printer_Manually()
-
+    """"Stop the App"""
+    common_method.Stop_The_App()
 
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 
 def test_Addprinter_TestcaseID_48436():
@@ -1337,7 +1345,8 @@ def test_Addprinter_TestcaseID_48693():
     add_a_printer_screen.Verify_The_Signal_Strength_UI()
     """"4. Verify the signal Strength UI. The same should be shown in full strength in greyed out 
     This has been removed"""
-
+    """"Stop the App"""
+    common_method.Stop_The_App()
 
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1559,6 +1568,8 @@ def test_Addprinter_TestcaseID_53210_SemiAuto():
     common_method.Show_popup_To_Verify_NewFonts_And_Style_Of_Internet_Access_Popup_Manually()
     """"" Check "Firmware update Error" error message would be prompted with new fonts and style Manually"""
     common_method.Show_popup_To_Verify_Firmware_Update_Error_With_NewFonts_And_Style_Manually()
+    """"Stop the App"""
+    common_method.Stop_The_App()
 # ######""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1606,6 +1617,8 @@ def test_Addprinter_TestcaseID_53211_SemiAuto():
     add_a_printer_screen.Verify_Unable_To_Connect_To_Printer_Popup()
     """""Verify the Unable To Connect to Printer page fonts & Style"""
     common_method.Show_popup_To_Verify_Unable_To_Connect_To_Printer_page_with_new_fonts_and_Style()
+    """"Stop the App"""
+    common_method.Stop_The_App()
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1684,6 +1697,8 @@ def test_Addprinter_TestcaseID_53212_SemiAuto():
     add_a_printer_screen.Verify_Unable_To_Connect_To_Printer_Popup()
     """""Verify the Unable To Connect to Printer page fonts & Style"""
     common_method.Show_popup_To_Verify_Unable_To_Connect_To_Printer_page_with_new_fonts_and_Style()
+    """"Stop the App"""
+    common_method.Stop_The_App()
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1754,6 +1769,8 @@ def test_Addprinter_TestcaseID_53213_SemiAuto():
     """""""Check fail to connect the printer page prompted with the new fonts and styles"""""""
     """"Verify the new fonts and styles"""""
     common_method.Show_popup_To_Verify_Unable_To_Connect_To_Printer_page_with_new_fonts_and_Style()
+    """"Stop the App"""
+    common_method.Stop_The_App()
 #   #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1792,6 +1809,8 @@ def test_Addprinter_TestcaseID_53214_SemiAuto():
     sleep(4)
     """"Check the Bluetooth permission dialog display correctly with the new fonts and styles Manually"""
     common_method.Show_popup_To_Verify_Bluetooth_Permission_Popup_With_New_Design_On_The_Device_Manually()
+    """"Stop the App"""
+    common_method.Stop_The_App()
     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def test_Addprinter_TestcaseID_53069():
@@ -1824,6 +1843,8 @@ def test_Addprinter_TestcaseID_53069():
     add_a_printer_screen.click_Exit_Btn_On_Exit_Printer_Setup()
     """3.Check the slide left page appear on home page(it will navigate to home page)"""""
     add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+    """"Stop the App"""
+    common_method.Stop_The_App()
 #    #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1854,4 +1875,105 @@ def test_Addprinter_TestcaseID_53072():
     """""6. Logout from the mobile app and check the login splash screen is displayed as mentioned in the step 3."""
     common_method.Clear_App()
     login_page.Verify_SignIn_Button_Is_Present()
+    """"Stop the App"""
+    common_method.Stop_The_App()
 # #####################""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Registration_TestcaseID_46303():
+    """""""""To test the ZSB Wi-Fi performance Setup"""""
+
+    """"1.Open the app and login the account to go to the overview page."""""
+    common_method.tearDown()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Add printer tab"""""
+    add_a_printer_screen.click_Add_A_Printer()
+    """"click on the start button"""
+    add_a_printer_screen.click_Start_Button()
+    login_page.click_Allow_ZSB_Series_Popup()
+    add_a_printer_screen.Click_Next_Button()
+    """"Verify searching for your printer text"""
+    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+    """"verify select your printer text"""
+    add_a_printer_screen.Verify_Select_your_printer_Text()
+    """"select 2nd printer which you want to add"""
+    add_a_printer_screen.click_2nd_Printer_Details_To_Add()
+    """""click on select button"""
+    add_a_printer_screen.Click_Next_Button()
+    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """Verify Connect Wi-fi Network Text"""
+    common_method.wait_for_element_appearance("Connect to Wi-Fi", 30)
+    common_method.wait_for_element_appearance("Discovered networks", 30)
+    """"click on connect button on connect wi-fi network screen"""
+    registration_page.connectToWIfi()
+    registration_page.enterPasswordWifi()
+    """Store the time till wi-fi turn green."""
+    time_taken = registration_page.timeTillWiFiGreen()
+    print(time_taken)
+    """"click on finish setup button"""
+    common_method.wait_for_element_appearance("Printer registration was successful", 30)
+    add_a_printer_screen.click_Finish_Setup_Button()
+    common_method.Stop_The_App()
+
+
+"""Add printer"""
+def test_Registration_TestcaseID_46307():
+    """""""""To verify that user is able to continue with the printer after login with the different register login"""""
+
+    """"1.Open the app and login the account to go to the overview page."""""
+    common_method.tearDown()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Add printer tab"""""
+    add_a_printer_screen.click_Add_A_Printer()
+    """"click on the start button"""
+    add_a_printer_screen.click_Start_Button()
+    login_page.click_Allow_ZSB_Series_Popup()
+    add_a_printer_screen.Click_Next_Button()
+    """"Verify searching for your printer text"""
+    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+    """"verify select your printer text"""
+    add_a_printer_screen.Verify_Select_your_printer_Text()
+    """"select 2nd printer which you want to add"""
+    add_a_printer_screen.click_2nd_Printer_Details_To_Add()
+    """""click on select button"""
+    add_a_printer_screen.Click_Next_Button()
+    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """"accept Bluetooth pairing popup 1"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
+    """"accept Bluetooth pairing popup 2"""
+    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
+    """Verify Connect Wi-fi Network Text"""
+    common_method.wait_for_element_appearance("Connect to Wi-Fi", 20)
+    common_method.wait_for_element_appearance("Discovered networks", 30)
+    """"click on connect button on connect wi-fi network screen"""
+    registration_page.connectToWIfi()
+    registration_page.enterPasswordWifi()
+    """wait till wi-fi turn green."""
+    registration_page.timeTillWiFiGreen()
+    """"click on finish setup button"""
+    common_method.wait_for_element_appearance("Printer registration was successful", 30)
+    add_a_printer_screen.click_Finish_Setup_Button()
+    common_method.Stop_The_App()
+# ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
