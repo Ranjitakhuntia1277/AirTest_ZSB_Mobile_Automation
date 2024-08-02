@@ -1505,6 +1505,12 @@ class Data_Sources_Screen:
         else:
             raise Exception("Designs not loaded.")
 
+    def check_if_showing_100_designs_text(self):
+        if self.poco(nameMatches="Showing 100 Designs").exists():
+            pass
+        else:
+            raise Exception("\"Showing 100 designs\" text is not displayed.")
+
     def verifyPreviewShownIsCorrect(self):
         assert_exists(self.test_45738, "Preview shown is correct.")
 
@@ -1577,10 +1583,10 @@ class Data_Sources_Screen:
         sleep(3)
         self.poco("com.android.chrome:id/menu_button").click()
         try:
-            self.poco(textMatches=".*Clear browsing data.*").click()
+            self.poco(textMatches=".* browsing data.*").click()
         except:
             self.poco(text="History").click()
-            self.poco(textMatches=".*Clear browsing data.*").click()
+            self.poco(textMatches=".* browsing data.*").click()
         try:
             self.poco("com.android.chrome:id/quick_delete_more_options").click()
         except:
@@ -1592,7 +1598,12 @@ class Data_Sources_Screen:
             self.poco(text="Clear").click()
         except:
             pass
-        self.poco("com.android.chrome:id/close_menu_id").click()
+        if self.poco(text="Also clear data from these sites?").exists():
+            self.poco(text="Delete").click()
+        try:
+            self.poco("com.android.chrome:id/close_menu_id").click()
+        except:
+            pass
 
     def clickOk(self):
         try:

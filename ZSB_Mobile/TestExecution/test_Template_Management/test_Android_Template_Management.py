@@ -3578,11 +3578,15 @@ class test_Android_Template_Management:
         common_method.wait_for_element_appearance_namematches("Showing")
         """Give the name of existing design here"""
         name = template_management.get_first_design_in_my_designs()
+        print(name)
         name = template_management.get_names_of_design_in_search_designs([name])[0]
-
+        print(name)
         names = template_management.get_ith_design_by_index_in_my_designs(2)
+        print(names)
         names = template_management.get_names_of_design_in_search_designs([names])[0]
+        print(names)
         full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(names, 1)
+        print(full_name)
         template_management.click_on_rename_button()
         template_management.enter_text_in_rename_design(name)
         if template_management.check_error_for_invalid_characters_in_rename_design():
@@ -4621,9 +4625,9 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46012(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.tearDown()
+        # common_method.wait_for_element_appearance_namematches("Home")
+        sleep(10)
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
         for text in temp[:2]:
@@ -4648,7 +4652,7 @@ class test_Android_Template_Management:
             template_management.check_search_designs_text()
 
             template_management.search_designs(t, 0)
-            template_management.wait_for_element_appearance_name_matches_all("1 result")
+            template_management.check_if_search_results_appear()
             a = template_management.get_all_search_results_in_search_designs()
             print(a)
             if len(a) != 1:
@@ -4699,7 +4703,7 @@ class test_Android_Template_Management:
             template_management.check_search_designs_text()
 
             template_management.search_designs(t, 0)
-            template_management.wait_for_element_appearance_name_matches_all("1 result")
+            template_management.check_if_search_results_appear()
             a = template_management.get_all_search_results_in_search_designs()
             print(a)
             matched_names = template_management.get_names_of_design_in_search_designs(a)
@@ -6047,16 +6051,14 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45964(self):
         pass
 
+        common_method.tearDown()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         sleep(1)
 
-        try:
-            template_management.get_all_designs_in_my_designs()
-            raise Exception("designs are present")
-        except:
-            pass
-
+        designs = template_management.get_all_designs_in_my_designs()
+        if len(designs) > 0:
+            raise Exception("designs are present in this account.")
         if not template_management.check_no_designs_present_text():
             raise Exception("proper message not displayed for empty designs in my designs")
 

@@ -6492,10 +6492,7 @@ def test_Template_Management_TestcaseID_45966():
         start_time = time.time()
 
         data_sources_page.checkIfDesignsLoaded()
-        if poco(nameMatches="Showing 100 Designs").exists():
-            pass
-        else:
-            raise Exception("\"Showing 100 designs\" text is not displayed.")
+        data_sources_page.check_if_showing_100_designs_text()
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -6506,10 +6503,7 @@ def test_Template_Management_TestcaseID_45966():
         start_time = time.time()
 
         design_list = template_management_page.get_all_designs_in_my_designs(True)
-        if len(design_list) <= 100:
-            pass
-        else:
-            raise Exception("There are more than 100 designs.")
+        template_management_page.check_there_are_less_than_100_designs()
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -6556,10 +6550,7 @@ def test_Template_Management_TestcaseID_45966():
         template_management_page.clickDeleteDesign()
         data_sources_page.checkIfDesignsLoaded()
         design_list = template_management_page.get_all_designs_in_my_designs(True)
-        if len(design_list) <= 100:
-            pass
-        else:
-            raise Exception("There are more than 100 designs.")
+        template_management_page.check_there_are_less_than_100_designs()
         template_management_page.scroll_my_designs("down")
         template_management_page.verify_designs_are_according_to_sort_order(design_list)
         template_management_page.scroll_my_designs()
@@ -6579,10 +6570,7 @@ def test_Template_Management_TestcaseID_45966():
         template_management_page.clickSave()
         data_sources_page.checkIfDesignsLoaded()
         design_list = template_management_page.get_all_designs_in_my_designs(True)
-        if len(design_list) <= 100:
-            pass
-        else:
-            raise Exception("There are more than 100 designs.")
+        template_management_page.check_there_are_less_than_100_designs()
         template_management_page.scroll_my_designs("down")
         template_management_page.verify_designs_are_according_to_sort_order(design_list)
         """Step 5, 6 yet to do"""

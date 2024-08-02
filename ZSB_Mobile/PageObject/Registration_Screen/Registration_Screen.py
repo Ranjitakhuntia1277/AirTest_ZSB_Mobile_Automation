@@ -14,8 +14,7 @@ import platform
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
-
+        return os.path.join("OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\templates", a)
 else:
     def Basic_path(a):
         return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
@@ -338,21 +337,18 @@ class Registration_Screen:
             if self.poco("com.android.chrome:id/coordinator"):
                 self.poco("com.android.chrome:id/coordinator").click()
             keyevent("Enter")
-            self.poco("android.widget.EditText")[0].wait_for_appearance(timeout=10)
-            self.poco("android.widget.EditText")[0].set_text(user_name)
+            self.poco("username").wait_for_appearance(timeout=10)
+            self.poco("username").set_text(user_name)
             keyevent("Enter")
-            # keyevent("back")
-        self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
-        self.poco("android.widget.EditText")[1].set_text(password)
-        # self.poco(text="Sign In").click()
+        self.poco("password").wait_for_appearance(timeout=10)
+        self.poco("password").set_text(password)
         keyevent("Enter")
         sleep(2)
         if click_on_sign_in:
             try:
                 self.poco("android.widget.Button")[1].click()
             except:
-                x=1/0
-                self.poco(text="Sign In").click()
+                self.poco("submit_id").click()
         if wrong_password:
             try:
                 self.poco("We didn't recognize the username or password you entered. Please try again.").wait_for_appearance(timeout=15)
@@ -394,7 +390,10 @@ class Registration_Screen:
         try:
             self.poco("Sign in with Google").click()
         except:
-            touch(self.Google_Icon)
+            try:
+                self.poco("Continue with Google").click()
+            except:
+                touch(self.Google_Icon)
         sleep(2)
 
     def click_Facebook_Icon(self):

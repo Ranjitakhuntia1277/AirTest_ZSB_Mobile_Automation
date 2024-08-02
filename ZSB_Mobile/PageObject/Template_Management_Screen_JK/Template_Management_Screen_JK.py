@@ -170,6 +170,13 @@ class Template_Management_Screen:
             self.poco.swipe([0.5, 0.5], [0.5, 0.9])
         return label_sizes
 
+    def check_there_are_less_than_100_designs(self):
+        design_list = self.get_all_designs_in_my_designs(True)
+        if len(design_list) <= 100:
+            pass
+        else:
+            raise Exception("There are more than 100 designs.")
+
     def filter_options(self, length=False):
 
         filter_option_list = []

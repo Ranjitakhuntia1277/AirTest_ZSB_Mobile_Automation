@@ -45,12 +45,11 @@ def test_DataSources_TestcaseID_45729():
     pass
 
     """Google Login"""
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    """Sign in"""
-    registration_page.clickSignIn()
-    data_sources_page.signInWithEmail()
+    # data_sources_page.clearAppData()
+    # data_sources_page.allowPermissions()
+    # """Sign in"""
+    # registration_page.clickSignIn()
+    # data_sources_page.signInWithEmail()
     registration_page.complete_sign_in_with_email("zebra03.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
