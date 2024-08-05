@@ -1,4 +1,3 @@
-from platform import platform
 import datetime
 import re
 import pytest
@@ -11,12 +10,18 @@ from airtest.core.api import device as current_device
 import os
 from ZSB_Mobile.PageObject.Login_Screen import Login_Screen_Android
 import subprocess
+import platform
 
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join(os.path.expanduser('~'),
+                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
+                            a)
 
-def Basic_path(a):
-    return os.path.join(os.path.expanduser('~'),
-                        "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
-                        a)
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
+
 
 
 common_method = Common_Method(poco)
@@ -960,6 +965,8 @@ class Template_Management_Android:
         return a or b
 
     def wait_in_common_designs_until_load(self):
+        if self.poco("android.widget.EditText").get_text() is not None:
+            self.poco("android.widget.EditText").child("android.widget.Button").click()
         regex_pattern = "(?s).*Address.*"
 
         self.poco(nameMatches=regex_pattern).wait_for_appearance(timeout=20)

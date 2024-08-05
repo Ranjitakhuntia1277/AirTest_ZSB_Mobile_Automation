@@ -233,6 +233,12 @@ class Data_Sources_Screen:
             "android.widget.Button")
         three_dots.click()
 
+    def add_new_tab_in_browser(self):
+        try:
+            self.poco("com.android.chrome:id/new_tab_view_button").click()
+        except:
+            self.poco(text="New tab").click()
+
     def clickRemove(self):
         remove_btn = self.poco(self.Remove_Btn)
         remove_btn.click()
