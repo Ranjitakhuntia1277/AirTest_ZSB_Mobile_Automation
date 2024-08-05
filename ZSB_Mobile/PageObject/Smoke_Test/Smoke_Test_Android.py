@@ -216,7 +216,7 @@ class Smoke_Test_Android:
         sleep(4)
         Print_Button = self.poco(self.Print_Button)
         Print_Button.click()
-        sleep(8)
+        sleep(10)
 
     def Add_Multiple_Copies_Number(self):
         sleep(5)
@@ -227,12 +227,13 @@ class Smoke_Test_Android:
     def click_And_Enter_Copies_Number_Field(self):
         sleep(1)
         poco.scroll()
-        Copies_Number_Field = self.poco(name="android.widget.EditText")
+        Copies_Number_Field = self.poco(name="android.widget.EditText")[-1]
         Copies_Number_Field.click()
         sleep(1)
         Copies_Number_Field.set_text(" ")
         sleep(1)
         Copies_Number_Field.set_text("3")
+        keyevent("Enter")
 
     def click_On_Copies_Filed(self):
         sleep(8)

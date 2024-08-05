@@ -14,7 +14,9 @@ import platform
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+        return os.path.join(os.path.expanduser('~'),
+                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
+                            a)
 
 else:
     def Basic_path(a):
@@ -376,6 +378,12 @@ class Registration_Screen:
         else:
             raise Exception("User does not exist' error did not show up even after entering a non registered email.")
 
+    def check_if_user_navigated_to_sign_in_page(self):
+        sleep(10)
+        if not self.poco(text="Sign in with Google").exists():
+            raise Exception("Did not navigate to Sign In with google page")
+        sleep(2)
+
     def click_accept(self):
         sleep(3)
         self.poco("Accept").click()
@@ -394,9 +402,15 @@ class Registration_Screen:
     def click_Google_Icon(self):
         sleep(2)
         try:
+            print("!")
             self.poco("Sign in with Google").click()
         except:
-            touch(self.Google_Icon)
+            print("@")
+            try:
+                self.poco("Continue with Google").click()
+            except:
+                print("3")
+                touch(self.Google_Icon)
         sleep(2)
 
     def click_Facebook_Icon(self):

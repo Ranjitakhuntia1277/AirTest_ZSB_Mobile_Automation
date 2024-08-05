@@ -456,10 +456,7 @@ def test_Template_Management_TestcaseID_46015():
         data_sources_page.allowPermissions()
         registration_page.clickSignIn()
         registration_page.click_Google_Icon()
-        try:
-            registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-        except:
-            raise Exception("Did not navigate to Sign In with google page")
+        registration_page.check_if_user_navigated_to_sign_in_page()
         account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
@@ -571,10 +568,7 @@ def test_Template_Management_TestcaseID_46015():
         sleep(2)
         poco("com.android.chrome:id/tab_switcher_button").click()
         sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
+        data_sources_page.add_new_tab_in_browser()
         sleep(2)
         poco(text="Search or type URL").click()
         sleep(2)
@@ -902,10 +896,7 @@ def test_Template_Management_TestcaseID_46029():
         data_sources_page.allowPermissions()
         registration_page.clickSignIn()
         registration_page.click_Google_Icon()
-        try:
-            registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-        except:
-            raise Exception("Did not navigate to Sign In with google page")
+        registration_page.check_if_user_navigated_to_sign_in_page()
         account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
@@ -1008,10 +999,7 @@ def test_Template_Management_TestcaseID_46029():
         sleep(2)
         poco("com.android.chrome:id/tab_switcher_button").click()
         sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
+        data_sources_page.add_new_tab_in_browser()
         sleep(2)
         poco(text="Search or type URL").click()
         sleep(2)
@@ -1285,10 +1273,7 @@ def test_Template_Management_TestcaseID_47791():
         # sleep(2)
         # poco("com.android.chrome:id/tab_switcher_button").click()
         # sleep(2)
-        # try:
-        #     poco("com.android.chrome:id/new_tab_view_button").click()
-        # except:
-        #     poco(text="New tab").click()
+        # data_sources_page.add_new_tab_in_browser()
         # sleep(2)
         # poco(text="Search or type URL").click()
         # sleep(2)
@@ -3117,10 +3102,7 @@ def test_Template_Management_TestcaseID_46027():
         data_sources_page.allowPermissions()
         registration_page.clickSignIn()
         registration_page.click_Google_Icon()
-        try:
-            registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-        except:
-            raise Exception("Did not navigate to Sign In with google page")
+        registration_page.check_if_user_navigated_to_sign_in_page()
         account = "zebra02.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
@@ -3803,10 +3785,7 @@ def test_Template_Management_TestcaseID_46026():
         # sleep(2)
         # poco("com.android.chrome:id/tab_switcher_button").click()
         # sleep(2)
-        # try:
-        #     poco("com.android.chrome:id/new_tab_view_button").click()
-        # except:
-        #     poco(text="New tab").click()
+        # data_sources_page.add_new_tab_in_browser()
         # sleep(2)
         # poco(text="Search or type URL").click()
         # sleep(2)
@@ -6253,17 +6232,9 @@ def test_Template_Management_TestcaseID_46014():
         start_time = time.time()
 
         template_management_page.search_design_common_designs(search_text[i])
-        try:
-            poco(nameMatches="(?s).*result").wait_for_appearance(timeout=20)
-        except:
-            raise Exception("Drop down not present.")
+        template_management_page.check_if_drop_down_list_open()
         """Cannot automate step 5b.Verify the matched keyword is in blue font. - has to be verified manually"""
-        drop_down_list = template_management_page.get_all_search_results_in_search_designs()
-        for result in drop_down_list:
-            if search_text[i] in result:
-                pass
-            else:
-                raise Exception("Drop down list contains results that do not contain the search keyword")
+        template_management_page.check_if_drop_down_list_contains_results_that_include_search_keyword(search_text[i])
         template_management_page.check_dropdown_options_Are_clickable()
         template_management_page.checkNumberOfDesignsMatchingDropDown()
 
@@ -6394,17 +6365,10 @@ def test_Template_Management_TestcaseID_46014():
         start_time = time.time()
 
         template_management_page.search_design_common_designs(search_text[i])
-        try:
-            poco(nameMatches="(?s).*result").wait_for_appearance(timeout=20)
-        except:
-            raise Exception("Drop down not present.")
+        template_management_page.check_if_drop_down_list_open()
         """Cannot automate step 5b.Verify the matched keyword is in blue font. - has to be verified manually"""
-        drop_down_list = template_management_page.get_all_search_results_in_search_designs()
-        for result in drop_down_list:
-            if search_text[i] in result:
-                pass
-            else:
-                raise Exception("Drop down list contains results that do not contain the search keyword")
+
+        template_management_page.check_if_drop_down_list_contains_results_that_include_search_keyword(search_text[i])
         help_page.clickBackArrow()
         common_method.Stop_The_App()
 
@@ -6459,10 +6423,7 @@ def test_Template_Management_TestcaseID_45966():
         registration_page.click_log_out_button()
         registration_page.clickSignIn()
         registration_page.click_Google_Icon()
-        try:
-            registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-        except:
-            raise Exception("Did not navigate to Sign In with google page")
+        registration_page.check_if_user_navigated_to_sign_in_page()
         account = "zebra04.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
@@ -6492,10 +6453,7 @@ def test_Template_Management_TestcaseID_45966():
         start_time = time.time()
 
         data_sources_page.checkIfDesignsLoaded()
-        if poco(nameMatches="Showing 100 Designs").exists():
-            pass
-        else:
-            raise Exception("\"Showing 100 designs\" text is not displayed.")
+        data_sources_page.check_if_showing_100_designs_text()
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -6506,10 +6464,7 @@ def test_Template_Management_TestcaseID_45966():
         start_time = time.time()
 
         design_list = template_management_page.get_all_designs_in_my_designs(True)
-        if len(design_list) <= 100:
-            pass
-        else:
-            raise Exception("There are more than 100 designs.")
+        template_management_page.check_there_are_less_than_100_designs(design_list)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -6556,10 +6511,7 @@ def test_Template_Management_TestcaseID_45966():
         template_management_page.clickDeleteDesign()
         data_sources_page.checkIfDesignsLoaded()
         design_list = template_management_page.get_all_designs_in_my_designs(True)
-        if len(design_list) <= 100:
-            pass
-        else:
-            raise Exception("There are more than 100 designs.")
+        template_management_page.check_there_are_less_than_100_designs(design_list)
         template_management_page.scroll_my_designs("down")
         template_management_page.verify_designs_are_according_to_sort_order(design_list)
         template_management_page.scroll_my_designs()
@@ -6579,10 +6531,7 @@ def test_Template_Management_TestcaseID_45966():
         template_management_page.clickSave()
         data_sources_page.checkIfDesignsLoaded()
         design_list = template_management_page.get_all_designs_in_my_designs(True)
-        if len(design_list) <= 100:
-            pass
-        else:
-            raise Exception("There are more than 100 designs.")
+        template_management_page.check_there_are_less_than_100_designs(design_list)
         template_management_page.scroll_my_designs("down")
         template_management_page.verify_designs_are_according_to_sort_order(design_list)
         """Step 5, 6 yet to do"""
@@ -6642,10 +6591,7 @@ def test_Template_Management_TestcaseID_46037():
         sleep(2)
         poco("com.android.chrome:id/tab_switcher_button").click()
         sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
+        data_sources_page.add_new_tab_in_browser()
         sleep(2)
         poco(text="Search or type URL").click()
         sleep(2)
@@ -6669,10 +6615,7 @@ def test_Template_Management_TestcaseID_46037():
         scroll_view = poco("android.view.View")
         while poco(text="This is where you can access all of your saved designs.").exists():
             scroll_view.swipe("up")
-        if template_management_page.verify_My_Designs_pagination():
-            pass
-        else:
-            raise Exception("All templates did not show up with pagination")
+        template_management_page.verify_My_Designs_pagination()
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
@@ -6702,11 +6645,7 @@ def test_Template_Management_TestcaseID_46037():
         stop_app("com.android.chrome")
         data_sources_page.checkIfDesignsLoaded()
         new_design_count = len(template_management_page.get_all_designs_in_my_designs())
-        if new_design_count == initial_design_count + 1:
-            pass
-        else:
-            error = f"{new_design_count} is not equal to {initial_design_count}+1"
-            raise Exception(error)
+        template_management_page.check_if_design_count_incremented_by_1(new_design_count, initial_design_count)
         """Step 5 check template total number add one pending"""
         """Search and select design created in web"""
         data_sources_page.searchMyDesigns(designName)
@@ -6720,8 +6659,7 @@ def test_Template_Management_TestcaseID_46037():
         start_time = time.time()
         data_sources_page.selectDesignCreatedAtSetUp()
         data_sources_page.clickPrint()
-        while not poco("Print").exists():
-            poco.scroll()
+        data_sources_page.scroll_till_print()
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
@@ -6897,11 +6835,7 @@ def test_Template_Management_TestcaseID_46039():
         start_time = time.time()
         data_sources_page.checkIfDesignsLoaded()
         new_design_count = len(template_management_page.get_all_designs_in_my_designs())
-        if new_design_count == initial_design_count + 1:
-            pass
-        else:
-            error = f"{new_design_count} is not equal to {initial_design_count}+1({initial_design_count + 1})"
-            raise Exception(error)
+        template_management_page.check_if_design_count_incremented_by_1(new_design_count, initial_design_count)
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
@@ -7027,11 +6961,7 @@ def test_Template_Management_TestcaseID_46040():
         data_sources_page.clickMyDesigns()
         data_sources_page.checkIfDesignsLoaded()
         new_design_count = len(template_management_page.get_all_designs_in_my_designs())
-        if new_design_count == initial_design_count + 1:
-            pass
-        else:
-            error = f"{new_design_count} is not equal to {initial_design_count}+1({initial_design_count + 1})"
-            raise Exception(error)
+        template_management_page.check_if_design_count_incremented_by_1(new_design_count, initial_design_count)
         data_sources_page.searchMyDesigns(design_name)
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -7102,10 +7032,7 @@ def test_Template_Management_TestcaseID_46041():
         sleep(2)
         poco("com.android.chrome:id/tab_switcher_button").click()
         sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
+        data_sources_page.add_new_tab_in_browser()
         sleep(2)
         poco(text="Search or type URL").click()
         sleep(2)
@@ -7130,10 +7057,7 @@ def test_Template_Management_TestcaseID_46041():
         scroll_view = poco("android.view.View")
         while poco(text="This is where you can access all of your saved designs.").exists():
             scroll_view.swipe("up")
-        if template_management_page.verify_My_Designs_pagination():
-            pass
-        else:
-            raise Exception("All templates did not show up with pagination")
+        template_management_page.verify_My_Designs_pagination()
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
@@ -7156,11 +7080,7 @@ def test_Template_Management_TestcaseID_46041():
         stop_app("com.android.chrome")
         data_sources_page.checkIfDesignsLoaded()
         new_design_count = template_management_page.get_showing_n_designs_number()
-        if new_design_count == initial_design_count + 1:
-            pass
-        else:
-            error = f"{new_design_count} is not equal to {initial_design_count}+1"
-            raise Exception(error)
+        template_management_page.check_if_design_count_incremented_by_1(new_design_count, initial_design_count)
         data_sources_page.searchMyDesigns(design_selected)
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -7314,10 +7234,7 @@ def test_Template_Management_TestcaseID_48266():
         sleep(2)
         poco("com.android.chrome:id/tab_switcher_button").click()
         sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
+        data_sources_page.add_new_tab_in_browser()
         sleep(2)
         poco(text="Search or type URL").click()
         sleep(2)
@@ -7499,16 +7416,8 @@ def test_Template_Management_TestcaseID_45979():
         search_keyword = "4_Address"
         data_sources_page.searchMyDesigns(search_keyword, False)
         sleep(5)
-        if template_management_page.check_suggestion_window_in_common_design():
-            pass
-        else:
-            raise Exception("Drop down list did not appear.")
-        drop_down_list = template_management_page.get_all_search_results_in_search_designs()
-        for i in drop_down_list:
-            if search_keyword in i:
-                pass
-            else:
-                raise Exception("Drop down list contains results that do not contain the search keyword")
+        template_management_page.check_if_drop_down_list_close()
+        template_management_page.check_if_drop_down_list_contains_results_that_include_search_keyword(search_keyword)
         template_management_page.check_dropdown_options_Are_clickable()
 
         exec_time = (time.time() - start_time) / 60
@@ -7520,17 +7429,14 @@ def test_Template_Management_TestcaseID_45979():
         start_time = time.time()
 
         selected_design = template_management_page.click_drop_down_result_1(True)
-        if template_management_page.check_suggestion_window_in_common_design():
-            raise Exception("Drop down list did not appear.")
-        else:
-            pass
+        template_management_page.check_if_drop_down_list_open()
         data_sources_page.checkIfDesignsLoaded()
         displayed_list = template_management_page.get_all_designs_in_my_designs()
         if len(displayed_list) == 1:
             if displayed_list[0] == selected_design:
                 pass
             else:
-                "Selected result not present."
+                raise Exception("Selected result not present.")
         else:
             raise Exception("Showing more than one design.")
         if int(template_management_page.get_showing_n_designs_number()) == 1:
@@ -7611,10 +7517,7 @@ def test_Template_Management_TestcaseID_45965():
         registration_page.click_log_out_button()
         registration_page.clickSignIn()
         registration_page.click_Google_Icon()
-        try:
-            registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
-        except:
-            raise Exception("Did not navigate to Sign In with google page")
+        registration_page.check_if_user_navigated_to_sign_in_page()
         account = "zebra06.swdvt@gmail.com"
         if template_management_page.checkIfAccPresent(account):
             help_page.chooseAcc(account)
@@ -7739,13 +7642,13 @@ def test_Template_Management_TestcaseID_45965():
             data_sources_page.checkIfDesignsLoaded()
             design_info = template_management_page.getDesignInfo(design)
             if "Last print" in design_info:
-                raise Exception("No Last print date in designs from precondition 2.")
+                raise Exception("There is last print date in designs from precondition 2.")
         for design in design_precondition3:
             data_sources_page.searchMyDesigns(design)
             data_sources_page.checkIfDesignsLoaded()
             design_info = template_management_page.getDesignInfo(design)
             if "Last print" in design_info:
-                raise Exception("No Last print date in designs from precondition 3.")
+                raise Exception("There is last print date in designs from precondition 3.")
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -7757,10 +7660,7 @@ def test_Template_Management_TestcaseID_45965():
 
         template_management_page.verify_design_manipulation_for_all_designs()
         data_sources_page.selectDesignCreatedAtSetUp()
-        try:
-            template_management_page.verify_design_manipulation_options()
-        except:
-            raise Exception("Design manipulation options \"Print, Rename, Duplicate, Delete\" not present.")
+        template_management_page.verify_design_manipulation_options_in_design_menu()
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -7770,6 +7670,9 @@ def test_Template_Management_TestcaseID_45965():
         # Step 11: Click outside the design. Verify the design menu is closed
         start_time = time.time()
 
+        template_management_page.click_scrim()
+        template_management_page.check_design_menu_closed()
+
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
@@ -7777,8 +7680,6 @@ def test_Template_Management_TestcaseID_45965():
 
         # Step 12: Scroll up and down the list. Verify the designs are displayed properly
         start_time = time.time()
-
-        template_management_page.click_scrim()
 
         sleep(10)
 

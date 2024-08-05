@@ -658,7 +658,9 @@ class Others:
         first_design.click()
 
     def click_on_copy_to_my_designs(self):
+        sleep(2)
         self.poco(self.copy_to_my_designs).click()
+        sleep(3)
 
     def click_on_my_designs(self):
         self.poco(self.my_designs_button).click()

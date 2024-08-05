@@ -437,7 +437,7 @@ class Add_A_Printer_Screen:
         back_button.click()
 
     def click_SecondOne_In_MyDesign(self):
-        sleep(2)
+        sleep(3)
         self.poco("android.view.View").child(type="android.widget.ImageView")[1].click()
         sleep(1)
 
@@ -451,7 +451,10 @@ class Add_A_Printer_Screen:
 
     def click_FirstOne_In_Common_Design(self):
         sleep(5)
+        design_name = self.poco("android.view.View").child(type="android.widget.ImageView")[0].get_name().split("\n")[0]
         self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
+        sleep(3)
+        return design_name
 
     def Click_Next_Button(self):
         sleep(1)
