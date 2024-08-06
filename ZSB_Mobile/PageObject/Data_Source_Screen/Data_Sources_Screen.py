@@ -860,10 +860,33 @@ class Data_Sources_Screen:
         if self.poco(text="Not now").exists():
             self.poco(text="Not now").click()
 
+    def clickSignIn(self):
+        sleep(2)
+        signInBtn = self.poco("Sign In")
+        signInBtn.click()
+        if self.poco("Allow").exists():
+            self.poco("Allow").click()
+        elif self.poco(text="Allow").exists():
+            self.poco(text="Allow").click()
+        sleep(4)
+
+    def close_app_reopen_and_click_sign_in(self):
+        packagename = "com.zebra.soho_app"
+        stop_app(packagename)
+        sleep(1)
+        start_app(packagename)
+        sleep(5)
+        self.allowPermissions()
+        self.clickSignIn()
+
     def signInWithEmail(self):
+        pocoEle = self.poco(text="Sign In with your email")
         try:
-            self.poco("Sign In with your email").wait_for_appearance(timeout=20)
-            self.poco("Sign In with your email").click()
+            if pocoEle.exists():
+                pocoEle.click()
+            else:
+                self.close_app_reopen_and_click_sign_in()
+                pocoEle.click()
             print("Successfully clicked Sign In With Email")
         except PocoNoSuchNodeException:
             print("Sign In with Email option not found!\n Test Continues...")
