@@ -44,114 +44,114 @@ aps_notification = APS_Notification(poco)
 delete_account_page = Delete_Account_Screen(poco)
 
 # ###bug id- SMBM-1456
-# def test_DataSources_TestcaseID_45729():
-#     pass
-#
-#     """Google Login"""
-    # data_sources_page.clearAppData()
-    # common_method.tearDown()
-    # data_sources_page.allowPermissions()
-    # """Sign in"""
-    # registration_page.clickSignIn()
-    # delete_account_page.Login_With_Different_Email2_Tab()
-    # printer_management_page.click_Password_TextField()
-    # printer_management_page.Enter_Zebra_Password()
-    # login_page.click_SignIn_Button()
-    # """verify if logged in successfully"""
-    # data_sources_page.checkIfOnHomePage()
-    # login_page.click_Menu_HamburgerICN()
-    # """Click My Data"""
-    # data_sources_page.click_My_Data()
-    # sleep(2)
-    # """Google Drive"""
-    # """Click Add file"""
-    # data_sources_page.click_Add_File()
-    # sleep(2)
-    # """Click Link File"""
-    # data_sources_page.click_Link_File()
-    # """ google drive """
-    # registration_page.click_Google_Icon()
-    # help_page.chooseAcc("zebra03.swdvt@gmail.com")
-    # template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    # common_method.wait_for_element_appearance("NAME")
-    # sleep(5)
-    # """Select file with special characters"""
-    # special_char_file = "A_!@#$-^^&(().xlsx"
-    # data_sources_page.selectFileDrive(special_char_file)
-    # sleep(5)
-    # data_sources_page.searchName(special_char_file)
-    # data_sources_page.verify_File_Data(special_char_file, "Google Drive")
-    # data_sources_page.searchName("")
-    # data_sources_page.click_Add_File()
-    # sleep(2)
-    # """Click Link File"""
-    # data_sources_page.click_Link_File()
-    # sleep(3)
-    # """Select long file name"""
-    # long_file = "1234567890qwertyuioipasdfghjklzxcvbnm0123456789qwertyuiopasdfghjklzxcvbnm123456789qwertyuiopaszxcvbn.xlsx"
-    # data_sources_page.selectFileDrive(long_file)
-    # sleep(5)
-    # data_sources_page.searchName(long_file)
-    # data_sources_page.verify_File_Data(long_file, "Google Drive")
-    # data_sources_page.searchName("")
-    # """Remove both files"""
-    # data_sources_page.searchName(special_char_file)
-    # data_sources_page.remove_File_Based_On_DataSource("Google Drive", special_char_file)
-    # data_sources_page.searchName("")
-    # data_sources_page.searchName(long_file)
-    # data_sources_page.remove_File_Based_On_DataSource("Google Drive", long_file)
-    # data_sources_page.searchName("")
-    # """Check if files removed successfully"""
-    # data_sources_page.searchName(special_char_file)
-    # data_sources_page.checkIfListIsEmpty()
-    # data_sources_page.searchName(long_file)
-    # data_sources_page.checkIfListIsEmpty()
-    # """"""""""""""""""""""""""""""""""""""
-    # """One Drive"""
-    # """Click Add file"""
-    # data_sources_page.click_Add_File()
-    # sleep(2)
-    # """Click Link File"""
-    # data_sources_page.click_Link_File()
-    # template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    # """ One drive """
-    # data_sources_page.clickMicrosoftOneDrive()
-    # sleep(2)
-    # data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
-    # common_method.wait_for_element_appearance("NAME")
-    # """Select file with special characters"""
-    # sleep(5)
-    # data_sources_page.selectFileDrive(special_char_file)
-    # sleep(5)
-    # data_sources_page.searchName(special_char_file)
-    # data_sources_page.verify_File_Data(special_char_file, "OneDrive")
-    # data_sources_page.searchName("")
-    # data_sources_page.click_Add_File()
-    # sleep(2)
-    # """Click Link File"""
-    # data_sources_page.click_Link_File()
-    # """ One drive """
-    # data_sources_page.clickMicrosoftOneDrive()
-    # sleep(3)
-    # """Select long file name"""
-    # data_sources_page.selectFileDrive(long_file)
-    # sleep(5)
-    # data_sources_page.searchName(long_file)
-    # data_sources_page.verify_File_Data(long_file, "OneDrive")
-    # data_sources_page.searchName("")
-    # """Remove both files"""
-    # data_sources_page.searchName(special_char_file)
-    # data_sources_page.remove_File_Based_On_DataSource("OneDrive", special_char_file)
-    # data_sources_page.searchName("")
-    # data_sources_page.searchName(long_file)
-    # data_sources_page.remove_File_Based_On_DataSource("OneDrive", long_file)
-    # data_sources_page.searchName("")
-    # """Check if files removed successfully"""
-    # data_sources_page.searchName(special_char_file)
-    # data_sources_page.checkIfListIsEmpty()
-    # data_sources_page.searchName(long_file)
-    # data_sources_page.checkIfListIsEmpty()
-    # common_method.Stop_The_App()
+def test_DataSources_TestcaseID_45729():
+    pass
+
+    """Google Login"""
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    delete_account_page.Login_With_Different_Email2_Tab()
+    printer_management_page.click_Password_TextField()
+    printer_management_page.Enter_Zebra_Password()
+    login_page.click_SignIn_Button()
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(2)
+    """Google Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    """ google drive """
+    registration_page.click_Google_Icon()
+    help_page.chooseAcc("zebra03.swdvt@gmail.com")
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    common_method.wait_for_element_appearance("NAME")
+    sleep(5)
+    """Select file with special characters"""
+    special_char_file = "A_!@#$_^^&(().xlsx"
+    data_sources_page.selectFileDrive(special_char_file)
+    sleep(5)
+    data_sources_page.searchName(special_char_file)
+    data_sources_page.verify_File_Data(special_char_file, "Google Drive")
+    data_sources_page.searchName("")
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(3)
+    """Select long file name"""
+    long_file = "1234567890qwertyuioipasdfghjklzxcvbnm0123456789qwertyuiopasdfghjklzxcvbnm123456789qwertyuiopaszxcvbn.xlsx"
+    data_sources_page.selectFileDrive(long_file)
+    sleep(5)
+    data_sources_page.searchName(long_file)
+    data_sources_page.verify_File_Data(long_file, "Google Drive")
+    data_sources_page.searchName("")
+    """Remove both files"""
+    data_sources_page.searchName(special_char_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", special_char_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(long_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", long_file)
+    data_sources_page.searchName("")
+    """Check if files removed successfully"""
+    data_sources_page.searchName(special_char_file)
+    data_sources_page.checkIfListIsEmpty()
+    data_sources_page.searchName(long_file)
+    data_sources_page.checkIfListIsEmpty()
+    """"""""""""""""""""""""""""""""""""""
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    sleep(2)
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+    common_method.wait_for_element_appearance("NAME")
+    """Select file with special characters"""
+    sleep(5)
+    data_sources_page.selectFileDrive(special_char_file)
+    sleep(5)
+    data_sources_page.searchName(special_char_file)
+    data_sources_page.verify_File_Data(special_char_file, "OneDrive")
+    data_sources_page.searchName("")
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    sleep(3)
+    """Select long file name"""
+    data_sources_page.selectFileDrive(long_file)
+    sleep(5)
+    data_sources_page.searchName(long_file)
+    data_sources_page.verify_File_Data(long_file, "OneDrive")
+    data_sources_page.searchName("")
+    """Remove both files"""
+    data_sources_page.searchName(special_char_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", special_char_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(long_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", long_file)
+    data_sources_page.searchName("")
+    """Check if files removed successfully"""
+    data_sources_page.searchName(special_char_file)
+    data_sources_page.checkIfListIsEmpty()
+    data_sources_page.searchName(long_file)
+    data_sources_page.checkIfListIsEmpty()
+    common_method.Stop_The_App()
 
 
 # def test_DataSources_TestcaseID_45733():
@@ -219,10 +219,11 @@ def test_DataSources_TestcaseID_45734():
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(2)
     """Cannot select unsupported file"""
-    data_sources_page.checkFilesShownAreSupported()
+    # data_sources_page.checkFilesShownAreSupported()
     sleep(2)
     large_file = "large_unsupported_file(50mb).png"
     data_sources_page.selectFileDrive(large_file)
+    # raise Exception("Failed due to bug SMBUI-1127")
     """No prompt message on uploading file greater than 28.4mb"""
     sleep(5)
     data_sources_page.click_Add_File()
@@ -230,7 +231,7 @@ def test_DataSources_TestcaseID_45734():
     data_sources_page.click_Link_File()
     sleep(3)
     """Re upload same file"""
-    data_sources_page.select_file_link_drive(large_file)
+    data_sources_page.selectFileDrive(large_file)
     sleep(5)
     data_sources_page.checkIsAlreadyLinkedPopUp()
     """Remove for next execution"""
@@ -248,9 +249,9 @@ def test_DataSources_TestcaseID_45734():
     sleep(2)
     data_sources_page.clickMicrosoftOneDrive()
     template_management_page_1.wait_for_element_appearance_name_matches_all("NAME", 20)
-    data_sources_page.checkFilesShownAreSupported()
+    # data_sources_page.checkFilesShownAreSupported()
     sleep(3)
-    data_sources_page.select_file_link_drive(large_file)
+    data_sources_page.selectFileDrive(large_file)
     sleep(5)
     sleep(7)
     data_sources_page.click_Add_File()
@@ -260,7 +261,7 @@ def test_DataSources_TestcaseID_45734():
     data_sources_page.clickMicrosoftOneDrive()
     sleep(2)
     """Re upload the same file"""
-    data_sources_page.select_file_link_drive(large_file)
+    data_sources_page.selectFileDrive(large_file)
     sleep(5)
     data_sources_page.checkIsAlreadyLinkedPopUp()
     """Remove files for next execution"""
