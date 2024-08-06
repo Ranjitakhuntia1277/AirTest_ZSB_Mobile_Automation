@@ -385,25 +385,8 @@ def test_Template_Management_TestcaseID_46015():
     registration_page.click_Google_Icon()
     registration_page.check_if_user_navigated_to_sign_in_page()
     account = "zebra02.swdvt@gmail.com"
-    if template_management_page.checkIfAccPresent(account):
-        help_page.chooseAcc(account)
-    else:
-        count = 5
-        while not poco(text="Use another account").exists() and count != 0:
-            poco.scroll()
-            count -= 1
-        login_page.click_GooglemailId()
-        if poco(text="Signed in to Google as").exists():
-            count = 5
-            while not poco(text="Add account to device").exists() and count != 0:
-                poco.scroll()
-                count -= 1
-        registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    help_page.chooseAcc(account)
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
     sleep(3)
@@ -606,25 +589,8 @@ def test_Template_Management_TestcaseID_46029():
     registration_page.click_Google_Icon()
     registration_page.check_if_user_navigated_to_sign_in_page()
     account = "zebra02.swdvt@gmail.com"
-    if template_management_page.checkIfAccPresent(account):
-        help_page.chooseAcc(account)
-    else:
-        count = 5
-        while not poco(text="Use another account").exists() and count != 0:
-            poco.scroll()
-            count -= 1
-        login_page.click_GooglemailId()
-        if poco(text="Signed in to Google as").exists():
-            count = 5
-            while not poco(text="Add account to device").exists() and count != 0:
-                poco.scroll()
-                count -= 1
-        registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    help_page.chooseAcc(account)
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -662,9 +628,7 @@ def test_Template_Management_TestcaseID_46029():
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     count = 5
-    while not poco("Print").exists() and count != 0:
-        poco.scroll()
-        count -= 1
+    data_sources_page.scroll_till_print()
     number_of_labels = int(template_management_page.get_total_labels_printing())
     if number_of_labels == 1:
         pass
@@ -728,10 +692,7 @@ def test_Template_Management_TestcaseID_46029():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
     sleep(5)
     data_sources_page.verifyIfPreviewIsPresent()
-    count = 5
-    while not poco("Print").exists() and count != 0:
-        poco.scroll()
-        count -= 1
+    data_sources_page.scroll_till_print()
     number_of_labels = int(template_management_page.get_total_labels_printing())
     if number_of_labels == 2:
         pass
@@ -1615,25 +1576,8 @@ def test_Template_Management_TestcaseID_46027():
     registration_page.click_Google_Icon()
     registration_page.check_if_user_navigated_to_sign_in_page()
     account = "zebra02.swdvt@gmail.com"
-    if template_management_page.checkIfAccPresent(account):
-        help_page.chooseAcc(account)
-    else:
-        count = 5
-        while not poco(text="Use another account").exists() and count != 0:
-            poco.scroll()
-            count -= 1
-        login_page.click_GooglemailId()
-        if poco(text="Signed in to Google as").exists():
-            count = 5
-            while not poco(text="Add account to device").exists() and count != 0:
-                poco.scroll()
-                count -= 1
-        registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
-    try:
-        registration_page.wait_for_element_appearance("Home", 15)
-    except:
-        raise Exception("home page dint show up")
+    help_page.chooseAcc(account)
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Data"""

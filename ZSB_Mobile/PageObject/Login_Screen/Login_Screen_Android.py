@@ -228,3 +228,10 @@ class Login_Screen:
         if a.exists():
             a.click()
             print(a)
+
+    def Refresh_The_Page(self):
+        sleep(1)
+        start_x, start_y = 540, 400
+        end_x, end_y = 540, 1200
+        swipe((start_x, start_y), (end_x, end_y), duration=0.5)
+        poco.swipe((500, 200), (500, 1000))
