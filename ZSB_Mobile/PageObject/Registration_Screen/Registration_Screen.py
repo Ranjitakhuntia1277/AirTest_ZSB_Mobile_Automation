@@ -9,7 +9,7 @@ from airtest.core.api import *
 # import pytest
 # from pipes import Template
 from poco import poco
-from poco.exceptions import PocoTargetTimeout
+from poco.exceptions import PocoTargetTimeout, PocoNoSuchNodeException
 import platform
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
@@ -331,36 +331,6 @@ class Registration_Screen:
     def click_on_sign_in_with_email(self):
         sign_in_with_email = self.poco("android.widget.Button")
         sign_in_with_email.click()
-
-    def complete_sign_in_with_email(self, user_name, password, click_on_sign_in=1, click_back=1, wrong_password=False,
-                                    enter_only_password=False):
-
-        if click_back:
-            keyevent("back")
-        if not enter_only_password:
-            if self.poco("com.android.chrome:id/coordinator"):
-                self.poco("com.android.chrome:id/coordinator").click()
-            keyevent("Enter")
-            self.poco("username").wait_for_appearance(timeout=10)
-            self.poco("username").set_text(user_name)
-            keyevent("Enter")
-            # keyevent("back")
-        self.poco("password").wait_for_appearance(timeout=10)
-        self.poco("password").set_text(password)
-        # self.poco(text="Sign In").click()
-        keyevent("Enter")
-        sleep(2)
-        if click_on_sign_in:
-            try:
-                self.poco("android.widget.Button")[1].click()
-            except:
-                x=1/0
-                self.poco(text="Sign In").click()
-        if wrong_password:
-            try:
-                self.poco("We didn't recognize the username or password you entered. Please try again.").wait_for_appearance(timeout=15)
-            except:
-                raise Exception("Error message not displayed for wrong password.")
 
     def click_on_profile_edit(self):
         sleep(3)
@@ -960,4 +930,85 @@ class Registration_Screen:
         password = self.poco(name="password")
         password.set_text("Zebra#123456789")
         sleep(1)
+
+    def sign_in_with_mail_zebra07(self):
+        self.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+
+    def sign_in_with_mail_zebra03(self):
+        self.complete_sign_in_with_email("zebra03.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+
+    def sign_in_with_mail_zebra02(self):
+        self.complete_sign_in_with_email("zebra02.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+
+    def allowPermissions(self):
+        try:
+            self.poco(text="While using the app").wait_for_appearance(timeout=15)
+            self.poco(text="While using the app").click()
+        except:
+            pass
+
+    def close_app_reopen_and_click_sign_in(self):
+        packagename = "com.zebra.soho_app"
+        stop_app(packagename)
+        sleep(1)
+        start_app(packagename)
+        sleep(5)
+        self.allowPermissions()
+        self.clickSignIn()
+
+    def signInWithEmail(self):
+        pocoEle = self.poco(text="Sign In with your email")
+        try:
+            if pocoEle.exists():
+                pocoEle.click()
+            else:
+                self.close_app_reopen_and_click_sign_in()
+                pocoEle.click()
+            print("Successfully clicked Sign In With Email")
+        except PocoNoSuchNodeException:
+            print("Sign In with Email option not found!\n Test Continues...")
+            raise Exception("Sign In with Email option not found!\n Test Failed")
+        except Exception as e:
+            self.poco(text="Sign In with your email").wait_for_appearance(timeout=20)
+            self.poco(text="Sign In with your email").click()
+            print("Successfully clicked Sign In With Email")
+        sleep(2)
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
+        sleep(2)
+
+    def complete_sign_in_with_email(self, user_name, password, click_on_sign_in=1, click_back=1, wrong_password=False,
+                                    enter_only_password=False):
+        if click_back:
+            keyevent("back")
+        if not enter_only_password:
+            if self.poco("com.android.chrome:id/coordinator"):
+                self.poco("com.android.chrome:id/coordinator").click()
+            keyevent("Enter")
+            sleep(7)
+            if self.poco("username").exists():
+                self.poco("username").set_text(user_name)
+                keyevent("Enter")
+            else:
+                self.close_app_reopen_and_click_sign_in()
+                self.signInWithEmail()
+            # keyevent("back")
+        self.poco("password").wait_for_appearance(timeout=10)
+        self.poco("password").set_text(password)
+        # self.poco(text="Sign In").click()
+        # keyevent("Enter")
+        sleep(2)
+        if click_on_sign_in:
+            try:
+                self.poco("submit_id").click()
+            except:
+                self.poco(text="Sign In").click()
+        if wrong_password:
+            try:
+                self.poco(
+                    "We didn't recognize the username or password you entered. Please try again.").wait_for_appearance(
+                    timeout=15)
+            except:
+                raise Exception("Error message not displayed for wrong password.")
 

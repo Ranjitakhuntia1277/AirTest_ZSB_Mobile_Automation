@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="" />
+    <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +78,7 @@
     "Python.Android_Automated_TestSuite.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging jd4936__Jayakiran",
+    "git-widget-placeholder": "rk1277__Ranjita",
     "last_opened_file_path": "C:/Users/JD4936/OneDrive - Zebra Technologies/Documents/AirTest_ZSB_Mobile_Automation",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
@@ -103,7 +108,6 @@
   <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46000">
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45936" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -120,7 +124,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45941" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -137,7 +140,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45957" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -154,7 +156,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45959" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -171,7 +172,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46000" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
