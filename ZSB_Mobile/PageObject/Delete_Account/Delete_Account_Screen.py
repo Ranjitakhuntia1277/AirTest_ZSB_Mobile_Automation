@@ -288,18 +288,17 @@ class Delete_Account_Screen:
             self.poco(text("zebra05.swdvt@gmail.com"))
             sleep(1)
 
-
     def Login_With_Different_Email_Tab(self):
         sleep(12)
         zebra_login = self.poco(text="Sign In with your email")
         if zebra_login.exists():
-           zebra_login.click()
-           sleep(4)
-           self.poco(name="username").click()
-           sleep(1)
-           self.poco(text(""))
-           self.poco(text("zebra04.swdvt@gmail.com"))
-           sleep(1)
+            zebra_login.click()
+            sleep(4)
+            self.poco(name="username").click()
+            sleep(1)
+            self.poco(text(""))
+            self.poco(text("zebra04.swdvt@gmail.com"))
+            sleep(1)
         else:
             sleep(3)
             device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
