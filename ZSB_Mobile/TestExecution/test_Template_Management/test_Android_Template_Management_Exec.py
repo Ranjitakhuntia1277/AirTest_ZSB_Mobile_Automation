@@ -2172,7 +2172,7 @@ def test_Template_Management_TestcaseID_45981():
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.sign_in_with_mail_zebra07()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()

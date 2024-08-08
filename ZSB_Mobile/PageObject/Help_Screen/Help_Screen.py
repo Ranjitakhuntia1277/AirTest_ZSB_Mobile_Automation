@@ -196,8 +196,10 @@ class Help_Screen:
 
     def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
         account = self.poco(text=Acc_Name)
-        while not account.exists():
+        count = 0
+        while not account.exists() and count<=2:
             self.poco.scroll()
+            count += 1
         account.click()
 
     def swipeLeft(self):

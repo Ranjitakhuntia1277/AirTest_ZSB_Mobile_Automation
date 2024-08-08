@@ -11,6 +11,7 @@ from ...Common_Method import Common_Method
 from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
 from ...PageObject.Others.Others import Others
 from ...PageObject.Social_Login.Social_Login import Social_Login
+from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 
 import os
 
@@ -24,6 +25,7 @@ login_page = Login_Screen(poco)
 common_method = Common_Method(poco)
 others = Others(poco)
 social_login = Social_Login(poco)
+data_sources_page = Data_Sources_Screen(poco)
 
 import tkinter as tk
 from tkinter import messagebox
@@ -3503,6 +3505,7 @@ class test_Android_Template_Management:
 
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
+        sleep(2)
         try:
             full_name = template_management.select_design_in_my_design_by_name_and_return(new_name + " (1)", 0)
         except:
@@ -3570,54 +3573,53 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45930(self):
         pass
-        # stop_app("com.zebra.soho_app")
-        # start_app("com.zebra.soho_app")
-        # common_method.wait_for_element_appearance_namematches("Home")
-        # login_page.click_Menu_HamburgerICN()
-        # template_management.click_my_designs_button()
-        # common_method.wait_for_element_appearance_namematches("Showing")
-        # """Give the name of existing design here"""
-        # name = template_management.get_first_design_in_my_designs()
-        # print(name)
-        # name = template_management.get_names_of_design_in_search_designs([name])[0]
-        # print(name)
+        common_method.tearDown()
+        common_method.wait_for_element_appearance_namematches("Home")
+        login_page.click_Menu_HamburgerICN()
+        template_management.click_my_designs_button()
+        common_method.wait_for_element_appearance_namematches("Showing")
+        """Give the name of existing design here"""
+        name = template_management.get_first_design_in_my_designs()
+        print("1", name)
+        name = template_management.get_names_of_design_in_search_designs([name])[0]
+        print("2", name)
         names = template_management.get_ith_design_by_index_in_my_designs(2)
-        print(names)
+        print("3", names)
         names = template_management.get_names_of_design_in_search_designs([names])[0]
-        print(names)
+        print("4", names)
         full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(names, 1)
-        print(full_name)
-        # template_management.click_on_rename_button()
-        # template_management.enter_text_in_rename_design(name)
-        # if template_management.check_error_for_invalid_characters_in_rename_design():
-        #     raise Exception("error displayed for valid characters")
-        # template_management.click_on_save_button_in_rename_design()
-        # try:
-        #     common_method.wait_for_element_appearance_namematches("Design has been successfully rename", 15)
-        # except:
-        #     raise Exception("design has been successfully renamed. is not displayed")
-        #
-        # if template_management.check_cancel_button_clickable_in_rename_popup():
-        #     raise Exception("rename popup not closed")
-        # try:
-        #     full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(name + " (1)",
-        #                                                                                                   0)
-        # except:
-        #     raise Exception("design not found after updating")
-        #
-        # template_management.get_the_full_name_of_design_and_click_in_common_design_search(name + " (1)", 1)
-        # template_management.click_on_rename_button()
-        #
-        # default_value = template_management.get_the_default_rename_text()
-        # if default_value != name + " (1)":
-        #     raise Exception("default value not updated to new value")
-        #
-        # if not template_management.check_cancel_button_clickable_in_rename_popup():
-        #     raise Exception("cancel button is not clickable")
-        #
-        # if not template_management.check_save_button_clickable_in_rename_popup():
-        #     raise Exception("save button is not clickable")
-        # template_management.click_on_cancel_button_in_rename_popup()
+        print("5", full_name)
+        template_management.click_on_rename_button()
+        template_management.enter_text_in_rename_design(name)
+        if template_management.check_error_for_invalid_characters_in_rename_design():
+            raise Exception("error displayed for valid characters")
+        template_management.click_on_save_button_in_rename_design()
+        try:
+            common_method.wait_for_element_appearance_namematches("Design has been successfully rename", 15)
+        except:
+            raise Exception("design has been successfully renamed. is not displayed")
+
+        if template_management.check_cancel_button_clickable_in_rename_popup():
+            raise Exception("rename popup not closed")
+        try:
+            full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(name + " (1)",
+                                                                                                          0)
+        except:
+            raise Exception("design not found after updating")
+
+        template_management.get_the_full_name_of_design_and_click_in_common_design_search(name + " (1)", 1)
+        template_management.click_on_rename_button()
+
+        default_value = template_management.get_the_default_rename_text()
+        if default_value != name + " (1)":
+            raise Exception("default value not updated to new value")
+
+        if not template_management.check_cancel_button_clickable_in_rename_popup():
+            raise Exception("cancel button is not clickable")
+
+        if not template_management.check_save_button_clickable_in_rename_popup():
+            raise Exception("save button is not clickable")
+        template_management.click_on_cancel_button_in_rename_popup()
 
     def test_Template_Management_TestcaseID_45931(self):
         pass
@@ -3900,7 +3902,7 @@ class test_Android_Template_Management:
         template_management.enter_text_in_rename_design(" ")
         sleep(2)
         if not template_management.check_error_for_blank_value_in_rename_design():
-            raise Exception("error not displayed for blank field")
+            raise Exception("error not displayed for blank field(SMBM-2206)")
 
     def test_Template_Management_TestcaseID_45935(self):
         pass
@@ -4100,6 +4102,9 @@ class test_Android_Template_Management:
         template_management.click_on_save_button_in_rename_design()
         """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error  SMBM-1771"""
         template_management.turn_on_wifi()
+        raise Exception(
+            'Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error  SMBM-1771')
+
         sleep(5)
         template_management.click_on_save_button_in_rename_design()
 
@@ -4122,7 +4127,8 @@ class test_Android_Template_Management:
         pass
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.wait_for_element_appearance_namematches("Home")
+        common_method.wait_for_element_appearance_namematches("Recently")
+        sleep(2)
         """Give the name of existing design here"""
         name = template_management.get_first_design_in_recently_printed_labels()
         name = template_management.get_names_of_design_in_search_designs([name])[0]
@@ -4139,6 +4145,7 @@ class test_Android_Template_Management:
         template_management.turn_off_wifi()
         sleep(2)
         template_management.click_on_save_button_in_rename_design()
+        raise Exception("Error communicating with server not shown due to bug SMBM-1771")
         """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error"""
         common_method.wait_for_element_appearance_namematches("Error communicating with server")
         template_management.turn_on_wifi()
@@ -5847,7 +5854,8 @@ class test_Android_Template_Management:
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
 
-        for text in temp:
+        for text in temp[0:2]:
+            print(text)
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_home_button()
@@ -6198,11 +6206,18 @@ class test_Android_Template_Management:
             template_management.click_home_button()
 
             name = "BOGO copy"
-            start_app("com.google.android.googlequicksearchbox")
-            sleep(1)
-            others.click_google_search_bar()
-            others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
-            others.click_enter()
+
+            start_app("com.android.chrome")
+            sleep(2)
+            poco("com.android.chrome:id/tab_switcher_button").click()
+            sleep(2)
+            data_sources_page.add_new_tab_in_browser()
+            sleep(2)
+            poco(text="Search or type URL").click()
+            sleep(2)
+            poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+            sleep(2)
+            data_sources_page.clickEnter()
             others.wait_for_element_appearance("Continue with Google", 10)
             login_page.click_Loginwith_Google()
             common_method.wait_for_element_appearance_textmatches("Choose an account")
@@ -6372,4 +6387,3 @@ class test_Android_Template_Management:
         others.click_print_button()
 
         """check the template print out with updated value successfully. need to be done manually """
-

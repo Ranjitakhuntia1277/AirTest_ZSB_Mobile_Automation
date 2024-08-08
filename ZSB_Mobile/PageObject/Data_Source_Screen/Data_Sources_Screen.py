@@ -93,8 +93,10 @@ class Data_Sources_Screen:
         sleep(3)
         my_data = self.poco(self.My_Data)
         my_data.click()
+        sleep(3)
 
     def click_Add_File(self):
+        sleep(2)
         add_file = self.poco(self.Add_File)[-1]
         add_file.wait_for_appearance(timeout=10)
         add_file.click()
@@ -764,25 +766,25 @@ class Data_Sources_Screen:
                 self.poco("Sign in with Microsoft").click()
         sleep(5)
         try:
-            self.poco("android.widget.EditText").wait_for_appearance(timeout=20)
-            self.poco("android.widget.EditText").click()
+            sleep(5)
             self.poco("android.widget.EditText").set_text(username)
         except:
-            self.poco("i0116").wait_for_appearance(timeout=20)
-            self.poco("i0116").click()
             # username = "zebra03.swdvt@gmail.com"
             self.poco("i0116").set_text(username)
         self.poco(text="Next").click()
         sleep(3)
         self.lock_phone()
-        sleep(2)
         wake()
+        sleep(2)
         if self.poco(self.Use_Your_Password_Instead).exists():
             self.poco(self.Use_Your_Password_Instead).click()
             sleep(2)
-        self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
-        self.poco("android.widget.EditText").click()
-        self.poco("android.widget.EditText").set_text(password)
+        try:
+            sleep(5)
+            self.poco("android.widget.EditText").set_text(username)
+        except:
+            # username = "zebra03.swdvt@gmail.com"
+            self.poco("i0118").set_text(password)
         # password = "Zebra#123456789"
         # self.poco(text(password))
         self.poco(text="Sign in").click()
@@ -881,20 +883,12 @@ class Data_Sources_Screen:
 
     def signInWithEmail(self):
         pocoEle = self.poco(text="Sign In with your email")
-        try:
-            if pocoEle.exists():
-                pocoEle.click()
-            else:
-                self.close_app_reopen_and_click_sign_in()
-                pocoEle.click()
-            print("Successfully clicked Sign In With Email")
-        except PocoNoSuchNodeException:
-            print("Sign In with Email option not found!\n Test Continues...")
-            raise Exception("Sign In with Email option not found!\n Test Failed")
-        except Exception as e:
-            self.poco(text="Sign In with your email").wait_for_appearance(timeout=20)
-            self.poco(text="Sign In with your email").click()
-            print("Successfully clicked Sign In With Email")
+        if pocoEle.exists():
+            pocoEle.click()
+        else:
+            self.close_app_reopen_and_click_sign_in()
+            pocoEle.click()
+        print("Successfully clicked Sign In With Email")
         sleep(2)
         if self.poco("com.android.chrome:id/coordinator").exists():
             self.poco("com.android.chrome:id/coordinator").click()
@@ -979,7 +973,7 @@ class Data_Sources_Screen:
 
     def verifyFilePresentInList(self, file_name, datasource=None, data=False, verify_date=True):
         if self.poco(self.List_Empty).exists():
-            raise Exception(file_name + "File not present")
+            raise Exception(file_name + " File not present")
         file_list = self.fileListDisplayed()
         print(len(file_list), "->", file_list)
         scroll_view = self.poco("android.widget.HorizontalScrollView")
@@ -1033,13 +1027,14 @@ class Data_Sources_Screen:
 
     def verify_Remove_File_Warning(self, file_type):
         content = self.poco("android.view.View")[4].child().get_name()
+        print(content)
         if file_type == "Local File":
-            if content == "Remove local file\nAre you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.":
+            if content == "Are you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.":
                 return
             else:
                 raise Exception("Remove file message not matching.")
         else:
-            if content == "Remove linked file\nAre you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.":
+            if content == "Are you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.":
                 return
             else:
                 raise Exception("Remove file message not matching.")
@@ -1091,101 +1086,126 @@ class Data_Sources_Screen:
     #         curr_child_count = self.getCurrCount(True)
     #     raise Exception("No file with datasource " + datasource)
 
+    # def remove_File_Based_On_DataSource(self, datasource, filename=None, cancel=False, verify=False):
+    #     scroll_view = self.poco("android.widget.HorizontalScrollView")
+    #     curr_child_count = self.getCurrCount(False)
+    #     scrolled = False
+    #     while not self.poco("DATA SOURCE").exists():
+    #         scroll_view.swipe("left")
+    #     for i in range(5):
+    #         scroll_view.swipe("left")
+    #     prev_arr = []
+    #     while True:
+    #         curr_arr = []
+    #         for i in range(curr_child_count):
+    #             if not scrolled:
+    #                 name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+    #                 curr_arr.append(name_app)
+    #             else:
+    #                 name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
+    #                 curr_arr.append(name_app)
+    #         if prev_arr == curr_arr:
+    #             break
+    #         prev_arr = curr_arr
+    #         self.poco.scroll()
+    #         scrolled = True
+    #
+    #     while not self.poco("DATA SOURCE").exists():
+    #         for i in range(curr_child_count):
+    #             if not scrolled:
+    #                 data_source = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
+    #                 name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+    #             else:
+    #                 data_source = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+    #                 name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
+    #             if data_source == datasource:
+    #                 if filename is not None:
+    #                     if name_app == filename:
+    #                         three_dot = self.poco("android.widget.Button")[i]
+    #                         three_dot.click()
+    #                         self.clickRemove()
+    #                         if verify:
+    #                             self.verify_Remove_File_Warning(datasource)
+    #                         if not cancel:
+    #                             self.clickRemove()
+    #                         else:
+    #                             self.clickCancel()
+    #                         sleep(7)
+    #                         return
+    #                 else:
+    #                     three_dot = self.poco("android.widget.Button")[i]
+    #                     three_dot.click()
+    #                     self.clickRemove()
+    #                     if verify:
+    #                         self.verify_Remove_File_Warning(datasource)
+    #                     if not cancel:
+    #                         self.clickRemove()
+    #                     else:
+    #                         self.clickCancel()
+    #                     sleep(7)
+    #                     return name_app
+    #         scroll_view.swipe("down")
+    #         curr_child_count = self.getCurrCount(True)
+    #     scrolled = False
+    #     for i in range(curr_child_count):
+    #         if not scrolled:
+    #             data_source = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
+    #             name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+    #         else:
+    #             data_source = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+    #             name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
+    #         print("--")
+    #         print(data_source)
+    #         if data_source == datasource:
+    #             if filename is not None:
+    #                 if name_app == filename:
+    #                     three_dot = self.poco("android.widget.Button")[i]
+    #                     three_dot.click()
+    #                     self.clickRemove()
+    #                     if verify:
+    #                         self.verify_Remove_File_Warning(datasource)
+    #                     if not cancel:
+    #                         self.clickRemove()
+    #                     else:
+    #                         self.clickCancel()
+    #                     sleep(7)
+    #                     return
+    #             else:
+    #                 three_dot = self.poco("android.widget.Button")[i]
+    #                 three_dot.click()
+    #                 self.clickRemove()
+    #                 if verify:
+    #                     self.verify_Remove_File_Warning(datasource)
+    #                 if not cancel:
+    #                     self.clickRemove()
+    #                 else:
+    #                     self.clickCancel()
+    #                 sleep(7)
+    #                 return name_app
+
     def remove_File_Based_On_DataSource(self, datasource, filename=None, cancel=False, verify=False):
+        if not self.poco(filename).exists():
+            raise Exception(f"No file {filename} with datasource {datasource}")
         scroll_view = self.poco("android.widget.HorizontalScrollView")
-        curr_child_count = self.getCurrCount(False)
-        scrolled = False
         while not self.poco("DATA SOURCE").exists():
             scroll_view.swipe("left")
         for i in range(5):
             scroll_view.swipe("left")
-        prev_arr = []
-        while True:
-            curr_arr = []
-            for i in range(curr_child_count):
-                if not scrolled:
-                    name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
-                    curr_arr.append(name_app)
-                else:
-                    name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
-                    curr_arr.append(name_app)
-            if prev_arr == curr_arr:
-                break
-            prev_arr = curr_arr
-            self.poco.scroll()
-            scrolled = True
-
-        while not self.poco("DATA SOURCE").exists():
-            for i in range(curr_child_count):
-                if not scrolled:
-                    data_source = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
-                    name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
-                else:
-                    data_source = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
-                    name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
-                if data_source == datasource:
-                    if filename is not None:
-                        if name_app == filename:
-                            three_dot = self.poco("android.widget.Button")[i]
-                            three_dot.click()
-                            self.clickRemove()
-                            if verify:
-                                self.verify_Remove_File_Warning(datasource)
-                            if not cancel:
-                                self.clickRemove()
-                            else:
-                                self.clickCancel()
-                            sleep(7)
-                            return
-                    else:
-                        three_dot = self.poco("android.widget.Button")[i]
-                        three_dot.click()
-                        self.clickRemove()
-                        if verify:
-                            self.verify_Remove_File_Warning(datasource)
-                        if not cancel:
-                            self.clickRemove()
-                        else:
-                            self.clickCancel()
-                        sleep(7)
-                        return name_app
-            scroll_view.swipe("down")
-            curr_child_count = self.getCurrCount(True)
-        scrolled = False
-        for i in range(curr_child_count):
-            if not scrolled:
-                data_source = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
-                name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
-            else:
-                data_source = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
-                name_app = self.poco("android.widget.HorizontalScrollView").child()[4 * i].get_name()
-            if data_source == datasource:
-                if filename is not None:
-                    if name_app == filename:
-                        three_dot = self.poco("android.widget.Button")[i]
-                        three_dot.click()
-                        self.clickRemove()
-                        if verify:
-                            self.verify_Remove_File_Warning(datasource)
-                        if not cancel:
-                            self.clickRemove()
-                        else:
-                            self.clickCancel()
-                        sleep(7)
-                        return
-                else:
-                    three_dot = self.poco("android.widget.Button")[i]
-                    three_dot.click()
-                    self.clickRemove()
-                    if verify:
-                        self.verify_Remove_File_Warning(datasource)
-                    if not cancel:
-                        self.clickRemove()
-                    else:
-                        self.clickCancel()
-                    sleep(7)
-                    return name_app
-        raise Exception("No file with datasource " + datasource)
+        element = self.poco("android.widget.HorizontalScrollView").child(datasource)
+        size = element.attr("size")
+        pos = element.attr("pos")
+        x = pos[0] + size[0] * .80
+        y = pos[1]
+        self.poco.click([x, y])
+        self.clickRemove()
+        if verify:
+            self.verify_Remove_File_Warning(datasource)
+        if not cancel:
+            self.clickRemove()
+        else:
+            self.clickCancel()
+        sleep(7)
+        return
 
     def remove_File(self, cancel=False):
         common_method.swipe_screen([0.9, 0.3482905982905983], [0.22037037037037038, 0.3482905982905983], 5)
@@ -1271,7 +1291,7 @@ class Data_Sources_Screen:
         sleep(2)
         self.poco(desc="Search").click()
         sleep(2)
-        self.poco("com.google.android.documentsui:id/search_src_text").set_text(".zpl")
+        self.poco("com.google.android.documentsui:id/search_src_text").set_text(".nlbl")
         sleep(2)
         self.clickEnter()
         if self.poco("com.google.android.documentsui:id/item_root").child().get_name() != "android.widget.LinearLayout":
@@ -1698,6 +1718,7 @@ class Data_Sources_Screen:
         touch(Template(Basic_path(r"place_pic.png"), record_pos=(-0.008, 0.287), resolution=(1080, 2280)))
 
     def selectFileDrive(self, file_name):
+        sleep(5)
         curr = []
         prev = []
         while 1:

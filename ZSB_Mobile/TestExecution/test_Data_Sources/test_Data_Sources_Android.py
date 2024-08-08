@@ -43,6 +43,7 @@ smoke_test_android = Smoke_Test_Android(poco)
 aps_notification = APS_Notification(poco)
 delete_account_page = Delete_Account_Screen(poco)
 
+
 # ###bug id- SMBM-1456
 def test_DataSources_TestcaseID_45729():
     pass
@@ -53,10 +54,8 @@ def test_DataSources_TestcaseID_45729():
     data_sources_page.allowPermissions()
     """Sign in"""
     registration_page.clickSignIn()
-    delete_account_page.Login_With_Different_Email2_Tab()
-    printer_management_page.click_Password_TextField()
-    printer_management_page.Enter_Zebra_Password()
-    login_page.click_SignIn_Button()
+    data_sources_page.signInWithEmail()
+    registration_page.sign_in_with_mail_zebra03()
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -76,7 +75,7 @@ def test_DataSources_TestcaseID_45729():
     common_method.wait_for_element_appearance("NAME")
     sleep(5)
     """Select file with special characters"""
-    special_char_file = "A_!@#$_^^&(().xlsx"
+    special_char_file = "A_!@#$%^^&(().xlsx"
     data_sources_page.selectFileDrive(special_char_file)
     sleep(5)
     data_sources_page.searchName(special_char_file)
@@ -219,11 +218,11 @@ def test_DataSources_TestcaseID_45734():
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(2)
     """Cannot select unsupported file"""
-    # data_sources_page.checkFilesShownAreSupported()
+    data_sources_page.checkFilesShownAreSupported()
     sleep(2)
     large_file = "large_unsupported_file(50mb).png"
+    raise Exception("Failed due to bug SMBUI-1127")
     data_sources_page.selectFileDrive(large_file)
-    # raise Exception("Failed due to bug SMBUI-1127")
     """No prompt message on uploading file greater than 28.4mb"""
     sleep(5)
     data_sources_page.click_Add_File()
@@ -249,7 +248,7 @@ def test_DataSources_TestcaseID_45734():
     sleep(2)
     data_sources_page.clickMicrosoftOneDrive()
     template_management_page_1.wait_for_element_appearance_name_matches_all("NAME", 20)
-    # data_sources_page.checkFilesShownAreSupported()
+    data_sources_page.checkFilesShownAreSupported()
     sleep(3)
     data_sources_page.selectFileDrive(large_file)
     sleep(5)
@@ -267,7 +266,6 @@ def test_DataSources_TestcaseID_45734():
     """Remove files for next execution"""
     data_sources_page.searchName(large_file)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", large_file)
-    data_sources_page.searchName("")
     sleep(2)
     common_method.Stop_The_App()
 
@@ -437,7 +435,7 @@ def test_DataSources_TestcaseID_45736():
     """One Drive"""
     data_sources_page.searchName("")
     data_sources_page.searchName(png_file)
-    data_sources_page.remove_File_Based_On_DataSource("OneDrive", None, True, True)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file, True, True)
     data_sources_page.searchName("")
     data_sources_page.searchName(png_file)
     try:
@@ -465,7 +463,7 @@ def test_DataSources_TestcaseID_45737():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra02.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.sign_in_with_mail_zebra02()
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -505,19 +503,13 @@ def test_DataSources_TestcaseID_45737():
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     """Cannot automate - navigate to check different preview images are correct-has to be verified manually"""
-    count=5
-    while not poco("Print").exists() and count!=0:
-        poco.scroll()
-        count-=1
+    data_sources_page.scroll_till_print()
     data_sources_page.labelRangeSelection(4)
     sleep(3)
     template_management_page.verify_only_selected_rows_displayed_in_label_range("4")
     """Cannot automate - navigate to check that only the select rows can be previewed-has to be verified manually"""
     template_management_page.verify_label_navigation()
-    count=5
-    while not poco("Print").exists() and count!=0:
-        poco.scroll()
-        count-=1
+    data_sources_page.scroll_till_print()
     if template_management_page.get_total_labels_printing() == "4":
         pass
     else:
@@ -549,19 +541,13 @@ def test_DataSources_TestcaseID_45737():
     """Cannot automate - navigate to check different preview images are correct-has to be verified manually"""
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
-    count=5
-    while not poco("Print").exists() and count!=0:
-        poco.scroll()
-        count-=1
+    data_sources_page.scroll_till_print()
     data_sources_page.labelRangeSelection(4)
     sleep(3)
     template_management_page.verify_only_selected_rows_displayed_in_label_range("4")
     """Cannot automate - navigate to check that only the select rows can be previewed-has to be verified manually"""
     template_management_page.verify_label_navigation()
-    count=5
-    while not poco("Print").exists() and count!=0:
-        poco.scroll()
-        count-=1
+    data_sources_page.scroll_till_print()
     if template_management_page.get_total_labels_printing() == "4":
         pass
     else:
@@ -580,16 +566,8 @@ def test_DataSources_TestcaseID_45737():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    sleep(5)
-    if data_sources_page.verifySignInWithGoogle():
-        registration_page.click_Google_Icon()
-        account = "zebra03.swdvt@gmail.com"
-        if data_sources_page.checkIfAccPresentLink(account):
-            help_page.chooseAcc(account)
-        else:
-            poco("com.google.android.gms:id/add_account_chip_title").click()
-            registration_page.sign_In_With_Google("Zebra#123456789", account)
-            sleep(2)
+    registration_page.click_Google_Icon()
+    help_page.chooseAcc("zebra03.swdvt@gmail.com")
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(5)
     """ google drive """
@@ -834,6 +812,7 @@ def test_DataSources_TestcaseID_45741():
     data_sources_page.click_Upload_File()
     """Select Very large File to upload"""
     selected_file_name = data_sources_page.selectFileInLocalStorage()
+    print(selected_file_name)
     sleep(10)
     data_sources_page.searchName(selected_file_name)
     data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file_name, True)
@@ -852,7 +831,6 @@ def test_DataSources_TestcaseID_45741():
         raise Exception("File present even after removing it.")
     except Exception as e:
         pass
-    selected_file_name = "png_file.png"
     start_app("com.android.chrome")
     sleep(2)
     poco("com.android.chrome:id/tab_switcher_button").click()
@@ -897,12 +875,25 @@ def test_DataSources_TestcaseID_45742():
 
     """Click hamburger icon to expand menu"""
     common_method.tearDown()
+    remove_file_name = "ferry.xlsx"
+    """----------------------------------------------"""
+    """Re-upload the file for next execution"""
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.click_My_Data()
+    """Click Add File"""
+    data_sources_page.click_Add_File()
+    """Click Upload file"""
+    sleep(2)
+    data_sources_page.click_Upload_File()
+    """Select Very large File to upload"""
+    data_sources_page.searchFileInLocalStorage(remove_file_name, "Downloads")
+    sleep(10)
+    """----------------------------------------------"""
     login_page.click_Menu_HamburgerICN()
     sleep(5)
     """Click My Data"""
     data_sources_page.click_My_Data()
     sleep(5)
-    remove_file_name = "ferry.xlsx"
     data_sources_page.searchName(remove_file_name)
     data_sources_page.remove_File_Based_On_DataSource("Local File", remove_file_name, True)
     file_list = data_sources_page.fileListDisplayed()
@@ -976,17 +967,6 @@ def test_DataSources_TestcaseID_45742():
     data_sources_page.clickPrint()
     common_method.wait_for_element_appearance_text("Print complete", 20)
     stop_app("com.android.chrome")
-    """Re-upload the file for next execution"""
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.click_My_Data()
-    """Click Add File"""
-    data_sources_page.click_Add_File()
-    """Click Upload file"""
-    sleep(2)
-    data_sources_page.click_Upload_File()
-    """Select Very large File to upload"""
-    data_sources_page.searchFileInLocalStorage(remove_file_name, "Downloads")
-    sleep(10)
     common_method.Stop_The_App()
 
 
@@ -1518,6 +1498,7 @@ def test_DataSources_TestcaseID_47830():
     data_sources_page.exitDesigner()
     stop_app("com.android.chrome")
     sleep(2)
+    raise Exception("No pull down to refresh option due to bug SMBM-1710")
     """No pull down to refresh option due to bug SMBM-1710"""
     data_sources_page.searchMyDesigns(label_name)
     try:
@@ -1658,7 +1639,7 @@ def test_DataSources_TestcaseID_45758():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra02.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    registration_page.sign_in_with_mail_zebra02()
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -1674,14 +1655,9 @@ def test_DataSources_TestcaseID_45758():
     data_sources_page.click_Link_File()
     sleep(2)
     """ google drive """
-    if data_sources_page.verifySignInWithGoogle():
-        registration_page.click_Google_Icon()
-    account = "zebratest850@gmail.com"
-    if data_sources_page.checkIfAccPresentLink(account):
-        help_page.chooseAcc(account)
-    else:
-        poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("Zebra#123456789", account)
+    registration_page.click_Google_Icon()
+    account = "zebra850.swdvt@gmail.com"
+    help_page.chooseAcc(account)
     sleep(2)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(2)
@@ -1698,6 +1674,7 @@ def test_DataSources_TestcaseID_45758():
     sleep(2)
     """ One drive """
     sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     if data_sources_page.verifySignInWithMicrosoft():
         data_sources_page.signInWithMicrosoft(account, "Zebra#123456789")
@@ -1724,16 +1701,13 @@ def test_DataSources_TestcaseID_47937():
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0, False)
+    registration_page.sign_in_with_mail_zebra07()
     try:
         registration_page.wait_for_element_appearance_text("Continue", 30)
         data_sources_page.clickContinueWeb()
     except:
         pass
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.click_My_Data()
@@ -1801,15 +1775,9 @@ def test_DataSources_TestcaseID_47937():
     """Click Link File"""
     data_sources_page.click_Link_File()
     sleep(5)
-    if data_sources_page.verifySignInWithGoogle():
-        registration_page.click_Google_Icon()
+    registration_page.click_Google_Icon()
     account = "zebra03.swdvt@gmail.com"
-    if data_sources_page.checkIfAccPresentLink(account):
-        help_page.chooseAcc(account)
-    else:
-        poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("Zebra#123456789", account)
-        sleep(2)
+    help_page.chooseAcc(account)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(5)
     data_sources_page.selectFileDrive(png_file)
@@ -1874,15 +1842,15 @@ def test_DataSources_TestcaseID_47937():
         help_page.chooseAcc(account)
     else:
         count = 5
-        while not poco(text="Use another account").exists() and count!=0:
+        while not poco(text="Use another account").exists() and count != 0:
             poco.scroll()
-            count-=1
+            count -= 1
         login_page.click_GooglemailId()
         if poco(text="Signed in to Google as").exists():
             count = 5
-            while not poco(text="Add account to device").exists() and count!=0:
+            while not poco(text="Add account to device").exists() and count != 0:
                 poco.scroll()
-                count-=1
+                count -= 1
             registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("Zebra#123456789", "zebra06.swdvt@gmail.com")
     try:
@@ -2001,10 +1969,7 @@ def test_DataSources_TestcaseID_45752():
     """test"""
 
     common_method.tearDown()
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.click_My_Data()
@@ -2587,6 +2552,7 @@ def test_DataSources_TestcaseID_45753():
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     common_method.Stop_The_App()
 
+
 # ####"""""""""""""""""""""""""""""""END"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -2629,11 +2595,12 @@ def test_Smoke_Test_TestcaseID_45878():
     app_settings_page.Scroll_till_Delete_Account()
     app_settings_page.click_Logout_Btn()
     common_method.Stop_The_App()
+
+
 # #     ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # #
 def test_Smoke_Test_TestcaseID_45879():
     """Verify sign in as non-zebra, check link and delete one/google drive file works well"""
-
 
     common_method.tearDown()
     common_method.Clear_App()
@@ -2675,4 +2642,3 @@ def test_Smoke_Test_TestcaseID_45879():
     common_method.Stop_The_App()
 #
 # #     ## """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
