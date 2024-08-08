@@ -238,16 +238,27 @@ class Printer_Management_Screen:
             sleep(1)
 
     def Enter_Zebra_Password(self):
-        password = self.poco("android.widget.EditText")[1]
+        password = self.poco(name="password")
         password.set_text("Zebra#123456789")
 
     def click_Password_TextField(self):
         sleep(1)
         # poco.scroll()
         sleep(1)
-        self.poco(name="submit_id").click()
+        self.poco(name="password").click()
 
     def click_SignIn_Button(self):
         sleep(1)
         self.poco("android.widget.Button")[1].click()
         sleep(10)
+
+    def Loginwith_Google_Email_Id(self):
+        sleep(9)
+        added_email = self.poco(text="SohoApp Testing")
+        if added_email.exists():
+            added_email.click()
+            sleep(15)
+        else:
+            self.poco.scroll()
+            added_email.click()
+            sleep(15)

@@ -184,10 +184,11 @@ class APS_Notification:
         sleep(3)
 
     def click_Print_Option(self):
-        sleep(2)
+        sleep(4)
         Print_Option = self.poco(text="Print")
         if Print_Option.exists():
             Print_Option.click()
+        # raise Exception("Print Option not present.")
 
     def click_Google_Drive_Print_Option(self):
         sleep(2)

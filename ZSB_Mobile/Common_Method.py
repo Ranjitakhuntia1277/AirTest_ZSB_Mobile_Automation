@@ -1170,7 +1170,7 @@ class Common_Method():
     def Turn_ON_The_Phone(self):
         keyevent("KEYCODE_POWER")
         sleep(1)
-        swipe((540, 1600), (540, 400))
+        ### swipe((540, 1600), (540, 400))
 
     def Show_popup_To_Open_The_Printer_Cover_Manually(self):
         root = tk.Tk()
@@ -1551,6 +1551,11 @@ class Common_Method():
     #     poco, dev, width, height, Bonding, initialBaseValue, emulator, sns = function_fixture
     #     PrinterUtilities(poco, dev, width, height, Bonding).deletePrinter()
 
-
+    def Refresh_The_Page(self):
+        sleep(1)
+        start_x, start_y = 540, 400
+        end_x, end_y = 540, 1200
+        swipe((start_x, start_y), (end_x, end_y), duration=0.5)
+        self.poco.swipe((500, 200), (500, 1000))
 
 

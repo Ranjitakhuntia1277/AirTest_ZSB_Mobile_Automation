@@ -88,6 +88,12 @@ def test_PrinterManagement_TestcaseID_47785():
     pass
     """clear app data"""
     common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_loginBtn()
+    login_page.Verify_ALL_Allow_Popups()
+    login_page.click_Loginwith_Google()
+    printer_management_page.Loginwith_Google_Email_Id()
     data_sources_page.checkIfOnHomePage()
     """Click three dot menu of target printer"""
     app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
@@ -121,13 +127,9 @@ def test_PrinterManagement_TestcaseID_47785():
 def test_PrinterManagement_TestcaseID_47882():
     pass
     common_method.tearDown()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.Verify_ALL_Allow_Popups()
     login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
+    printer_management_page.Loginwith_Google_Email_Id()
     """Click three dot menu of target printer"""
     app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
     sleep(5)
@@ -168,16 +170,9 @@ def test_PrinterManagement_TestcaseID_45888():
     """	Check user can delete a printer from Mobile App"""
 
     common_method.tearDown()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.Verify_ALL_Allow_Popups()
     login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    sleep(5)
+    printer_management_page.Loginwith_Google_Email_Id()
     """"verify home text is displaying on the home screen"""
     app_settings_page.Home_text_is_present_on_homepage()
     """click on three dot on added printer on home page"""

@@ -1366,7 +1366,7 @@ def test_Android_PDF_Printing_TestcaseID_47952():
     common_method.Turn_Off_The_Phone()
     sleep(2)
     common_method.Turn_ON_The_Phone()
-    ### poco.scroll()
+    poco.scroll()
     pdf_printing.Verify_Print_Preview_page()
 
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
