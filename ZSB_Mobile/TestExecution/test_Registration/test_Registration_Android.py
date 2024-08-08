@@ -85,7 +85,8 @@ def test_Registration_TestcaseID_45860():
     """""""""test"""""
 
     common_method.tearDown()
-    registration_page.clickSignIn()
+    login_page.click_loginBtn()
+    login_page.Verify_ALL_Allow_Popups()
     registration_page.Enter_Correct_Username()
     registration_page.Enter_Wrong_Password()
     login_page.click_SignIn_Button()

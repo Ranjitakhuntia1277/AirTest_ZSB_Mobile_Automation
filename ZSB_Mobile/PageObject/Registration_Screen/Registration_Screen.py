@@ -11,6 +11,7 @@ from airtest.core.api import *
 from poco import poco
 from poco.exceptions import PocoTargetTimeout
 import platform
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 if platform.system() == "Windows":
     def Basic_path(a):
@@ -23,6 +24,7 @@ else:
 from ...Common_Method import Common_Method
 
 common_method = Common_Method(poco)
+login_page = Login_Screen(poco)
 
 
 class Registration_Screen:
@@ -910,17 +912,19 @@ class Registration_Screen:
                 self.poco(text("soho_dvtxxxxx@hotmail.com"))
                 sleep(1)
             else:
-                self.poco.swipe((500, 200), (500, 1000))
-                sleep(4)
-                zebra_login.click()
+                sleep(3)
+                device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+                sleep(10)
+                self.poco(text="Sign In with your email").click()
                 sleep(2)
                 self.poco(text(""))
                 self.poco(text("soho_dvtxxxxx@hotmail.com"))
                 sleep(1)
 
+
     def Enter_Wrong_Password(self):
             sleep(1)
-            # poco.scroll()
+            self.poco.scroll()
             sleep(1)
             self.poco(name="password").click()
             password = self.poco(name="password")
@@ -937,19 +941,23 @@ class Registration_Screen:
             self.poco(text("zebra07.swdvt@gmail.com"))
             sleep(1)
         else:
-            self.poco.swipe((500, 200), (500, 1000))
-            sleep(4)
-            zebra_login.click()
+            sleep(3)
+            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+            sleep(10)
+            self.poco(text="Sign In with your email").click()
             sleep(2)
             self.poco(text(""))
             self.poco(text("zebra07.swdvt@gmail.com"))
             sleep(1)
 
+
+
     def Enter_Correct_Password(self):
         sleep(1)
-        # poco.scroll()
+        self.poco.scroll()
         sleep(1)
         self.poco(name="password").click()
         password = self.poco(name="password")
         password.set_text("Zebra#123456789")
         sleep(1)
+

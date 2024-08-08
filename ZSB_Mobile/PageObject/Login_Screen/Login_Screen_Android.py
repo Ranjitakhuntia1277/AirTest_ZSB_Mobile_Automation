@@ -43,9 +43,7 @@ class Login_Screen:
         loginallow = self.poco(self.LoginAllow_Popup)
         if loginallow.exists():
             loginallow.click()
-        else:
-            # pytest.skip("Login allow popup does not exist, skipping test.")
-            print("Element not found, proceeding with the next part of the code.")
+
 
     def click_Bluetooth_Allow(self):
         bluetooth_allow = self.poco(self.Bluetooth_Allow)
@@ -64,12 +62,7 @@ class Login_Screen:
         sleep(20)
         if self.poco(text="Continue with Google").exists():
             self.poco(text="Continue with Google").click()
-            sleep(12)
-        else:
-            self.poco.swipe((500, 200), (500, 1000))
-            sleep(4)
-            self.poco(text="Continue with Google").click()
-            sleep(12)
+            sleep(14)
 
 
     def Loginwith_Added_Email_Id(self):
@@ -148,9 +141,7 @@ class Login_Screen:
         Allow_ZSB_Series_Popup = self.poco(self.Allow_ZSB_Series_Popup)
         if Allow_ZSB_Series_Popup.exists():
             Allow_ZSB_Series_Popup.click()
-        else:
-            # pytest.skip("Allow ZSB Series Popup does not exist, skipping test.")
-            print("Element not found, proceeding with the next part of the code.")
+
 
     # def Verify_LoginAllow_Popup_IS_Not_Displaying(self):
     #     if assert_not_exists(self.poco(self.LoginAllow_Popup), "Login Allow pop up is not there"):
@@ -166,7 +157,7 @@ class Login_Screen:
             print("Login Allow Pop up is not displaying")
 
     def click_Login_With_Email_Tab(self):
-        sleep(9)
+        sleep(12)
         zebra_login = self.poco(text="Sign In with your email")
         if zebra_login.exists():
             zebra_login.click()
@@ -175,13 +166,15 @@ class Login_Screen:
             poco(text("Zebra01.swdvt@icloud.com"))
             sleep(1)
         else:
-            self.poco.swipe((500, 200), (500, 1000))
-            sleep(4)
-            zebra_login.click()
+            sleep(3)
+            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+            sleep(10)
+            self.poco(text="Sign In with your email").click()
             sleep(2)
             poco(text(""))
             poco(text("Zebra01.swdvt@icloud.com"))
             sleep(1)
+
 
 
     def click_UserName_TextField(self):
@@ -190,7 +183,7 @@ class Login_Screen:
 
     def click_Password_TextField(self):
         sleep(1)
-        # poco.scroll()
+        poco.scroll()
         sleep(1)
         self.poco(name="password").click()
         # password = self.poco(self.Password_Field)
@@ -228,3 +221,78 @@ class Login_Screen:
         if a.exists():
             a.click()
             print(a)
+    def Verify_ALL_Allow_Popups(self):
+        sleep(1)
+        loginallow = self.poco(self.LoginAllow_Popup)
+        if loginallow.exists():
+            loginallow.click()
+        sleep(3)
+        Allow_ZSB_Series_Popup = self.poco(self.Allow_ZSB_Series_Popup)
+        if Allow_ZSB_Series_Popup.exists():
+            Allow_ZSB_Series_Popup.click()
+            sleep(1)
+
+    def Verify_Login_Option_Is_Present(self):
+        sleep(10)
+        if self.poco(text="Sign In With").exists():
+            return True
+        if self.poco(text="Continue with Google").exixts():
+            return True
+        if self.poco(text="Sign In with your email").exists():
+            return True
+
+    def click_Cancel_Btn(self):
+        sleep(4)
+        self.poco(name="Cancel").click()
+        sleep(2)
+
+    def Refresh_The_Page(self):
+        sleep(1)
+        start_x, start_y = 540, 400
+        end_x, end_y = 540, 1200
+        swipe((start_x, start_y), (end_x, end_y), duration=0.5)
+        poco.swipe((500, 200), (500, 1000))
+        sleep(4)
+
+    def click_LogIn_with_popup(self):
+        sleep(2)
+        signInBtn = self.poco("Sign In")
+        signInBtn.click()
+        if self.poco("Allow").exists():
+            self.poco("Allow").click()
+        elif self.poco(text="Allow").exists():
+            self.poco(text="Allow").click()
+        sleep(4)
+
+    def Dismiss_Keyboard(self):
+        sleep(1)
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
+        sleep(2)
+
+    def Handle_Refresh_And_Login(self):
+        sleep(3)
+        stop_app("com.zebra.soho_app")
+        sleep(3)
+        start_app("com.zebra.soho_app")
+        sleep(3)
+        if self.poco(self.LoginAllow_Popup).exists():
+            self.poco(self.LoginAllow_Popup).click()
+        if self.poco(self.Allow_ZSB_Series_Popup).exists():
+            self.poco(self.Allow_ZSB_Series_Popup).click()
+            sleep(2)
+        if self.poco(self.loginBtn).exists():
+            self.poco(self.loginBtn).click()
+            sleep(12)
+        zebra_login = self.poco(text="Sign In with your email")
+        if zebra_login.exists():
+            zebra_login.click()
+            sleep(2)
+            poco(text(""))
+            poco(text("Zebra01.swdvt@icloud.com"))
+            sleep(1)
+
+
+
+
