@@ -254,7 +254,7 @@ class Printer_Management_Screen:
 
     def Loginwith_Google_Email_Id(self):
         sleep(9)
-        added_email = self.poco(text="SohoApp Testing")
+        added_email = self.poco(text="Delete Zsb")
         if added_email.exists():
             added_email.click()
             sleep(15)
