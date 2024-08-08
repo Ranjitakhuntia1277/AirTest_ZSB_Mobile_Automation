@@ -7,8 +7,20 @@
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test Results - pytest_in_test_Android_App_Settings_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/Test Results - pytest_in_test_Android_Social_Login_Exec_py.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Delete_Account/Delete_Account_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Delete_Account/Delete_Account_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Login_Screen/Login_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Printer_Management_Screen/Printer_Management_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Printer_Management_Screen/Printer_Management_Screen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Social_Login/Social_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Social_Login/Social_Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Printer_Management/test_Printer_Management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Printer_Management/test_Printer_Management.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Registration/test_Registration_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +90,7 @@
     "Python.Android_Automated_TestSuite.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "rk1277__Ranjita",
+    "git-widget-placeholder": "Merging jd4936__Jayakiran",
     "last_opened_file_path": "C:/Users/JD4936/OneDrive - Zebra Technologies/Documents/AirTest_ZSB_Mobile_Automation",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
@@ -108,6 +120,7 @@
   <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46000">
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45936" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -124,6 +137,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45941" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -140,6 +154,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45957" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -156,6 +171,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45959" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -172,6 +188,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46000" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
