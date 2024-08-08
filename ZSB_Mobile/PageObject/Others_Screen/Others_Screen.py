@@ -389,6 +389,11 @@ class Others:
         except:
             pass
         try:
+            image_shutter_btn = self.poco(desc="Take photo")
+            image_shutter_btn.click()
+        except:
+            pass
+        try:
             self.poco("org.codeaurora.snapcam:id/shutter_button").click()
         except:
             self.run_the_command("adb shell input keyevent KEYCODE_CAMERA")
@@ -658,7 +663,9 @@ class Others:
         first_design.click()
 
     def click_on_copy_to_my_designs(self):
+        sleep(2)
         self.poco(self.copy_to_my_designs).click()
+        sleep(3)
 
     def click_on_my_designs(self):
         self.poco(self.my_designs_button).click()

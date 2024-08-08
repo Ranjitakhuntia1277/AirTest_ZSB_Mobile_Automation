@@ -13,7 +13,9 @@ import platform
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+        return os.path.join(os.path.expanduser('~'),
+                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
+                            a)
 
 else:
     def Basic_path(a):
@@ -80,7 +82,14 @@ class Template_Management_Screen:
             raise Exception(f"There are {len(self.poco("android.view.View")[6].child())} options present.")
 
     def verify_default_filter_my_designs(self):
-        return self.poco("All sizes").exists()
+        if not self.poco("All sizes").exists():
+            raise Exception("Default filter is not \"All sizes\"")
+
+    def verify_default_sort_order_back_to_normal(self):
+        if self.verify_default_filter_my_designs():
+            pass
+        else:
+            raise Exception("Sorting order is not back to default sort order - \"Name (A to Z)\" in my designs.")
 
     def verify_sort_order_my_designs(self, sort_order):
         if sort_order == "A-Z":
@@ -175,6 +184,19 @@ class Template_Management_Screen:
         while not self.poco(first_design).exists():
             self.poco.swipe([0.5, 0.5], [0.5, 0.9])
         return label_sizes
+
+    def check_there_are_less_than_100_designs(self, design_list):
+        if len(design_list) <= 100:
+            pass
+        else:
+            raise Exception("There are more than 100 designs.")
+
+    def check_if_design_count_incremented_by_1(self, new_design_count, initial_design_count):
+        if new_design_count == initial_design_count + 1:
+            pass
+        else:
+            error = f"{new_design_count} is not equal to {initial_design_count}+1"
+            raise Exception(error)
 
     def filter_options(self, length=False):
 
@@ -718,6 +740,14 @@ class Template_Management_Screen:
             return total
         return temp
 
+    def check_if_drop_down_list_contains_results_that_include_search_keyword(self, search_keyword):
+        drop_down_list = self.get_all_search_results_in_search_designs()
+        for result in drop_down_list:
+            if search_keyword in result:
+                pass
+            else:
+                raise Exception("Drop down list contains results that do not include the search keyword")
+
     def click_scrim(self):
         self.poco("Scrim").click()
 
@@ -738,6 +768,18 @@ class Template_Management_Screen:
         d = self.poco(nameMatches=regex_pattern).exists()
 
         return a or b or c or d
+
+    def check_if_drop_down_list_open(self):
+        if self.check_suggestion_window_in_common_design():
+            pass
+        else:
+            raise Exception("Drop down list did not appear.")
+
+    def check_if_drop_down_list_close(self):
+        if self.check_suggestion_window_in_common_design():
+            raise Exception("Drop down list did not close.")
+        else:
+            pass
 
     def get_all_fields_print_page(self):
         elements = set()
@@ -830,6 +872,19 @@ class Template_Management_Screen:
         else:
             raise Exception("Delete option not present")
 
+    def verify_design_manipulation_options_in_design_menu(self):
+        try:
+            self.verify_design_manipulation_options()
+        except:
+            raise Exception("Design manipulation options \"Print, Rename, Duplicate, Delete\" not present.")
+
+    def check_design_menu_closed(self):
+        try:
+            self.verify_design_manipulation_options()
+            raise Exception("Design menu still open after clicking outside design menu.")
+        except:
+            pass
+
     def scroll_my_designs(self, direction="up"):
         total = []
         prev = []
@@ -885,7 +940,10 @@ class Template_Management_Screen:
             raise Exception("rows displayed on the label range field not matching with the selected number of rows")
 
     def verify_My_Designs_pagination(self):
-        return self.poco("android.widget.ListView").exists()
+        if self.poco("android.widget.ListView").exists():
+            pass
+        else:
+            raise Exception("All templates did not show up with pagination")
 
     def verify_pagination_shown_is_correct(self):
         total_designs = int(self.poco(textMatches=".*Showing.*").get_text().split(" ")[3])
