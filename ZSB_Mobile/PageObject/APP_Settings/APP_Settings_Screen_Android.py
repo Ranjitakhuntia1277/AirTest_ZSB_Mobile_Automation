@@ -1734,7 +1734,7 @@ class App_Settings_Screen:
             a.get_name()
             print(a)
 
-    def restart_adb_server():
+    def restart_adb_server(self):
         try:
             # Kill the existing adb server
             subprocess.run(['adb', 'kill-server'], check=True)
@@ -1744,10 +1744,9 @@ class App_Settings_Screen:
         except subprocess.CalledProcessError as e:
             print(f"Failed to restart ADB server: {e.stderr.decode()}")
 
-    def disable_bluetooth():
+    def disable_bluetooth(self):
         time.sleep(2)  # Sleep for 2 seconds
-
-        restart_adb_server()  # Restart the adb server to fix version mismatch issue
+        self.restart_adb_server()  # Restart the adb server to fix version mismatch issue
 
         try:
             # Send the intent to disable Bluetooth

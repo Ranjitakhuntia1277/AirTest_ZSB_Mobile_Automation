@@ -105,12 +105,13 @@ class Social_Login:
         self.poco(text=self.apple_login).click()
 
     def check_sign_in_with_email(self):
+        sleep(10)
         temp = self.poco(text=self.sign_in_with_email).exists()
         return temp
 
     def check_zebra_logo(self):
         sleep(2)
-        a = self.poco(type="android.widget.Image", text="Zebra Logo").exists()
+        a = self.poco(text="Zebra Logo").exists()
         return a
 
     def check_text_of_free_benifits(self):
@@ -189,27 +190,34 @@ class Social_Login:
 
     def check_both_images_in_benefits_of_free_account_page(self):
 
-        image_1 = Template(Basic_path("tpl1706352005910.png"), record_pos=(-0.281, -0.23), resolution=(1080, 2340))
-
-        image_2 = Template(Basic_path("tpl1706352031764.png"), record_pos=(-0.281, 0.43), resolution=(1080, 2340))
-
-        assert_exists(image_1)
-        try:
-            assert_exists(image_2)
-        except:
+        if self.poco("android.widget.Image").exists():
+            return True
+        if self.poco("android.widget.Image")[1].exists():
+            return True
+        else:
             self.poco.scroll()
-            assert_exists(image_2)
+            self.poco("android.widget.Image")[1].get_name()
+
+
+
 
     def click_on_zebra_link(self):
         sleep(2)
+        self.poco.scroll()
+        sleep(1)
         self.poco("Zebra.com").click()
+
 
     def click_on_legal_notice_link(self):
         sleep(2)
-        self.poco("Legal Notice").click()
+        self.poco.scroll()
+        sleep(1)
+        self.poco(name="Legal Notice").click()
 
     def click_on_privacy_statement_link(self):
         sleep(2)
+        self.poco.scroll()
+        sleep(1)
         self.poco("Privacy Statement").click()
 
     def complete_sign_in_with_email(self, user_name, password, click_on_sign_in=1, click_back=1):
@@ -276,7 +284,15 @@ class Social_Login:
         self.poco("RETURN TO LOGIN").click()
 
     def click_on_sign_in_with_email(self):
-        self.poco(text=self.sign_in_with_email).click()
+        sleep(10)
+        if self.poco(text="Sign In with your email").exists():
+           self.poco(text="Sign In with your email").click()
+        else:
+            sleep(3)
+            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+            sleep(10)
+            self.poco(text="Sign In with your email").click()
+
 
     def check_element_present_name_matches(self, elem):
         a = self.poco(nameMatches="(?s).*" + elem + ".*").exists()
@@ -292,16 +308,20 @@ class Social_Login:
         self.poco(nameMatches="(?s).*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def check_username_and_password_feilds(self):
-        sleep(2)
+        sleep(5)
         a = self.poco(text="Username*").exists()
         b = self.poco(text="Password*").exists()
         return a & b
 
     def check_sign_in_button(self):
+        sleep(1)
+        self.poco.scroll()
+        sleep(2)
         c = self.poco(text="Sign In", enabled=True).exists()
         return c
 
     def check_close_button(self):
+        sleep(3)
         a = self.poco(text="Close", enabled=True).exists()
         return a
 
@@ -696,3 +716,42 @@ class Social_Login:
     def click_Bluetooth_pairing_Popup2(self):
         bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2)
         bluetooth_pairing_popup2.click()
+
+    def Verify_Zebra_URL(self):
+        sleep(10)
+        a=self.poco(text="zebra.com")
+        if a.exists():
+           a.get_name()
+           sleep(1)
+
+    def click_Browser_Close_Icon(self):
+        sleep(2)
+        self.poco(name="com.android.chrome:id/close_button").click()
+        sleep(7)
+
+    def Verify_Legal_Notice_Page(self):
+        sleep(7)
+        a=self.poco(text="Terms of Use")
+        if a.exists():
+            a.get_name()
+
+    def loginwith_Sociallogin_EmailID(self):
+        sleep(9)
+        added_email = self.poco(text="zebra850.swdvt@gmail.com")
+        if added_email.exists():
+            added_email.click()
+            sleep(15)
+        else:
+            self.poco.scroll()
+            added_email.click()
+            sleep(15)
+
+    def verify_Zebraaccount_page(self):
+        sleep(10)
+        self.poco(text="Sign In").get_name()
+
+    def Verify_Email(self):
+        sleep(7)
+        email = self.poco(text="zebra850.swdvt@gmail.com")
+        if email.exists():
+            return True

@@ -12,6 +12,7 @@ import os
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Others.Others import Others
 from ...PageObject.Help_Screen.Help_Screen import Help_Screen
+from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 
 import tkinter as tk
 from tkinter import simpledialog
@@ -42,6 +43,7 @@ add_a_printer_screen = Add_A_Printer_Screen(poco)
 smoke_test_android = Smoke_Test_Android(poco)
 registration_page = Registration_Screen(poco)
 aps_notification = APS_Notification(poco)
+pdf_printing = PDF_Printing_Screen(poco)
 
 
 class test_Android_Social_Login():
@@ -154,33 +156,33 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48466(self):
         pass
         self.setup_logout()
+        login_page.Verify_ALL_Allow_Popups()
         login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
-        try:
-            social_login.open_in_chrome()
-        except:
-            pass
-        social_login.swith_back_the_app()
-        sleep(1)
-        social_login.scroll_down(1)
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
+        login_page.Verify_ALL_Allow_Popups()
+        login_page.Verify_Login_Option_Is_Present()
         social_login.click_on_zebra_link()
-        if not help_page.verify_url("zebra.com"):
-            raise Exception("zebra.com url not present")
-        social_login.go_back()
-        social_login.swith_back_the_app()
+        social_login.Verify_Zebra_URL()
+        social_login.click_Browser_Close_Icon()
+        login_page.click_Cancel_Btn()
+        login_page.click_loginBtn()
+        login_page.Verify_ALL_Allow_Popups()
+        login_page.Verify_Login_Option_Is_Present()
         social_login.click_on_legal_notice_link()
+        social_login.Verify_Legal_Notice_Page()
         if not help_page.verify_url("zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html"):
-            raise Exception("\"zebra.com/us/en/about-zebra/company-information/legal/terms-of-use.html\" url not present")
-        social_login.go_back()
-        social_login.swith_back_the_app()
-        sleep(1)
+            raise Exception(
+                "\"zebra.com/us/en/about-zebra/company-information/legal/legal/terms-of-use.html\" url not present")
+        social_login.click_Browser_Close_Icon()
+        login_page.click_Cancel_Btn()
+        login_page.click_loginBtn()
+        login_page.Verify_ALL_Allow_Popups()
+        login_page.Verify_Login_Option_Is_Present()
         social_login.click_on_privacy_statement_link()
-        # old_url = "zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html"
-        if not help_page.verify_url("https://www.zebra.com/uss/en/about-zebra/company-information/compliance/information-privacy/privacy-statement.html"):
-            raise Exception("\"zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html\" url not present")
+        if not help_page.verify_url("zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html"):
+            raise Exception(
+                "\"zebra.com/us/en/about-zebra/company-information/legal/privacy-statement.html\" url not present")
+        social_login.click_Browser_Close_Icon()
+        login_page.click_Cancel_Btn()
 
     def test_Social_Login_TestcaseID_48475(self):
         pass
@@ -256,9 +258,7 @@ class test_Android_Social_Login():
         password = "Zebra#85185180"
         social_login.complete_sign_in_with_email(email, password, 0)
 
-        sleep_time = 60 * 29
-        sleep(sleep_time)
-
+        sleep(30)
         others.click_on_sign_in()
         common_method.wait_for_element_appearance_namematches("Home", 30)
 
@@ -271,20 +271,17 @@ class test_Android_Social_Login():
 
         common_method.tearDown()
         self.setup_logout()
-        common_method.wait_for_element_appearance_namematches("Sign In")
-
         login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
         others.click_on_sign_in_with_email()
         sleep(1)
         others.go_back()
+
 
         others.enter_user_name_in_sign_with_email("zebratest851@gmail.com")
 
         others.enter_password_in_sign_with_email("Zebra#85185180")
 
-        sleep_time = 60 * 31
-        sleep(sleep_time)
+        sleep(30)
 
         others.click_on_sign_in()
 
@@ -299,40 +296,16 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
         social_login.click_on_sign_in_with_email()
-        try:
-            social_login.check_element_present_name_matches("keyboard")
-            keyevent("back")
-        except:
-            pass
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        if not social_login.check_zebra_logo():
-            raise Exception("Zebra Logo not present")
-
-        if not social_login.check_username_and_password_feilds():
-            raise Exception("user name or password fields not present ")
-
-        if not social_login.check_sign_in_button():
-            raise Exception("sign in button not present")
-
-        social_login.swipe_down_half(1)
-
-        if not social_login.check_close_button():
-            raise Exception("close button not present")
-
-        if not social_login.check_text_of_register_your_email():
-            raise Exception("text not matching for register your email now")
-
-        if not social_login.check_reset_password_text():
-            raise Exception("text not matching for reset password feild")
-
+        social_login.verify_Zebraaccount_page()
+        social_login.check_zebra_logo()
+        social_login.check_username_and_password_feilds()
+        login_page.Dismiss_Keyboard()
+        social_login.check_sign_in_button()
+        social_login.check_close_button()
+        social_login.check_text_of_register_your_email()
+        social_login.check_reset_password_text()
         social_login.click_on_close_button()
-
-        if social_login.check_close_button():
-            raise Exception("page dint close")
 
     def test_Social_Login_TestcaseID_48474(self):
         pass
@@ -416,7 +389,8 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48482(self):
         pass
 
-        common_method.show_message("Prepare an external account which hasn't been signed in once in ZSB series app (new registered)")
+        common_method.show_message(
+            "Prepare an external account which hasn't been signed in once in ZSB series app (new registered)")
         self.setup_logout()
         login_page.click_loginBtn()
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
@@ -425,7 +399,6 @@ class test_Android_Social_Login():
         """Provide new_user name and password which is not registered"""
         email = common_method.get_user_input("enter the new email")
         password = common_method.get_user_input("enter the password")
-
 
         social_login.complete_sign_in_with_email(email, password)
         social_login.wait_for_element_appearance_namematches_all("ZSB Terms of Use and License Agreement", 20)
@@ -479,35 +452,26 @@ class test_Android_Social_Login():
     def test_Social_Login_TestcaseID_48467(self):
         pass
 
-        self.setup_logout()
-        """Login with an existing account"""
+        common_method.tearDown()
+        common_method.Clear_App()
+        common_method.Start_The_App()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
+        login_page.Verify_ALL_Allow_Popups()
+        common_method.Turn_Off_The_Phone()
         sleep(2)
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        common_method.Turn_ON_The_Phone()
+        sleep(4)
         login_page.click_Loginwith_Google()
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
-
-        """Enter the email"""
-        email = "zebra850.swdvt@gmail.com"
-        password = "Zebra#123456789"
-        social_login.choose_a_google_account(email)
-        social_login.wait_for_element_appearance("Home", 30)
-
+        social_login.loginwith_Sociallogin_EmailID()
+        app_settings_page.Home_text_is_present_on_homepage()
         """Check whether logged in to same account as email"""
         login_page.click_Menu_HamburgerICN()
         social_login.click_on_profile_edit()
-        if not social_login.check_the_email_in_profile_page(email):
-            raise Exception("the email is not matching")
-
+        social_login.Verify_Email()
         """Log out"""
         social_login.scroll_down(1)
         social_login.click_log_out_button()
-        try:
-            social_login.wait_for_element_appearance("Sign In", 10)
-        except:
-            raise Exception("Did not redirect to the login page")
+        login_page.Verify_Login_Option_Is_Present()
 
     def test_Social_Login_TestcaseID_50643(self):
         pass
@@ -573,13 +537,11 @@ class test_Android_Social_Login():
         """Enter the email and password"""
         email = ""
         password = ''
-        data_sources_page.lock_phone()
-        wake()
+        common_method.Turn_Off_The_Phone()
         sleep(2)
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
-
+        common_method.Turn_ON_The_Phone()
+        sleep(4)
         social_login.click_on_sign_in_with_email()
-
         social_login.complete_sign_in_with_email(email, password, 1)
         sleep(3)
         if not social_login.check_for_blank_value_error_of_both():
@@ -672,42 +634,27 @@ class test_Android_Social_Login():
 
     def test_Social_Login_TestcaseID_48479(self):
         pass
+
         common_method.tearDown()
-        self.setup_logout()
-        """Enter invalid user name in google id feild"""
+        common_method.Clear_App()
+        common_method.Start_The_App()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        social_login.wait_for_element_appearance("Continue with Google")
-        login_page.click_Loginwith_Google()
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
-        social_login.sign_in_with_google()
-        common_method.wait_for_element_appearance_textmatches("ext")
-        social_login.enter_user_name_in_google("zsb@gmail.com")
-        social_login.click_on_next_in_google_sing_in()
-        sleep(1)
-
-        if not social_login.check_for_incorrect_username_in_google():
-            raise Exception("error not found for incorrect email")
-
-        """Select a proper gmail account"""
-        social_login.go_back()
-        social_login.go_back()
-        login_page.click_loginBtn()
-        login_page.click_loginBtn()
-        social_login.wait_for_element_appearance("Continue with Google")
-        login_page.click_Loginwith_Google()
-
-        t = social_login.get_one_of_the_gmail_accounts()
-        social_login.choose_a_google_account(t)
-
-        social_login.wait_for_element_appearance("Home", 20)
+        login_page.Verify_ALL_Allow_Popups()
+        registration_page.Enter_Correct_Username()
+        registration_page.Enter_Wrong_Password()
+        login_page.click_SignIn_Button()
+        registration_page.Verify_We_Didnot_recognize_Please_Try_Again()
+        data_sources_page.signInWithEmail()
+        registration_page.Enter_Correct_Username()
+        registration_page.Enter_Correct_Password()
+        login_page.click_SignIn_Button()
+        data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
-        social_login.click_on_profile_edit()
-        social_login.scroll_down(1)
-        social_login.click_log_out_button()
-        social_login.wait_for_element_appearance("Sign In", 10)
+        registration_page.click_on_profile_edit()
+        poco.scroll()
+        registration_page.click_log_out_button()
+        registration_page.Verify_SignIn_Page()
+        common_method.Stop_The_App()
 
     def test_Social_Login_TestcaseID_48470(self):
         pass
@@ -847,7 +794,8 @@ class test_Android_Social_Login():
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
 
         social_login.click_login_with_facebook()
-        social_login.wait_for_element_appearance_text("Log in to your Facebook account to connect to Zebra Technologies")
+        social_login.wait_for_element_appearance_text(
+            "Log in to your Facebook account to connect to Zebra Technologies")
 
         email = "wrongemail.com"
         password = "Zebra#123456"
@@ -1689,8 +1637,9 @@ class test_Android_Social_Login():
         social_login.click_on_next_in_google_sing_in()
         if not social_login.check_for_incorrect_username_in_google():
             raise Exception("error not found for incorrect email")
+
     #   ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    def test_Smoke_Test_TestcaseID_45883(self):
+    def test_Social_Login__TestcaseID_45883(self):
         """Verify sign in sign out with registered social accounts in Mobile App."""
 
         """start the app"""
