@@ -984,15 +984,15 @@ class Template_Management_Android:
             raise Exception("duplicate_design_window is not displayed properly")
 
     def check_delete_design_window_message(self):
-        a = self.poco("Cancel").parent().get_name()
-        temp = a.split("\n")
+        a = self.poco("Cancel").parent()
+        temp = a.child("android.view.View").child().get_name()
 
         print(temp[1])
         print("Deleting a design will permanently remove it from your workspace. Are you sure you want to delete?")
-        assert_equal("Delete Design", temp[0])
+        assert_equal("Delete Design", a.get_name())
         assert_equal(
             "Deleting a Design will permanently remove it from your workspace. Are you sure you want to delete?",
-            temp[1])
+            temp)
 
     def click_on_delete_button_in_designs(self):
         self.poco("Delete").click()

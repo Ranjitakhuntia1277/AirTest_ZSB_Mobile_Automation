@@ -297,7 +297,7 @@ class Delete_Account_Screen:
         zebra_login = self.poco(text="Sign In with your email")
         zebra_login.click()
         sleep(4)
-        self.poco(name="android.widget.EditText").click()
+        self.poco(name="username").click()
         sleep(1)
         self.poco(text(""))
         self.poco(text("zebra03.swdvt@gmail.com"))

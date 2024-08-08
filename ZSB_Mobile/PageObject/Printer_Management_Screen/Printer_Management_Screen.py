@@ -245,7 +245,7 @@ class Printer_Management_Screen:
         sleep(1)
         # poco.scroll()
         sleep(1)
-        self.poco(name="android.widget.EditText")[1].click()
+        self.poco(name="submit_id").click()
 
     def click_SignIn_Button(self):
         sleep(1)

@@ -389,6 +389,11 @@ class Others:
         except:
             pass
         try:
+            image_shutter_btn = self.poco(desc="Take photo")
+            image_shutter_btn.click()
+        except:
+            pass
+        try:
             self.poco("org.codeaurora.snapcam:id/shutter_button").click()
         except:
             self.run_the_command("adb shell input keyevent KEYCODE_CAMERA")

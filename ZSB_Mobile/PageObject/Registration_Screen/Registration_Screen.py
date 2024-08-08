@@ -49,6 +49,7 @@ class Registration_Screen:
         self.Try_Again = "Try Again"
         self.Login = "Login"
         self.continue_with_google_ele = "Continue with Google"
+        self.sign_in_with_google = "Sign in with Google"
 
     def show_message(self, msg):
         root = tk.Tk()
@@ -395,13 +396,12 @@ class Registration_Screen:
         self.poco("password").wait_for_appearance(timeout=10)
         self.poco("password").set_text(password)
         # self.poco(text="Sign In").click()
-        keyevent("Enter")
+        # keyevent("Enter")
         sleep(2)
         if click_on_sign_in:
             try:
-                self.poco("android.widget.Button")[1].click()
+                self.poco("submit_id").click()
             except:
-                x = 1 / 0
                 self.poco(text="Sign In").click()
         if wrong_password:
             try:
@@ -455,8 +455,11 @@ class Registration_Screen:
         # except:
         #     touch(self.Google_Icon)
         pocoElemnt = self.poco(self.continue_with_google_ele)
+        pocoElemnt1 = self.poco(self.sign_in_with_google)
         if pocoElemnt.exists():
             pocoElemnt.click()
+        elif pocoElemnt1.exists():
+            pocoElemnt1.click()
         else:
             pocoElemnt.refresh()
             pocoElemnt.click()
@@ -1014,3 +1017,12 @@ class Registration_Screen:
         password = self.poco(name="password")
         password.set_text("Zebra#123456789")
         sleep(1)
+
+    def sign_in_with_mail_zebra07(self):
+        self.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+
+    def sign_in_with_mail_zebra03(self):
+        self.complete_sign_in_with_email("zebra03.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+
+    def sign_in_with_mail_zebra02(self):
+        self.complete_sign_in_with_email("zebra02.swdvt@gmail.com", "Zebra#123456789", 1, 0)
