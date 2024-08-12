@@ -41,48 +41,6 @@ smoke_test_android = Smoke_Test_Android(poco)
 aps_notification = APS_Notification(poco)
 
 
-# ###bug id-SMBM-1127
-def test_PrinterManagement_TestcaseID_47920():
-    pass
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    """Sign in"""
-    registration_page.clickSignIn()
-    data_sources_page.signInWithEmail()
-    printer_management_page.Login_With_Email_Tab()
-    printer_management_page.click_Password_TextField()
-    printer_management_page.Enter_Zebra_Password()
-    printer_management_page.click_SignIn_Button()
-    """Click hamburger icon to expand menu"""
-    login_page.click_Menu_HamburgerICN()
-    sleep(2)
-    """Swipe up"""
-    poco.scroll_view = poco("android.widget.ScrollView")
-    """Set the maximum number of swipes to avoid an infinite loop"""
-    poco.scroll()
-    """Open Printer settings"""
-    app_settings_page.click_Printer_Settings()
-
-    """Select printer"""
-    printer_management_page.clickPrinter1InPinterSettings()
-    printer_2_name = printer_management_page.getPrinter2NameInPrinterSettings()
-    print(printer_2_name)
-    """Rename printer1 to printer2 name"""
-    printer_management_page.setPrinterName(printer_2_name)
-    keyevent("Enter")
-    try:
-        template_management_page_1.wait_for_element_appearance_name_matches_all("Printer Update Failed")
-        x=1/0
-    except ZeroDivisionError:
-        raise Exception("Error pop up if 2 printers have same name.")
-    except Exception as e:
-        pass
-    """Verify is '(1)' is appended to the duplicate name"""
-    """Unable to verify due to BUG"""
-    printer_management_page.verifyPrinterNameAfterRenaming(printer_2_name)
-    common_method.Stop_The_App()
-
 
 def test_PrinterManagement_TestcaseID_47785():
     pass
@@ -212,3 +170,47 @@ def test_PrinterManagement_TestcaseID_45888():
     common_method.Stop_The_App()
     """"10. Check printer is also being deleted in web portal and printer tool Manually"""
 # # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+# ###bug id-SMBM-1127
+def test_PrinterManagement_TestcaseID_47920():
+    pass
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    printer_management_page.Login_With_Email_Tab()
+    printer_management_page.click_Password_TextField()
+    printer_management_page.Enter_Zebra_Password()
+    printer_management_page.click_SignIn_Button()
+    """Click hamburger icon to expand menu"""
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Swipe up"""
+    poco.scroll_view = poco("android.widget.ScrollView")
+    """Set the maximum number of swipes to avoid an infinite loop"""
+    poco.scroll()
+    """Open Printer settings"""
+    app_settings_page.click_Printer_Settings()
+
+    """Select printer"""
+    printer_management_page.clickPrinter1InPinterSettings()
+    printer_2_name = printer_management_page.getPrinter2NameInPrinterSettings()
+    print(printer_2_name)
+    """Rename printer1 to printer2 name"""
+    printer_management_page.setPrinterName(printer_2_name)
+    keyevent("Enter")
+    try:
+        template_management_page_1.wait_for_element_appearance_name_matches_all("Printer Update Failed")
+        x=1/0
+    except ZeroDivisionError:
+        raise Exception("Error pop up if 2 printers have same name.")
+    except Exception as e:
+        pass
+    """Verify is '(1)' is appended to the duplicate name"""
+    """Unable to verify due to BUG"""
+    printer_management_page.verifyPrinterNameAfterRenaming(printer_2_name)
+    common_method.Stop_The_App()
+# ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
