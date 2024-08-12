@@ -224,7 +224,7 @@ class Login_Screen:
             a.click()
             print(a)
     def Verify_ALL_Allow_Popups(self):
-        sleep(1)
+        sleep(2)
         loginallow = self.poco(self.LoginAllow_Popup)
         if loginallow.exists():
             loginallow.click()
@@ -315,6 +315,7 @@ class Login_Screen:
         self.clickSignIn()
 
     def signInWithEmail(self):
+        sleep(10)
         pocoEle = self.poco(text="Sign In with your email")
         if pocoEle.exists():
             pocoEle.click()

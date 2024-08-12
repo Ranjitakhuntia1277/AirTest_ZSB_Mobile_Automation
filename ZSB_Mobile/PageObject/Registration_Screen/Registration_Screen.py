@@ -47,6 +47,8 @@ class Registration_Screen:
         self.Login = "Login"
         self.continue_with_google_ele = "Continue with Google"
         self.sign_in_with_google = "Sign in with Google"
+        self.LoginAllow_Popup = "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+        self.Allow_ZSB_Series_Popup = "com.android.permissioncontroller:id/permission_allow_button"
 
     def show_message(self, msg):
         root = tk.Tk()
@@ -54,6 +56,18 @@ class Registration_Screen:
         root.attributes('-topmost', True)  # Ensure the root window is on top
         messagebox.showinfo("Notification", msg)
         root.destroy()
+
+    def Verify_ALL_Allow_Popups(self):
+        sleep(1)
+        loginallow = self.poco(self.LoginAllow_Popup)
+        if loginallow.exists():
+            loginallow.click()
+        sleep(3)
+        Allow_ZSB_Series_Popup = self.poco(self.Allow_ZSB_Series_Popup)
+        if Allow_ZSB_Series_Popup.exists():
+            Allow_ZSB_Series_Popup.click()
+            sleep(1)
+
 
     def clickSignIn(self):
         sleep(2)
@@ -873,6 +887,7 @@ class Registration_Screen:
     def Verify_We_Didnot_recognize_Please_Try_Again(self):
         sleep(5)
         self.poco(text="We didn't recognize the username or password you entered. Please try again.").get_name()
+
 
 
     def Verify_SignInwith_Page(self):
