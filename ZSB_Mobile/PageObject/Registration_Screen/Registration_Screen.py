@@ -45,6 +45,8 @@ class Registration_Screen:
         self.Finish_Setup = "Finish Setup"
         self.Try_Again = "Try Again"
         self.Login = "Login"
+        self.continue_with_google_ele = "Continue with Google"
+        self.sign_in_with_google = "Sign in with Google"
 
     def show_message(self, msg):
         root = tk.Tk()
@@ -365,10 +367,19 @@ class Registration_Screen:
 
     def click_Google_Icon(self):
         sleep(2)
-        try:
-            self.poco("Sign in with Google").click()
-        except:
-            touch(self.Google_Icon)
+        # try:
+        #     self.poco("Continue with Google").click()
+        # except:
+        #     touch(self.Google_Icon)
+        pocoElemnt = self.poco(self.continue_with_google_ele)
+        pocoElemnt1 = self.poco(self.sign_in_with_google)
+        if pocoElemnt.exists():
+            pocoElemnt.click()
+        elif pocoElemnt1.exists():
+            pocoElemnt1.click()
+        else:
+            pocoElemnt.refresh()
+            pocoElemnt.click()
         sleep(2)
 
     def click_Facebook_Icon(self):
@@ -1012,3 +1023,8 @@ class Registration_Screen:
             except:
                 raise Exception("Error message not displayed for wrong password.")
 
+    def check_if_user_navigated_to_sign_in_page(self):
+        try:
+            self.wait_for_element_appearance_text("Sign in with Google", 20)
+        except:
+            raise Exception("Did not navigate to Sign In with google page")

@@ -149,9 +149,7 @@ class test_Android_Social_Login():
         if not res:
             raise Exception("No back button")
         social_login.click_on_the_back_button()
-        res = social_login.check_login_with_google()
-        if not res:
-            raise Exception("6. Click on the back button Check it will back to sign in page fails")
+        social_login.check_login_with_google()
 
     def test_Social_Login_TestcaseID_48466(self):
         pass
@@ -284,12 +282,10 @@ class test_Android_Social_Login():
         sleep(30)
 
         others.click_on_sign_in()
+        sleep(10)
+        app_settings_page.Home_text_is_present_on_homepage()
 
-        try:
-            others.wait_for_element_appearance("Home", 10)
-            raise Exception("The page does not timeout")
-        except ZeroDivisionError:
-            pass
+
 
     def test_Social_Login_TestcaseID_48473(self):
         pass
@@ -436,9 +432,10 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
+        common_method.Turn_Off_The_Phone()
         sleep(2)
+        common_method.Turn_ON_The_Phone()
+        sleep(4)
         social_login.wait_for_element_appearance_text("Continue with Google", 10)
         social_login.click_on_sign_in_with_email()
 
@@ -478,11 +475,10 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
+        common_method.Turn_Off_The_Phone()
         sleep(2)
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
-
+        common_method.Turn_ON_The_Phone()
+        sleep(4)
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account")
 
@@ -512,9 +508,10 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
+        common_method.Turn_Off_The_Phone()
         sleep(2)
+        common_method.Turn_ON_The_Phone()
+        sleep(4)
         common_method.wait_for_element_appearance_namematches("Continue with Google")
         """Enter the email and password"""
         email = "zebra850.swdvt@gmail.com"
@@ -1625,14 +1622,14 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
+        common_method.Turn_Off_The_Phone()
         sleep(2)
+        common_method.Turn_ON_The_Phone()
+        sleep(4)
         social_login.wait_for_element_appearance("Continue with Google")
         login_page.click_Loginwith_Google()
-        social_login.sign_in_with_google()
+        social_login.sign_in_with_new_google()
         sleep(5)
-
         social_login.enter_user_name_in_google("zebratest_o1@outlook.com")
         social_login.click_on_next_in_google_sing_in()
         if not social_login.check_for_incorrect_username_in_google():

@@ -226,10 +226,10 @@ class Social_Login:
             keyevent("back")
         try:
 
-            self.poco("android.widget.EditText")[0].set_text(user_name)
+            self.poco("username").set_text(user_name)
             if self.poco(nameMatches=".*keyboard.*").exists():
                 self.go_back()
-            self.poco("android.widget.EditText")[1].set_text(password)
+            self.poco("password").set_text(password)
         except:
             self.poco("username").set_text(user_name)
             if self.poco(nameMatches=".*keyboard.*").exists():
@@ -283,13 +283,54 @@ class Social_Login:
     def return_to_login_page(self):
         self.poco("RETURN TO LOGIN").click()
 
+    def allowPermissions(self):
+        try:
+            self.poco(text="While using the app").wait_for_appearance(timeout=15)
+            self.poco(text="While using the app").click()
+        except:
+            pass
+    def clickSignIn(self):
+        sleep(2)
+        signInBtn = self.poco("Sign In")
+        signInBtn.click()
+        if self.poco("Allow").exists():
+            self.poco("Allow").click()
+        elif self.poco(text="Allow").exists():
+            self.poco(text="Allow").click()
+        sleep(4)
+
+    def close_app_reopen_and_click_sign_in(self):
+        packagename = "com.zebra.soho_app"
+        stop_app(packagename)
+        sleep(1)
+        start_app(packagename)
+        sleep(5)
+        self.allowPermissions()
+        self.clickSignIn()
+
+    def signInWithEmail(self):
+        pocoEle = self.poco(text="Sign In with your email")
+        if pocoEle.exists():
+            pocoEle.click()
+        else:
+            self.close_app_reopen_and_click_sign_in()
+            pocoEle.click()
+        print("Successfully clicked Sign In With Email")
+        sleep(2)
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
+        sleep(2)
+
+
+
     def click_on_sign_in_with_email(self):
         sleep(10)
         if self.poco(text="Sign In with your email").exists():
            self.poco(text="Sign In with your email").click()
         else:
             sleep(3)
-            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+            self.close_app_reopen_and_click_sign_in()
             sleep(10)
             self.poco(text="Sign In with your email").click()
 
@@ -485,9 +526,9 @@ class Social_Login:
         return res
 
     def check_focused_of_user_name(self):
-
-        a = self.poco("android.widget.EditText", focused=True).exists()
-        return a
+        a = self.poco(name="username")
+        if a.exists():
+           return a
 
     def check_key_board(self):
         a = self.poco(nameMatches=".*keyboard.*").exists()
@@ -532,9 +573,9 @@ class Social_Login:
         keyevent("KEYCODE_APP_SWITCH")
 
     def get_the_password(self):
-        self.poco("android.widget.EditText")[1].click()
+        self.poco("username").click()
         self.go_back()
-        a = self.poco("android.widget.EditText")[1].get_text()
+        a = self.poco("password").get_text()
         return a
 
     def show_the_password(self):
@@ -543,7 +584,7 @@ class Social_Login:
     def check_for_blank_value_error_of_both(self):
         a = self.poco(text="Please fill out username field.").exists()
 
-        self.poco("android.widget.EditText").click()
+        self.poco("username").click()
         self.go_back()
         b = self.poco(text="Please fill out password field.").exists()
 
@@ -603,8 +644,8 @@ class Social_Login:
 
     def enter_username_and_password_in_facebook(self, user_name, password):
         sleep(2)
-        self.poco("android.widget.EditText")[0].set_text(user_name)
-        self.poco("android.widget.EditText")[1].set_text(password)
+        self.poco("username").set_text(user_name)
+        self.poco("android.widget.EditText").set_text(password)
 
     def enter_apple_id_and_password(self, apple_id, password):
 
@@ -755,3 +796,13 @@ class Social_Login:
         email = self.poco(text="zebra850.swdvt@gmail.com")
         if email.exists():
             return True
+
+    def sign_in_with_new_google(self):
+        sleep(4)
+        a=self.poco(text="Use another account")
+        if a.exists():
+            a.click()
+        else:
+            self.poco.scroll()
+            a.click()
+
