@@ -7405,6 +7405,7 @@ def test_Addprinter_TestcaseID_45656():
 def test_Registration_TestcaseID_46303():
     """""""""To test the ZSB Wi-Fi performance Setup"""""
 
+
     """"1.Open the app and login the account to go to the overview page."""""
     common_method.tearDown()
     common_method.Start_The_App()
