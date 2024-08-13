@@ -147,7 +147,7 @@ def test_APS_Printing_TestcaseID_49186():
     aps_notification.click_Print_Icon_Option()
     """""""Check Manually that the file would not be printed"""
     common_method.Start_The_App()
-    aps_notification.click_Three_Dot_On_Added_Printer_On_HomePage()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
     aps_notification.click_On_Clear_Print_Queue()
     aps_notification.click_Clear_Queue_Button()
     common_method.Stop_The_App()
