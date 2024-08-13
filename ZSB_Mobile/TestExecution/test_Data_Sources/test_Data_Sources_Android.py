@@ -43,14 +43,16 @@ smoke_test_android = Smoke_Test_Android(poco)
 aps_notification = APS_Notification(poco)
 delete_account_page = Delete_Account_Screen(poco)
 
-
 # ###bug id- SMBM-1456
+"""zebra03.swdvt@gmail.com"""
+
+
 def test_DataSources_TestcaseID_45729():
     pass
 
     """Google Login"""
-    data_sources_page.clearAppData()
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
     data_sources_page.allowPermissions()
     """Sign in"""
     registration_page.clickSignIn()
@@ -68,9 +70,11 @@ def test_DataSources_TestcaseID_45729():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ google drive """
-    registration_page.click_Google_Icon()
-    help_page.chooseAcc("zebra03.swdvt@gmail.com")
+    data_sources_page.click_drive_sign_in_if_present()
+    # registration_page.click_Google_Icon()
+    # help_page.chooseAcc("zebra03.swdvt@gmail.com")
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     common_method.wait_for_element_appearance("NAME")
     sleep(5)
@@ -115,8 +119,9 @@ def test_DataSources_TestcaseID_45729():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.click_drive_sign_in_if_present()
     sleep(2)
-    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+    # data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     common_method.wait_for_element_appearance("NAME")
     """Select file with special characters"""
     sleep(5)
@@ -454,11 +459,14 @@ def test_DataSources_TestcaseID_45736():
     common_method.Stop_The_App()
 
 
+"""zebra02.swdvt@gmail.com"""
+
+
 def test_DataSources_TestcaseID_45737():
     pass
 
-    data_sources_page.clearAppData()
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
     data_sources_page.allowPermissions()
     """Sign in"""
     registration_page.clickSignIn()
@@ -490,7 +498,7 @@ def test_DataSources_TestcaseID_45737():
     common_method.wait_for_element_appearance_namematches("Showing", 15)
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    data_sources_page.chooseAccToLinkFile()
+    # data_sources_page.chooseAccToLinkFile()
     try:
         common_method.wait_for_element_appearance("Relink Data Source Columns", 20)
         data_sources_page.clickBackArrow()
@@ -528,7 +536,7 @@ def test_DataSources_TestcaseID_45737():
         pass
     template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
     account = "zebra03.swdvt@gmail.com"
-    data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
+    # data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     sleep(5)
     if template_management_page.continueDisabled() and not template_management_page.checkIfOnRelinkDataSourcesPage:
         template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
@@ -566,8 +574,6 @@ def test_DataSources_TestcaseID_45737():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    registration_page.click_Google_Icon()
-    help_page.chooseAcc("zebra03.swdvt@gmail.com")
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(5)
     """ google drive """
@@ -1008,6 +1014,7 @@ def test_DataSources_TestcaseID_45745():
     """Click My Data"""
     data_sources_page.click_My_Data()
     sleep(3)
+    """"""
     """Click Add File"""
     data_sources_page.click_Add_File()
     """Click Upload file"""
@@ -1021,9 +1028,12 @@ def test_DataSources_TestcaseID_45745():
     sleep(7)
     for char in ignored_char:
         special_char_file1 = special_char_file1.replace(char, '')
+    sleep(2)
+    print(special_char_file1)
     data_sources_page.searchName(special_char_file1)
     """Verify If File Uploaded Successfully"""
     data_sources_page.verifyFilePresentInList(special_char_file1)
+    data_sources_page.remove_File_Based_On_DataSource("Local File", special_char_file1)
     """Select File to upload"""
     sleep(2)
     data_sources_page.click_Add_File()
@@ -1034,9 +1044,12 @@ def test_DataSources_TestcaseID_45745():
     sleep(7)
     for char in ignored_char:
         special_char_file2 = special_char_file2.replace(char, '')
+    sleep(2)
+    print(special_char_file2)
     data_sources_page.searchName(special_char_file2)
     """Verify If File Uploaded Successfully"""
     data_sources_page.verifyFilePresentInList(special_char_file2)
+    data_sources_page.remove_File_Based_On_DataSource("Local File", special_char_file2)
     common_method.Stop_The_App()
 
 
@@ -1418,10 +1431,11 @@ def test_DataSources_TestcaseID_45759():
     sleep(2)
     data_sources_page.clickMicrosoftOneDrive()
     sleep(2)
-    if data_sources_page.verifySignInWithMicrosoft():
-        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
-        sleep(2)
+    # if data_sources_page.verifySignInWithMicrosoft():
+    #     data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+    #     sleep(2)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.click_drive_sign_in_if_present()
     data_sources_page.clickMicrosoftOneDrive()
     common_method.wait_for_element_appearance("NAME")
     sleep(3)
@@ -1571,7 +1585,7 @@ def test_DataSources_TestcaseID_47936():
     data_sources_page.remove_File()
     """Notification on file removal"""
     """Unable to verify due to BUG SMBM-712"""
-    raise Exception("No notification on uploading and removing file")
+    raise Exception("No notification on uploading and removing file(SMBM-712)")
     common_method.Stop_The_App()
 
 
@@ -1598,11 +1612,11 @@ def test_DataSources_TestcaseID_47942():
     sleep(5)
     """Verify Progress Indicator"""
     data_sources_page.verifyProgressIndicator()
+    sleep(5)
     """Verify if file uploaded successfully"""
     data_sources_page.searchName(selected_file)
     data_sources_page.verifyFilePresentInList(selected_file)
     """remove file for next execution"""
-    data_sources_page.searchName(selected_file)
     data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file)
     common_method.Stop_The_App()
 
@@ -1630,83 +1644,19 @@ def test_DataSources_TestcaseID_47944():
     common_method.Stop_The_App()
 
 
-def test_DataSources_TestcaseID_45758():
-    """""""""test"""""
-
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    """Sign in"""
-    registration_page.clickSignIn()
-    data_sources_page.signInWithEmail()
-    registration_page.sign_in_with_mail_zebra02()
-    """verify if logged in successfully"""
-    data_sources_page.checkIfOnHomePage()
-    login_page.click_Menu_HamburgerICN()
-    sleep(2)
-    """Click My Data"""
-    data_sources_page.click_My_Data()
-    sleep(5)
-    """Google Drive"""
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
-    sleep(2)
-    """ google drive """
-    registration_page.click_Google_Icon()
-    account = "zebra850.swdvt@gmail.com"
-    help_page.chooseAcc(account)
-    sleep(2)
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    sleep(2)
-    data_sources_page.checkDriveEmpty()
-    """Cannot automate - Check the Select button is disabled. as select button not displayed"""
-    data_sources_page.clickBackArrow()
-
-    """One Drive"""
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
-    sleep(2)
-    """ One drive """
-    sleep(2)
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    data_sources_page.clickMicrosoftOneDrive()
-    if data_sources_page.verifySignInWithMicrosoft():
-        data_sources_page.signInWithMicrosoft(account, "Zebra#123456789")
-        sleep(2)
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    data_sources_page.clickMicrosoftOneDrive()
-    common_method.wait_for_element_appearance("NAME")
-    sleep(2)
-    data_sources_page.checkDriveEmpty()
-    """Cannot automate - Check the Select button is disabled. as select button not displayed"""
-    data_sources_page.clickBackArrow()
-    common_method.Stop_The_App()
-
-
-"""zebraloginzsb@gmail"""
+"""zebra07.swdvt@gmail"""
 
 
 def test_DataSources_TestcaseID_47937():
     pass
 
-    data_sources_page.clearAppData()
-    # data_sources_page.clearBrowsingData()
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
+    # data_sources_page.clearBrowsingData()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
     registration_page.sign_in_with_mail_zebra07()
-    try:
-        registration_page.wait_for_element_appearance_text("Continue", 30)
-        data_sources_page.clickContinueWeb()
-    except:
-        pass
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1720,10 +1670,11 @@ def test_DataSources_TestcaseID_47937():
     data_sources_page.click_Link_File()
     """ One drive """
     sleep(2)
-    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+    # data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
     sleep(2)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.click_drive_sign_in_if_present()
     common_method.wait_for_element_appearance("NAME")
     sleep(5)
     png_file = "png_file.png"
@@ -1731,26 +1682,18 @@ def test_DataSources_TestcaseID_47937():
     sleep(5)
     data_sources_page.searchName(png_file)
     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    sleep(7)
+    data_sources_page.searchName("")
     """Click Add file"""
     data_sources_page.click_Add_File()
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
+    sleep(2)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     common_method.wait_for_element_appearance("NAME")
-    sleep(5)
-    jpg_file = "jpg_file.jpg"
-    data_sources_page.selectFileDrive(jpg_file)
-    sleep(5)
-    data_sources_page.searchName(jpg_file)
-    data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
     sleep(5)
     csv_file = "csv_file.csv"
     data_sources_page.selectFileDrive(csv_file)
@@ -1775,15 +1718,19 @@ def test_DataSources_TestcaseID_47937():
     """Click Link File"""
     data_sources_page.click_Link_File()
     sleep(5)
-    registration_page.click_Google_Icon()
-    account = "zebra03.swdvt@gmail.com"
-    help_page.chooseAcc(account)
+    # registration_page.click_Google_Icon()
+    # account = "zebra03.swdvt@gmail.com"
+    # help_page.chooseAcc(account)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.click_drive_sign_in_if_present()
     sleep(5)
     data_sources_page.selectFileDrive(png_file)
     sleep(5)
     data_sources_page.searchName(png_file)
     data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    sleep(7)
+    data_sources_page.searchName("")
     """Click Add file"""
     data_sources_page.click_Add_File()
     sleep(2)
@@ -1792,22 +1739,6 @@ def test_DataSources_TestcaseID_47937():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(2)
     """ google drive """
-    data_sources_page.clickGoogleDrive()
-    sleep(5)
-    data_sources_page.selectFileDrive(jpg_file)
-    sleep(5)
-    data_sources_page.searchName(jpg_file)
-    data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    sleep(2)
-    """ google drive """
-    data_sources_page.clickGoogleDrive()
-    sleep(5)
     data_sources_page.selectFileDrive(csv_file)
     sleep(5)
     data_sources_page.searchName(csv_file)
@@ -1830,7 +1761,7 @@ def test_DataSources_TestcaseID_47937():
     while not poco("Log Out").exists():
         poco.scroll()
     registration_page.click_log_out_button()
-    """Login pending"""
+    """Login"""
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
     try:
@@ -1838,25 +1769,8 @@ def test_DataSources_TestcaseID_47937():
     except:
         raise Exception("Did not navigate to Sign In with google page")
     account = "zebra06.swdvt@gmail.com"
-    if template_management_page.checkIfAccPresent(account):
-        help_page.chooseAcc(account)
-    else:
-        count = 5
-        while not poco(text="Use another account").exists() and count != 0:
-            poco.scroll()
-            count -= 1
-        login_page.click_GooglemailId()
-        if poco(text="Signed in to Google as").exists():
-            count = 5
-            while not poco(text="Add account to device").exists() and count != 0:
-                poco.scroll()
-                count -= 1
-            registration_page.addAccountToDevice()
-        registration_page.sign_In_With_Google("Zebra#123456789", "zebra06.swdvt@gmail.com")
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    help_page.chooseAcc(account)
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.click_My_Data()
@@ -1876,25 +1790,18 @@ def test_DataSources_TestcaseID_47937():
     sleep(5)
     data_sources_page.searchName(png_file)
     data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    sleep(7)
+    data_sources_page.searchName("")
     """Click Add file"""
     data_sources_page.click_Add_File()
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
+    sleep(2)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
     common_method.wait_for_element_appearance("NAME")
-    sleep(5)
-    data_sources_page.selectFileDrive(jpg_file)
-    sleep(5)
-    data_sources_page.searchName(jpg_file)
-    data_sources_page.verifyFilePresentInList(jpg_file, "OneDrive", True)
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
     sleep(5)
     data_sources_page.selectFileDrive(csv_file)
     sleep(5)
@@ -1923,20 +1830,9 @@ def test_DataSources_TestcaseID_47937():
     sleep(5)
     data_sources_page.searchName(png_file)
     data_sources_page.verifyFilePresentInList(png_file, "Google Drive", True)
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    sleep(2)
-    """ google drive """
-    data_sources_page.clickGoogleDrive()
-    sleep(5)
-    data_sources_page.selectFileDrive(jpg_file)
-    sleep(5)
-    data_sources_page.searchName(jpg_file)
-    data_sources_page.verifyFilePresentInList(jpg_file, "Google Drive", True)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", png_file)
+    sleep(7)
+    data_sources_page.searchName("")
     """Click Add file"""
     data_sources_page.click_Add_File()
     sleep(2)
@@ -2306,9 +2202,9 @@ def test_DataSources_TestcaseID_45749():
 def test_DataSources_TestcaseID_45750():
     pass
     """FB login"""
+    common_method.tearDown()
     data_sources_page.clearAppData()
     data_sources_page.clearBrowsingData()
-    common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.wait_for_element_appearance("Sign In", 10)
     registration_page.clickSignIn()
@@ -2639,6 +2535,65 @@ def test_Smoke_Test_TestcaseID_45879():
     login_page.click_Allow_ZSB_Series_Popup()
     login_page.click_Loginwith_Google()
     login_page.Loginwith_Added_Email_Id()
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_45758():
+    """""""""test"""""
+
+    common_method.tearDown()
+    data_sources_page.clearAppData()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.sign_in_with_mail_zebra02()
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    """Google Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ google drive """
+    registration_page.click_Google_Icon()
+    account = "zebra850.swdvt@gmail.com"
+    help_page.chooseAcc(account)
+    sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    data_sources_page.checkDriveEmpty()
+    """Cannot automate - Check the Select button is disabled. as select button not displayed"""
+    data_sources_page.clickBackArrow()
+
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ One drive """
+    sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    print(data_sources_page.verifySignInWithMicrosoft())
+    data_sources_page.signInWithMicrosoft(account, "Zebra#123456789")
+    sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(2)
+    data_sources_page.checkDriveEmpty()
+    """Cannot automate - Check the Select button is disabled. as select button not displayed"""
+    data_sources_page.clickBackArrow()
     common_method.Stop_The_App()
 #
 # #     ## """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

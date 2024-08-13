@@ -194,13 +194,24 @@ class Help_Screen:
         else:
             raise Exception("URL not matching")
 
+    def clickContinueWeb(self):
+        self.poco(text="Continue").wait_for_appearance(timeout=10)
+        self.poco(text="Continue").click()
+
     def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
+
         account = self.poco(text=Acc_Name)
         count = 0
-        while not account.exists() and count<=2:
+        while not account.exists() and count <= 2:
             self.poco.scroll()
             count += 1
         account.click()
+        sleep(4)
+        if self.poco(textMatches=".*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
+            self.clickContinueWeb()
+        elif self.poco(text= "Sign in to ZSB Series").exists():
+            self.clickContinueWeb()
+        sleep(3)
 
     def swipeLeft(self):
         disp = current_device().display_info

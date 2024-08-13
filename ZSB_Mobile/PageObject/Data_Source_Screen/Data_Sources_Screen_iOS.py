@@ -53,7 +53,7 @@ class Data_Sources_Screen:
         self.Search_Files = Template(r"tpl1705645360605.png", record_pos=(-0.261, -0.571), resolution=(1080, 2340))
         self.expectedSearchList = ["Tes1.jpg", "Test2.png", "Test3.bmp"]
         self.Sign_In_With_Microsoft = "Sign in with Microsoft"
-        self.Sign_In_With_Microsoft_Template = Template(r"Microsoft_Icon.png", record_pos=(0.002, 0.183),
+        self.Sign_In_With_Microsoft_Template = Template(r"Microsoft_Icon11.png", record_pos=(0.002, 0.183),
                                                         resolution=(1080, 2340))
         self.test_45738 = Template(r"tpl1706683702494.png", record_pos=(0.0, -0.264), resolution=(1080, 2340))
         self.Sign_In_With_Google = "Sign in with Google"

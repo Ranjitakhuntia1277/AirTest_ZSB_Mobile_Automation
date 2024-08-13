@@ -12,10 +12,10 @@ from poco import poco
 from poco.exceptions import PocoNoSuchNodeException
 from poco.exceptions import PocoTargetTimeout
 import platform
-
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+        return os.path.join(os.path.expanduser('~'),
+                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates", a)
 
 else:
     def Basic_path(a):
@@ -74,8 +74,7 @@ class Data_Sources_Screen:
         self.Search_Files = Template(Basic_path(r"tpl1705645360605.png"), record_pos=(-0.261, -0.571), resolution=(1080, 2340))
         self.expectedSearchList = ["Tes1.jpg", "Test2.png", "Test3.bmp"]
         self.Sign_In_With_Microsoft = "Sign in with Microsoft"
-        self.Sign_In_With_Microsoft_Template = Template(Basic_path("Microsoft_Icon.png"), record_pos=(0.002, 0.183),
-            resolution=(1080, 2340))
+        self.Sign_In_With_Microsoft_Template = Template(Basic_path("Microsoft_Icon.png"), record_pos=(-0.194, -0.602), resolution=(1080, 2400))
         self.test_45738 = Template(Basic_path(r"tpl1706683702494.png"), record_pos=(0.0, -0.264), resolution=(1080, 2340))
         self.Sign_In_With_Google = "Sign in with Google"
         self.Sign_In_With_Google_Template = Template(Basic_path("Google_Icon.png"), record_pos=(-0.006, 0.017),
@@ -121,9 +120,21 @@ class Data_Sources_Screen:
         link_file.click()
         sleep(2)
 
-    def chooseAccToLinkFile(self, Acc_Name="swdvt zsb"):
+    def chooseAccToLinkFile(self, Acc_Name="Zsb Swdvt"):
+        sleep(3)
         account = self.poco(text=Acc_Name)
+        count = 5
+        while not account.exists() and count != 0:
+            self.poco.scroll()
+            count -= 1
         account.click()
+        sleep(4)
+        if self.poco(
+                textMatches=".*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
+            self.clickContinueWeb()
+        elif self.poco(text="Sign in to ZSB Series").exists():
+            self.clickContinueWeb()
+        sleep(3)
 
     def select_File_To_Upload(self, return_name=False):
         name_on_device = self.poco("com.google.android.documentsui:id/item_root")[0].child(
@@ -299,7 +310,6 @@ class Data_Sources_Screen:
         except:
             sleep(10)
             self.poco(name="continueBtn").click()
-
 
     def clickContinueWeb(self):
         self.poco(text="Continue").wait_for_appearance(timeout=10)
@@ -512,6 +522,7 @@ class Data_Sources_Screen:
         #
 
     def searchName(self, name, search=True):
+        sleep(3)
         self.poco("android.widget.EditText").click()
         sleep(2)
         self.poco("android.widget.EditText").set_text(name)
@@ -757,13 +768,15 @@ class Data_Sources_Screen:
         # else:
         sleep(2)
         if click_template:
-            try:
-                touch(self.Sign_In_With_Microsoft_Template)
-                sleep(5)
-                self.lock_phone()
-                wake()
-            except:
-                self.poco("Sign in with Microsoft").click()
+            touch(self.Sign_In_With_Microsoft_Template)
+            sleep(5)
+            self.lock_phone()
+            sleep(2)
+            wake()
+            sleep(2)
+        self.lock_phone()
+        sleep(2)
+        wake()
         sleep(5)
         try:
             sleep(5)
@@ -774,6 +787,19 @@ class Data_Sources_Screen:
         self.poco(text="Next").click()
         sleep(3)
         self.lock_phone()
+        sleep(2)
+        wake()
+        sleep(2)
+        self.lock_phone()
+        sleep(2)
+        wake()
+        sleep(5)
+        self.lock_phone()
+        sleep(2)
+        wake()
+        sleep(2)
+        self.lock_phone()
+        sleep(2)
         wake()
         sleep(2)
         if self.poco(self.Use_Your_Password_Instead).exists():
@@ -781,7 +807,7 @@ class Data_Sources_Screen:
             sleep(2)
         try:
             sleep(5)
-            self.poco("android.widget.EditText").set_text(username)
+            self.poco("android.widget.EditText").set_text(password)
         except:
             # username = "zebra03.swdvt@gmail.com"
             self.poco("i0118").set_text(password)
@@ -984,7 +1010,7 @@ class Data_Sources_Screen:
         """Change on mac"""
         for i in range(len(file_list)):
             if not data:
-                print(file_list[i], file_name)
+                print(file_list[i], "fn:", file_name)
                 if file_list[i] == file_name:
                     while not self.poco("NAME").exists():
                         scroll_view.swipe("right")
@@ -1026,15 +1052,13 @@ class Data_Sources_Screen:
         home_btn.click()
 
     def verify_Remove_File_Warning(self, file_type):
-        content = self.poco("android.view.View")[4].child().get_name()
-        print(content)
         if file_type == "Local File":
-            if content == "Are you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.":
+            if self.poco("Are you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.").exists():
                 return
             else:
                 raise Exception("Remove file message not matching.")
         else:
-            if content == "Are you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.":
+            if self.poco("Are you sure you want to remove the local file? All fields using this data source will need to be reconnected to a data source.").exists():
                 return
             else:
                 raise Exception("Remove file message not matching.")
@@ -1818,3 +1842,46 @@ class Data_Sources_Screen:
         self.poco(text(""))
         self.poco(text("zebra03.swdvt@gmail.com"))
         sleep(1)
+
+    def log_out_of_account(self):
+        try:
+            self.poco("Home").wait_for_appearance(timeout=15)
+            sleep(3)
+            self.poco("Open navigation menu").click()
+            sleep(3)
+            self.poco("android.widget.Button").click()
+            count = 5
+            while not self.poco("Log Out").exists() and count != 0:
+                self.poco.scroll()
+                count -= 1
+            self.poco("Log Out").click()
+        except:
+            pass
+
+    def Turn_Off_The_Phone(self):
+        sleep(2)
+        keyevent("KEYCODE_POWER")
+
+    def Turn_ON_The_Phone(self):
+        keyevent("KEYCODE_POWER")
+        sleep(2)
+
+    def click_drive_sign_in_if_present(self, username="zebra03.swdvt@gmail.com"):
+        sleep(3)
+        if self.poco(self.Sign_In_With_Microsoft).exists():
+            touch(self.Sign_In_With_Microsoft_Template)
+            self.Turn_Off_The_Phone()
+            self.Turn_ON_The_Phone()
+            try:
+                sleep(5)
+                self.poco("android.widget.EditText").set_text(username)
+                self.poco(text="Next").click()
+            except:
+                try:
+                    self.poco("i0116").set_text(username)
+                    self.poco(text="Next").click()
+                except:
+                    pass
+        elif self.poco(self.Sign_In_With_Google).exists():
+            touch(self.Sign_In_With_Google_Template)
+        sleep(3)
