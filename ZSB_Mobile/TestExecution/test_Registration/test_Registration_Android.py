@@ -72,7 +72,9 @@ def test_Registration_TestcaseID_45855():
 def test_Registration_TestcaseID_45859():
     pass
     common_method.tearDown()
+    data_sources_page.allowPermissions()
     registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
     registration_page.Enter_Wrong_UserName()
     registration_page.Enter_Wrong_Password()
     login_page.click_SignIn_Button()

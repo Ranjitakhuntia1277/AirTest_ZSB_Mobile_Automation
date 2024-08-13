@@ -37,6 +37,8 @@ class Delete_Account_Screen:
         self.delete = "Delete"
         self.first_name = "Delete"
         self.last_name = "Zsb"
+        self.LoginAllow_Popup = "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+        self.Allow_ZSB_Series_Popup = "com.android.permissioncontroller:id/permission_allow_button"
 
     def checkIfDeleteAccountIsNextToLogOut(self):
         if self.poco(self.logOut).parent().child()[0].get_name() == "Delete Account":
@@ -48,9 +50,11 @@ class Delete_Account_Screen:
         self.poco(self.deleteAccount).click()
 
     def clickDelete(self):
+        sleep(4)
         self.poco(self.delete).click()
 
     def clickOk(self):
+        sleep(3)
         self.poco("Ok").click()
 
     def checkAccountDeletedDialog(self):
@@ -265,28 +269,97 @@ class Delete_Account_Screen:
         except:
             raise Exception("target printers nor shown in printer list.")
 
+    # def Login_With_Email_Tab(self):
+    #     sleep(12)
+    #     zebra_login = self.poco(text="Sign In with your email")
+    #     if zebra_login.exists():
+    #         zebra_login.click()
+    #         sleep(4)
+    #         self.poco(name="username").click()
+    #         sleep(1)
+    #         self.poco(text(""))
+    #         self.poco(text("zebra05.swdvt@gmail.com"))
+    #         sleep(1)
+    #     else:
+    #         sleep(3)
+    #         device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+    #         sleep(10)
+    #         self.poco(text="Sign In with your email").click()
+    #         sleep(4)
+    #         self.poco(name="username").click()
+    #         sleep(1)
+    #         self.poco(text(""))
+    #         self.poco(text("zebra05.swdvt@gmail.com"))
+    #         sleep(1)
+
+    def Verify_ALL_Allow_Popups(self):
+        sleep(2)
+        loginallow = self.poco(self.LoginAllow_Popup)
+        if loginallow.exists():
+            loginallow.click()
+        sleep(3)
+        Allow_ZSB_Series_Popup = self.poco(self.Allow_ZSB_Series_Popup)
+        if Allow_ZSB_Series_Popup.exists():
+            Allow_ZSB_Series_Popup.click()
+            sleep(1)
+
+    def clickSignIn(self):
+        sleep(2)
+        signInBtn = self.poco("Sign In")
+        signInBtn.click()
+        if self.poco("Allow").exists():
+            self.poco("Allow").click()
+        elif self.poco(text="Allow").exists():
+            self.poco(text="Allow").click()
+        sleep(4)
+
+    def close_app_reopen_and_click_sign_in(self):
+        packagename = "com.zebra.soho_app"
+        stop_app(packagename)
+        sleep(1)
+        start_app(packagename)
+        sleep(5)
+        self.Verify_ALL_Allow_Popups()
+        self.clickSignIn()
+
+    def signInWithEmail(self):
+        pocoEle = self.poco(text="Sign In with your email")
+        if pocoEle.exists():
+            pocoEle.click()
+        else:
+            self.close_app_reopen_and_click_sign_in()
+            pocoEle.click()
+        print("Successfully clicked Sign In With Email")
+        sleep(2)
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
+        sleep(2)
+
     def Login_With_Email_Tab(self):
         sleep(12)
-        zebra_login = self.poco(text="Sign In with your email")
+        zebra_login = self.poco(name="username")
         if zebra_login.exists():
             zebra_login.click()
-            sleep(4)
-            self.poco(name="username").click()
-            sleep(1)
+            sleep(2)
             self.poco(text(""))
             self.poco(text("zebra05.swdvt@gmail.com"))
             sleep(1)
         else:
             sleep(3)
-            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+            self.close_app_reopen_and_click_sign_in()
             sleep(10)
-            self.poco(text="Sign In with your email").click()
-            sleep(4)
+            self.signInWithEmail()
+            sleep(12)
             self.poco(name="username").click()
-            sleep(1)
+            sleep(2)
             self.poco(text(""))
             self.poco(text("zebra05.swdvt@gmail.com"))
             sleep(1)
+
+
+
+
 
     def Login_With_Different_Email_Tab(self):
         sleep(12)
@@ -338,3 +411,13 @@ class Delete_Account_Screen:
             self.poco(text(""))
             self.poco(text("zebra03.swdvt@gmail.com"))
             sleep(1)
+
+    def Open_Web_Portal(self):
+        sleep(4)
+        if self.poco(text="Search or type URL").exists():
+            self.poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+            sleep(2)
+        elif self.poco(text="zsbportal.zebra.com/home?templateID").exists():
+            self.poco(text="zsbportal.zebra.com/home?templateID").set_text("https://zsbportal.zebra.com/")
+            sleep(3)
+

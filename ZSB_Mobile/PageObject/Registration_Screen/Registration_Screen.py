@@ -15,9 +15,7 @@ from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join(os.path.expanduser('~'),
-                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
-                            a)
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
 
 else:
     def Basic_path(a):
@@ -49,6 +47,8 @@ class Registration_Screen:
         self.Login = "Login"
         self.continue_with_google_ele = "Continue with Google"
         self.sign_in_with_google = "Sign in with Google"
+        self.LoginAllow_Popup = "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+        self.Allow_ZSB_Series_Popup = "com.android.permissioncontroller:id/permission_allow_button"
 
     def show_message(self, msg):
         root = tk.Tk()
@@ -56,6 +56,18 @@ class Registration_Screen:
         root.attributes('-topmost', True)  # Ensure the root window is on top
         messagebox.showinfo("Notification", msg)
         root.destroy()
+
+    def Verify_ALL_Allow_Popups(self):
+        sleep(1)
+        loginallow = self.poco(self.LoginAllow_Popup)
+        if loginallow.exists():
+            loginallow.click()
+        sleep(3)
+        Allow_ZSB_Series_Popup = self.poco(self.Allow_ZSB_Series_Popup)
+        if Allow_ZSB_Series_Popup.exists():
+            Allow_ZSB_Series_Popup.click()
+            sleep(1)
+
 
     def clickSignIn(self):
         sleep(2)
@@ -369,19 +381,20 @@ class Registration_Screen:
 
     def click_Google_Icon(self):
         sleep(2)
-        try:
-            touch(self.Google_Icon)
-        except:
-            pocoElemnt = self.poco(self.continue_with_google_ele)
-            pocoElemnt1 = self.poco(self.sign_in_with_google)
-            if pocoElemnt.exists():
-                pocoElemnt.click()
-            elif pocoElemnt1.exists():
-                pocoElemnt1.click()
-            else:
-                pocoElemnt.refresh()
-                pocoElemnt.click()
-            sleep(2)
+        # try:
+        #     self.poco("Continue with Google").click()
+        # except:
+        #     touch(self.Google_Icon)
+        pocoElemnt = self.poco(self.continue_with_google_ele)
+        pocoElemnt1 = self.poco(self.sign_in_with_google)
+        if pocoElemnt.exists():
+            pocoElemnt.click()
+        elif pocoElemnt1.exists():
+            pocoElemnt1.click()
+        else:
+            pocoElemnt.refresh()
+            pocoElemnt.click()
+        sleep(2)
 
     def click_Facebook_Icon(self):
         sleep(2)
@@ -874,6 +887,7 @@ class Registration_Screen:
     def Verify_We_Didnot_recognize_Please_Try_Again(self):
         sleep(5)
         self.poco(text="We didn't recognize the username or password you entered. Please try again.").get_name()
+
 
 
     def Verify_SignInwith_Page(self):
