@@ -82,7 +82,7 @@ class test_Android_Template_Management:
 
         total_designs = template_management.get_all_designs_in_recently_printed_labels()
         if len(total_designs) != 0:
-            raise Exception("Label found in recently printed design even without printing")
+            raise Exception("Label found in recently printed design even without printing(SMBM-1372)")
 
     def test_Template_Management_TestcaseID_45903(self):
         pass
@@ -177,8 +177,10 @@ class test_Android_Template_Management:
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
+        print(total_my_designs)
 
         for i in total_my_designs[:6]:
+            print(i)
             common_method.wait_for_element_appearance_namematches("Showing.")
             template_management.click_design_in_my_designs_by_full_name(i)
             template_management.click_print_button()
@@ -189,7 +191,7 @@ class test_Android_Template_Management:
                 raise Exception("print page not displayed properly")
             template_management.click_print_button_enabled()
             try:
-                common_method.wait_for_element_appearance_namematches("Print complete", 10)
+                template_management.wait_for_element_appearance_name_matches_all("Print complete", 10)
             except:
                 raise Exception("print_toast_dint_pop up")
             common_method.wait_for_element_appearance_enabled("android.widget.Button", 10)
@@ -335,6 +337,7 @@ class test_Android_Template_Management:
 
         """pass no of designs printed as parameter"""
         all_designs = template_management.get_all_designs_in_recently_printed_labels(6)
+        print("all designs->", all_designs)
 
         names, sizes = template_management.get_names_and_sizes_in_recently_printed_labels(all_designs)
 
@@ -447,11 +450,22 @@ class test_Android_Template_Management:
         template_management.scroll_till_print_enabled_button()
         template_management.click_print_button_enabled()
 
-        start_app("com.google.android.googlequicksearchbox")
-
-        others.click_google_search_bar()
-        others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
-        others.click_enter()
+        start_app("com.android.chrome")
+        sleep(2)
+        poco("com.android.chrome:id/tab_switcher_button").click()
+        sleep(2)
+        try:
+            poco("com.android.chrome:id/new_tab_view_button").click()
+        except:
+            poco(text="New tab").click()
+        sleep(2)
+        poco(text="Search or type URL").click()
+        sleep(2)
+        poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+        data_sources_page.clickEnter()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(3)
         try:
             others.wait_for_element_appearance("Continue with Google", 10)
             login_page.click_Loginwith_Google()
@@ -491,6 +505,7 @@ class test_Android_Template_Management:
         name = "45911"
 
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name)
+        print(full_name)
 
         template_management.click_print_button()
         try:
@@ -558,6 +573,7 @@ class test_Android_Template_Management:
         template_management.check_element_exists("My Designs")
 
         full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(name, 0)
+        print("full name->", full_name)
 
         pd, pm, py = template_management.get_design_last_print_date(full_name)
 
@@ -3665,29 +3681,29 @@ class test_Android_Template_Management:
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
-        # login_page.click_Menu_HamburgerICN()
-        # social_login.click_on_profile_edit()
-        # social_login.scroll_down(1)
-        # social_login.click_log_out_button()
-        # try:
-        #     social_login.wait_for_element_appearance("Sign In",5)
-        # except:
-        #     raise Exception("Did not redirect to the login page")
-        #
-        # """Sign in with email"""
-        #
-        # login_page.click_loginBtn()
-        # social_login.wait_for_element_appearance_text("Continue with Google",10)
-        # login_page.click_Loginwith_Google()
-        #
-        # email = "zebra850.swdvt@gmail.com"
-        # password = "Zebra#123456789"
-        # social_login.choose_a_google_account(email)
-        #
-        # try:
-        #     social_login.wait_for_element_appearance("Home",20)
-        # except:
-        #     raise Exception("home page dint show up")
+        login_page.click_Menu_HamburgerICN()
+        social_login.click_on_profile_edit()
+        social_login.scroll_down(1)
+        social_login.click_log_out_button()
+        try:
+            social_login.wait_for_element_appearance("Sign In",5)
+        except:
+            raise Exception("Did not redirect to the login page")
+
+        """Sign in with email"""
+
+        login_page.click_loginBtn()
+        social_login.wait_for_element_appearance_text("Continue with Google",10)
+        login_page.click_Loginwith_Google()
+
+        email = "zebra850.swdvt@gmail.com"
+        password = "Zebra#123456789"
+        social_login.choose_a_google_account(email)
+
+        try:
+            social_login.wait_for_element_appearance("Home",20)
+        except:
+            raise Exception("home page dint show up")
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -6291,11 +6307,22 @@ class test_Android_Template_Management:
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
 
-        start_app("com.google.android.googlequicksearchbox")
-
-        others.click_google_search_bar()
-        others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
-        others.click_enter()
+        start_app("com.android.chrome")
+        sleep(2)
+        poco("com.android.chrome:id/tab_switcher_button").click()
+        sleep(2)
+        try:
+            poco("com.android.chrome:id/new_tab_view_button").click()
+        except:
+            poco(text="New tab").click()
+        sleep(2)
+        poco(text="Search or type URL").click()
+        sleep(2)
+        poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+        data_sources_page.clickEnter()
+        data_sources_page.lock_phone()
+        wake()
+        sleep(3)
         others.wait_for_element_appearance("Continue with Google", 20)
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account", 20)
