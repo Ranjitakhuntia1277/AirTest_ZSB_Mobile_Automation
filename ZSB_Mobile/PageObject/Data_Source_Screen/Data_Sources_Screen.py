@@ -807,7 +807,7 @@ class Data_Sources_Screen:
             sleep(2)
         try:
             sleep(5)
-            self.poco("android.widget.EditText").set_text(username)
+            self.poco("android.widget.EditText").set_text(password)
         except:
             # username = "zebra03.swdvt@gmail.com"
             self.poco("i0118").set_text(password)
@@ -1842,3 +1842,46 @@ class Data_Sources_Screen:
         self.poco(text(""))
         self.poco(text("zebra03.swdvt@gmail.com"))
         sleep(1)
+
+    def log_out_of_account(self):
+        try:
+            self.poco("Home").wait_for_appearance(timeout=15)
+            sleep(3)
+            self.poco("Open navigation menu").click()
+            sleep(3)
+            self.poco("android.widget.Button").click()
+            count = 5
+            while not self.poco("Log Out").exists() and count != 0:
+                self.poco.scroll()
+                count -= 1
+            self.poco("Log Out").click()
+        except:
+            pass
+
+    def Turn_Off_The_Phone(self):
+        sleep(2)
+        keyevent("KEYCODE_POWER")
+
+    def Turn_ON_The_Phone(self):
+        keyevent("KEYCODE_POWER")
+        sleep(2)
+
+    def click_drive_sign_in_if_present(self, username="zebra03.swdvt@gmail.com"):
+        sleep(3)
+        if self.poco(self.Sign_In_With_Microsoft).exists():
+            touch(self.Sign_In_With_Microsoft_Template)
+            self.Turn_Off_The_Phone()
+            self.Turn_ON_The_Phone()
+            try:
+                sleep(5)
+                self.poco("android.widget.EditText").set_text(username)
+                self.poco(text="Next").click()
+            except:
+                try:
+                    self.poco("i0116").set_text(username)
+                    self.poco(text="Next").click()
+                except:
+                    pass
+        elif self.poco(self.Sign_In_With_Google).exists():
+            touch(self.Sign_In_With_Google_Template)
+        sleep(3)
