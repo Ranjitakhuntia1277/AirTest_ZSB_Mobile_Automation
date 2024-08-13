@@ -95,16 +95,20 @@ class Template_Management_Android:
 
         escaped_name = re.escape(name)
         regex_pattern = "(?s).*" + escaped_name + ".*"
+        print("regex_pattern", regex_pattern)
 
         temp = []
         prev = []
         while 1:
             curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
             a = self.poco(nameMatches=regex_pattern).exists()
+            print("a->", a)
             if a:
                 p = self.poco(nameMatches=regex_pattern).get_name()
                 temp.append(p)
                 break
+            print("curr->", curr)
+            print("prev->", prev)
             if curr == prev:
                 break
             prev = curr
@@ -115,15 +119,18 @@ class Template_Management_Android:
             while 1:
                 curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
                 a = self.poco(nameMatches=regex_pattern).exists()
+                print("a1->", a)
                 if a:
                     p = self.poco(nameMatches=regex_pattern).get_name()
                     temp.append(p)
                     break
+                print("curr1->", curr)
+                print("prev1->", prev)
                 if curr == prev:
                     break
                 prev = curr
                 self.poco.swipe([0.5, 0.9], [0.5, 0.4], duration=0.5)
-        # print(temp)
+        print(temp)
         if click:
             self.poco(temp[0]).click()
 
@@ -527,7 +534,9 @@ class Template_Management_Android:
         self.poco(self.delete_button).click()
 
     def click_left_arrow(self):
+        sleep(2)
         self.poco("android.widget.Button").click()
+        sleep(2)
 
     def check_left_arrow_exists(self):
         return self.poco("android.widget.Button").exists()
@@ -572,9 +581,12 @@ class Template_Management_Android:
 
     def get_design_last_print_date(self, design):
         a = design.split("Last print:")
+        print("a->", a, "\ndesign->",  design)
         temp = a[-1]
         temp = temp.replace(",", "")
+        print(temp)
         temp = temp.split(" ")
+        print("final", temp)
 
         return temp[1], int(temp[2]), int(temp[3])
 
