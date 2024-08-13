@@ -381,20 +381,19 @@ class Registration_Screen:
 
     def click_Google_Icon(self):
         sleep(2)
-        # try:
-        #     self.poco("Continue with Google").click()
-        # except:
-        #     touch(self.Google_Icon)
-        pocoElemnt = self.poco(self.continue_with_google_ele)
-        pocoElemnt1 = self.poco(self.sign_in_with_google)
-        if pocoElemnt.exists():
-            pocoElemnt.click()
-        elif pocoElemnt1.exists():
-            pocoElemnt1.click()
-        else:
-            pocoElemnt.refresh()
-            pocoElemnt.click()
-        sleep(2)
+        try:
+            touch(self.Google_Icon)
+        except:
+            pocoElemnt = self.poco(self.continue_with_google_ele)
+            pocoElemnt1 = self.poco(self.sign_in_with_google)
+            if pocoElemnt.exists():
+                pocoElemnt.click()
+            elif pocoElemnt1.exists():
+                pocoElemnt1.click()
+            else:
+                pocoElemnt.refresh()
+                pocoElemnt.click()
+            sleep(2)
 
     def click_Facebook_Icon(self):
         sleep(2)
