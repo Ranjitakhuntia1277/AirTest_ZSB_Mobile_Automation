@@ -561,12 +561,12 @@ class test_Android_Social_Login():
 
         self.setup_logout()
         login_page.click_loginBtn()
-        data_sources_page.lock_phone()
-        wake()
+        login_page.Verify_ALL_Allow_Popups()
+        common_method.Turn_Off_The_Phone()
         sleep(2)
-        social_login.wait_for_element_appearance_text("Continue with Google", 10)
+        common_method.Turn_ON_The_Phone()
+        sleep(2)
         social_login.click_on_sign_in_with_email()
-
         """Provide new_user name and password which is registered"""
         email = "zebratest852@gmail.com"
         password = "Zebra#123456789"
@@ -595,14 +595,15 @@ class test_Android_Social_Login():
         common_method.tearDown()
         self.setup_logout()
         login_page.click_loginBtn()
-        social_login.wait_for_element_appearance("Continue with Google")
+        login_page.Verify_ALL_Allow_Popups()
+        login_page.Verify_Login_Option_Is_Present()
         social_login.click_on_sign_in_with_email()
         """Incorrect password but correct email"""
         """Enter the email and password"""
         email = "zebratest852@gmail.com"
         password = 'Zebra#1234567890'
 
-        # social_login.click_on_sign_in_with_email()
+        ## social_login.click_on_sign_in_with_email()
         social_login.complete_sign_in_with_email(email, password, 1)
         if not social_login.check_for_incorrect_user_name_or_password_sign_in_with_email():
             raise Exception("Error not displayed for incorrect password values")
