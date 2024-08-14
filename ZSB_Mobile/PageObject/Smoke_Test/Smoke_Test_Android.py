@@ -497,7 +497,7 @@ class Smoke_Test_Android:
 
     def Upload_First_Image(self):
         sleep(4)
-        self.poco(name="com.google.android.documentsui:id/icon_thumb").click()
+        self.poco(name="com.google.android.documentsui:id/item_root").click()
         sleep(4)
 
     def click_Microsoft_Email_Field(self):
