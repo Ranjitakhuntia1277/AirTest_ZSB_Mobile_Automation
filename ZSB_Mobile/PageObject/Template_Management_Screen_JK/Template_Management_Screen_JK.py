@@ -536,6 +536,7 @@ class Template_Management_Screen:
         return self.poco(nameMatches=".*Label.*").exists()
 
     def selectChooseAnOption(self, option_count=1, option_name=None, click=True):
+        sleep(2)
         choice_name = False
         try:
             self.poco(nameMatches="(?s).*Choose an option.*").wait_for_appearance(timeout=20)
@@ -994,8 +995,9 @@ class Template_Management_Screen:
             previous = current.copy()
             self.poco.scroll()
         scroll_view = self.poco("android.widget.ScrollView")
-        while not self.poco(type="android.view.View", name="Alert").exists():
-            scroll_view.swipe("down")
+        if scroll_view.exists():
+            while not self.poco(type="android.view.View", name="Alert").exists():
+                scroll_view.swipe("down")
         return elements
 
     def search_Icons(self, icon_name):
@@ -1009,6 +1011,7 @@ class Template_Management_Screen:
         return selected_file_name
 
     def verify_update_data_connections_dialog(self):
+        sleep(2)
         try:
             self.poco(
                 nameMatches="The below data sources are missing for the .* label. They must be updated in order to print.")

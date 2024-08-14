@@ -70,7 +70,7 @@ class Registration_Screen:
 
 
     def clickSignIn(self):
-        sleep(2)
+        sleep(3)
         signInBtn = self.poco("Sign In")
         signInBtn.click()
         if self.poco("Allow").exists():

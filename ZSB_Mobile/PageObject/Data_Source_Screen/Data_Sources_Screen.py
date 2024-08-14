@@ -770,14 +770,14 @@ class Data_Sources_Screen:
         if click_template:
             touch(self.Sign_In_With_Microsoft_Template)
             sleep(5)
-            self.lock_phone()
-            sleep(2)
-            wake()
-            sleep(2)
-        self.lock_phone()
-        sleep(2)
-        wake()
-        sleep(5)
+            self.Turn_Off_The_Phone()
+            sleep(3)
+            self.Turn_ON_The_Phone()
+            sleep(3)
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
         try:
             sleep(5)
             self.poco("android.widget.EditText").set_text(username)
@@ -786,25 +786,21 @@ class Data_Sources_Screen:
             self.poco("i0116").set_text(username)
         self.poco(text="Next").click()
         sleep(3)
-        self.lock_phone()
-        sleep(2)
-        wake()
-        sleep(2)
-        self.lock_phone()
-        sleep(2)
-        wake()
-        sleep(5)
-        self.lock_phone()
-        sleep(2)
-        wake()
-        sleep(2)
-        self.lock_phone()
-        sleep(2)
-        wake()
-        sleep(2)
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
         if self.poco(self.Use_Your_Password_Instead).exists():
             self.poco(self.Use_Your_Password_Instead).click()
             sleep(2)
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
         try:
             sleep(5)
             self.poco("android.widget.EditText").set_text(password)
@@ -819,9 +815,10 @@ class Data_Sources_Screen:
 
     def enterMicrosoftUsername(self, username):
         sleep(3)
-        self.lock_phone()
-        sleep(2)
-        wake()
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
         try:
             self.poco("android.widget.EditText").wait_for_appearance(timeout=20)
             self.poco("android.widget.EditText").click()
@@ -833,9 +830,10 @@ class Data_Sources_Screen:
             self.poco("i0116").set_text(username)
         self.poco(text="Next").click()
         sleep(3)
-        self.lock_phone()
-        sleep(2)
-        wake()
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
 
     def checkIfAccPresentLink(self, account):
         start = 0
@@ -1868,10 +1866,18 @@ class Data_Sources_Screen:
 
     def click_drive_sign_in_if_present(self, username="zebra03.swdvt@gmail.com"):
         sleep(3)
+        if self.poco(self.Sign_In_With_Google).exists():
+            touch(self.Sign_In_With_Google_Template)
         if self.poco(self.Sign_In_With_Microsoft).exists():
             touch(self.Sign_In_With_Microsoft_Template)
             self.Turn_Off_The_Phone()
+            sleep(3)
             self.Turn_ON_The_Phone()
+            sleep(3)
+            self.Turn_Off_The_Phone()
+            sleep(3)
+            self.Turn_ON_The_Phone()
+            sleep(3)
             try:
                 sleep(5)
                 self.poco("android.widget.EditText").set_text(username)
@@ -1882,6 +1888,4 @@ class Data_Sources_Screen:
                     self.poco(text="Next").click()
                 except:
                     pass
-        elif self.poco(self.Sign_In_With_Google).exists():
-            touch(self.Sign_In_With_Google_Template)
         sleep(3)

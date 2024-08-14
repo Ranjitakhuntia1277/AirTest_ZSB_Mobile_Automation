@@ -399,8 +399,8 @@ def test_DataSources_TestcaseID_45736():
     """ google drive """
     data_sources_page.clickGoogleDrive()
     sleep(5)
-    txt_file = "text_file.txt"
-    data_sources_page.selectFileDrive(txt_file)
+    csv_file = "csv_file.csv"
+    data_sources_page.selectFileDrive(csv_file)
     sleep(5)
     """One drive"""
     """Click Add file"""
@@ -413,25 +413,25 @@ def test_DataSources_TestcaseID_45736():
     data_sources_page.clickMicrosoftOneDrive()
     common_method.wait_for_element_appearance("NAME")
     sleep(5)
-    png_file = "png_file.png"
-    data_sources_page.selectFileDrive(png_file)
+    bmp_file = "bmp_file.bmp"
+    data_sources_page.selectFileDrive(bmp_file)
     sleep(5)
-    data_sources_page.searchName(txt_file)
+    data_sources_page.searchName(csv_file)
     sleep(5)
     """Google Drive"""
-    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file, True, True)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file, True, True)
     data_sources_page.searchName("")
-    data_sources_page.searchName(txt_file)
+    data_sources_page.searchName(csv_file)
     try:
-        data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
+        data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
     except:
         raise Exception("File removed even after clicking cancel")
     sleep(2)
-    data_sources_page.remove_File_Based_On_DataSource("Google Drive", txt_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
     data_sources_page.searchName("")
-    data_sources_page.searchName(txt_file)
+    data_sources_page.searchName(csv_file)
     try:
-        data_sources_page.verifyFilePresentInList(txt_file, "Google Drive", True)
+        data_sources_page.verifyFilePresentInList(csv_file, "Google Drive", True)
         x = 1 / 0
     except ZeroDivisionError:
         raise Exception("File not removed")
@@ -439,23 +439,102 @@ def test_DataSources_TestcaseID_45736():
         pass
     """One Drive"""
     data_sources_page.searchName("")
-    data_sources_page.searchName(png_file)
-    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file, True, True)
+    data_sources_page.searchName(bmp_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file, True, True)
     data_sources_page.searchName("")
-    data_sources_page.searchName(png_file)
+    data_sources_page.searchName(bmp_file)
     try:
-        data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+        data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
     except:
         raise Exception("File not removed")
     sleep(2)
-    data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
     data_sources_page.searchName("")
-    data_sources_page.searchName(png_file)
+    data_sources_page.searchName(bmp_file)
     try:
-        data_sources_page.verifyFilePresentInList(png_file, "OneDrive", True)
+        data_sources_page.verifyFilePresentInList(bmp_file, "OneDrive", True)
         raise Exception("File not removed")
     except:
         pass
+    common_method.Stop_The_App()
+
+
+def test_DataSources_TestcaseID_45759():
+    pass
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(2)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.click_drive_sign_in_if_present()
+    """ google drive """
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    sleep(2)
+    existing_file = data_sources_page.selectExistingFile()
+    sleep(5)
+    data_sources_page.searchName(existing_file)
+    data_sources_page.verifyFilePresentInList(existing_file, "Google Drive", True, False)
+    """Re upload same file"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """CLick Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.clickGoogleDrive()
+    sleep(2)
+    data_sources_page.selectExistingFile()
+    sleep(2)
+    """Verify if 'filename' is already linked pop up appears"""
+    data_sources_page.checkIsAlreadyLinkedPopUp()
+    sleep(3)
+    """remove file for next execution"""
+    data_sources_page.searchName(existing_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", existing_file)
+    """ One Drive """
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    # if data_sources_page.verifySignInWithMicrosoft():
+    #     data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+    #     sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    sleep(2)
+    data_sources_page.click_drive_sign_in_if_present()
+    data_sources_page.clickMicrosoftOneDrive()
+    common_method.wait_for_element_appearance("NAME")
+    sleep(3)
+    existing_file = data_sources_page.selectExistingFile()
+    sleep(3)
+    data_sources_page.searchName(existing_file)
+    data_sources_page.verifyFilePresentInList(existing_file, "OneDrive", True, False)
+    """Re upload same file"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """CLick Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    data_sources_page.clickMicrosoftOneDrive()
+    sleep(2)
+    data_sources_page.selectExistingFile()
+    """Verify if 'filename' is already linked pop up appears"""
+    data_sources_page.checkIsAlreadyLinkedPopUp()
+    sleep(3)
+    """remove file for next execution"""
+    data_sources_page.searchName(existing_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", existing_file)
     common_method.Stop_The_App()
 
 
@@ -523,7 +602,7 @@ def test_DataSources_TestcaseID_45737():
     else:
         raise Exception("The total number is not the same as your selected row amount")
     data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
     sleep(3)
     data_sources_page.clickBackArrow()
     data_sources_page.checkIfDesignsLoaded()
@@ -561,7 +640,7 @@ def test_DataSources_TestcaseID_45737():
     else:
         raise Exception("The total number is not the same as your selected row amount")
     data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
     sleep(3)
     data_sources_page.clickBackArrow()
     login_page.click_Menu_HamburgerICN()
@@ -609,6 +688,10 @@ def test_DataSources_TestcaseID_45739():
         data_sources_page.searchName(name)
         sleep(7)
         data_sources_page.verifyFilePresentInList(name, "Local File", True)
+        """Remove this once web inconsistency issue is resolved"""
+        """--------------------------------------"""
+        data_sources_page.remove_File_Based_On_DataSource("Local File", name)
+        """--------------------------------------"""
     """Login to web portal->Data Sources page Check the uploaded files from mobile app display in the my data page in web portal."""
     start_app("com.android.chrome")
     sleep(2)
@@ -680,6 +763,7 @@ def test_DataSources_TestcaseID_45744():
     sleep(5)
     """Select File to upload"""
     file_name = data_sources_page.select_File_To_Upload(True)
+    print(file_name)
     sleep(5)
     """Upload the same file again"""
     """Click Add File"""
@@ -708,7 +792,8 @@ def test_DataSources_TestcaseID_45744():
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(2)
     data_sources_page.selectFileDrive(drive_file)
-    sleep(5)
+    sleep(7)
+    data_sources_page.searchName(drive_file)
     data_sources_page.verifyFilePresentInList(drive_file, "Google Drive", True)
     data_sources_page.click_Add_File()
     sleep(2)
@@ -729,76 +814,6 @@ def test_DataSources_TestcaseID_45744():
     data_sources_page.searchName("")
     data_sources_page.searchName(drive_file)
     data_sources_page.remove_File_Based_On_DataSource("Local File", drive_file)
-    common_method.Stop_The_App()
-
-
-def test_DataSources_TestcaseID_45740():
-    """""""""test"""""
-
-    common_method.tearDown()
-    login_page.click_Menu_HamburgerICN()
-    sleep(2)
-    """Click My Data"""
-    data_sources_page.click_My_Data()
-    sleep(2)
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Upload File"""
-    data_sources_page.click_Upload_File()
-    sleep(3)
-    data_sources_page.searchFileInLocalStorage("20 Files", "Downloads")
-    sleep(2)
-    uploaded_file_list = data_sources_page.selectFilesInLocal()
-    """No notification after uploading file"""
-    keyevent("back")
-    keyevent("back")
-    for name in uploaded_file_list:
-        data_sources_page.searchName(name)
-        sleep(7)
-        data_sources_page.verifyFilePresentInList(name, "Local File", True)
-    """Login to web portal->Data Sources page Check the uploaded files from mobile app display in the my data page in web portal. pending"""
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    try:
-        poco("com.android.chrome:id/new_tab_view_button").click()
-    except:
-        poco(text="New tab").click()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    data_sources_page.clickEnter()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(3)
-    registration_page.wait_for_element_appearance_text("Home", 20)
-    sleep(3)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.click_My_Data()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    for name in uploaded_file_list:
-        data_sources_page.searchName(name)
-        keyevent("back")
-        sleep(2)
-        poco.scroll()
-        try:
-            common_method.wait_for_element_appearance_text("No files match your search")
-            x = 1 / 0
-        except ZeroDivisionError:
-            raise Exception("Uploaded files not displaying in my data page.")
-        except Exception as e:
-            pass
-    stop_app("com.android.chrome")
-    """Remove uploaded files for next execution"""
-    for name in uploaded_file_list:
-        data_sources_page.searchName(name)
-        data_sources_page.remove_File_Based_On_DataSource("Local File", name)
     common_method.Stop_The_App()
 
 
@@ -1104,7 +1119,7 @@ def test_DataSources_TestcaseID_45747():
         x = 1 / 0
     except ZeroDivisionError:
         data_sources_page.remove_File_Based_On_DataSource("Local File", large_file)
-        raise Exception("We are able to upload file larger than 28.4 MB.")
+        raise Exception("We are able to upload file larger than 28.4 MB.(SMBUI-1127)")
     except Exception as e:
         pass
     """unable to verify error as there is no error popping up if file exceeds 28.4mb"""
@@ -1173,10 +1188,7 @@ def test_DataSources_TestcaseID_45755():
     pass
     """Google Login"""
     common_method.tearDown()
-    try:
-        registration_page.wait_for_element_appearance("Home", 30)
-    except:
-        raise Exception("Home page dint show up")
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.click_My_Data()
@@ -1192,6 +1204,7 @@ def test_DataSources_TestcaseID_45755():
     """ One drive """
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.click_drive_sign_in_if_present()
     common_method.wait_for_element_appearance("NAME")
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -1283,6 +1296,9 @@ def test_DataSources_TestcaseID_45755():
     data_sources_page.searchName("")
     data_sources_page.searchName(txt_file)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     data_sources_page.searchName("")
     data_sources_page.searchName(bmp_file)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", bmp_file)
@@ -1381,84 +1397,6 @@ def test_DataSources_TestcaseID_45757():
         poco.scroll()
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    common_method.Stop_The_App()
-
-
-def test_DataSources_TestcaseID_45759():
-    pass
-    common_method.tearDown()
-    data_sources_page.checkIfOnHomePage()
-    login_page.click_Menu_HamburgerICN()
-    """Click My Data"""
-    data_sources_page.click_My_Data()
-    sleep(2)
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
-    sleep(2)
-    """ google drive """
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    sleep(2)
-    existing_file = data_sources_page.selectExistingFile()
-    sleep(5)
-    data_sources_page.searchName(existing_file)
-    data_sources_page.verifyFilePresentInList(existing_file, "Google Drive", True)
-    """Re upload same file"""
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """CLick Link File"""
-    data_sources_page.click_Link_File()
-    sleep(2)
-    data_sources_page.clickGoogleDrive()
-    sleep(2)
-    data_sources_page.selectExistingFile()
-    sleep(2)
-    """Verify if 'filename' is already linked pop up appears"""
-    data_sources_page.checkIsAlreadyLinkedPopUp()
-    sleep(3)
-    """remove file for next execution"""
-    data_sources_page.searchName(existing_file)
-    data_sources_page.remove_File_Based_On_DataSource("Google Drive", existing_file)
-    """ One Drive """
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Link File"""
-    data_sources_page.click_Link_File()
-    sleep(2)
-    data_sources_page.clickMicrosoftOneDrive()
-    sleep(2)
-    # if data_sources_page.verifySignInWithMicrosoft():
-    #     data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
-    #     sleep(2)
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
-    data_sources_page.click_drive_sign_in_if_present()
-    data_sources_page.clickMicrosoftOneDrive()
-    common_method.wait_for_element_appearance("NAME")
-    sleep(3)
-    existing_file = data_sources_page.selectExistingFile()
-    sleep(3)
-    data_sources_page.searchName(existing_file)
-    data_sources_page.verifyFilePresentInList(existing_file, "OneDrive", True)
-    """Re upload same file"""
-    """Click Add file"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """CLick Link File"""
-    data_sources_page.click_Link_File()
-    sleep(2)
-    data_sources_page.clickMicrosoftOneDrive()
-    sleep(2)
-    data_sources_page.selectExistingFile()
-    """Verify if 'filename' is already linked pop up appears"""
-    data_sources_page.checkIsAlreadyLinkedPopUp()
-    sleep(3)
-    """remove file for next execution"""
-    data_sources_page.searchName(existing_file)
-    data_sources_page.remove_File_Based_On_DataSource("OneDrive", existing_file)
     common_method.Stop_The_App()
 
 
@@ -1582,7 +1520,7 @@ def test_DataSources_TestcaseID_47936():
     """Unable to verify due to BUG SMBM-712"""
     print(selected_file)
     data_sources_page.searchName(selected_file)
-    data_sources_page.remove_File()
+    data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file)
     """Notification on file removal"""
     """Unable to verify due to BUG SMBM-712"""
     raise Exception("No notification on uploading and removing file(SMBM-712)")
@@ -1644,6 +1582,80 @@ def test_DataSources_TestcaseID_47944():
     common_method.Stop_The_App()
 
 
+def test_DataSources_TestcaseID_45740():
+    """""""""test"""""
+
+    common_method.tearDown()
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(2)
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Upload File"""
+    data_sources_page.click_Upload_File()
+    sleep(3)
+    data_sources_page.searchFileInLocalStorage("20 Files", "Downloads")
+    sleep(2)
+    uploaded_file_list = data_sources_page.selectFilesInLocal()
+    """No notification after uploading file"""
+    keyevent("back")
+    keyevent("back")
+    for name in uploaded_file_list:
+        data_sources_page.searchName(name)
+        sleep(7)
+        data_sources_page.verifyFilePresentInList(name, "Local File", True)
+        """Remove this once web inconsistency is fixed"""
+        """-------------------------------------------"""
+        data_sources_page.remove_File_Based_On_DataSource("Local File", name)
+        """-------------------------------------------"""
+    """Login to web portal->Data Sources page Check the uploaded files from mobile app display in the my data page in web portal. pending"""
+    start_app("com.android.chrome")
+    sleep(2)
+    poco("com.android.chrome:id/tab_switcher_button").click()
+    sleep(2)
+    try:
+        poco("com.android.chrome:id/new_tab_view_button").click()
+    except:
+        poco(text="New tab").click()
+    sleep(2)
+    poco(text="Search or type URL").click()
+    sleep(2)
+    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+    data_sources_page.clickEnter()
+    data_sources_page.lock_phone()
+    wake()
+    sleep(3)
+    registration_page.wait_for_element_appearance_text("Home", 20)
+    sleep(3)
+    data_sources_page.click_Menu_HamburgerICNWeb()
+    data_sources_page.lock_phone()
+    wake()
+    sleep(2)
+    data_sources_page.click_My_Data()
+    data_sources_page.click_Menu_HamburgerICNWeb()
+    for name in uploaded_file_list:
+        data_sources_page.searchName(name)
+        keyevent("back")
+        sleep(2)
+        poco.scroll()
+        try:
+            common_method.wait_for_element_appearance_text("No files match your search")
+            x = 1 / 0
+        except ZeroDivisionError:
+            raise Exception("Uploaded files not displaying in my data page.")
+        except Exception as e:
+            pass
+    stop_app("com.android.chrome")
+    """Remove uploaded files for next execution"""
+    for name in uploaded_file_list:
+        data_sources_page.searchName(name)
+        data_sources_page.remove_File_Based_On_DataSource("Local File", name)
+    common_method.Stop_The_App()
+
+
 """zebra07.swdvt@gmail"""
 
 
@@ -1652,7 +1664,6 @@ def test_DataSources_TestcaseID_47937():
 
     common_method.tearDown()
     data_sources_page.log_out_of_account()
-    # data_sources_page.clearBrowsingData()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
@@ -1782,8 +1793,10 @@ def test_DataSources_TestcaseID_47937():
     """Click Link File"""
     data_sources_page.click_Link_File()
     """ One drive """
+    data_sources_page.click_drive_sign_in_if_present()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.click_drive_sign_in_if_present()
     common_method.wait_for_element_appearance("NAME")
     sleep(5)
     data_sources_page.selectFileDrive(png_file)
@@ -1969,6 +1982,9 @@ def test_DataSources_TestcaseID_45752():
     data_sources_page.searchName("")
     data_sources_page.searchName(jpg_file)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", jpg_file)
+    data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("OneDrive", csv_file)
     data_sources_page.searchName("")
     data_sources_page.searchName(txt_file)
     data_sources_page.remove_File_Based_On_DataSource("OneDrive", txt_file)
@@ -2193,6 +2209,9 @@ def test_DataSources_TestcaseID_45749():
     data_sources_page.searchName(bmp_file)
     data_sources_page.remove_File_Based_On_DataSource("Google Drive", bmp_file)
     data_sources_page.searchName("")
+    data_sources_page.searchName(csv_file)
+    data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
+    data_sources_page.searchName("")
     common_method.Stop_The_App()
 
 
@@ -2206,7 +2225,6 @@ def test_DataSources_TestcaseID_45750():
     data_sources_page.clearAppData()
     data_sources_page.clearBrowsingData()
     data_sources_page.allowPermissions()
-    registration_page.wait_for_element_appearance("Sign In", 10)
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
     registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
