@@ -51,13 +51,13 @@ class Template_Management_Screen:
         a = a.split(" ")
         return a[1]
 
-    def turn_off_wifi(self):
+    def Turn_Off_wifi(self):
         command = "adb shell svc wifi disable"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print("Command output:")
         print(result.stdout)
 
-    def turn_on_wifi(self):
+    def Turn_ON_wifi(self):
         command = "adb shell svc wifi enable"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print("Command output:")
