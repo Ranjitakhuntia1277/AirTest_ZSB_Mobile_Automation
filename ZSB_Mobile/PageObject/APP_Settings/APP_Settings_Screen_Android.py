@@ -134,7 +134,7 @@ class App_Settings_Screen:
         self.Continue_On_Failed_To_Connect_To_Wifi_Network = "Continue"
         self.Apply_Changes = "Apply Changes"
         self.Invalid_Network_Error_Message = ""
-        self.Email_TextField_On_Password_Recovery_Screen = "android.widget.EditText"
+        self.Email_TextField_On_Password_Recovery_Screen = "email"
         self.Cancel_Button = "Cancel"
 
     # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

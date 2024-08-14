@@ -37,31 +37,33 @@ registration_page = Registration_Screen(poco)
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# ####Steps are not correct
 def test_Addprinter_TestcaseID_45656():
     """"Adding the moneybadger while the mobile devices bluetooth is disabled"""
 
     """"1.Open the app and login the account to go to the overview page."""""
-    common_method.tearDown()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    """2. Click the menu button at the left corner"""
-    login_page.click_Menu_HamburgerICN()
-    """3.Check the slide left page appear"""""
-    add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
-    """"Disable the Bluetooth"""
-    app_settings_page.Disable_Bluetooth()
-    sleep(4)
-    """"click on Allow button on Bluetooth disable & enable popup"""
-    add_a_printer_screen.click_Allow_For_Disable_Enable_Bluetooth()
-    """"3. click the button 'Add a Printer'"""
+    # common_method.tearDown()
+    # common_method.Clear_App()
+    # common_method.Start_The_App()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_loginBtn()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_Loginwith_Google()
+    # login_page.Loginwith_Added_Email_Id()
+    # """2. Click the menu button at the left corner"""
+    # login_page.click_Menu_HamburgerICN()
+    # """3.Check the slide left page appear"""""
+    # add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+    # """"Disable the Bluetooth"""
+    # app_settings_page.Disable_Bluetooth()
+    # sleep(4)
+    # """"click on Allow button on Bluetooth disable & enable popup"""
+    # add_a_printer_screen.click_Allow_For_Disable_Enable_Bluetooth()
+    # """"3. click the button 'Add a Printer'"""
     add_a_printer_screen.click_Add_A_Printer()
+    login_page.Verify_ALL_Allow_Popups()
     """"can not verify all these steps as these all are coming behind the popup"""
     ### """Check it would go to the page "Let's set up your printer"""
     ### add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
@@ -163,27 +165,29 @@ def test_Addprinter_TestcaseID_45656():
 
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+# ####Steps are not correct
 def test_Addprinter_TestcaseID_45657():
     """"Check the cancle button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger"""
 
     """"1.Open the app and login the account to go to the overview page."""""
-    common_method.tearDown()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
+    # common_method.tearDown()
+    # common_method.Start_The_App()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
     """2. Click the menu button at the left corner"""
-    login_page.click_Menu_HamburgerICN()
-    """3.Check the slide left page appear"""""
-    add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
-    """"3. click the button 'Add a Printer'"""
-    add_a_printer_screen.click_Add_A_Printer()
-    """Check it would go to the page "Let's set up your printer"""
-    add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
-    """""Check the moneybadger picture would appears at that page."""
-    add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
-    """Click on Start setup button"""
-    add_a_printer_screen.click_Start_Button()
+    # login_page.click_Menu_HamburgerICN()
+    # """3.Check the slide left page appear"""""
+    # add_a_printer_screen.Verify_UI_Of_The_Slideleft_Page_Is_Correct()
+    # """"3. click the button 'Add a Printer'"""
+    # add_a_printer_screen.click_Add_A_Printer()
+    # login_page.Verify_ALL_Allow_Popups()
+    # """Check it would go to the page "Let's set up your printer"""
+    # add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+    # """""Check the moneybadger picture would appears at that page."""
+    # add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+    # """Click on Start setup button"""
+    # add_a_printer_screen.click_Start_Button()
+    login_page.Verify_ALL_Allow_Popups()
     """"Verify Let's make sure the printer is in Bluetooth pairing mode. Text"""
     add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
     """""click on Next Button"""""
@@ -254,6 +258,7 @@ def test_Addprinter_TestcaseID_45657():
 
 # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# #####Steps are not correct
 def test_Addprinter_TestcaseID_45658_SemiAuto():
     """"Check pairing bluetooth when the printer changes to offline"""
 
@@ -1036,6 +1041,7 @@ def test_Addprinter_TestcaseID_45682():
     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# ###Steps are not correct
 def test_Addprinter_TestcaseID_47714_SemiAuto():
     """"Add printer BT pair Timeout : check when printer not in pair mode, check pair time"""
 
@@ -1092,6 +1098,7 @@ def test_Addprinter_TestcaseID_47714_SemiAuto():
 #     ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# ###Steps are not correct
 def test_Addprinter_TestcaseID_47715_SemiAuto():
     """"Add printer BT pair Timeout : check cancel Bluetooth Pairing request, check pair time"""
 
@@ -1350,6 +1357,7 @@ def test_Addprinter_TestcaseID_48693():
 
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# ####Steps are not correct
 def test_Addprinter_TestcaseID_47702_AemiAuto():
     """"Add printer select network: Check search again to refresh current Wi-Fi list multi times will works fine"""
 

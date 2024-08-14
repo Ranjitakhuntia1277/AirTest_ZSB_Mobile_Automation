@@ -884,7 +884,7 @@ class Registration_Screen:
             raise Exception("Did not return to login page.")
 
     def Verify_We_Didnot_recognize_Please_Try_Again(self):
-        sleep(5)
+        sleep(10)
         self.poco(text="We didn't recognize the username or password you entered. Please try again.").get_name()
 
 

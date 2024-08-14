@@ -817,7 +817,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49179():
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    aps_notification.click_Three_Dot_On_Added_Printer_On_HomePage()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
     app_settings_page.click_Delete_Printer_Button()
     app_settings_page.Click_Cancel_On_Delete_Printer_Page()
     common_method.Stop_The_App()
