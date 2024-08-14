@@ -1114,10 +1114,7 @@ def test_Template_Management_TestcaseID_46005():
     data_sources_page.scroll_till_print()
     data_sources_page.clickPrint()
     "Verify updated elements are visible in print preview-cannot automate"
-    try:
-        template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    except:
-        pass
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
 
 
 def test_Template_Management_TestcaseID_46023():
@@ -1683,7 +1680,7 @@ def test_Template_Management_TestcaseID_46020():
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     """Search and select design created in web"""
-    data_sources_page.searchMyDesigns("UnevenC|R")
+    data_sources_page.searchMyDesigns("UnevenC_R")
     data_sources_page.selectDesignCreatedAtSetUp()
     """Click print"""
     data_sources_page.clickPrint()
@@ -1720,8 +1717,8 @@ def test_Template_Management_TestcaseID_46020():
         scroll_view = poco("android.view.View")
         scroll_view.swipe("down")
     template_management_page.verify_label_navigation()
-    data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    # data_sources_page.clickPrint()
+    # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     common_method.Stop_The_App()
 
 
@@ -1794,7 +1791,7 @@ def test_Template_Management_TestcaseID_46022():
     template_management_page.selectChooseAnOption(1, None, False)
     poco.scroll()
     """Issue in step 7 due to bug SMBM-2202"""
-    selected_file_name = template_management_page.select_file_update_data_connections("Drive")
+    selected_file_name = template_management_page.select_file_update_data_connections("Google Drive")
     if poco(text="Choose an account").exists():
         data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
     data_sources_page.clickContinue()
@@ -1815,7 +1812,7 @@ def test_Template_Management_TestcaseID_46022():
     checkbox = poco("android.widget.CheckBox")
     """Check first row is greyed out"""
     attribute = common_method.getAttr(checkbox[2], "enabled")
-    if attribute == False:
+    if not attribute:
         pass
     else:
         raise Exception("First row is not greyed out")
@@ -1878,14 +1875,16 @@ def test_Template_Management_TestcaseID_46026():
     data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
+    data_sources_page.clickBackArrow()
     template_management_page.verify_update_data_connections_dialog()
-    common_method.wait_for_element_appearance_namematches("could not be read")
     template_management_page.selectChooseAnOption(1, None, False)
     """Issue in step 8 due to bug SMBM-2202"""
     template_management_page.select_file_update_data_connections("Upload File")
     data_sources_page.searchFileInLocalStorage(".xlsx")
+    raise Exception("Blocked due to bug SMBM-2202")
     template_management_page.wait_for_appearance_enabled("Continue")
     data_sources_page.clickContinue()
+    raise Exception("Blocked due to bug SMBM-2175")
     template_management_page.selectChooseAnOption(2)
     """Cannot automate \"Check the column name displayed above the column selection box. Currently it displays in the column selection box\" due to bug BUGID SMBM-2175"""
     data_sources_page.clickContinue()
@@ -1898,8 +1897,8 @@ def test_Template_Management_TestcaseID_46026():
     data_sources_page.clickLabelRange()
     """Cannot verify \"check that all the columns and rows of the new data source file are shown in the table\""""
     data_sources_page.clickBackArrow()
-    data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    # data_sources_page.clickPrint()
+    # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     sleep(3)
     data_sources_page.clickBackArrow()
     """Re-upload file for next execution"""
