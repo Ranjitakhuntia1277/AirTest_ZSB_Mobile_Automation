@@ -1258,7 +1258,6 @@ def test_Delete_Account_TestcaseID_45783():
     """Check if logged out automatically after clicking Ok"""
     data_sources_page.checkIfInLoginPage()
 
-### bug-id-need to raise
 def test_Delete_Account_TestcaseID_45786():
     pass
     common_method.tearDown()

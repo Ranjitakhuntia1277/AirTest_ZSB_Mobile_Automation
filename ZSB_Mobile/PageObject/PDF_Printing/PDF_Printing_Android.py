@@ -74,7 +74,7 @@ class PDF_Printing_Screen:
             self.poco(self.Drive_SearchBar2).click()
 
     def Verify_Print_Preview_page(self):
-        sleep(10)
+        sleep(18)
         a = self.poco(nameMatches="(?s).*Edit Label.*")
         if a.exists():
            a.get_name()

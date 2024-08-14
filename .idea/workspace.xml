@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test Results - pytest_in_test_Android_Social_Login_Exec_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/Test Results - pytest_in_test_Android_Social_Login_Exec_py.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Printer_Management_Screen/Printer_Management_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Printer_Management_Screen/Printer_Management_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Add_A_Printer_Screen/Add_A_Printer_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printer_Discover.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_APS_Testcases/test_APS_Printer_Discover.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_Android.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,8 +113,8 @@
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_Smoke_Test" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_Android.test_Addprinter_TestcaseID_45656" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,11 +126,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_Android.test_Addprinter_TestcaseID_45656&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45770" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45786" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -137,11 +142,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45770&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45786&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_45802" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45808" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -153,11 +158,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_45802&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45808&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_45872" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45841" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -169,11 +174,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_45872&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45841&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_Android_Social_Login.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -185,17 +190,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Social_Login/test_Android_Social_Login.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45770" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_45872" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_45802" />
-        <item itemvalue="Python tests.pytest in test_Android_Social_Login.py" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45786" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45808" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_PDF_Printing.test_Android_PDF_Printing.test_Android_PDF_Printing_TestcaseID_45841" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_Android.test_Addprinter_TestcaseID_45656" />
       </list>
     </recent_temporary>
   </component>
