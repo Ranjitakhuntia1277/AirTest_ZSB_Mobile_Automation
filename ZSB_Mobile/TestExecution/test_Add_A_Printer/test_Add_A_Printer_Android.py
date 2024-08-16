@@ -338,6 +338,7 @@ def test_Addprinter_TestcaseID_45658_SemiAuto():
 
 # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# ####Steps are not correct
 def test_Addprinter_TestcaseID_45660_SemiAuto():
     """"Search the essids when the printer is offline"""
 
@@ -422,6 +423,8 @@ def test_Addprinter_TestcaseID_45660_SemiAuto():
 
 # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+# #####Steps are not correct
 def test_Addprinter_TestcaseID_45662_SemiAuto():
     """"set printer open Essid when the printer change to offline, and retry"""
 
@@ -505,6 +508,7 @@ def test_Addprinter_TestcaseID_45662_SemiAuto():
 # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+#####Steps are not correct
 def test_Addprinter_TestcaseID_45663_SemiAuto():
     """"set printer wpa psk Essid manually when the printer change to offline, and go to Help"""
 
@@ -589,6 +593,7 @@ def test_Addprinter_TestcaseID_45663_SemiAuto():
 
 # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#####Steps are not correct
 def test_Addprinter_TestcaseID_45665():
     """"Check the left top corner button of each page work during adding a moneybadger."""
 
@@ -708,7 +713,7 @@ def test_Addprinter_TestcaseID_45665():
 
 # ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+#####Steps are not correct
 def test_Addprinter_TestcaseID_45670_SemiAuto():
     """"using the phone B to pair the bluetooth Moneybadger, and don't quit the adding printer process wizard, then using the phone A to discover."""
 
@@ -772,6 +777,7 @@ def test_Addprinter_TestcaseID_45670_SemiAuto():
     # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+# #####Steps are not correct
 def test_Addprinter_TestcaseID_45678_SemiAuto():
     """"retrieve moneybadger when no online moenybadgers at your area, then open one, retrieve again"""
 
@@ -854,7 +860,7 @@ def test_Addprinter_TestcaseID_45678_SemiAuto():
 
 #     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+#####Steps are not correct
 def test_Addprinter_TestcaseID_45679_SemiAuto():
     """"set wrong password of the PSK WPA Essid to printer by choosing it, then click 'Cancel'"""
 
@@ -976,6 +982,7 @@ def test_Addprinter_TestcaseID_45679_SemiAuto():
 
 #     ######""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+####Steps are not correct
 def test_Addprinter_TestcaseID_45682():
     """"connect printer with PSK WPA Essid manually, then cancel'"""
 
@@ -1154,7 +1161,7 @@ def test_Addprinter_TestcaseID_47715_SemiAuto():
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
+#####Steps are not correct
 def test_Addprinter_TestcaseID_48436():
     """"Verify the Cancel button functionality on "Join Network Page" while connceting to already connected / newly connected network"""
 
@@ -1226,7 +1233,7 @@ def test_Addprinter_TestcaseID_48436():
 
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+# #####Steps are not correct
 def test_Addprinter_TestcaseID_48438():
     """"Verify the timeout scenario when user enters the password and does not Continue"""
 
@@ -1302,6 +1309,7 @@ def test_Addprinter_TestcaseID_48438():
 
 #     ############""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+###Steps are not correct
 def test_Addprinter_TestcaseID_48693():
     """"Verify the Signal Strength UI for WiFi with Average connectivity"""
 
