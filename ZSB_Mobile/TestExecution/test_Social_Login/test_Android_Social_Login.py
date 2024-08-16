@@ -603,7 +603,7 @@ class test_Android_Social_Login():
         email = "zebratest852@gmail.com"
         password = 'Zebra#1234567890'
 
-        ## social_login.click_on_sign_in_with_email()
+        #### social_login.click_on_sign_in_with_email()
         social_login.complete_sign_in_with_email(email, password, 1)
         if not social_login.check_for_incorrect_user_name_or_password_sign_in_with_email():
             raise Exception("Error not displayed for incorrect password values")
