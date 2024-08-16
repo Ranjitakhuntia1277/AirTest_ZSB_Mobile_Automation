@@ -459,6 +459,8 @@ def test_AppSettings_TestcaseID_45705():
     app_settings_page.click_Keyboard_back_Icon()
     sleep(3)
     login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    login_page.click_Menu_HamburgerICN()
     app_settings_page.click_pen_Icon_near_UserName()
     """""click First name text field"""
     app_settings_page.click_First_Name_Text_Field()
