@@ -14,7 +14,7 @@ import platform
 if platform.system() == "Windows":
     def Basic_path(a):
         return os.path.join(os.path.expanduser('~'),
-                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
+                            "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
                             a)
 
 else:
@@ -40,6 +40,7 @@ class Template_Management_Screen:
         self.Search_icon = Template(Basic_path(r"search_Icon.png"), record_pos=(-0.398, -0.605), resolution=(1080, 2280))
         self.Search_files_place_holder = Template(Basic_path(r"search_files_place_holder.png"), record_pos=(-0.203, -0.584),
                                                   resolution=(1080, 2340))
+        self.search_icons_text_box = Template(Basic_path(r"search_Icons_text_box.png"), record_pos=(-0.233, -0.736), resolution=(1080, 2400))
 
     def turn_on_wifi(self):
         cmd = "adb shell svc wifi enable"
@@ -51,13 +52,13 @@ class Template_Management_Screen:
         a = a.split(" ")
         return a[1]
 
-    def turn_off_wifi(self):
+    def Turn_Off_wifi(self):
         command = "adb shell svc wifi disable"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print("Command output:")
         print(result.stdout)
 
-    def turn_on_wifi(self):
+    def Turn_ON_wifi(self):
         command = "adb shell svc wifi enable"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print("Command output:")
@@ -102,7 +103,7 @@ class Template_Management_Screen:
             if name == "All sizes":
                 self.poco("All sizes").click()
         else:
-            self.poco(nameMatches="Name(.*)").parent.child()[3].click()
+            self.poco(nameMatches="Name(.*)").parent().child()[3].click()
 
     def waitForAppearanceOfCategories(self):
         sleep(10)
@@ -648,7 +649,7 @@ class Template_Management_Screen:
         return assert_exists(self.Search_files_place_holder, "Search placeholder is present")
 
     def clickSearchIconTextBox(self):
-        touch(Template(Basic_path(r"search_icon.png"), record_pos=(-0.218, -0.723), resolution=(1080, 2280)))
+        touch(self.search_icons_text_box)
 
     def clickSearchIcon(self):
         touch(self.Search_icon)

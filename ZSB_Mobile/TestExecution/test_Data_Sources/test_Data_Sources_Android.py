@@ -764,7 +764,7 @@ def test_DataSources_TestcaseID_45744():
     """Select File to upload"""
     file_name = data_sources_page.select_File_To_Upload(True)
     print(file_name)
-    sleep(5)
+    sleep(10)
     """Upload the same file again"""
     """Click Add File"""
     data_sources_page.click_Add_File()
@@ -773,7 +773,7 @@ def test_DataSources_TestcaseID_45744():
     data_sources_page.click_Upload_File()
     sleep(5)
     data_sources_page.select_File_To_Upload()
-    sleep(5)
+    sleep(10)
     search_name = file_name.split(".")[0]
     extension = file_name.split(".")[1]
     data_sources_page.searchName(search_name)
@@ -2521,9 +2521,8 @@ def test_Smoke_Test_TestcaseID_45879():
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
     login_page.Loginwith_Added_Email_Id()
     login_page.click_Menu_HamburgerICN()
     smoke_test_android.click_MyData_Tab()
