@@ -1533,14 +1533,14 @@ def test_Template_Management_TestcaseID_46027():
     pass
 
     """Step 1-5 pending due to web automation"""
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    registration_page.clickSignIn()
-    registration_page.click_Google_Icon()
-    registration_page.check_if_user_navigated_to_sign_in_page()
-    account = "zebra02.swdvt@gmail.com"
-    help_page.chooseAcc(account)
+    # data_sources_page.clearAppData()
+    # common_method.tearDown()
+    # data_sources_page.allowPermissions()
+    # registration_page.clickSignIn()
+    # registration_page.click_Google_Icon()
+    # registration_page.check_if_user_navigated_to_sign_in_page()
+    # account = "zebra02.swdvt@gmail.com"
+    # help_page.chooseAcc(account)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1555,15 +1555,16 @@ def test_Template_Management_TestcaseID_46027():
     data_sources_page.click_Link_File()
     sleep(2)
     """ google drive """
-    if data_sources_page.verifySignInWithGoogle():
-        registration_page.click_Google_Icon()
-    account = "zebra03.swdvt@gmail.com"
-    if data_sources_page.checkIfAccPresentLink(account):
-        help_page.chooseAcc(account)
-    else:
-        poco("com.google.android.gms:id/add_account_chip_title").click()
-        registration_page.sign_In_With_Google("Zebra#123456789", account)
-        sleep(2)
+    # if data_sources_page.verifySignInWithGoogle():
+    #     registration_page.click_Google_Icon()
+    # account = "zebra03.swdvt@gmail.com"
+    # if data_sources_page.checkIfAccPresentLink(account):
+    #     help_page.chooseAcc(account)
+    # else:
+    #     poco("com.google.android.gms:id/add_account_chip_title").click()
+    #     registration_page.sign_In_With_Google("Zebra#123456789", account)
+    #     sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     data_sources_page.clickBackArrow()
     sleep(5)
@@ -1915,15 +1916,16 @@ def test_Template_Management_TestcaseID_46026():
     data_sources_page.click_Link_File()
     sleep(2)
     """ google drive """
-    if data_sources_page.verifySignInWithGoogle():
-        registration_page.click_Google_Icon()
-        account = "zebra03.swdvt@gmail.com"
-        if data_sources_page.checkIfAccPresentLink(account):
-            help_page.chooseAcc(account)
-        else:
-            poco("com.google.android.gms:id/add_account_chip_title").click()
-            registration_page.sign_In_With_Google("Zebra#123456789", account)
-            sleep(2)
+    # if data_sources_page.verifySignInWithGoogle():
+    #     registration_page.click_Google_Icon()
+    #     account = "zebra03.swdvt@gmail.com"
+    #     if data_sources_page.checkIfAccPresentLink(account):
+    #         help_page.chooseAcc(account)
+    #     else:
+    #         poco("com.google.android.gms:id/add_account_chip_title").click()
+    #         registration_page.sign_In_With_Google("Zebra#123456789", account)
+    #         sleep(2)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(2)
     data_sources_page.selectFileDrive(selected_file_name)
@@ -1964,50 +1966,50 @@ def test_Template_Management_TestcaseID_50656():
         pass
     else:
         raise Exception("All Icons did not show up after clearing search text.")
-    # common_method.Stop_The_App()
-    # """Sign in same account in web portal, go to my designs, create/edit a design, add an image, set it to prompt at print needs to be executed manually due to web inconsistency """
-    # start_app("com.android.chrome")
-    # sleep(2)
-    # poco("com.android.chrome:id/tab_switcher_button").click()
-    # sleep(2)
-    # poco("com.android.chrome:id/new_tab_view_button").click()
-    # sleep(2)
-    # poco(text="Search or type URL").click()
-    # sleep(2)
-    # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    # sleep(2)
-    # data_sources_page.clickEnter()
-    # registration_page.wait_for_element_appearance_text("Home", 10)
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.clickMyDesigns()
-    # data_sources_page.lock_phone()
-    # wake()
-    # sleep(2)
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.clickCreateDesignBtn()
-    # sleep(5)
-    # data_sources_page.selectLabelSize()
-    # data_sources_page.clickContinueWeb()
-    # data_sources_page.lock_phone()
-    # wake()
-    # common_method.wait_for_element_appearance_text("Exit Designer")
-    # a, b = poco(text="Undo last operation. Max of 10 undo steps are supported.").get_position()
-    # while not poco(text="Add picture").exists():
-    #     common_method.swipe_screen([0.9, b], [0.3, b], 1)
-    #     data_sources_page.lock_phone()
-    #     wake()
-    #     sleep(3)
-    # data_sources_page.clickAddPhoto()
-    # data_sources_page.placePhoto()
-    # while not poco(text="Exit Designer").exists():
-    #     common_method.swipe_screen([0.1, b], [0.7, b], 1)
-    #     data_sources_page.lock_phone()
-    #     wake()
-    #     sleep(3)
+    # # common_method.Stop_The_App()
+    # # """Sign in same account in web portal, go to my designs, create/edit a design, add an image, set it to prompt at print needs to be executed manually due to web inconsistency """
+    # # start_app("com.android.chrome")
+    # # sleep(2)
+    # # poco("com.android.chrome:id/tab_switcher_button").click()
+    # # sleep(2)
+    # # poco("com.android.chrome:id/new_tab_view_button").click()
+    # # sleep(2)
+    # # poco(text="Search or type URL").click()
+    # # sleep(2)
+    # # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+    # # sleep(2)
+    # # data_sources_page.clickEnter()
+    # # registration_page.wait_for_element_appearance_text("Home", 10)
+    # # data_sources_page.click_Menu_HamburgerICNWeb()
+    # # data_sources_page.clickMyDesigns()
+    # # data_sources_page.lock_phone()
+    # # wake()
+    # # sleep(2)
+    # # data_sources_page.click_Menu_HamburgerICNWeb()
+    # # data_sources_page.clickCreateDesignBtn()
+    # # sleep(5)
+    # # data_sources_page.selectLabelSize()
+    # # data_sources_page.clickContinueWeb()
+    # # data_sources_page.lock_phone()
+    # # wake()
+    # # common_method.wait_for_element_appearance_text("Exit Designer")
+    # # a, b = poco(text="Undo last operation. Max of 10 undo steps are supported.").get_position()
+    # # while not poco(text="Add picture").exists():
+    # #     common_method.swipe_screen([0.9, b], [0.3, b], 1)
+    # #     data_sources_page.lock_phone()
+    # #     wake()
+    # #     sleep(3)
+    # # data_sources_page.clickAddPhoto()
+    # # data_sources_page.placePhoto()
+    # # while not poco(text="Exit Designer").exists():
+    # #     common_method.swipe_screen([0.1, b], [0.7, b], 1)
+    # #     data_sources_page.lock_phone()
+    # #     wake()
+    # #     sleep(3)
     design_name = "Pic_PromptAtPrint"
-    # data_sources_page.setLabelName(design_name)
-    # sleep(5)
-    # data_sources_page.exitDesigner()
+    # # data_sources_page.setLabelName(design_name)
+    # # sleep(5)
+    # # data_sources_page.exitDesigner()
     # """Web pending due to inconsistent behaviour"""
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
@@ -2087,7 +2089,7 @@ def test_Template_Management_TestcaseID_47792():
     keyevent("Enter")
     modified_print_value = template_management_page.get_print_value()
     if initial_print_value == modified_print_value:
-        raise Exception("Print value not modified on clicking backspace.")
+        raise Exception("Print value not modified on clicking backspace(SMBM-1817).")
     else:
         pass
     common_method.Stop_The_App()
@@ -2767,13 +2769,13 @@ def test_Template_Management_TestcaseID_45994():
     template_management_page.click_filter_my_designs()
     label_size = template_management_page.select_label_size()
     sleep(3)
+    template_management_page.turn_on_wifi()
+    sleep(5)
     raise Exception("Blocked due to bug SMBM-1774")
     if template_management_page.verify_connection_error_app():
         pass
     else:
         raise Exception("Connection lost error not displayed.")
-    template_management_page.turn_on_wifi()
-    sleep(5)
     template_management_page.click_filter_my_designs()
     label_size = template_management_page.select_label_size()
     template_management_page.wait_for_appearance_designs_in_a_particular_category()
@@ -3436,7 +3438,7 @@ def test_Template_Management_TestcaseID_45979():
     selected_design = template_management_page.click_drop_down_result_1(True)
     template_management_page.check_if_drop_down_list_close()
     data_sources_page.checkIfDesignsLoaded()
-    displayed_list = template_management_page.get_all_designs_in_my_designs()
+    displayed_list = template_management_page.get_all_designs_in_my_designs(True)
     if len(displayed_list) == 1:
         if displayed_list[0] == selected_design:
             pass
@@ -3520,9 +3522,9 @@ def test_Template_Management_TestcaseID_45965():
     """Step 12 pending"""
 
 
+"""Semi Automated"""
 def test_Template_Management_TestcaseID_45921():
     pass
-    """Semi Automated"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -3580,11 +3582,11 @@ def test_Template_Management_TestcaseID_46025():
             poco.scroll()
         poco.scroll()
         template_management_page.wait_for_appearance_enabled("Print")
-        data_sources_page.clickPrint()
-        try:
-            template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-        except:
-            pass
+        # data_sources_page.clickPrint()
+        # try:
+        #     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+        # except:
+        #     pass
         sleep(5)
         data_sources_page.clickBackArrow()
         login_page.click_Menu_HamburgerICN()

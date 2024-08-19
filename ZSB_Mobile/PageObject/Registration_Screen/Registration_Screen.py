@@ -15,7 +15,7 @@ from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+        return os.path.join(os.path.expanduser('~'), "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates", a)
 
 else:
     def Basic_path(a):

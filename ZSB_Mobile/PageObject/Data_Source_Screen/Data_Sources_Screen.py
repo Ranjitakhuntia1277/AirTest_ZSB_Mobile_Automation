@@ -15,7 +15,7 @@ import platform
 if platform.system() == "Windows":
     def Basic_path(a):
         return os.path.join(os.path.expanduser('~'),
-                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates", a)
+                            "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates", a)
 
 else:
     def Basic_path(a):
