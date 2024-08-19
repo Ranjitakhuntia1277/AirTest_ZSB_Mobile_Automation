@@ -1258,7 +1258,6 @@ def test_Delete_Account_TestcaseID_45783():
     """Check if logged out automatically after clicking Ok"""
     data_sources_page.checkIfInLoginPage()
 
-### bug-id-need to raise
 def test_Delete_Account_TestcaseID_45786():
     pass
     common_method.tearDown()
@@ -1285,7 +1284,7 @@ def test_Delete_Account_TestcaseID_45786():
     """Scroll till log out button"""
     registration_page.scrollTillLogOutAppears()
     """Disconnect mobile device network"""
-    template_management_page.turn_off_wifi()
+    template_management_page.Turn_Off_wifi()
     """Click Delete Account"""
     delete_account_page.clickDeleteAccount()
     """Check Delete Account page show up"""
@@ -1334,7 +1333,7 @@ def test_Delete_Account_TestcaseID_45770():
     """clear app data"""
     data_sources_page.clearAppData()
     common_method.tearDown()
-    template_management_page.turn_on_wifi()
+    template_management_page.Turn_ON_wifi()
     data_sources_page.allowPermissions()
     """Sign in"""
     login_page.click_loginBtn()
@@ -1440,8 +1439,8 @@ def test_Delete_Account_TestcaseID_45770():
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    # #data_sources_page.clickGotItWeb()
-    registration_page.wait_for_element_appearance_text("Home", 10)
+    ##data_sources_page.clickGotItWeb()
+    app_settings_page.Home_text_is_present_on_homepage()
     delete_account_page.verifyNoPrinterInAccountWeb()
     poco.scroll()
     data_sources_page.lock_phone()

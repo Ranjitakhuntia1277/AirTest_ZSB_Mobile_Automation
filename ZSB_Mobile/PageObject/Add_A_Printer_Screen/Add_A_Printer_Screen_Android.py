@@ -128,6 +128,7 @@ class Add_A_Printer_Screen:
             print(f"An unexpected error occurred: {e}. Skipping.")
 
     def click_Add_A_Printer(self):
+        sleep(4)
         add_a_printer_btn = self.poco(self.Add_A_Printer_Btn)
         add_a_printer_btn.click()
 
@@ -544,11 +545,11 @@ class Add_A_Printer_Screen:
     #     else:
     #         print("ZSB Printers are not present for all items.")
 
-    def Verify_same_ZSB_image_for_all_items(self):
-        if self.ZSB_Printer_images.exists():
-            print("ZSB Printers are present for all items.")
-        else:
-            print("ZSB Printers arem present for all items.")
+    # def Verify_same_ZSB_image_for_all_items(self):
+    #     if self.ZSB_Printer_images.exists():
+    #         print("ZSB Printers are present for all items.")
+    #     else:
+    #         print("ZSB Printers arem present for all items.")
 
     def Verify_UI_Of_The_Slideleft_Page_Is_Correct(self):
         sleep(3)
@@ -592,8 +593,8 @@ class Add_A_Printer_Screen:
     #         assert_false()
 
     def Verify_Slideleft_Page_Is_Present(self):
-            sleep(3)
-            if self.poco(name="Common Designs").wait_for_appearance(timeout=3):
+            sleep(5)
+            if self.poco(name="Common Designs").exists():
                 print("Add Printer Tab is displaying")
             else:
                 raise AssertionError("Add Printer Tab is not displaying")

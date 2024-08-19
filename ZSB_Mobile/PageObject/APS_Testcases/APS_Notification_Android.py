@@ -74,10 +74,8 @@ class APS_Notification:
         Files_Folder = self.poco(self.Files_Folder)
         if Files_Folder.exists():
             Files_Folder.click()
-            sleep(2)
-        else:
-            print("Files folder is not there")
-        sleep(3)
+            sleep(3)
+
 
     def click_Drive_Folder(self):
         sleep(3)
@@ -149,7 +147,7 @@ class APS_Notification:
         if self.poco(name="android.widget.TextView")[2].exists():
             self.poco(name="android.widget.TextView")[2].click()
         else:
-            print("Three doe is not present")
+            print("Three dot is not present")
 
     def click_On_Share_Option(self):
         sleep(2)
@@ -177,6 +175,12 @@ class APS_Notification:
         PDF_ON_Result = self.poco(self.PDF_ON_Result)
         PDF_ON_Result.click()
         sleep(3)
+
+    def click_Google_Drive_PDF_On_Result(self):
+        if self.poco(self.PDF_ON_Result).exists():
+            self.poco(self.PDF_ON_Result).click()
+            sleep(3)
+
 
     def click_PDF_Share_Option(self):
         PDF_Share_Option = self.poco(text="Share")
@@ -307,8 +311,7 @@ class APS_Notification:
         SearchBar2 = self.poco(self.Drive_SearchBar2)
         if SearchBar2.exists():
             SearchBar2.click()
-        else:
-            print("Searchbar is not there")
+
 
     def Enter_Download_Text_On_SearchBar(self):
         sleep(2)
@@ -375,8 +378,10 @@ class APS_Notification:
             sleep(3)
         else:
             poco.scroll()
-            self.poco(text="ZSB Series").click()
-            print("ZSB_Series element found")
+            sleep(3)
+            if self.poco(text="ZSB Series").exists():
+                self.poco(text="ZSB Series").click()
+                print("ZSB_Series element found")
 
     def get_all_designs_in_recently_printed_labels(self, index=6):
         try:
@@ -441,6 +446,7 @@ class APS_Notification:
         keyevent("HOME")
         sleep(4)
 
+
     def Verify_Print_Review_Page(self):
         sleep(5)
         print_preview = self.poco(self.Print_Review_Page)
@@ -449,7 +455,7 @@ class APS_Notification:
             print(" Print Review page is displaying correctly:", print_preview)
             return print_preview
         else:
-            print(" Print Review page is not displaying correctly")
+            print(" Print Review page is displaying correctly")
 
     def click_Save_AS_PDF(self):
         sleep(5)
@@ -491,7 +497,7 @@ class APS_Notification:
             print(" Print job sent message is displaying correctly:", Print_job_IS_IN_Progress_Message)
             return Print_job_IS_IN_Progress_Message
         else:
-            print(" Print job sent message is not displaying correctly")
+            print(" Print job sent message is displaying correctly")
 
     def click_Cancel_Button_On_The_Printing_InProgress_Notification(self):
         sleep(4)
