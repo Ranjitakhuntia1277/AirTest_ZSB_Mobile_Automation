@@ -422,8 +422,11 @@ class Template_Management_Android:
         self.poco("android.view.View").child(type="android.widget.ImageView").wait_for_appearance(timeout=30)
 
     def get_all_designs_in_my_designs(self):
+        sleep(3)
         total = []
         prev = []
+        if self.poco(nameMatches="(?s).*There are currently no designs saved to your workspace..*").exists():
+            return total
         while 1:
             curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
             if curr != prev:
@@ -799,9 +802,8 @@ class Template_Management_Android:
         self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
 
     def check_the_error_msg_of_turning_off_wifi(self):
-        a = self.poco("Continue").parent().get_name()
-        temp = a.split("\n")
-        assert_equal(temp[1], "The service is currently unavailable.", "ok")
+        a = self.poco("Continue").parent().child("android.view.View").child().get_name()
+        assert_equal(a, "The service is currently unavailable.", "ok")
 
     def click_on_continue(self):
         try:

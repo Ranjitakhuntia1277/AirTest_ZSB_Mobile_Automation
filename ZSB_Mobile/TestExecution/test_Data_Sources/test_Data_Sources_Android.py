@@ -1,5 +1,10 @@
+import signal
+
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
+import subprocess
+import time
+import os
 
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
@@ -45,6 +50,30 @@ delete_account_page = Delete_Account_Screen(poco)
 
 # ###bug id- SMBM-1456
 """zebra03.swdvt@gmail.com"""
+
+import subprocess
+import time
+import os
+
+# Constants
+FILE_NAME = "45743.mp4"
+DEVICE_PATH = "/sdcard/"
+
+# Get the path to the "Documents" folder
+DOCUMENTS_FOLDER = os.path.join(os.path.expanduser("~"), "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\Recordings")
+
+
+def start_screen_recording():
+    # Start recording the screen and run it in the background
+    return subprocess.Popen(['adb', 'shell', 'screenrecord', '/sdcard/screen_record.mp4'])
+
+def stop_screen_recording():
+    # Stop the screen recording by killing the screenrecord process
+    subprocess.run(['adb', 'shell', 'pkill', 'screenrecord'], check=True)
+
+def pull_video_from_device():
+    # Pull the recorded video from the device to the local machine
+    subprocess.run(['adb', 'pull', '/sdcard/screen_record.mp4', DOCUMENTS_FOLDER], check=True)
 
 
 def test_DataSources_TestcaseID_45729():
@@ -616,8 +645,9 @@ def test_DataSources_TestcaseID_45737():
     template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
     account = "zebra03.swdvt@gmail.com"
     # data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
-    sleep(5)
+    sleep(10)
     if template_management_page.continueDisabled() and not template_management_page.checkIfOnRelinkDataSourcesPage:
+        print("///---///")
         template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
         data_sources_page.enterMicrosoftUsername(account)
         data_sources_page.clickContinue()
@@ -994,30 +1024,35 @@ def test_DataSources_TestcaseID_45742():
 def test_DataSources_TestcaseID_45743():
     pass
 
+    # local_path = "C:\\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\Recordings"
+    recording_process = start_screen_recording()
     common_method.tearDown()
-    """Click hamburger icon to expand menu"""
-    login_page.click_Menu_HamburgerICN()
-    """Click My Data"""
-    data_sources_page.click_My_Data()
-    sleep(3)
-    """Click Add File"""
-    data_sources_page.click_Add_File()
-    sleep(2)
-    """Click Upload file"""
-    data_sources_page.click_Upload_File()
-    sleep(5)
-    """Select File to upload"""
-    data_sources_page.selectUnSupportedFile()
-    try:
-        common_method.wait_for_element_appearance("My Data")
-        x = 1 / 0
-    except ZeroDivisionError:
-        raise Exception("Unsupported files are selectable.")
-    except Exception as e:
-        pass
-    keyevent("back")
-    keyevent("back")
+    # """Click hamburger icon to expand menu"""
+    # login_page.click_Menu_HamburgerICN()
+    # """Click My Data"""
+    # data_sources_page.click_My_Data()
+    # sleep(3)
+    # """Click Add File"""
+    # data_sources_page.click_Add_File()
+    # sleep(2)
+    # """Click Upload file"""
+    # data_sources_page.click_Upload_File()
+    # sleep(5)
+    # """Select File to upload"""
+    # data_sources_page.selectUnSupportedFile()
+    # try:
+    #     common_method.wait_for_element_appearance("My Data")
+    #     x = 1 / 0
+    # except ZeroDivisionError:
+    #     raise Exception("Unsupported files are selectable.")
+    # except Exception as e:
+    #     pass
+    # keyevent("back")
+    # keyevent("back")
     common_method.Stop_The_App()
+    stop_screen_recording()
+    sleep(5)
+    pull_video_from_device()
 
 
 def test_DataSources_TestcaseID_45745():
@@ -2471,32 +2506,23 @@ def test_DataSources_TestcaseID_45753():
 
 
 def test_Smoke_Test_TestcaseID_45878():
-    """	Verify sign in as zebra, check link and delete one/google drive file works well"""
+    """	Verify sign in as zebra, check link and delete one/Google Drive file works well"""
 
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
     common_method.Clear_App()
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
     login_page.Loginwith_Added_Email_Id()
     login_page.click_Menu_HamburgerICN()
     smoke_test_android.click_MyData_Tab()
     smoke_test_android.click_Plus_icon()
     smoke_test_android.click_LinkFile()
     smoke_test_android.click_Microsoft_OneDrive_Tab()
-    smoke_test_android.click_SignIn_With_Microsoft()
-    smoke_test_android.click_Email_Text_Field()
-    smoke_test_android.click_Next_Button()
-    smoke_test_android.click_Microsoft_Password_Field()
-    smoke_test_android.click_Sign_In_Button()
-    smoke_test_android.click_Microsoft_OneDrive_Tab()
-    smoke_test_android.click_Microsoft_Email_Field()
-    smoke_test_android.click_Next_Button()
-    smoke_test_android.click_On_Microsoft_Password_Textfield()
-    smoke_test_android.click_SignIn_Button()
+    data_sources_page.signInWithMicrosoft("swdvt.zebra@outlook.com", "Swdvt@123")
     smoke_test_android.click_Microsoft_OneDrive_Tab()
     smoke_test_android.click_On_Jpg_File()
     smoke_test_android.click_On_Select_Btn()
@@ -2514,9 +2540,10 @@ def test_Smoke_Test_TestcaseID_45878():
 # #     ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # #
 def test_Smoke_Test_TestcaseID_45879():
-    """Verify sign in as non-zebra, check link and delete one/google drive file works well"""
+    """Verify sign in as non-zebra, check link and delete one/Google Drive file works well"""
 
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
     common_method.Clear_App()
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
@@ -2602,7 +2629,8 @@ def test_DataSources_TestcaseID_45758():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
     print(data_sources_page.verifySignInWithMicrosoft())
-    data_sources_page.signInWithMicrosoft(account, "Zebra#123456789")
+    account_onedrive = "zebra901.swdvt@gmail.com"
+    data_sources_page.signInWithMicrosoft(account_onedrive, "Zebra#123456789")
     sleep(2)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()

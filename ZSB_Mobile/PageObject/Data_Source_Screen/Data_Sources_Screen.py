@@ -836,6 +836,7 @@ class Data_Sources_Screen:
         sleep(3)
 
     def checkIfAccPresentLink(self, account):
+        sleep(2)
         start = 0
         end = 1
         while True:
@@ -1291,6 +1292,7 @@ class Data_Sources_Screen:
         self.poco("com.google.android.documentsui:id/search_src_text").set_text(filename)
         sleep(2)
         self.clickEnter()
+        sleep(4)
         if self.poco("com.google.android.documentsui:id/item_root").child().get_name() != "android.widget.LinearLayout":
             self.poco("com.google.android.documentsui:id/sub_menu").click()
         sleep(2)

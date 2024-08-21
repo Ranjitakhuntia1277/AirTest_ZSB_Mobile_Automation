@@ -37,10 +37,13 @@ class Template_Management_Screen:
         self.poco = poco
         self.Search_place_holder = Template(Basic_path(r"search_design_placeholder.png"), record_pos=(-0.192, -0.609),
                                             resolution=(1080, 2280))
-        self.Search_icon = Template(Basic_path(r"search_Icon.png"), record_pos=(-0.398, -0.605), resolution=(1080, 2280))
-        self.Search_files_place_holder = Template(Basic_path(r"search_files_place_holder.png"), record_pos=(-0.203, -0.584),
+        self.Search_icon = Template(Basic_path(r"search_Icon.png"), record_pos=(-0.398, -0.605),
+                                    resolution=(1080, 2280))
+        self.Search_files_place_holder = Template(Basic_path(r"search_files_place_holder.png"),
+                                                  record_pos=(-0.203, -0.584),
                                                   resolution=(1080, 2340))
-        self.search_icons_text_box = Template(Basic_path(r"search_Icons_text_box.png"), record_pos=(-0.233, -0.736), resolution=(1080, 2400))
+        self.search_icons_text_box = Template(Basic_path(r"search_Icons_text_box.png"), record_pos=(-0.233, -0.736),
+                                              resolution=(1080, 2400))
 
     def turn_on_wifi(self):
         cmd = "adb shell svc wifi enable"
@@ -444,8 +447,9 @@ class Template_Management_Screen:
             self.poco("android.widget.CheckBox").click()
 
     def verify_print_preview(self, preview_name):
-        assert_exists(Template(Basic_path(rf"{preview_name}.png"), record_pos=(-0.001, -0.045), resolution=(1080, 2340)),
-                      "Preview is present.")
+        assert_exists(
+            Template(Basic_path(rf"{preview_name}.png"), record_pos=(-0.001, -0.045), resolution=(1080, 2340)),
+            "Preview is present.")
 
     def verify_label_range_navigation_unavailable(self):
         return self.poco("Label 1 of 1").exists()
@@ -772,10 +776,12 @@ class Template_Management_Screen:
         return a or b or c or d
 
     def check_if_drop_down_list_open(self):
+        sleep(2)
         if self.check_suggestion_window_in_common_design():
             pass
         else:
             raise Exception("Drop down list did not appear.")
+        sleep(2)
 
     def check_if_drop_down_list_close(self):
         if self.check_suggestion_window_in_common_design():
@@ -824,8 +830,9 @@ class Template_Management_Screen:
 
     def getLastPrintFromFirstDesignInRecentlyPrintedDesigns(self):
         return \
-        self.poco("android.view.View").child(type="android.widget.ImageView")[1].get_name().split("\n")[-1].split(":")[
-            -1].strip()
+            self.poco("android.view.View").child(type="android.widget.ImageView")[1].get_name().split("\n")[-1].split(
+                ":")[
+                -1].strip()
 
     def get_remaining_label_count(self):
         labels_left = int(self.poco(nameMatches=".*Printer.*").get_name().split(" ")[1][1:])
@@ -1009,7 +1016,13 @@ class Template_Management_Screen:
     def select_file_update_data_connections(self, filename):
         selected_file_name = self.poco(nameMatches=f"(?s).*{filename}.*").get_name().split("(")[0].strip()
         self.poco(nameMatches=f"(?s).*{filename}.*").click()
-        return selected_file_name
+        try:
+            self.poco(nameMatches="(?s).*could not be read.*").wait_for_appearance(timeout=10)
+            x = 1 / 0
+        except ZeroDivisionError:
+            raise Exception("File could not be read pops up while trying to link google drive file.")
+        except Exception as e:
+            return selected_file_name
 
     def verify_update_data_connections_dialog(self):
         sleep(2)

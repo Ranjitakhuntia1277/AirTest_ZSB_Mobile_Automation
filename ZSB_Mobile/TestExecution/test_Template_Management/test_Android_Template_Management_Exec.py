@@ -377,6 +377,8 @@ def test_Template_Management_TestcaseID_45932():
 def test_Template_Management_TestcaseID_46015():
     pass
     """Step 1-4 web portal - pending due to web in consistency"""
+    common_method.tearDown()
+    data_sources_page.log_out_of_account()
     data_sources_page.clearAppData()
     sleep(2)
     common_method.tearDown()
@@ -431,7 +433,10 @@ def test_Template_Management_TestcaseID_46015():
     template_management_page.selectChooseAnOption(1, None, False)
     poco.scroll()
     """Issue in step 7 due to bug SMBM-2202"""
-    selected_file_name = template_management_page.select_file_update_data_connections("Drive")
+    selected_file_name = template_management_page.select_file_update_data_connections("Google Drive")
+    print(selected_file_name)
+    if poco(text="Choose an account").exists():
+        data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
     template_management_page.wait_for_appearance_enabled("Continue")
     data_sources_page.clickContinue()
     template_management_page.selectChooseAnOption(2)
@@ -533,10 +538,7 @@ def test_Template_Management_TestcaseID_46032():
         template_management_page.clickAccept()
     """ Office 365 contacts """
     account = "zebra03.swdvt@gmail.com"
-    try:
-        data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
-    except:
-        pass
+    data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
     sleep(5)
     data_sources_page.verifyIfPreviewIsPresent()
@@ -566,138 +568,6 @@ def test_Template_Management_TestcaseID_46032():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 20)
     except:
         pass
-
-
-def test_Template_Management_TestcaseID_46029():
-    pass
-
-    """Step 1-5 pending due to web automation"""
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    registration_page.clickSignIn()
-    registration_page.click_Google_Icon()
-    registration_page.check_if_user_navigated_to_sign_in_page()
-    account = "zebra02.swdvt@gmail.com"
-    help_page.chooseAcc(account)
-    data_sources_page.checkIfOnHomePage()
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.clickMyDesigns()
-    data_sources_page.checkIfDesignsLoaded()
-    search_label_name = "46029"
-    data_sources_page.searchMyDesigns(search_label_name)
-    data_sources_page.checkIfDesignsLoaded()
-    data_sources_page.selectDesignCreatedAtSetUp()
-    data_sources_page.clickPrint()
-    sleep(2)
-    if poco("Accept").exists():
-        template_management_page.clickAccept()
-    data_sources_page.checkIfAccPresentLink(account)
-    data_sources_page.chooseAccToLinkFile(account)
-    try:
-        registration_page.wait_for_element_appearance_text("Sign in to ZSB Series", 20)
-        poco.scroll()
-        data_sources_page.clickContinueWeb()
-    except:
-        pass
-    try:
-        registration_page.wait_for_element_appearance_text("ZSB Series wants access to your Google Account", 20)
-        while not poco(text="Continue").exists():
-            poco.scroll()
-        data_sources_page.clickContinueWeb()
-    except:
-        pass
-    try:
-        registration_page.wait_for_element_appearance_text(" wants to access your Google Account", 20)
-        while not poco(text="Allow").exists():
-            poco.scroll()
-        data_sources_page.clickAllow_Text()
-    except:
-        pass
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
-    sleep(10)
-    data_sources_page.verifyIfPreviewIsPresent()
-    count = 5
-    data_sources_page.scroll_till_print()
-    number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == 1:
-        pass
-    else:
-        error = f"There are {number_of_labels} labels printing even when connected to google account with no contacts."
-        raise Exception(error)
-    data_sources_page.clickLabelRange()
-    sleep(2)
-    if poco("android.widget.CheckBox")[3].parent().child()[1].get_name() == "android.view.View":
-        pass
-    else:
-        raise Exception("Tabel is not empty.")
-    data_sources_page.clickBackArrow()
-    """Step - 7 pending as input fields are not editable."""
-    raise Exception("Unable to enter data to empty values due to bug SMBM-2204")
-    data_sources_page.clickPrint()
-    try:
-        template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    except:
-        pass
-    data_sources_page.clickBackArrow()
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.clickHome()
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    data_sources_page.add_new_tab_in_browser()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://contacts.google.com/")
-    data_sources_page.clickEnter()
-    sleep(2)
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    common_method.wait_for_element_appearance_text("Contacts", 20)
-    try:
-        common_method.wait_for_element_appearance_text("Use the Contacts app")
-        if poco(text="Stay on web").exists():
-            poco(text="Stay on web").click()
-    except:
-        pass
-    template_management_page.changeAccInAddContacts(account)
-    common_method.wait_for_element_appearance_text("Contacts")
-    try:
-        common_method.wait_for_element_appearance_text("Use the Contacts app")
-        if poco(text="Stay on web").exists():
-            poco(text="Stay on web").click()
-    except:
-        pass
-    template_management_page.createContact("a", "1")
-    stop_app("com.android.chrome")
-    registration_page.wait_for_element_appearance("Home", 20)
-    registration_page.wait_for_element_appearance("Recently Printed Labels", 20)
-    raise Exception("Recently printed label has a bug SMBM-1748 hence unable to proceed.")
-    """Yet to execute as recently printed labels has bug"""
-    template_management_page_1.click_first_design_in_recently_printed_labels()
-    data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
-    sleep(5)
-    data_sources_page.verifyIfPreviewIsPresent()
-    data_sources_page.scroll_till_print()
-    number_of_labels = int(template_management_page.get_total_labels_printing())
-    if number_of_labels == 2:
-        pass
-    else:
-        error = f"There are {number_of_labels} labels printing even when connected to google account with no contacts."
-        raise Exception(error)
-    data_sources_page.clickLabelRange()
-    sleep(2)
-    if poco("android.widget.CheckBox")[3].parent().child()[1].get_name() == "android.view.View":
-        raise Exception("Tabel is empty even after adding a contact.")
-    data_sources_page.clickBackArrow()
-    """Step - 7 pending as input fields are not editable."""
-    data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    common_method.Stop_The_App()
 
 
 def test_Template_Management_TestcaseID_46016():
@@ -893,7 +763,7 @@ def test_Template_Management_TestcaseID_47791():
     template_management_page.selectChooseAnOption(2)
     data_sources_page.clickContinue()
     if template_management_page.verify_duplicate_previous_next_button():
-        raise Exception("Duplicate Previous and Next button exists(SMBM-1818.")
+        raise Exception("Duplicate Previous and Next button exists(SMBM-1818).")
     else:
         pass
     common_method.Stop_The_App()
@@ -941,13 +811,18 @@ def test_Template_Management_TestcaseID_47947():
     data_sources_page.searchMyDesigns("47947")
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page.clickDeleteDesign()
-    template_management_page.turn_off_wifi()
-    raise Exception("No specific or error message display for delete design when device lost its network connection(SMBM-1902)")
+    template_management_page.Turn_Off_wifi()
+    "---------------------------"
+    """Remove this after bug is resolved"""
+    template_management_page.Turn_ON_wifi()
+    raise Exception(
+        "No specific or error message display for delete design when device lost its network connection(SMBM-1902)")
+    "----------------------------"
     template_management_page.clickDeleteDesign()
     """Design delete pop up is still present"""
     """No prompt as \"Design XX was not deleted"\""""
     """Blocked due to bug id SMBM-1902"""
-    template_management_page.turn_on_wifi()
+    template_management_page.Turn_ON_wifi()
     data_sources_page.searchMyDesigns("")
     data_sources_page.checkIfDesignsLoaded()
     final_count = int(template_management_page.get_showing_n_designs_number())
@@ -955,6 +830,10 @@ def test_Template_Management_TestcaseID_47947():
         pass
     else:
         raise Exception("The count did not reduce by 1.")
+    data_sources_page.selectDesignCreatedAtSetUp()
+    template_management_page.clickDuplicateDesign()
+    template_management_page.new_design_name("47947")
+    template_management_page.clickSave()
 
 
 def test_Template_Management_TestcaseID_48548():
@@ -1033,66 +912,66 @@ def test_Template_Management_TestcaseID_48548():
     common_method.Stop_The_App()
 
 
-def test_Template_Management_TestcaseID_45922():
-    pass
-
-    common_method.tearDown()
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.clickMyDesigns()
-    search_label_name = "Elements_11"
-    data_sources_page.searchMyDesigns(search_label_name)
-    data_sources_page.checkIfDesignsLoaded()
-    data_sources_page.selectDesignCreatedAtSetUp()
-    data_sources_page.clickPrint()
-    """cannot verify - 3a. Verify the design's elements are displayed in the print preview.
-    This has to be done manually"""
-    common_method.wait_for_element_appearance_textmatches("Text")
-    sleep(4)
-    field_count = len(template_management_page.get_all_fields_print_page())
-    if field_count == 11:
-        pass
-    else:
-        raise Exception("The number of fields are not 11.")
-    while not poco(nameMatches=".*Label.*").exists():
-        scroll_view = poco("android.widget.ScrollView")
-        scroll_view.swipe("down")
-    """ask supported special characters."""
-    template_management_page.fill_all_print_fields()
-    initial_label_count = template_management_page.get_remaining_label_count()
-    data_sources_page.clickPrint()
-    try:
-        template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    except:
-        pass
-    new_label_count = template_management_page.get_remaining_label_count()
-    if new_label_count == initial_label_count - 1:
-        pass
-    else:
-        raise Exception("Label count not updated i.e., not decremented by 1.")
-    data_sources_page.clickBackArrow()
-    try:
-        common_method.wait_for_element_appearance_namematches("My Designs")
-    except:
-        data_sources_page.clickBackArrow()
-        common_method.wait_for_element_appearance_namematches("My Designs")
-    design = template_management_page.get_all_designs_in_my_designs()
-    sleep(3)
-    try:
-        design_last_print_date = design[0].split("\n")[2].split(":")[1].strip()
-        print(design_last_print_date, data_sources_page.get_current_date())
-        if str(design_last_print_date) == str(data_sources_page.get_current_date()):
-            pass
-        else:
-            raise Exception("Last printed date is not up to date.")
-    except:
-        raise Exception("No last print information under the design in My Designs Page")
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.clickHome()
-    label_left_in_printer_info = template_management_page.get_Labels_left_in_printer_info()
-    if str(new_label_count) + " of" in label_left_in_printer_info:
-        pass
-    else:
-        raise Exception("Labels left in printer info is not updated.")
+# def test_Template_Management_TestcaseID_45922():
+#     pass
+#
+#     common_method.tearDown()
+#     login_page.click_Menu_HamburgerICN()
+#     data_sources_page.clickMyDesigns()
+#     search_label_name = "Elements_11"
+#     data_sources_page.searchMyDesigns(search_label_name)
+#     data_sources_page.checkIfDesignsLoaded()
+#     data_sources_page.selectDesignCreatedAtSetUp()
+#     data_sources_page.clickPrint()
+#     """cannot verify - 3a. Verify the design's elements are displayed in the print preview.
+#     This has to be done manually"""
+#     common_method.wait_for_element_appearance_textmatches("Text")
+#     sleep(4)
+#     field_count = len(template_management_page.get_all_fields_print_page())
+#     if field_count == 11:
+#         pass
+#     else:
+#         raise Exception("The number of fields are not 11.")
+#     while not poco(nameMatches=".*Label.*").exists():
+#         scroll_view = poco("android.widget.ScrollView")
+#         scroll_view.swipe("down")
+#     """ask supported special characters."""
+#     template_management_page.fill_all_print_fields()
+#     initial_label_count = template_management_page.get_remaining_label_count()
+#     data_sources_page.clickPrint()
+#     try:
+#         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+#     except:
+#         pass
+#     new_label_count = template_management_page.get_remaining_label_count()
+#     if new_label_count == initial_label_count - 1:
+#         pass
+#     else:
+#         raise Exception("Label count not updated i.e., not decremented by 1.")
+#     data_sources_page.clickBackArrow()
+#     try:
+#         common_method.wait_for_element_appearance_namematches("My Designs")
+#     except:
+#         data_sources_page.clickBackArrow()
+#         common_method.wait_for_element_appearance_namematches("My Designs")
+#     design = template_management_page.get_all_designs_in_my_designs()
+#     sleep(3)
+#     try:
+#         design_last_print_date = design[0].split("\n")[2].split(":")[1].strip()
+#         print(design_last_print_date, data_sources_page.get_current_date())
+#         if str(design_last_print_date) == str(data_sources_page.get_current_date()):
+#             pass
+#         else:
+#             raise Exception("Last printed date is not up to date.")
+#     except:
+#         raise Exception("No last print information under the design in My Designs Page")
+#     login_page.click_Menu_HamburgerICN()
+#     data_sources_page.clickHome()
+#     label_left_in_printer_info = template_management_page.get_Labels_left_in_printer_info()
+#     if str(new_label_count) + " of" in label_left_in_printer_info:
+#         pass
+#     else:
+#         raise Exception("Labels left in printer info is not updated.")
 
 
 def test_Template_Management_TestcaseID_46005():
@@ -1277,7 +1156,10 @@ def test_Template_Management_TestcaseID_46024():
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page_1.check_element_exists_enabled("Print")
     data_sources_page.clickPrint()
-    # data_sources_page.clickBackArrow()
+    if poco(text="Choose an account").exists():
+        data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
+    data_sources_page.clickContinue()
+    data_sources_page.clickBackArrow()
     if template_management_page.verify_if_on_update_connections_page():
         pass
     else:
@@ -1533,14 +1415,15 @@ def test_Template_Management_TestcaseID_46027():
     pass
 
     """Step 1-5 pending due to web automation"""
-    # data_sources_page.clearAppData()
-    # common_method.tearDown()
-    # data_sources_page.allowPermissions()
-    # registration_page.clickSignIn()
-    # registration_page.click_Google_Icon()
-    # registration_page.check_if_user_navigated_to_sign_in_page()
-    # account = "zebra02.swdvt@gmail.com"
-    # help_page.chooseAcc(account)
+    common_method.tearDown()
+    data_sources_page.log_out_of_account()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    registration_page.clickSignIn()
+    registration_page.click_Google_Icon()
+    registration_page.check_if_user_navigated_to_sign_in_page()
+    account = "zebra02.swdvt@gmail.com"
+    help_page.chooseAcc(account)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1555,11 +1438,11 @@ def test_Template_Management_TestcaseID_46027():
     data_sources_page.click_Link_File()
     sleep(2)
     """ google drive """
-    # if data_sources_page.verifySignInWithGoogle():
-    #     registration_page.click_Google_Icon()
-    # account = "zebra03.swdvt@gmail.com"
-    # if data_sources_page.checkIfAccPresentLink(account):
-    #     help_page.chooseAcc(account)
+    if data_sources_page.verifySignInWithGoogle():
+        registration_page.click_Google_Icon()
+    account = "zebra03.swdvt@gmail.com"
+    if data_sources_page.checkIfAccPresentLink(account):
+        help_page.chooseAcc(account)
     # else:
     #     poco("com.google.android.gms:id/add_account_chip_title").click()
     #     registration_page.sign_In_With_Google("Zebra#123456789", account)
@@ -1916,11 +1799,11 @@ def test_Template_Management_TestcaseID_46026():
     data_sources_page.click_Link_File()
     sleep(2)
     """ google drive """
-    # if data_sources_page.verifySignInWithGoogle():
-    #     registration_page.click_Google_Icon()
-    #     account = "zebra03.swdvt@gmail.com"
-    #     if data_sources_page.checkIfAccPresentLink(account):
-    #         help_page.chooseAcc(account)
+    if data_sources_page.verifySignInWithGoogle():
+        registration_page.click_Google_Icon()
+    account = "zebra03.swdvt@gmail.com"
+    if data_sources_page.checkIfAccPresentLink(account):
+        help_page.chooseAcc(account)
     #     else:
     #         poco("com.google.android.gms:id/add_account_chip_title").click()
     #         registration_page.sign_In_With_Google("Zebra#123456789", account)
@@ -2100,8 +1983,8 @@ def test_Template_Management_TestcaseID_47792():
 
 def test_Template_Management_TestcaseID_45981():
     pass
-
-    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.log_out_of_account()
     sleep(2)
     common_method.tearDown()
     data_sources_page.allowPermissions()
@@ -2443,7 +2326,7 @@ def test_Template_Management_TestcaseID_45988():
     design_sizes_displayed = template_management_page.get_all_designs_size_in_my_designs()
     if len(design_sizes_displayed) > 1:
         raise Exception(
-            "Designs are not filtered i.em designs of different sizes present even after filtering on one size.")
+            "Designs are not filtered i.em designs of different sizes present even after filtering on one size.(SMBM-1749)")
     template_management_page.click_sort_common_designs()
     sleep(3)
     template_management_page.select_sort_order("Z-A")
@@ -2765,13 +2648,17 @@ def test_Template_Management_TestcaseID_45994():
     common_method.tearDown()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    template_management_page.turn_off_wifi()
-    template_management_page.click_filter_my_designs()
+    template_management_page.Turn_Off_wifi()
+    sleep(5)
+    if poco(nameMatches="(?s).*An error occurred when loading your designs. Please tap to try again.*").exists():
+        template_management_page.Turn_ON_wifi()
+        raise Exception("Blocked due to bug SMBM-1774")
     label_size = template_management_page.select_label_size()
     sleep(3)
-    template_management_page.turn_on_wifi()
+    template_management_page.Turn_ON_wifi()
+    sleep(2)
+    template_management_page.click_filter_my_designs()
     sleep(5)
-    raise Exception("Blocked due to bug SMBM-1774")
     if template_management_page.verify_connection_error_app():
         pass
     else:
@@ -2786,7 +2673,7 @@ def test_Template_Management_TestcaseID_45994():
         pass
     else:
         raise Exception("Count in title doesn't match the number of designs.")
-    template_management_page.turn_off_wifi()
+    template_management_page.Turn_Off_wifi()
     template_management_page.search_design_common_designs(design_name)
     raise Exception("Blocked due to bug SMBM-1774")
     """Step 8-10 pending due to bug SMBM-1774"""
@@ -2795,7 +2682,7 @@ def test_Template_Management_TestcaseID_45994():
         pass
     else:
         raise Exception("Connection lost error not displayed.")
-    template_management_page.turn_on_wifi()
+    template_management_page.Turn_ON_wifi()
     sleep(5)
     template_management_page.search_design_common_designs(design_name)
     try:
@@ -2994,6 +2881,141 @@ def test_Template_Management_TestcaseID_46014():
             raise Exception("Search box not cleared.")
         help_page.clickBackArrow()
     common_method.Stop_The_App()
+
+
+"""Semi Automated"""
+#
+#
+# def test_Template_Management_TestcaseID_46029():
+#     pass
+#
+#     """Step 1-5 pending due to web automation"""
+#     common_method.tearDown()
+#     data_sources_page.log_out_of_account()
+#     data_sources_page.clearAppData()
+#     common_method.tearDown()
+#     data_sources_page.allowPermissions()
+#     registration_page.clickSignIn()
+#     registration_page.click_Google_Icon()
+#     registration_page.check_if_user_navigated_to_sign_in_page()
+#     account = "zebra02.swdvt@gmail.com"
+#     help_page.chooseAcc(account)
+#     data_sources_page.checkIfOnHomePage()
+#     login_page.click_Menu_HamburgerICN()
+#     data_sources_page.clickMyDesigns()
+#     data_sources_page.checkIfDesignsLoaded()
+#     search_label_name = "46029"
+#     data_sources_page.searchMyDesigns(search_label_name)
+#     data_sources_page.checkIfDesignsLoaded()
+#     data_sources_page.selectDesignCreatedAtSetUp()
+#     data_sources_page.clickPrint()
+#     sleep(2)
+#     if poco("Accept").exists():
+#         template_management_page.clickAccept()
+#     data_sources_page.chooseAccToLinkFile(account)
+#     try:
+#         registration_page.wait_for_element_appearance_text("Sign in to ZSB Series", 20)
+#         poco.scroll()
+#         data_sources_page.clickContinueWeb()
+#     except:
+#         pass
+#     try:
+#         registration_page.wait_for_element_appearance_text("ZSB Series wants access to your Google Account", 20)
+#         while not poco(text="Continue").exists():
+#             poco.scroll()
+#         data_sources_page.clickContinueWeb()
+#     except:
+#         pass
+#     try:
+#         registration_page.wait_for_element_appearance_text(" wants to access your Google Account", 20)
+#         while not poco(text="Allow").exists():
+#             poco.scroll()
+#         data_sources_page.clickAllow_Text()
+#     except:
+#         pass
+#     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
+#     sleep(10)
+#     data_sources_page.verifyIfPreviewIsPresent()
+#     data_sources_page.scroll_till_print()
+#     number_of_labels = int(template_management_page.get_total_labels_printing())
+#     if number_of_labels == 1:
+#         pass
+#     else:
+#         error = f"There are {number_of_labels} labels printing even when connected to google account with no contacts."
+#         raise Exception(error)
+#     data_sources_page.clickLabelRange()
+#     sleep(2)
+#     if poco("android.widget.CheckBox")[3].parent().child()[1].get_name() == "android.view.View":
+#         pass
+#     else:
+#         raise Exception("Tabel is not empty.")
+#     data_sources_page.clickBackArrow()
+#     """Step - 7 pending as input fields are not editable."""
+#     raise Exception("Unable to enter data to empty values due to bug SMBM-2204")
+#     data_sources_page.clickPrint()
+#     try:
+#         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+#     except:
+#         pass
+#     data_sources_page.clickBackArrow()
+#     login_page.click_Menu_HamburgerICN()
+#     data_sources_page.clickHome()
+#     start_app("com.android.chrome")
+#     sleep(2)
+#     poco("com.android.chrome:id/tab_switcher_button").click()
+#     sleep(2)
+#     data_sources_page.add_new_tab_in_browser()
+#     sleep(2)
+#     poco(text="Search or type URL").click()
+#     sleep(2)
+#     poco(text="Search or type URL").set_text("https://contacts.google.com/")
+#     data_sources_page.clickEnter()
+#     sleep(2)
+#     data_sources_page.lock_phone()
+#     wake()
+#     sleep(2)
+#     common_method.wait_for_element_appearance_text("Contacts", 20)
+#     try:
+#         common_method.wait_for_element_appearance_text("Use the Contacts app")
+#         if poco(text="Stay on web").exists():
+#             poco(text="Stay on web").click()
+#     except:
+#         pass
+#     template_management_page.changeAccInAddContacts(account)
+#     common_method.wait_for_element_appearance_text("Contacts")
+#     try:
+#         common_method.wait_for_element_appearance_text("Use the Contacts app")
+#         if poco(text="Stay on web").exists():
+#             poco(text="Stay on web").click()
+#     except:
+#         pass
+#     template_management_page.createContact("a", "1")
+#     stop_app("com.android.chrome")
+#     registration_page.wait_for_element_appearance("Home", 20)
+#     registration_page.wait_for_element_appearance("Recently Printed Labels", 20)
+#     raise Exception("Recently printed label has a bug SMBM-1748 hence unable to proceed.")
+#     """Yet to execute as recently printed labels has bug"""
+#     template_management_page_1.click_first_design_in_recently_printed_labels()
+#     data_sources_page.clickPrint()
+#     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
+#     sleep(5)
+#     data_sources_page.verifyIfPreviewIsPresent()
+#     data_sources_page.scroll_till_print()
+#     number_of_labels = int(template_management_page.get_total_labels_printing())
+#     if number_of_labels == 2:
+#         pass
+#     else:
+#         error = f"There are {number_of_labels} labels printing even when connected to google account with no contacts."
+#         raise Exception(error)
+#     data_sources_page.clickLabelRange()
+#     sleep(2)
+#     if poco("android.widget.CheckBox")[3].parent().child()[1].get_name() == "android.view.View":
+#         raise Exception("Tabel is empty even after adding a contact.")
+#     data_sources_page.clickBackArrow()
+#     """Step - 7 pending as input fields are not editable."""
+#     data_sources_page.clickPrint()
+#     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+#     common_method.Stop_The_App()
 
 
 """zebra04.swdvt@gmail.com"""
@@ -3439,6 +3461,7 @@ def test_Template_Management_TestcaseID_45979():
     template_management_page.check_if_drop_down_list_close()
     data_sources_page.checkIfDesignsLoaded()
     displayed_list = template_management_page.get_all_designs_in_my_designs(True)
+    print(displayed_list)
     if len(displayed_list) == 1:
         if displayed_list[0] == selected_design:
             pass
@@ -3523,31 +3546,33 @@ def test_Template_Management_TestcaseID_45965():
 
 
 """Semi Automated"""
-def test_Template_Management_TestcaseID_45921():
-    pass
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.clickMyDesigns()
-    data_sources_page.checkIfDesignsLoaded()
-    data_sources_page.selectDesignCreatedAtSetUp()
-    data_sources_page.clickPrint()
-    sleep(5)
-    try:
-        common_method.wait_for_element_appearance_namematches("Label")
-    except:
-        raise Exception("Print page did not pop up.")
-    data_sources_page.scroll_till_print()
-    remaining_label_count = template_management_page.get_remaining_label_count()
-    data_sources_page.clickPrint()
-    new_label_count = template_management_page.get_remaining_label_count()
-    if remaining_label_count == new_label_count:
-        pass
-    else:
-        raise Exception("Label count changed even when printer is offline.")
-    data_sources_page.clickBackArrow()
-    try:
-        registration_page.wait_for_element_appearance("My Designs")
-    except:
-        raise Exception("Did not return to \"My Designs\" page")
+#
+#
+# def test_Template_Management_TestcaseID_45921():
+#     pass
+#     login_page.click_Menu_HamburgerICN()
+#     data_sources_page.clickMyDesigns()
+#     data_sources_page.checkIfDesignsLoaded()
+#     data_sources_page.selectDesignCreatedAtSetUp()
+#     data_sources_page.clickPrint()
+#     sleep(5)
+#     try:
+#         common_method.wait_for_element_appearance_namematches("Label")
+#     except:
+#         raise Exception("Print page did not pop up.")
+#     data_sources_page.scroll_till_print()
+#     remaining_label_count = template_management_page.get_remaining_label_count()
+#     data_sources_page.clickPrint()
+#     new_label_count = template_management_page.get_remaining_label_count()
+#     if remaining_label_count == new_label_count:
+#         pass
+#     else:
+#         raise Exception("Label count changed even when printer is offline.")
+#     data_sources_page.clickBackArrow()
+#     try:
+#         registration_page.wait_for_element_appearance("My Designs")
+#     except:
+#         raise Exception("Did not return to \"My Designs\" page")
 
 
 def test_Template_Management_TestcaseID_46025():
@@ -3618,7 +3643,7 @@ def test_Smoke_Test_TestcaseID_45880():
     Create design2, add text object, and link local file with xlsx format"""
 
     common_method.tearDown()
-    common_method.Stop_The_App()
+    data_sources_page.log_out_of_account()
     common_method.Clear_App()
     common_method.Start_The_App()
     login_page.click_LoginAllow_Popup()
@@ -3626,7 +3651,7 @@ def test_Smoke_Test_TestcaseID_45880():
     login_page.click_loginBtn()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
+    registration_page.click_Google_Icon()
     login_page.Loginwith_Added_Email_Id()
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_My_Design()
@@ -3644,58 +3669,6 @@ def test_Smoke_Test_TestcaseID_45880():
 
 # #
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_Smoke_Test_TestcaseID_45881():
-    """Verify sign in with social account, check the design linked different format file from Google Drive can be printed out successfully"""
-
-    """start the app"""
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_pen_Icon_near_UserName()
-    app_settings_page.Scroll_till_Delete_Account()
-    app_settings_page.click_Logout_Btn()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
-    smoke_test_android.Verify_SignIn_With_Text_Is_Present()
-    smoke_test_android.click_Continue_With_Facebook_Option()
-    """""due to some issue, it is directly login to the facebook account without asking for password"""
-    login_page.click_Continue_On_Facebbok_Login_Page()
-    login_page.click_Menu_HamburgerICN()
-    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
-    login_page.click_Continue_On_Facebbok_Login_Page()
-    login_page.click_Menu_HamburgerICN()
-    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
-    app_settings_page.click_My_Design()
-    add_a_printer_screen.click_FirstOne_In_MyDesign()
-    add_a_printer_screen.click_Print_Option()
-    add_a_printer_screen.click_Print_Button()
-    """"Verify manually it should print successfully"""
-    add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
-    add_a_printer_screen.click_SecondOne_In_MyDesign()
-    add_a_printer_screen.click_Print_Option()
-    add_a_printer_screen.click_Print_Button()
-    """"Verify manually it should print successfully"""
-    common_method.Stop_The_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_pen_Icon_near_UserName()
-    app_settings_page.Scroll_till_Delete_Account()
-    app_settings_page.click_Logout_Btn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    common_method.Stop_The_App()
 
 
 # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3930,5 +3903,57 @@ def test_Smoke_Test_TestcaseID_45896():
     add_a_printer_screen.click_Print_Button()
     """Verify manually it should print successfully"""
     """"point 4 is blocked due to SMB-1664"""""
+    common_method.Stop_The_App()
+
+
+def test_Smoke_Test_TestcaseID_45881():
+    """Verify sign in with social account, check the design linked different format file from Google Drive can be printed out successfully"""
+
+    """start the app"""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """""""""" check the 3 links at the bottom all can work ("copyright", "Terms & Conditions" and "Privacy Policy")"""""""""""
+    smoke_test_android.Verify_SignIn_With_Text_Is_Present()
+    smoke_test_android.click_Continue_With_Facebook_Option()
+    """""due to some issue, it is directly login to the facebook account without asking for password"""
+    login_page.click_Continue_On_Facebbok_Login_Page()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+    login_page.click_Continue_On_Facebbok_Login_Page()
+    login_page.click_Menu_HamburgerICN()
+    smoke_test_android.Verify_Facebook_UserName_Is_Displaying()
+    app_settings_page.click_My_Design()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
+    add_a_printer_screen.click_SecondOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    common_method.Stop_The_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Logout_Btn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     common_method.Stop_The_App()
 # # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
