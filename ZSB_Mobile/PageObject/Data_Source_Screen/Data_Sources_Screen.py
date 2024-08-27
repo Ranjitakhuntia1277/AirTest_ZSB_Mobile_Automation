@@ -810,6 +810,7 @@ class Data_Sources_Screen:
         # password = "Zebra#123456789"
         # self.poco(text(password))
         self.poco(text="Sign in").click()
+        sleep(4)
         if self.poco("Continue").exists():
             self.clickContinue()
 
@@ -1845,7 +1846,7 @@ class Data_Sources_Screen:
 
     def log_out_of_account(self):
         try:
-            self.poco("Home").wait_for_appearance(timeout=15)
+            self.poco("Home").wait_for_appearance(timeout=20)
             sleep(3)
             self.poco("Open navigation menu").click()
             sleep(3)
@@ -1891,3 +1892,4 @@ class Data_Sources_Screen:
                 except:
                     pass
         sleep(3)
+

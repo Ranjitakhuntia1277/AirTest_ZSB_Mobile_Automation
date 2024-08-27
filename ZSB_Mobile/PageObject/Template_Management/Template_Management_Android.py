@@ -92,7 +92,7 @@ class Template_Management_Android:
         return temp[name]
 
     def get_the_full_name_of_design_and_click_in_my_design(self, name, click=1):
-
+        sleep(2)
         escaped_name = re.escape(name)
         regex_pattern = "(?s).*" + escaped_name + ".*"
         print("regex_pattern", regex_pattern)
@@ -154,6 +154,7 @@ class Template_Management_Android:
     def get_the_full_name_of_design_and_click_in_recently_printed_design(self, name, click=1):
 
         escaped_name = re.escape(name)
+        print(escaped_name)
         regex_pattern = "(?s).*" + escaped_name + ".*"
         temp = []
         while 1:
@@ -161,7 +162,9 @@ class Template_Management_Android:
 
             a = self.poco(nameMatches=regex_pattern).exists()
             if a:
+                print("if")
                 p = self.poco(nameMatches=regex_pattern).get_name()
+                print("p", p)
                 temp.append(p)
                 break
 
@@ -177,7 +180,9 @@ class Template_Management_Android:
 
                 a = self.poco(nameMatches=regex_pattern).exists()
                 if a:
+                    print("if1")
                     p = self.poco(nameMatches=regex_pattern).get_name()
+                    print(p,"p")
                     temp.append(p)
                     break
 
@@ -185,6 +190,7 @@ class Template_Management_Android:
                     break
                 prev = curr
                 self.poco.scroll()
+        print("temp", temp)
 
         if click:
             self.poco(temp[0]).click()

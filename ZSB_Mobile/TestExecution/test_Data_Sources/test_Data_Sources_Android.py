@@ -86,7 +86,9 @@ def test_DataSources_TestcaseID_45729():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
+    account = "zebra03.swdvt@gmail.com"
     registration_page.sign_in_with_mail_zebra03()
+    registration_page.BugFix_For_ZebraEmail(account)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -579,7 +581,9 @@ def test_DataSources_TestcaseID_45737():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
+    account = "zebra02.swdvt@gmail.com"
     registration_page.sign_in_with_mail_zebra02()
+    registration_page.BugFix_For_ZebraEmail(account)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -1702,7 +1706,9 @@ def test_DataSources_TestcaseID_47937():
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
+    account = "zebra07.swdvt@gmail.com"
     registration_page.sign_in_with_mail_zebra07()
+    registration_page.BugFix_For_ZebraEmail(account)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1804,8 +1810,7 @@ def test_DataSources_TestcaseID_47937():
     """Non-Zebra login"""
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
-    while not poco("Log Out").exists():
-        poco.scroll()
+    registration_page.scroll_till_log_out()
     registration_page.click_log_out_button()
     """Login"""
     registration_page.clickSignIn()
@@ -1816,6 +1821,7 @@ def test_DataSources_TestcaseID_47937():
         raise Exception("Did not navigate to Sign In with google page")
     account = "zebra06.swdvt@gmail.com"
     help_page.chooseAcc(account)
+    registration_page.BugFix_For_Google(account)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -2263,10 +2269,7 @@ def test_DataSources_TestcaseID_45750():
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
     registration_page.login_Facebook("Zebra#123456789", "zebra03.swdvt@gmail.com")
-    try:
-        registration_page.wait_for_element_appearance("Home", 30)
-    except:
-        raise Exception("home page dint show up")
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Data"""
@@ -2591,7 +2594,9 @@ def test_DataSources_TestcaseID_45758():
     """Sign in"""
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
+    account = "zebra02.swdvt@gmail.com"
     registration_page.sign_in_with_mail_zebra02()
+    registration_page.BugFix_For_ZebraEmail(account)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()

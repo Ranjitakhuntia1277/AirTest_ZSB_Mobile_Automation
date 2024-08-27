@@ -12,8 +12,8 @@ from ...PageObject.Template_Management.Template_Management_Android import Templa
 from ...PageObject.Others.Others import Others
 from ...PageObject.Social_Login.Social_Login import Social_Login
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
-
 import os
+from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
@@ -23,6 +23,7 @@ connect_device("Android:///")
 template_management = Template_Management_Android(poco)
 login_page = Login_Screen(poco)
 common_method = Common_Method(poco)
+registration_page = Registration_Screen(poco)
 others = Others(poco)
 social_login = Social_Login(poco)
 data_sources_page = Data_Sources_Screen(poco)
@@ -63,6 +64,7 @@ class test_Android_Template_Management:
             others.click_on_profile_edit()
             others.scroll_down()
             others.click_log_out_button()
+            print(1)
         except:
             pass
 
@@ -73,11 +75,13 @@ class test_Android_Template_Management:
             login_page.click_Loginwith_Google()
 
             """enter email here"""
-            email = "zebra850.swdvt@gmail.com"
+            email = "zebra07.swdvt@gmail.com"
             common_method.wait_for_element_appearance_textmatches("Choose an account")
             others.choose_google_account(email)
+            registration_page.BugFix_For_Google(email)
         except:
             pass
+        data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
 
         total_designs = template_management.get_all_designs_in_recently_printed_labels()
@@ -106,6 +110,7 @@ class test_Android_Template_Management:
         email = "zebra850.swdvt@gmail.com"
         common_method.wait_for_element_appearance_textmatches("Choose an account")
         others.choose_google_account(email)
+        registration_page.BugFix_For_Google(email)
         common_method.wait_for_element_appearance_namematches("Home")
 
         login_page.click_Menu_HamburgerICN()
@@ -159,6 +164,7 @@ class test_Android_Template_Management:
         email = "zebra850.swdvt@gmail.com"
         common_method.wait_for_element_appearance_textmatches("Choose an account")
         others.choose_google_account(email)
+        registration_page.BugFix_For_Google(email)
         common_method.wait_for_element_appearance_namematches("Home")
 
         login_page.click_Menu_HamburgerICN()
@@ -222,8 +228,9 @@ class test_Android_Template_Management:
         """enter email here"""
         email = email
         password = password
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
+        registration_page.check_if_user_navigated_to_sign_in_page()
         others.choose_google_account(email)
+        registration_page.BugFix_For_Google(email)
         common_method.wait_for_element_appearance_namematches("Home", 20)
 
     def test_Template_Management_TestcaseID_45905(self):
@@ -2250,8 +2257,9 @@ class test_Android_Template_Management:
             raise Exception("initial date is not matching")
 
         now_date = template_management.get_current_date_in_mm_dd_yy_format()
+        print(now_date, "now date")
         cur_d = now_date.split("/")
-        print(cur_d)
+        print(cur_d, "curr date")
         template_management.set_new_date_in_print_page(int(cur_d[1]))
         sleep(1)
         try:
@@ -2374,9 +2382,8 @@ class test_Android_Template_Management:
             raise Exception("print option is not clickable")
 
         template_management.click_print_button_enabled()
-        common_method.wait_for_element_appearance_enabled("Print", 20)
         try:
-            template_management.wait_for_element_appearance_name_matches_all("Print complete")
+            template_management.wait_for_element_appearance_name_matches_all("Print complete", 60)
         except:
             pass
 
@@ -2622,8 +2629,9 @@ class test_Android_Template_Management:
             raise Exception("labels left not updated")
 
         """For recently printed Labels"""
-
+        print(name)
         full_name = template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name)
+        print(full_name)
 
         template_management.click_print_button()
         try:
@@ -3603,6 +3611,7 @@ class test_Android_Template_Management:
         print("3", names)
         names = template_management.get_names_of_design_in_search_designs([names])[0]
         print("4", names)
+        data_sources_page.searchName(names)
         full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(names, 1)
         print("5", full_name)
         template_management.click_on_rename_button()
@@ -3617,6 +3626,7 @@ class test_Android_Template_Management:
 
         if template_management.check_cancel_button_clickable_in_rename_popup():
             raise Exception("rename popup not closed")
+        data_sources_page.searchName("")
         try:
             full_name = template_management.get_the_full_name_of_design_and_click_in_common_design_search(name + " (1)",
                                                                                                           0)
@@ -3686,25 +3696,21 @@ class test_Android_Template_Management:
         social_login.scroll_down(1)
         social_login.click_log_out_button()
         try:
-            social_login.wait_for_element_appearance("Sign In",5)
+            social_login.wait_for_element_appearance("Sign In", 5)
         except:
             raise Exception("Did not redirect to the login page")
 
         """Sign in with email"""
 
         login_page.click_loginBtn()
-        social_login.wait_for_element_appearance_text("Continue with Google",10)
+        social_login.wait_for_element_appearance_text("Continue with Google", 10)
         login_page.click_Loginwith_Google()
 
         email = "zebra850.swdvt@gmail.com"
         password = "Zebra#123456789"
         social_login.choose_a_google_account(email)
-
-        try:
-            social_login.wait_for_element_appearance("Home",20)
-        except:
-            raise Exception("home page dint show up")
-
+        registration_page.BugFix_For_Google(email)
+        data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
@@ -3728,6 +3734,7 @@ class test_Android_Template_Management:
             """Enter the email"""
             email = "zebra901.swdvt@gmail.com"
             social_login.choose_a_google_account(email)
+            registration_page.BugFix_For_Google(email)
         except:
             pass
         common_method.wait_for_element_appearance_namematches("Recently")
@@ -4802,12 +4809,12 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_enabled("Print")
             template_management.click_print_button_enabled()
             try:
-                template_management.wait_for_element_appearance_name_matches_all("Complete", 10)
+                template_management.wait_for_element_appearance_name_matches_all("Complete", 20)
             except:
                 pass
-
+            sleep(5)
             template_management.click_left_arrow()
-
+            sleep(5)
             login_page.click_Menu_HamburgerICN()
             social_login.click_on_profile_edit()
             social_login.scroll_down(1)
@@ -4819,12 +4826,15 @@ class test_Android_Template_Management:
             """Enter the email"""
             email = "zebra850.swdvt@gmail.com"
             social_login.choose_a_google_account(email)
+            registration_page.BugFix_For_Google(email)
             social_login.wait_for_element_appearance("Home", 15)
 
             try:
                 template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy)
+                x = 1/0
+            except ZeroDivisionError:
                 raise Exception("copied design found in another account")
-            except:
+            except Exception as e:
                 pass
 
             login_page.click_Menu_HamburgerICN()
@@ -4878,6 +4888,7 @@ class test_Android_Template_Management:
             raise Exception("duplicate design window not closed")
 
         try:
+            print(duplicate_name, "duplicate name")
             d_full_name = template_management.get_the_full_name_of_design_and_click_in_my_design(duplicate_name, 0)
         except:
             raise Exception("duplicate name not found")
@@ -5223,8 +5234,11 @@ class test_Android_Template_Management:
         """Give the name of existing design here"""
 
         name = template_management.get_normal_design_if_there_in_first_screen_my_design()
+        print("1", name)
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
+        print("2", original_copy)
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
+        print("3", full_name)
 
         template_management.click_the_duplicate_button()
 
@@ -5258,6 +5272,7 @@ class test_Android_Template_Management:
         template_management.click_the_duplicate_button()
 
         duplicate_name_after = template_management.get_the_default_duplicate_name()
+        print(duplicate_name, duplicate_name_after)
         if duplicate_name_after != duplicate_name + " copy":
             raise Exception(
                 " not meeting condition Verify default value matches the updated design's name with appended text copy")

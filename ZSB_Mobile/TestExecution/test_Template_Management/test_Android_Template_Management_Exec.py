@@ -388,6 +388,7 @@ def test_Template_Management_TestcaseID_46015():
     registration_page.check_if_user_navigated_to_sign_in_page()
     account = "zebra02.swdvt@gmail.com"
     help_page.chooseAcc(account)
+    registration_page.BugFix_For_Google(account)
     data_sources_page.checkIfOnHomePage()
     uploaded_file = "Country_capital.xlsx"
     """Upload file for execution"""
@@ -436,6 +437,7 @@ def test_Template_Management_TestcaseID_46015():
     selected_file_name = template_management_page.select_file_update_data_connections("Google Drive")
     print(selected_file_name)
     if poco(text="Choose an account").exists():
+        print("Entered If")
         data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
     template_management_page.wait_for_appearance_enabled("Continue")
     data_sources_page.clickContinue()
@@ -792,7 +794,7 @@ def test_Template_Management_TestcaseID_47824():
         raise ZeroDivisionError()
     except ZeroDivisionError:
         raise Exception("Print complete pop up is present even while printing blank label.(SMBM-1729)")
-    except:
+    except Exception as e:
         pass
     data_sources_page.checkPrintIsDisabled()
     """cannot verify - Check ZSB app should not show pint complete popup or the print button is disabled"""
@@ -1156,6 +1158,7 @@ def test_Template_Management_TestcaseID_46024():
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page_1.check_element_exists_enabled("Print")
     data_sources_page.clickPrint()
+    sleep(5)
     if poco(text="Choose an account").exists():
         data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
     data_sources_page.clickContinue()
@@ -1424,6 +1427,7 @@ def test_Template_Management_TestcaseID_46027():
     registration_page.check_if_user_navigated_to_sign_in_page()
     account = "zebra02.swdvt@gmail.com"
     help_page.chooseAcc(account)
+    registration_page.BugFix_For_Google(account)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1601,8 +1605,8 @@ def test_Template_Management_TestcaseID_46020():
         scroll_view = poco("android.view.View")
         scroll_view.swipe("down")
     template_management_page.verify_label_navigation()
-    # data_sources_page.clickPrint()
-    # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    data_sources_page.clickPrint()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     common_method.Stop_The_App()
 
 
@@ -1990,7 +1994,9 @@ def test_Template_Management_TestcaseID_45981():
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
+    account = "zebra07.swdvt@gmail.com"
     registration_page.sign_in_with_mail_zebra07()
+    registration_page.BugFix_For_ZebraEmail(account)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -2650,9 +2656,14 @@ def test_Template_Management_TestcaseID_45994():
     data_sources_page.clickMyDesigns()
     template_management_page.Turn_Off_wifi()
     sleep(5)
-    if poco(nameMatches="(?s).*An error occurred when loading your designs. Please tap to try again.*").exists():
+    try:
+        poco(nameMatches="(?s).*An error occurred when loading your designs. Please tap to try again.*").wait_for_appearance(timeout=20)
         template_management_page.Turn_ON_wifi()
+        x=1/0
+    except ZeroDivisionError:
         raise Exception("Blocked due to bug SMBM-1774")
+    except Exception as e:
+        pass
     label_size = template_management_page.select_label_size()
     sleep(3)
     template_management_page.Turn_ON_wifi()
@@ -3034,6 +3045,8 @@ def test_Template_Management_TestcaseID_45966():
     registration_page.check_if_user_navigated_to_sign_in_page()
     account = "zebra04.swdvt@gmail.com"
     help_page.chooseAcc(account)
+    registration_page.BugFix_For_Google(account)
+    sleep(5)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -3501,6 +3514,7 @@ def test_Template_Management_TestcaseID_45965():
     registration_page.check_if_user_navigated_to_sign_in_page()
     account = "zebra06.swdvt@gmail.com"
     help_page.chooseAcc(account)
+    registration_page.BugFix_For_Google(account)
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -3658,12 +3672,14 @@ def test_Smoke_Test_TestcaseID_45880():
     add_a_printer_screen.click_FirstOne_In_MyDesign()
     add_a_printer_screen.click_Print_Option()
     add_a_printer_screen.click_Print_Button()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     """"Verify manually it should print successfully"""
     add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
     add_a_printer_screen.click_SecondOne_In_MyDesign()
     add_a_printer_screen.click_Print_Option()
     add_a_printer_screen.click_Print_Button()
     """"Verify manually it should print successfully"""
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     common_method.Stop_The_App()
 
 
@@ -3900,6 +3916,7 @@ def test_Smoke_Test_TestcaseID_45896():
     add_a_printer_screen.click_FirstOne_In_Common_Design()
     add_a_printer_screen.click_Print_Option()
     add_a_printer_screen.click_Text_Field_To_Edit()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     add_a_printer_screen.click_Print_Button()
     """Verify manually it should print successfully"""
     """"point 4 is blocked due to SMB-1664"""""

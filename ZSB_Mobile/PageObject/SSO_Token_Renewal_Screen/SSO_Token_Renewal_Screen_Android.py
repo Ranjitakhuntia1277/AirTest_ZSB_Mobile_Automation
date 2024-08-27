@@ -16,7 +16,16 @@ from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
 from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 import subprocess
+import platform
 
+if platform.system() == "Windows":
+
+    file_path = "C:\\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\ADB_logs\Logs.txt"
+    logcat_file_path = "C:\\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\ADB_logs"
+
+else:
+    file_path = "/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/ADB_logs/logs.txt"
+    logcat_file_path = "/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/ADB_logs"
 common_method = Common_Method(poco)
 data_sources_page = Data_Sources_Screen(poco)
 
@@ -32,8 +41,8 @@ class SSO_Token_Renewal_Screen:
         self.first_name = "new_first_name"
         self.last_name = "new_last_name"
 
-    def fetch_lines_between_words(self, file_path="C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\\\ZSB_Mobile\\ADB_logs\\logs.txt", start_word='exchangeCode:body:', end_word='3599'):
-        with open(file_path, 'r') as file:
+    def fetch_lines_between_words(self, filepath=file_path, start_word='exchangeCode:body:', end_word='3599'):
+        with open(filepath, 'r') as file:
             file_content = file.read()
             start_index = [match.start() for match in re.finditer(start_word, file_content)]
             end_index = [match.start() for match in re.finditer(end_word, file_content)]
@@ -60,12 +69,12 @@ class SSO_Token_Renewal_Screen:
                 error = f"No valid {start_word} and {end_word} found in the correct order."
                 raise Exception(error)
 
-    def wildcard_search(self, wildcard="exchangeCode", file_path="C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\\\ZSB_Mobile\\ADB_logs\\logs.txt"):
+    def wildcard_search(self, wildcard="exchangeCode", filepath=file_path):
         if wildcard == "exchangeCode":
             wildcard_query = '(?s).*exchangeCode:body:.*{.*"access_token".*"refresh_token".*"expires_in":"3599"'
         elif wildcard == "getLocalTokens":
-            wildcard_query = '.*flutter: getLocalTokens: access_token:.*'
-        with open(file_path, 'r') as file:
+            wildcard_query = '.*flutter :.*getLocalTokens : access_token:.*'
+        with open(filepath, 'r') as file:
             file_content = file.read()
             if re.search(wildcard_query, file_content, re.DOTALL):
                 return True
@@ -75,16 +84,18 @@ class SSO_Token_Renewal_Screen:
         if self.wildcard_search("exchangeCode"):
             pass
         else:
-            raise Exception("There is no message about \"exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}\" in the adb log.")
+            raise Exception(
+                "There is no message about \"exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}\" in the adb log.")
 
     def check_if_getLocalTokens_information_present(self):
         if self.wildcard_search("getLocalTokens"):
             pass
         else:
-            raise Exception("There is a token information about \" : flutter: getLocalTokens : access_token: \" in the adb log.")
+            raise Exception(
+                "There is no token information about \" : flutter: getLocalTokens : access_token: \" in the adb log.")
 
-    def runBatchFileToFetchLogs(self, file_path="C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\\\ZSB_Mobile\\ADB_logs", batch_file_name="Logcat.bat"):
-        os.chdir(file_path)
+    def runBatchFileToFetchLogs(self, filepath=logcat_file_path, batch_file_name="Logcat.bat"):
+        os.chdir(filepath)
         process = subprocess.Popen(batch_file_name, shell=True)
         return process
 
@@ -105,7 +116,7 @@ class SSO_Token_Renewal_Screen:
         last_name = self.poco("android.widget.EditText")[1].get_text()
         if seperate:
             return first_name, last_name
-        return first_name+last_name
+        return first_name + last_name
 
     def noErrorOccurredAfterPrinting(self):
         try:
@@ -114,8 +125,7 @@ class SSO_Token_Renewal_Screen:
             try:
                 self.poco("Sign In").wait_for_appearance(timeout=20)
             except:
-                raise Exception("Reached sign in page after printing.")
-            raise Exception("Error occurred after printing.")
+                raise Exception("Reached sign in page after printing(Error occurred after printing).")
 
     def noErrorOccurredAfterSwitchingApps(self):
         try:
@@ -133,7 +143,7 @@ class SSO_Token_Renewal_Screen:
     def goToCommonTabPrinterSettings(self):
         self.poco(nameMatches="(?s).*Common.*").click()
 
-    def Change_Darkness_Level_Bar(self, newvalue=50 ):
+    def Change_Darkness_Level_Bar(self, newvalue=50):
         seekbar = self.poco(type="android.widget.SeekBar")
         percentage = newvalue / 100.0
         seekbar_size = seekbar.get_size()
@@ -143,7 +153,7 @@ class SSO_Token_Renewal_Screen:
     def checkThemeChanged(self):
         try:
             self.poco("Modern").child("android.widget.RadioButton", checked=True).wait_for_appearance(timeout=10)
-            x=1/0
+            x = 1 / 0
         except ZeroDivisionError:
             raise Exception("Theme not changed")
         except Exception as e:
@@ -161,10 +171,11 @@ class SSO_Token_Renewal_Screen:
         except:
             raise Exception("Help pages are not available.")
 
-    def get_token(self, file_path="C:\\Users\\JD4936\\Documents\\New_ZSB_Automation\\\\ZSB_Mobile\\ADB_logs\\logs.txt"):
-        with open(file_path, 'r') as file:
+    def get_token(self, filepath=file_path):
+        with open(filepath, 'r') as file:
             file_content = file.read()
         access_tokens = re.findall(r'access_token:\s*(\S+)', file_content)
+        print(access_tokens, "access tokens")
         if access_tokens:
             return access_tokens[-1]
         else:
@@ -175,4 +186,16 @@ class SSO_Token_Renewal_Screen:
         if new_token != old_token:
             return new_token
         else:
+            print(new_token, "->new token\n")
+            print(old_token, "old token")
             raise Exception("Token not refreshed.")
+
+    def check_bluetooth_connection_required_popup(self):
+        sleep(2)
+        if self.poco(nameMatches=".*Bluetooth Connection Required.*").exists():
+            self.poco("Continue").click()
+        if self.poco("Allow").exists():
+            self.poco("Allow").click()
+        elif self.poco(text="Allow").exists():
+            self.poco(text="Allow").click()
+        sleep(4)
