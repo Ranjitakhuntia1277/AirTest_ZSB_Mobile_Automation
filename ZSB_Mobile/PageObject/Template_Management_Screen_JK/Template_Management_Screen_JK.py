@@ -86,20 +86,26 @@ class Template_Management_Screen:
             raise Exception(f"There are {len(self.poco("android.view.View")[6].child())} options present.")
 
     def verify_default_filter_my_designs(self):
+        sleep(2)
         if not self.poco("All sizes").exists():
             raise Exception("Default filter is not \"All sizes\"")
+        sleep(2)
 
     def verify_default_sort_order_back_to_normal(self):
-        if self.verify_default_filter_my_designs():
+        sleep(2)
+        if self.poco("Name (A to Z)").exists():
             pass
         else:
             raise Exception("Sorting order is not back to default sort order - \"Name (A to Z)\" in my designs.")
+        sleep(2)
 
     def verify_sort_order_my_designs(self, sort_order):
+        sleep(2)
         if sort_order == "A-Z":
             return self.poco("Name (A to Z)").exists()
         elif sort_order == "Z-A":
             return self.poco("Name (Z to A)").exists()
+        sleep(2)
 
     def click_filter_my_designs(self, name=None):
         if name is not None:
@@ -463,7 +469,9 @@ class Template_Management_Screen:
         self.poco("android.widget.EditText")[1].set_text(index)
 
     def verify_if_on_relink_data_source_page(self):
+        sleep(3)
         return self.poco(nameMatches=".*Relink.*").exists()
+        sleep(2)
 
     def verify_if_on_update_connections_page(self):
         return self.poco(nameMatches="Update Data Connections").exists()
@@ -570,6 +578,7 @@ class Template_Management_Screen:
         raise Exception("Label Range is not 'All'")
 
     def verify_label_navigation(self):
+        sleep(2)
         scroll_view = self.poco("android.widget.ScrollView")
         while not self.poco(nameMatches=".*Label . of .*").exists():
             scroll_view.swipe("down")
@@ -587,6 +596,7 @@ class Template_Management_Screen:
             if navigated_previous == initial:
                 return
         raise Exception("'Previous' and 'Next' navigation buttons are not functioning.")
+    sleep(2)
 
     def check_total_label_for_print_count(self, n):
         return self.poco(f"Total of {n} labels").exists()
