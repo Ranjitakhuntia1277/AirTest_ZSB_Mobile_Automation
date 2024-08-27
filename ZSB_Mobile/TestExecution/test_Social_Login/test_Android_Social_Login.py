@@ -273,19 +273,16 @@ class test_Android_Social_Login():
         others.click_on_sign_in_with_email()
         sleep(1)
         others.go_back()
-
-
         others.enter_user_name_in_sign_with_email("zebratest851@gmail.com")
-
         others.enter_password_in_sign_with_email("Zebra#85185180")
-
         sleep(30)
-
         others.click_on_sign_in()
-        sleep(10)
-        app_settings_page.Home_text_is_present_on_homepage()
 
-
+        try:
+            others.wait_for_element_appearance("Home", 10)
+            raise Exception("The page does not timeout")
+        except ZeroDivisionError:
+            pass
 
     def test_Social_Login_TestcaseID_48473(self):
         pass

@@ -185,8 +185,8 @@ class Login_Screen:
 
     def click_Password_TextField(self):
         sleep(1)
-        poco.scroll()
-        sleep(1)
+        # poco.scroll()
+        # sleep(1)
         self.poco(name="password").click()
         # password = self.poco(self.Password_Field)
         # password.click()
