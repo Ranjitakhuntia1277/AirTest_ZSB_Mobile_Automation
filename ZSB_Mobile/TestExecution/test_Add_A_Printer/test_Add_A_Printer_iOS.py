@@ -1,13 +1,11 @@
 from airtest.core.api import auto_setup, start_app, sleep, text, stop_app
 from poco.drivers.ios import iosPoco
-# from self import self
+import time
 
 from ...Common_Method import Common_Method
 from ...PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Settings_Screen_iOS
 from ...PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
-# from poco import poco
-# from ...conftest import Conftest
 from ...PageObject.Robofinger import test_robo_finger
 import pytest
 from airtest.core.api import connect_device
@@ -19,30 +17,12 @@ class Add_A_PrinterScreen:
     pass
 
 
-# device_info = {
-#     # specify the device ID or name
-#
-#     "platform": "iOS",  # or "iOS"
-#     "uuid": "00008101-00051D400144001E",
-# }
-# print(f"device_info: {device_info}")
-# print(f"device function result: {device()}")
-# uuid = "00008101-00051D400144001E"
-# Bonding = connect_device("ios:///http+usbmux://"+uuid)
-# poco = iosPoco(device= Bonding)
-#
-# auto_setup(logdir=logdir, compress=3,
-#            devices=[f"ios:///http+usbmux://{uuid}"])
-# start_app("com.zebra.soho_app")
 uuid = "00008101-00051D400144001E"
 Bonding = connect_device("ios:///http+usbmux://" + uuid)
 poco = iosPoco(device=Bonding)
 auto_setup(logdir="./", compress=3,
            devices=[f"ios:///http+usbmux://{uuid}"])
 start_app("com.zebra.soho")
-# sleep(2.0)
-# poco = poco.iosPoco()
-# poco = iosPoco()
 
 login_screen_ios = Login_Screen_iOS(poco)
 app_settings_iOS_page_ios = App_Settings_Screen_iOS(poco)
@@ -50,977 +30,456 @@ add_a_printer_page_ios = Add_A_Printer_Screen_iOS(poco)
 common_method = Common_Method(poco)
 
 
-
-def test_Addprinter_TestcaseID_45656():
-    """"Adding the moneybadger while the mobile devices bluetooth is disabled"""
-    """Precondition: Disable Bluetooth"""
-    login_screen_ios.logout()
-    app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-    app_settings_iOS_page_ios.click_Logout_Btn()
-    add_a_printer_page_ios.disable_bluetooth()
-    """Step 1"""
-    login_screen_ios.click_signin()
-    """Step 2"""
+def register_printer():
+    sleep(10)
+    e_check = poco(nameMatches="(?s).*ZSB-DP12.*")
+    if e_check.exists():
+        return
     login_screen_ios.click_Menu_HamburgerICN()
-    """Step 3"""
     add_a_printer_page_ios.click_Add_A_Printer()
-    add_a_printer_page_ios.cancel_bluetooth()
-    """Step 4"""
-    add_a_printer_page_ios.click_Add_A_Printer()
-    add_a_printer_page_ios.setting_bluetooth()
-    add_a_printer_page_ios.enable_bluetooth()
-    """Step 5"""
-    sleep(2)
-    add_a_printer_page_ios.disable_bluetooth()
-    add_a_printer_page_ios.click_start_button()
-    add_a_printer_page_ios.check_unable_to_find()
-    """Step 6"""
-    add_a_printer_page_ios.enable_bluetooth()
-    add_a_printer_page_ios.click_search_again()
+    add_a_printer_page_ios.click_start_setup()
+    add_a_printer_page_ios.check_connect_to_printer()
     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
     add_a_printer_page_ios.click_next_button()
+    add_a_printer_page_ios.click_pair_button()
+    """Step 6"""
+    add_a_printer_page_ios.check_select_wifi()
     """Step 7"""
-    add_a_printer_page_ios.disable_bluetooth()
+    add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+    """Step 8"""
+    add_a_printer_page_ios.check_wifi_connected_successfully()
+    add_a_printer_page_ios.finish_setup()
 
 
-
-
-    # poco("Login").click()
-    # sleep(1)
-    #
-    # poco("Continue").click()
-    # sleep(2)
-    # """""""select the login with google option"""""""""
-    # poco("Continue with Google").click()
-    # sleep(4)
-    # """""provide google user id & password"""
-    # poco(name="Use another account").click()
-    # sleep(3)
-    # poco(name="Email or phone").click()
-    # poco(text("soho.swdvt.01@gmail.com"))
-    # poco(name="Next").click()
-    # sleep(2)
-    # poco(name="Enter your password").click()
-    # poco(text("Swdvt@#123"))
-    # """""""""""click on login option"""""""""
-    # # poco(text="Next").click()
-    # sleep(7)
-    # """""""click on the left hamburger menu on the home page"""""""""
-    # poco(name="Open navigation menu").click()
-    # sleep(3)
-    # """""""get text method need to add for zebra logo text & account details"""""""""
-    #
-    # """""""click on add a printer"""""""
-    # poco("Add A Printer").click()
-    # sleep(2)
-    #
-    # poco(name="Cancel").click()
-    # sleep(3)
-    # #
-    #
-    # """""""""click on add a printer"""""""""
-    # poco("Add A Printer").click()
-    # sleep(2)
-    # poco("Let’s set up your printer").get_text()
-    # sleep(2)
-    # """""decomission the printer manually"""
-    # """""""""click on add a printer"""""""""
-    # poco("Start").click()
-    # assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-    # sleep(5)
-    # poco(name="Select your printer").get_text()
-    #
-    # poco(name="android.widget.RadioButton").click()
-    # poco(name="Select").click()
-    # sleep(2)
-    # """"""""""""" accept the pair request and pair it with proper wifi"""""""""""""""""""""""""""
-
-# poco("Add A Printer", type="android.widget.Button").click()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """"""""" checking the moneybadger printer image is present or not """""
-# """""decomission the printer manually"""
-# """""""""click on add a printer"""""""""
-# poco("Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# device_id = '2A051JEGR15175'
-# """Run the command to turn on the Bluetooth of the device."""""
-# os.system(f"adb -s {device_id} shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE")
-# time.sleep(5)
-# poco(text="Allow", type="android.widget.Button").click()
-# sleep(10)
-# poco(name="Unable to pair your printer").exists()
-# poco(name="Important: There was an error pairing the printer to your mobile device. Please open your device's Bluetooth settings and unpair your connection to this printer before trying again.").exists()
-# device_id = '2A051JEGR15175'
-# """Run the command to turn on the Bluetooth of the device."""""
-# os.system(f"adb -s {device_id} shell am start -a android.bluetooth.adapter.action.REQUEST_ENABLE")
-# time.sleep(5)
-# poco(text="Allow", type="android.widget.Button").click()
-# poco(name="Try Again").click()
-# poco(name=" Pairing your printer").exists()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# sleep(8)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Select Different Network").click()
-# sleep(4)
-# poco(name="Zebra").click()
-# """"enter password manually"""""
-# poco(name="Submit").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(7)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(3)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
-# sleep(3)
+# def test_Addprinter_TestcaseID_45656():
+#     """"Adding the moneybadger while the mobile devices bluetooth is disabled"""
+#     """ FAILED : Because we sometimes after switching from settings to ZSB app, it is showing the setting option"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     add_a_printer_page_ios.disable_bluetooth()
+#     """Step 1"""
+#     login_screen_ios.login()
+#     """Step 2"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     """Step 3"""
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     add_a_printer_page_ios.cancel_bluetooth()
+#     """Step 4"""
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     add_a_printer_page_ios.click_settings()
+#     add_a_printer_page_ios.enable_bluetooth()
+#     """Step 5"""
+#     sleep(2)
+#     add_a_printer_page_ios.disable_bluetooth()
+#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.check_unable_to_find()
+#     """Step 6"""
+#     add_a_printer_page_ios.enable_bluetooth()
+#     add_a_printer_page_ios.click_search_again()
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     """Step 7"""
+#     add_a_printer_page_ios.disable_bluetooth()
+#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+#     add_a_printer_page_ios.check_unable_to_connect_printer()
+#     """Step 8"""
+#     add_a_printer_page_ios.enable_bluetooth()
+#     add_a_printer_page_ios.click_try_again()
+#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+#     add_a_printer_page_ios.check_wifi_connected_successfully()
+#     """Step 9"""
+#     add_a_printer_page_ios.finish_setup()
 
 
 # def test_Addprinter_TestcaseID_45657():
-#     """"Check the cancle button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger"""
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""decomission the printer manually"""
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(7)
-# """"Click on 1st cancel option on bluetooth pairing popup"""""
-# poco(name="android:id/action0").click()
-# sleep(8)
-# """"Click on 2nd cancel option on bluetooth pairing popup"""""
-# poco(name="android:id/button2").click()
-# poco(name="Unable to pair your printer").exists()
-# poco(name="Important: There was an error pairing the printer to your mobile device. Please open your device's Bluetooth settings and unpair your connection to this printer before trying again.").exists()
-#
-# poco(name="Try Again").click()
-# poco(name=" Pairing your printer").exists()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# sleep(8)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Select Different Network").click()
-# sleep(4)
-# poco(name="Zebra").click()
-# """"enter password manually"""""
-# poco(name="Submit").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(7)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(3)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
-# sleep(3)
+#     """Check the cancel button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger"""
+#     """FAILED :The Pair popup is not popping for the second time"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     """Step 1"""
+#     login_screen_ios.login()
+#     """Step 2"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     """Step 3"""
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 4"""
+#     add_a_printer_page_ios.click_start_button()
+#     """Step 5"""
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_cancel_pair()
+#     add_a_printer_page_ios.check_unable_to_connect_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     """Step 6"""
+#     add_a_printer_page_ios.click_try_again()
+#     add_a_printer_page_ios.click_pair_button()
+#     """Step 7"""
+#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+#     add_a_printer_page_ios.check_wifi_connected_successfully()
+#     add_a_printer_page_ios.finish_setup()
 
-
-# def test_Addprinter_TestcaseID_45658():
-#     """"Check pairing bluetooth when the printer changes to offline"""
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""decomission the printer manually"""
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# sleep(2)
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(7)
-# """"Click on 1st cancel option on bluetooth pairing popup"""""
-# poco(name="android:id/action0").click()
-# sleep(8)
-# """"Click on 2nd cancel option on bluetooth pairing popup"""""
-# poco(name="android:id/button2").click()
-# poco(name="Unable to pair your printer").exists()
-# poco(name="Important: There was an error pairing the printer to your mobile device. Please open your device's Bluetooth settings and unpair your connection to this printer before trying again.").exists()
-# poco(name="Watch Troubleshooting Video").exists()
-# poco(name="Get Help").exists()
-# poco(name="Try Again").click()
-# poco(name=" Pairing your printer").exists()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# sleep(8)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Select Different Network").click()
-# sleep(4)
-# poco(name="Zebra").click()
-# """"enter password manually"""""
-# poco(name="Submit").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(7)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(3)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
-# sleep(3)
-
-# def test_Addprinter_TestcaseID_45659():
-#     """""""Check the Watch Troubleshooting video option works when failing to connect printer"""
-
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""decomission the printer manually"""
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# sleep(3)
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(20)
-# poco(name="Unable to pair your printer").exists()
-# poco(name="Important: There was an error pairing the printer to your mobile device. Please open your device's Bluetooth settings and unpair your connection to this printer before trying again.").exists()
-# poco(name="Watch Troubleshooting Video").exists()
-# poco(name="Watch Troubleshooting Video").click()
-# sleep(3)
-# poco(name="com.android.systemui:id/back").click()
-# sleep(3)
-
-
-# def test_Addprinter_TestcaseID_45660():
-#     """"Search the essids when the printer is offline"""
-
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# sleep(10)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# """""decomission the printer manually"""
-# poco(name="Zebra").exists()
-# poco(name="Select Different Network").click()
-# sleep(4)
-# """""""Scroll method to search ZGuest network"""""""
-# scroll_view = poco("android.widget.ScrollView")
-# # Set the maximum number of swipes to avoid an infinite loop
-# max_swipes = 200
-# for _ in range(max_swipes):
-#     # Swipe up on the ScrollView
-#     scroll_view.swipe("up", duration=0.1)
-#
-#     # Check if the "Accept" element is present and enabled
-#     Enter_Network_Manually = poco(name="Enter Network Manually...")
-#     if Enter_Network_Manually.exists() and Enter_Network_Manually.attr('enabled'):
-#         Enter_Network_Manually = poco(name="Enter Network Manually...").click()
-#         # Accept button is visible and enabled, break out of the loop
-#         break
-#     sleep(3)
-# poco(name="android.widget.EditText").click()
-# sleep(2)
-# poco(text("Zebra"))
-# sleep(2)
-# poco(name="Join").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(15)
-# poco(name="Failed to Connect").exists()
-# poco(name="Your printer is unable to connect to the Wi-Fi network at this time. Please check that the password and/or network name are correct.").exists()
-# """""Turn on the printer"""
-# sleep(4)
-# poco(name="Retry").click()
-# sleep(8)
-# poco.scroll(duration=1)
-# poco.scroll(duration=1)
-# poco.scroll(duration=1)
-# poco.scroll(duration=1)
-# poco.scroll(duration=1)
-# sleep(2)
-# poco(name="Enter Network Manually...").click()
-# poco(name="android.widget.EditText").click()
-# poco(text("Zebra"))
-# poco(name="Join").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# poco(name="ZSB Printer is now connecting to your network").exists()
-# sleep(20)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(3)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
-# sleep(3)
-# # -------------------------------------------------------------------------------------------------------
-
-# def test_Addprinter_TestcaseID_45661():
-#     """"Set printer wpa psk Essid but input incorrect password, and check Help"""
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(7)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Connect").click()
-# """""""Enter WRONG password manually----123456788"""""""
-# poco(name="Submit").click()
-# sleep(10)
-# poco(name="Failed to Connect").exists()
-# poco(name="Help").click()
-# sleep(4)
-# poco(name="Zebra Logo").exists()
-# poco(text="Where to buy").exists()
-# poco(name="Close tab").click()
-
-
-# def test_Addprinter_TestcaseID_45662():
-#     """"set printer open Essid when the printer change to offline, and retry"""
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(7)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# """"""Turn off the Printer after displaying select you wifi network"""""""
-# poco(name="Select Different Network").click()
-# sleep(4)
-# poco(name="Zebra").click()
-# """"enter password manually"""""
-# poco(name="Submit").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(7)
-# poco(name="Failed to Connect").exists()
-# poco(name="Your printer is unable to connect to the Wi-Fi network at this time. Please check that the password and/or network name are correct.").exists()
-# sleep(4)
-# poco(name="Retry").click()
-# sleep(2)
-# poco(name="Select Different Network").click()
-# sleep(5)
-# poco(name="Zebra").click()
-# """"enter password manually"""""
-# poco(name="Submit").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(8)
-# poco(name="ZSB Printer is now connecting to your network").exists()
-# sleep(20)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(4)
-# poco(name="android.view.View").exists()
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="Printer Settings").click()
-# time.sleep(2)
-# poco(name="ZSB-DP12").click()
-# time.sleep(2)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
-# sleep(3)
 
 # def test_Addprinter_TestcaseID_45663():
-#     """"	set printer wpa psk Essid manually when the printer change to offline, and go to Help"""
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(7)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# """"""Turn off the Printer after displaying select you wifi network"""""""
-# poco(name="Select Different Network").click()
-# sleep(6)
-# """""""Scroll method to search ZGuest network"""""""
-# scroll_view = poco("android.widget.ScrollView")
-# # Set the maximum number of swipes to avoid an infinite loop
-# max_swipes = 200
-# for _ in range(max_swipes):
-#     # Swipe up on the ScrollView
-#     scroll_view.swipe("up", duration=0.1)
-#
-#     # Check if the "Accept" element is present and enabled
-#     Enter_Network_Manually = poco(name="Enter Network Manually...")
-#     if Enter_Network_Manually.exists() and Enter_Network_Manually.attr('enabled'):
-#         Enter_Network_Manually = poco(name="Enter Network Manually...").click()
-#         # Accept button is visible and enabled, break out of the loop
-#         break
-#     sleep(3)
-# poco(name="android.widget.EditText").click()
-# sleep(2)
-# poco(text("Zebra"))
-# sleep(2)
-# poco(name="Join").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(15)
-# poco(name="Failed to Connect").exists()
-# poco(name="Your printer is unable to connect to the Wi-Fi network at this time. Please check that the password and/or network name are correct.").exists()
-# sleep(4)
-# poco(name="Help").click()
-# sleep(4)
-# poco(name="Zebra Logo").exists()
-# poco(text="Where to buy").exists()
-# poco(name="Close tab").click()
-# """""Turn on the printer"""
-
-
-# def test_Addprinter_TestcaseID_45664():
-#     """"	set printer open Essid manually but input incorrect essid, and retry"""
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(10)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Select Different Network").click()
-# sleep(5)
-# """""""Scroll method to search ZGuest network"""""""
-# scroll_view = poco("android.widget.ScrollView")
-# # Set the maximum number of swipes to avoid an infinite loop
-# max_swipes = 200
-# for _ in range(max_swipes):
-#     # Swipe up on the ScrollView
-#     scroll_view.swipe("up", duration=0.1)
-#
-#     # Check if the "Accept" element is present and enabled
-#     Enter_Network_Manually = poco(name="Enter Network Manually...")
-#     if Enter_Network_Manually.exists() and Enter_Network_Manually.attr('enabled'):
-#         Enter_Network_Manually = poco(name="Enter Network Manually...").click()
-#         # Accept button is visible and enabled, break out of the loop
-#         break
-#     sleep(3)
-# poco(name="android.widget.EditText").click()
-# """""""Enter wrong network name"""""""
-# poco(text("Zebraa"))
-# poco(name="Join").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(9)
-# poco(name="Failed to Connect").exists()
-# poco(name="Your printer is unable to connect to the Wi-Fi network at this time. Please check that the password and/or network name are correct.").exists()
-# sleep(4)
-# poco(name="Retry").click()
-# sleep(2)
-# poco(name="Select Different Network").click()
-# sleep(5)
-# poco(name="Select your Wi-Fi network").exists()
+#     """INVALID TESTCASE because there is no option for help in latest version of app"""
+#     """set printer wpa psk Ess-id manually when the printer change to offline, and go to Help"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     """Step 1"""
+#     login_screen_ios.login()
+#     """Step 2"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_pair_button()
+#     """Step 3"""
+#     add_a_printer_page_ios.check_select_wifi()
+#     common_method.show_message("Please Turn off the Printer")
+#     """Step 5"""
+#     add_a_printer_page_ios.enter_network_manually("connect")
+#     add_a_printer_page_ios.check_unable_to_connect_printer()
+#     """----------INVALID TESTCASE----------"""
 
 
 # def test_Addprinter_TestcaseID_45665():
-#     """Check the left top corner button of each page work during adding a moneybadger."""
+#     """FAILED : when we click on cancel in step 4 it does not take us to set up printer page"""
+#     """Check the left top corner button of each page work during adding a moneybadger"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     """Step 1"""
+#     login_screen_ios.login()
+#     """Step 2"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     """Step 3"""
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 4"""
+#     add_a_printer_page_ios.click_cross()
+#     add_a_printer_page_ios.cancel_bluetooth()
+#     add_a_printer_page_ios.click_cross()
+#     add_a_printer_page_ios.click_exit_button()
+#     """Step 6"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     add_a_printer_page_ios.click_start_button()
+#     """Step 7"""
+#     add_a_printer_page_ios.click_cross()
+#     add_a_printer_page_ios.click_exit_button()
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 8"""
+#     add_a_printer_page_ios.click_start_button()
+#     """Step 9"""
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_pair_button()
+#     add_a_printer_page_ios.check_select_wifi()
+#     """Step 10"""
+#     add_a_printer_page_ios.click_cross()
+#     add_a_printer_page_ios.click_exit_button()
+#     """INVALID TEST CASE"""
+
+# def test_Addprinter_TestcaseID_45667():
+#     """Check using the phone A to add the unconfigured printer which was paired the bluetooth connection by phone A and not in bluetooth limited mode"""
+#     """Precondition Phone A"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     login_screen_ios.login()
+#     """Step 1"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 2"""
+#     add_a_printer_page_ios.click_start_button()
+#     """Step 3"""
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_pair_button()
+#     add_a_printer_page_ios.check_select_wifi()
+#     """Step 4"""
+#     add_a_printer_page_ios.click_cross()
+#     add_a_printer_page_ios.click_exit_button()
+#     """Step 5"""
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     """Step 6"""
+#     add_a_printer_page_ios.check_select_wifi()
+#     check = add_a_printer_page_ios.check_for_duplicate_wifi_networks()
+#     if check:
+#         pass
+#     """Step 7"""
+#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+#     """Step 8"""
+#     add_a_printer_page_ios.check_wifi_connected_successfully()
+#     add_a_printer_page_ios.finish_setup()
+#     login_screen_ios.check_finish_setup()
+
+# def test_Addprinter_TestcaseID_45672():
+#     """connect printer by using the 'Add a Printer' button at the overview page and check information card"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     """Step 1"""
+#     login_screen_ios.login()
+#     """Step 2"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 3"""
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_pair_button()
+#     add_a_printer_page_ios.check_select_wifi()
+#     check = add_a_printer_page_ios.check_for_duplicate_wifi_networks()
+#     if check:
+#         pass
+#     """Step 6"""
+#     add_a_printer_page_ios.choose_open_wifi_network()
+#     """Step 10"""
+#     add_a_printer_page_ios.check_wifi_connected_successfully()
+#     add_a_printer_page_ios.finish_setup()
+#     login_screen_ios.check_finish_setup()
 
 
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# Check if the element exists on the screen
-# home_object = poco(name="Home")
-# print(home_object)
-# sleep(2)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="MFW My First Workspace").exists()
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""Check the moneybadger image is present"""
-# poco(name="android.widget.ImageView").get_position()
-# poco(name="First we’ll pair your printer to your phone using Bluetooth. Tap Start to begin.").exists()
-# poco(name="Start").get_name()
-# """""Click on the cross icon of the Let's setup your printer page"""
-# poco(name="android.widget.Button").click()
-# """"Click on Cancel button of Exit printer setup popup"""
-# poco(name="Cancel").click()
-# sleep(1)
-# poco("Let’s set up your printer").get_text()
-# """""Click on the cross icon of the Let's setup your printer page"""
-# poco(name="android.widget.Button").click()
-# """""Click on the OK button of Exit printer setup popup"""
-# poco(name="Ok").click()
-# sleep(1)
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# sleep(5)
-# poco(name="Select your printer").get_text()
-# sleep(1)
-# """""Click on the close icon of the Select printer page"""
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco("Let’s set up your printer").get_text()
-# poco("Start", type="android.widget.Button").click()
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(8)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Select Different Network").click()
-# sleep(6)
-# """""close icons are not accessible for Connect wifi network page & Select your WI-FI network screen"""
-# poco(name="Zebra").click()
-# """"enter password manually"""""
-# poco(name="Submit").click()
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(7)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(3)
-# sleep(3)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
-# sleep(3)
+# def test_Addprinter_TestcaseID_45679():
+#     """FAILED: In step 8 after clicking the cross button it is directly taking to home page, instead of Wifi-setup page"""
+#     """To check Cancel and re-enter correct password for PSK WPA Essid works"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     """Step 1"""
+#     login_screen_ios.login()
+#     """Step 2"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 3"""
+#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_pair_button()
+#     """Step 4"""
+#     add_a_printer_page_ios.check_select_wifi()
+#     check = add_a_printer_page_ios.check_for_duplicate_wifi_networks()
+#     if check:
+#         pass
+#     """Step 7"""
+#     add_a_printer_page_ios.choose_closed_wifi_network_incorrect_password()
+#     add_a_printer_page_ios.check_unable_to_connect_printer()
+#     """Step 8"""
+#     add_a_printer_page_ios.click_cross()
+#     add_a_printer_page_ios.click_exit_button()
+#     add_a_printer_page_ios.check_select_wifi()
+#     """Step 9"""
+#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+#     """Step 10"""
+#     add_a_printer_page_ios.check_wifi_connected_successfully()
+#     add_a_printer_page_ios.finish_setup()
+#     login_screen_ios.check_finish_setup()
 
-# /////////////Phone A & B testcases are not automated////////////////////////////////
+# def test_Addprinter_TestcaseID_45682():
+#     """To check the Cancel button in "Enter Network Info" dialog"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.logout()
+#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+#     app_settings_iOS_page_ios.click_Logout_Btn()
+#     """Step 1"""
+#     login_screen_ios.login()
+#     """Step 2"""
+#     login_screen_ios.click_Menu_HamburgerICN()
+#     """Step 3"""
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 4"""
+#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_pair_button()
+#     """Step 5"""
+#     add_a_printer_page_ios.check_select_wifi()
+#     """Step 7"""
+#     add_a_printer_page_ios.enter_network_manually("cancel")
+#     add_a_printer_page_ios.check_select_wifi()
 
+# def test_Addprinter_TestcaseID_46303():
+#     """To test the ZSB Wi-Fi performance"""
+#     """Precondition"""
+#     add_a_printer_page_ios.delete_printer()
+#     add_a_printer_page_ios.unpair_printer()
+#     login_screen_ios.login()
+#     add_a_printer_page_ios.enable_bluetooth()
+#     """Step 1"""
+#     add_a_printer_page_ios.click_Add_A_Printer()
+#     """Step 2"""
+#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.check_connect_to_printer()
+#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+#     add_a_printer_page_ios.click_next_button()
+#     add_a_printer_page_ios.click_pair_button()
+#     """Step 3"""
+#     add_a_printer_page_ios.check_select_wifi()
+#     """Step 4"""
+#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+#     start_time = time.time()
+#     """Step 5"""
+#     add_a_printer_page_ios.check_wifi_connected_successfully()
+#     end_time = time.time()
+#     time_taken = start_time-end_time
+#     assert time_taken <= 60, f"Error: Step 4 and Step 5 took too long ({time_taken} seconds), exceeding the 1-minute limit."
 
-# def test_Addprinter_TestcaseID_45673():
-#     """connect printer with Open Essid by choosing it"""
-
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(7)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Select Different Network").click()
-# sleep(6)
-# """""""Select the open wifi network & proceed"""
-# """""""Scroll method to search ZGuest network"""""""
-# scroll_view = poco("android.widget.ScrollView")
-# # Set the maximum number of swipes to avoid an infinite loop
-# max_swipes = 200
-#
-# for _ in range(max_swipes):
-#     # Swipe up on the ScrollView
-#     scroll_view.swipe("up", duration=0.1)
-#
-#     # Check if the "Accept" element is present and enabled
-#     ZGuest = poco(name="ZGuest")
-#     if ZGuest.exists() and ZGuest.attr('enabled'):
-#         ZGuest = poco(name="ZGuest").click()
-#         # Accept button is visible and enabled, break out of the loop
-#         break
-#     sleep(7)
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(7)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(3)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
-# sleep(3)
+def test_add_printer_test_case_id_53067():
+    """Printer Setup Screen-Check the UI of Printer Setup screen"""
+    """Step 1"""
+    login_screen_ios.login("Google")
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """Step 2"""
+    add_a_printer_page_ios.check_ui_of_printer_setup()
 
 
-# def test_Addprinter_TestcaseID_45674():
-#     """connect printer with Open ESSID manually, then cancel."""
-
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# poco("Let’s set up your printer").get_text()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# assert_equal("Searching for your printer", "Searching for your printer", "Text is matching")
-# # sleep(5)
-# poco(name="Select your printer").get_text()
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(7)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Select Different Network").click()
-# sleep(6)
-# """""""Scroll method to search ZGuest network"""""""
-# scroll_view = poco("android.widget.ScrollView")
-# # Set the maximum number of swipes to avoid an infinite loop
-# max_swipes = 200
-# for _ in range(max_swipes):
-#     # Swipe up on the ScrollView
-#     scroll_view.swipe("up", duration=0.1)
-#
-#     # Check if the "Accept" element is present and enabled
-#     Enter_Network_Manually = poco(name="Enter Network Manually...")
-#     if Enter_Network_Manually.exists() and Enter_Network_Manually.attr('enabled'):
-#         Enter_Network_Manually = poco(name="Enter Network Manually...").click()
-#         # Accept button is visible and enabled, break out of the loop
-#         break
-#     sleep(3)
-# poco(name="Open").click()
-# poco(name="Open").click()
-# sleep(1)
-# poco(name="Cancel").click()
-# sleep(2)
-# poco(name="Select your Wi-Fi network").exists()
+def test_add_printer_test_case_id_53068():
+    """Printer Setup Screen-Check the UI of Exit Printer Setup dialog"""
+    """Step 1"""
+    login_screen_ios.login("Google")
+    """Step 2"""
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    add_a_printer_page_ios.click_cross()
+    add_a_printer_page_ios.click_exit_button()
 
 
-# def test_Addprinter_TestcaseID_45675():
-#     """Connect printer with Open Essid manually when it's status is media out"""
+def test_add_printer_test_case_id_53070():
+    """Printer Setup Screen-Verify the functionality, when the user clicks on "Start setup" option in "Setup your printer page"""
+    """Step 1"""
+    login_screen_ios.login("Google")
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    add_a_printer_page_ios.click_start_setup()
 
-# login_page = Login_Screen(poco)
-# add_a_printer_screen = Add_A_Printer_Screen(poco)
-# """""""""click on the login button"""""""""""
-# login_page.click_loginBtn()
-# sleep(2)
-# """""""select the login with google option"""""""""
-# login_page.click_Loginwith_Google()
-# """""""""""""""Always use this to login"""""""""""""""
-# sleep(7)
-# """""""click on the left hamburger menu on the home page"""""""""
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# """""""get text method need to add for zebra logo text & account details"""""""""
-#
-# """""""click on add a printer"""""""
-# add_a_printer_screen.click_Add_A_Printer()
-# sleep(2)
-# """""""""click on add a printer"""""""""
-# poco(name="Start", type="android.widget.Button").click()
-# # sleep(5)
-# poco(name="android.widget.RadioButton").click()
-# poco(name="Select", type="android.widget.Button").click()
-# sleep(2)
-# """""""pair & connect text on bluetooth paring popup"""""""
-# poco(name="android:id/action0").click()
-# """"""""""click on next allow button"""""
-# poco(name="android:id/button1").click()
-# poco(name="Pairing your printer").exists()
-# sleep(7)
-# poco(name="Searching for Wi-Fi Networks").exists()
-# poco(name="Zebra").exists()
-# poco(name="Connect").click()
-# poco(name="Cancel").get_text()
-# """""""Enter password manually----123456788"""""""
-# poco(name="Submit").click()
-# sleep(10)
-# poco(name="Connecting to Wi-Fi Network").exists()
-# sleep(7)
-# poco(name="Registering your Printer").exists()
-# poco(name="Connected!").exists()
-# poco(name="Finish Setup").click()
-# sleep(3)
-# sleep(3)
-# poco(name="Open navigation menu").click()
-# sleep(3)
-# poco(name="android.widget.Button").click()
-# sleep(1)
-# poco.scroll()
-# sleep(2)
-# poco(name="Log Out", type="android.widget.Button").click()
+
+def test_add_printer_test_case_id_53071():
+    """Verify the "Set up your printer" page is displayed the same for all the social login accounts"""
+    social_logins = ["Google", "Apple", "Facebook"]
+    for login in social_logins:
+        # Step 1 & Step 2
+        login_screen_ios.login(login)
+        login_screen_ios.click_Menu_HamburgerICN()
+        add_a_printer_page_ios.click_Add_A_Printer()
+        add_a_printer_page_ios.check_ui_of_printer_setup()
+        add_a_printer_page_ios.click_cross()
+        add_a_printer_page_ios.click_exit_button()
+        login_screen_ios.logout()
+        app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+        app_settings_iOS_page_ios.click_Logout_Btn()
+
+
+def test_add_printer_test_case_id_53073():
+    """Install the lower version of the ZSB series app and upgrade to the latest version (.apk file) and check the Login Screen UI and Contents"""
+    add_a_printer_page_ios.downgrade_app_version()
+    login_screen_ios.check_login_ui()
+    add_a_printer_page_ios.upgrading_app_version()
+    login_screen_ios.check_login_ui()
+    login_screen_ios.login("Google")
+    login_screen_ios.logout()
+    login_screen_ios.check_login_ui()
+
+
+def test_add_printer_test_case_id_53086():
+    """Verify the contents of "Search your printer" page and its animations are as per the figma design."""
+    """Step 1"""
+    login_screen_ios.login("Google")
+    """Step 2"""
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """Step 3 & STep 4"""
+    add_a_printer_page_ios.check_ui_of_printer_setup()
+    """Step 5 & Step 6"""
+    add_a_printer_page_ios.click_start_setup()
+    """Step 7"""
+    add_a_printer_page_ios.check_connect_to_printer()
+
+
+def test_add_printer_test_case_id_53088():
+    """Verify the behavior by selecting the printer from the list which is already registered with the same account."""
+    """Pre-Condition"""
+    add_a_printer_page_ios.delete_printer()
+    add_a_printer_page_ios.unpair_printer()
+    login_screen_ios.login("Google")
+    """Step 1"""
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """Step 2,3,4,5,6"""
+    add_a_printer_page_ios.click_start_setup()
+    """Step 7"""
+    add_a_printer_page_ios.check_connect_to_printer()
+    """Step 8 & Step 9"""
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    """"Step 10"""
+    add_a_printer_page_ios.click_next_button()
+    # PENDING
+
+
+def test_add_printer_test_case_id_53089():
+    """Verify "Select Your Printer screen" screen UI, contents and buttons are proper as per the Figma design."""
+    """Step 1"""
+    login_screen_ios.login("Google")
+    """Step 2"""
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """Step 3"""
+    add_a_printer_page_ios.click_start_setup()
+    """Step 4"""
+    add_a_printer_page_ios.check_connect_to_printer()
+    add_a_printer_page_ios.click_find_my_printer_bluetooth_id()
+
+
+def test_add_printer_test_case_id_53090():
+    """Verify the behavior by selecting the printer from the list which is already registered with the same account."""
+    """Pre-condition"""
+    login_screen_ios.login("Google")
+    register_printer()
+    """Step 1"""
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """"Step 2 & 3"""
+    add_a_printer_page_ios.click_start_setup()
+    """Step 4"""
+    add_a_printer_page_ios.check_connect_to_printer()
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    add_a_printer_page_ios.click_next_button()
+    add_a_printer_page_ios.click_pair_button()
+    add_a_printer_page_ios.check_select_wifi()
+

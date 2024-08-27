@@ -293,7 +293,7 @@ def test_Smoke_Test_TestcaseID_45884():
     login_screen_ios.click_Menu_HamburgerICN()
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_start_button()
+    add_a_printer_page_ios.click_start_setup()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
     add_a_printer_page_ios.click_next_button()
@@ -352,7 +352,7 @@ def test_Smoke_Test_TestcaseID_45885():
     login_screen_ios.click_Menu_HamburgerICN()
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_start_button()
+    add_a_printer_page_ios.click_start_setup()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
     add_a_printer_page_ios.click_next_button()

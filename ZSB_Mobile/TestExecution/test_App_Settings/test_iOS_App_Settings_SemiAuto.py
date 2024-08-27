@@ -48,7 +48,7 @@ def test_AppSettings_TestcaseID_47913():
     """"click on Add printer tab"""""
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_start_button()
+    add_a_printer_page_ios.click_start_setup()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
     add_a_printer_page_ios.click_next_button()
@@ -109,7 +109,7 @@ def test_AppSettings_TestcaseID_47924():
     """"click on Add printer tab"""""
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_start_button()
+    add_a_printer_page_ios.click_start_setup()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
     add_a_printer_page_ios.click_next_button()

@@ -56,6 +56,22 @@ class Common_Method():
             e = e + 1
         return e
 
+    def wait_for_element(self, locator, timeout=70):
+        """
+        Waits for an element to exist within the given timeout period.
+
+        :param locator: The locator of the element to wait for.
+        :param timeout: The maximum time to wait for the element in seconds. Default is 50 seconds.
+        :raises Exception: If the element does not exist within the timeout period.
+        """
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            if self.poco(locator).exists():
+                return True
+            time.sleep(1)  # wait for 1 second before checking again
+
+        raise Exception(f"Error: Element '{locator}' not present after {timeout} seconds")
+
     def run_the_command(self, command):
         cmd = command
 
