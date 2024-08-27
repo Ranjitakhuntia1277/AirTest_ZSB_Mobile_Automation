@@ -15,7 +15,9 @@ from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+        return os.path.join(os.path.expanduser('~'),
+                            "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
+                            a)
 
 else:
     def Basic_path(a):
@@ -35,11 +37,13 @@ class Registration_Screen:
         self.Register_Email = " Register Your Email Now"
         self.log_out_button = "Log Out"
         self.Google_Icon = Template(Basic_path(r"Google_Icon.png"), record_pos=(-0.319, -0.173), resolution=(1080, 2340))
-        self.Facebook_Icon = Template(Basic_path(r"Facebook_Icon.png"), record_pos=(-0.316, 0.094), resolution=(1080, 2340))
+        self.Facebook_Icon = Template(Basic_path(r"Facebook_Icon.png"), record_pos=(-0.316, 0.094),
+                                      resolution=(1080, 2340))
         self.Apple_Icon = Template(Basic_path(r"Apple_Icon.png"), record_pos=(-0.317, -0.043), resolution=(1080, 2340))
         self.Buy_More_Labels = "Buy More Labels"
         self.Connect = "Connect"
-        self.Join_Network_Password_TextBox = Template(Basic_path(r"Join_Network_Password_TextBox.png"), record_pos=(-0.127, 0.118),
+        self.Join_Network_Password_TextBox = Template(Basic_path(r"Join_Network_Password_TextBox.png"),
+                                                      record_pos=(-0.127, 0.118),
                                                       resolution=(1080, 2340))
         self.submit = "Submit"
         self.Finish_Setup = "Finish Setup"
@@ -68,7 +72,6 @@ class Registration_Screen:
             Allow_ZSB_Series_Popup.click()
             sleep(1)
 
-
     def clickSignIn(self):
         sleep(3)
         signInBtn = self.poco("Sign In")
@@ -77,7 +80,7 @@ class Registration_Screen:
             self.poco("Allow").click()
         elif self.poco(text="Allow").exists():
             self.poco(text="Allow").click()
-        sleep(4)
+        sleep(7)
 
     def registerEmail(self):
         self.poco(self.Register_Email).wait_for_appearance(timeout=10)
@@ -374,6 +377,7 @@ class Registration_Screen:
     def scroll_till_log_out(self):
         while not self.poco("Log Out").exists():
             self.poco.scroll()
+        self.poco.scroll()
 
     def click_log_out_button(self):
         log_out_btn = self.poco(self.log_out_button)
@@ -446,7 +450,7 @@ class Registration_Screen:
                 scrolls = 5
                 while scrolls != 0:
                     self.poco.scroll()
-                    scrolls-=1
+                    scrolls -= 1
                 if self.poco(text="Skip").exists():
                     self.poco(text="Skip").click()
             except:
@@ -455,7 +459,7 @@ class Registration_Screen:
                 scrolls = 5
                 while scrolls != 0:
                     self.poco.scroll()
-                    scrolls-=1
+                    scrolls -= 1
                 if self.poco(text="I agree").exists():
                     self.poco(text="I agree").click()
             except:
@@ -743,9 +747,9 @@ class Registration_Screen:
     def create_google_account(self):
         os.system("adb shell am start -a android.settings.SYNC_SETTINGS")
         count = 5
-        while not self.poco(text="Add account").exists() and count!=0:
+        while not self.poco(text="Add account").exists() and count != 0:
             self.poco.scroll()
-            count-=1
+            count -= 1
         self.poco(text="Add account").click()
         self.poco(text="Google").wait_for_appearance(timeout=20)
         self.poco(text="Google").click()
@@ -799,18 +803,18 @@ class Registration_Screen:
         username = name + '@gmail.com'
         print(username)
         count = 5
-        while not self.poco(text="I agree").exists() and count!=0:
+        while not self.poco(text="I agree").exists() and count != 0:
             self.poco.scroll()
-            count-=1
+            count -= 1
         self.poco(text="I agree").click()
         self.wait_for_element_appearance_text("Add account", 20)
         return username, password
 
     def verifyLinksInSignInPage(self):
         count = 5
-        while not self.poco("Legal Notice").exists() and count!=0:
+        while not self.poco("Legal Notice").exists() and count != 0:
             self.poco.scroll()
-            count-=1
+            count -= 1
         link_1 = self.poco("Zebra.com", enabled=True).exists()
         link_2 = self.poco("Legal Notice", enabled=True).exists()
         link_3 = self.poco("Privacy Statement", enabled=True).exists()
@@ -862,7 +866,6 @@ class Registration_Screen:
             error = f'{wifi_name}not found.'
             raise Exception(error)
 
-
     def enterPasswordWifi(self, password="123456789"):
         self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(password)
@@ -871,15 +874,15 @@ class Registration_Screen:
 
     def scrollTillLogOutAppears(self):
         count = 5
-        while not self.poco("Log Out").exists() and count!=0:
+        while not self.poco("Log Out").exists() and count != 0:
             self.poco.scroll()
-            count-=1
+            count -= 1
 
     def Verify_SignIn_Page(self):
         sleep(15)
-        a=self.poco(name="Sign In")
+        a = self.poco(name="Sign In")
         if a.exists():
-           a.get_name()
+            a.get_name()
         else:
             raise Exception("Did not return to login page.")
 
@@ -887,44 +890,41 @@ class Registration_Screen:
         sleep(10)
         self.poco(text="We didn't recognize the username or password you entered. Please try again.").get_name()
 
-
-
     def Verify_SignInwith_Page(self):
         sleep(15)
-        a=self.poco(text="Sign In With")
+        a = self.poco(text="Sign In With")
         if a.exists():
-           a.get_name()
+            a.get_name()
         else:
             raise Exception("Did not return to login page.")
 
     def Enter_Wrong_UserName(self):
-            sleep(9)
-            zebra_login = self.poco(text="Sign In with your email")
-            if zebra_login.exists():
-                zebra_login.click()
-                sleep(2)
-                self.poco(text(""))
-                self.poco(text("soho_dvtxxxxx@hotmail.com"))
-                sleep(1)
-            else:
-                sleep(3)
-                device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
-                sleep(10)
-                self.poco(text="Sign In with your email").click()
-                sleep(2)
-                self.poco(text(""))
-                self.poco(text("soho_dvtxxxxx@hotmail.com"))
-                sleep(1)
-
+        sleep(9)
+        zebra_login = self.poco(text="Sign In with your email")
+        if zebra_login.exists():
+            zebra_login.click()
+            sleep(2)
+            self.poco(text(""))
+            self.poco(text("soho_dvtxxxxx@hotmail.com"))
+            sleep(1)
+        else:
+            sleep(3)
+            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
+            sleep(10)
+            self.poco(text="Sign In with your email").click()
+            sleep(2)
+            self.poco(text(""))
+            self.poco(text("soho_dvtxxxxx@hotmail.com"))
+            sleep(1)
 
     def Enter_Wrong_Password(self):
-            sleep(1)
-            self.poco.scroll()
-            sleep(1)
-            self.poco(name="password").click()
-            password = self.poco(name="password")
-            password.set_text("Testing@12345")
-            sleep(1)
+        sleep(1)
+        self.poco.scroll()
+        sleep(1)
+        self.poco(name="password").click()
+        password = self.poco(name="password")
+        password.set_text("Testing@12345")
+        sleep(1)
 
     def Enter_Correct_Username(self):
         sleep(9)
@@ -944,8 +944,6 @@ class Registration_Screen:
             self.poco(text(""))
             self.poco(text("zebra07.swdvt@gmail.com"))
             sleep(1)
-
-
 
     def Enter_Correct_Password(self):
         sleep(1)
@@ -1042,3 +1040,57 @@ class Registration_Screen:
             self.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
             raise Exception("Did not navigate to Sign In with google page")
+
+    def check_if_back_to_login_page(self):
+        try:
+            self.poco("Sign In").wait_for_appearance(timeout=20)
+            return True
+        except:
+            return False
+
+    def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
+
+        account = self.poco(text=Acc_Name)
+        count = 0
+        while not account.exists() and count <= 2:
+            self.poco.scroll()
+            count += 1
+        account.click()
+        sleep(4)
+        if self.poco(
+                textMatches=".*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
+            self.clickContinueWeb()
+        elif self.poco(text="Sign in to ZSB Series").exists():
+            self.clickContinueWeb()
+        sleep(3)
+
+    def BugFix_For_Google(self, account):
+        count = 5
+        while count > 0:
+            sleep(10)
+            if self.check_if_back_to_login_page():
+                self.allowPermissions()
+                self.clickSignIn()
+                self.click_Google_Icon()
+                self.check_if_user_navigated_to_sign_in_page()
+                self.chooseAcc(account)
+            else:
+                return
+
+    def BugFix_For_ZebraEmail(self, account):
+        count = 5
+        while count > 0:
+            sleep(10)
+            if self.check_if_back_to_login_page():
+                self.allowPermissions()
+                self.clickSignIn()
+                pocoEle = self.poco(text="Sign In with your email")
+                if pocoEle.exists():
+                    pocoEle.click()
+                    self.signInWithEmail()
+                    self.complete_sign_in_with_email(account, "Zebra#123456789", 1, 0)
+                    count -= 1
+                else:
+                    pass
+            else:
+                return

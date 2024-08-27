@@ -15,7 +15,7 @@ import platform
 if platform.system() == "Windows":
     def Basic_path(a):
         return os.path.join(os.path.expanduser('~'),
-                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates", a)
+                            "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates", a)
 
 else:
     def Basic_path(a):
@@ -810,6 +810,7 @@ class Data_Sources_Screen:
         # password = "Zebra#123456789"
         # self.poco(text(password))
         self.poco(text="Sign in").click()
+        sleep(4)
         if self.poco("Continue").exists():
             self.clickContinue()
 
@@ -836,6 +837,7 @@ class Data_Sources_Screen:
         sleep(3)
 
     def checkIfAccPresentLink(self, account):
+        sleep(2)
         start = 0
         end = 1
         while True:
@@ -1291,6 +1293,7 @@ class Data_Sources_Screen:
         self.poco("com.google.android.documentsui:id/search_src_text").set_text(filename)
         sleep(2)
         self.clickEnter()
+        sleep(4)
         if self.poco("com.google.android.documentsui:id/item_root").child().get_name() != "android.widget.LinearLayout":
             self.poco("com.google.android.documentsui:id/sub_menu").click()
         sleep(2)
@@ -1843,7 +1846,7 @@ class Data_Sources_Screen:
 
     def log_out_of_account(self):
         try:
-            self.poco("Home").wait_for_appearance(timeout=15)
+            self.poco("Home").wait_for_appearance(timeout=20)
             sleep(3)
             self.poco("Open navigation menu").click()
             sleep(3)
@@ -1889,3 +1892,4 @@ class Data_Sources_Screen:
                 except:
                     pass
         sleep(3)
+
