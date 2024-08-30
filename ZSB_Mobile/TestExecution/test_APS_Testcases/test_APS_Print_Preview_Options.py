@@ -15,7 +15,7 @@ from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
 
-class Android_APS_Printer_Discover:
+class Android_APS_Print_Preview_Options:
     pass
 
 

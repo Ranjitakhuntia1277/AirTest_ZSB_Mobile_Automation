@@ -10,13 +10,21 @@ from airtest.core.api import device as current_device
 import os
 import subprocess
 
-from ZSB_Mobile.PageObject.Login_Screen import Login_Screen_Android
+from ...PageObject.Login_Screen import Login_Screen_Android
 
 common_method = Common_Method(poco)
 
+import platform
 
-def Basic_path(a):
-    return os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join(os.path.expanduser('~'),
+                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
+                            a)
+
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 
 class Social_Login:
@@ -198,15 +206,11 @@ class Social_Login:
             self.poco.scroll()
             self.poco("android.widget.Image")[1].get_name()
 
-
-
-
     def click_on_zebra_link(self):
         sleep(2)
         self.poco.scroll()
         sleep(1)
         self.poco("Zebra.com").click()
-
 
     def click_on_legal_notice_link(self):
         sleep(2)
@@ -327,13 +331,12 @@ class Social_Login:
     def click_on_sign_in_with_email(self):
         sleep(10)
         if self.poco(text="Sign In with your email").exists():
-           self.poco(text="Sign In with your email").click()
+            self.poco(text="Sign In with your email").click()
         else:
             sleep(3)
             self.close_app_reopen_and_click_sign_in()
             sleep(10)
             self.poco(text="Sign In with your email").click()
-
 
     def check_element_present_name_matches(self, elem):
         a = self.poco(nameMatches="(?s).*" + elem + ".*").exists()
@@ -498,18 +501,19 @@ class Social_Login:
         self.poco(text=a).click()
 
     def click_on_profile_edit(self):
-
+        sleep(2)
         self.poco("android.widget.Button").click()
 
     def click_log_out_button(self):
+        sleep(2)
         log_out_btn = self.poco(self.log_out_button)
         log_out_btn.click()
 
     def validate_the_details_of_account(self, v_f, v_l, v_e=None):
         first_name = \
-        self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
-            "android.view.View").child("android.view.View").child("android.view.View")[1].child(
-            "android.view.View").child()[0].child("android.widget.EditText")[0].get_text()
+            self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
+                "android.view.View").child("android.view.View").child("android.view.View")[1].child(
+                "android.view.View").child()[0].child("android.widget.EditText")[0].get_text()
 
         last_name = self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
             "android.view.View").child("android.view.View").child("android.view.View")[1].child(
@@ -535,6 +539,7 @@ class Social_Login:
         return a
 
     def choose_a_google_account(self, gmail):
+        sleep(10)
         count = 0
         while not self.poco(text=gmail).exists() and count < 7:
             self.poco.scroll()
@@ -760,10 +765,10 @@ class Social_Login:
 
     def Verify_Zebra_URL(self):
         sleep(10)
-        a=self.poco(text="zebra.com")
+        a = self.poco(text="zebra.com")
         if a.exists():
-           a.get_name()
-           sleep(1)
+            a.get_name()
+            sleep(1)
 
     def click_Browser_Close_Icon(self):
         sleep(2)
@@ -772,7 +777,7 @@ class Social_Login:
 
     def Verify_Legal_Notice_Page(self):
         sleep(7)
-        a=self.poco(text="Terms of Use")
+        a = self.poco(text="Terms of Use")
         if a.exists():
             a.get_name()
 

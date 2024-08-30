@@ -8,7 +8,7 @@ from poco import poco
 from ...Common_Method import Common_Method
 from airtest.core.api import device as current_device
 import os
-from ZSB_Mobile.PageObject.Login_Screen import Login_Screen_Android
+from ...PageObject.Login_Screen import Login_Screen_Android
 import subprocess
 import platform
 
@@ -564,7 +564,7 @@ class Template_Management_Android:
         current_date = datetime.datetime.now()
 
         # Format date as "mm/dd/yyyy" without leading zeros for month and day
-        formatted_date = current_date.strftime("%#m/%#d/%Y")
+        formatted_date = f"{current_date.month}/{current_date.day}/{current_date.year}"
 
         return formatted_date
 
@@ -639,10 +639,13 @@ class Template_Management_Android:
         return res
 
     def turn_on_wifi(self):
+        sleep(3)
         cmd = "adb shell svc wifi enable"
         common_method.run_the_command(cmd)
+        sleep(5)
 
     def turn_off_wifi(self):
+        sleep(2)
         command = "adb shell svc wifi disable"
 
         # Run the command
@@ -651,6 +654,7 @@ class Template_Management_Android:
         # Print the result
         print("Command output:")
         print(result.stdout)
+        sleep(5)
 
     def get_no_of_labels_left_in_print_page(self):
         try:

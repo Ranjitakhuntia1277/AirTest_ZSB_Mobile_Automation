@@ -635,7 +635,7 @@ def test_DataSources_TestcaseID_45737():
     else:
         raise Exception("The total number is not the same as your selected row amount")
     data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 90)
     sleep(3)
     data_sources_page.clickBackArrow()
     data_sources_page.checkIfDesignsLoaded()
@@ -674,7 +674,7 @@ def test_DataSources_TestcaseID_45737():
     else:
         raise Exception("The total number is not the same as your selected row amount")
     data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 60)
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete", 90)
     sleep(3)
     data_sources_page.clickBackArrow()
     login_page.click_Menu_HamburgerICN()
@@ -1029,34 +1029,34 @@ def test_DataSources_TestcaseID_45743():
     pass
 
     # local_path = "C:\\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\Recordings"
-    recording_process = start_screen_recording()
+    # recording_process = start_screen_recording()
     common_method.tearDown()
-    # """Click hamburger icon to expand menu"""
-    # login_page.click_Menu_HamburgerICN()
-    # """Click My Data"""
-    # data_sources_page.click_My_Data()
-    # sleep(3)
-    # """Click Add File"""
-    # data_sources_page.click_Add_File()
-    # sleep(2)
-    # """Click Upload file"""
-    # data_sources_page.click_Upload_File()
-    # sleep(5)
-    # """Select File to upload"""
-    # data_sources_page.selectUnSupportedFile()
-    # try:
-    #     common_method.wait_for_element_appearance("My Data")
-    #     x = 1 / 0
-    # except ZeroDivisionError:
-    #     raise Exception("Unsupported files are selectable.")
-    # except Exception as e:
-    #     pass
-    # keyevent("back")
-    # keyevent("back")
-    common_method.Stop_The_App()
-    stop_screen_recording()
+    """Click hamburger icon to expand menu"""
+    login_page.click_Menu_HamburgerICN()
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(3)
+    """Click Add File"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Upload file"""
+    data_sources_page.click_Upload_File()
     sleep(5)
-    pull_video_from_device()
+    """Select File to upload"""
+    data_sources_page.selectUnSupportedFile()
+    try:
+        common_method.wait_for_element_appearance("My Data")
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("Unsupported files are selectable.")
+    except Exception as e:
+        pass
+    keyevent("back")
+    keyevent("back")
+    common_method.Stop_The_App()
+    # stop_screen_recording()
+    # sleep(5)
+    # pull_video_from_device()
 
 
 def test_DataSources_TestcaseID_45745():

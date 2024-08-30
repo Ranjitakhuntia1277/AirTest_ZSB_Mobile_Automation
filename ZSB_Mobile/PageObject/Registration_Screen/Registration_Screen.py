@@ -384,7 +384,7 @@ class Registration_Screen:
         log_out_btn.click()
 
     def click_Google_Icon(self):
-        sleep(2)
+        sleep(3)
         try:
             touch(self.Google_Icon)
         except:
@@ -397,7 +397,14 @@ class Registration_Screen:
             else:
                 pocoElemnt.refresh()
                 pocoElemnt.click()
-            sleep(2)
+        sleep(2)
+
+    def check_if_user_navigated_to_sign_in_page(self):
+        sleep(15)
+        try:
+            self.wait_for_element_appearance_text("Sign in with Google", 20)
+        except:
+            raise Exception("Did not navigate to Sign In with google page")
 
     def click_Facebook_Icon(self):
         sleep(2)
@@ -1003,6 +1010,7 @@ class Registration_Screen:
 
     def complete_sign_in_with_email(self, user_name, password, click_on_sign_in=1, click_back=1, wrong_password=False,
                                     enter_only_password=False):
+        sleep(5)
         if click_back:
             keyevent("back")
         if not enter_only_password:
@@ -1034,6 +1042,7 @@ class Registration_Screen:
                     timeout=15)
             except:
                 raise Exception("Error message not displayed for wrong password.")
+        sleep(5)
 
     def check_if_user_navigated_to_sign_in_page(self):
         try:

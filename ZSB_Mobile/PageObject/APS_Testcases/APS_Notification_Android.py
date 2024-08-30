@@ -15,8 +15,14 @@ from pocoui_lib.android.kotoComponent import poco
 import os
 import subprocess
 
-def Basic_path(a):
-    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_APS_Testcases", a)
+import platform
+
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 class APS_Notification:
     pass

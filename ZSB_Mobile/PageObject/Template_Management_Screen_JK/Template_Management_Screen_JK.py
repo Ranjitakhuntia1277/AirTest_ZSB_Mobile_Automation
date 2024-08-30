@@ -56,16 +56,20 @@ class Template_Management_Screen:
         return a[1]
 
     def Turn_Off_wifi(self):
+        sleep(2)
         command = "adb shell svc wifi disable"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print("Command output:")
         print(result.stdout)
+        sleep(5)
 
     def Turn_ON_wifi(self):
+        sleep(2)
         command = "adb shell svc wifi enable"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print("Command output:")
         print(result.stdout)
+        sleep(5)
 
     def verify_default_sort_my_designs(self):
         return self.poco("Name (A to Z)").exists()
@@ -108,11 +112,13 @@ class Template_Management_Screen:
         sleep(2)
 
     def click_filter_my_designs(self, name=None):
+        sleep(2)
         if name is not None:
             if name == "All sizes":
                 self.poco("All sizes").click()
         else:
             self.poco(nameMatches="Name(.*)").parent().child()[3].click()
+        sleep(3)
 
     def waitForAppearanceOfCategories(self):
         sleep(10)
@@ -150,6 +156,7 @@ class Template_Management_Screen:
         self.poco("android.view.View").child(type="android.widget.ImageView").wait_for_appearance(timeout=10)
 
     def get_all_designs_in_my_designs(self, name=False):
+        sleep(5)
         first_design = self.poco("android.view.View").child(type="android.widget.ImageView").get_name()
         total = []
         prev = []
@@ -396,11 +403,13 @@ class Template_Management_Screen:
             return True
 
     def select_label_size(self):
+        sleep(2)
         size = self.poco("android.view.View")[6].child()[1].get_name()
         self.poco("android.view.View")[6].child()[1].click()
         return size
 
     def verify_search_placeholder(self):
+        sleep(3)
         return assert_exists(self.Search_place_holder, "Search design place holder present.")
 
     def verify_search_drop_down_results(self, search_text):
@@ -649,6 +658,7 @@ class Template_Management_Screen:
         return assert_exists(self.Search_place_holder, "Search placeholder is present")
 
     def verifySearchIcon(self):
+        sleep(3)
         return assert_exists(self.Search_icon, "Search icon is present")
 
     def checkIfElementIsPresent(self, element):

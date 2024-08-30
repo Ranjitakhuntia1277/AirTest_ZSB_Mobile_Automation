@@ -12,8 +12,14 @@ from ...PageObject.Login_Screen import Login_Screen
 
 
 
-def Basic_path(a):
-    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",a)
+import platform
+
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 class Others:
     pass
 
