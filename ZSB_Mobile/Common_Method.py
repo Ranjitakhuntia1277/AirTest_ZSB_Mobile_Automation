@@ -35,6 +35,10 @@ from poco import poco
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
+
+
+
+
 # from test.body import poco
 
 
@@ -1134,16 +1138,14 @@ class Common_Method():
                 raise Exception(error_array)
 
     def disable_wifi(self):
-        try:
-            os.system('adb shell svc wifi disable')  # turn off Wi-Fi
-        except Exception as e:
-            pass
+        sleep(2)
+        cmd = "adb shell svc wifi disable"
+        subprocess.run(cmd, shell=True)
 
     def enable_wifi(self):
-        try:
-            os.system('adb shell svc wifi enable')  # turn off Wi-Fi
-        except Exception as e:
-            pass
+        sleep(2)
+        cmd = "adb shell svc wifi enable"
+        subprocess.run(cmd, shell=True)
 
     def Display_Popup_On_The_Screen(self):
         toast_message = "Cover Open"
@@ -1558,4 +1560,4 @@ class Common_Method():
         swipe((start_x, start_y), (end_x, end_y), duration=0.5)
         self.poco.swipe((500, 200), (500, 1000))
 
-
+    # ##-------------------------------------------------------------------------------------------------
