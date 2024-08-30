@@ -368,6 +368,294 @@ def test_Template_Management_TestcaseID_45932():
     tm_a.test_Template_Management_TestcaseID_45932()
 
 
+"""Ranjita code"""
+
+
+def test_Smoke_Test_TestcaseID_45880():
+    """Verify sign in with non-zebra account, check the design linked different format file from local can be printed out successfully"""
+
+    #
+    """""Sign in the same account on Web portal, create design1, add text object, and link Local file with csv format.
+    Create design2, add text object, and link local file with xlsx format"""
+
+    common_method.tearDown()
+    data_sources_page.log_out_of_account()
+    common_method.Clear_App()
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    registration_page.click_Google_Icon()
+    login_page.Loginwith_Added_Email_Id()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_My_Design()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    """"Verify manually it should print successfully"""
+    sleep(5)
+    data_sources_page.clickBackArrow()
+    add_a_printer_screen.click_SecondOne_In_MyDesign()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Print_Button()
+    """"Verify manually it should print successfully"""
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    common_method.Stop_The_App()
+
+
+# #
+# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def test_Smoke_Test_TestcaseID_45890():
+    """	Print template with static information in Recently Printed Template list"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    data_sources_page.checkIfOnHomePage()
+    previous = app_settings_page.Check_no_of_left_cartridge()
+    print(previous)
+
+    """click on navigation option"""
+    login_page.click_Menu_HamburgerICN()
+
+    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    sleep(2)
+    n = 2
+
+    """test the printer to print the label"""
+    for i in range(n):
+        app_settings_page.click_Test_Print_Button()
+        sleep(2)
+
+    sleep(1)
+    """Go to the Home Page"""
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    sleep(2)
+
+    """After printing Get the number of cartridges"""
+    after = app_settings_page.Check_no_of_left_cartridge()
+    print(after)
+
+    """Check wheather the cartridges are updated or not"""
+    res = app_settings_page.check_update_cartridge(previous, after, n)
+    if res:
+        print("success")
+    else:
+        print("Failed")
+    common_method.Stop_The_App()
+
+
+#
+# # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+def test_Smoke_Test_TestcaseID_45891():
+    """	Print multiple copies of template with variable data in Workspace"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    data_sources_page.checkIfOnHomePage()
+    app_settings_page.click_Firstone_In_Recently_Prtinted_Label()
+    smoke_test_android.click_Print_Button()
+    smoke_test_android.click_And_Enter_Copies_Number_Field()
+    smoke_test_android.click_Second_Print_Button()
+    app_settings_page.click_Keyboard_back_Icon()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    previous = app_settings_page.Check_no_of_left_cartridge()
+    print(previous)
+
+    """click on navigation option"""
+    login_page.click_Menu_HamburgerICN()
+
+    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    sleep(2)
+    n = 2
+
+    """test the printer to print the label"""
+    for i in range(n):
+        app_settings_page.click_Test_Print_Button()
+        sleep(2)
+
+    sleep(1)
+    """Go to the Home Page"""
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    sleep(2)
+
+    """After printing Get the number of cartridges"""
+    after = app_settings_page.Check_no_of_left_cartridge()
+    print(after)
+
+    """Check wheather the cartridges are updated or not"""
+    res = app_settings_page.check_update_cartridge(previous, after, n)
+    if res:
+        print("success")
+    else:
+        print("Failed")
+    common_method.Stop_The_App()
+
+
+# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+def test_Smoke_Test_TestcaseID_45892():
+    """	Delete template in Workspace"""
+
+    """"Setup:
+    1. There is an existing template in My Designs."""""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_My_Design()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    smoke_test_android.click_Delete_Button_On_MyDesign()
+    smoke_test_android.click_Cancel_Button_On_Delete_Popup()
+    add_a_printer_screen.click_FirstOne_In_MyDesign()
+    smoke_test_android.click_Delete_Button_On_MyDesign()
+    smoke_test_android.Click_Delete_Button_On_Delete_Popup()
+    data_sources_page.verify_design_successfully_removed_message()
+    smoke_test_android.Verify_Deleted_Successfully_Message()
+    common_method.Stop_The_App()
+
+
+#
+# #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+def test_Smoke_Test_TestcaseID_45893():
+    """	To Verify View Zebra defined categories in Common Designs"""
+    #
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    smoke_test_android.Verify_List_Is_Sorted_From_A_TO_Z()
+    smoke_test_android.get_all_designs_in_Common_Designs()
+    common_method.Stop_The_App()
+
+
+#
+#
+# #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+def test_Smoke_Test_TestcaseID_45894():
+    """	View list of Zebra templates in Common Designs"""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
+    add_a_printer_screen.click_FirstOne_In_Common_Design()
+    app_settings_page.click_Keyboard_back_Icon()
+    smoke_test_android.click_Back_Icon_On_Address_Screen()
+    smoke_test_android.Verify_Common_Design_Page_Is_Displaying()
+    smoke_test_android.Verify_List_Is_Sorted_From_A_TO_Z()
+    smoke_test_android.get_all_designs_in_Common_Designs()
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
+    add_a_printer_screen.click_FirstOne_In_Common_Design()
+    smoke_test_android.Verify_Copy_To_My_Design_Text_Is_Present()
+    app_settings_page.click_Keyboard_back_Icon()
+    smoke_test_android.click_Back_Icon_On_Address_Screen()
+    smoke_test_android.Verify_Common_Design_Page_Is_Displaying()
+    common_method.Stop_The_App()
+
+
+# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+def test_Smoke_Test_TestcaseID_45895():
+    """Print Zebra templates after Copy the template which needs to upload a picture from Library to Workspace (eg: Address->AddressWithIcon; Small Multipurpose->pickImage)"""
+
+    #
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    data_sources_page.checkIfOnHomePage()
+    previous = app_settings_page.Check_no_of_left_cartridge()
+    print(previous)
+
+    """click on navigation option"""
+    login_page.click_Menu_HamburgerICN()
+
+    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
+    app_settings_page.click_Printer_Settings()
+    app_settings_page.click_PrinterName_On_Printersettings()
+    sleep(2)
+    n = 2
+
+    """test the printer to print the label"""
+    for i in range(n):
+        app_settings_page.click_Test_Print_Button()
+        sleep(2)
+
+    sleep(1)
+    """Go to the Home Page"""
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_Home_Tab()
+    sleep(2)
+
+    """After printing Get the number of cartridges"""
+    after = app_settings_page.Check_no_of_left_cartridge()
+    print(after)
+
+    """Check wheather the cartridges are updated or not"""
+    res = app_settings_page.check_update_cartridge(previous, after, n)
+    if res:
+        print("success")
+    else:
+        print("Failed")
+    common_method.Stop_The_App()
+    #
+
+
+# # # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#
+#
+def test_Smoke_Test_TestcaseID_45896():
+    """Print a label from Common Design."""
+
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    add_a_printer_screen.click_Common_Design_Tab()
+    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
+    add_a_printer_screen.click_FirstOne_In_Common_Design()
+    add_a_printer_screen.click_Print_Option()
+    add_a_printer_screen.click_Text_Field_To_Edit()
+    add_a_printer_screen.click_Print_Button()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    """Verify manually it should print successfully"""
+    """"point 4 is blocked due to SMB-1664"""""
+    common_method.Stop_The_App()
+
+
 # hello
 
 """JayKirans Code"""
@@ -535,18 +823,18 @@ def test_Template_Management_TestcaseID_46032():
     data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    sleep(2)
+    sleep(4)
     if poco("Accept").exists():
         template_management_page.clickAccept()
     """ Office 365 contacts """
     account = "zebra03.swdvt@gmail.com"
     data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
-    sleep(5)
+    sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     data_sources_page.scroll_till_print()
     number_of_labels = int(template_management_page.get_total_labels_printing())
-    if int(number_of_labels) == 15:
+    if number_of_labels == 15:
         pass
     else:
         if int(number_of_labels) > 15:
@@ -623,6 +911,7 @@ def test_Template_Management_TestcaseID_46016():
     """"""
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     uploaded_file = "csv_file.csv"
     """Upload file for execution"""
     login_page.click_Menu_HamburgerICN()
@@ -644,7 +933,7 @@ def test_Template_Management_TestcaseID_46016():
     data_sources_page.clickPrint()
     template_management_page.checkManualInput_checkbox()
     data_sources_page.clickContinue()
-    sleep(3)
+    sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     """cannot verify this part of step 6"""
     """check that no value shown in the variables in the preview dialog"""
@@ -673,6 +962,7 @@ def test_Template_Management_TestcaseID_46016():
 def test_Template_Management_TestcaseID_46019():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Step 1-4 pending due to web inconsistency"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
@@ -752,6 +1042,7 @@ def test_Template_Management_TestcaseID_47791():
     # keyevent("Back")
     # """"""
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.searchMyDesigns("47791")
@@ -776,6 +1067,7 @@ def test_Template_Management_TestcaseID_47824():
     status"""
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -784,7 +1076,7 @@ def test_Template_Management_TestcaseID_47824():
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
     registration_page.wait_for_element_appearance("Print")
-    sleep(5)
+    sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     data_sources_page.scroll_till_print()
     registration_page.wait_for_element_appearance("Print")
@@ -805,6 +1097,7 @@ def test_Template_Management_TestcaseID_47947():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -842,6 +1135,7 @@ def test_Template_Management_TestcaseID_48548():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     """Search and select design created in web"""
@@ -979,6 +1273,7 @@ def test_Template_Management_TestcaseID_48548():
 def test_Template_Management_TestcaseID_46005():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -1003,6 +1298,7 @@ def test_Template_Management_TestcaseID_46023():
 
     "Step 1- 4 pending due to web inconsistency"
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger menu"""
     login_page.click_Menu_HamburgerICN()
     """clickMy designs"""
@@ -1150,6 +1446,7 @@ def test_Template_Management_TestcaseID_46024():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -1252,6 +1549,7 @@ def test_Template_Management_TestcaseID_46024():
     data_sources_page.clickBackArrow()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickHome()
+    data_sources_page.checkIfOnHomePage()
     prints_left = template_management_page.get_Labels_left_in_printer_info()
     print(prints_left)
     if str(new_remaining_label_1) in prints_left:
@@ -1265,7 +1563,7 @@ def test_Template_Management_TestcaseID_46033():
 
     """Step 1-5 pending due to web automation"""
     common_method.tearDown()
-    registration_page.wait_for_element_appearance("Home", 20)
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.clickMyDesigns()
@@ -1275,7 +1573,13 @@ def test_Template_Management_TestcaseID_46033():
     data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    sleep(2)
+    sleep(4)
+    if poco("Accept").exists():
+        template_management_page.clickAccept()
+    """ Office 365 contacts """
+    account = "zebra03.swdvt@gmail.com"
+    if data_sources_page.check_if_asked_to_login_in_microsoft():
+        data_sources_page.signInWithMicrosoft(account, "Zebra#123456789", False)
     try:
         common_method.wait_for_element_appearance_namematches("Label", 20)
     except:
@@ -1323,6 +1627,7 @@ def test_Template_Management_TestcaseID_46018():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Step 1-4 pending due to web inconsistency"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
@@ -1375,6 +1680,7 @@ def test_Template_Management_TestcaseID_46017():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Step 1-4 pending due to web inconsistency"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
@@ -1463,7 +1769,7 @@ def test_Template_Management_TestcaseID_46027():
     data_sources_page.checkIfDesignsLoaded()
     data_sources_page.selectDesignCreatedAtSetUp()
     data_sources_page.clickPrint()
-    sleep(2)
+    sleep(4)
     if poco("Accept").exists():
         template_management_page.clickAccept()
     """ google contacts """
@@ -1519,7 +1825,7 @@ def test_Template_Management_TestcaseID_46028():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
     except:
         raise Exception("Google Login dialog popped up even after google account already login")
-    sleep(5)
+    sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     data_sources_page.scroll_till_print()
     number_of_labels = int(template_management_page.get_total_labels_printing())
@@ -1563,6 +1869,7 @@ def test_Template_Management_TestcaseID_46020():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Step 1-4 pending due to web inconsistency - has to be executed manually"""
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
@@ -1667,6 +1974,7 @@ def test_Template_Management_TestcaseID_46022():
     # data_sources_page.setLabelName(label_name)
     # data_sources_page.exitDesigner()
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     poco("Open navigation menu").wait_for_appearance(timeout=10)
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -1754,6 +2062,7 @@ def test_Template_Management_TestcaseID_46026():
     # data_sources_page.remove_File_Web()
     # stop_app("com.android.chrome")
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     common_method.wait_for_element_appearance_namematches("Open navigation menu")
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -1785,8 +2094,8 @@ def test_Template_Management_TestcaseID_46026():
     data_sources_page.clickLabelRange()
     """Cannot verify \"check that all the columns and rows of the new data source file are shown in the table\""""
     data_sources_page.clickBackArrow()
-    # data_sources_page.clickPrint()
-    # template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    data_sources_page.clickPrint()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     sleep(3)
     data_sources_page.clickBackArrow()
     """Re-upload file for next execution"""
@@ -1823,6 +2132,7 @@ def test_Template_Management_TestcaseID_46026():
 def test_Template_Management_TestcaseID_50656():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -1926,9 +2236,8 @@ def test_Template_Management_TestcaseID_50656():
         template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     except:
         raise Exception("Print not successful.")
-    data_sources_page.clickBackArrow()
-    login_page.click_Menu_HamburgerICN()
-    data_sources_page.clickHome()
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     registration_page.wait_for_element_appearance("Recently Printed Labels", 20)
     raise Exception("Recently printed label has a bug SMBM-1748 hence unable to proceed.")
     """Yet to execute as recently printed labels has bug"""
@@ -1962,7 +2271,8 @@ def test_Template_Management_TestcaseID_47792():
     pass
 
     "Step 1-3 pending due to web inconsistency"
-    common_method.Start_The_App()
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     common_method.wait_for_element_appearance_namematches("Showing", 10)
@@ -2056,6 +2366,7 @@ def test_Template_Management_TestcaseID_45982():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -2117,6 +2428,7 @@ def test_Template_Management_TestcaseID_45983():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -2152,6 +2464,7 @@ def test_Template_Management_TestcaseID_45984():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -2206,6 +2519,7 @@ def test_Template_Management_TestcaseID_45984():
 def test_Template_Management_TestcaseID_45985():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
@@ -2247,6 +2561,7 @@ def test_Template_Management_TestcaseID_45985():
 def test_Template_Management_TestcaseID_45987():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2307,6 +2622,7 @@ def test_Template_Management_TestcaseID_45987():
 def test_Template_Management_TestcaseID_45988():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2366,6 +2682,7 @@ def test_Template_Management_TestcaseID_45988():
 def test_Template_Management_TestcaseID_45989():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2418,6 +2735,7 @@ def test_Template_Management_TestcaseID_45989():
 def test_Template_Management_TestcaseID_45990():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2477,6 +2795,7 @@ def test_Template_Management_TestcaseID_45990():
 def test_Template_Management_TestcaseID_45991():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2536,6 +2855,7 @@ def test_Template_Management_TestcaseID_45991():
 def test_Template_Management_TestcaseID_45992():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2593,6 +2913,7 @@ def test_Template_Management_TestcaseID_45992():
 def test_Template_Management_TestcaseID_45993():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2652,18 +2973,21 @@ def test_Template_Management_TestcaseID_45993():
 def test_Template_Management_TestcaseID_45994():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     template_management_page.Turn_Off_wifi()
-    sleep(5)
     try:
-        poco(nameMatches="(?s).*An error occurred when loading your designs. Please tap to try again.*").wait_for_appearance(timeout=20)
-        template_management_page.Turn_ON_wifi()
-        x=1/0
+        poco(
+            nameMatches="(?s).*An error occurred when loading your designs. Please tap to try again.*").wait_for_appearance(
+            timeout=20)
+        x = 1 / 0
     except ZeroDivisionError:
+        template_management_page.Turn_ON_wifi()
         raise Exception("Blocked due to bug SMBM-1774")
     except Exception as e:
         pass
+    template_management_page.click_filter_my_designs()
     label_size = template_management_page.select_label_size()
     sleep(3)
     template_management_page.Turn_ON_wifi()
@@ -2673,7 +2997,7 @@ def test_Template_Management_TestcaseID_45994():
     if template_management_page.verify_connection_error_app():
         pass
     else:
-        raise Exception("Connection lost error not displayed.")
+        raise Exception("Connection lost error not displayed(SMBM-1774).")
     template_management_page.click_filter_my_designs()
     label_size = template_management_page.select_label_size()
     template_management_page.wait_for_appearance_designs_in_a_particular_category()
@@ -2686,6 +3010,10 @@ def test_Template_Management_TestcaseID_45994():
         raise Exception("Count in title doesn't match the number of designs.")
     template_management_page.Turn_Off_wifi()
     template_management_page.search_design_common_designs(design_name)
+    """"""
+    """Remove after bug is resolved"""
+    template_management_page.Turn_ON_wifi()
+    """"""
     raise Exception("Blocked due to bug SMBM-1774")
     """Step 8-10 pending due to bug SMBM-1774"""
     sleep(3)
@@ -2727,7 +3055,9 @@ def test_Template_Management_TestcaseID_45994():
 
 def test_Template_Management_TestcaseID_46010():
     pass
+    template_management_page.Turn_ON_wifi()
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2803,6 +3133,7 @@ def test_Template_Management_TestcaseID_46010():
 def test_Template_Management_TestcaseID_46014():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
@@ -2920,7 +3251,7 @@ def test_Template_Management_TestcaseID_46014():
 #     data_sources_page.checkIfDesignsLoaded()
 #     data_sources_page.selectDesignCreatedAtSetUp()
 #     data_sources_page.clickPrint()
-#     sleep(2)
+#     sleep(4)
 #     if poco("Accept").exists():
 #         template_management_page.clickAccept()
 #     data_sources_page.chooseAccToLinkFile(account)
@@ -3009,7 +3340,7 @@ def test_Template_Management_TestcaseID_46014():
 #     template_management_page_1.click_first_design_in_recently_printed_labels()
 #     data_sources_page.clickPrint()
 #     template_management_page_1.wait_for_element_appearance_name_matches_all("Label", 20)
-#     sleep(5)
+#     sleep(10)
 #     data_sources_page.verifyIfPreviewIsPresent()
 #     data_sources_page.scroll_till_print()
 #     number_of_labels = int(template_management_page.get_total_labels_printing())
@@ -3036,6 +3367,7 @@ def test_Template_Management_TestcaseID_45966():
     """Scroll design list in My Designs with more than 100 designs"""
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     registration_page.scroll_till_log_out()
@@ -3095,7 +3427,7 @@ def test_Template_Management_TestcaseID_46037():
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
-    initial_design_count = template_management_page.get_all_designs_in_my_designs()
+    initial_design_count = len(template_management_page.get_all_designs_in_my_designs())
     designName = "ZZZ_Test"
     """Step 1-4 pending due to web inconsistency - has to be done manually"""
     sleep(2)
@@ -3122,9 +3454,9 @@ def test_Template_Management_TestcaseID_46037():
         scroll_view.swipe("up")
     template_management_page.verify_My_Designs_pagination()
     template_management_page.verify_pagination_shown_is_correct()
-    # data_sources_page.clickCreateDesignBtn()
-    # data_sources_page.lock_phone()
-    # wake()
+    data_sources_page.clickCreateDesignBtn()
+    data_sources_page.lock_phone()
+    wake()
     """Step 4 pending due to web inconsistency."""
     stop_app("com.android.chrome")
     data_sources_page.checkIfDesignsLoaded()
@@ -3150,6 +3482,7 @@ def test_Template_Management_TestcaseID_46038():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -3171,6 +3504,7 @@ def test_Template_Management_TestcaseID_46039():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -3221,6 +3555,7 @@ def test_Template_Management_TestcaseID_46040():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -3267,6 +3602,7 @@ def test_Template_Management_TestcaseID_46041():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Open My designs"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
@@ -3318,6 +3654,7 @@ def test_Template_Management_TestcaseID_47941():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
     try:
@@ -3355,6 +3692,7 @@ def test_Template_Management_TestcaseID_47941():
 #     pass
 #
 #     common_method.tearDown()
+#     data_sources_page.checkIfOnHomePage()
 #     login_page.click_Menu_HamburgerICN()
 #     template_management_page.clickCommonDesigns()
 #     data_sources_page.searchName("Label", False)
@@ -3458,6 +3796,7 @@ def test_Template_Management_TestcaseID_45979():
     """Search designs in My Designs with more than 100 designs in the list"""
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     template_management_page.verify_search_placeholder()
@@ -3505,6 +3844,7 @@ def test_Template_Management_TestcaseID_45965():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     registration_page.scroll_till_log_out()
@@ -3560,6 +3900,8 @@ def test_Template_Management_TestcaseID_45965():
 
 
 """Semi Automated"""
+
+
 #
 #
 # def test_Template_Management_TestcaseID_45921():
@@ -3593,6 +3935,7 @@ def test_Template_Management_TestcaseID_46025():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     categories = ["Address", "Barcodes", "Jewelry", "Multipurpose/Name Tag", "Postage/Shipping",
                   "Return Address/File Folder", "Round", "Shipping", "Small Multipurpose", "XL Shipping"]
     for i in range(2):
@@ -3621,11 +3964,11 @@ def test_Template_Management_TestcaseID_46025():
             poco.scroll()
         poco.scroll()
         template_management_page.wait_for_appearance_enabled("Print")
-        # data_sources_page.clickPrint()
-        # try:
-        #     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-        # except:
-        #     pass
+        data_sources_page.clickPrint()
+        try:
+            template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+        except:
+            pass
         sleep(5)
         data_sources_page.clickBackArrow()
         login_page.click_Menu_HamburgerICN()
@@ -3648,279 +3991,6 @@ def test_Template_Management_TestcaseID_46025():
 
 # ###"""""""""""""""""""""""""""""""""""""""""""""""End""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # #####""""""""""""""""""""""""""""""""Smoketestcases""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_Smoke_Test_TestcaseID_45880():
-    """Verify sign in with non-zebra account, check the design linked different format file from local can be printed out successfully"""
-
-    #
-    """""Sign in the same account on Web portal, create design1, add text object, and link Local file with csv format.
-    Create design2, add text object, and link local file with xlsx format"""
-
-    common_method.tearDown()
-    data_sources_page.log_out_of_account()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    registration_page.click_Google_Icon()
-    login_page.Loginwith_Added_Email_Id()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_My_Design()
-    add_a_printer_screen.click_FirstOne_In_MyDesign()
-    add_a_printer_screen.click_Print_Option()
-    add_a_printer_screen.click_Print_Button()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    """"Verify manually it should print successfully"""
-    add_a_printer_screen.click_The_Back_Icon_Of_Print_Review_Screen()
-    add_a_printer_screen.click_SecondOne_In_MyDesign()
-    add_a_printer_screen.click_Print_Option()
-    add_a_printer_screen.click_Print_Button()
-    """"Verify manually it should print successfully"""
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    common_method.Stop_The_App()
-
-
-# #
-# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-# ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-def test_Smoke_Test_TestcaseID_45890():
-    """	Print template with static information in Recently Printed Template list"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    previous = app_settings_page.Check_no_of_left_cartridge()
-    print(previous)
-
-    """click on navigation option"""
-    login_page.click_Menu_HamburgerICN()
-
-    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
-    app_settings_page.click_Printer_Settings()
-    app_settings_page.click_PrinterName_On_Printersettings()
-    sleep(2)
-    n = 2
-
-    """test the printer to print the label"""
-    for i in range(n):
-        app_settings_page.click_Test_Print_Button()
-        sleep(2)
-
-    sleep(1)
-    """Go to the Home Page"""
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Home_Tab()
-    sleep(2)
-
-    """After printing Get the number of cartridges"""
-    after = app_settings_page.Check_no_of_left_cartridge()
-    print(after)
-
-    """Check wheather the cartridges are updated or not"""
-    res = app_settings_page.check_update_cartridge(previous, after, n)
-    if res:
-        print("success")
-    else:
-        print("Failed")
-    common_method.Stop_The_App()
-
-
-#
-# # #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-def test_Smoke_Test_TestcaseID_45891():
-    """	Print multiple copies of template with variable data in Workspace"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    app_settings_page.click_Firstone_In_Recently_Prtinted_Label()
-    smoke_test_android.click_Print_Button()
-    smoke_test_android.click_And_Enter_Copies_Number_Field()
-    smoke_test_android.click_Second_Print_Button()
-    app_settings_page.click_Keyboard_back_Icon()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Home_Tab()
-    previous = app_settings_page.Check_no_of_left_cartridge()
-    print(previous)
-
-    """click on navigation option"""
-    login_page.click_Menu_HamburgerICN()
-
-    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
-    app_settings_page.click_Printer_Settings()
-    app_settings_page.click_PrinterName_On_Printersettings()
-    sleep(2)
-    n = 2
-
-    """test the printer to print the label"""
-    for i in range(n):
-        app_settings_page.click_Test_Print_Button()
-        sleep(2)
-
-    sleep(1)
-    """Go to the Home Page"""
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Home_Tab()
-    sleep(2)
-
-    """After printing Get the number of cartridges"""
-    after = app_settings_page.Check_no_of_left_cartridge()
-    print(after)
-
-    """Check wheather the cartridges are updated or not"""
-    res = app_settings_page.check_update_cartridge(previous, after, n)
-    if res:
-        print("success")
-    else:
-        print("Failed")
-    common_method.Stop_The_App()
-
-
-# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-def test_Smoke_Test_TestcaseID_45892():
-    """	Delete template in Workspace"""
-
-    """"Setup:
-    1. There is an existing template in My Designs."""""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_My_Design()
-    add_a_printer_screen.click_FirstOne_In_MyDesign()
-    smoke_test_android.click_Delete_Button_On_MyDesign()
-    smoke_test_android.click_Cancel_Button_On_Delete_Popup()
-    add_a_printer_screen.click_FirstOne_In_MyDesign()
-    smoke_test_android.click_Delete_Button_On_MyDesign()
-    smoke_test_android.Click_Delete_Button_On_Delete_Popup()
-    smoke_test_android.Verify_Deleted_Successfully_Message()
-    common_method.Stop_The_App()
-
-
-#
-# #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-def test_Smoke_Test_TestcaseID_45893():
-    """	To Verify View Zebra defined categories in Common Designs"""
-    #
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    add_a_printer_screen.click_Common_Design_Tab()
-    smoke_test_android.Verify_List_Is_Sorted_From_A_TO_Z()
-    smoke_test_android.get_all_designs_in_Common_Designs()
-    common_method.Stop_The_App()
-
-
-#
-#
-# #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-#
-def test_Smoke_Test_TestcaseID_45894():
-    """	View list of Zebra templates in Common Designs"""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    add_a_printer_screen.click_Common_Design_Tab()
-    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
-    add_a_printer_screen.click_FirstOne_In_Common_Design()
-    app_settings_page.click_Keyboard_back_Icon()
-    smoke_test_android.click_Back_Icon_On_Address_Screen()
-    smoke_test_android.Verify_Common_Design_Page_Is_Displaying()
-    smoke_test_android.Verify_List_Is_Sorted_From_A_TO_Z()
-    smoke_test_android.get_all_designs_in_Common_Designs()
-    common_method.tearDown()
-    login_page.click_Menu_HamburgerICN()
-    add_a_printer_screen.click_Common_Design_Tab()
-    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
-    add_a_printer_screen.click_FirstOne_In_Common_Design()
-    smoke_test_android.Verify_Copy_To_My_Design_Text_Is_Present()
-    app_settings_page.click_Keyboard_back_Icon()
-    smoke_test_android.click_Back_Icon_On_Address_Screen()
-    smoke_test_android.Verify_Common_Design_Page_Is_Displaying()
-    common_method.Stop_The_App()
-
-
-# # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-#
-def test_Smoke_Test_TestcaseID_45895():
-    """Print Zebra templates after Copy the template which needs to upload a picture from Library to Workspace (eg: Address->AddressWithIcon; Small Multipurpose->pickImage)"""
-
-    #
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    previous = app_settings_page.Check_no_of_left_cartridge()
-    print(previous)
-
-    """click on navigation option"""
-    login_page.click_Menu_HamburgerICN()
-
-    """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
-    app_settings_page.click_Printer_Settings()
-    app_settings_page.click_PrinterName_On_Printersettings()
-    sleep(2)
-    n = 2
-
-    """test the printer to print the label"""
-    for i in range(n):
-        app_settings_page.click_Test_Print_Button()
-        sleep(2)
-
-    sleep(1)
-    """Go to the Home Page"""
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Home_Tab()
-    sleep(2)
-
-    """After printing Get the number of cartridges"""
-    after = app_settings_page.Check_no_of_left_cartridge()
-    print(after)
-
-    """Check wheather the cartridges are updated or not"""
-    res = app_settings_page.check_update_cartridge(previous, after, n)
-    if res:
-        print("success")
-    else:
-        print("Failed")
-    common_method.Stop_The_App()
-    #
-
-
-# # # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#
-#
-def test_Smoke_Test_TestcaseID_45896():
-    """Print a label from Common Design."""
-
-    common_method.tearDown()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    add_a_printer_screen.click_Common_Design_Tab()
-    add_a_printer_screen.click_FirstOne_Design_In_Common_Design()
-    add_a_printer_screen.click_FirstOne_In_Common_Design()
-    add_a_printer_screen.click_Print_Option()
-    add_a_printer_screen.click_Text_Field_To_Edit()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    add_a_printer_screen.click_Print_Button()
-    """Verify manually it should print successfully"""
-    """"point 4 is blocked due to SMB-1664"""""
-    common_method.Stop_The_App()
 
 
 def test_Smoke_Test_TestcaseID_45881():

@@ -284,7 +284,7 @@ def test_AppSettings_TestcaseID_45688():
     """""Install the latest production app on the phone & printer should be added and it should be connected to wifi"""""""""
     """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
     #
-    # :
+    #
     """""Check whether App is installed or not"""
     common_method.tearDown()
     """" Allow pop up before login for the fresh installation"""""

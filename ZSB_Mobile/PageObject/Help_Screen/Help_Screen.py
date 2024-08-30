@@ -199,10 +199,11 @@ class Help_Screen:
         self.poco(text="Continue").click()
 
     def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
-
+        sleep(7)
         account = self.poco(text=Acc_Name)
         count = 0
         while not account.exists() and count <= 2:
+            sleep(2)
             self.poco.scroll()
             count += 1
         account.click()
@@ -211,7 +212,7 @@ class Help_Screen:
             self.clickContinueWeb()
         elif self.poco(text= "Sign in to ZSB Series").exists():
             self.clickContinueWeb()
-        sleep(3)
+        sleep(5)
 
     def swipeLeft(self):
         disp = current_device().display_info
