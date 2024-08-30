@@ -814,6 +814,16 @@ class Data_Sources_Screen:
         if self.poco("Continue").exists():
             self.clickContinue()
 
+    def check_if_asked_to_login_in_microsoft(self):
+        sleep(3)
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
+        if self.poco(text="Sign in").exists():
+            return True
+        return False
+
     def enterMicrosoftUsername(self, username):
         sleep(3)
         self.Turn_Off_The_Phone()
@@ -922,7 +932,7 @@ class Data_Sources_Screen:
         sleep(2)
 
     def clickBackArrow(self):
-        sleep(2)
+        sleep(8)
         back_arrow = self.poco(name="android.widget.Button", enabled=True)
         back_arrow.wait_for_appearance(timeout=20)
         back_arrow.click()
@@ -1047,9 +1057,11 @@ class Data_Sources_Screen:
         raise Exception(file_name + " File not present")
 
     def clickHome(self):
+        sleep(3)
         home_btn = self.poco(self.Home)
         home_btn.wait_for_appearance(timeout=10)
         home_btn.click()
+        sleep(4)
 
     def verify_Remove_File_Warning(self, file_type):
         if file_type == "Local File":
@@ -1824,10 +1836,15 @@ class Data_Sources_Screen:
             raise Exception("Not in Login page")
 
     def checkIfOnHomePage(self):
+        sleep(10)
+        continue_btn = self.poco("Continue")
+        if continue_btn.exists():
+            continue_btn.click()
         try:
             self.poco("Home").wait_for_appearance(timeout=20)
         except:
             raise Exception("Did not reach home page.")
+        sleep(2)
 
     def checkIfOnHomePageWeb(self):
         try:
@@ -1892,4 +1909,7 @@ class Data_Sources_Screen:
                 except:
                     pass
         sleep(3)
+
+    def verify_design_successfully_removed_message(self):
+        self.poco(nameMatches="(?s).*has been successfully removed.*").wait_for_appearance(timeout=20)
 

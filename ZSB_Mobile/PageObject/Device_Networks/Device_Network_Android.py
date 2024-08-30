@@ -5,13 +5,19 @@ from airtest.core.android import Android
 from airtest.core.api import *
 from airtest.core.cv import Template
 from poco import poco
-from ZSB_Mobile.Common_Method import Common_Method
+from ...Common_Method import Common_Method
 from airtest.core.api import device as current_device
 import os
 
 
-def Basic_path(a):
-    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",a)
+import platform
+
+if platform.system() == "Windows":
+    def Basic_path(a):
+        return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
+else:
+    def Basic_path(a):
+        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 class Device_Networks_Android:
     pass
 
