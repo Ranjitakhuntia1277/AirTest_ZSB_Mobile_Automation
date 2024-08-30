@@ -63,6 +63,13 @@ class Login_Screen:
         if self.poco(text="Continue with Google").exists():
             self.poco(text="Continue with Google").click()
             sleep(14)
+        else:
+            self.close_app_reopen_and_click_sign_in()
+            self.poco(text="Continue with Google").click()
+        print("Successfully clicked Sign In With Google")
+        sleep(2)
+
+
 
 
     def Loginwith_Added_Email_Id(self):
@@ -329,9 +336,46 @@ class Login_Screen:
         keyevent("Enter")
         sleep(2)
 
+
+
     def allowPermissions(self):
         try:
             self.poco(text="While using the app").wait_for_appearance(timeout=15)
             self.poco(text="While using the app").click()
         except:
             pass
+
+
+
+    def BugFix_For_Google(self):
+        sleep(10)
+        login_btn = self.poco(self.loginBtn)
+        if login_btn.exists():
+            login_btn.click()
+            sleep(1)
+            self.Verify_ALL_Allow_Popups()
+            sleep(20)
+            self.click_Loginwith_Google()
+            sleep(9)
+            self.Loginwith_Added_Email_Id()
+        else:
+            pass
+
+    def BugFix_For_ZebraEmail(self):
+        sleep(10)
+        login_btn = self.poco(self.loginBtn)
+        if login_btn.exists():
+            login_btn.click()
+            sleep(1)
+            self.Verify_ALL_Allow_Popups()
+            sleep(20)
+            self.signInWithEmail()
+            sleep(10)
+            self.click_Login_With_Email_Tab()
+            self.click_Password_TextField()
+            self.Enter_Zebra_Password()
+            self.click_SignIn_Button()
+            sleep(2)
+
+        else:
+              pass

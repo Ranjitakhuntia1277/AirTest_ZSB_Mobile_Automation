@@ -911,6 +911,8 @@ class Registration_Screen:
         if zebra_login.exists():
             zebra_login.click()
             sleep(2)
+            self.poco(name="username").click()
+            sleep(1)
             self.poco(text(""))
             self.poco(text("soho_dvtxxxxx@hotmail.com"))
             sleep(1)
@@ -920,13 +922,13 @@ class Registration_Screen:
             sleep(10)
             self.poco(text="Sign In with your email").click()
             sleep(2)
+            self.poco(name="username").click()
+            sleep(1)
             self.poco(text(""))
             self.poco(text("soho_dvtxxxxx@hotmail.com"))
             sleep(1)
 
     def Enter_Wrong_Password(self):
-        sleep(1)
-        self.poco.scroll()
         sleep(1)
         self.poco(name="password").click()
         password = self.poco(name="password")
@@ -939,23 +941,17 @@ class Registration_Screen:
         if zebra_login.exists():
             zebra_login.click()
             sleep(2)
-            self.poco(text(""))
-            self.poco(text("zebra07.swdvt@gmail.com"))
+            self.poco(name="username").click()
             sleep(1)
-        else:
-            sleep(3)
-            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
-            sleep(10)
-            self.poco(text="Sign In with your email").click()
-            sleep(2)
             self.poco(text(""))
             self.poco(text("zebra07.swdvt@gmail.com"))
             sleep(1)
 
+
     def Enter_Correct_Password(self):
         sleep(1)
-        self.poco.scroll()
-        sleep(1)
+        # self.poco.scroll()
+        # sleep(1)
         self.poco(name="password").click()
         password = self.poco(name="password")
         password.set_text("Zebra#123456789")
