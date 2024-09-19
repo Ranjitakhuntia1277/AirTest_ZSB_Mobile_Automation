@@ -606,7 +606,7 @@ class Social_Login:
 
     def enter_user_name_in_google(self, user_name):
 
-        self.poco("identifierId").set_text(user_name)
+        self.poco("username").set_text(user_name)
 
     def get_one_of_the_gmail_accounts(self):
         return self.poco(textMatches=".*@gmail.com.*").get_text()
