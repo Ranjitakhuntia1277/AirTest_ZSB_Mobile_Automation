@@ -605,6 +605,7 @@ class Template_Management_Android:
         return a
 
     def get_no_of_left_cartridge(self):
+        sleep(5)
         child_names = [child.get_name() for child in
                        self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child(
                            "android.view.View").child("android.view.View").child("android.view.View").offspring(
@@ -874,6 +875,12 @@ class Template_Management_Android:
         except:
             self.poco(text="Save").click()
 
+    def check_save_is_disabled(self):
+        try:
+            self.poco("Save", enabled=False).wait_for_appearance(timeout=20)
+        except:
+            raise Exception("Blocked due to bug SMBM-2206")
+
     def check_for_the_popup_for_rename_design_after_save(self):
         common_method.wait_for_element_appearance_namematches("Design has been successfully rename", 15)
 
@@ -1139,3 +1146,13 @@ class Template_Management_Android:
             except:
                 return 0
         return 1
+
+    def check_error_when_trying_to_delete_design_when_offline(self):
+        try:
+            self.poco(nameMatches="(?s).*wasn't deleted successfully.*").wait_for_appearance(timeout=20)
+        except:
+            self.turn_on_wifi()
+            sleep(5)
+            self.click_on_delete_button_in_designs()
+            sleep(3)
+            raise Exception("No specific or error message display for delete design when device lost its network connection(SMBM-1902)")

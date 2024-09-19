@@ -8,12 +8,15 @@ from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...Common_Method import Common_Method
+from ...PageObject.Help_Screen.Help_Screen import Help_Screen
 from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
 from ...PageObject.Others.Others import Others
 from ...PageObject.Social_Login.Social_Login import Social_Login
 from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 import os
 from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
+
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
@@ -27,6 +30,9 @@ registration_page = Registration_Screen(poco)
 others = Others(poco)
 social_login = Social_Login(poco)
 data_sources_page = Data_Sources_Screen(poco)
+help_page = Help_Screen(poco)
+template_management_page_1 = Template_Management_Screen(poco)
+
 
 import tkinter as tk
 from tkinter import messagebox
@@ -273,8 +279,10 @@ class test_Android_Template_Management:
         template_management.click_print_button()
         common_method.wait_for_element_appearance_enabled("Print", 30)
         template_management.click_print_button_enabled()
-
+        template_management.wait_for_element_appearance_name_matches_all("Print complete")
+        sleep(3)
         template_management.click_left_arrow()
+        sleep(3)
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
 
@@ -377,22 +385,28 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45908(self):
         pass
-
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.clearAppData()
+        common_method.Start_The_App()
+        data_sources_page.allowPermissions()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        account = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(account)
         data_sources_page.checkIfOnHomePage()
-        common_method.wait_for_element_appearance_namematches("Recently")
         prev = template_management.get_no_of_left_cartridge()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
         total = template_management.get_all_designs_in_my_designs()
         template_management.click_on_design_which_is_not_printed_yet(total)
-
         template_management.click_print_button()
         common_method.wait_for_element_appearance_enabled("Print", 10)
+        data_sources_page.scroll_till_print()
         template_management.click_print_button_enabled()
         sleep(2)
+        template_management.wait_for_element_appearance_name_matches_all("Print complete")
         template_management.click_left_arrow()
         login_page.click_Menu_HamburgerICN()
         template_management.click_home_button()
@@ -400,10 +414,12 @@ class test_Android_Template_Management:
         if prev != curr:
             raise Exception("number of prints left is updated after printer being turned off")
 
-        show_message("Turn on Printer to be online , wait for 30sec and press ok")
+        show_message("Turn on Printer to be online , wait for some time for it to appear in online state")
         common_method.swipe_by_positions([0.5, 0.5], [0.5, 1.0])
 
         after = template_management.get_no_of_left_cartridge()
+        sleep(5)
+        print(after)
 
         if after - 1 != curr:
             raise Exception("number of prints left is not updated")
@@ -2828,7 +2844,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45917(self):
         pass
-        show_message("Connect Dp14 Printer")
+        show_message("Connect DP-12 Printer to account zebra850.swdvt@gmail.com and add cartridge with 2.25 x 3.5")
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         data_sources_page.checkIfOnHomePage()
@@ -4308,13 +4324,10 @@ class test_Android_Template_Management:
         if str(len(my_designs_curr)) != str(n_designs):
             raise Exception("total number of designs present , and showing n designs are not same count")
 
-    def test_Template_Management_TestcaseID_45978(self):
+    """Fully Automated"""
+    def     test_Template_Management_TestcaseID_45978(self):
         pass
-
-        show_message("Add this 6 designs to my designs\n design 1: AddressTest\ndesign 2: AssetTest\ndesign 3: "
-                     "GiftTestLabel\ndesign 4: IconGiftTestLabel\ndesign 5: TestStatic\ndesign 6: TestVariable")
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4373,7 +4386,7 @@ class test_Android_Template_Management:
         pass
 
         show_message(
-            "There are design names in My Designs with special characters.(ie:Address_SG, Asset_SG, IconGiftLabel_SG)")
+            "There are design names in My Designs(Account-Zebra850.swdvt@gmail.com) with special characters.(ie:Address_SG, Asset_SG, IconGiftLabel_SG)")
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         data_sources_page.checkIfOnHomePage()
@@ -4850,14 +4863,13 @@ class test_Android_Template_Management:
 
             """Enter the email"""
             email = "zebra850.swdvt@gmail.com"
-            common_method.wait_for_element_appearance_textmatches("Choose an account")
             others.choose_google_account(email)
             registration_page.BugFix_For_Google(email)
             data_sources_page.checkIfOnHomePage()
 
             try:
                 template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(original_copy)
-                x = 1/0
+                x = 1 / 0
             except ZeroDivisionError:
                 raise Exception("copied design found in another account")
             except Exception as e:
@@ -5606,15 +5618,32 @@ class test_Android_Template_Management:
         pass
 
         show_message("2. There is an existing design with special characters in the name (ie:Abc123~`!@) in My Designs")
+
+        original_copy = "Abc123~`!@"
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
         data_sources_page.checkIfOnHomePage()
+        """Print the design to get it to recently printed designs"""
+        login_page.click_Menu_HamburgerICN()
+        data_sources_page.clickMyDesigns()
+        data_sources_page.searchMyDesigns(original_copy)
+        data_sources_page.selectDesignCreatedAtSetUp()
+        data_sources_page.clickPrint()
+        data_sources_page.scroll_till_print()
+        data_sources_page.clickPrint()
+        template_management.wait_for_element_appearance_name_matches_all("Print complete")
+        """"""
+        sleep(3)
+        data_sources_page.clickBackArrow()
+        login_page.click_Menu_HamburgerICN()
+        data_sources_page.clickHome()
+        data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """Give the name of existing design here as per setup"""
-
-        original_copy = "Abc123~`!@"
-
-        full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy, 1)
+        try:
+            full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(original_copy, 1)
+        except:
+            raise Exception("Design not found in recently printed designs due to bug SMBM-1748")
         original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
         template_management.click_the_duplicate_button()
@@ -5632,6 +5661,7 @@ class test_Android_Template_Management:
         duplicate_name = template_management.get_the_default_duplicate_name()
 
         """Has a bug SMBM-2206 so cannot automate step 4 in his test case"""
+        template_management.check_save_is_disabled()
 
         template_management.click_on_save_button()
         try:
@@ -5996,19 +6026,39 @@ class test_Android_Template_Management:
             pass
 
     def test_Template_Management_TestcaseID_45962(self):
-        pass
-
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.clearAppData()
+        data_sources_page.allowPermissions()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+        account = "zebra901.swdvt@gmail.com"
+        help_page.chooseAcc(account)
         data_sources_page.checkIfOnHomePage()
-        """ has this error still SMBM-1902"""
-
         login_page.click_Menu_HamburgerICN()
+        """Add design to delete it"""
+        template_management.click_common_designs_button()
+        sleep(4)
+        others.search_designs("Small Multipurpose")
+        sleep(4)
+        others.select_first_design()
+        sleep(4)
+        selected_label = template_management_page_1.select_label_common_designs() + " copy"
+        print("selected_label->", selected_label)
+        template_management_page_1.click_copy_to_My_Designs()
+        template_management.wait_for_element_appearance_name_matches_all(
+            "has been successfully copied to your workspace")
+        sleep(2)
+        data_sources_page.clickBackArrow()
+        login_page.click_Menu_HamburgerICN()
+        others.click_on_my_designs()
+        """"""
         template_management.click_my_designs_button()
         common_method.wait_for_element_appearance_namematches("Showing")
 
         n_prev = template_management.get_showing_n_designs_number()
-
+        data_sources_page.searchName(selected_label)
         name = template_management.get_first_design_in_my_designs()
         original_copy = template_management.get_names_of_design_in_search_designs([name])[0]
         full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy)
@@ -6019,9 +6069,8 @@ class test_Android_Template_Management:
         template_management.turn_off_wifi()
         sleep(2)
         template_management.click_on_delete_button_in_designs()
-
-        show_message("5. Go to web portal and other mobile app client to have a check that the template is not deleted")
-
+        template_management.check_error_when_trying_to_delete_design_when_offline()
+        show_message("5. Go to web portal and other mobile app client(account-zebra901.swdvt@gmail.com-Zebra#123456789) to have a check that the template is not deleted")
         template_management.turn_on_wifi()
         common_method.wait_for_element_appearance_enabled("Delete")
         sleep(5)
@@ -6086,8 +6135,9 @@ class test_Android_Template_Management:
         template_management.turn_off_wifi()
         sleep(2)
         template_management.click_on_delete_button_in_designs()
+        template_management.check_error_when_trying_to_delete_design_when_offline()
 
-        show_message("5. Go to web portal and other mobile app client to have a check that the template is not deleted")
+        show_message("5. Go to web portal and other mobile app client(account-zebra901.swdvt@gmail.com-Zebra#123456789) to have a check that the template is not deleted")
 
         template_management.turn_on_wifi()
         common_method.wait_for_element_appearance_enabled("Delete")

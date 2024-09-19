@@ -1,0 +1,18 @@
+template management failure analysis:
+45930 - 
+45934 - SMBM-2206
+45939 - web issue
+45940 - SMBM-1771 
+45941 - SMBM-1771
+46000 - web issue
+46004 - 
+45942 - 
+45903 - SMBM-1748, SMBM-1372
+45905 - SMBM-1748, SMBM-1372
+45906 - SMBM-1748
+45907 - SMBM-1372, SMBM-1752
+45909 - web issue
+45910 - Designs are showing even when wifi is off
+46023 - print option not greyed out
+46024 - file could not be linked
+

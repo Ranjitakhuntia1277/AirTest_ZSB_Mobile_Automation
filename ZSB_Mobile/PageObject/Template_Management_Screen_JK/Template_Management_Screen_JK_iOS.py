@@ -12,11 +12,10 @@ from poco.exceptions import PocoNoSuchNodeException
 
 from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen import Login_Screen
-from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+
 import subprocess
 
 common_method = Common_Method(poco)
-data_sources_page = Data_Sources_Screen(poco)
 
 
 class Template_Management_Screen:
