@@ -41,9 +41,12 @@ app_settings_page = App_Settings_Screen(poco)
 device_network_page = Device_Networks_Android(poco)
 sso_token_renewal_page = SSO_Token_Renewal_Screen(poco)
 
+sso_token_renewal_page.clear_old_logs()
+
 
 def test_SSO_Token_Renewal_TestcaseID_49905():
     pass
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     """clear app data"""
     common_method.tearDown()
     data_sources_page.log_out_of_account()
@@ -58,8 +61,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     help_page.chooseAcc(account)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
-    sso_token_renewal_page.terminateBatchFileProcess(process, 20)
+    sso_token_renewal_page.stop_adb_log_capture()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}"
     in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
@@ -69,10 +71,9 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
     print("old token->", old_token)
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
-    # sleep(10)
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3150)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
@@ -86,6 +87,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     data_sources_page.clickBackArrow()
     data_sources_page.clickBackArrow()
     login_page.click_Menu_HamburgerICN()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     registration_page.click_on_profile_edit()
     registration_page.scroll_till_log_out()
     registration_page.click_log_out_button()
@@ -102,17 +104,16 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     help_page.chooseAcc(account)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
@@ -122,6 +123,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     help_page.click_Help_dropdown_option()
     sso_token_renewal_page.checkIfHelpPagesArePresent()
     template_management_page.click_scrim()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     registration_page.click_on_profile_edit()
     registration_page.scroll_till_log_out()
     registration_page.click_log_out_button()
@@ -132,17 +134,16 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
@@ -155,6 +156,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     data_sources_page.clickBackArrow()
     data_sources_page.clickBackArrow()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     registration_page.scroll_till_log_out()
@@ -166,17 +168,16 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
@@ -203,7 +204,7 @@ def test_SSO_Token_Renewal_TestcaseID_49907():
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     """wait for 53 min"""
-    # sleep(3120)
+    sleep(3120)
     """Check if user still logged in"""
     sso_token_renewal_page.check_if_user_is_logged_in()
     login_page.click_Menu_HamburgerICN()
@@ -220,6 +221,7 @@ def test_SSO_Token_Renewal_TestcaseID_49907():
 
 def test_SSO_Token_Renewal_TestcaseID_49908():
     pass
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     """clear app data"""
     data_sources_page.clearAppData()
     common_method.tearDown()
@@ -230,18 +232,17 @@ def test_SSO_Token_Renewal_TestcaseID_49908():
     registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     """Check if still on logged in page"""
     sso_token_renewal_page.check_if_user_is_logged_in()
@@ -406,6 +407,7 @@ def test_SSO_Token_Renewal_TestcaseID_49910():
 
 def test_SSO_Token_Renewal_TestcaseID_49911():
     pass
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     common_method.tearDown()
     data_sources_page.log_out_of_account()
     """clear app data"""
@@ -430,17 +432,16 @@ def test_SSO_Token_Renewal_TestcaseID_49911():
     data_sources_page.click_My_Data()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickHome()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     sso_token_renewal_page.noErrorOccurredAfterSwitchingApps()
     login_page.click_Menu_HamburgerICN()
@@ -467,121 +468,74 @@ def test_SSO_Token_Renewal_TestcaseID_49911():
 """Need to change steps as it includes add a printer"""
 
 
-def test_SSO_Token_Renewal_TestcaseID_49912():
-    pass
-    """clear app data"""
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    """Sign in"""
-    registration_page.clickSignIn()
-    data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
-    """verify if logged in successfully"""
-    data_sources_page.checkIfOnHomePage()
-    """Open a different app"""
-    start_app("com.android.chrome")
-    """wait for 60 min"""
-    sleep(3600)
-    """Close the other app"""
-    stop_app("com.android.chrome")
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on Add printer tab"""""
-    add_a_printer_page.click_Add_A_Printer()
-    """"click on the start button"""
-    add_a_printer_page.click_Start_Button()
-    login_page.click_Allow_ZSB_Series_Popup()
-    add_a_printer_page.Click_Next_Button()
-    """"Verify searching for your printer text"""
-    add_a_printer_page.Verify_Searching_for_your_printer_Text()
-    """"verify select your printer text"""
-    add_a_printer_page.Verify_Select_your_printer_Text()
-    """"select 2nd printer which you want to add"""
-    add_a_printer_page.click_2nd_Printer_Details_To_Add()
-    """""click on select button"""
-    add_a_printer_page.Click_Next_Button()
-    add_a_printer_page.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
-    """Verify Connect Wi-fi Network Text"""
-    common_method.wait_for_element_appearance("Connect to Wi-Fi", 20)
-    common_method.wait_for_element_appearance("Discovered networks", 30)
-    """"click on connect button on connect wi-fi network screen"""
-    registration_page.connectToWIfi()
-    registration_page.enterPasswordWifi()
-    """wait till wi-fi turn green."""
-    registration_page.timeTillWiFiGreen()
-    """"click on finish setup button"""
-    common_method.wait_for_element_appearance("Printer registration was successful", 30)
-    add_a_printer_page.click_Finish_Setup_Button()
-    login_page.click_Menu_HamburgerICN()
-    template_management_page.clickCommonDesigns()
-    template_management_page.select_design_common_designs()
-    template_management_page.select_label_common_designs()
-    data_sources_page.clickPrint()
-    data_sources_page.scroll_till_print()
-    data_sources_page.clickPrint()
-    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
-    common_method.Stop_The_App()
-
-
-def test_SSO_Token_Renewal_TestcaseID_49913():
-    pass
-    """clear app data"""
-    common_method.tearDown()
-    data_sources_page.log_out_of_account()
-    data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
-    """Sign in"""
-    registration_page.clickSignIn()
-    data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
-    """verify if logged in successfully"""
-    data_sources_page.checkIfOnHomePage()
-    """Open a different app"""
-    start_app("com.android.chrome")
-    """wait for 1 day 5 min"""
-    sleep(86700)
-    """Close the other app"""
-    stop_app("com.android.chrome")
-    """Check if still on logged in page"""
-    sso_token_renewal_page.check_if_user_is_logged_in()
-    login_page.click_Menu_HamburgerICN()
-    """Open printer settings"""
-    app_settings_page.click_Printer_Settings()
-    """Select printer"""
-    printer_management_page.clickPrinter1InPinterSettings()
-    app_settings_page.click_wifi_tab()
-    app_settings_page.click_Manage_Networks_Btn()
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
-    app_settings_page.click_Add_Network()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Security_Open()
-    app_settings_page.click_WPA_PSK()
-    app_settings_page.click_Keyboard_back_Icon()
-    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    app_settings_page.Verify_Added_Network()
-    common_method.Stop_The_App()
-    "continue"
+# def test_SSO_Token_Renewal_TestcaseID_49912():
+#     pass
+#     """clear app data"""
+#     data_sources_page.clearAppData()
+#     common_method.tearDown()
+#     data_sources_page.allowPermissions()
+#     """Sign in"""
+#     registration_page.clickSignIn()
+#     data_sources_page.signInWithEmail()
+#     registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+#     """verify if logged in successfully"""
+#     data_sources_page.checkIfOnHomePage()
+#     """Open a different app"""
+#     start_app("com.android.chrome")
+#     """wait for 60 min"""
+#     sleep(3600)
+#     """Close the other app"""
+#     stop_app("com.android.chrome")
+#     """click on the hamburger icon"""
+#     login_page.click_Menu_HamburgerICN()
+#     """"click on Add printer tab"""""
+#     add_a_printer_page.click_Add_A_Printer()
+#     """"click on the start button"""
+#     add_a_printer_page.click_Start_Button()
+#     login_page.click_Allow_ZSB_Series_Popup()
+#     add_a_printer_page.Click_Next_Button()
+#     """"Verify searching for your printer text"""
+#     add_a_printer_page.Verify_Searching_for_your_printer_Text()
+#     """"verify select your printer text"""
+#     add_a_printer_page.Verify_Select_your_printer_Text()
+#     """"select 2nd printer which you want to add"""
+#     add_a_printer_page.click_2nd_Printer_Details_To_Add()
+#     """""click on select button"""
+#     add_a_printer_page.Click_Next_Button()
+#     add_a_printer_page.Verify_Pairing_Your_Printer_Text()
+#     """"accept Bluetooth pairing popup 1"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+#     """"accept Bluetooth pairing popup 2"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+#     """"accept Bluetooth pairing popup 1"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup1()
+#     """"accept Bluetooth pairing popup 2"""
+#     add_a_printer_page.Accept_Bluetooth_pairing_Popup2()
+#     """Verify Connect Wi-fi Network Text"""
+#     common_method.wait_for_element_appearance("Connect to Wi-Fi", 20)
+#     common_method.wait_for_element_appearance("Discovered networks", 30)
+#     """"click on connect button on connect wi-fi network screen"""
+#     registration_page.connectToWIfi()
+#     registration_page.enterPasswordWifi()
+#     """wait till wi-fi turn green."""
+#     registration_page.timeTillWiFiGreen()
+#     """"click on finish setup button"""
+#     common_method.wait_for_element_appearance("Printer registration was successful", 30)
+#     add_a_printer_page.click_Finish_Setup_Button()
+#     login_page.click_Menu_HamburgerICN()
+#     template_management_page.clickCommonDesigns()
+#     template_management_page.select_design_common_designs()
+#     template_management_page.select_label_common_designs()
+#     data_sources_page.clickPrint()
+#     data_sources_page.scroll_till_print()
+#     data_sources_page.clickPrint()
+#     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+#     common_method.Stop_The_App()
 
 
 def test_SSO_Token_Renewal_TestcaseID_49914():
     pass
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     """clear app data"""
     data_sources_page.clearAppData()
     common_method.tearDown()
@@ -600,17 +554,16 @@ def test_SSO_Token_Renewal_TestcaseID_49914():
     common_method.Start_The_App()
     """Check if user still logged in"""
     sso_token_renewal_page.check_if_user_is_logged_in()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3150)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     sso_token_renewal_page.checkTokenRefreshed(old_token)
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
@@ -693,6 +646,7 @@ def test_SSO_Token_Renewal_TestcaseID_49915():
 
 def test_SSO_Token_Renewal_TestcaseID_49916():
     pass
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     """clear app data"""
     data_sources_page.clearAppData()
     common_method.tearDown()
@@ -705,18 +659,20 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
     help_page.chooseAcc(account)
     """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    print(old_token)
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
+    old_token = "80ehMRtOsZYf3eAACwe9N7Ii67o7"
     new_token = sso_token_renewal_page.checkTokenRefreshed(old_token)
+    print(new_token)
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
     template_management_page.select_design_common_designs()
@@ -732,6 +688,7 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
     registration_page.scroll_till_log_out()
     registration_page.click_log_out_button()
     help_page.checkIfOnSignInPage()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     """Login Again"""
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
@@ -739,8 +696,7 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
     account = "zebra07.swdvt@gmail.com"
     help_page.chooseAcc(account)
     data_sources_page.checkIfOnHomePage()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_getLocalTokens_information_present()
     """Check token refreshed after logout and login"""
@@ -787,6 +743,7 @@ def test_SSO_Token_Renewal_TestcaseID_49917():
     registration_page.scroll_till_log_out()
     registration_page.click_log_out_button()
     """Blocked"""
+
     """Cannot verify error due to bug SMBM-2178"""
     """Turn on wi-fi for next execution"""
     template_management_page.Turn_ON_wifi()
@@ -795,6 +752,7 @@ def test_SSO_Token_Renewal_TestcaseID_49917():
 
 def test_SSO_Token_Renewal_TestcaseID_49918():
     pass
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     """clear app data"""
     data_sources_page.clearAppData()
     common_method.tearDown()
@@ -813,8 +771,7 @@ def test_SSO_Token_Renewal_TestcaseID_49918():
     sleep(120)
     """Connect to network"""
     template_management_page_1.turn_on_wifi()
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     """Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog"""
     sso_token_renewal_page.check_if_exchangeCode_message_present()
     """Check that there is a token information about " : flutter: getLocalTokens : access_token: " in the adb log or tidevice syslog"""
@@ -822,9 +779,9 @@ def test_SSO_Token_Renewal_TestcaseID_49918():
     """Check the token is refreshed at 8 minutes prior to expiry time[480 ~420 second]"""
     old_token = sso_token_renewal_page.get_token()
     print("old token", old_token)
-    process = sso_token_renewal_page.runBatchFileToFetchLogs()
+    sso_token_renewal_page.runBatchFileToFetchLogs()
     sleep(3120)
-    sso_token_renewal_page.terminateBatchFileProcess(process)
+    sso_token_renewal_page.stop_adb_log_capture()
     new_token = sso_token_renewal_page.checkTokenRefreshed(old_token)
     print(new_token, "new token")
     """Click Hamburger Icon"""
@@ -896,3 +853,51 @@ def test_Registration_TestcaseID_45870():
     sleep(7200)
     data_sources_page.checkIfOnHomePage()
     registration_page.clickConnect()
+
+
+def test_SSO_Token_Renewal_TestcaseID_49913():
+    pass
+    """clear app data"""
+    common_method.tearDown()
+    data_sources_page.log_out_of_account()
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    """Open a different app"""
+    start_app("com.android.chrome")
+    """wait for 1 day 5 min"""
+    sleep(86700)
+    """Close the other app"""
+    stop_app("com.android.chrome")
+    """Check if still on logged in page"""
+    sso_token_renewal_page.check_if_user_is_logged_in()
+    login_page.click_Menu_HamburgerICN()
+    """Open printer settings"""
+    app_settings_page.click_Printer_Settings()
+    """Select printer"""
+    printer_management_page.clickPrinter1InPinterSettings()
+    app_settings_page.click_wifi_tab()
+    app_settings_page.click_Manage_Networks_Btn()
+    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
+    app_settings_page.click_Add_Network()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Security_Open()
+    app_settings_page.click_WPA_PSK()
+    app_settings_page.click_Keyboard_back_Icon()
+    app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
+    app_settings_page.click_Enter_Network_Manually()
+    app_settings_page.click_Network_UserName()
+    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
+    app_settings_page.Verify_Added_Network()
+    common_method.Stop_The_App()
+    "continue"

@@ -302,6 +302,7 @@ class Template_Management_Screen:
             parent = self.poco(nameMatches=".*Add another account.*").parent()
 
     def checkIfAccPresent(self, account):
+        sleep(7)
         start = 0
         end = 1
         while True:
@@ -855,6 +856,7 @@ class Template_Management_Screen:
                 -1].strip()
 
     def get_remaining_label_count(self):
+        sleep(4)
         labels_left = int(self.poco(nameMatches=".*Printer.*").get_name().split(" ")[1][1:])
         return labels_left
 
@@ -950,7 +952,11 @@ class Template_Management_Screen:
         touch(Template(Basic_path(r"close_notification.png"), record_pos=(0.415, -0.896), resolution=(1080, 2280)))
 
     def clickAccept(self):
-        self.poco("Accept").click()
+        try:
+            self.poco("Accept").wait_for_appearance(timeout=10)
+            self.poco("Accept").click()
+        except:
+            pass
 
     def check_if_on_print_preview_page(self):
         return self.poco(nameMatches=".*Label.*").exists()
@@ -1364,5 +1370,14 @@ class Template_Management_Screen:
         if count_displayed == expected_count:
             pass
         else:
-            # error = f"Displayed count({count_displayed}) does not match expected count({expected_count})"
-            raise Exception("Design not loaded properly.")
+            error = f"Displayed count({count_displayed}) does not match expected count({expected_count})"
+            raise Exception(error)
+            # raise Exception("Design not loaded properly.")
+
+    def scroll_up_to_print_preview(self):
+        sleep(3)
+        scroll_view = self.poco("android.widget.ScrollView")
+        while self.poco(nameMatches=".*Label . of .*").exists():
+            scroll_view.swipe("up")
+        for i in range(5):
+            scroll_view.swipe("up")

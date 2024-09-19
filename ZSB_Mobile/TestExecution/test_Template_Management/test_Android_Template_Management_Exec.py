@@ -21,6 +21,7 @@ from ...PageObject.Registration_Screen.Registration_Screen import Registration_S
 from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
 from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
+from ...TestExecution.test_Template_Management.test_Android_Template_Management import test_Android_Template_Management
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
@@ -43,7 +44,6 @@ add_a_printer_screen = Add_A_Printer_Screen(poco)
 smoke_test_android = Smoke_Test_Android(poco)
 aps_notification = APS_Notification(poco)
 
-from ...TestExecution.test_Template_Management.test_Android_Template_Management import test_Android_Template_Management
 
 tm_a = test_Android_Template_Management()
 
@@ -370,7 +370,7 @@ def test_Template_Management_TestcaseID_45932():
 
 """Ranjita code"""
 
-
+"""Recently changed"""
 def test_Smoke_Test_TestcaseID_45880():
     """Verify sign in with non-zebra account, check the design linked different format file from local can be printed out successfully"""
 
@@ -472,11 +472,13 @@ def test_Smoke_Test_TestcaseID_45891():
     smoke_test_android.click_Second_Print_Button()
     app_settings_page.click_Keyboard_back_Icon()
     login_page.click_Menu_HamburgerICN()
+    pass
     app_settings_page.click_Home_Tab()
     previous = app_settings_page.Check_no_of_left_cartridge()
     print(previous)
 
     """click on navigation option"""
+    pass
     login_page.click_Menu_HamburgerICN()
 
     """Select the Printer in the Printer Settings (Note: The printer name should be defined)"""
@@ -636,6 +638,7 @@ def test_Smoke_Test_TestcaseID_45895():
 # # # # #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #
 #
+"""Recently changed"""
 def test_Smoke_Test_TestcaseID_45896():
     """Print a label from Common Design."""
 
@@ -649,6 +652,7 @@ def test_Smoke_Test_TestcaseID_45896():
     add_a_printer_screen.click_FirstOne_In_Common_Design()
     add_a_printer_screen.click_Print_Option()
     add_a_printer_screen.click_Text_Field_To_Edit()
+    add_a_printer_screen.click_Print_Button()
     add_a_printer_screen.click_Print_Button()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
     """Verify manually it should print successfully"""
@@ -671,6 +675,7 @@ def test_Template_Management_TestcaseID_46015():
     sleep(2)
     common_method.tearDown()
     data_sources_page.allowPermissions()
+    data_sources_page.checkIfInLoginPage()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
     registration_page.check_if_user_navigated_to_sign_in_page()
@@ -726,7 +731,8 @@ def test_Template_Management_TestcaseID_46015():
     print(selected_file_name)
     if poco(text="Choose an account").exists():
         print("Entered If")
-        data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
+        """Drive account changed"""
+        data_sources_page.chooseAccToLinkFile("zebra02.swdvt@gmail.com")
     template_management_page.wait_for_appearance_enabled("Continue")
     data_sources_page.clickContinue()
     template_management_page.selectChooseAnOption(2)
@@ -1457,7 +1463,8 @@ def test_Template_Management_TestcaseID_46024():
     data_sources_page.clickPrint()
     sleep(5)
     if poco(text="Choose an account").exists():
-        data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
+        """Drive account changed"""
+        data_sources_page.chooseAccToLinkFile("zebra02.swdvt@gmail.com")
     data_sources_page.clickContinue()
     data_sources_page.clickBackArrow()
     if template_management_page.verify_if_on_update_connections_page():
@@ -1726,8 +1733,10 @@ def test_Template_Management_TestcaseID_46027():
     """Step 1-5 pending due to web automation"""
     common_method.tearDown()
     data_sources_page.log_out_of_account()
+    data_sources_page.clearAppData()
     common_method.tearDown()
     data_sources_page.allowPermissions()
+    data_sources_page.checkIfInLoginPage()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
     registration_page.check_if_user_navigated_to_sign_in_page()
@@ -1750,7 +1759,7 @@ def test_Template_Management_TestcaseID_46027():
     """ google drive """
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-    account = "zebra03.swdvt@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     # else:
@@ -1881,7 +1890,7 @@ def test_Template_Management_TestcaseID_46020():
     data_sources_page.clickPrint()
     """Select column"""
     if poco(text="Choose an account").exists():
-        help_page.chooseAcc("zebra03.swdvt@gmail.com")
+        help_page.chooseAcc("zebra02.swdvt@gmail.com")
     data_sources_page.clickBackArrow()
     data_sources_page.clickContinue()
     data_sources_page.first_row_header(True)
@@ -1989,7 +1998,7 @@ def test_Template_Management_TestcaseID_46022():
     """Issue in step 7 due to bug SMBM-2202"""
     selected_file_name = template_management_page.select_file_update_data_connections("Google Drive")
     if poco(text="Choose an account").exists():
-        data_sources_page.chooseAccToLinkFile("zebra03.swdvt@gmail.com")
+        data_sources_page.chooseAccToLinkFile("zebra02.swdvt@gmail.com")
     data_sources_page.clickContinue()
     data_sources_page.first_row_header(True)
     template_management_page.selectChooseAnOption(1)
@@ -2114,7 +2123,7 @@ def test_Template_Management_TestcaseID_46026():
     """ google drive """
     if data_sources_page.verifySignInWithGoogle():
         registration_page.click_Google_Icon()
-    account = "zebra03.swdvt@gmail.com"
+    account = "zebra02.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
     #     else:
@@ -2302,6 +2311,7 @@ def test_Template_Management_TestcaseID_45981():
     sleep(2)
     common_method.tearDown()
     data_sources_page.allowPermissions()
+    data_sources_page.checkIfInLoginPage()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
     account = "zebra07.swdvt@gmail.com"
@@ -3129,7 +3139,7 @@ def test_Template_Management_TestcaseID_46010():
     if initial_categories_list == new_categories_list:
         pass
 
-
+"""Recently changed"""
 def test_Template_Management_TestcaseID_46014():
     pass
     common_method.tearDown()
@@ -3186,7 +3196,7 @@ def test_Template_Management_TestcaseID_46014():
         template_management_page.verify_designs_are_according_to_sort_order(design_list)
         template_management_page.click_sort_common_designs()
         template_management_page.select_sort_order("Z-A")
-        sleep(3)
+        sleep(5)
         if template_management_page.get_filter_value() == label_size:
             pass
         else:
@@ -3202,7 +3212,7 @@ def test_Template_Management_TestcaseID_46014():
         template_management_page.click_sort_common_designs()
         sleep(3)
         template_management_page.select_sort_order("A-Z")
-        sleep(3)
+        sleep(5)
         if template_management_page.get_filter_value() == label_size:
             pass
         else:
@@ -3367,11 +3377,10 @@ def test_Template_Management_TestcaseID_45966():
     """Scroll design list in My Designs with more than 100 designs"""
 
     common_method.tearDown()
-    data_sources_page.checkIfOnHomePage()
-    login_page.click_Menu_HamburgerICN()
-    registration_page.click_on_profile_edit()
-    registration_page.scroll_till_log_out()
-    registration_page.click_log_out_button()
+    data_sources_page.log_out_of_account()
+    data_sources_page.clearAppData()
+    data_sources_page.allowPermissions()
+    data_sources_page.checkIfInLoginPage()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
     registration_page.check_if_user_navigated_to_sign_in_page()
@@ -3849,6 +3858,8 @@ def test_Template_Management_TestcaseID_45965():
     registration_page.click_on_profile_edit()
     registration_page.scroll_till_log_out()
     registration_page.click_log_out_button()
+    data_sources_page.allowPermissions()
+    data_sources_page.checkIfInLoginPage()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
     registration_page.check_if_user_navigated_to_sign_in_page()

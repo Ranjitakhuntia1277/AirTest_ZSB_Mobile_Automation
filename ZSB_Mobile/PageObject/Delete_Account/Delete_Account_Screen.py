@@ -267,7 +267,7 @@ class Delete_Account_Screen:
         try:
             self.poco("Select your printer").wait_for_appearance(timeout=20)
         except:
-            raise Exception("target printers nor shown in printer list.")
+            raise Exception("target printers not shown in printer list.")
 
     # def Login_With_Email_Tab(self):
     #     sleep(12)

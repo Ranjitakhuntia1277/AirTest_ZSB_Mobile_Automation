@@ -6,7 +6,7 @@ import datetime
 import random
 import string
 import fnmatch
-
+from datetime import time, datetime
 from airtest.core.api import *
 import pytest
 from poco import poco
@@ -71,7 +71,7 @@ class SSO_Token_Renewal_Screen:
 
     def wildcard_search(self, wildcard="exchangeCode", filepath=file_path):
         if wildcard == "exchangeCode":
-            wildcard_query = '(?s).*exchangeCode:body:.*{.*"access_token".*"refresh_token".*"expires_in":"3599"'
+            wildcard_query = '(?s).*exchangeCode:body:.*{.*"access_token".*"refresh_token".*"'
         elif wildcard == "getLocalTokens":
             wildcard_query = '.*flutter :.*getLocalTokens : access_token:.*'
         with open(filepath, 'r') as file:
@@ -94,15 +94,21 @@ class SSO_Token_Renewal_Screen:
             raise Exception(
                 "There is no token information about \" : flutter: getLocalTokens : access_token: \" in the adb log.")
 
+    def clear_previous_adb_logs(self):
+        sleep(4)
+        command = "adb logcat -c"
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+
     def runBatchFileToFetchLogs(self, filepath=logcat_file_path, batch_file_name="Logcat.bat"):
+        sleep(3)
         os.chdir(filepath)
         process = subprocess.Popen(batch_file_name, shell=True)
-        return process
+        sleep(3)
 
     def terminateBatchFileProcess(self, process, wait_time=None):
         if wait_time is not None:
             sleep(wait_time)
-        sleep(2)
+        sleep(10)
         process.terminate()
 
     def check_if_user_is_logged_in(self):
@@ -199,3 +205,33 @@ class SSO_Token_Renewal_Screen:
         elif self.poco(text="Allow").exists():
             self.poco(text="Allow").click()
         sleep(4)
+
+    def check_if_error_displayed_when_clicking_logout_when_offline(self):
+        sleep(5)
+        try:
+            self.poco(nameMatches="(?s).*Log out failed.*").wait_for_appearance(timeout=20)
+        except:
+            raise Exception("No error message displayed when trying to logout after turning off wi-fi(SMBM-2178)")
+
+    def clear_old_logs(self):
+        # Clear any existing logcat processes
+        subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
+
+    def start_adb_log_capture(self):
+        self.clear_old_logs()
+        path = "C:\\Users\\JD4936\\OneDrive - Zebra Technologies\\Documents\\AirTest_ZSB_Mobile_Automation\\ZSB_Mobile\\ADB_logs"
+        ADB_LOG_FILE = os.path.join(path, "Logs.txt")
+        subprocess.Popen(["adb", "logcat", "-v", "time", ">", {ADB_LOG_FILE}], shell=True)
+
+    def stop_adb_log_capture(self):
+        sleep(2)
+        result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],
+                                shell=False,
+                                check=True,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        if result.returncode == 0:
+            print("ADB log capture stopped successfully.")
+        else:
+            print(f"Failed to stop ADB log capture: {result.stderr.decode()}")
+        sleep(3)

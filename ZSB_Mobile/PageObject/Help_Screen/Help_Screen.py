@@ -1,6 +1,7 @@
 # LoginFunction.py
 from platform import platform
 
+import pytz
 # import pytest
 from airtest.core.android import Android
 from airtest.core.api import exists, sleep

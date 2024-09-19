@@ -12,6 +12,7 @@ import traceback
 from pipes import Template
 from platform import platform
 from time import sleep
+from datetime import datetime
 from poco.exceptions import PocoNoSuchNodeException
 # from pocoui_lib.android.kotoComponent import poco
 # from pocoui_lib.ios.kotoComponent import poco
@@ -35,6 +36,8 @@ from poco import poco
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
+
+
 # from test.body import poco
 
 
@@ -124,14 +127,14 @@ class Common_Method():
         match = re.search(pattern, text)
         return match
 
-    def show_message(self,msg):
+    def show_message(self, msg):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)  # Ensure the root window is on top
         messagebox.showinfo("Information", msg)
         root.destroy()
 
-    def get_user_input(self,msg):
+    def get_user_input(self, msg):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
@@ -1558,4 +1561,106 @@ class Common_Method():
         swipe((start_x, start_y), (end_x, end_y), duration=0.5)
         self.poco.swipe((500, 200), (500, 1000))
 
+    """--------------------------------------------------------------------------------------AEMS report addons--------------------------------------------------------------------------------------"""
 
+    def clear_old_logs(self):
+        # Clear any existing logcat processes
+        subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
+
+    def start_adb_log_capture(self):
+        test_run_start_time = time.time()
+        self.clear_old_logs()
+        LOG_DIRECTORY = "logs"
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(LOG_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        ADB_LOG_FILE = os.path.join(date_directory, "adb_log.txt")
+        subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
+        return ADB_LOG_FILE, test_run_start_time
+
+    def stop_adb_log_capture(self):
+        result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],
+                                shell=False,
+                                check=True,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        if result.returncode == 0:
+            print("ADB log capture stopped successfully.")
+        else:
+            print(f"Failed to stop ADB log capture: {result.stderr.decode()}")
+
+    def capture_screenshot(self, step_id, test_case_id):
+        test_run_start_time = time.time()
+        SCREENSHOT_DIRECTORY = "screenshots"
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(SCREENSHOT_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        screenshot_path = os.path.join(date_directory, f"step_{step_id}_case_{test_case_id}.png")
+        snapshot(filename=screenshot_path)
+        return screenshot_path, test_run_start_time
+
+    def clear_directory(self):
+        LOG_DIRECTORY = "logs"
+        SCREENSHOT_DIRECTORY = "screenshots"
+
+        if os.path.exists(LOG_DIRECTORY):
+            shutil.rmtree(LOG_DIRECTORY)
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+
+        if os.path.exists(SCREENSHOT_DIRECTORY):
+            shutil.rmtree(SCREENSHOT_DIRECTORY)
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+
+        # #------------------------------------SEMIAUTO------------------------------------------------------------------
+
+    def clear_old_logs_semi(self):
+        # Clear any existing logcat processes
+        subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
+
+    def start_adb_log_capture_semi(self):
+        test_run_start_time = time.time()
+        self.clear_old_logs()
+        LOG_DIRECTORY = "logs_semi"
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(LOG_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        ADB_LOG_FILE = os.path.join(date_directory, "adb_log.txt")
+        subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
+        return ADB_LOG_FILE, test_run_start_time
+
+    def stop_adb_log_capture_semi(self):
+        result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],
+                                shell=False,
+                                check=True,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        if result.returncode == 0:
+            print("ADB log capture stopped successfully.")
+        else:
+            print(f"Failed to stop ADB log capture: {result.stderr.decode()}")
+
+    def capture_screenshot_semi(self, step_id, test_case_id):
+        test_run_start_time = time.time()
+        SCREENSHOT_DIRECTORY = "screenshots_semi"
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(SCREENSHOT_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        screenshot_path = os.path.join(date_directory, f"step_{step_id}_case_{test_case_id}.png")
+        snapshot(filename=screenshot_path)
+        return screenshot_path, test_run_start_time
+
+    def clear_directory_semi(self):
+        LOG_DIRECTORY = "logs_semi"
+        SCREENSHOT_DIRECTORY = "screenshots_semi"
+
+        if os.path.exists(LOG_DIRECTORY):
+            shutil.rmtree(LOG_DIRECTORY)
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+
+        if os.path.exists(SCREENSHOT_DIRECTORY):
+            shutil.rmtree(SCREENSHOT_DIRECTORY)
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
