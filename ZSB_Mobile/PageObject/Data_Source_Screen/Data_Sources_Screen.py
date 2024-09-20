@@ -122,7 +122,7 @@ class Data_Sources_Screen:
         link_file.click()
         sleep(2)
 
-    def chooseAccToLinkFile(self, Acc_Name="Zsb Swdvt"):
+    def chooseAccToLinkFile(self, Acc_Name="zebra02.swdvt@gmail.com"):
         sleep(3)
         account = self.poco(text=Acc_Name)
         count = 5
@@ -756,6 +756,7 @@ class Data_Sources_Screen:
                 return
 
     def verifySignInWithMicrosoft(self):
+        sleep(7)
         try:
             assert_exists(self.Sign_In_With_Microsoft_Template)
             return True
@@ -1021,6 +1022,7 @@ class Data_Sources_Screen:
         keyevent("Enter")
 
     def verifyFilePresentInList(self, file_name, datasource=None, data=False, verify_date=True):
+        sleep(4)
         if self.poco(self.List_Empty).exists():
             raise Exception(file_name + " File not present")
         file_list = self.fileListDisplayed()
@@ -1066,7 +1068,8 @@ class Data_Sources_Screen:
                             pass
                         else:
                             if i == len(file_list) - 1:
-                                raise Exception("Date not matching")
+                                error = "Date not matching, Displayed date->" + date_app + ",expected date->" + expected_date
+                                raise Exception(error)
         raise Exception(file_name + " File not present")
 
     def clickHome(self):
@@ -1233,6 +1236,7 @@ class Data_Sources_Screen:
     #                 return name_app
 
     def remove_File_Based_On_DataSource(self, datasource, filename=None, cancel=False, verify=False):
+        sleep(5)
         if not self.poco(filename).exists():
             raise Exception(f"No file {filename} with datasource {datasource}")
         scroll_view = self.poco("android.widget.HorizontalScrollView")
@@ -1295,6 +1299,7 @@ class Data_Sources_Screen:
         if len(self.poco("android.view.View")[1].child()) == 3:
             return
         else:
+            print(self.poco("android.view.View")[1].child().get_name())
             raise Exception("Drive Not Empty")
 
     def searchFileInLinkFilesAndUpload(self, filename):
@@ -1325,6 +1330,7 @@ class Data_Sources_Screen:
         sleep(2)
         file = self.poco("com.google.android.documentsui:id/item_root")[0]
         file.click()
+        sleep(3)
 
     def selectFileInLocalStorage(self):
         if self.poco("com.google.android.documentsui:id/item_root").child().get_name() != "android.widget.LinearLayout":
@@ -1708,6 +1714,7 @@ class Data_Sources_Screen:
             pass
 
     def clickOk(self):
+        sleep(4)
         try:
             self.poco(text="OK").wait_for_appearance(timeout=20)
             self.poco(text="OK").click()
@@ -1719,7 +1726,10 @@ class Data_Sources_Screen:
                 try:
                     self.poco(nameMatches=".*done.*").click()
                 except:
-                    self.poco(desc="Done").click()
+                    try:
+                        self.poco(desc="Done").click()
+                    except:
+                        pass
         sleep(10)
 
     def allowPermissions(self):
@@ -1777,6 +1787,7 @@ class Data_Sources_Screen:
                 if self.poco("android.widget.HorizontalScrollView").child()[i].get_name() == file_name:
                     self.poco("android.widget.HorizontalScrollView").child()[i].click()
                     self.clickSelect()
+                    sleep(2)
                     return
                 curr.append(self.poco("android.widget.HorizontalScrollView").child()[i].get_name())
             if curr == prev:
@@ -1876,6 +1887,10 @@ class Data_Sources_Screen:
         sleep(1)
 
     def log_out_of_account(self):
+        sleep(10)
+        continue_btn = self.poco("Continue")
+        if continue_btn.exists():
+            continue_btn.click()
         try:
             self.poco("Home").wait_for_appearance(timeout=20)
             sleep(3)
@@ -1972,6 +1987,14 @@ class Data_Sources_Screen:
             self.poco(nameMatches=".*removed successfully.*").wait_for_appearance(timeout=20)
         except:
             raise Exception("No notification on removing file(SMBM-712)")
+
+    def Scroll_Till_Next_Tab(self):
+        sleep(10)
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        while self.poco("NAME").exists():
+            scroll_view.swipe("left")
+        for i in range(10):
+            scroll_view.swipe("left")
 
 
 
