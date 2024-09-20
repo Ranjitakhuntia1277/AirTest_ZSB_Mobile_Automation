@@ -240,7 +240,6 @@ def test_DataSources_TestcaseID_45729():
         data_sources_page.click_Link_File()
         """ One drive """
         data_sources_page.clickMicrosoftOneDrive()
-        data_sources_page.click_drive_sign_in_if_present()
         sleep(3)
         """Select long file name"""
         data_sources_page.selectFileDrive(long_file)
@@ -1047,9 +1046,6 @@ def test_DataSources_TestcaseID_45759():
         """Click Link File"""
         data_sources_page.click_Link_File()
         sleep(2)
-        if data_sources_page.verifySignInWithMicrosoft():
-            data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
-            sleep(2)
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         data_sources_page.clickMicrosoftOneDrive()
         sleep(2)
