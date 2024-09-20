@@ -490,7 +490,7 @@ def test_DataSources_TestcaseID_45759():
     """ google drive """
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(2)
-    existing_file = "abolfazl-unsplash.jpg"
+    existing_file = "drive_existing_file"
     sleep(2)
     data_sources_page.selectFileDrive(existing_file)
     sleep(5)
@@ -527,7 +527,7 @@ def test_DataSources_TestcaseID_45759():
     sleep(2)
     data_sources_page.click_drive_sign_in_if_present()
     data_sources_page.clickMicrosoftOneDrive()
-    existing_file = "zebra.jpg"
+    existing_file = "drive_existing_file.jpg"
     common_method.wait_for_element_appearance("NAME")
     sleep(3)
     data_sources_page.selectFileDrive(existing_file)
@@ -1214,6 +1214,16 @@ def test_DataSources_TestcaseID_45755():
     pass
     """Google Login"""
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    account = "zebra02.swdvt@gmail.com"
+    registration_page.sign_in_with_mail_zebra02()
+    registration_page.BugFix_For_ZebraEmail(account)
+    """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
