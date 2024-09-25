@@ -55,26 +55,6 @@ import subprocess
 import time
 import os
 
-# Constants
-FILE_NAME = "45743.mp4"
-DEVICE_PATH = "/sdcard/"
-
-# Get the path to the "Documents" folder
-DOCUMENTS_FOLDER = os.path.join(os.path.expanduser("~"), "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\Recordings")
-
-
-def start_screen_recording():
-    # Start recording the screen and run it in the background
-    return subprocess.Popen(['adb', 'shell', 'screenrecord', '/sdcard/screen_record.mp4'])
-
-def stop_screen_recording():
-    # Stop the screen recording by killing the screenrecord process
-    subprocess.run(['adb', 'shell', 'pkill', 'screenrecord'], check=True)
-
-def pull_video_from_device():
-    # Pull the recorded video from the device to the local machine
-    subprocess.run(['adb', 'pull', '/sdcard/screen_record.mp4', DOCUMENTS_FOLDER], check=True)
-
 
 def test_DataSources_TestcaseID_45729():
     pass
@@ -101,9 +81,9 @@ def test_DataSources_TestcaseID_45729():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
+    data_sources_page.click_drive_sign_in_if_present()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ google drive """
-    data_sources_page.click_drive_sign_in_if_present()
     # registration_page.click_Google_Icon()
     # help_page.chooseAcc("zebra03.swdvt@gmail.com")
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
@@ -267,7 +247,6 @@ def test_DataSources_TestcaseID_45734():
     sleep(3)
     """Re upload same file"""
     data_sources_page.selectFileDrive(large_file)
-    sleep(5)
     data_sources_page.checkIsAlreadyLinkedPopUp()
     """Remove for next execution"""
     data_sources_page.searchName(large_file)
@@ -297,7 +276,6 @@ def test_DataSources_TestcaseID_45734():
     sleep(2)
     """Re upload the same file"""
     data_sources_page.selectFileDrive(large_file)
-    sleep(5)
     data_sources_page.checkIsAlreadyLinkedPopUp()
     """Remove files for next execution"""
     data_sources_page.searchName(large_file)
@@ -326,6 +304,7 @@ def test_DataSources_TestcaseID_45735():
     """ One drive """
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.click_drive_sign_in_if_present()
     common_method.wait_for_element_appearance("NAME")
     sleep(3)
     data_sources_page.checkFilesShownAreSupported()
@@ -413,6 +392,7 @@ def test_DataSources_TestcaseID_45735():
 def test_DataSources_TestcaseID_45736():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     data_sources_page.click_My_Data()
@@ -442,6 +422,7 @@ def test_DataSources_TestcaseID_45736():
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     """ One drive """
     data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.click_drive_sign_in_if_present()
     common_method.wait_for_element_appearance("NAME")
     sleep(5)
     bmp_file = "bmp_file.bmp"
@@ -502,13 +483,16 @@ def test_DataSources_TestcaseID_45759():
     data_sources_page.click_Add_File()
     sleep(2)
     """Click Link File"""
+    """Click Link File"""
     data_sources_page.click_Link_File()
     sleep(2)
     data_sources_page.click_drive_sign_in_if_present()
     """ google drive """
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     sleep(2)
-    existing_file = data_sources_page.selectExistingFile()
+    existing_file = "drive_existing_file"
+    sleep(2)
+    data_sources_page.selectFileDrive(existing_file)
     sleep(5)
     data_sources_page.searchName(existing_file)
     data_sources_page.verifyFilePresentInList(existing_file, "Google Drive", True, False)
@@ -521,8 +505,7 @@ def test_DataSources_TestcaseID_45759():
     sleep(2)
     data_sources_page.clickGoogleDrive()
     sleep(2)
-    data_sources_page.selectExistingFile()
-    sleep(2)
+    data_sources_page.selectFileDrive(existing_file)
     """Verify if 'filename' is already linked pop up appears"""
     data_sources_page.checkIsAlreadyLinkedPopUp()
     sleep(3)
@@ -544,10 +527,11 @@ def test_DataSources_TestcaseID_45759():
     sleep(2)
     data_sources_page.click_drive_sign_in_if_present()
     data_sources_page.clickMicrosoftOneDrive()
+    existing_file = "drive_existing_file.jpg"
     common_method.wait_for_element_appearance("NAME")
     sleep(3)
-    existing_file = data_sources_page.selectExistingFile()
-    sleep(3)
+    data_sources_page.selectFileDrive(existing_file)
+    sleep(5)
     data_sources_page.searchName(existing_file)
     data_sources_page.verifyFilePresentInList(existing_file, "OneDrive", True, False)
     """Re upload same file"""
@@ -559,7 +543,7 @@ def test_DataSources_TestcaseID_45759():
     sleep(2)
     data_sources_page.clickMicrosoftOneDrive()
     sleep(2)
-    data_sources_page.selectExistingFile()
+    data_sources_page.selectFileDrive(existing_file)
     """Verify if 'filename' is already linked pop up appears"""
     data_sources_page.checkIsAlreadyLinkedPopUp()
     sleep(3)
@@ -700,6 +684,7 @@ def test_DataSources_TestcaseID_45739():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Data"""
@@ -784,6 +769,7 @@ def test_DataSources_TestcaseID_45744():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
@@ -855,6 +841,7 @@ def test_DataSources_TestcaseID_45741():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """setup - Upload a file from local to execute"""
 
     """Click hamburger icon to expand menu"""
@@ -930,6 +917,7 @@ def test_DataSources_TestcaseID_45742():
 
     """Click hamburger icon to expand menu"""
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     remove_file_name = "ferry.xlsx"
     """----------------------------------------------"""
     """Re-upload the file for next execution"""
@@ -1028,9 +1016,8 @@ def test_DataSources_TestcaseID_45742():
 def test_DataSources_TestcaseID_45743():
     pass
 
-    # local_path = "C:\\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\Recordings"
-    # recording_process = start_screen_recording()
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
@@ -1054,15 +1041,13 @@ def test_DataSources_TestcaseID_45743():
     keyevent("back")
     keyevent("back")
     common_method.Stop_The_App()
-    # stop_screen_recording()
-    # sleep(5)
-    # pull_video_from_device()
 
 
 def test_DataSources_TestcaseID_45745():
     """""""""test"""""
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
@@ -1111,6 +1096,7 @@ def test_DataSources_TestcaseID_45746():
     pass
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
@@ -1136,6 +1122,7 @@ def test_DataSources_TestcaseID_45746():
 def test_DataSources_TestcaseID_45747():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1227,6 +1214,16 @@ def test_DataSources_TestcaseID_45755():
     pass
     """Google Login"""
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    account = "zebra02.swdvt@gmail.com"
+    registration_page.sign_in_with_mail_zebra02()
+    registration_page.BugFix_For_ZebraEmail(account)
+    """verify if logged in successfully"""
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1400,6 +1397,7 @@ def test_DataSources_TestcaseID_45755():
 def test_DataSources_TestcaseID_45757():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     sleep(2)
@@ -1443,6 +1441,7 @@ def test_DataSources_TestcaseID_47830():
     pass
     """Click hamburger icon to expand menu"""
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Designs in menu"""
@@ -1540,6 +1539,7 @@ def test_DataSources_TestcaseID_47830():
 def test_DataSources_TestcaseID_47936():
     pass
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
@@ -1603,6 +1603,7 @@ def test_DataSources_TestcaseID_47944():
 
     """Click hamburger icon to expand menu"""
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     """Click My Data"""
     data_sources_page.click_My_Data()
@@ -1625,6 +1626,7 @@ def test_DataSources_TestcaseID_45740():
     """""""""test"""""
 
     common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Data"""
@@ -1703,6 +1705,7 @@ def test_DataSources_TestcaseID_47937():
 
     common_method.tearDown()
     data_sources_page.log_out_of_account()
+    common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
@@ -1935,6 +1938,7 @@ def test_DataSources_TestcaseID_45752():
     """ One drive """
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.click_drive_sign_in_if_present()
     common_method.wait_for_element_appearance("NAME")
     data_sources_page.checkFilesShownAreSupported()
     sleep(3)
@@ -2138,10 +2142,7 @@ def test_DataSources_TestcaseID_45749():
     pass
 
     common_method.tearDown()
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Data"""
@@ -2263,8 +2264,9 @@ def test_DataSources_TestcaseID_45750():
     pass
     """FB login"""
     common_method.tearDown()
+    data_sources_page.log_out_of_account()
     data_sources_page.clearAppData()
-    data_sources_page.clearBrowsingData()
+    common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
@@ -2520,6 +2522,7 @@ def test_Smoke_Test_TestcaseID_45878():
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
     login_page.Loginwith_Added_Email_Id()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     smoke_test_android.click_MyData_Tab()
     smoke_test_android.click_Plus_icon()
@@ -2529,7 +2532,7 @@ def test_Smoke_Test_TestcaseID_45878():
     smoke_test_android.click_Microsoft_OneDrive_Tab()
     smoke_test_android.click_On_Jpg_File()
     smoke_test_android.click_On_Select_Btn()
-    app_settings_page.Scroll_Till_Next_Tab()
+    data_sources_page.Scroll_Till_Next_Tab()
     smoke_test_android.click_Three_Dot_On_MyData()
     smoke_test_android.Click_Delete_File()
     smoke_test_android.Click_Delete_File()
@@ -2554,6 +2557,7 @@ def test_Smoke_Test_TestcaseID_45879():
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
     login_page.Loginwith_Added_Email_Id()
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     smoke_test_android.click_MyData_Tab()
     smoke_test_android.click_Plus_icon()
@@ -2567,7 +2571,7 @@ def test_Smoke_Test_TestcaseID_45879():
     smoke_test_android.click_Sign_In_Button()
     smoke_test_android.click_On_PNG_File()
     smoke_test_android.click_On_Select_Btn()
-    app_settings_page.Scroll_Till_Next_Tab()
+    data_sources_page.Scroll_Till_Next_Tab()
     smoke_test_android.click_Three_Dot_On_MyData()
     smoke_test_android.Click_Delete_File()
     smoke_test_android.Click_Delete_File()
@@ -2590,6 +2594,7 @@ def test_DataSources_TestcaseID_45758():
 
     common_method.tearDown()
     data_sources_page.clearAppData()
+    common_method.tearDown()
     data_sources_page.allowPermissions()
     """Sign in"""
     registration_page.clickSignIn()

@@ -383,7 +383,7 @@ def test_Delete_Account_TestcaseID_45785():
     data_sources_page.signInWithEmail()
     registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     data_sources_page.checkIfOnHomePage()
-    # """Click Hamburger Icon"""
+    """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
     registration_page.click_on_profile_edit()
@@ -1074,8 +1074,7 @@ def test_Delete_Account_TestcaseID_45788():
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
     registration_page.click_on_profile_edit()
-    while not poco("Log Out").exists():
-        poco.scroll()
+    registration_page.scroll_till_log_out()
     """Check If Delete Account is beside Logout button"""
     delete_account_page.checkIfDeleteAccountIsNextToLogOut()
     """Click Delete Account"""
