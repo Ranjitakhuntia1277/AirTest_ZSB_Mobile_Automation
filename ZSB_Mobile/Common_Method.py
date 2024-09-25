@@ -35,6 +35,7 @@ from poco import poco
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
+from datetime import datetime
 
 
 
@@ -1206,14 +1207,14 @@ class Common_Method():
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Turn Off The Printer")
+        messagebox.showinfo("Notification", "Turn Off The Printer and click the refresh button in APS")
         root.destroy()
 
     def Show_popup_To_Open_The_Printer_Head_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Open The Printer Head")
+        messagebox.showinfo("Notification", "Open The Printer Head And click the refresh button in APS")
         root.destroy()
 
     def Show_popup_To_Remove_The_Cartridge_Manually(self):
@@ -1222,6 +1223,14 @@ class Common_Method():
         root.attributes('-topmost', True)
         messagebox.showinfo("Notification", "Remove The cartridge")
         root.destroy()
+
+    def Show_popup_To_Remove_The_Cartridge_And_Close_ThePrinter_Head_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Remove The cartridge and Close the Printer head and then click the APS refresh button")
+        root.destroy()
+
 
     def Show_popup_To_Make_The_Status_AS_LowMedia_Manually(self):
         root = tk.Tk()
@@ -1482,6 +1491,13 @@ class Common_Method():
         messagebox.showinfo("Notification", "Verify The Font And Style Of Select Your Printerpage Manually")
         root.destroy()
 
+    def Show_popup_To_Change_The_Cartridge_To_Medialow_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        messagebox.showinfo("Notification", "Change The Cartridge To Medialow Manually and click turn off and then turn on APS to refresh the status")
+        root.destroy()
+
+
     def Show_popup_To_Verify_Bluetoothpairing_your_printer_page_with_new_fonts_and_Style(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
@@ -1527,6 +1543,13 @@ class Common_Method():
         messagebox.showinfo("Notification", "Add The Cartridge Without Paper Manually")
         root.destroy()
 
+    def Show_popup_To_Turn_ON_PrinterA_And_CoverOpen_And_PaperOut_To_PrinterB_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "To Turn ON PrinterA And CoverOpen And PaperOut To PrinterB Manually")
+        root.destroy()
+
     def Show_popup_To_Put_The_Media_Back_Into_The_printer_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
@@ -1540,6 +1563,34 @@ class Common_Method():
         root.attributes('-topmost', True)
         messagebox.showinfo("Notification",
                             "Verify Manually the view of pdf screens for 1st one it will be different and for rest it will be different")
+        root.destroy()
+
+    def Show_popup_To_Add_2_Printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Add 2 Printer in to zebra21.dvt@gmail.com account Manually")
+        root.destroy()
+
+    def Show_popup_To_Select_Printer_A_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Select Printer A Manually which is online")
+        root.destroy()
+
+    def Show_popup_To_Select_Printer_B_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Select Printer B Manually which is online")
+        root.destroy()
+
+    def Show_popup_To_Select_The_Printer_Manually(self):
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Select The Printer which has medialow status")
         root.destroy()
 
     def get_user_Details(self, msg):
@@ -1561,3 +1612,114 @@ class Common_Method():
         self.poco.swipe((500, 200), (500, 1000))
 
     # ##-------------------------------------------------------------------------------------------------
+
+        # Common.py
+
+    def clear_old_logs(self):
+        # Clear any existing logcat processes
+        subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
+
+    def start_adb_log_capture(self):
+        test_run_start_time = time.time()
+        self.clear_old_logs()
+        LOG_DIRECTORY = "logs"
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(LOG_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        ADB_LOG_FILE = os.path.join(date_directory, "adb_log.txt")
+        subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
+        return ADB_LOG_FILE, test_run_start_time
+
+    def stop_adb_log_capture(self):
+        result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],
+                                shell=False,
+                                check=True,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        if result.returncode == 0:
+            print("ADB log capture stopped successfully.")
+        else:
+            print(f"Failed to stop ADB log capture: {result.stderr.decode()}")
+
+    def capture_screenshot(self, step_id, test_case_id):
+        test_run_start_time = time.time()
+        SCREENSHOT_DIRECTORY = "screenshots"
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(SCREENSHOT_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        screenshot_path = os.path.join(date_directory, f"step_{step_id}_case_{test_case_id}.png")
+        snapshot(filename=screenshot_path)
+        return screenshot_path, test_run_start_time
+
+    def clear_directory(self):
+        LOG_DIRECTORY = "logs"
+        SCREENSHOT_DIRECTORY = "screenshots"
+
+        if os.path.exists(LOG_DIRECTORY):
+            shutil.rmtree(LOG_DIRECTORY)
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+
+        if os.path.exists(SCREENSHOT_DIRECTORY):
+            shutil.rmtree(SCREENSHOT_DIRECTORY)
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+
+        # #------------------------------------SEMIAUTO------------------------------------------------------------------
+
+    def clear_old_logs_semi(self):
+        # Clear any existing logcat processes
+        subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
+
+    def start_adb_log_capture_semi(self):
+        test_run_start_time = time.time()
+        self.clear_old_logs()
+        LOG_DIRECTORY = "logs_semi"
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(LOG_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        ADB_LOG_FILE = os.path.join(date_directory, "adb_log.txt")
+        subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
+        return ADB_LOG_FILE, test_run_start_time
+
+    def stop_adb_log_capture_semi(self):
+        result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],
+                                shell=False,
+                                check=True,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        if result.returncode == 0:
+            print("ADB log capture stopped successfully.")
+        else:
+            print(f"Failed to stop ADB log capture: {result.stderr.decode()}")
+
+    def capture_screenshot_semi(self, step_id, test_case_id):
+        test_run_start_time = time.time()
+        SCREENSHOT_DIRECTORY = "screenshots_semi"
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        date_directory = os.path.join(SCREENSHOT_DIRECTORY, current_date)
+        os.makedirs(date_directory, exist_ok=True)
+        screenshot_path = os.path.join(date_directory, f"step_{step_id}_case_{test_case_id}.png")
+        snapshot(filename=screenshot_path)
+        return screenshot_path, test_run_start_time
+
+    def clear_directory_semi(self):
+        LOG_DIRECTORY = "logs_semi"
+        SCREENSHOT_DIRECTORY = "screenshots_semi"
+
+        if os.path.exists(LOG_DIRECTORY):
+            shutil.rmtree(LOG_DIRECTORY)
+        os.makedirs(LOG_DIRECTORY, exist_ok=True)
+
+        if os.path.exists(SCREENSHOT_DIRECTORY):
+            shutil.rmtree(SCREENSHOT_DIRECTORY)
+        os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+
+
+
+
+
+
+

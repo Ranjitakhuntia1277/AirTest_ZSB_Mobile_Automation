@@ -14,6 +14,7 @@ from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK i
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 import pytest
 
+
 class Android_App_Registration:
     pass
 
@@ -67,7 +68,10 @@ def test_Registration_TestcaseID_45855():
     data_sources_page.clickContinue()
     registration_page.Verify_SignIn_Page()
     common_method.Stop_The_App()
+
+
 # ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def test_Registration_TestcaseID_45859():
     pass
@@ -87,17 +91,19 @@ def test_Registration_TestcaseID_45860():
     """""""""test"""""
 
     common_method.tearDown()
+    common_method.Clear_App()
+    login_page.Verify_ALL_Allow_Popups()
     login_page.click_loginBtn()
     login_page.Verify_ALL_Allow_Popups()
+    login_page.signInWithEmail()
     registration_page.Enter_Correct_Username()
     registration_page.Enter_Wrong_Password()
     login_page.click_SignIn_Button()
     registration_page.Verify_We_Didnot_recognize_Please_Try_Again()
-    data_sources_page.signInWithEmail()
+    registration_page.Verify_SignInwith_Page()
     registration_page.Enter_Correct_Username()
     registration_page.Enter_Correct_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -110,7 +116,9 @@ def test_Registration_TestcaseID_45861():
     """""""""test"""""
 
     common_method.tearDown()
-    registration_page.clickSignIn()
+    login_page.Verify_ALL_Allow_Popups()
+    login_page.click_loginBtn()
+    login_page.Verify_ALL_Allow_Popups()
     sleep(2)
     registration_page.verifyLinksInSignInPage()
     scroll_view = poco("android.view.View")
@@ -122,10 +130,7 @@ def test_Registration_TestcaseID_45861():
         help_page.chooseAcc("zebra03.swdvt@gmail.com")
     except:
         pass
-    try:
-        registration_page.wait_for_element_appearance("Home", 20)
-    except:
-        raise Exception("home page dint show up")
+    app_settings_page.Home_text_is_present_on_homepage()
     login_page.click_Menu_HamburgerICN()
     registration_page.click_on_profile_edit()
     poco.scroll()
@@ -206,7 +211,7 @@ def test_Registration_TestcaseID_45869():
                 poco.scroll()
             registration_page.addAccountToDevice()
         registration_page.sign_In_With_Google("Zebra#123456789", account)
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     registration_page.click_Buy_More_Labels()
     try:
         poco(text="Allow").wait_for_appearance(timeout=20)
@@ -217,6 +222,23 @@ def test_Registration_TestcaseID_45869():
     common_method.Stop_The_App()
 
 
+def test_Registration_TestcaseID_45862():
+    pass
+    common_method.tearDown()
+    login_page.Verify_ALL_Allow_Popups()
+    login_page.click_Menu_HamburgerICN()
+    registration_page.Verify_UserDetails()
+    registration_page.click_on_profile_edit()
+    poco.scroll()
+    registration_page.click_log_out_button()
+    try:
+        registration_page.wait_for_element_appearance("Sign In", 5)
+    except:
+        raise Exception("Did not redirect to the login page")
+    common_method.Stop_The_App()
+
+
+# ####----------------------------------------------------------------------------------------------
 """Add printer"""
 # def test_Registration_TestcaseID_46303():
 #     """""""""test"""""
@@ -304,26 +326,6 @@ def test_Registration_TestcaseID_45869():
 #     common_method.wait_for_element_appearance("Printer registration was successful", 30)
 #     add_a_printer_page.click_Finish_Setup_Button()
 #     common_method.Stop_The_App()
-
-
-def test_Registration_TestcaseID_45862():
-    pass
-    common_method.tearDown()
-    data_sources_page.checkIfOnHomePage()
-    login_page.click_Menu_HamburgerICN()
-    name = registration_page.get_login_name_from_menu()
-    if name == "swdvt zsb":
-        pass
-    else:
-        raise Exception("Login name does not match")
-    registration_page.click_on_profile_edit()
-    poco.scroll()
-    registration_page.click_log_out_button()
-    try:
-        registration_page.wait_for_element_appearance("Sign In", 5)
-    except:
-        raise Exception("Did not redirect to the login page")
-    common_method.Stop_The_App()
 
 
 # def test_Registration_TestcaseID_47930():

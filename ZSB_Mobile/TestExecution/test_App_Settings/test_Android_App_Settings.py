@@ -1315,3 +1315,4 @@ def test_AppSettings_TestcaseID_47928_Bug1888():
     """stop the app"""
     common_method.Stop_The_App()
 ###""""""""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+

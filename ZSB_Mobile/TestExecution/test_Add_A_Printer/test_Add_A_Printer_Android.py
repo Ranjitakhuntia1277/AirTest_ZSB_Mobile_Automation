@@ -155,7 +155,6 @@ def test_Addprinter_TestcaseID_45656():
 
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 def test_Addprinter_TestcaseID_45657():
     """"Check the cancle button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger"""
 
@@ -198,7 +197,6 @@ def test_Addprinter_TestcaseID_45657():
     add_a_printer_screen.Verify_Unable_To_Connect_To_Printer_Popup()
     """Verify Please try the following before attempting to connect to printer again. Text"""""
     add_a_printer_screen.Verify_Please_Try_The_Following_Before_Attempting_Again_Text()
-    """"Check there are ""Try again"", ""Watch Troubleshooting Video"" and ""Get Help"" three options on the page----This has to be removed from testcase"""
     """"open your device's Bluetooth settings and unpair your connection to this printer before trying again."""""
     common_method.Stop_The_App()
     aps_notification.Stop_Android_App()
@@ -758,6 +756,8 @@ def test_Addprinter_TestcaseID_45670_SemiAuto():
     common_method.Stop_The_App()
     # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+#notdone
 def test_Addprinter_TestcaseID_45678_SemiAuto():
     """"retrieve moneybadger when no online moenybadgers at your area, then open one, retrieve again"""
 
@@ -1025,7 +1025,7 @@ def test_Addprinter_TestcaseID_45682():
     common_method.Stop_The_App()
     # ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+#notdone
 def test_Add_Printer_Test_TestcaseID_45885():
     """Add a printer- use a printer which has ever been registered before and require a decommission."""
 
@@ -1085,7 +1085,7 @@ def test_Add_Printer_Test_TestcaseID_45885():
     common_method.Stop_The_App()
 # # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+#notdone
 def test_Addprinter_TestcaseID_53209_SemiAuto():
     """"[New Fonts and UI checking]Perform the Add printer process and check all the page/toast font and dialogs and buttons displayed correctly"""
 
@@ -1154,6 +1154,7 @@ def test_Addprinter_TestcaseID_53209_SemiAuto():
     common_method.Stop_The_App()
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#notdone
 def test_Addprinter_TestcaseID_53210_SemiAuto():
     """"[New Fonts and UI checking]Perform the Add printer process and check error message dialog display correct when adding printer,example Firmware update Error, internet access blocked"""
 
@@ -1219,7 +1220,7 @@ def test_Addprinter_TestcaseID_53210_SemiAuto():
     common_method.Stop_The_App()
 # ######""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+#notdone
 def test_Addprinter_TestcaseID_53211_SemiAuto():
     """"[New Fonts and UI checking]Perform the Add printer process and check paired failed page display correct"""
 
@@ -1317,6 +1318,7 @@ def test_Registration_TestcaseID_46303():
     common_method.Stop_The_App()
 # ####-----------------------------------------------------------------------------------------------------
 
+#notdone
 def test_Addprinter_TestcaseID_47702_AemiAuto():
     """"Add printer select network: Check search again to refresh current Wi-Fi list multi times will works fine"""
 
@@ -1404,6 +1406,7 @@ def test_Addprinter_TestcaseID_47702_AemiAuto():
     common_method.Stop_The_App()
 #     #######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#notdone
 def test_Addprinter_TestcaseID_53212_SemiAuto():
     """"[New Fonts and UI checking]Perform the Add printer process and check Unable to connect the printer page display correct when adding a printer searching wifi step with turn off device bluetooth"""
 
@@ -1482,7 +1485,7 @@ def test_Addprinter_TestcaseID_53212_SemiAuto():
     common_method.Stop_The_App()
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+# notdone
 def test_Addprinter_TestcaseID_53213_SemiAuto():
     """"[New Fonts and UI checking]Perform the Add printer process and check Failed to connect page dislay correct when adding a printer with input wrong password"""
 
@@ -1554,7 +1557,7 @@ def test_Addprinter_TestcaseID_53213_SemiAuto():
     common_method.Stop_The_App()
 #   #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+#notdone
 def test_Addprinter_TestcaseID_53214_SemiAuto():
     """"[New Fonts and UI checking]Check the permission dialog display correct, remove all the permission and turn off device Bluetooth, then click add printer"""
 
@@ -1594,6 +1597,7 @@ def test_Addprinter_TestcaseID_53214_SemiAuto():
     common_method.Stop_The_App()
     ####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#notdone
 def test_Addprinter_TestcaseID_53069():
     """"Printer Setup Screen- Check clicking the exit/cancel button on Exit Printer Setup dialog"""
 
@@ -1629,7 +1633,7 @@ def test_Addprinter_TestcaseID_53069():
 #    #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
+#notdone
 def test_Addprinter_TestcaseID_47715_SemiAuto():
     """"Add printer BT pair Timeout : check cancel Bluetooth Pairing request, check pair time"""
 
@@ -1684,6 +1688,7 @@ def test_Addprinter_TestcaseID_47715_SemiAuto():
 
 #     #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#notdone
 def test_Addprinter_TestcaseID_48436():
     """"Verify the Cancel button functionality on "Join Network Page" while connceting to already connected / newly connected network"""
 
@@ -1755,7 +1760,7 @@ def test_Addprinter_TestcaseID_48436():
 
 # #####"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+#notdone
 def test_Addprinter_TestcaseID_48438():
     """"Verify the timeout scenario when user enters the password and does not Continue"""
 
@@ -1831,6 +1836,7 @@ def test_Addprinter_TestcaseID_48438():
 
 #     ############""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#notdone
 def test_Addprinter_TestcaseID_48693():
     """"Verify the Signal Strength UI for WiFi with Average connectivity"""
 

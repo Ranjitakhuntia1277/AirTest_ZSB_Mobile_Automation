@@ -2,6 +2,8 @@
 import time
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Others.Others import Others
 from ...Common_Method import *
@@ -23,10 +25,14 @@ others = Others(poco)
 common_method = Common_Method(poco)
 social_login = Social_Login(poco)
 registration_page = Registration_Screen(poco)
+aps_notification = APS_Notification(poco)
 
-
+#semi-auto
 def test_Others_TestcaseID_45793():
     """Notifications some times will not sync properly"""
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+
     start_app("com.google.android.googlequicksearchbox")
 
     others.click_google_search_bar()
@@ -36,7 +42,7 @@ def test_Others_TestcaseID_45793():
         others.wait_for_element_appearance("Continue with Google", 10)
         login_page.click_Loginwith_Google()
         common_method.wait_for_element_appearance_textmatches("Choose an account")
-        others.click_an_google_account("zsbswdvt@gmail.com")
+        others.click_an_google_account("zebra21.dvt@gmail.com")
     except:
         pass
 

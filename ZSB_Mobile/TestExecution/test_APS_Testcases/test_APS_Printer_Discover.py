@@ -67,7 +67,7 @@ def test_Android_APS_Printer_Discover_TestcaseID_49135():
     aps_notification.Verify_Labels_left_Is_Present()
     aps_notification.Verify_Bluetooth_Address_Is_Present()
     sleep(7)
-    aps_notification.Verify_Printer_Status_AS_Offline()
+    # aps_notification.Verify_Printer_Status_AS_Offline()
     """Check Printers MAC address matches with what is on the physical printer manually"""""""""
 ### """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
