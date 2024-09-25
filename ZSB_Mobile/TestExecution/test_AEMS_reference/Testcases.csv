@@ -1,4 +1,5 @@
 Testcase_ID,Test_Description,Subarea
-45729,Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared,Data Sources
-45734,Verify auto Label Feed On Printer Cover Close value doesn't retrieve in progress after changing darkness level,Data Sources
-45735,Verify ZSB app permission works fine,Data Sources
+49665,Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared,App Settings
+47911,Verify auto Label Feed On Printer Cover Close value doesn't retrieve in progress after changing darkness level,App Settings
+47918,Verify ZSB app permission works fine,App Settings
+47810,Verify recently printer labels text shouldn't overlap on theme background picture,App Settings

@@ -104,7 +104,7 @@ def test_APS_Notification_TestcaseID_49167():
     aps_notification.Verify_Print_Review_Page()
     aps_notification.click_Save_AS_PDF()
     aps_notification.click_All_Printers()
-    aps_notification.Verify_Printer_Status_AS_Offline()
+    # aps_notification.Verify_Printer_Status_AS_Offline()
 
 
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -78,9 +78,9 @@ class APS_Notification:
     def click_Files_Folder(self):
         sleep(3)
         Files_Folder = self.poco(self.Files_Folder)
-        if Files_Folder.exists():
-            Files_Folder.click()
-            sleep(3)
+        Files_Folder.click()
+        sleep(3)
+
 
 
     def click_Drive_Folder(self):
@@ -90,8 +90,7 @@ class APS_Notification:
             Drives_Folder.click()
             sleep(2)
         else:
-            print("Drives folder is not there")
-        sleep(3)
+            raise Exception("Drive folder Option is not present.")
 
     def click_PDF_File_From_The_List(self):
         sleep(2)
@@ -144,16 +143,13 @@ class APS_Notification:
     def click_ON_Three_Dot(self):
         sleep(8)
         three_dot = self.poco(self.Three_Dot_Icon_Next_To_PDF)
-        if three_dot.exists():
-            three_dot.click()
-            sleep(2)
+        three_dot.click()
+        sleep(2)
 
     def click_ON_Three_Dot_Next_To_Drive_PDF(self):
         sleep(3)
-        if self.poco(name="android.widget.TextView")[2].exists():
-            self.poco(name="android.widget.TextView")[2].click()
-        else:
-            print("Three dot is not present")
+        self.poco(name="android.widget.TextView")[2].click()
+
 
     def click_On_Share_Option(self):
         sleep(2)
@@ -173,9 +169,8 @@ class APS_Notification:
     def click_Suggestion_PDF_File_From_Drive(self):
         sleep(1)
         Suggestion_PDF_File = self.poco(self.Suggestion_PDF_File_From_Drive)
-        if Suggestion_PDF_File.exists():
-            Suggestion_PDF_File.click()
-            sleep(3)
+        Suggestion_PDF_File.click()
+        sleep(3)
 
     def click_PDF_ON_Result(self):
         PDF_ON_Result = self.poco(self.PDF_ON_Result)
@@ -183,7 +178,6 @@ class APS_Notification:
         sleep(3)
 
     def click_Google_Drive_PDF_On_Result(self):
-        if self.poco(self.PDF_ON_Result).exists():
             self.poco(self.PDF_ON_Result).click()
             sleep(3)
 
@@ -196,9 +190,8 @@ class APS_Notification:
     def click_Print_Option(self):
         sleep(4)
         Print_Option = self.poco(text="Print")
-        if Print_Option.exists():
-            Print_Option.click()
-        # raise Exception("Print Option not present.")
+        Print_Option.click()
+
 
     def click_Google_Drive_Print_Option(self):
         sleep(2)
@@ -230,8 +223,7 @@ class APS_Notification:
             a.click()
             print(a)
         else:
-            if self.poco(textMatches="(?s).*ZSB-DP.*").exists():
-                self.poco(textMatches="(?s).*ZSB-DP.*").click()
+            self.poco(textMatches="(?s).*ZSB-DP.*").click()
 
     def is_grayed_out(element):
         # Example implementation, adjust based on how you identify a grayed-out element
@@ -247,9 +239,8 @@ class APS_Notification:
             Available_Printer.click()
             sleep(4)
         else:
-
             self.poco(text="ZSB-DP12(1)").click()
-            print(" Printer is not displaying:")
+            print(" Printer is displaying:")
 
     def click_Downloads(self):
         Downloads = self.poco(self.Downloads_Tab)
@@ -327,13 +318,10 @@ class APS_Notification:
 
     def Verify_Print_job_sent_successfully_Message(self):
         print_job_sent_message = self.poco(text="Print Job sent successfully.")
-        if print_job_sent_message.exists():
-            print_job_sent_message.get_text()
-            print(" Print job sent message is displaying correctly:", print_job_sent_message)
-            return print_job_sent_message
-        else:
-            print(" Print job sent message is not displaying correctly")
-            sleep(3)
+        print_job_sent_message.get_text()
+        print(" Print job sent message is displaying correctly:", print_job_sent_message)
+        return print_job_sent_message
+
 
     def click_Settings_Tab(self):
         SearchBar2 = self.poco(self.Searchbar2)
@@ -344,37 +332,30 @@ class APS_Notification:
         sleep(2)
         Settings = self.poco(self.Settings)
         if Settings.exists():
-            Settings.click()
-            sleep(2)
-        else:
-            print("Settings text is not there")
+           Settings.click()
+           sleep(2)
+
 
     def click_Connected_Devices(self):
         sleep(2)
         Connected_Devices = self.poco(text="Connected devices")
-        if Connected_Devices.exists():
-            Connected_Devices.click()
-            sleep(3)
-        else:
-            print("Connected Devices element not found")
+        Connected_Devices.click()
+        sleep(3)
+
 
     def click_Connection_Preferences(self):
         sleep(2)
         Connection_Preferences = self.poco(text="Connection preferences")
-        if Connection_Preferences.exists():
-            Connection_Preferences.click()
-            sleep(3)
-        else:
-            print("Connection Preferences element not found")
+        Connection_Preferences.click()
+        sleep(3)
+
 
     def click_Printing_Tab(self):
         sleep(2)
         printing_tab = self.poco(text="Printing")
-        if printing_tab.exists():
-            printing_tab.click()
-            sleep(3)
-        else:
-            print("Printing Tab element not found")
+        printing_tab.click()
+        sleep(3)
+
 
     def click_ZSB_Series(self):
         sleep(2)
@@ -385,9 +366,8 @@ class APS_Notification:
         else:
             poco.scroll()
             sleep(3)
-            if self.poco(text="ZSB Series").exists():
-                self.poco(text="ZSB Series").click()
-                print("ZSB_Series element found")
+            self.poco(text="ZSB Series").click()
+            print("ZSB_Series element found")
 
     def get_all_designs_in_recently_printed_labels(self, index=6):
         try:
@@ -415,8 +395,7 @@ class APS_Notification:
 
     def click_Turn_OFF_ZSB_Series_Printer(self):
         sleep(3)
-        if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
-            self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+        self.poco(self.Turn_ON_ZSB_Series_Printer).click()
 
     def click_Mobile_back_icon(self):
         sleep(2)
@@ -454,14 +433,12 @@ class APS_Notification:
 
 
     def Verify_Print_Review_Page(self):
-        sleep(5)
+        sleep(9)
         print_preview = self.poco(self.Print_Review_Page)
-        if print_preview.exists():
-            print_preview.get_text()
-            print(" Print Review page is displaying correctly:", print_preview)
-            return print_preview
-        else:
-            print(" Print Review page is displaying correctly")
+        print_preview.get_text()
+        print(" Print Review page is displaying correctly:", print_preview)
+        return print_preview
+
 
     def click_Save_AS_PDF(self):
         sleep(5)
@@ -476,11 +453,9 @@ class APS_Notification:
     def click_All_Printers(self):
         sleep(2)
         All_Printers = self.poco(text="All printers…")
-        if All_Printers.exists():
-            All_Printers.click()
-            sleep(8)
-        else:
-            print("All_Printers element not found")
+        All_Printers.click()
+        sleep(8)
+
 
     def click_PrinterAll(self):
         save_as_pdf = self.poco(self.All_Printers)
@@ -490,27 +465,28 @@ class APS_Notification:
     def Verify_Printer_Status_AS_Offline(self):
         sleep(9)
         a = self.poco(textMatches="(?s).*ZSB Series - Offline.*")
-        if a.exists():
-            a.get_text()
-            return a
-        # a.split("\n")
-        # print(a)
+        a.get_text()
+        return a
+
+    def Verify_Printer_Status_AS_Online(self):
+        sleep(9)
+        a = self.poco(textMatches="(?s).*ZSB Series - Online.*")
+        a.get_text()
+        return a
+
 
     def Verify_Print_job_IS_IN_Progress_Message(self):
         Print_job_IS_IN_Progress_Message = self.poco(self.Print_job_IS_IN_Progress_Message)
-        if Print_job_IS_IN_Progress_Message.exists():
-            Print_job_IS_IN_Progress_Message.get_text()
-            print(" Print job sent message is displaying correctly:", Print_job_IS_IN_Progress_Message)
-            return Print_job_IS_IN_Progress_Message
-        else:
-            print(" Print job sent message is displaying correctly")
+        Print_job_IS_IN_Progress_Message.get_text()
+        print(" Print job sent message is displaying correctly:", Print_job_IS_IN_Progress_Message)
+        return Print_job_IS_IN_Progress_Message
+
 
     def click_Cancel_Button_On_The_Printing_InProgress_Notification(self):
         sleep(4)
         cancel_btn = self.poco(self.Cancel_Button_On_The_Printing_InProgress_Notification)
-        if cancel_btn.exists():
-            cancel_btn.click()
-            sleep(2)
+        cancel_btn.click()
+        sleep(2)
 
     def run_the_command(self, command):
         cmd = command
@@ -546,50 +522,54 @@ class APS_Notification:
     def click_Print_Icon_Option(self):
         sleep(4)
         print_icon = self.poco(self.Print_Icon_Option)
-        if print_icon.exists():
-            print_icon.click()
-            sleep(2)
+        print_icon.click()
+        sleep(2)
 
     def click_Expand_Icon(self):
         sleep(2)
         Expand_Icon = self.poco(self.Expand_Icon)
-        if Expand_Icon.exists():
-            Expand_Icon.click()
-            sleep(2)
+        Expand_Icon.click()
+        sleep(2)
 
     def click_And_Enter_Copies_Number_Field(self):
         sleep(1)
         Copies_Number_Field = self.poco(self.Copies_Number_Field)
-        if Copies_Number_Field.exists():
-            Copies_Number_Field.click()
-            sleep(1)
-            Copies_Number_Field.set_text(" ")
-            sleep(1)
-            Copies_Number_Field.set_text("2")
+        Copies_Number_Field.click()
+        sleep(1)
+        Copies_Number_Field.set_text(" ")
+        sleep(1)
+        Copies_Number_Field.set_text("2")
 
     def click_And_Enter_50_Copies_Number_Field(self):
         sleep(1)
         Copies_Number_Field = self.poco(self.Copies_Number_Field)
-        if Copies_Number_Field.exists():
-            Copies_Number_Field.click()
-            sleep(1)
-            Copies_Number_Field.set_text(" ")
-            sleep(1)
-            Copies_Number_Field.set_text("5")
+        Copies_Number_Field.click()
+        sleep(1)
+        Copies_Number_Field.set_text(" ")
+        sleep(1)
+        Copies_Number_Field.set_text("5")
+
+    def click_And_Enter_5_Copies_Number_Field(self):
+        sleep(1)
+        Copies_Number_Field = self.poco(self.Copies_Number_Field)
+        Copies_Number_Field.click()
+        sleep(1)
+        Copies_Number_Field.set_text(" ")
+        sleep(1)
+        Copies_Number_Field.set_text("5")
+
 
     def click_On_Three_Dot_On_Added_Printer(self):
         sleep(1)
         Three_Dot_On_Added_Printer = self.poco(self.Three_Dot_On_Added_Printer)
-        if Three_Dot_On_Added_Printer.exists():
-            Three_Dot_On_Added_Printer.click()
-            sleep(2)
+        Three_Dot_On_Added_Printer.click()
+        sleep(2)
 
     def click_On_Clear_Print_Queue(self):
         sleep(1)
         Clear_Print_Queue = self.poco(self.Clear_Print_Queue)
-        if Clear_Print_Queue.exists():
-            Clear_Print_Queue.click()
-            sleep(2)
+        Clear_Print_Queue.click()
+        sleep(2)
 
     def Verify_Cancelling_Driver_Job_Is_Displaying(self):
         sleep(7)
@@ -626,16 +606,13 @@ class APS_Notification:
     def click_On_Cancel_Btn_On_The_Popup(self):
         sleep(1)
         cancel_btn = self.poco(name="Cancel")
-        if cancel_btn.exists():
-            cancel_btn.click()
-        else:
-            print("Cancel button is not present")
+        cancel_btn.click()
+
 
     def Verify_Job_Is_Cancelled(self):
         jab_cancelled = self.poco(name="Job is Cancelled")
-        if jab_cancelled.exists():
-            jab_cancelled.click()
-            print("Job is Cancelled")
+        jab_cancelled.click()
+        print("Job is Cancelled")
 
     def Enter_Playstore_Text_On_SearchBar(self):
         SearchBar2 = self.poco(self.Searchbar2)
@@ -709,8 +686,7 @@ class APS_Notification:
     def click_Clear_Queue_Button(self):
         sleep(1)
         Clear_Queue_Button = self.poco(name="Clear Queue")
-        if Clear_Queue_Button.exists():
-            Clear_Queue_Button.click()
+        Clear_Queue_Button.click()
         sleep(2)
 
     def Expand_StatusBar(self):
@@ -726,30 +702,26 @@ class APS_Notification:
     def click_ON_Three_Dot_To_Print(self):
         sleep(2)
         three_dot = self.poco(name="com.google.android.apps.docs:id/action_show_menu")
-        if three_dot.exists():
-            three_dot.click()
+        three_dot.click()
 
     def Verify_Printer_Icon_Is_Present(self):
         sleep(8)
         a = self.poco(nameMatches="(?s).*com.android.settings:id/icon.*")
-        if a.exists():
-            a.get_name()
-            print(a)
+        a.get_name()
+        print(a)
 
     def Verify_Printer_Name_Is_Present(self):
         sleep(3)
         a = self.poco(textMatches="(?s).*ZSB-DP.*")
-        if a.exists():
-            a.get_name()
-            # a.split("\n")
-            print(a)
+        a.get_name()
+        # a.split("\n")
+        print(a)
 
     def Verify_Printer_Status_Is_Present(self):
         sleep(3)
         a = self.poco(textMatches="(?s).*Online.*")
-        if a.exists():
-            a.get_name()
-            print(a)
+        a.get_name()
+        print(a)
 
     def Verify_Labels_left_Is_Present(self):
         sleep(2)
@@ -789,23 +761,20 @@ class APS_Notification:
     def Verify_Printer_Status_AS_HeadOpen(self):
         sleep(4)
         a = self.poco(nameMatches="(?s).*Head Open.*")
-        if a.exists():
-            a.get_name()
-            print(a)
+        a.get_name()
+        print(a)
 
     def Verify_Printer_Status_AS_Paper_Out(self):
         sleep(4)
         a = self.poco(nameMatches="(?s).*Paper Out.*")
-        if a.exists():
-            a.get_name()
-            print(a)
+        a.get_name()
+        print(a)
 
     def Verify_Printer_Status_AS_Media_LOW(self):
         sleep(4)
         a = self.poco(nameMatches="(?s).*Media Low.*")
-        if a.exists():
-            a.get_name()
-            print(a)
+        a.get_name()
+        print(a)
 
     def Verify_Longer_Printer_Name_Is_Present(self):
         a = self.poco(nameMatches="(?s).*@abcdefghijklmn!@#abcdefghijklmn.*")
@@ -821,15 +790,12 @@ class APS_Notification:
             print("Turn On you Wifi pop up is not displaying")
 
     def Verify_And_Turn_ON_APS(self):
-        if self.poco(text="Service disabled").exists():
-            self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+       self.poco(self.Turn_ON_ZSB_Series_Printer).click()
 
     def Verify_And_Turn_OFF_APS(self):
-        if self.poco(nameMatches="(?s).*ZSB-DP.*").exists():
-            self.poco(self.Turn_ON_ZSB_Series_Printer).click()
+        self.poco(self.Turn_ON_ZSB_Series_Printer).click()
 
-        else:
-            pass
+
 
     def Verify_PaperSize(self):
         sleep(1)
@@ -854,12 +820,17 @@ class APS_Notification:
         else:
             print("Confirmation Ok button is not displaying")
 
+    def click_OK_On_ConfirmationPopup(self):
+        sleep(2)
+        ok_btn = self.poco(text="OK")
+        ok_btn.click()
+
+
     def Verify_Default_Value_Is_1(self):
         sleep(1)
         a = self.poco(textMatches="(?s).*1.*")
-        if a.exists():
-            a.get_name()
-            print(a)
+        a.get_name()
+        print(a)
 
     def Verify_Labels_Left_Count(self):
         sleep(1)
@@ -871,10 +842,9 @@ class APS_Notification:
     def Verify_Black_And_White_Text(self):
         sleep(1)
         a = self.poco(textMatches="(?s).*Black & White.*")
-        if a.exists():
-            a.get_name()
-            # a = a.split("\n")
-            print(a)
+        a.get_name()
+        # a = a.split("\n")
+        print(a)
 
     def Verify_Orientation_Text(self):
         sleep(1)
@@ -886,27 +856,23 @@ class APS_Notification:
     def Verify_Portrait_Option(self):
         sleep(1)
         a = self.poco(textMatches="(?s).*Portrait.*")
-        if a.exists():
-            a.get_name()
-            print(a)
+        a.get_name()
+        print(a)
 
     def Verify_Portrait_View_Is_Displaying(self):
         sleep(2)
         portrait_view = self.poco(name="")
-        if portrait_view.exists():
-            portrait_view.get_text()
-            print(" Portrait View Is Displaying:", portrait_view)
-            return portrait_view
+        portrait_view.get_text()
+        print(" Portrait View Is Displaying:", portrait_view)
+        return portrait_view
 
     def click_Portrait_Tab(self):
         sleep(1)
-        if self.poco(text="Portrait").exists():
-            self.poco(text="Portrait").click()
+        self.poco(text="Portrait").click()
 
     def click_Landscape_Option(self):
         sleep(1)
-        if self.poco(text="Landscape").exists():
-            self.poco(text="Landscape").click()
+        self.poco(text="Landscape").click()
 
     def Verify_Landscape_View_Is_Displaying(self):
         sleep(2)
@@ -954,9 +920,10 @@ class APS_Notification:
         sleep(2)
         Labels_Left_text = self.poco(text="N/A")
         if not Labels_Left_text.exists():
-            print("Labels Left is not present")
+            print("NA status is present")
         else:
-            print("Labels Left is present")
+            raise Exception("NA status is not present.")
+
 
     def click_And_Enter_0_Copies_Number_Field(self):
         sleep(1)
@@ -971,34 +938,30 @@ class APS_Notification:
     def click_All_Arrow_Mark(self):
         sleep(2)
         a = self.poco(textMatches="(?s).*All.*")
-        if a.exists():
-            a.click()
-            sleep(1)
+        a.click()
+        sleep(1)
 
     def Select_Range_Of_Option(self):
         sleep(1)
         a = self.poco(textMatches="(?s).*Range of.*")
-        if a.exists():
-            a.click()
-            sleep(1)
+        a.click()
+        sleep(1)
 
     def Select_1_to_1_Page(self):
         sleep(1)
         a = self.poco(name="com.android.printspooler:id/page_range_edittext")
-        if a.exists():
-            a.click()
-            sleep(1)
-            poco(text("1-1"))
-            sleep(1)
+        a.click()
+        sleep(1)
+        poco(text("1-1"))
+        sleep(1)
 
     def Select_2_to_4_Page(self):
         sleep(1)
         a = self.poco(name="com.android.printspooler:id/page_range_edittext")
-        if a.exists():
-            a.click()
-            sleep(1)
-            poco(text("2-4"))
-            sleep(1)
+        a.click()
+        sleep(1)
+        poco(text("2-4"))
+        sleep(1)
 
     def Select_Start_And_End_Page_Number(self):
         sleep(1)
@@ -1016,4 +979,9 @@ class APS_Notification:
             Expand_Icon.click()
             sleep(2)
 
-
+    def click_Offline_Printer_To_Print(self):
+        sleep(1)
+        if not self.poco(name="com.android.printspooler:id/paper_size_summary").exists():
+            pass
+        else:
+            assert self.poco(name="com.android.printspooler:id/paper_size_summary").exists(), "Paper size description is not present"
