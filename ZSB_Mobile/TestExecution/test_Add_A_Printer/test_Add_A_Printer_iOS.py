@@ -10,7 +10,11 @@ from airtest.core.api import connect_device, sleep
 from airtest.core.api import start_app
 from poco.drivers.ios import iosPoco
 
-
+import os
+import subprocess
+import time
+from airtest.core.api import connect_device, device, sleep, auto_setup, click, text
+from poco.drivers.ios import iosPoco
 # Specify the device's platform (Android or iOS) and other details
 
 class Add_A_PrinterScreen:

@@ -1,10 +1,11 @@
 import inspect
 
 from airtest.core.api import *
+from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 
-from ...AEMS.api_calls import start_main, insert_step, insert_stepDetails, insert_case_results, end_main, start_execution_loop, end_execution_loop, end_execution, upload_case_files
-from ...AEMS.store import execID, leftId
+from ...TestExecution.test_AEMS_reference.api_calls import start_main, insert_step, insert_stepDetails, insert_case_results, end_main, start_execution_loop, end_execution_loop, end_execution, upload_case_files
+from ...TestExecution.test_AEMS_reference.store import execID, leftId
 # from setuptools import logging
 # from ...PageObject.Robofinger import test_robo_finger
 from ...Common_Method import Common_Method
@@ -12,6 +13,7 @@ from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+import pytest
 from airtest.core.api import connect_device
 
 
@@ -250,7 +252,7 @@ def test_AppSettings_TestcaseID_47911():
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
-        stepId += 1
+
     except Exception as e:
         screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
@@ -340,7 +342,7 @@ def test_AppSettings_TestcaseID_47918():
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
-        stepId += 1
+
     except Exception as e:
         screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
@@ -438,7 +440,7 @@ def test_AppSettings_TestcaseID_47810():
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
-        stepId += 1
+
     except Exception as e:
         screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)

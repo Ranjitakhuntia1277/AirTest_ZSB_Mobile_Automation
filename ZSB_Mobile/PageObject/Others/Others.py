@@ -8,19 +8,9 @@ from poco import poco
 from ...Common_Method import Common_Method
 from airtest.core.api import device as current_device
 import os
-
-
-# from ZSB_Mobile.PageObject.Login_Screen import Login_Screen
-
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 import platform
-
-if platform.system() == "Windows":
-    def Basic_path(a):
-        return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
-else:
-    def Basic_path(a):
-        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 
 class Others:
@@ -38,8 +28,7 @@ class Others:
         self.Label_alignment_demo = "Label Alignment Demo"
         self.android_widget_button = "android.widget.Button"
 
-        self.three_dots = Template(os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
-                                                "tpl1704949114184.png"), record_pos=(0.398, -0.695),
+        self.three_dots = Template(r"tpl1704949114184.png", record_pos=(0.398, -0.695),
                                    resolution=(1080, 2340))
         self.delete_button = "Delete"
         self.delete_printer_text = "Delete Printer\nPlease acknowledge the following to continue:\nThis action cannot be undone. Deleting your printer will: \n•  Permanently remove it from your workspace\n•  Factory reset your printer\nAfter deleting your printer, proceed to the Bluetooth settings on your device to remove the existing Bluetooth bond."
@@ -48,14 +37,11 @@ class Others:
         self.Google_ZSB_DP12_1 = "zsbdp12"
         self.google_search_feild = "com.google.android.googlequicksearchbox:id/googleapp_hint_text"
         self.google_text_field = "com.google.android.googlequicksearchbox:id/googleapp_search_box"
-        self.google_hamburger_menu = Template(Basic_path("tpl1704994282096.png"), record_pos=(-0.418, -0.921),
-                                              resolution=(1080, 2340))
+        # self.google_hamburger_menu = Template(Basic_path("tpl1704994282096.png"), record_pos=(-0.418, -0.921),
+        #                                       resolution=(1080, 2340))
         self.notifications_button = "Notifications"
         self.seekbar_path = "android.widget.SeekBar"
-        self.down_arrow_button = Template(
-            os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates",
-                         "down_arrow_notification_page.png"), record_pos=(0.407, -0.425), resolution=(1080, 2340))
-
+        self.down_arrow_button = Template(r"tpl1727345262355.png", record_pos=(0.408, -0.426), resolution=(1080, 2400))
         self.dismiss_button = "Dismiss"
         self.photo_upload = "Upload Photo"
         self.photo_gallery = "Photo Gallery"
@@ -145,6 +131,10 @@ class Others:
         test_prin = self.poco(self.test_print)
         test_prin.click()
 
+    def click_Testprint(self):
+        sleep(2)
+        self.poco(name="Test Print").click()
+
     def click_icon(self):
         icon = self.poco(self.android_widget_button)
         icon.click()
@@ -153,7 +143,7 @@ class Others:
         # alignment_demo = self.poco(self.Label_alignment_demo)
         # alignment_demo.click()
         try:
-            touch(Template(Basic_path(r"tpl1710829861070.png"), record_pos=(0.117, 0.244), resolution=(1080, 2400)))
+            touch(Template(r"tpl1710829861070.png", record_pos=(0.117, 0.244), resolution=(1080, 2400)))
         except:
             self.poco(nameMatches="(?s).*Label Alignment Demo.*").focus([0.5, 0.71]).click()
 
@@ -339,11 +329,13 @@ class Others:
             return 0
 
     def click_down_arrow_button(self):
-        touch(self.down_arrow_button)
+        if self.down_arrow_button.exists():
+            touch(self.down_arrow_button)
 
     def click_dismiss_printer_notification(self):
         dismiss_btn = self.poco(self.dismiss_button)
-        dismiss_btn.click()
+        if dismiss_btn.exists():
+            dismiss_btn.click()
 
     def add_id_to_child_elem(self, arr):
         for i in range(len(arr)):
@@ -1072,3 +1064,14 @@ class Others:
             self.poco("android.widget.Button").click()
         except:
             pass
+
+    def Open_ZSB_WebPortal(self):
+        if self.poco("https://zsbportal.zebra.com/").exists():
+            pass
+        else:
+            self.enter_the_text_in_goole("https://zsbportal.zebra.com/")
+            self.click_enter()
+
+    def Select_Printer(self):
+        sleep(2)
+        self.poco(textMatches=".*ZSB-DP12.*").click()

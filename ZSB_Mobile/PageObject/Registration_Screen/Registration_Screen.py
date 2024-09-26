@@ -36,7 +36,8 @@ class Registration_Screen:
         self.poco = poco
         self.Register_Email = " Register Your Email Now"
         self.log_out_button = "Log Out"
-        self.Google_Icon = Template(Basic_path(r"Google_Icon.png"), record_pos=(-0.319, -0.173), resolution=(1080, 2340))
+        self.Google_Icon = Template(Basic_path(r"Google_Icon.png"), record_pos=(-0.319, -0.173),
+                                    resolution=(1080, 2340))
         self.Facebook_Icon = Template(Basic_path(r"Facebook_Icon.png"), record_pos=(-0.316, 0.094),
                                       resolution=(1080, 2340))
         self.Apple_Icon = Template(Basic_path(r"Apple_Icon.png"), record_pos=(-0.317, -0.043), resolution=(1080, 2340))
@@ -435,14 +436,14 @@ class Registration_Screen:
     def sign_In_With_Google(self, password, username=None, wrong_password=False):
         if username is not None:
             try:
-                self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
+                self.poco("android.widget.EditText").wait_for_appearance(timeout=15)
                 self.poco("android.widget.EditText").set_text(username)
             except:
-                self.poco("identifierId").wait_for_appearance(timeout=10)
+                self.poco("identifierId").wait_for_appearance(timeout=15)
                 self.poco("identifierId").set_text(username)
             keyevent("Enter")
             self.poco("android.widget.Button")[-1].click()
-        self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
+        self.poco("android.widget.EditText").wait_for_appearance(timeout=15)
         self.poco("android.widget.EditText").set_text(password)
         keyevent("Enter")
         # self.poco("android.widget.Button")[-1].click()
@@ -912,27 +913,12 @@ class Registration_Screen:
             raise Exception("Did not return to login page.")
 
     def Enter_Wrong_UserName(self):
-        sleep(9)
-        zebra_login = self.poco(text="Sign In with your email")
-        if zebra_login.exists():
-            zebra_login.click()
-            sleep(2)
-            self.poco(name="username").click()
-            sleep(1)
-            self.poco(text(""))
-            self.poco(text("soho_dvtxxxxx@hotmail.com"))
-            sleep(1)
-        else:
-            sleep(3)
-            device().swipe((0.5, 0.3), (0.5, 0.7), duration=0.5)
-            sleep(10)
-            self.poco(text="Sign In with your email").click()
-            sleep(2)
-            self.poco(name="username").click()
-            sleep(1)
-            self.poco(text(""))
-            self.poco(text("soho_dvtxxxxx@hotmail.com"))
-            sleep(1)
+        sleep(4)
+        self.poco(name="username").click()
+        sleep(1)
+        self.poco(text(""))
+        self.poco(text("soho_dvtxxxxx@hotmail.com"))
+        sleep(1)
 
     def Enter_Wrong_Password(self):
         sleep(1)
@@ -943,16 +929,29 @@ class Registration_Screen:
 
     def Enter_Correct_Username(self):
         sleep(9)
-        zebra_login = self.poco(text="Sign In with your email")
-        if zebra_login.exists():
-            zebra_login.click()
-            sleep(2)
+
+        if self.poco(name="username").exists():
             self.poco(name="username").click()
             sleep(1)
             self.poco(text(""))
             self.poco(text("zebra07.swdvt@gmail.com"))
             sleep(1)
 
+        else:
+            self.close_app_reopen_and_click_sign_in()
+            sleep(9)
+            self.signInWithEmail()
+        print("Successfully clicked Sign In With Email")
+        sleep(2)
+        if self.poco("com.android.chrome:id/coordinator").exists():
+            self.poco("com.android.chrome:id/coordinator").click()
+        keyevent("Enter")
+        sleep(2)
+        self.poco(name="username").click()
+        sleep(1)
+        self.poco(text(""))
+        self.poco(text("zebra07.swdvt@gmail.com"))
+        sleep(1)
 
     def Enter_Correct_Password(self):
         sleep(1)
@@ -1102,3 +1101,9 @@ class Registration_Screen:
                     pass
             else:
                 return
+
+    def Verify_UserDetails(self):
+        sleep(3)
+        self.poco(nameMatches=".*zsb.*").get_name()
+        sleep(1)
+

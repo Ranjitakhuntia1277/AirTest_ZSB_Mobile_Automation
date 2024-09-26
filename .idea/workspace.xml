@@ -5,22 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Test Results - pytest_in_test_Android_UserSettings_And_Notifications_py.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/test_Android_UserSettings_And_Notifications_Semi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/tpl1727345262355.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/ADB_logs/Logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/ADB_logs/Logs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/AEMS/execution.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/AEMS/execution.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/AEMS/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/AEMS/store.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/Common_Method.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Data_Source_Screen/Data_Sources_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Delete_Account/Delete_Account_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Delete_Account/Delete_Account_Screen_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Help_Screen/Help_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Help_Screen/Help_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/Testcases.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/Testcases.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/test_Data_sources_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/test_Data_sources_Android.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_semiautomated_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Delete_Account/test_Delete_Account_semiautomated_iOS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token/test_SSO_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_SSO_token/test_SSO_token.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APP_Settings/APP_Settings_Screen_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/Others.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Others/Others.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/LoginDetails_iOS.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/LoginDetails_iOS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/samp_report.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/sampl_report.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/left_and_exec_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/left_and_exec_id.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Feed_on_headclose.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/report_test_others.html" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/report_test_others.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/reports/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/reports/assets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/reports/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/reports/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/reports/report_test_others.html" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/reports/report_test_others.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/reports_Others.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/reports_Others.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/store.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/test_Android_Others.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications/test_Android_UserSettings_And_Notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Others/test_Android_Others_Semi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Ranjita/Android/Android_Automated_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_Automated_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_Automated_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_SemiAuto_TestSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestSuite/Automated_TestSuite_Tarun/Android/Android_SemiAuto_TestSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/18-09-2024/adb_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/18-09-2024/adb_log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/18-09-2024/step_3_case_45729.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/18-09-2024/step_3_case_45734.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/18-09-2024/step_3_case_45735.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,15 +62,12 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2cazKM4Mcgj60Ae9rQP1MJA3Jpp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_AEMS_reference.test_Data_sources_Android.test_DataSources_TestcaseID_45729.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_AEMS_reference.test_Data_sources_Android.test_DataSources_TestcaseID_45744.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45734.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45737.executor": "Run",
@@ -65,14 +79,9 @@
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45752.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45757.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45758.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45759.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_47937.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_Smoke_Test_TestcaseID_45878.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_a.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45767.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45784.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45785.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45788.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Smoke_Test_TestcaseID_45880.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45902.executor": "Run",
     "Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45903.executor": "Run",
@@ -138,15 +147,13 @@
     "Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49910.executor": "Run",
     "Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49911.executor": "Run",
     "Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49913.executor": "Run",
-    "Python tests.pytest in test_Data_sources_Android.py.executor": "Run",
     "Python.Android_Automated_TestSuite.executor": "Run",
-    "Python.left_and_exec_id.executor": "Run",
     "Python.try.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "jd4936__Jayakiran",
-    "last_opened_file_path": "C:/Users/JD4936/OneDrive - Zebra Technologies/Documents/AirTest_ZSB_Mobile_Automation",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "git-widget-placeholder": "rk1277__Ranjita",
+    "last_opened_file_path": "C:/Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/AEMS",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
   <component name="PyConsoleOptionsProvider">
@@ -159,22 +166,23 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\AEMS" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\AEMS reference" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Test_Suite_Execution\test_Suite_Ranjita" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Test_Suite_Execution\test_Suite_Ranjita\tpl1712913927236.png" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_APS_Testcases" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_UserSettings_And_Notifications" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_AEMS_reference" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_APS_Testcases" />
       <recent name="C:\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\templates" />
-      <recent name="C:\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\TestExecution\test_AEMS_reference" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_App_Settings" />
-      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_Printer_Management" />
-      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_Add_A_Printer" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45911">
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45767" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_UserSettings_TestcaseID_45800">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Others.test_Android_Others.test_Others_TestcaseID_45793" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -185,13 +193,12 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45767&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Others.test_Android_Others.test_Others_TestcaseID_45793&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45784" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -202,13 +209,12 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45784&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45785" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications_Semi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -219,13 +225,12 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45785&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications_Semi&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45788" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_Notifications_TestcaseID_45794" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -236,13 +241,12 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45788&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_Notifications_TestcaseID_45794&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45911" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_UserSettings_TestcaseID_45800" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -253,17 +257,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45911&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_UserSettings_TestcaseID_45800&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45911" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45785" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45767" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_iOS.test_Delete_Account_TestcaseID_45784" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_semiautomated_iOS.test_Delete_Account_TestcaseID_45788" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_UserSettings_TestcaseID_45800" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_Notifications_TestcaseID_45794" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications_Semi" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Others.test_Android_Others.test_Others_TestcaseID_45793" />
       </list>
     </recent_temporary>
   </component>
@@ -318,6 +322,10 @@
           <url>file://$PROJECT_DIR$/ZSB_Mobile/ADB_logs/try.py</url>
           <line>26</line>
           <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py</url>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

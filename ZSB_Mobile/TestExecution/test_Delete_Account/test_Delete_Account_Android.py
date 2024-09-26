@@ -56,7 +56,7 @@ def test_Delete_Account_TestcaseID_45760():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -130,7 +130,7 @@ def test_Delete_Account_TestcaseID_45760():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     common_method.Stop_The_App()
 
 
@@ -149,7 +149,7 @@ def test_Delete_Account_TestcaseID_45761():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -265,7 +265,7 @@ def test_Delete_Account_TestcaseID_45762():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -357,7 +357,7 @@ def test_Delete_Account_TestcaseID_45763():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -572,7 +572,8 @@ def test_Delete_Account_TestcaseID_45769():
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    data_sources_page.checkIfOnHomePage()
+    # data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -664,7 +665,8 @@ def test_Delete_Account_TestcaseID_45769():
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    data_sources_page.checkIfOnHomePage()
+    # data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     delete_account_page.verifyNoPrinterInAccount()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
@@ -690,7 +692,7 @@ def test_Delete_Account_TestcaseID_45780():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -780,7 +782,7 @@ def test_Delete_Account_TestcaseID_45781():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -887,7 +889,7 @@ def test_Delete_Account_TestcaseID_45782():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -971,8 +973,8 @@ def test_Delete_Account_TestcaseID_45783():
     common_method.tearDown()
     """clear app data"""
     data_sources_page.clearAppData()
-    common_method.tearDown()
-    data_sources_page.allowPermissions()
+    common_method.Start_The_App()
+    login_page.Verify_ALL_Allow_Popups()
     """Sign in"""
     login_page.click_loginBtn()
     login_page.Verify_ALL_Allow_Popups()
@@ -981,7 +983,7 @@ def test_Delete_Account_TestcaseID_45783():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     common_method.tearDown()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
@@ -1273,10 +1275,9 @@ def test_Delete_Account_TestcaseID_45786():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    registration_page.click_accept()
-    registration_page.clickClose()
-    registration_page.clickExit()
-    data_sources_page.checkIfOnHomePage()
+    ### registration_page.click_accept()
+    ### registration_page.clickClose()
+    ### registration_page.clickExit()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -1343,7 +1344,7 @@ def test_Delete_Account_TestcaseID_45770():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -1435,33 +1436,30 @@ def test_Delete_Account_TestcaseID_45770():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    ### delete_account_page.verifyIfOnEULAPageWeb()
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    ##data_sources_page.clickGotItWeb()
     app_settings_page.Home_text_is_present_on_homepage()
     delete_account_page.verifyNoPrinterInAccountWeb()
     poco.scroll()
     data_sources_page.lock_phone()
     wake()
     delete_account_page.VerifyIfNoRecentlyPrintedDesignsPresent()
-    data_sources_page.click_Menu_HamburgerICNWeb()
+    login_page.click_Menu_HamburgerICN()
     data_sources_page.lock_phone()
     wake()
     sleep(2)
     data_sources_page.click_My_Data()
-    data_sources_page.click_Menu_HamburgerICNWeb()
     data_sources_page.lock_phone()
     wake()
     sleep(2)
     delete_account_page.verifyMyDataEmpty()
-    data_sources_page.click_Menu_HamburgerICNWeb()
+    login_page.click_Menu_HamburgerICN()
     data_sources_page.lock_phone()
     wake()
     sleep(2)
     data_sources_page.clickMyDesigns()
-    data_sources_page.click_Menu_HamburgerICNWeb()
+    login_page.click_Menu_HamburgerICN()
     delete_account_page.verifyMyDesignsEmptyWeb()
     common_method.Stop_The_App()
 # ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1481,7 +1479,7 @@ def test_Delete_Account_TestcaseID_45775():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -1597,7 +1595,8 @@ def test_Delete_Account_TestcaseID_45776():
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    data_sources_page.checkIfOnHomePage()
+    delete_account_page.Verify_Service_Unavailable_Popup()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -1662,6 +1661,7 @@ def test_Delete_Account_TestcaseID_45776():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
+    delete_account_page.Verify_Service_Unavailable_Popup()
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     try:
         common_method.wait_for_element_appearance(
@@ -1699,7 +1699,8 @@ def test_Delete_Account_TestcaseID_45774():
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    data_sources_page.checkIfOnHomePage()
+    # data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -1813,7 +1814,7 @@ def test_Delete_Account_TestcaseID_45777():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -1925,7 +1926,8 @@ def test_Delete_Account_TestcaseID_45778():
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    data_sources_page.checkIfOnHomePage()
+    # data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -2020,7 +2022,7 @@ def test_Delete_Account_TestcaseID_45784():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Verify that there is 1 offline printer in the account"""
     delete_account_page.checkIfThereIs1PrinterWithOfflineStatus()
     """Click Hamburger Icon"""
@@ -2153,7 +2155,7 @@ def test_Delete_Account_TestcaseID_45787():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -2272,7 +2274,7 @@ def test_Delete_Account_TestcaseID_53205():
     printer_management_page.click_Password_TextField()
     printer_management_page.Enter_Zebra_Password()
     login_page.click_SignIn_Button()
-    data_sources_page.checkIfOnHomePage()
+    app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
     """Click on edit profile"""
@@ -2377,7 +2379,7 @@ def test_Delete_Account_TestcaseID_53205():
 #     registration_page.clickSignIn()
 #     registration_page.click_Facebook_Icon()
 #     registration_page.login_Facebook("Zebra#123456789", "zebra09.swdvt@gmail.com")
-#     data_sources_page.checkIfOnHomePage()
+#     app_settings_page.Home_text_is_present_on_homepage()
 #     """Verify that there is 1 online printer in the account"""
 #     delete_account_page.checkIfThereIs1PrinterWithOnlineStatus()
 #     """Click Hamburger Icon"""
@@ -2430,7 +2432,7 @@ def test_Delete_Account_TestcaseID_53205():
 #     registration_page.clickSignIn()
 #     registration_page.click_Facebook_Icon()
 #     delete_account_page.clickContinueAsInFacebookLogin()
-#     data_sources_page.checkIfOnHomePage()
+#     app_settings_page.Home_text_is_present_on_homepage()
 #     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
 #     try:
 #         common_method.wait_for_element_appearance(
@@ -2451,7 +2453,7 @@ def test_Delete_Account_TestcaseID_53205():
 #     registration_page.clickSignIn()
 #     registration_page.click_Facebook_Icon()
 #     delete_account_page.clickContinueAsInFacebookLogin()
-#     data_sources_page.checkIfOnHomePage()
+#     app_settings_page.Home_text_is_present_on_homepage()
 #     registration_page.verify_if_on_EULA_page()
 #     """Accept EULA for future execution"""
 #     registration_page.click_accept()

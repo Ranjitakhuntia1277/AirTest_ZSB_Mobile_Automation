@@ -40,10 +40,6 @@ a = os.system(cmd)
 # # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_PDF_Printing && pytest test_Android_PDF_Printing.py --html=report_test_Android_PDF_Printing.html --self-contained-html"
 # # a = os.system(cmd)
 #
-
-# #
-# # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Others && pytest test_Android_Others.py --html=report_test_others.html --self-contained-html"
-# # a = os.system(cmd)
 #
 # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_SSO_token && pytest test_SSO_token.py --html=report_test_SSO_token.html --self-contained-html"
 # a = os.system(cmd)

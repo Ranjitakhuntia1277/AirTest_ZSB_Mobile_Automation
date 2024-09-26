@@ -2,7 +2,7 @@ import pandas as pd
 import sys
 import json
 from time import sleep
-from ZSB_Mobile.AEMS.api_calls import *
+from api_calls import *
 
 # Replace with the path to your Excel file
 file_path = '../../AEMS/execution.xlsx'

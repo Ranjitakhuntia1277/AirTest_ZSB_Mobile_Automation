@@ -8,6 +8,10 @@ import os
 
 # #
 
+cmd = "cd /Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/TestExecution/test_AEMS_reference/ && pytest test_App_Settings.py --html=reports/report_test_App_Settings.py.html --self-contained-html"
+a = os.system(cmd)
+
+
 # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Template_Management && pytest test_Android_Template_Management_Exec.py --html=report_test_template_management_exec.html --self-contained-html"
 # a = os.system(cmd)
 
@@ -65,3 +69,7 @@ import os
 #
 # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_PDF_Printing && pytest test_Android_PDF_Printing.py --html=reports/report_test_Android_PDF_Printing.py.html --self-contained-html"
 # a = os.system(cmd)
+
+# cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications && pytest test_Android_UserSettings_And_Notifications.py --html=reports/report_test_Android_UserSettings_And_Notifications.html --self-contained-html"
+# a = os.system(cmd)
+

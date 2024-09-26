@@ -117,7 +117,7 @@ class Delete_Account_Screen:
 
     def verifyNoPrinterInAccountWeb(self):
         try:
-            self.poco(text="Learn how to add a printer").wait_for_appearance(timeout=20)
+            self.poco(name="Add A Printer").wait_for_appearance(timeout=20)
         except:
             raise Exception("Printers are already added in this account.")
 
@@ -157,7 +157,8 @@ class Delete_Account_Screen:
 
     def verifyMyDesignsEmptyWeb(self):
         sleep(15)
-        self.poco(name="android.widget.TextView").get_name()
+        if self.poco(name="android.widget.TextView").exists():
+            self.poco(name="android.widget.TextView").get_name()
 
     def switch_to_different_app(self):
         keyevent("KEYCODE_APP_SWITCH")
@@ -357,10 +358,6 @@ class Delete_Account_Screen:
             self.poco(text("zebra05.swdvt@gmail.com"))
             sleep(1)
 
-
-
-
-
     def Login_With_Different_Email_Tab(self):
         sleep(12)
         zebra_login = self.poco(text="Sign In with your email")
@@ -421,3 +418,8 @@ class Delete_Account_Screen:
             self.poco(text="zsbportal.zebra.com/home?templateID").set_text("https://zsbportal.zebra.com/")
             sleep(3)
 
+    def Verify_Service_Unavailable_Popup(self):
+        sleep(13)
+        continue_btn = self.poco("Continue")
+        if continue_btn.exists():
+            continue_btn.click()
