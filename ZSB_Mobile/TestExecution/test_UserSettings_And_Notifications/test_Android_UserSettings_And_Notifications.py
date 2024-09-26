@@ -1,8 +1,10 @@
 # from poco import poco
 import time
+import self
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
+from poco import poco
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Others.Others import Others
@@ -26,92 +28,9 @@ common_method = Common_Method(poco)
 social_login = Social_Login(poco)
 registration_page = Registration_Screen(poco)
 aps_notification = APS_Notification(poco)
+app_settings_page = App_Settings_Screen(poco)
 
-#semi-auto
-def test_Others_TestcaseID_45793():
-    """Notifications some times will not sync properly"""
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-
-    start_app("com.google.android.googlequicksearchbox")
-
-    others.click_google_search_bar()
-    others.enter_the_text_in_goole("https://zsbportal.zebra.com/")
-    others.click_enter()
-    try:
-        others.wait_for_element_appearance("Continue with Google", 10)
-        login_page.click_Loginwith_Google()
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
-        others.click_an_google_account("zebra21.dvt@gmail.com")
-    except:
-        pass
-
-    others.wait_for_element_appearance_text("Home", 30)
-    sleep(3)
-    others.check_google_home_pop_up()
-
-    others.click_hamburger_button_in_Google()
-    sleep(2)
-    others.click_Printer_Settings_in_google()
-
-    others.click_hamburger_button_in_Google()
-
-    """Pass the printer name"""
-
-    others.select_first_printer_in_google()
-    common_method.wait_for_element_appearance_textmatches("Auto Label")
-
-    """others.google_scroll_down()"""
-    others.scroll_down_till_printer_test_label_in_google()
-    sleep(1)
-    n = 2
-    for i in range(n):
-        others.click_google_print_test_button()
-        sleep(5)
-
-    """others.change_Darkness_level_in_google(50)"""
-
-    others.wait_for_element_appearance_text("Home", 10)
-    others.click_hamburger_button_in_Google()
-
-    others.wait_for_element_appearance("Notifications", 5)
-
-    others.click_notifications_button_in_google()
-    others.click_hamburger_button_in_Google()
-    res = others.check_text_history()
-    if not res:
-        others.scroll_up(1)
-    """Clear The Notifications in google if present"""
-    google_notification = others.get_notification_text_in_google()
-
-    print(google_notification)
-    sleep(2)
-
-    common_method.tearDown()
-    try:
-        others.wait_for_element_appearance("Home", 15)
-        sleep(2)
-    except:
-        """*** - Ask tarun if we should login and if this test case is semi automated."""
-
-    login_page.click_Menu_HamburgerICN()
-    others.click_notifications_button()
-
-    Android_notification = others.get_notification_text_in_Android()
-    sleep(3)
-    print("notification", Android_notification, google_notification)
-
-    res = others.verify_notifications(google_notification, Android_notification)
-    if not res:
-        raise Exception("Notfications not matching")
-    print(res)
-
-    """This step need to be manually executed:
-    5. Idle mobile app 30 to 1 h, back to the app, trigger some printer notification (cover open/close/media out)
-    Check the notification pops up correctly"""
-
-
-def test_Others_TestcaseID_45794():
+def test_Notifications_TestcaseID_45794():
     pass
     common_method.Clear_App()
     common_method.tearDown()
@@ -137,49 +56,35 @@ def test_Others_TestcaseID_45794():
 
     login_page.click_Loginwith_Google()
     common_method.wait_for_element_appearance_textmatches("Choose an account")
-
-    """Enter the email"""
-    email = "zebra850.swdvt@gmail.com"
-    password = "Zebra#123456789"
-    social_login.choose_a_google_account(email)
+    login_page.Loginwith_Added_Email_Id()
     social_login.wait_for_element_appearance("Home", 30)
     sleep(2)
 
     login_page.click_Menu_HamburgerICN()
     others.click_Printer_Settings()
-    others.select_first_printer()
-    others.click_test_print()
-    others.wait_for_appearance_all("Print complete")
+    app_settings_page.click_PrinterName_On_Printersettings()
+    others.click_Testprint()
+    app_settings_page.Verify_Printed_Successfully_Text()
     sleep(2)
-    others.click_test_print()
-    others.wait_for_appearance_all("Print complete")
+    others.click_Testprint()
+    app_settings_page.Verify_Printed_Successfully_Text()
     sleep(2)
 
     """Generate less than 5 notifications"""
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
-
-    Android_notification_before = others.get_notifications_in_first_page_android()
     sleep(3)
-
     others.click_down_arrow_button()
     others.click_dismiss_printer_notification()
 
-    Android_notification_after = others.get_notifications_in_first_page_android()
-
-    if len(Android_notification_before) > len(Android_notification_after):
-        print("Success")
-    else:
-        raise Exception(" Notification dint dismiss ")
 
 
-def test_Others_TestcaseID_45796():
+def test_UserSettings_TestcaseID_45796():
     pass
 
-    stop_app("com.zebra.soho_app")
-    start_app("com.zebra.soho_app")
-    common_method.wait_for_element_appearance_namematches("Home")
-
+    common_method.Stop_The_App()
+    common_method.Start_The_App()
+    app_settings_page.Home_text_is_present_on_homepage()
     login_page.click_Menu_HamburgerICN()
     others.click_on_profile_edit()
 
@@ -211,28 +116,20 @@ def test_Others_TestcaseID_45796():
         raise Exception("default image not found")
 
 
-def test_Others_TestcaseID_45797():
+def test_UserSettings_TestcaseID_45797():
     pass
 
     common_method.tearDown()
-    common_method.wait_for_element_appearance_namematches("Home")
+    app_settings_page.Home_text_is_present_on_homepage()
     login_page.click_Menu_HamburgerICN()
     others.click_on_profile_edit()
     others.scroll_down()
     others.click_log_out_button()
-
-    try:
-        others.wait_for_element_appearance("Sign In", 10)
-        login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
-        login_page.click_Loginwith_Google()
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
-
-        """enter email here"""
-        email = "zebra850.swdvt@gmail.com"
-        others.choose_google_account(email)
-    except:
-        pass
+    others.wait_for_element_appearance("Sign In", 10)
+    login_page.click_loginBtn()
+    common_method.wait_for_element_appearance_namematches("Continue with Google")
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
     others.wait_for_element_appearance("Home", 30)
 
     login_page.click_Menu_HamburgerICN()
@@ -282,14 +179,14 @@ def test_Others_TestcaseID_45797():
         raise Exception("default image not found")
 
 
-def test_Others_TestcaseID_45798():
+def test_UserSettings_TestcaseID_45798():
     pass
 
     """has bug id:SMBM-2711"""
 
     common_method.tearDown()
     try:
-        common_method.wait_for_element_appearance_namematches("Home")
+        app_settings_page.Home_text_is_present_on_homepage()
         login_page.click_Menu_HamburgerICN()
         others.click_on_profile_edit()
         others.scroll_down()
@@ -301,11 +198,7 @@ def test_Others_TestcaseID_45798():
     login_page.click_loginBtn()
     common_method.wait_for_element_appearance_namematches("Continue with Google")
     login_page.click_Loginwith_Google()
-
-    """enter email here"""
-    email = "zebra850.swdvt@gmail.com"
-    common_method.wait_for_element_appearance_textmatches("Choose an account")
-    others.choose_google_account(email)
+    login_page.Loginwith_Added_Email_Id()
 
     others.wait_for_element_appearance("Home", 30)
 
@@ -345,6 +238,7 @@ def test_Others_TestcaseID_45798():
         others.click_upload_photo()
     except:
         pass
+    others.go_back()
     try:
         others.select_camera()
     except:
@@ -386,16 +280,13 @@ def setup_logout():
     sleep(2)
 
 
-def test_Others_TestcaseID_45795():
+def test_Notifications_TestcaseID_45795():
     pass
 
     common_method.tearDown()
-
     others.wait_for_element_appearance("Home", 10)
-
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
-
     Android_notification = others.get_notifications_in_first_page_android()
     sleep(3)
 
@@ -421,24 +312,18 @@ def test_Others_TestcaseID_45795():
     login_page.click_loginBtn()
     common_method.wait_for_element_appearance_namematches("Continue with Google")
     login_page.click_Loginwith_Google()
-
-    """enter email here"""
-    email = "zsbswdvt@gmail.com"
-    common_method.wait_for_element_appearance_textmatches("Choose an account")
-    others.choose_google_account(email)
-
-    others.wait_for_element_appearance("Home", 20)
+    login_page.Loginwith_Added_Email_Id()
+    others.wait_for_element_appearance("Home", 30)
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
-
     Android_notification_after_logout = others.get_notifications_in_first_page_android()
 
     res = others.check_two_arrays_same(Android_notification, Android_notification_after_logout)
     if not res:
         raise Exception("Notifications are not same after log out")
 
-    # others.uninstall_and_install_zsb_series_on_google_play()
-    # others.open_the_zsb_series_app_in_play_store()
+    #####others.uninstall_and_install_zsb_series_on_google_play()
+    ##### others.open_the_zsb_series_app_in_play_store()
     common_method.Clear_App()
     common_method.Start_The_App()
     others.wait_for_element_appearance("Sign In", 10)
@@ -446,21 +331,102 @@ def test_Others_TestcaseID_45795():
     registration_page.clickSignIn()
     common_method.wait_for_element_appearance_namematches("Continue with Google")
     login_page.click_Loginwith_Google()
-
-    """pass email here"""
-    email = "zsbswdvt@gmail.com"
-    common_method.wait_for_element_appearance_textmatches("Choose an account")
-    others.choose_google_account(email)
-
-    others.wait_for_element_appearance("Home", 20)
-
+    login_page.Loginwith_Added_Email_Id()
+    others.wait_for_element_appearance("Home", 30)
     login_page.click_Menu_HamburgerICN()
     others.click_notifications_button()
-
     Android_notification_after_deleting_app = others.get_notifications_in_first_page_android()
 
     res = others.check_two_arrays_same(Android_notification, Android_notification_after_deleting_app)
     if res:
         raise Exception("Notifications did not disappear after deleting the app")
+# ##-------------------------------------------------------------------------------------
+
+def test_Notifications_TestcaseID_53234():
+    pass
+
+    """"start the app"""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Notifications Tab"""
+    app_settings_page.click_Notifications_Tab()
+    """"Scroll till Notification Settings Tab"""
+    app_settings_page.Scroll_Till_Notification_Settings_Tab()
+    """click on notification settings tab"""
+    app_settings_page.click_Notification_Settings_Tab()
+    """"verify notification settings toggle buttons and text"""
+    app_settings_page.Verify_NotificationSettings_Toggle_Buttons_Text_Present()
+    """"scroll till messages tab"""
+    app_settings_page.Scroll_Till_Messages_Tab()
+    """""click Messages tab"""
+    app_settings_page.click_Mesages_Tab()
+    """verify messages text and toggle button"""
+    app_settings_page.Verify_Messages_Text_And_Toggle_Buttons()
+    """"click on hamburger icon"""
+    app_settings_page.Disable_And_Enable_Toggle_Buttons()
+
+
+def test_Others_TestcaseID_53232():
+    pass
+    """"start the app"""
+    common_method.tearDown()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """click on the hamburger icon"""
+    login_page.click_Menu_HamburgerICN()
+    """"click on Notifications Tab"""
+    app_settings_page.click_Notifications_Tab()
+    app_settings_page.Verify_Generated_Notification()
+    app_settings_page.Expand_And_Verify_Printername_AndType()
+
+
+def test_UserSettings_TestcaseID_45800():
+    pass
+
+    common_method.tearDown()
+    common_method.Clear_App()
+    login_page.click_loginBtn()
+    login_page.Verify_ALL_Allow_Popups()
+    login_page.signInWithEmail()
+    login_page.click_Login_With_Email_Tab()
+    login_page.click_Password_TextField()
+    login_page.Enter_Zebra_Password()
+    login_page.click_SignIn_Button()
+    login_page.click_Menu_HamburgerICN()
+    app_settings_page.click_pen_Icon_near_UserName()
+    app_settings_page.click_First_Name_Text_Field()
+    """"clear first name field"""
+    sleep(3)
+    app_settings_page.clear_First_Name()
+    """""Update first name with valid names"""
+    app_settings_page.Update_Default_First_Name()
+    sleep(3)
+    poco.scroll()
+    """""click last name text field"""
+    app_settings_page.click_Last_Name_Text_Field()
+    """"clear Last name field"""
+    app_settings_page.clear_Last_Name()
+    """""Update last name with valid names"""
+    app_settings_page.Update_Default_Last_Name()
+    sleep(3)
+    """""click keyboard back icon"""
+    app_settings_page.click_Keyboard_back_Icon()
+    """"verify the updated names message"""
+    app_settings_page.verify_Your_changes_have_been_saved_Message()
+    sleep(3)
+    app_settings_page.Scroll_till_Delete_Account()
+    app_settings_page.click_Change_Password_Btn()
+    app_settings_page.Verify_Password_Recovery_Text_Is_Displaying()
+    app_settings_page.click_Close_Icon_On_Password_Recovery_Page()
+    app_settings_page.Enter_Password()
+
+# #####----------------------------------------------------------------------------------------------
+
+
+
+
 
 

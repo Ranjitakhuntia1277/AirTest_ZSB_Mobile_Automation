@@ -5,7 +5,7 @@ from time import sleep
 from api_calls import *
 
 # Replace with the path to your Excel file
-file_path = 'execution.xlsx'
+file_path = '../../AEMS/execution.xlsx'
 df = pd.read_excel(file_path)
 
 # Extract values from the specified columns
@@ -129,7 +129,7 @@ for test_case_id in df['Testcase_ID'].astype(str).unique():  # Convert IDs to st
         print(f"Test Case ID {test_case_id} not found in result")
 
 # Save results
-with open('store.py', 'w') as f:
+with open('../../AEMS/store.py', 'w') as f:
     f.write('leftId = ' + repr(result) + '\n')
     f.write('execID = ' + str(exec_id))
 

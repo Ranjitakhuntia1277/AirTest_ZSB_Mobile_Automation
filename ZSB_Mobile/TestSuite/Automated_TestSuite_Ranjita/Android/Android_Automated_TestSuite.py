@@ -69,3 +69,7 @@ a = os.system(cmd)
 #
 # cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_PDF_Printing && pytest test_Android_PDF_Printing.py --html=reports/report_test_Android_PDF_Printing.py.html --self-contained-html"
 # a = os.system(cmd)
+
+# cmd = "cd /Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_UserSettings_And_Notifications && pytest test_Android_UserSettings_And_Notifications.py --html=reports/report_test_Android_UserSettings_And_Notifications.html --self-contained-html"
+# a = os.system(cmd)
+
