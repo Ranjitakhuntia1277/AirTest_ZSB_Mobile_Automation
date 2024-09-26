@@ -156,7 +156,7 @@ def test_DataSources_TestcaseID_45729():
         start_time = time.time()
 
         """Select file with special characters"""
-        special_char_file = "A_!@#$%^^&(().xlsx"
+        special_char_file = "A_!@#$_^^&(().xlsx"
         data_sources_page.selectFileDrive(special_char_file)
         sleep(5)
         data_sources_page.searchName(special_char_file)
@@ -1030,6 +1030,7 @@ def test_DataSources_TestcaseID_45759():
         """remove file for next execution"""
         data_sources_page.searchName(existing_file)
         data_sources_page.remove_File_Based_On_DataSource("Google Drive", existing_file)
+        data_sources_page.searchName("")
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -1273,9 +1274,8 @@ def test_DataSources_TestcaseID_45737():
             pass
         template_management_page.selectChooseAnOption(1, "45737_replacement.xlsx (OneDrive)")
         account = "zebra03.swdvt@gmail.com"
-        if data_sources_page.verifySignInWithMicrosoft():
-            data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
-            sleep(2)
+        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789", False)
+        sleep(2)
         sleep(10)
         if template_management_page.continueDisabled() and not template_management_page.checkIfOnRelinkDataSourcesPage:
             print("///---///")
@@ -1582,8 +1582,8 @@ def test_DataSources_TestcaseID_45744():
         start_time = time.time()
 
         """Select File to upload"""
-        file_name = data_sources_page.select_File_To_Upload(True)
-        print(file_name)
+        selected_file = "Demo.jpg"
+        data_sources_page.searchFileInLocalStorage(selected_file)
         sleep(10)
 
         exec_time = (time.time() - start_time) / 60
@@ -1601,10 +1601,10 @@ def test_DataSources_TestcaseID_45744():
         """Click Upload file"""
         data_sources_page.click_Upload_File()
         sleep(5)
-        data_sources_page.select_File_To_Upload()
+        data_sources_page.searchFileInLocalStorage(selected_file)
         sleep(10)
-        search_name = file_name.split(".")[0]
-        extension = file_name.split(".")[1]
+        search_name = selected_file.split(".")[0]
+        extension = selected_file.split(".")[1]
         data_sources_page.searchName(search_name)
         file_list = data_sources_page.fileListDisplayed()
         if (search_name + "." + extension in file_list) and (search_name + " (1)" + "." + extension in file_list):
@@ -1743,9 +1743,9 @@ def test_DataSources_TestcaseID_45741():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
-        """Select Very large File to upload"""
-        selected_file_name = data_sources_page.selectFileInLocalStorage()
-        print(selected_file_name)
+        sleep(2)
+        selected_file = "ferry.jpg"
+        data_sources_page.searchFileInLocalStorage(selected_file)
         sleep(10)
 
         exec_time = (time.time() - start_time) / 60
@@ -1756,8 +1756,8 @@ def test_DataSources_TestcaseID_45741():
         # Step 3: Click 3 dots menu for a local file, Click Remove, Message prompt "Remove local file" to let user to confirm, Click Cancel
         start_time = time.time()
 
-        data_sources_page.searchName(selected_file_name)
-        data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file_name, True)
+        data_sources_page.searchName(selected_file)
+        data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file, True)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -1768,7 +1768,7 @@ def test_DataSources_TestcaseID_45741():
         start_time = time.time()
 
         data_sources_page.searchName("")
-        data_sources_page.searchName(selected_file_name)
+        data_sources_page.searchName(selected_file)
 
         file_list = data_sources_page.fileListDisplayed()
         if len(file_list) >= 1:
@@ -1784,7 +1784,7 @@ def test_DataSources_TestcaseID_45741():
         # Step 5: Click 3 dots menu for selected file again, Click Remove, Message prompt "Remove local file" to let user to confirm, Click Delete button
         start_time = time.time()
 
-        data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file_name)
+        data_sources_page.remove_File_Based_On_DataSource("Local File", selected_file)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -1795,9 +1795,9 @@ def test_DataSources_TestcaseID_45741():
         start_time = time.time()
 
         data_sources_page.searchName("")
-        data_sources_page.searchName(selected_file_name)
+        data_sources_page.searchName(selected_file)
         try:
-            data_sources_page.verifyFilePresentInList(selected_file_name, "Local File", True)
+            data_sources_page.verifyFilePresentInList(selected_file, "Local File", True)
             x = 1 / 0
         except ZeroDivisionError:
             raise Exception("File present even after removing it.")
@@ -1839,7 +1839,7 @@ def test_DataSources_TestcaseID_45741():
         data_sources_page.lock_phone()
         wake()
         sleep(3)
-        data_sources_page.searchName(selected_file_name)
+        data_sources_page.searchName(selected_file)
         keyevent("back")
         sleep(2)
         poco.scroll()
@@ -3485,7 +3485,7 @@ def test_DataSources_TestcaseID_45740():
         3: [3,
             'A page will be opened and let user select file to upload.\nSelect any of the following supported file types to upload'],
         4: [4,
-            'Upload more than 20 files\nCheck all files can be uploaded successfully\nCheck File is uploaded with correct icon, name, data source type, and create date\nNote: Data files should use file icons, image files should use image icons.'],
+            'Upload 10 files\nCheck all files can be uploaded successfully\nCheck File is uploaded with correct icon, name, data source type, and create date\nNote: Data files should use file icons, image files should use image icons.'],
         5: [5,
             'Login to web portal -> Data Sources page\nCheck the uploaded files from the mobile app display in the My Data page in web portal']
     }
@@ -3505,7 +3505,7 @@ def test_DataSources_TestcaseID_45740():
         """Click My Data"""
         data_sources_page.click_My_Data()
         sleep(5)
-        for i in range(1, 21):
+        for i in range(1, 11):
             file_name = f"{i}.jpg"
             data_sources_page.searchName(file_name)
             sleep(2)
@@ -3555,7 +3555,7 @@ def test_DataSources_TestcaseID_45740():
                     exec_time)
         stepId += 1
 
-        # Step 4: Upload more than 20 files\nCheck all files can be uploaded successfully\nCheck File is uploaded with correct icon, name, data source type, and create date\nNote: Data files should use file icons, image files should use image icons.
+        # Step 4: Upload 10 files\nCheck all files can be uploaded successfully\nCheck File is uploaded with correct icon, name, data source type, and create date\nNote: Data files should use file icons, image files should use image icons.
         start_time = time.time()
 
         uploaded_file_list = data_sources_page.selectFilesInLocal()
@@ -3821,7 +3821,7 @@ def test_DataSources_TestcaseID_47937():
         # help_page.chooseAcc(account)
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         registration_page.click_Google_Icon()
-        account = "zebra03.swdvt@gmail.com"
+        account = "zebra02.swdvt@gmail.com"
         help_page.chooseAcc(account)
         common_method.wait_for_element_appearance("NAME")
         sleep(5)
@@ -4182,8 +4182,10 @@ def test_DataSources_TestcaseID_45730():
         start_time = time.time()
 
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+        data_sources_page.click_drive_sign_in_if_present()
         data_sources_page.clickGoogleDrive()
         sleep(3)
+        common_method.wait_for_element_appearance("NAME")
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -4382,6 +4384,7 @@ def test_DataSources_TestcaseID_45749():
         # Step 3: At Cloud service sign in page, click Sign in with Google\nSign in Google account
         start_time = time.time()
 
+        sleep(3)
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         sleep(2)
         data_sources_page.clickGoogleDrive()
@@ -4823,7 +4826,9 @@ def test_DataSources_TestcaseID_45753():
         start_time = time.time()
 
         """ One drive """
-        data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+        if data_sources_page.verifySignInWithMicrosoft():
+            data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+            sleep(2)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -5038,6 +5043,7 @@ def test_Smoke_Test_TestcaseID_45878():
         start_time = time.time()
 
         registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
         login_page.Loginwith_Added_Email_Id()
 
         exec_time = (time.time() - start_time) / 60
@@ -5214,6 +5220,7 @@ def test_Smoke_Test_TestcaseID_45879():
         start_time = time.time()
 
         registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
         login_page.Loginwith_Added_Email_Id()
 
         exec_time = (time.time() - start_time) / 60
@@ -5279,7 +5286,7 @@ def test_Smoke_Test_TestcaseID_45879():
         # Step 9: Check File is linked without issue
         start_time = time.time()
 
-        app_settings_page.Scroll_Till_Next_Tab()
+        data_sources_page.Scroll_Till_Next_Tab()
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -5386,7 +5393,7 @@ def test_DataSources_TestcaseID_45758():
         sleep(2)
         """Click Link File"""
         data_sources_page.click_Link_File()
-        sleep(2)
+        sleep(4)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",

@@ -22,6 +22,7 @@ from airtest.report.report import LogToHtml
 from poco.exceptions import PocoNoSuchNodeException
 # from pocoui_lib.android.kotoComponent import poco
 # from shell import Shell
+from datetime import datetime
 from smb.SMBConnection import SMBConnection
 # from airtest.report.report import LogToHtml
 # from common.baseValue import *
@@ -1104,6 +1105,10 @@ class Common_Method():
             sleep(1)
             start_app(packagename)
             sleep(1)
+        sleep(4)
+        if self.poco("OK").exists():
+            self.poco("OK").click()
+        sleep(3)
 
     def Clear_App(self):
         packagename = "com.zebra.soho_app"
