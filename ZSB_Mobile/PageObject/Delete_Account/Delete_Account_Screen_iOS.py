@@ -311,8 +311,12 @@ class Delete_Account_Screen:
         self.poco("Add A Printer").click()
 
     def click_Start_Button(self):
-        sleep(3)
+        if self.poco(nameMatches="(?s).*While Using App.*").exists():
+            self.poco(nameMatches="(?s).*While Using App.*").click()
+            sleep(3)
         self.poco("Start Setup").click()
+        sleep(3)
+
 
     def Click_Next_Button(self):
         sleep(3)
@@ -340,7 +344,10 @@ class Delete_Account_Screen:
 
     def click_User_upload_photo(self):
         sleep(3)
-        self.poco("Upload photo").click()
+        try:
+            self.poco("Upload photo").click()
+        except:
+            self.poco("Upload Photo").click()
 
     def click_Mobile_Camera(self):
         sleep(3)

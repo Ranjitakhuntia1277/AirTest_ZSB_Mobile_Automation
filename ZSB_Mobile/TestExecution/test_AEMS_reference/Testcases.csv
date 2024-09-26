@@ -1,4 +1,31 @@
 Testcase_ID,Test_Description,Subarea
-45729,Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared,Data Sources
-45734,Verify auto Label Feed On Printer Cover Close value doesn't retrieve in progress after changing darkness level,Data Sources
-45735,Verify ZSB app permission works fine,Data Sources
+45729,User link and remove Cloud Drive files with Special character or long file name,Data Sources
+45734,Check linking unsupported file from Cloud will get the prompt message,Data Sources
+45735,User login Zebra account and link files from One Drive (Microsoft account already logged in),Data Sources
+45736,User remove linked files which linked from Google and One Drive,Data Sources
+45759,Check repeat link same file from Google Drive/One Drive on Mobile App will show validate message,Data Sources
+45737,User remove linked file which is linked to a label design in LDA page,Data Sources
+45739,User upload all supported files from local,Data Sources
+45744,User upload existing file,Data Sources
+45741,User remove local files which not linked to any template,Data Sources
+45742,User remove local file which has been linked to any template,Data Sources
+45743,User upload unsupported files,Data Sources
+45745,User upload file with special characters,Data Sources
+45746,User upload file with long name,Data Sources
+45747,User upload file with file size exceed maximum allowed size,Data Sources
+45755,User login Google account and link files from One Drive. (Microsoft account not login),Data Sources
+45757,Print design with mobile Camera,Data Sources
+47830,Verify screen pull-down to refresh/update on My Design/My File Page works.,Data Sources
+47936,Notification for deleting or uploading files from Data Source,Data Sources
+47942,To verify the indicator when uploading and removing the file to the data sources,Data Sources
+47944,To verify the functionality while uploading the file which is broken,Data Sources
+45740,User upload more than 20 files from local,Data Sources
+47937,Zebra account user required to enroll the device to be managed by Zebra Technologies after sign in Microsoft account to access Zebra OneDrive,Data Sources
+45752,User login Zebra account and link files from One Drive. (Microsoft account not login),Data Sources
+45730,User login Zebra account and Link to Google Drive (Google account already logged in),Data Sources
+45749,User login Zebra account and Link to Google Drive (Google account not login),Data Sources
+45750,User login Facebook account and Link to Google Drive (Google account not login),Data Sources
+45753,User login Facebook account and link files from One Drive. (Microsoft account not login),Data Sources
+45878,Verify sign in as zebra check link and delete one/google drive file works well,Data Sources
+45879,Verify sign in as non-zebra check link and delete one/google drive file works well,Data Sources
+45758,User link to Cloud Drive (There is no file available in Cloud Drive),Data Sources

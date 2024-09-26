@@ -87,6 +87,7 @@ class Data_Sources_Screen:
         self.Enter_Password = Template(Basic_path(r"Password.png"), record_pos=(-0.063, -0.556), resolution=(1080, 2340))
         self.search_Files_In_Link_Files = Template(Basic_path(r"search_files_link_files.png"), record_pos=(-0.247, -0.567),
                                                    resolution=(1080, 2340))
+        self.signInWithEmailTab = Template(Basic_path(r"sign_in_with_google_text.png"),record_pos=(-0.227, -0.78), resolution=(1080, 2340))
 
     def click_My_Data(self):
         sleep(3)
@@ -131,12 +132,20 @@ class Data_Sources_Screen:
             count -= 1
         account.click()
         sleep(4)
-        if self.poco(
-                textMatches=".*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
+        if self.poco(textMatches="(?s).*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
             self.clickContinueWeb()
-        elif self.poco(text="Sign in to ZSB Series").exists():
+            sleep(4)
+        if self.poco(textMatches= "(?s).*Sign in to ZSB Series.*").exists():
             self.clickContinueWeb()
-        sleep(3)
+            sleep(4)
+        if self.poco(textMatches="(?s).*ZSB Series wants access to your Google Account.*").exists():
+            if self.poco(text="Select all", checked=False).exists():
+                self.poco(text="Select all", type="android.widget.CheckBox").click()
+                sleep(2)
+            while not self.poco(text="Continue").exists():
+                self.poco.scroll()
+                self.clickContinueWeb()
+        sleep(5)
 
     def select_File_To_Upload(self, return_name=False):
         name_on_device = self.poco("com.google.android.documentsui:id/item_root")[0].child(
@@ -784,10 +793,10 @@ class Data_Sources_Screen:
         if click_template:
             touch(self.Sign_In_With_Microsoft_Template)
             sleep(5)
-            self.Turn_Off_The_Phone()
-            sleep(3)
-            self.Turn_ON_The_Phone()
-            sleep(3)
+        self.Turn_Off_The_Phone()
+        sleep(3)
+        self.Turn_ON_The_Phone()
+        sleep(3)
         self.Turn_Off_The_Phone()
         sleep(3)
         self.Turn_ON_The_Phone()
@@ -932,18 +941,23 @@ class Data_Sources_Screen:
         self.clickSignIn()
 
     def signInWithEmail(self):
+        sleep(5)
         pocoEle = self.poco(text="Sign In with your email")
-        if pocoEle.exists():
-            pocoEle.click()
-        else:
-            self.close_app_reopen_and_click_sign_in()
-            pocoEle.click()
+        try:
+            if pocoEle.exists():
+                pocoEle.click()
+            else:
+                self.close_app_reopen_and_click_sign_in()
+                sleep(5)
+                pocoEle.click()
+        except:
+            touch(self.signInWithEmailTab)
         print("Successfully clicked Sign In With Email")
         sleep(2)
         if self.poco("com.android.chrome:id/coordinator").exists():
             self.poco("com.android.chrome:id/coordinator").click()
         keyevent("Enter")
-        sleep(2)
+        sleep(3)
 
     def clickBackArrow(self):
         sleep(8)
@@ -1258,10 +1272,20 @@ class Data_Sources_Screen:
         else:
             self.clickCancel()
         sleep(7)
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        while not self.poco("NAME").exists():
+            scroll_view.swipe("right")
+        for i in range(5):
+            scroll_view.swipe("right")
         return
 
     def remove_File(self, cancel=False):
-        common_method.swipe_screen([0.9, 0.3482905982905983], [0.22037037037037038, 0.3482905982905983], 5)
+        sleep(3)
+        scroll_view = self.poco("android.widget.HorizontalScrollView")
+        while not self.poco("DATA SOURCE").exists():
+            scroll_view.swipe("left")
+        for i in range(5):
+            scroll_view.swipe("left")
         three_dot = self.poco("android.widget.Button")
         three_dot.click()
         self.clickRemove()
@@ -1271,14 +1295,15 @@ class Data_Sources_Screen:
             self.verify_Remove_File_Warning("Google Drive")
         if not cancel:
             self.clickRemove()
-            sleep(7)
         else:
             self.clickCancel()
+        sleep(7)
         scroll_view = self.poco("android.widget.HorizontalScrollView")
         while not self.poco("NAME").exists():
             scroll_view.swipe("right")
         for i in range(5):
             scroll_view.swipe("right")
+        sleep(3)
 
     def remove_File_Web(self, cancel=False):
         # common_method.swipe_screen([0.9, 0.3482905982905983], [0.22037037037037038, 0.3482905982905983], 3)
@@ -1787,7 +1812,7 @@ class Data_Sources_Screen:
                 if self.poco("android.widget.HorizontalScrollView").child()[i].get_name() == file_name:
                     self.poco("android.widget.HorizontalScrollView").child()[i].click()
                     self.clickSelect()
-                    sleep(2)
+                    sleep(5)
                     return
                 curr.append(self.poco("android.widget.HorizontalScrollView").child()[i].get_name())
             if curr == prev:
@@ -1795,6 +1820,7 @@ class Data_Sources_Screen:
             prev = curr
             curr = []
             self.poco.scroll()
+            sleep(5)
         error = "File " + file_name + " does not exist."
         raise Exception(error)
 

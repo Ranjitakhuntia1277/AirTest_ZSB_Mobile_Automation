@@ -1118,7 +1118,7 @@ def test_Delete_Account_TestcaseID_45784():
     data_sources_page.checkIfInLoginPage()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra051.swdvt@gmail.com", "Zebra#123456789")
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
     data_sources_page.checkIfOnHomePage()
     """Verify that there is 1 offline printer in the account"""
     delete_account_page.checkIfThereIs1PrinterWithOfflineStatus()
@@ -1172,7 +1172,7 @@ def test_Delete_Account_TestcaseID_45784():
     data_sources_page.checkIfInLoginPage()
     registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra051.swdvt@gmail.com", "Zebra#123456789")
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
     data_sources_page.checkIfOnHomePage()
     """"click on Add printer tab"""""
     delete_account_page.click_Add_A_Printer()
@@ -1180,8 +1180,6 @@ def test_Delete_Account_TestcaseID_45784():
     delete_account_page.click_Start_Button()
     delete_account_page.Click_Next_Button()
     """Pending step 13"""
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
     """"Verify searching for your printer text"""
     delete_account_page.Verify_Searching_for_your_printer_Text()
     """"check the target printers in available printer list"""
@@ -1324,6 +1322,8 @@ def test_Delete_Account_TestcaseID_53205():
 # ######"""""""""""""""""""""""""""""""""FIXED""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """Need to do facebook login"""
+
+
 def test_Delete_Account_TestcaseID_45767():
     """Add a printer to this facebook account before executing and log out of facebook
 #     # username - zebra09.swdvt@gmail.com
@@ -1333,7 +1333,6 @@ def test_Delete_Account_TestcaseID_45767():
     data_sources_page.log_out_for_current_execution_ios()
     """Sign in"""
     data_sources_page.checkIfInLoginPage()
-    registration_page.clickSignIn()
     registration_page.clickSignIn()
     registration_page.click_Facebook_Icon()
     registration_page.login_Facebook("Zebra#123456789", "zebra09.swdvt@gmail.com")

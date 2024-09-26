@@ -50,9 +50,12 @@ class Registration_Screen:
         self.Try_Again = "Try Again"
         self.Login = "Login"
         self.continue_with_google_ele = "Continue with Google"
+        self.sign_in_with_google_text = Template(Basic_path(r"sign_in_with_google_text.png"),record_pos=(-0.227, -0.78), resolution=(1080, 2340))
         self.sign_in_with_google = "Sign in with Google"
         self.LoginAllow_Popup = "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
         self.Allow_ZSB_Series_Popup = "com.android.permissioncontroller:id/permission_allow_button"
+        self.signInWithEmailTab = Template(Basic_path(r"sign_in_with_google_text.png"),record_pos=(-0.227, -0.78), resolution=(1080, 2340))
+
 
     def show_message(self, msg):
         root = tk.Tk()
@@ -404,7 +407,10 @@ class Registration_Screen:
         try:
             self.wait_for_element_appearance_text("Sign in with Google", 20)
         except:
-            raise Exception("Did not navigate to Sign In with google page")
+            try:
+                assert_exists(self.sign_in_with_google_text)
+            except:
+                raise Exception("Did not navigate to Sign In with google page")
 
     def click_Facebook_Icon(self):
         sleep(2)
@@ -983,26 +989,23 @@ class Registration_Screen:
         self.clickSignIn()
 
     def signInWithEmail(self):
+        sleep(5)
         pocoEle = self.poco(text="Sign In with your email")
         try:
             if pocoEle.exists():
                 pocoEle.click()
             else:
                 self.close_app_reopen_and_click_sign_in()
+                sleep(5)
                 pocoEle.click()
-            print("Successfully clicked Sign In With Email")
-        except PocoNoSuchNodeException:
-            print("Sign In with Email option not found!\n Test Continues...")
-            raise Exception("Sign In with Email option not found!\n Test Failed")
-        except Exception as e:
-            self.poco(text="Sign In with your email").wait_for_appearance(timeout=20)
-            self.poco(text="Sign In with your email").click()
-            print("Successfully clicked Sign In With Email")
+        except:
+            touch(self.signInWithEmailTab)
+        print("Successfully clicked Sign In With Email")
         sleep(2)
         if self.poco("com.android.chrome:id/coordinator").exists():
             self.poco("com.android.chrome:id/coordinator").click()
         keyevent("Enter")
-        sleep(2)
+        sleep(3)
 
     def complete_sign_in_with_email(self, user_name, password, click_on_sign_in=1, click_back=1, wrong_password=False,
                                     enter_only_password=False):

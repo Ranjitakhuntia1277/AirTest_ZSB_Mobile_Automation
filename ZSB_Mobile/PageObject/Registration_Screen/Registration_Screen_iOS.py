@@ -386,3 +386,12 @@ class Registration_Screen:
         swipe(start_point, vector)
         sleep(3)
         self.poco("SUBMIT").click()
+
+    def check_successful_password_reset_page_message(self):
+        sleep(2)
+        start_point = (0.297, 0.211)
+        vector = (0.57, 0.47)
+        swipe(start_point, vector)
+        sleep(3)
+        if not self.poco("Password changed successfully.").exists():
+            raise Exception("'Password changed successfully.' Did not appear.")
