@@ -474,7 +474,7 @@ class App_Settings_Screen:
         save_exit.click()
 
     def Home_text_is_present_on_homepage(self):
-        sleep(6)
+        sleep(9)
         home_text = self.poco(self.Home_text_on_homepage)
         home_text.get_text()
         print("Home Text is present on home page:", home_text)
@@ -1577,10 +1577,11 @@ class App_Settings_Screen:
 
     def click_Change_Password_Btn(self):
         sleep(3)
-        poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
-            "android.view.View").child("android.view.View").child("android.view.View")[1].child(
-            "android.view.View").child("android.view.View")[2].child("Change").click()
+        # poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
+        #     "android.view.View").child("android.view.View").child("android.view.View")[1].child(
+        #     "android.view.View").child("android.view.View")[2].child("Change").click()
 
+        self.poco(name="Change")[1].click()
         sleep(20)
 
     def Verify_The_Change_Password_URL(self):
@@ -1778,4 +1779,29 @@ class App_Settings_Screen:
 
         for i in range(count):
             self.poco.scroll()
+
+    def Disable_And_Enable_Toggle_Buttons(self):
+        sleep(3)
+        self.poco(name="Upcoming Feature").click()
+        sleep(1)
+        self.poco(name="New Feature").click()
+        sleep(2)
+
+    def Verify_Generated_Notification(self):
+        sleep(2)
+        self.poco(nameMatches="(?s).*Below is the historical view of the notifications you have received..*").get_name()
+        sleep(1)
+
+    def Expand_And_Verify_Printername_AndType(self):
+        sleep(2)
+        self.poco(name="Expand").click()
+        sleep(1)
+        self.poco(name="ZSP-DP").get_name()
+        sleep(1)
+
+    def Enter_Password(self):
+        sleep(2)
+        a=self.poco(name="Password")
+        poco.text("Password@123")
+
 

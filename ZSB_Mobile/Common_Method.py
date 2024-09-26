@@ -1586,6 +1586,16 @@ class Common_Method():
         messagebox.showinfo("Notification", "Select Printer B Manually which is online")
         root.destroy()
 
+    def Show_popup_To_Trigger_Some_Printer_Notification_Manually(self):
+        sleep(3)
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        root.attributes('-topmost', True)
+        messagebox.showinfo("Notification", "Idle mobile app 30 to 1 h, back to the app, trigger some printer notification (cover open/close/media out)  and Check the notification pops up correctly")
+        root.destroy()
+
+
+
     def Show_popup_To_Select_The_Printer_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
@@ -1716,6 +1726,8 @@ class Common_Method():
         if os.path.exists(SCREENSHOT_DIRECTORY):
             shutil.rmtree(SCREENSHOT_DIRECTORY)
         os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
+
+
 
 
 
