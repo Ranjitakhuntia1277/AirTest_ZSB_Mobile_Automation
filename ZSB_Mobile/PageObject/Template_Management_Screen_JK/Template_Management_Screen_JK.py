@@ -315,6 +315,7 @@ class Template_Management_Screen:
             start = 1
             end = 0
             self.poco.scroll()
+            sleep(2)
 
     def search_design_common_designs(self, design_name):
         self.poco("android.widget.EditText").click()
@@ -953,7 +954,7 @@ class Template_Management_Screen:
 
     def clickAccept(self):
         try:
-            self.poco("Accept").wait_for_appearance(timeout=10)
+            self.poco("Accept").wait_for_appearance(timeout=20)
             self.poco("Accept").click()
         except:
             pass
