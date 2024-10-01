@@ -67,7 +67,7 @@ class APS_Notification:
         self.GoogleDrive_SearchBar2 = "com.google.android.apps.docs:id/search_text"
         self.Suggestion_PDF_File_From_Drive = "android.widget.TextView"
         self.Three_Dot_Icon_Next_To_Drive_PDF = "com.google.android.apps.docs:id/action_show_menu"
-        self.ThreeDot_On_Added_Printer_On_HomePage = Template(Basic_path("tpl1715066652101.png"), record_pos=(0.407, -0.553), resolution=(1080, 2400))
+        # self.ThreeDot_On_Added_Printer_On_HomePage = Template(Basic_path("tpl1715066652101.png"), record_pos=(0.407, -0.553), resolution=(1080, 2400))
 
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def click_Device_Files_Folder(self):
@@ -559,12 +559,6 @@ class APS_Notification:
         Copies_Number_Field.set_text("5")
 
 
-    def click_On_Three_Dot_On_Added_Printer(self):
-        sleep(1)
-        Three_Dot_On_Added_Printer = self.poco(self.Three_Dot_On_Added_Printer)
-        Three_Dot_On_Added_Printer.click()
-        sleep(2)
-
     def click_On_Clear_Print_Queue(self):
         sleep(1)
         Clear_Print_Queue = self.poco(self.Clear_Print_Queue)
@@ -678,10 +672,6 @@ class APS_Notification:
         if Cancel_Button.exists():
             Cancel_Button.click()
         sleep(2)
-
-    def click_Three_Dot_On_Added_Printer_On_HomePage(self):
-        sleep(1)
-        touch(self.ThreeDot_On_Added_Printer_On_HomePage)
 
     def click_Clear_Queue_Button(self):
         sleep(1)
