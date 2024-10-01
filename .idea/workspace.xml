@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1244442b-833c-495e-8251-d80a88813ad5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZSB_Automation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Registration_Screen/Registration_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management_Screen_JK/Template_Management_Screen_JK.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/Template_Management_Screen_JK/Template_Management_Screen_JK.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Template_Management/test_Android_Template_Management.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/AEMS/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/AEMS/store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/APS_Testcases/APS_Notification_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_Android.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/PageObject/PDF_Printing/PDF_Printing_Android.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/left_and_exec_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_AEMS_reference/left_and_exec_id.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_App_Settings/test_Android_App_Settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_PDF_Printing/test_Android_PDF_Printing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +36,6 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2cazKM4Mcgj60Ae9rQP1MJA3Jpp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -125,8 +125,8 @@
     "Python.try.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "jd4936__Jayakiran",
-    "last_opened_file_path": "C:/Users/JD4936/Downloads/AirTest_ZSB_Mobile_Automation-new/AirTest_ZSB_Mobile_Automation",
+    "git-widget-placeholder": "rk1277__Ranjita",
+    "last_opened_file_path": "C:/Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/AEMS",
     "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
@@ -157,7 +157,6 @@
   <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_UserSettings_TestcaseID_45800">
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Others.test_Android_Others.test_Others_TestcaseID_45793" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -174,7 +173,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -191,7 +189,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications_Semi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -208,7 +205,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_Notifications_TestcaseID_45794" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -225,7 +221,6 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_UserSettings_And_Notifications.test_Android_UserSettings_And_Notifications.test_UserSettings_TestcaseID_45800" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />

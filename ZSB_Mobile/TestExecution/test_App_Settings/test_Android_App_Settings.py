@@ -1,3 +1,4 @@
+import py
 from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
@@ -10,7 +11,7 @@ from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 import pytest
 from airtest.core.api import connect_device
-
+from ...TestExecution.test_AEMS_reference.left_and_exec_id import LeftExecId
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)

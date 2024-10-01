@@ -111,6 +111,7 @@ class PDF_Printing_Screen:
 
     def Verify_The_Printer_As_Online(self):
         sleep(1)
+        poco.scroll()
         printer_info = self.poco(nameMatches="(?s).*Online.*")
         if printer_info.exists():
             printer_info.get_name()
@@ -252,8 +253,14 @@ class PDF_Printing_Screen:
 
     def Verify_Label_Print_Range_Is_Selected_AS_All(self):
         sleep(1)
-        a = self.poco(nameMatches="(?s).*All.*").get_name()
-        print(a)
+        a = self.poco(nameMatches="(?s).*All.*")
+        if a.exists():
+           a.get_name()
+           print(a)
+        else:
+            poco.scroll()
+            a.get_name()
+            print(a)
 
     def Verify_Current_Label_Print_Option_IS_Displaying(self):
         a = self.poco(nameMatches="(?s).*Current.*").get_name()
@@ -312,6 +319,8 @@ class PDF_Printing_Screen:
             self.poco(nameMatches="(?s).*Edit Label.*").click()
 
     def click_Rotation_Option(self):
+        poco.scroll()
+        sleep(2)
         self.poco("android.widget.Button")[2].click()
 
     def click_Done_Btn(self):
@@ -557,6 +566,7 @@ class PDF_Printing_Screen:
 
     def Verify_Default_Copies_Values_Is_1(self):
         sleep(1)
+        poco.scroll()
         self.poco(name="android.widget.EditText").get_name()
 
     def Update_Copies_Value(self):
