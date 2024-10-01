@@ -33,7 +33,6 @@ data_sources_page = Data_Sources_Screen(poco)
 help_page = Help_Screen(poco)
 template_management_page_1 = Template_Management_Screen(poco)
 
-
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
@@ -62,31 +61,18 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45902(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
-        try:
-            data_sources_page.checkIfOnHomePage()
-            login_page.click_Menu_HamburgerICN()
-            others.click_on_profile_edit()
-            others.scroll_down()
-            others.click_log_out_button()
-            print(1)
-        except:
-            pass
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
 
-        try:
-            others.wait_for_element_appearance("Sign In", 10)
-            login_page.click_loginBtn()
-            common_method.wait_for_element_appearance_namematches("Continue with Google")
-            registration_page.click_Google_Icon()
-
-            """enter email here"""
-            email = "zebra07.swdvt@gmail.com"
-            common_method.wait_for_element_appearance_textmatches("Choose an account")
-            others.choose_google_account(email)
-            registration_page.BugFix_For_Google(email)
-        except:
-            pass
+        """enter email here"""
+        email = "zebra07.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
 
@@ -96,26 +82,17 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45903(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
-        try:
-            common_method.wait_for_element_appearance_namematches("Open navigation menu")
-            login_page.click_Menu_HamburgerICN()
-            others.click_on_profile_edit()
-            others.scroll_down()
-            others.click_log_out_button()
-        except:
-            pass
-
-        others.wait_for_element_appearance("Sign In", 10)
-        login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
         registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
 
         """enter email here"""
         email = "zebra850.swdvt@gmail.com"
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
-        others.choose_google_account(email)
+        help_page.chooseAcc(email)
         registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
 
@@ -150,26 +127,17 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45904(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
-        try:
-            data_sources_page.checkIfOnHomePage()
-            login_page.click_Menu_HamburgerICN()
-            others.click_on_profile_edit()
-            others.scroll_down()
-            others.click_log_out_button()
-        except:
-            pass
-
-        others.wait_for_element_appearance("Sign In", 10)
-        login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
         registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
 
         """enter email here"""
         email = "zebra850.swdvt@gmail.com"
-        common_method.wait_for_element_appearance_textmatches("Choose an account")
-        others.choose_google_account(email)
+        help_page.chooseAcc(email)
         registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
 
@@ -217,32 +185,23 @@ class test_Android_Template_Management:
             template_management.click_my_designs_button()
 
     def logout_and_login(self, email, password):
-        try:
-            data_sources_page.checkIfOnHomePage()
-            login_page.click_Menu_HamburgerICN()
-            others.click_on_profile_edit()
-            others.scroll_down()
-            others.click_log_out_button()
-        except:
-            pass
-
-        others.wait_for_element_appearance("Sign In", 10)
-        login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
         registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
 
         """enter email here"""
         email = email
         password = password
-        registration_page.check_if_user_navigated_to_sign_in_page()
-        others.choose_google_account(email)
+        help_page.chooseAcc(email)
         registration_page.BugFix_For_Google(email)
-        common_method.wait_for_element_appearance_namematches("Home", 20)
+        data_sources_page.checkIfOnHomePage()
 
     def test_Template_Management_TestcaseID_45905(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
 
         self.logout_and_login("zebra850.swdvt@gmail.com", "Zebra#123456789")
 
@@ -300,8 +259,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45906(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         """Copy design from common design to my design"""
@@ -345,8 +303,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45907(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         if not template_management.verify_element_exists_by_name("Recently Printed Labels"):
@@ -426,8 +383,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45910(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         prev_designs = template_management.get_all_designs_in_recently_printed_labels()
@@ -463,8 +419,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45909(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """Print a design before staring this test case"""
@@ -500,7 +455,7 @@ class test_Android_Template_Management:
             registration_page.click_Google_Icon()
             sleep(2)
             email = "zebra850.swdvt@gmail.com"
-            others.choose_google_account(email)
+            help_page.chooseAcc(email)
         except:
             pass
 
@@ -522,8 +477,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45911(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
 
         self.logout_and_login("zebra850.swdvt@gmail.com", "Zebra#123456789")
 
@@ -620,8 +574,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45995(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -645,8 +598,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45996(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -733,8 +685,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45997(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
@@ -808,8 +759,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45998(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
@@ -879,8 +829,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45999(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
@@ -976,8 +925,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46001(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
@@ -1064,13 +1012,12 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46002(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
 
-        for text in temp[2]:
+        for text in temp[0:2]:
 
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
@@ -1167,8 +1114,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46003(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -1387,8 +1333,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45969(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         login_page.click_Menu_HamburgerICN()
@@ -1510,8 +1455,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45970(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         login_page.click_Menu_HamburgerICN()
@@ -1630,8 +1574,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45971(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         login_page.click_Menu_HamburgerICN()
@@ -1750,8 +1693,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45972(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         login_page.click_Menu_HamburgerICN()
@@ -1871,8 +1813,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45973(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         login_page.click_Menu_HamburgerICN()
@@ -1991,8 +1932,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45975(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         login_page.click_Menu_HamburgerICN()
@@ -2112,8 +2052,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45974(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         login_page.click_Menu_HamburgerICN()
@@ -2235,8 +2174,18 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45912(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+
+        """enter email here"""
+        email = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         login_page.click_Menu_HamburgerICN()
@@ -2302,10 +2251,7 @@ class test_Android_Template_Management:
 
         template_management.click_print_button()
         common_method.wait_for_element_appearance_enabled("Print")
-        try:
-            template_management.wait_for_element_appearance_name_matches_all("Print complete")
-        except:
-            pass
+        template_management.wait_for_element_appearance_name_matches_all("Print complete")
 
         curr_count = template_management.get_no_of_labels_left_in_print_page()
 
@@ -2343,8 +2289,19 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45913(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+
+        """enter email here"""
+        email = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
+
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         login_page.click_Menu_HamburgerICN()
@@ -2439,8 +2396,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45914(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -2545,8 +2501,18 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45915(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+
+        """enter email here"""
+        email = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         login_page.click_Menu_HamburgerICN()
@@ -2760,8 +2726,18 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45916(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+
+        """enter email here"""
+        email = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         login_page.click_Menu_HamburgerICN()
@@ -2845,8 +2821,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45917(self):
         pass
         show_message("Connect DP-12 Printer to account zebra850.swdvt@gmail.com and add cartridge with 2.25 x 3.5")
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         login_page.click_Menu_HamburgerICN()
@@ -2939,8 +2914,7 @@ class test_Android_Template_Management:
         pass
 
         show_message("connect 2 printers DP12 and DP14")
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         all_printer_left_count = template_management.get_no_of_cartridge_left_in_all_printer()
@@ -3083,8 +3057,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45919(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -3190,8 +3163,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45920(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -3284,8 +3256,18 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45923(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+
+        """enter email here"""
+        email = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         login_page.click_Menu_HamburgerICN()
@@ -3302,6 +3284,10 @@ class test_Android_Template_Management:
             common_method.wait_for_element_appearance_enabled("Print", 15)
         except:
             raise Exception("print page not displayed")
+        try:
+            template_management.wait_for_element_appearance_name_matches_all("Print complete", 60)
+        except:
+            pass
 
         prev_count = template_management.get_no_of_labels_left_in_print_page()
         template_management.click_left_arrow()
@@ -3354,8 +3340,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45924(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         name = template_management.get_first_design_in_recently_printed_labels()
@@ -3422,8 +3407,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45926(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         """a. Verify "Edit name" window is displayed not in mobile app"""
         """Save" button is NOT clickable (is clickable in mobile)"""
@@ -3486,8 +3470,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45927(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         common_method.wait_for_element_appearance_namematches("Recently", 20)
         sleep(2)
         name = template_management.get_first_design_in_recently_printed_labels()
@@ -3535,8 +3518,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45928(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -3585,8 +3567,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45929(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """Give the name of existing design here"""
@@ -3684,8 +3665,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45931(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         """Give the name of existing design here"""
         sleep(2)
@@ -3723,27 +3703,20 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45932(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         social_login.click_on_profile_edit()
         social_login.scroll_down(1)
         social_login.click_log_out_button()
-        try:
-            social_login.wait_for_element_appearance("Sign In", 5)
-        except:
-            raise Exception("Did not redirect to the login page")
-
-        """Sign in with email"""
-
-        login_page.click_loginBtn()
-        social_login.wait_for_element_appearance_text("Continue with Google", 10)
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
         registration_page.click_Google_Icon()
-
+        registration_page.check_if_user_navigated_to_sign_in_page()
         email = "zebra850.swdvt@gmail.com"
         password = "Zebra#123456789"
-        others.choose_google_account(email)
+        help_page.chooseAcc(email)
         registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
@@ -3756,18 +3729,16 @@ class test_Android_Template_Management:
         social_login.click_on_profile_edit()
         social_login.scroll_down(1)
         social_login.click_log_out_button()
-        try:
-            social_login.wait_for_element_appearance("Sign In", 5)
-        except:
-            raise Exception("Did not redirect to the login page")
+        data_sources_page.checkIfInLoginPage()
         """Google sign in"""
-
-        login_page.click_loginBtn()
-        social_login.wait_for_element_appearance_text("Continue with Google", 10)
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
         registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
         """Enter the email"""
         email = "zebra901.swdvt@gmail.com"
-        others.choose_google_account(email)
+        help_page.chooseAcc(email)
         registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
@@ -3819,8 +3790,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45933(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """Note: the design should be printed if not design rename will not be shown in recently printed labels"""
@@ -3885,8 +3855,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45934(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         sleep(2)
@@ -3964,8 +3933,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45935(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4003,8 +3971,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45936(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         sleep(1)
@@ -4041,8 +4008,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45937(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
@@ -4074,8 +4040,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45938(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4137,8 +4102,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45940(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4184,8 +4148,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45941(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         sleep(7)
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
@@ -4233,8 +4196,18 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45976(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+
+        """Enter the email"""
+        email = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4270,8 +4243,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45977(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4325,7 +4297,7 @@ class test_Android_Template_Management:
             raise Exception("total number of designs present , and showing n designs are not same count")
 
     """Fully Automated"""
-    def     test_Template_Management_TestcaseID_45978(self):
+    def test_Template_Management_TestcaseID_45978(self):
         pass
         common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
@@ -4387,8 +4359,7 @@ class test_Android_Template_Management:
 
         show_message(
             "There are design names in My Designs(Account-Zebra850.swdvt@gmail.com) with special characters.(ie:Address_SG, Asset_SG, IconGiftLabel_SG)")
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4473,9 +4444,19 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46006(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
-        data_sources_page.checkIfOnHomePage()
+
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.clearAppData()
+        sleep(2)
+        common_method.tearDown()
+        data_sources_page.allowPermissions()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+        account = "zebra901.swdvt@gmail.com"
+        help_page.chooseAcc(account)
+        registration_page.BugFix_For_Google(account)
 
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -4499,8 +4480,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46007(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -4560,8 +4540,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46008(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -4614,8 +4593,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46009(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -4663,8 +4641,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46011(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_common_designs_button()
@@ -4745,8 +4722,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_46013(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                 "Shipping", "Small Multipurpose"]
@@ -4802,8 +4778,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46004(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
 
         temp = ["Jewelry"]
@@ -4857,13 +4832,15 @@ class test_Android_Template_Management:
             social_login.click_on_profile_edit()
             social_login.scroll_down(1)
             social_login.click_log_out_button()
-            social_login.wait_for_element_appearance("Sign In", 10)
+            data_sources_page.allowPermissions()
+            data_sources_page.checkIfInLoginPage()
             registration_page.clickSignIn()
             registration_page.click_Google_Icon()
+            registration_page.check_if_user_navigated_to_sign_in_page()
 
             """Enter the email"""
             email = "zebra850.swdvt@gmail.com"
-            others.choose_google_account(email)
+            help_page.chooseAcc(email)
             registration_page.BugFix_For_Google(email)
             data_sources_page.checkIfOnHomePage()
 
@@ -4886,8 +4863,18 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45942(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.log_out_of_account()
+        data_sources_page.allowPermissions()
+        data_sources_page.checkIfInLoginPage()
+        registration_page.clickSignIn()
+        registration_page.click_Google_Icon()
+        registration_page.check_if_user_navigated_to_sign_in_page()
+
+        """Enter the email"""
+        email = "zebra850.swdvt@gmail.com"
+        help_page.chooseAcc(email)
+        registration_page.BugFix_For_Google(email)
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -4957,8 +4944,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45943(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """f. Verify the count in the "Showing x designs" is correct will not be present in home page"""
@@ -5023,8 +5009,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45944(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -5092,8 +5077,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45945(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """Give the name of existing design here"""
@@ -5154,8 +5138,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45946(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -5210,8 +5193,8 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45947(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
+        data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently", 30)
         """Give the name of existing design here"""
 
@@ -5264,8 +5247,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45948(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         common_method.wait_for_element_appearance_namematches("Open navigation menu")
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -5325,8 +5307,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45949(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """Give the name of existing design here"""
@@ -5380,8 +5361,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45950(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -5439,8 +5419,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45951(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """f. Verify the count in the "Showing x designs" is correct will not be present in home page"""
@@ -5515,8 +5494,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45952(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         """Gets the name of existing first design here"""
@@ -5620,8 +5598,7 @@ class test_Android_Template_Management:
         show_message("2. There is an existing design with special characters in the name (ie:Abc123~`!@) in My Designs")
 
         original_copy = "Abc123~`!@"
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         """Print the design to get it to recently printed designs"""
         login_page.click_Menu_HamburgerICN()
@@ -5703,8 +5680,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45955(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -5753,8 +5729,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45956(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         common_method.wait_for_element_appearance_namematches("Recently")
         name = template_management.get_normal_design_if_there_in_first_screen_recently_printed_design()
@@ -5801,8 +5776,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45957(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -5870,8 +5844,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45958(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -5942,8 +5915,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45959(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         """Add more categories as required"""
         temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
@@ -5978,8 +5950,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45961(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()
@@ -6108,8 +6079,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45963(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         """ has this error still SMBM-1902"""
 
@@ -6190,8 +6160,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45967(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         strings = ["Address", "Barcodes", "Jewelry", "Shipping", "Return Address/File Folder", "Round", "Shipping",
                    "Small Multipurpose", "XL Shipping"]
@@ -6224,8 +6193,7 @@ class test_Android_Template_Management:
     def test_Template_Management_TestcaseID_45968(self):
         pass
 
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Address", "Barcodes", "Jewelry", "Multipurpose", "Shipping", "File Folder", "Round", "Shipping",
                 "Small Multipurpose"]
@@ -6285,8 +6253,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_46000(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         temp = ["Jewelry"]
         for text in temp:
@@ -6377,8 +6344,7 @@ class test_Android_Template_Management:
 
     def test_Template_Management_TestcaseID_45939(self):
         pass
-        stop_app("com.zebra.soho_app")
-        start_app("com.zebra.soho_app")
+        common_method.tearDown()
         data_sources_page.checkIfOnHomePage()
         login_page.click_Menu_HamburgerICN()
         template_management.click_my_designs_button()

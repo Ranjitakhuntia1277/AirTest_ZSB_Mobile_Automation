@@ -195,20 +195,20 @@ help_page = Help_Screen(poco)
 
 def test_Delete_Account_TestcaseID_45785():
     pass
-    """clear app data"""
-    common_method.tearDown_iOS()
-    """clear app data"""
-    data_sources_page.log_out_for_current_execution_ios()
-    """Sign in"""
-    data_sources_page.checkIfInLoginPage()
-    registration_page.clickSignIn()
-    data_sources_page.signInWithEmail()
-    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
-    data_sources_page.checkIfOnHomePage()
-    """Click Hamburger Icon"""
-    login_page.click_Menu_HamburgerICN()
-    """Click on edit profile"""
-    registration_page.click_on_profile_edit()
+    # """clear app data"""
+    # common_method.tearDown_iOS()
+    # """clear app data"""
+    # data_sources_page.log_out_for_current_execution_ios()
+    # """Sign in"""
+    # data_sources_page.checkIfInLoginPage()
+    # registration_page.clickSignIn()
+    # data_sources_page.signInWithEmail()
+    # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
+    # data_sources_page.checkIfOnHomePage()
+    # """Click Hamburger Icon"""
+    # login_page.click_Menu_HamburgerICN()
+    # """Click on edit profile"""
+    # registration_page.click_on_profile_edit()
     """""click on upload photo"""
     delete_account_page.click_User_upload_photo()
     """click on camera option"""
@@ -464,7 +464,7 @@ def test_Delete_Account_TestcaseID_45788():
     registration_page.click_on_reset_password()
     registration_page.check_if_in_password_recovery_page()
     registration_page.Enter_Username_password_recovery_page("zebra05.swdvt@gmail.com")
-    registration_page.wait_for_element_appearance_text("Success!", 10)
+    registration_page.wait_for_element_appearance("Success!", 15)
     registration_page.check_message_on_success_page()
     registration_page.checkClickHerePresent()
     registration_page.click_on_Click_here()
@@ -472,12 +472,13 @@ def test_Delete_Account_TestcaseID_45788():
     """Enter otp manually"""
     common_method.show_message(
         "Enter the otp received on gmail account - zebra05.swdvt@gmail.com - Zebra#123456789 in the 'Temporary Password' field. Click Ok in the dialog after its done.")
-    registration_page.fillNewPassword("Zebra#123456789")
-    registration_page.fillConfirmPassword("Zebra#123456789")
+    registration_page.fillNewPassword("Zebra#1234567819")
+    registration_page.fillConfirmPassword("Zebra#1234567819")
     registration_page.click_SUBMIT()
     registration_page.check_successful_password_reset_page_message()
     registration_page.click_on_Click_here()
     data_sources_page.checkIfInLoginPage()
+    registration_page.clickSignIn()
     data_sources_page.signInWithEmail()
     registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
     registration_page.verify_if_on_EULA_page()
@@ -486,5 +487,6 @@ def test_Delete_Account_TestcaseID_45788():
     registration_page.clickClose()
     registration_page.clickExit()
     common_method.Stop_The_iOSApp()
+    common_method.show_message("Change password of zebra05.swdvt@gmail.com in zebra login back to Zebra#123456789")
 
 

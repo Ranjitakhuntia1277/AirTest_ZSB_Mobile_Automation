@@ -209,10 +209,19 @@ class Help_Screen:
             count += 1
         account.click()
         sleep(4)
-        if self.poco(textMatches=".*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
+        if self.poco(textMatches="(?s).*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
             self.clickContinueWeb()
-        elif self.poco(text= "Sign in to ZSB Series").exists():
+            sleep(4)
+        if self.poco(textMatches= "(?s).*Sign in to ZSB Series.*").exists():
             self.clickContinueWeb()
+            sleep(4)
+        if self.poco(textMatches="(?s).*ZSB Series wants access to your Google Account.*").exists():
+            if self.poco(text="Select all", checked=False).exists():
+                self.poco(text="Select all", type="android.widget.CheckBox").click()
+                sleep(2)
+            while not self.poco(text="Continue").exists():
+                self.poco.scroll()
+                self.clickContinueWeb()
         sleep(5)
 
     def swipeLeft(self):
