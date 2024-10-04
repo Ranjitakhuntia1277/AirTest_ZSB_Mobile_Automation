@@ -1382,7 +1382,7 @@ class Data_Sources_Screen:
         file = self.poco("com.google.android.documentsui:id/item_root")[0]
         file.click()
 
-    def selectFilesInLocal(self):
+    def selectFilesInLocal(self, verify_upload_notification=False):
         file_list = []
         prev_list = []
         curr_list = []
@@ -1410,6 +1410,9 @@ class Data_Sources_Screen:
                     file_list.append(name)
                     print("file", file_list)
                     self.poco(text=name).click()
+                    if verify_upload_notification:
+                        """No notification after uploading file"""
+                        self.check_if_there_is_notification_shown_after_uploading_file(file_list)
                     sleep(10)
                     self.click_Add_File()
                     sleep(2)
@@ -1996,8 +1999,17 @@ class Data_Sources_Screen:
         except:
             raise Exception("Print page did not pop up.")
 
+    def check_if_there_is_notification_shown_after_uploading_file(self, file_list=None):
+        try:
+            self.poco(nameMatches=".*uploaded successfully.*").wait_for_appearance(timeout=20)
+        except:
+            if file_list is not None:
+                for file in file_list:
+                    self.searchName(file)
+                    self.remove_File_Based_On_DataSource("Local File", file)
+                raise Exception("No notification on uploading and removing file(SMBM-712)")
+
     def check_notification_on_file_upload_file(self, selected_file):
-        sleep(3)
         try:
             self.poco(nameMatches=".*uploaded successfully.*").wait_for_appearance(timeout=20)
         except:
