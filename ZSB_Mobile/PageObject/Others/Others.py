@@ -708,6 +708,7 @@ class Others:
         self.poco(network_name).focus([0.95, 0.4]).click()
 
     def check_apply_changes_button_clickable(self):
+        sleep(7)
         a = self.poco("Apply Changes", enabled=True).exists()
         return a
 
@@ -715,7 +716,9 @@ class Others:
         self.poco("Apply Changes").click()
 
     def click_common_designs_button(self):
+        sleep(3)
         self.poco(self.common_designs_button).click()
+        sleep(3)
 
     def search_designs(self, str):
         design = self.poco("android.widget.EditText")
@@ -924,6 +927,7 @@ class Others:
     def turn_on_wifi(self):
         cmd = "adb shell svc wifi enable"
         self.run_the_command(cmd)
+        sleep(5)
 
     def check_no_notifications(self):
         a = self.poco("Below is the historical view of the notifications you have received.\nNo notifications").exists()
@@ -969,7 +973,7 @@ class Others:
         return child_names
 
     def get_designs_visible_designs(self):
-
+        sleep(4)
         child_names = [child.get_name() for child in
                        self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child("android"
                                                                                                              ".view.View").child(
@@ -977,8 +981,8 @@ class Others:
                            "android.view.View")[1].child("android.view.View").child().children()]
         return child_names
 
-    def select_wifi(self, ssid, password):
-
+    def select_wifi(self, ssid, password="123456789"):
+        sleep(2)
         # self.poco(text="Internet").click()
         self.run_the_command("adb shell svc wifi enable")
         self.poco(text=ssid).wait_for_appearance(timeout=20)
@@ -987,9 +991,9 @@ class Others:
         try:
             self.poco(type="android.widget.EditText").set_text(password)
             keyevent("enter")
-
         except:
-            sleep(1)
+            pass
+        sleep(4)
 
     def open_wifi_settings(self):
         cmd = "adb shell am start -a android.settings.SETTINGS"
@@ -1012,9 +1016,13 @@ class Others:
             self.poco(text="Wi-Fi").click()
         except:
             pass
+        sleep(3)
 
     def click_on_allow(self):
-        self.poco(nameMatches=".*allow.*").click()
+        try:
+            self.poco(nameMatches=".*allow.*").click()
+        except:
+            pass
 
     def get_recently_printed_labels(self):
         child_names = [child.get_name() for child in

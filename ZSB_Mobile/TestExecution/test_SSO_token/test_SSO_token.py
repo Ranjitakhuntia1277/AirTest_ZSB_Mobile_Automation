@@ -1450,6 +1450,7 @@ def test_Registration_TestcaseID_47786():
         start_time = time.time()
 
         common_method.tearDown()
+        sso_token_renewal_page.runBatchFileToFetchLogs()
         # others_page.uninstall_and_install_zsb_series_on_google_play(True)
         data_sources_page.clearAppData()
 
@@ -1466,11 +1467,14 @@ def test_Registration_TestcaseID_47786():
         registration_page.clickSignIn()
         if poco(text="Allow").exists():
             poco(text="Allow").click()
-        poco("Continue with Google").wait_for_appearance(timeout=10)
+        sleep(5)
         registration_page.click_Google_Icon()
         sleep(2)
         help_page.chooseAcc("zebra03.swdvt@gmail.com")
         data_sources_page.checkIfOnHomePage()
+        sso_token_renewal_page.stop_adb_log_capture()
+        old_token = sso_token_renewal_page.get_token()
+        print(old_token)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
@@ -1479,6 +1483,7 @@ def test_Registration_TestcaseID_47786():
         # Step 3: Do NOT sign out the account, and uninstall the app directly
         start_time = time.time()
 
+        sso_token_renewal_page.runBatchFileToFetchLogs()
         # others_page.uninstall_and_install_zsb_series_on_google_play(True, True)
         data_sources_page.clearAppData()
 
@@ -1504,11 +1509,14 @@ def test_Registration_TestcaseID_47786():
         registration_page.clickSignIn()
         if poco(text="Allow").exists():
             poco(text="Allow").click()
-        poco("Continue with Google").wait_for_appearance(timeout=10)
+        sleep(5)
         registration_page.click_Google_Icon()
         sleep(2)
         help_page.chooseAcc("zebra03.swdvt@gmail.com")
         data_sources_page.checkIfOnHomePage()
+        sso_token_renewal_page.stop_adb_log_capture()
+        new_token = sso_token_renewal_page.checkTokenRefreshed(old_token)
+        print(new_token)
         """Highlight"""
         """Token verification pending"""
         common_method.Stop_The_App()

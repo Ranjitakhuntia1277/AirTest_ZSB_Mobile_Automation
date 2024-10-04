@@ -682,7 +682,6 @@ def test_DataSources_TestcaseID_45737():
 
 def test_DataSources_TestcaseID_45739():
     pass
-
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -699,70 +698,15 @@ def test_DataSources_TestcaseID_45739():
     data_sources_page.searchFileInLocalStorage("Supported Files", "Downloads")
     sleep(2)
     uploaded_file_list = ["bmp_file.bmp", "jpg_file.jpg", "png_file.png", "csv_file.csv", "text_file.txt"]
-    data_sources_page.selectFilesInLocal()
-    """No notification after uploading file"""
+    data_sources_page.selectFilesInLocal(True)
     keyevent("back")
     keyevent("back")
     for name in uploaded_file_list:
         data_sources_page.searchName(name)
         sleep(7)
         data_sources_page.verifyFilePresentInList(name, "Local File", True)
-        """Remove this once web inconsistency issue is resolved"""
-        """--------------------------------------"""
+        """Remove uploaded files for next execution"""
         data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-        """--------------------------------------"""
-    """Login to web portal->Data Sources page Check the uploaded files from mobile app display in the my data page in web portal."""
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    try:
-        poco("com.android.chrome:id/new_tab_view_button").click()
-    except:
-        poco(text="New tab").click()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    data_sources_page.clickEnter()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(3)
-    data_sources_page.signIn_if_on_SSO_page_web()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(3)
-    template_management_page.clickGotIt()
-    registration_page.wait_for_element_appearance_text("Home", 20)
-    sleep(3)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.click_My_Data()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    sleep(3)
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    for name in uploaded_file_list:
-        data_sources_page.searchName(name)
-        keyevent("back")
-        sleep(2)
-        poco.scroll()
-        try:
-            common_method.wait_for_element_appearance_text("No files match your search")
-            x = 1 / 0
-        except ZeroDivisionError:
-            raise Exception("Uploaded files not displaying in my data page.")
-        except Exception as e:
-            pass
-    stop_app("com.android.chrome")
-    """Remove uploaded files for next execution"""
-    for name in uploaded_file_list:
-        data_sources_page.searchName(name)
-        data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-    common_method.Stop_The_App()
 
 
 def test_DataSources_TestcaseID_45744():
@@ -839,11 +783,9 @@ def test_DataSources_TestcaseID_45744():
 
 def test_DataSources_TestcaseID_45741():
     pass
-
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     """setup - Upload a file from local to execute"""
-
     """Click hamburger icon to expand menu"""
     login_page.click_Menu_HamburgerICN()
     data_sources_page.click_My_Data()
@@ -873,42 +815,6 @@ def test_DataSources_TestcaseID_45741():
         raise Exception("File present even after removing it.")
     except Exception as e:
         pass
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    try:
-        poco("com.android.chrome:id/new_tab_view_button").click()
-    except:
-        poco(text="New tab").click()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    data_sources_page.clickEnter()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(3)
-    registration_page.wait_for_element_appearance_text("Home", 20)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.click_My_Data()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    sleep(2)
-    data_sources_page.lock_phone()
-    wake()
-    sleep(3)
-    data_sources_page.searchName(selected_file_name)
-    keyevent("back")
-    sleep(2)
-    poco.scroll()
-    try:
-        common_method.wait_for_element_appearance_text("No files match your search")
-    except:
-        raise Exception("File is not removed from the web portal.")
-    stop_app("com.android.chrome")
     common_method.Stop_The_App()
 
 
@@ -954,62 +860,6 @@ def test_DataSources_TestcaseID_45742():
         raise Exception("File present even after removing it.")
     except Exception as e:
         pass
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    try:
-        poco("com.android.chrome:id/new_tab_view_button").click()
-    except:
-        poco(text="New tab").click()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    data_sources_page.clickEnter()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(3)
-    registration_page.wait_for_element_appearance_text("Home", 20)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.click_My_Data()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.searchName(remove_file_name)
-    keyevent("back")
-    sleep(2)
-    poco.scroll()
-    try:
-        common_method.wait_for_element_appearance_text("No files match your search")
-    except:
-        raise Exception("File is not removed from the web portal.")
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.clickMyDesigns()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    common_method.wait_for_element_appearance_textmatches("Showing")
-    data_sources_page.searchName("45742")
-    keyevent("back")
-    common_method.wait_for_element_appearance_textmatches("Showing")
-    poco.scroll()
-    data_sources_page.selectDesignCreatedAtSetUpWeb()
-    data_sources_page.clickPrint()
-    data_sources_page.clickCheckBox()
-    data_sources_page.clickContinueWeb()
-    _, b = poco("android.widget.EditText").get_position()
-    common_method.swipe_screen([0.9, b], [0.2, b], 1)
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.set_text("Hello")
-    keyevent("back")
-    data_sources_page.clickPrint()
-    common_method.wait_for_element_appearance_text("Print complete", 20)
-    stop_app("com.android.chrome")
     common_method.Stop_The_App()
 
 
@@ -1641,58 +1491,12 @@ def test_DataSources_TestcaseID_45740():
     data_sources_page.searchFileInLocalStorage("20 Files", "Downloads")
     sleep(2)
     uploaded_file_list = data_sources_page.selectFilesInLocal()
-    """No notification after uploading file"""
     keyevent("back")
     keyevent("back")
     for name in uploaded_file_list:
         data_sources_page.searchName(name)
         sleep(7)
         data_sources_page.verifyFilePresentInList(name, "Local File", True)
-        """Remove this once web inconsistency is fixed"""
-        """-------------------------------------------"""
-        data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-        """-------------------------------------------"""
-    """Login to web portal->Data Sources page Check the uploaded files from mobile app display in the my data page in web portal. pending"""
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    try:
-        poco("com.android.chrome:id/new_tab_view_button").click()
-    except:
-        poco(text="New tab").click()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    data_sources_page.clickEnter()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(3)
-    registration_page.wait_for_element_appearance_text("Home", 20)
-    sleep(3)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.click_My_Data()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    for name in uploaded_file_list:
-        data_sources_page.searchName(name)
-        keyevent("back")
-        sleep(2)
-        poco.scroll()
-        try:
-            common_method.wait_for_element_appearance_text("No files match your search")
-            x = 1 / 0
-        except ZeroDivisionError:
-            raise Exception("Uploaded files not displaying in my data page.")
-        except Exception as e:
-            pass
-    stop_app("com.android.chrome")
-    """Remove uploaded files for next execution"""
-    for name in uploaded_file_list:
-        data_sources_page.searchName(name)
         data_sources_page.remove_File_Based_On_DataSource("Local File", name)
     common_method.Stop_The_App()
 

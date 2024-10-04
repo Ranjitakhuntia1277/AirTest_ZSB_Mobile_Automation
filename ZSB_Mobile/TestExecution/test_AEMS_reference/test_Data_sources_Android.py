@@ -8,12 +8,6 @@ from ...AEMS.api_calls import start_main, insert_step, insert_stepDetails, inser
 from ...AEMS.store import execID, leftId
 # from setuptools import logging
 # from ...PageObject.Robofinger import test_robo_finger
-from ...Common_Method import Common_Method
-from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
-from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from airtest.core.api import connect_device
 
 import signal
 
