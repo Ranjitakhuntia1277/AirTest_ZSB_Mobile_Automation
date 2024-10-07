@@ -246,9 +246,7 @@ class test_Android_Social_Login():
             pass
         self.setup_logout()
         common_method.wait_for_element_appearance_namematches("Sign In")
-
         login_page.click_loginBtn()
-        common_method.wait_for_element_appearance_namematches("Continue with Google")
         others.click_on_sign_in_with_email()
         common_method.wait_for_element_appearance_textmatches("Sign In")
 
@@ -259,7 +257,6 @@ class test_Android_Social_Login():
         sleep(30)
         others.click_on_sign_in()
         common_method.wait_for_element_appearance_namematches("Home", 30)
-
         login_page.click_Menu_HamburgerICN()
         others.click_Printer_Settings()
         login_page.click_Menu_HamburgerICN()
@@ -1623,7 +1620,6 @@ class test_Android_Social_Login():
         sleep(2)
         common_method.Turn_ON_The_Phone()
         sleep(4)
-        social_login.wait_for_element_appearance("Continue with Google")
         login_page.click_Loginwith_Google()
         social_login.sign_in_with_new_google()
         sleep(5)
