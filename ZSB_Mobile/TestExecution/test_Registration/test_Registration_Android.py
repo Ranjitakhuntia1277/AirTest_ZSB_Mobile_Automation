@@ -198,7 +198,7 @@ def test_Registration_TestcaseID_45869():
     pass
     common_method.tearDown()
     registration_page.clickSignIn()
-    registration_page.click_Google_Icon()
+    login_page.click_Loginwith_Google()
     account = "zebra03.swdvt@gmail.com"
     if template_management_page.checkIfAccPresent(account):
         help_page.chooseAcc(account)
