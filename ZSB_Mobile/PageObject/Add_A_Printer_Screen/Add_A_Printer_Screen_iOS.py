@@ -116,6 +116,10 @@ class Add_A_Printer_Screen_iOS:
         ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         self.Scan_me = Template(Basic_path(r"QR.png"), record_pos=(-0.001, 0.514), resolution=(1170, 2532))
         self.Scan_me2 = Template(Basic_path(r"QR2.png"), record_pos=(-0.001, 0.507), resolution=(1170, 2532))
+        self.Wifi_animation = Template(Basic_path(r"Wifi_Animation.png"), record_pos=(0.003, 0.006),
+                                       resolution=(1170, 2532))
+        self.Printer_3d_image = Template(Basic_path(r"Printer_3D_image.png"), record_pos=(-0.016, 0.485),
+                                         resolution=(1170, 2532))
 
     def enable_bluetooth(self):
         start_app("com.apple.Preferences")
@@ -131,7 +135,6 @@ class Add_A_Printer_Screen_iOS:
             bluetooth_switch.click()
             print("Bluetooth is now on.")
         self.common_method.swipe_back_to_app_ios()
-        # start_app("com.zebra.soho")
 
     def disable_bluetooth(self):
         popup = self.poco(nameMatches="(?s).*Close.*")
@@ -139,6 +142,9 @@ class Add_A_Printer_Screen_iOS:
             popup.click()
         start_app("com.apple.Preferences")
         sleep(2)
+        if self.poco(self.Settings).exists():
+            self.poco(self.Settings).click()
+            sleep(2)
         bluetooth_setting_button = self.poco(name="Bluetooth")
         bluetooth_setting_button.click()
         sleep(2)
@@ -154,6 +160,32 @@ class Add_A_Printer_Screen_iOS:
         # self.switch_to_different_app()
         if popup.exists():
             popup.click()
+
+    def enable_wi_fi(self):
+        start_app("com.apple.Preferences")
+        sleep(2)
+        if self.poco(self.Settings).exists():
+            self.poco(self.Settings).click()
+            sleep(2)
+        self.poco("Wi-Fi").click()
+        sleep(2)
+        wi_fi_toggle = self.poco(type="Switch", name="Wi‑Fi")
+        switch_value = wi_fi_toggle.attr("value")
+        if switch_value == "0":
+            wi_fi_toggle.click()
+        self.common_method.swipe_back_to_app_ios()
+
+    def disable_Wi_Fi(self):
+        sleep(2)
+        start_app("com.apple.Preferences")
+        sleep(2)
+        self.poco("Wi-Fi").click()
+        sleep(2)
+        Wi_Fi_toggle = self.poco(type="Switch", name="Wi‑Fi")
+        switch_value = Wi_Fi_toggle.attr("value")
+        if switch_value == "1":
+            Wi_Fi_toggle.click()
+        self.common_method.swipe_back_to_app_ios()
 
     def downgrade_app_version(self):
         start_app("com.apple.TestFlight")
@@ -190,8 +222,12 @@ class Add_A_Printer_Screen_iOS:
         #     return
         if self.poco(self.Signin_button).exists():
             return
+        if self.poco(self.Add_A_Printer_Btn).exists():
+            return
         start_app("com.apple.Preferences")
         sleep(2)
+        if self.poco(self.Settings).exists():
+            self.poco(self.Settings).click()
         bluetooth_setting_button = self.poco(name="Bluetooth")
         bluetooth_setting_button.click()
         sleep(2)
@@ -439,12 +475,17 @@ class Add_A_Printer_Screen_iOS:
             print("Searching for wifi page appears")
 
     def click_cancel_pair(self):
-        if self.poco(self.Pair_button).exists():
-            print("Button pairing request present")
-            self.poco(self.Cancel_bluetooth).click()
+        timeout = 40
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            if self.poco(self.Pair_button).exists():
+                print("Button pairing request present with Pair and cancel button")
+                self.poco(self.Cancel_bluetooth).click()
+                return
+            time.sleep(1)
 
     def click_pair_button(self):
-        timeout = 70
+        timeout = 40
         start_time = time.time()
         select_element = self.poco(self.Pair_button)
 
@@ -456,6 +497,43 @@ class Add_A_Printer_Screen_iOS:
                 return
             time.sleep(1)
         raise Exception("Error: Timed out waiting for Pair element to become visible")
+
+    def check_wifi_search_page_ui(self):
+        timeout = 30
+        start_time = time.time()
+        if self.poco(self.Connect_to_wifi).exists():
+            print("Connect to Wi-Fi text is present")
+        else:
+            raise Exception("Error: Connect to Wi-Fi text is not present")
+        if self.poco(self.Searching_for_wifi_networks_Text).exists():
+            print("Connect to Wi-Fi text is present")
+        else:
+            raise Exception("Error: Connect to Wi-Fi text is not present")
+        text_element = self.poco(nameMatches="(?s).*Your printer is searching for Wi-Fi networks.*")
+        if self.poco(text_element).exists():
+            print("Your printer is searching for Wi-Fi networks text present")
+        else:
+            raise Exception("Error: Your printer is searching for Wi-Fi networks text is not present")
+        try:
+            assert_exists(self.Wifi_animation)
+            print("The Wi-Fi Animation is present")
+        except:
+            print("The Wi-Fi Animation is not present")
+        try:
+            assert_exists(self.Printer_3d_image)
+            print("The Printer Image is present")
+        except:
+            print("The Printer Image is not present")
+        if self.poco(self.ButtonX).exists():
+            raise Exception("Error: Cross button is present on the page")
+        else:
+            print("There is no Cross button on the screen")
+        if self.poco(self.Search_again).exists():
+            end_time = time.time()
+            if end_time - start_time > timeout:
+                raise Exception("Error: The page took more than 30 seconds to load")
+        else:
+            print("The page took less than 30 seconds to load")
 
     def check_select_wifi(self):
         timeout = 70

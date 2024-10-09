@@ -16,6 +16,7 @@ class Login_Screen_iOS:
         self.poco = poco
         self.Signin_image = "Image"
         self.loginBtn = "Sign In"
+        self.Google_Signin_ID = "swdvt zsb"
         self.Accept_button = "Accept"
         self.Edit_pen = "Button"
         self.Add_A_Printer_Btn = "Add A Printer"
@@ -56,6 +57,8 @@ class Login_Screen_iOS:
             self.poco(self.Continue_popup_to_login).click()
             if method == "Google":
                 self.poco(self.Google_Login).click()
+                if self.poco(self.Google_Signin_ID).exists():
+                    self.poco(self.Google_Signin_ID).click()
             if method == "Facebook":
                 self.poco(self.Facebook_Login).click()
                 # ADD LOGIN CODE

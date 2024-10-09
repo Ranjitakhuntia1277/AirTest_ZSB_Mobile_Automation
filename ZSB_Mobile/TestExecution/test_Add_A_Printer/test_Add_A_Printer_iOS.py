@@ -1,13 +1,16 @@
 from airtest.core.api import auto_setup, start_app, sleep, text, stop_app
 from poco.drivers.ios import iosPoco
-import time
-
+import inspect
+from ...AEMS.api_calls import start_main, insert_step, insert_stepDetails, insert_case_results, end_main, \
+    start_execution_loop, end_execution_loop, end_execution, upload_case_files
+from ...AEMS.store import execID, leftId
 from ...Common_Method import Common_Method
 from ...PageObject.APP_Settings.APP_Settings_Screen_iOS import App_Settings_Screen_iOS
 from ...PageObject.Login_Screen.Login_Screen_iOS import Login_Screen_iOS
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import Add_A_Printer_Screen_iOS
 from ...PageObject.Robofinger import test_robo_finger
-import pytest
+import os
+import time
 from airtest.core.api import connect_device
 
 
@@ -29,8 +32,45 @@ app_settings_iOS_page_ios = App_Settings_Screen_iOS(poco)
 add_a_printer_page_ios = Add_A_Printer_Screen_iOS(poco)
 common_method = Common_Method(poco)
 
+ADB_LOG, test_run_start_time = common_method.start_adb_log_capture()
+
+start_execution_loop(execID)
+
+
+def preconditions(bluetooth=None):
+    add_a_printer_page_ios.delete_printer()
+    add_a_printer_page_ios.unpair_printer()
+    # login_screen_ios.logout()
+    # app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+    # app_settings_iOS_page_ios.click_Logout_Btn()
+    if bluetooth == "bt_disable":
+        add_a_printer_page_ios.disable_bluetooth()
+    else:
+        add_a_printer_page_ios.enable_bluetooth()
+
+
+def pair_printer(test_case_id, pair):
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+    login_screen_ios.login("Google")
+    sleep(10)
+    e_check = poco(nameMatches="(?s).*ZSB-DP12.*")
+    if e_check.exists():
+        return
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    add_a_printer_page_ios.click_start_setup()
+    add_a_printer_page_ios.check_connect_to_printer()
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    add_a_printer_page_ios.click_next_button()
+    if pair == "pair":
+        add_a_printer_page_ios.click_pair_button()
+    else:
+        add_a_printer_page_ios.click_cancel_pair()
+
 
 def register_printer():
+    login_screen_ios.login("Google")
     sleep(10)
     e_check = poco(nameMatches="(?s).*ZSB-DP12.*")
     if e_check.exists():
@@ -51,193 +91,146 @@ def register_printer():
     add_a_printer_page_ios.finish_setup()
 
 
-# def test_Addprinter_TestcaseID_45656():
-#     """"Adding the moneybadger while the mobile devices bluetooth is disabled"""
-#     """ FAILED : Because we sometimes after switching from settings to ZSB app, it is showing the setting option"""
-#     """Precondition"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     add_a_printer_page_ios.disable_bluetooth()
-#     """Step 1"""
-#     login_screen_ios.login()
-#     """Step 2"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     """Step 3"""
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     add_a_printer_page_ios.cancel_bluetooth()
-#     """Step 4"""
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     add_a_printer_page_ios.click_settings()
-#     add_a_printer_page_ios.enable_bluetooth()
-#     """Step 5"""
-#     sleep(2)
-#     add_a_printer_page_ios.disable_bluetooth()
-#     add_a_printer_page_ios.click_start_button()
-#     add_a_printer_page_ios.check_unable_to_find()
-#     """Step 6"""
-#     add_a_printer_page_ios.enable_bluetooth()
-#     add_a_printer_page_ios.click_search_again()
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     """Step 7"""
-#     add_a_printer_page_ios.disable_bluetooth()
-#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
-#     add_a_printer_page_ios.check_unable_to_connect_printer()
-#     """Step 8"""
-#     add_a_printer_page_ios.enable_bluetooth()
-#     add_a_printer_page_ios.click_try_again()
-#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
-#     add_a_printer_page_ios.check_wifi_connected_successfully()
-#     """Step 9"""
-#     add_a_printer_page_ios.finish_setup()
+def test_add_printer_testcase_id_45656():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+    test_steps = {
+        1: [1, 'Open the app and login the account to go to the overview page.'],
+        2: [2, 'Click the menu button at the left corner\nCheck the slide left page appears.'],
+        3: [3,
+            'Click the button "Add a Printer"\nCheck it goes to the page "Set up your printer"\nCheck the moneybadger picture appears on that page.\nCheck the dialog with prompt message "Turn on Bluetooth to Allow "ZSB Printer App" to Connect", click on the Cancel button.\nCheck the "Set up your printer" page dismisses and returns to the slide left page.'],
+        4: [4,
+            'Click the "Add a Printer" button again\nCheck it pops up the dialog with prompt message "Turn on Bluetooth to Allow "ZSB Printer App" to Connect", click on the Settings button, go to settings and enable Bluetooth, then click the back button on the settings page.\nCheck it returns to the "Set up your printer" page.']
+    }
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+    stepId = 1  # Initialize stepId before the try-except block
+    try:
+        """Precondition"""
+        preconditions("bt_disable")
+        """Step 1"""
+        start_time = time.time()
+        login_screen_ios.login("Google")
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+        """Step 2"""
+        start_time = time.time()
+        login_screen_ios.click_Menu_HamburgerICN()
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        """Step 3"""
+        start_time = time.time()
+        add_a_printer_page_ios.click_Add_A_Printer()
+        add_a_printer_page_ios.cancel_bluetooth()
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        """Step 4"""
+        start_time = time.time()
+        add_a_printer_page_ios.click_Add_A_Printer()
+        add_a_printer_page_ios.click_settings()
+        add_a_printer_page_ios.enable_bluetooth()
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+    except Exception as e:
+        screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+        raise Exception(str(e))
+
+    finally:
+        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
 
 
-# def test_Addprinter_TestcaseID_45657():
-#     """Check the cancel button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger"""
-#     """FAILED :The Pair popup is not popping for the second time"""
-#     """Precondition"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     """Step 1"""
-#     login_screen_ios.login()
-#     """Step 2"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     """Step 3"""
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     """Step 4"""
-#     add_a_printer_page_ios.click_start_button()
-#     """Step 5"""
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     add_a_printer_page_ios.click_cancel_pair()
-#     add_a_printer_page_ios.check_unable_to_connect_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     """Step 6"""
-#     add_a_printer_page_ios.click_try_again()
-#     add_a_printer_page_ios.click_pair_button()
-#     """Step 7"""
-#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
-#     add_a_printer_page_ios.check_wifi_connected_successfully()
-#     add_a_printer_page_ios.finish_setup()
+def test_add_printer_testcase_id_45657():
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+
+    test_steps = {
+        1: [1, 'Sign in the account and click My Data option'],
+        2: [2, 'Click + button at bottom and select Link File'],
+        3: [3, 'Google Drive will be opened and let user select file to link'],
+        4: [4,
+            'Select the file with Special character from Google Drive\nCheck the selected file is linked\nCheck the details of the File name, Source and Date added (Today) of the linked file are shown correctly'],
+        5: [5,
+            'Select the file with long file name from Google Drive\nCheck the selected file is linked\nCheck the details of the File name, Source and Date added (Today) of the linked file are shown correctly'],
+        6: [6, 'Remove these 2 files\nCheck these 2 files are able to remove'],
+        7: [7, 'Repeat this test case for OneDrive'],
+        8: [8, 'Check Account Settings page should provide user management of Google and OneDrive accounts']
+    }
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
+    stepId = 1  # Initialize stepId before the try-except block
+    try:
+        # Step 1: Sign in the account and click My Data option
+
+        """Check the cancel button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger"""
+        """Precondition"""
+        preconditions()
+        """Steps"""
+        start_time = time.time()
+        pair_printer(test_case_id, "cancel")
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+        add_a_printer_page_ios.check_unable_to_connect_printer()
+    except Exception as e:
+        screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+        raise Exception(str(e))
+
+    finally:
+        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
 
 
-# def test_Addprinter_TestcaseID_45663():
-#     """INVALID TESTCASE because there is no option for help in latest version of app"""
-#     """set printer wpa psk Ess-id manually when the printer change to offline, and go to Help"""
-#     """Precondition"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     """Step 1"""
-#     login_screen_ios.login()
-#     """Step 2"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     add_a_printer_page_ios.click_start_button()
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     add_a_printer_page_ios.click_pair_button()
-#     """Step 3"""
-#     add_a_printer_page_ios.check_select_wifi()
-#     common_method.show_message("Please Turn off the Printer")
-#     """Step 5"""
-#     add_a_printer_page_ios.enter_network_manually("connect")
-#     add_a_printer_page_ios.check_unable_to_connect_printer()
-#     """----------INVALID TESTCASE----------"""
+def test_add_printer_testcase_id_45665():
+    """FAILED : when we click on cancel in step 4 it does not take us to set up printer page"""
+    """Check the 'X' button (left top corner) of setup your printer page"""
+    """Precondition"""
+    preconditions()
+    """Step 1"""
+    login_screen_ios.login("Google")
+    """Step 2"""
+    login_screen_ios.click_Menu_HamburgerICN()
+    """Step 3"""
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """Step 4"""
+    add_a_printer_page_ios.check_ui_of_printer_setup()
+    add_a_printer_page_ios.click_cross()
+    """Step 5"""
+    add_a_printer_page_ios.cancel_bluetooth()
+    add_a_printer_page_ios.click_cross()
+    add_a_printer_page_ios.click_exit_button()
+    """Step 6"""
+    login_screen_ios.click_Menu_HamburgerICN()
 
 
-# def test_Addprinter_TestcaseID_45665():
-#     """FAILED : when we click on cancel in step 4 it does not take us to set up printer page"""
-#     """Check the left top corner button of each page work during adding a moneybadger"""
-#     """Precondition"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     """Step 1"""
-#     login_screen_ios.login()
-#     """Step 2"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     """Step 3"""
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     """Step 4"""
-#     add_a_printer_page_ios.click_cross()
-#     add_a_printer_page_ios.cancel_bluetooth()
-#     add_a_printer_page_ios.click_cross()
-#     add_a_printer_page_ios.click_exit_button()
-#     """Step 6"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     add_a_printer_page_ios.click_start_button()
-#     """Step 7"""
-#     add_a_printer_page_ios.click_cross()
-#     add_a_printer_page_ios.click_exit_button()
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     """Step 8"""
-#     add_a_printer_page_ios.click_start_button()
-#     """Step 9"""
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     add_a_printer_page_ios.click_pair_button()
-#     add_a_printer_page_ios.check_select_wifi()
-#     """Step 10"""
-#     add_a_printer_page_ios.click_cross()
-#     add_a_printer_page_ios.click_exit_button()
-#     """INVALID TEST CASE"""
+def test_Addprinter_TestcaseID_45667():
+    """Check using the phone A to add the unconfigured printer which was paired the bluetooth connection by phone A and not in bluetooth limited mode"""
+    """Precondition"""
+    preconditions()
+    """Steps"""
+    pair_printer("pair")
+    add_a_printer_page_ios.check_select_wifi()
+    add_a_printer_page_ios.enter_network_manually("connect")
+    # check = add_a_printer_page_ios.check_for_duplicate_wifi_networks()
+    # if check:
+    #     pass
+    add_a_printer_page_ios.check_wifi_connected_successfully()
+    add_a_printer_page_ios.finish_setup()
+    login_screen_ios.check_finish_setup()
 
-# def test_Addprinter_TestcaseID_45667():
-#     """Check using the phone A to add the unconfigured printer which was paired the bluetooth connection by phone A and not in bluetooth limited mode"""
-#     """Precondition Phone A"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     login_screen_ios.login()
-#     """Step 1"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     """Step 2"""
-#     add_a_printer_page_ios.click_start_button()
-#     """Step 3"""
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     add_a_printer_page_ios.click_pair_button()
-#     add_a_printer_page_ios.check_select_wifi()
-#     """Step 4"""
-#     add_a_printer_page_ios.click_cross()
-#     add_a_printer_page_ios.click_exit_button()
-#     """Step 5"""
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     add_a_printer_page_ios.click_start_button()
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     """Step 6"""
-#     add_a_printer_page_ios.check_select_wifi()
-#     check = add_a_printer_page_ios.check_for_duplicate_wifi_networks()
-#     if check:
-#         pass
-#     """Step 7"""
-#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
-#     """Step 8"""
-#     add_a_printer_page_ios.check_wifi_connected_successfully()
-#     add_a_printer_page_ios.finish_setup()
-#     login_screen_ios.check_finish_setup()
 
 # def test_Addprinter_TestcaseID_45672():
 #     """connect printer by using the 'Add a Printer' button at the overview page and check information card"""
@@ -392,6 +385,7 @@ def test_add_printer_test_case_id_53070():
 
 
 def test_add_printer_test_case_id_53071():
+    """FAILED: Facebook login was not possible"""
     """Verify the "Set up your printer" page is displayed the same for all the social login accounts"""
     social_logins = ["Google", "Apple", "Facebook"]
     for login in social_logins:
@@ -483,3 +477,57 @@ def test_add_printer_test_case_id_53090():
     add_a_printer_page_ios.click_pair_button()
     add_a_printer_page_ios.check_select_wifi()
 
+
+def test_add_printer_test_case_id_53091():
+    """Check the UI of Wi-Fi searching screen is same as Figma design"""
+    """Pre-condition"""
+    add_a_printer_page_ios.delete_printer()
+    add_a_printer_page_ios.unpair_printer()
+    add_a_printer_page_ios.enable_wi_fi()
+    """Step 1"""
+    login_screen_ios.login("Google")
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """"Step 2"""
+    add_a_printer_page_ios.click_start_setup()
+    add_a_printer_page_ios.check_connect_to_printer()
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    add_a_printer_page_ios.click_next_button()
+    add_a_printer_page_ios.click_pair_button()
+    """Step 3"""
+    add_a_printer_page_ios.check_wifi_search_page_ui()
+
+
+def test_add_printer_test_case_id_53093():
+    """[Wi-Fi Network Connection]- Check able to connect a secure Wi-fi with correct pw and proceed (From Discovered networks)"""
+    """Pre-condition"""
+    add_a_printer_page_ios.delete_printer()
+    add_a_printer_page_ios.unpair_printer()
+    add_a_printer_page_ios.enable_wi_fi()
+    """Step 1"""
+    login_screen_ios.login("Google")
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """"Step 2"""
+    add_a_printer_page_ios.click_start_setup()
+    add_a_printer_page_ios.check_connect_to_printer()
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    add_a_printer_page_ios.click_next_button()
+    add_a_printer_page_ios.click_pair_button()
+    """Step 3"""
+    sleep(10)
+    add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
+    add_a_printer_page_ios.check_wifi_connected_successfully()
+# except Exception as e:
+#         screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+#         insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+#         insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+#         upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+#         raise Exception(str(e))
+# finally:
+#         common_method.stop_adb_log_capture()
+#         upload_case_files(execID, os.path.dirname(ADB_LOG), test_run_start_time)
+#         end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
+#         end_execution_loop(execID)
+#         end_execution(execID)

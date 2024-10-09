@@ -10,7 +10,8 @@ from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_iOS import 
 from ZSB_Mobile.PageObject.Robofinger import test_robo_finger
 import pytest
 from airtest.core.api import connect_device
-
+from ...AEMS.api_calls import start_main, insert_step, insert_stepDetails, insert_case_results, end_main,start_execution_loop, end_execution_loop, end_execution, upload_case_files
+from ...AEMS.store import execID, leftId
 
 # Specify the device's platform (Android or iOS) and other details
 
@@ -30,113 +31,118 @@ app_settings_iOS_page_ios = App_Settings_Screen_iOS(poco)
 add_a_printer_page_ios = Add_A_Printer_Screen_iOS(poco)
 common_method = Common_Method(poco)
 
+ADB_LOG, test_run_start_time = common_method.start_adb_log_capture()
 
-# def test_Addprinter_TestcaseID_45658():
+start_execution_loop(execID)
+def preconditions(bluetooth=None):
+    add_a_printer_page_ios.delete_printer()
+    add_a_printer_page_ios.unpair_printer()
+    # login_screen_ios.logout()
+    # app_settings_iOS_page_ios.Scroll_till_Delete_Account()
+    # app_settings_iOS_page_ios.click_Logout_Btn()
+    if bluetooth == "bt_disable":
+        add_a_printer_page_ios.disable_bluetooth()
+    else:
+        add_a_printer_page_ios.enable_bluetooth()
+
+
+def pair_printer(pair):
+    login_screen_ios.login("Google")
+    sleep(10)
+    e_check = poco(nameMatches="(?s).*ZSB-DP12.*")
+    if e_check.exists():
+        return
+    login_screen_ios.click_Menu_HamburgerICN()
+    add_a_printer_page_ios.click_Add_A_Printer()
+    add_a_printer_page_ios.click_start_setup()
+    add_a_printer_page_ios.check_connect_to_printer()
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    add_a_printer_page_ios.click_next_button()
+    if pair == "pair":
+        add_a_printer_page_ios.click_pair_button()
+    else:
+        add_a_printer_page_ios.click_cancel_pair()
+
+
+def test_Addprinter_TestcaseID_45658():
+    """SEMI-AUTOMATED"""
+    """Check pairing bluetooth when the printer changes to offline"""
+    """Precondition"""
+    preconditions()
+    "Steps"
+    """Step 1"""
+    login_screen_ios.login("Google")
+    """Step 2"""
+    login_screen_ios.click_Menu_HamburgerICN()
+    """Step 3"""
+    add_a_printer_page_ios.click_Add_A_Printer()
+    """Step 4"""
+    add_a_printer_page_ios.click_start_setup()
+    add_a_printer_page_ios.check_connect_to_printer()
+    """Step 5"""
+    common_method.show_message("Please Turn off the Printer")
+    """Step 6"""
+    add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
+    add_a_printer_page_ios.click_next_button()
+    add_a_printer_page_ios.check_unable_to_connect_printer()
+
+
+def test_Addprinter_TestcaseID_45660():
+    """SEMI-AUTOMATED"""
+    """ Check searching the ess-ids works when the printer is offline"""
+    """Precondition"""
+    preconditions()
+    """Steps"""
+    pair_printer("pair")
+    """Step 4"""
+    add_a_printer_page_ios.check_select_wifi()
+    common_method.show_message("Please Turn off the Printer")
+    """Step 5"""
+    add_a_printer_page_ios.enter_network_manually("connect")
+    add_a_printer_page_ios.check_unable_to_connect_printer()
+
+
+def test_Addprinter_TestcaseID_45662():
+    """SMI-AUTOMATED"""
+    """set printer open Ess-id when the printer change to offline, and retry"""
+    """Precondition"""
+    preconditions()
+    """Steps"""
+    pair_printer("pair")
+    """Step 3"""
+    add_a_printer_page_ios.check_select_wifi()
+    common_method.show_message("Please Turn off the Printer")
+    add_a_printer_page_ios.choose_open_wifi_network()
+    add_a_printer_page_ios.check_unable_to_connect_printer()
+    """Step 4"""
+    add_a_printer_page_ios.click_try_again()
+    add_a_printer_page_ios.check_select_wifi()
+    """Step 5"""
+    common_method.show_message("Please Turn on the Printer")
+    add_a_printer_page_ios.choose_open_wifi_network()
+    add_a_printer_page_ios.check_wifi_connected_successfully()
+    add_a_printer_page_ios.finish_setup()
+    login_screen_ios.check_finish_setup()
+
+
+def test_addprinter_testcase_id_45663():
+    """INVALID TESTCASE because there is no option for help in latest version of app"""
+    """set printer wpa psk Ess-id manually when the printer change to offline, and go to Contact Support"""
+    """Precondition"""
+    preconditions()
+    """Steps"""
+    pair_printer("pair")
+    """Step 3"""
+    add_a_printer_page_ios.check_select_wifi()
+    common_method.show_message("Turn off the printer")
+    add_a_printer_page_ios.enter_network_manually("connect")
+    add_a_printer_page_ios.check_unable_to_connect_printer()
+    """Step 5"""
+
+
+# """CURRENTLY WE ARE NOT AUTOMATING 2 DEVICES TESTCASES"""
+# def test_add_printer_testcase_id_45666():
 #     """SEMI-AUTOMATED"""
-#     """Check pairing bluetooth when the printer changes to offline"""
-#     """Precondition"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     """Step 1"""
-#     login_screen_ios.login()
-#     """Step 2"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     """Step 3"""
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     """Step 4"""
-#     add_a_printer_page_ios.click_start_button()
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     """Step 5"""
-#     common_method.show_message("Please Turn off the Printer")
-#     """Step 6"""
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     add_a_printer_page_ios.check_unable_to_connect_printer()
-#     """Step 7"""
-#     common_method.show_message("Please Turn on the Printer and make it enter into the pairing mode")
-#     add_a_printer_page_ios.click_try_again()
-#     add_a_printer_page_ios.click_pair_button()
-#     """Step 8"""
-#     add_a_printer_page_ios.choose_closed_wifi_network_correct_password("Tauqeer’s iPhone")
-#     add_a_printer_page_ios.check_wifi_connected_successfully()
-#     add_a_printer_page_ios.finish_setup()
-
-
-# def test_Addprinter_TestcaseID_45660():
-#     """SEMI-AUTOMATED"""
-#     """ Check searching the ess-ids works when the printer is offline"""
-#     """Precondition"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     """Step 1"""
-#     login_screen_ios.login()
-#     """Step 2"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     """Step 3"""
-#     add_a_printer_page_ios.click_start_button()
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     add_a_printer_page_ios.click_pair_button()
-#     """Step 4"""
-#     add_a_printer_page_ios.check_select_wifi()
-#     common_method.show_message("Please Turn off the Printer")
-#     """Step 5"""
-#     add_a_printer_page_ios.enter_network_manually("connect")
-#     add_a_printer_page_ios.check_unable_to_connect_printer()
-#     """Step 6"""
-#     common_method.show_message("Please Turn on the Printer")
-#     add_a_printer_page_ios.click_try_again()
-#     """Step 7"""
-#     add_a_printer_page_ios.check_wifi_connected_successfully()
-#     add_a_printer_page_ios.finish_setup()
-
-
-# def test_Addprinter_TestcaseID_45662():
-#     """SMI-AUTOMATED"""
-#     """set printer open Ess-id when the printer change to offline, and retry"""
-#     """Precondition"""
-#     add_a_printer_page_ios.delete_printer()
-#     add_a_printer_page_ios.unpair_printer()
-#     login_screen_ios.logout()
-#     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
-#     app_settings_iOS_page_ios.click_Logout_Btn()
-#     """Step 1"""
-#     login_screen_ios.login()
-#     """Step 2"""
-#     login_screen_ios.click_Menu_HamburgerICN()
-#     add_a_printer_page_ios.click_Add_A_Printer()
-#     add_a_printer_page_ios.click_start_button()
-#     add_a_printer_page_ios.check_connect_to_printer()
-#     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
-#     add_a_printer_page_ios.click_next_button()
-#     add_a_printer_page_ios.click_pair_button()
-#     """Step 3"""
-#     add_a_printer_page_ios.check_select_wifi()
-#     common_method.show_message("Please Turn off the Printer")
-#     add_a_printer_page_ios.choose_open_wifi_network()
-#     add_a_printer_page_ios.check_unable_to_connect_printer()
-#     """Step 4"""
-#     add_a_printer_page_ios.click_try_again()
-#     add_a_printer_page_ios.check_select_wifi()
-#     """Step 5"""
-#     common_method.show_message("Please Turn on the Printer")
-#     add_a_printer_page_ios.choose_open_wifi_network()
-#     add_a_printer_page_ios.check_wifi_connected_successfully()
-#     add_a_printer_page_ios.finish_setup()
-#     login_screen_ios.check_finish_setup()
-
-
-# def test_Addprinter_TestcaseID_45666():
-#     """SEMI-AUTOMATED"""
-#     """CURRENTLY WE ARE NOT AUTOMATING 2 DEVICES TESTCASES"""
 #     """Check using phone B to add the unconfigured printer which was paired the bluetooth connection by phone A and not in bluetooth limited mode"""
 #     """Precondition Phone A"""
 #     add_a_printer_page_ios.delete_printer()
@@ -144,15 +150,15 @@ common_method = Common_Method(poco)
 #     login_screen_ios.logout()
 #     app_settings_iOS_page_ios.Scroll_till_Delete_Account()
 #     app_settings_iOS_page_ios.click_Logout_Btn()
-#     login_screen_ios.login()
+#     login_screen_ios.login("Google")
 #     """Precondition on Phone B"""
 #     common_method.show_message("Please login wih a stage user on Phone B")
 #     """Step 1"""
 #     login_screen_ios.click_Menu_HamburgerICN()
 #     add_a_printer_page_ios.click_Add_A_Printer()
-#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.click_start_setup()
 #     """Step 2"""
-#     add_a_printer_page_ios.click_start_button()
+#     add_a_printer_page_ios.click_start_setup()
 #     add_a_printer_page_ios.check_connect_to_printer()
 #     add_a_printer_page_ios.click_the_printer_name_to_select("C664C1")
 #     add_a_printer_page_ios.click_next_button()
@@ -645,5 +651,3 @@ def test_add_printer_test_case_id_53087():
     add_a_printer_page_ios.check_connect_to_printer()
     add_a_printer_page_ios.check_unable_to_connect_printer()
     # GO home and write
-
-
