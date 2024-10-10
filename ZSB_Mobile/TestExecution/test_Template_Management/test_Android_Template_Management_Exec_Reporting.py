@@ -2091,6 +2091,7 @@ def test_Template_Management_TestcaseID_45926():
     start_main(execID, leftId[test_case_id])
 
     stepId = 1
+    """Up to date"""
     try:
         # Step 1
         start_time = time.time()
