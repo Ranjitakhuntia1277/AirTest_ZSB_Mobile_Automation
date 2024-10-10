@@ -1543,9 +1543,10 @@ class App_Settings_Screen:
         enter_network_username.set_text("Test-EnterNetwork-Manually-NameDisplay")
         sleep(2)
 
-    def Verify_Long_Network_UserName(self):
+    """Changed"""
+    def Verify_Long_Network_UserName(self, name="Test-EnterNetwork-Manually-NameDisplay"):
         sleep(3)
-        a = self.poco(nameMatches="(?s).*Test-EnterNetwork-Manually-NameDisplay.*").get_name()
+        a = self.poco(nameMatches=f"(?s).*{name}.*").get_name()
         a = a.split("\n")
         print(a)
 
@@ -1803,5 +1804,62 @@ class App_Settings_Screen:
         sleep(2)
         a=self.poco(name="Password")
         poco.text("Password@123")
+
+    def verify_connecting_to_wifi_network_page_is_displayed(self):
+        try:
+            self.poco(nameMatches="(?s).*Connecting printer to Wi-Fi network.*").wait_for_appearance(timeout=25)
+        except:
+            raise Exception("'Connecting printer to Wi-Fi network' page not displayed")
+
+    def verify_printer_successfully_connected_to_wifi_network_page_displayed(self):
+        try:
+            self.poco(nameMatches="(?s).*Successfully connected printer to Wi-Fi network.*").wait_for_appearance(timeout=45)
+        except:
+            raise Exception("'Successfully connected printer to Wi-Fi network' page not displayed")
+
+    def verify_registering_printer_to_zsb_account_page_displayed(self):
+        try:
+            self.poco(nameMatches="(?s).*Registering printer to your ZSB Series account.*").wait_for_appearance(timeout=25)
+        except:
+            raise Exception("'Registering printer to your ZSB Series account' page not displayed")
+
+    def verify_printer_registration_successful_page_is_displayed(self):
+        try:
+            self.poco(nameMatches="(?s).*Printer registration was successful.*").wait_for_appearance(timeout=120)
+        except:
+            raise Exception("'Printer registration was successful' page not displayed")
+
+    def click_on_next_step(self):
+        sleep(2)
+        self.poco("Next Step").click()
+        sleep(3)
+
+    def click_on_next(self):
+        sleep(2)
+        self.poco("Next").click()
+        sleep(3)
+
+    def click_on_skip_button(self):
+        sleep(2)
+        self.poco("Skip").click()
+        sleep(3)
+
+    def click_on_finish_button(self):
+        sleep(2)
+        self.poco("Finish").click()
+        sleep(3)
+
+    def complete_test_printer_steps(self):
+        self.poco("Test printer").wait_for_appearance(timeout=25)
+        self.click_on_next_step()
+        self.click_on_next_step()
+        self.click_on_next_step()
+        self.click_on_next_step()
+        self.click_on_next()
+        self.click_on_skip_button()
+        self.click_on_next()
+        self.click_on_finish_button()
+
+
 
 

@@ -1473,8 +1473,26 @@ def test_DataSources_TestcaseID_47944():
 
 
 def test_DataSources_TestcaseID_45740():
-    """""""""test"""""
-
+    pass
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    for i in range(1, 11):
+        file_name = f"{i}.jpg"
+        data_sources_page.searchName(file_name)
+        sleep(2)
+        try:
+            data_sources_page.remove_File_Based_On_DataSource("Local File", file_name)
+            sleep(7)
+        except:
+            pass
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    data_sources_page.clickHome()
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()

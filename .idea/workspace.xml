@@ -1578,6 +1578,7 @@
   <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_APS_Testcases.test_APS_Settings_And_APS_Others.test_APS_Settings_And_APS_Others_TestcaseID_49138">
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -1594,6 +1595,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -1610,6 +1612,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45860" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -1626,6 +1629,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45862" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -1642,6 +1646,7 @@
     </configuration>
     <configuration name="pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_48479" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />

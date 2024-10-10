@@ -37,8 +37,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
 from datetime import datetime
-
-
+from ZSB_Mobile.login_information import *
 
 
 # from test.body import poco
@@ -130,14 +129,14 @@ class Common_Method():
         match = re.search(pattern, text)
         return match
 
-    def show_message(self,msg):
+    def show_message(self, msg):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)  # Ensure the root window is on top
         messagebox.showinfo("Information", msg)
         root.destroy()
 
-    def get_user_input(self,msg):
+    def get_user_input(self, msg):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
@@ -1164,11 +1163,14 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         messagebox.showinfo("Notification", "Cover Open")
 
+    """Changed"""
+
     def Show_popup_To_Verify_Printout_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Verify Printout")
+        messagebox.showinfo("Notification",
+                            "Verify Printout printed in the printer associated with account Zebra21.swdvt@gmail.com")
         root.destroy()
 
     def Turn_Off_The_Phone(self):
@@ -1184,7 +1186,8 @@ class Common_Method():
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Open the Printer Cover")
+        messagebox.showinfo("Notification",
+                            "Open the Printer Cover associated with the account - zebra21.swdvt@gmail.com")
         root.destroy()
 
     def Show_popup_To_Close_The_Printer_Cover_Manually(self):
@@ -1233,9 +1236,9 @@ class Common_Method():
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Remove The cartridge and Close the Printer head and then click the APS refresh button")
+        messagebox.showinfo("Notification",
+                            "Remove The cartridge and Close the Printer head and then click the APS refresh button")
         root.destroy()
-
 
     def Show_popup_To_Make_The_Status_AS_LowMedia_Manually(self):
         root = tk.Tk()
@@ -1499,9 +1502,9 @@ class Common_Method():
     def Show_popup_To_Change_The_Cartridge_To_Medialow_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification", "Change The Cartridge To Medialow Manually and click turn off and then turn on APS to refresh the status")
+        messagebox.showinfo("Notification",
+                            "Change The Cartridge To Medialow Manually and click turn off and then turn on APS to refresh the status")
         root.destroy()
-
 
     def Show_popup_To_Verify_Bluetoothpairing_your_printer_page_with_new_fonts_and_Style(self):
         root = tk.Tk()
@@ -1596,10 +1599,9 @@ class Common_Method():
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Idle mobile app 30 to 1 h, back to the app, trigger some printer notification (cover open/close/media out)  and Check the notification pops up correctly")
+        messagebox.showinfo("Notification",
+                            "Idle mobile app 30 to 1 h, back to the app, trigger some printer notification (cover open/close/media out)  and Check the notification pops up correctly")
         root.destroy()
-
-
 
     def Show_popup_To_Select_The_Printer_Manually(self):
         root = tk.Tk()
@@ -1628,13 +1630,14 @@ class Common_Method():
 
     # ##-------------------------------------------------------------------------------------------------
 
-        # Common.py
+    # Common.py
 
     def clear_old_logs(self):
         # Clear any existing logcat processes
         subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
 
     def start_adb_log_capture(self):
+        uploaded_files = set()
         test_run_start_time = time.time()
         self.clear_old_logs()
         LOG_DIRECTORY = "logs"
@@ -1644,7 +1647,7 @@ class Common_Method():
         os.makedirs(date_directory, exist_ok=True)
         ADB_LOG_FILE = os.path.join(date_directory, "adb_log.txt")
         subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
-        return ADB_LOG_FILE, test_run_start_time
+        return ADB_LOG_FILE, test_run_start_time, uploaded_files
 
     def stop_adb_log_capture(self):
         result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],
@@ -1732,11 +1735,12 @@ class Common_Method():
             shutil.rmtree(SCREENSHOT_DIRECTORY)
         os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
 
+    """Changed"""
+    "newly added"
 
+    def handel_bluetooth_connection_required_pop_up(self):
+        self.show_message(
+            "Check if message'\nBluetooth Connection Required\nYou are about to connect to the printer using Bluetooth. If you have not connected to the printer from this device before, please set the printer into \"pairing mode\" by holding the power button for 3 seconds. If you have connected to this printer from another mobile device in the past, please remove this bond in the devices bluetooth settings or power off the device.'\nis displayed.\nIf so perform the actions mentioned in the pop up and click \"Continue\" button once done.")
 
-
-
-
-
-
-
+    def get_credentials_from_user(self, user):
+        return user[0], user[1]

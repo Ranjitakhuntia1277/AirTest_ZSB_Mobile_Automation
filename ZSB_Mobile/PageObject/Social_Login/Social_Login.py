@@ -811,3 +811,6 @@ class Social_Login:
             self.poco.scroll()
             a.click()
 
+    def check_if_no_results_displayed_when_searching_for_design(self):
+        self.wait_for_element_appearance_namematches_all("No results")
+

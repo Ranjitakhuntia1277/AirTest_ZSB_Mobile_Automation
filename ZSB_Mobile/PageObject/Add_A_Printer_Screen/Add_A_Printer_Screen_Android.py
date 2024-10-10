@@ -588,7 +588,7 @@ class Add_A_Printer_Screen:
 
     def click_NESTWIFI_NETWORK(self):
         sleep(2)
-        a=self.poco(name="NESTWIFI")
+        a=self.poco(name="iPhone")
         if a.exists():
             a.click()
         else:

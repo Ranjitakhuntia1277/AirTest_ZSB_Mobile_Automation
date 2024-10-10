@@ -26,6 +26,6 @@ Testcase_ID,Test_Description,Subarea
 45749,User login Zebra account and Link to Google Drive (Google account not login),Data Sources
 45750,User login Facebook account and Link to Google Drive (Google account not login),Data Sources
 45753,User login Facebook account and link files from One Drive. (Microsoft account not login),Data Sources
-45878,Verify sign in as zebra check link and delete one/google drive file works well,Data Sources
+45742,Verify sign in as zebra check link and delete one/google drive file works well,Data Sources
 45879,Verify sign in as non-zebra check link and delete one/google drive file works well,Data Sources
-45758,User link to Cloud Drive (There is no file available in Cloud Drive),Data Sources
+45739,User link to Cloud Drive (There is no file available in Cloud Drive),Data Sources

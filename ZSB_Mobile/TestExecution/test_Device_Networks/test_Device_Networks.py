@@ -24,7 +24,7 @@ from ...PageObject.Registration_Screen.Registration_Screen import Registration_S
 from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
 from ...PageObject.Social_Login.Social_Login import Social_Login
 # from ...sphere_db import *
-from ...PageObject.Device_Networks.Device_Network_Android import Device_Networks_Android
+from ZSB_Mobile.PageObject.Device_Networks.Device_Network_Android import Device_Networks_Android
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Delete_Account.Delete_Account_Screen import Delete_Account_Screen
 from ...Common_Method import Common_Method
@@ -3193,4 +3193,8 @@ def test_Device_Networks_TestcaseID_45700():
         raise Exception(str(e))
 
     finally:
+        common_method.stop_adb_log_capture()
+        upload_case_files(execID, os.path.dirname(ADB_LOG), test_run_start_time)
         end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
+        end_execution_loop(execID)
+        end_execution(execID)
