@@ -235,16 +235,17 @@ def insert_case_results(execID, leftId, result, exec_time, reportext, errormsg):
     session.post(insert_case_results_url, json=insert_case_results_json, timeout=60, verify=False)
 
 
-def upload_case_files(execID, output_directory, test_run_start_time):
+def upload_case_files(execID, output_directory, test_run_start_time, uploaded_files):
     """
     Upload the files in local, like selenium report, ATF report, etc.
+    :param uploaded_files:
     :param test_run_start_time:
     :param execID: Execution ID for the test case.
     :param output_directory: Directory where the files are located.
     :return: None
     """
     count = 0
-    uploaded_files = set()
+
     for file in os.listdir(output_directory):
         file_path = os.path.join(output_directory, file)
         file_name, file_extension = os.path.splitext(file)

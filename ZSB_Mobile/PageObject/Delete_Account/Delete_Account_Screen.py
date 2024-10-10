@@ -166,13 +166,13 @@ class Delete_Account_Screen:
         keyevent("KEYCODE_APP_SWITCH")
         sleep(1)
 
-    def change_first_name(self, first_name="new_first_name"):
+    def change_first_name(self, first_name="newfirstname"):
         self.poco("android.widget.EditText").click()
         self.poco("android.widget.EditText").set_text(first_name)
         keyevent("back")
         sleep(4)
 
-    def change_last_name(self, last_name="new_last_name"):
+    def change_last_name(self, last_name="newlastname"):
         self.poco("android.widget.EditText")[1].click()
         self.poco("android.widget.EditText")[1].set_text(last_name)
         keyevent("back")
@@ -423,3 +423,47 @@ class Delete_Account_Screen:
         continue_btn = self.poco("Continue")
         if continue_btn.exists():
             continue_btn.click()
+
+    def check_if_on_delete_account_page(self):
+        try:
+            self.poco(
+                "For your security, you must immediately sign back in one last time to finalize and confirm the deletion of your account. Select ‘Continue’ to sign out.").wait_for_appearance(
+                timeout=20)
+        except:
+            raise Exception("Delete account page did not show up.")
+
+    def check_if_continue_button_is_enabled_without_checking_three_checkboxes_in_delete_account_page(self):
+        sleep(3)
+        try:
+            self.poco(name="Continue", enabled=False).exists()
+        except:
+            raise Exception("Continue enabled without checking the three check boxes.")
+
+    def acknowledge_three_checkboxes_in_delete_account_page(self):
+        try:
+            self.poco("Please acknowledge the following to continue:").wait_for_appearance(timeout=20)
+            self.poco(name="All data in your workspace will be removed.").wait_for_appearance(timeout=20)
+            self.poco(
+                name="Your account will be de-identified, meaning it will not be associated with you.").wait_for_appearance(
+                timeout=20)
+            self.poco(name="Ensure your printer is ON to factory reset your ZSB printer.").wait_for_appearance(
+                timeout=20)
+        except:
+            raise Exception("Three checkboxes not present to acknowledge.")
+
+    def check_if_continue_button_is_disabled_even_after_checking_three_checkboxes_in_delete_account_page(self):
+        sleep(3)
+        try:
+            self.poco(name="Continue", enabled=True).exists()
+        except:
+            raise Exception("Continue disabled even after checking the three check boxes.")
+
+    def check_final_delete_account_pop_up(self):
+        sleep(10)
+        if self.poco("Continue").exists():
+            self.poco("Continue").click()
+        try:
+            self.poco("To complete the ZSB account deletion process, select Delete.").wait_for_appearance(timeout=20)
+        except:
+            raise Exception(
+                "User not taken to user settings page after login and no Delete Account Dialog pop up asking Final confirm user delete")

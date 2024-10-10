@@ -608,6 +608,7 @@ class Others:
         self.poco(self.continue_button).click()
 
     def click_add_network_button(self):
+        sleep(5)
         count = 0
         while not self.poco("Add Network").exists() and count < 10:
             self.poco.scroll()
@@ -1027,7 +1028,6 @@ class Others:
     def get_recently_printed_labels(self):
         child_names = [child.get_name() for child in
                        self.poco("android.view.View").child(type="android.widget.ImageView")]
-
         return child_names
 
     def check_same_after_switching_network(self, arr1, arr2):

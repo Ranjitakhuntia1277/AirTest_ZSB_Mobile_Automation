@@ -412,7 +412,10 @@ class Template_Management_Screen:
 
     def verify_search_placeholder(self):
         sleep(3)
-        return assert_exists(self.Search_place_holder, "Search design place holder present.")
+        try:
+            assert_exists(self.Search_place_holder, "Search design place holder present.")
+        except:
+            raise Exception("Search design place holder doesnt have 'Search designs'.")
 
     def verify_search_drop_down_results(self, search_text):
         for i in range(len(self.poco("android.view.View")[3].child())):
@@ -661,7 +664,10 @@ class Template_Management_Screen:
 
     def verifySearchIcon(self):
         sleep(3)
-        return assert_exists(self.Search_icon, "Search icon is present")
+        try:
+            assert_exists(self.Search_icon, "Search icon is present")
+        except:
+            raise Exception("Search icon not present")
 
     def checkIfElementIsPresent(self, element):
         try:
@@ -672,7 +678,10 @@ class Template_Management_Screen:
             return a
 
     def verifySearchFiles(self):
-        return assert_exists(self.Search_files_place_holder, "Search placeholder is present")
+        try:
+            assert_exists(self.Search_files_place_holder, "Search placeholder is present")
+        except:
+            raise Exception("Search Files placeholder not present.")
 
     def clickSearchIconTextBox(self):
         touch(self.search_icons_text_box)
@@ -1042,7 +1051,12 @@ class Template_Management_Screen:
 
     def select_file_update_data_connections(self, filename):
         selected_file_name = self.poco(nameMatches=f"(?s).*{filename}.*").get_name().split("(")[0].strip()
-        self.poco(nameMatches=f"(?s).*{filename}.*").click()
+        file_to_select = self.poco(nameMatches=f"(?s).*{filename}.*")
+        max_scrolls = 3
+        while not file_to_select.exists() and max_scrolls>0:
+            self.poco.scroll()
+            max_scrolls -= 1
+        file_to_select.click()
         try:
             self.poco(nameMatches="(?s).*could not be read.*").wait_for_appearance(timeout=10)
             x = 1 / 0

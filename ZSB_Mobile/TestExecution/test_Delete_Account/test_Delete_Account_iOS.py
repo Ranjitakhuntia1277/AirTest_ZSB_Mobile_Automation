@@ -744,7 +744,7 @@ def test_Delete_Account_TestcaseID_45770():
     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
     delete_account_page.check_final_delete_account_pop_up()
     """CLick delete in final confirmation pop up"""
-    # delete_account_page.clickDelete()
+    delete_account_page.clickDelete()
     """Verify Account Deleted dialog pop up"""
     delete_account_page.checkAccountDeletedDialog()
     """CLick Ok"""
