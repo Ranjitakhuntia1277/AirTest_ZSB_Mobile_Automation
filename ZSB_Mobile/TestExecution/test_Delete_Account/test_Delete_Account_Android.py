@@ -1926,7 +1926,6 @@ def test_Delete_Account_TestcaseID_45778():
     registration_page.click_accept()
     registration_page.clickClose()
     registration_page.clickExit()
-    # data_sources_page.checkIfOnHomePage()
     app_settings_page.Home_text_is_present_on_homepage()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
@@ -2027,6 +2026,7 @@ def test_Delete_Account_TestcaseID_45784():
     delete_account_page.checkIfThereIs1PrinterWithOfflineStatus()
     """Click Hamburger Icon"""
     login_page.click_Menu_HamburgerICN()
+
     """Click on edit profile"""
     registration_page.click_on_profile_edit()
     while not poco("Log Out").exists():
@@ -2368,100 +2368,100 @@ def test_Delete_Account_TestcaseID_53205():
 # ######"""""""""""""""""""""""""""""""""FIXED""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-# def test_Delete_Account_TestcaseID_45767():
-#     """Add a printer to this facebook account before executing and log out of facebook
-# #     # username - zebra09.swdvt@gmail.com
-# #     # password - Zebra#123456789"""
-#     common_method.tearDown()
-#     data_sources_page.clearAppData()
-#     common_method.tearDown()
-#     data_sources_page.allowPermissions()
-#     registration_page.clickSignIn()
-#     registration_page.click_Facebook_Icon()
-#     registration_page.login_Facebook("Zebra#123456789", "zebra09.swdvt@gmail.com")
-#     app_settings_page.Home_text_is_present_on_homepage()
-#     """Verify that there is 1 online printer in the account"""
-#     delete_account_page.checkIfThereIs1PrinterWithOnlineStatus()
-#     """Click Hamburger Icon"""
-#     login_page.click_Menu_HamburgerICN()
-#     """Click on edit profile"""
-#     registration_page.click_on_profile_edit()
-#     while not poco("Log Out").exists():
-#         poco.scroll()
-#     """Check If Delete Account is beside Logout button"""
-#     delete_account_page.checkIfDeleteAccountIsNextToLogOut()
-#     """Click Delete Account"""
-#     delete_account_page.clickDeleteAccount()
-#     """Check Delete Account page show up"""
-#     try:
-#         common_method.wait_for_element_appearance(
-#             "For your security, you must immediately sign back in one last time to finalize and confirm the deletion of your account. Select ‘Continue’ to sign out.",
-#             20)
-#     except:
-#         raise Exception("Delete account page did not show up.")
-#     """Check continue disabled"""
-#     try:
-#         template_management_page.wait_for_appearance_enabled("Continue")
-#         x = 1 / 0
-#     except ZeroDivisionError:
-#         raise Exception("Continue enabled without checking the three check boxes")
-#     except Exception as e:
-#         pass
-#     """check there are 3 items need acknowledge """
-#     try:
-#         common_method.wait_for_element_appearance("Please acknowledge the following to continue:")
-#         delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
-#                                                                   "All data in your workspace will be removed.")
-#         delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
-#                                                                   "Your account will be de-identified, meaning it will not be associated with you.")
-#         delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
-#                                                                   "Ensure your printer is ON to factory reset your ZSB printer.")
-#     except:
-#         raise Exception("Three checkboxes not present to acknowledge.")
-#     """Click the three checkBoxes"""
-#     delete_account_page.checkThreeCheckboxesInDeleteAccountPage()
-#     """Check continue enabled"""
-#     try:
-#         template_management_page.wait_for_appearance_enabled("Continue")
-#     except:
-#         raise Exception("Continue disabled even after checking the three check boxes")
-#     """Click continue"""
-#     data_sources_page.clickContinue()
-#     """check mobile app will auto logout and show login screen with notice information:"""
-#     delete_account_page.verifyImportantMessageOnSignInPage()
-#     registration_page.clickSignIn()
-#     registration_page.click_Facebook_Icon()
-#     delete_account_page.clickContinueAsInFacebookLogin()
-#     app_settings_page.Home_text_is_present_on_homepage()
-#     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
-#     try:
-#         common_method.wait_for_element_appearance(
-#             "To complete the ZSB account deletion process, select Delete.",
-#             20)
-#     except:
-#         raise Exception(
-#             "User not taken to user settings page after login and no Delete Account Dialog pop up asking Final confirm user delete")
-#     """CLick delete in final confirmation pop up"""
-#     delete_account_page.clickDelete()
-#     """Verify Account Deleted dialog pop up"""
-#     delete_account_page.checkAccountDeletedDialog()
-#     """CLick Ok"""
-#     delete_account_page.clickOk()
-#     """Check if logged out automatically after clicking Ok"""
-#     data_sources_page.checkIfInLoginPage()
-#     """Login Again"""
-#     registration_page.clickSignIn()
-#     registration_page.click_Facebook_Icon()
-#     delete_account_page.clickContinueAsInFacebookLogin()
-#     app_settings_page.Home_text_is_present_on_homepage()
-#     registration_page.verify_if_on_EULA_page()
-#     """Accept EULA for future execution"""
-#     registration_page.click_accept()
-#     registration_page.clickClose()
-#     registration_page.clickExit()
-#     data_sources_page.checkIfOnHomePage()
-#     delete_account_page.verifyNoPrinterInAccount()
-#     """13. click add printer, check the target printers in available printer list-pending"""
-#     common_method.Stop_The_App()
+def test_Delete_Account_TestcaseID_45767():
+    """Add a printer to this facebook account before executing and log out of facebook
+#     # username - zebra09.swdvt@gmail.com
+#     # password - Zebra#123456789"""
+    common_method.tearDown()
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    registration_page.clickSignIn()
+    registration_page.click_Facebook_Icon()
+    registration_page.login_Facebook("Zebra#123456789", "zebra09.swdvt@gmail.com")
+    app_settings_page.Home_text_is_present_on_homepage()
+    """Verify that there is 1 online printer in the account"""
+    delete_account_page.checkIfThereIs1PrinterWithOnlineStatus()
+    """Click Hamburger Icon"""
+    login_page.click_Menu_HamburgerICN()
+    """Click on edit profile"""
+    registration_page.click_on_profile_edit()
+    while not poco("Log Out").exists():
+        poco.scroll()
+    """Check If Delete Account is beside Logout button"""
+    delete_account_page.checkIfDeleteAccountIsNextToLogOut()
+    """Click Delete Account"""
+    delete_account_page.clickDeleteAccount()
+    """Check Delete Account page show up"""
+    try:
+        common_method.wait_for_element_appearance(
+            "For your security, you must immediately sign back in one last time to finalize and confirm the deletion of your account. Select ‘Continue’ to sign out.",
+            20)
+    except:
+        raise Exception("Delete account page did not show up.")
+    """Check continue disabled"""
+    try:
+        template_management_page.wait_for_appearance_enabled("Continue")
+        x = 1 / 0
+    except ZeroDivisionError:
+        raise Exception("Continue enabled without checking the three check boxes")
+    except Exception as e:
+        pass
+    """check there are 3 items need acknowledge """
+    try:
+        common_method.wait_for_element_appearance("Please acknowledge the following to continue:")
+        delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
+                                                                  "All data in your workspace will be removed.")
+        delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
+                                                                  "Your account will be de-identified, meaning it will not be associated with you.")
+        delete_account_page.wait_for_element_appearance_name_type("android.widget.CheckBox",
+                                                                  "Ensure your printer is ON to factory reset your ZSB printer.")
+    except:
+        raise Exception("Three checkboxes not present to acknowledge.")
+    """Click the three checkBoxes"""
+    delete_account_page.checkThreeCheckboxesInDeleteAccountPage()
+    """Check continue enabled"""
+    try:
+        template_management_page.wait_for_appearance_enabled("Continue")
+    except:
+        raise Exception("Continue disabled even after checking the three check boxes")
+    """Click continue"""
+    data_sources_page.clickContinue()
+    """check mobile app will auto logout and show login screen with notice information:"""
+    delete_account_page.verifyImportantMessageOnSignInPage()
+    registration_page.clickSignIn()
+    registration_page.click_Facebook_Icon()
+    delete_account_page.clickContinueAsInFacebookLogin()
+    app_settings_page.Home_text_is_present_on_homepage()
+    """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
+    try:
+        common_method.wait_for_element_appearance(
+            "To complete the ZSB account deletion process, select Delete.",
+            20)
+    except:
+        raise Exception(
+            "User not taken to user settings page after login and no Delete Account Dialog pop up asking Final confirm user delete")
+    """CLick delete in final confirmation pop up"""
+    delete_account_page.clickDelete()
+    """Verify Account Deleted dialog pop up"""
+    delete_account_page.checkAccountDeletedDialog()
+    """CLick Ok"""
+    delete_account_page.clickOk()
+    """Check if logged out automatically after clicking Ok"""
+    data_sources_page.checkIfInLoginPage()
+    """Login Again"""
+    registration_page.clickSignIn()
+    registration_page.click_Facebook_Icon()
+    delete_account_page.clickContinueAsInFacebookLogin()
+    app_settings_page.Home_text_is_present_on_homepage()
+    registration_page.verify_if_on_EULA_page()
+    """Accept EULA for future execution"""
+    registration_page.click_accept()
+    registration_page.clickClose()
+    registration_page.clickExit()
+    data_sources_page.checkIfOnHomePage()
+    delete_account_page.verifyNoPrinterInAccount()
+    """13. click add printer, check the target printers in available printer list-pending"""
+    common_method.Stop_The_App()
 
 #####################""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
