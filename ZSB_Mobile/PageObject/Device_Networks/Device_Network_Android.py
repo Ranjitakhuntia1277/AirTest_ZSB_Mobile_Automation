@@ -81,6 +81,7 @@ class Device_Networks_Android:
         temp2.drag_to(temp1)
 
     def check_add_network_button_enabled(self):
+        sleep(5)
         while not self.poco("Add Network").exists():
             self.poco.scroll()
         a = self.poco("Add Network", enabled=True).exists()
@@ -124,9 +125,11 @@ class Device_Networks_Android:
         sleep(7)
 
     def check_if_network_present_in_saved_networks(self, network):
+        sleep(4)
         self.poco(nameMatches="Apply Changes").wait_for_appearance(timeout=80)
         if not self.poco(nameMatches=".*. " + network + ".*").exists():
             raise Exception("Network is not present in the list.")
+        sleep(2)
 
     def check_if_network_not_present_in_saved_networks(self, network):
         self.poco(nameMatches="Apply Changes").wait_for_appearance(timeout=80)

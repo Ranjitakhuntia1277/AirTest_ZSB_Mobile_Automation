@@ -6,7 +6,7 @@ from airtest.core.api import *
 from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
 from ZSB_Mobile.Common_Method import Common_Method
 from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
+from ...PageObject.Others.Others import Others
 from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
@@ -61,10 +61,10 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
     test_steps = {
         1: [1, 'Log in with the Non-Zebra account'],
         2: [2,
-            '[Android & iOS]\n-> Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
+            'Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
         3: [3, 'Check that test label or Common Designs can be printed.'],
         4: [4,
-            'Logout then login\nCheck login successful\n[Android & iOS]\n-> Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]\nCheck this token is a new one and not the same as the previous token'],
+            'Logout then login.Check login successful.Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]\nCheck this token is a new one and not the same as the previous token'],
         5: [5, 'Check the Help pages(Support, FAQs, Contact Us, Chat) are available.'],
         6: [6, 'Repeat steps 1-5 with the Zebra account login.']
     }
@@ -98,7 +98,7 @@ def test_SSO_Token_Renewal_TestcaseID_49905():
                     exec_time)
         stepId += 1
 
-        # Step 2: [Android & iOS]\nCheck token message in adb log or tidevice syslog
+        # Step 2: Check token message in adb log or tidevice syslog
         start_time = time.time()
 
         sso_token_renewal_page.stop_adb_log_capture()
@@ -368,7 +368,7 @@ def test_SSO_Token_Renewal_TestcaseID_49908():
     test_steps = {
         1: [1, 'Log in and keep the app active for 52 minutes.'],
         2: [2,
-            '[Android & iOS]\n-> Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
+            'Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
         3: [3, 'Check the login account would not be logged out or any other error during this time.'],
         4: [4, 'Perform the printing in My Designs and check it can be printed.']
     }
@@ -395,7 +395,9 @@ def test_SSO_Token_Renewal_TestcaseID_49908():
         sleep(3120)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
 
         # Step 2: Check logs for token information
         start_time = time.time()
@@ -413,7 +415,9 @@ def test_SSO_Token_Renewal_TestcaseID_49908():
         sso_token_renewal_page.checkTokenRefreshed(old_token)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
 
         # Step 3: Check that login account is active
         start_time = time.time()
@@ -422,7 +426,9 @@ def test_SSO_Token_Renewal_TestcaseID_49908():
         sso_token_renewal_page.check_if_user_is_logged_in()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
 
         # Step 4: Perform printing in My Designs
         start_time = time.time()
@@ -608,7 +614,9 @@ def test_SSO_Token_Renewal_TestcaseID_49910():
         stop_app("com.android.chrome")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
 
         # Step 2: Check for logout or error issue after 52 minutes
         start_time = time.time()
@@ -669,7 +677,7 @@ def test_SSO_Token_Renewal_TestcaseID_49911():
     test_steps = {
         1: [1, 'Log in and keep the app running in the background for 52 minutes.'],
         2: [2,
-            'Open the app and refresh the Home page\n[Android & iOS]\n-> Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
+            'Open the app and refresh the Home page\nCheck that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
         3: [3, 'Check that it should not encounter any logout or error issue during this time.'],
         4: [4,
             'Go to Printer Settings and update the printer name, Graphic Options, etc., check it can be updated correctly.']
@@ -859,7 +867,7 @@ def test_SSO_Token_Renewal_TestcaseID_49914():
     test_steps = {
         1: [1, 'Log in then force quit the app.'],
         2: [2,
-            'After more than 52 minutes but less than 60 minutes, re-open the app\nCheck user account is still logged in status\n[Android & iOS]\n-> Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
+            'After more than 52 minutes but less than 60 minutes, re-open the app\nCheck user account is still logged in status\nCheck that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second]'],
         3: [3, 'Check that test label or Common Designs can be printed.'],
         4: [4, 'Check the login account would not be logged out or any other error during this time.']
     }
@@ -981,7 +989,8 @@ def test_SSO_Token_Renewal_TestcaseID_49915():
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Wait for more than 60 minutes, open app
@@ -995,7 +1004,8 @@ def test_SSO_Token_Renewal_TestcaseID_49915():
         sso_token_renewal_page.check_if_user_is_logged_in()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Go to account Settings page and change the Avatar, update username etc.
@@ -1041,7 +1051,8 @@ def test_SSO_Token_Renewal_TestcaseID_49915():
         """avatar verification pending"""
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Change the Avatar and username back to default.
@@ -1083,7 +1094,7 @@ def test_SSO_Token_Renewal_TestcaseID_49916():
             'Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\nCheck that there is a token information about ": flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\nCheck the token is refreshed at 8 minutes prior to expiry time [480 ~420 second].'],
         3: [3, 'Check that test label or Common Designs can be printed.'],
         4: [4,
-            'Logout then log in with Google account\nCheck login successful\nCheck that there is a message about "getLocalTokens{.. expires_in: 3599s..}" in the adb log [Android]\nCheck this token is a new one and not the same as previous token [Android]\nCheck that there is a token information about "getLocalTokens: "xxxxxx"" in the GCP_Log [iOS]\nCheck this token is a new one and not the same as previous token [iOS].'],
+            'Logout then log in with Google account\nCheck login successful\nCheck that there is a message about "getLocalTokens{.. expires_in: 3599s..}" in the adb log\nCheck this token is a new one and not the same as previous token\nCheck that there is a token information about "getLocalTokens: "xxxxxx"" in the GCP_Log [iOS]\nCheck this token is a new one and not the same as previous token [iOS].'],
         5: [5, 'Perform the Change Theme and check it works.']
     }
 
@@ -1253,7 +1264,8 @@ def test_SSO_Token_Renewal_TestcaseID_49917():
         data_sources_page.checkIfOnHomePage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Disconnect the phone from the internet
@@ -1262,7 +1274,8 @@ def test_SSO_Token_Renewal_TestcaseID_49917():
         template_management_page.Turn_Off_wifi()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Go to user setting page and click log out button
@@ -1313,7 +1326,7 @@ def test_SSO_Token_Renewal_TestcaseID_49918():
         2: [2, 'Disconnect the network of the mobile device, and wait for 2 minutes.'],
         3: [3, 'Recover the network and refresh the homepage.'],
         4: [4,
-            '[Android & iOS]\n-> Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second].'],
+            'Check that there is a message about "exchangeCode:body:{access_token.. refresh_token...expires_in: 3599s..}" in the adb log or tidevice syslog\n-> Check that there is a token information about " : flutter: getLocalTokens : access_token: BSfN5xDyEgjiYm9PM6rucy3UY5qD" in the adb log or tidevice syslog\n-> Check the token is refreshed at 8 minutes prior to expiry time [480 ~420 second].'],
         5: [5, 'Go to Notifications menu and change settings.\nCheck it can be correctly updated.']
     }
 
@@ -1455,7 +1468,8 @@ def test_Registration_TestcaseID_47786():
         data_sources_page.clearAppData()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Sign in with an account
@@ -1477,7 +1491,8 @@ def test_Registration_TestcaseID_47786():
         print(old_token)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Do NOT sign out the account, and uninstall the app directly
@@ -1488,7 +1503,8 @@ def test_Registration_TestcaseID_47786():
         data_sources_page.clearAppData()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 4: Launch the app and check for credential prompt
@@ -1499,7 +1515,8 @@ def test_Registration_TestcaseID_47786():
         data_sources_page.checkIfInLoginPage()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 5: Re-login the account and check token update
@@ -1563,7 +1580,8 @@ def test_Registration_TestcaseID_45870():
         registration_page.clickSignIn()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 2: Proceed to login to Money Badger
@@ -1580,7 +1598,8 @@ def test_Registration_TestcaseID_45870():
         sleep(7200)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
         stepId += 1
 
         # Step 3: Check user still stays logged in after 2 hours
@@ -1609,49 +1628,51 @@ def test_Registration_TestcaseID_45870():
         end_execution(execID)
 
 
-# def test_SSO_Token_Renewal_TestcaseID_49913():
-#     pass
-#     """clear app data"""
-#     common_method.tearDown()
-#     data_sources_page.log_out_of_account()
-#     data_sources_page.clearAppData()
-#     common_method.tearDown()
-#     data_sources_page.allowPermissions()
-#     """Sign in"""
-#     registration_page.clickSignIn()
-#     data_sources_page.signInWithEmail()
-#     registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
-#     """verify if logged in successfully"""
-#     data_sources_page.checkIfOnHomePage()
-#     """Open a different app"""
-#     start_app("com.android.chrome")
-#     """wait for 1 day 5 min"""
-#     sleep(86700)
-#     """Close the other app"""
-#     stop_app("com.android.chrome")
-#     """Check if still on logged in page"""
-#     sso_token_renewal_page.check_if_user_is_logged_in()
-#     login_page.click_Menu_HamburgerICN()
-#     """Open printer settings"""
-#     app_settings_page.click_Printer_Settings()
-#     """Select printer"""
-#     printer_management_page.clickPrinter1InPinterSettings()
-#     app_settings_page.click_wifi_tab()
-#     app_settings_page.click_Manage_Networks_Btn()
-#     app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
-#     app_settings_page.click_Add_Network()
-#     app_settings_page.click_Enter_Network_Manually()
-#     app_settings_page.click_Network_UserName()
-#     app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
-#     app_settings_page.click_Enter_Network_Manually()
-#     app_settings_page.click_Network_UserName()
-#     app_settings_page.click_Security_Open()
-#     app_settings_page.click_WPA_PSK()
-#     app_settings_page.click_Keyboard_back_Icon()
-#     app_settings_page.click_Cancel_Button_On_Other_Network_Popup()
-#     app_settings_page.click_Enter_Network_Manually()
-#     app_settings_page.click_Network_UserName()
-#     app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-#     app_settings_page.Verify_Added_Network()
-#     common_method.Stop_The_App()
-#     "continue"
+def test_SSO_Token_Renewal_TestcaseID_49913():
+    pass
+    """clear app data"""
+    common_method.tearDown()
+    data_sources_page.log_out_of_account()
+    data_sources_page.clearAppData()
+    common_method.tearDown()
+    data_sources_page.allowPermissions()
+    """Sign in"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebra07.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    """verify if logged in successfully"""
+    data_sources_page.checkIfOnHomePage()
+    """Open a different app"""
+    start_app("com.android.chrome")
+    """wait for 1 day 5 min"""
+    sleep(86700)
+    """Close the other app"""
+    stop_app("com.android.chrome")
+    """Check if still on logged in page"""
+    sso_token_renewal_page.check_if_user_is_logged_in()
+    login_page.click_Menu_HamburgerICN()
+    others_page.click_Printer_Settings()
+    others_page.select_first_printer()
+    others_page.click_wifi_button()
+    others_page.click_manage_network_button()
+    others_page.click_continue_in_bluetooth_connection_required()
+    others_page.click_on_allow()
+    common_method.wait_for_element_appearance_namematches("Apply Changes")
+    """Open printer settings"""
+    others_page.click_add_network_button()
+    """Select printer"""
+    netw1 = "EL17-Cisco-WPA-WPA2"
+    netw1_pass = "Dvttesting@123"
+    device_network_page.wait_till_the_networks_list()
+    device_network_page.click_network_by_name(netw1)
+    device_network_page.enter_the_password(netw1_pass)
+    device_network_page.click_on_connect()
+    try:
+        common_method.wait_for_element_appearance_namematches("Printer")
+    except:
+        raise Exception("did not redirect to the previous page")
+    common_method.wait_for_element_appearance_namematches(netw1, 60)
+    device_network_page.check_if_network_present_in_saved_networks(netw1)
+    device_network_page.delete_the_network(netw1)
+    sleep(7)
+    common_method.Stop_The_App()

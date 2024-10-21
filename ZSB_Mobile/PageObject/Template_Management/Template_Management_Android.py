@@ -847,6 +847,7 @@ class Template_Management_Android:
         return a
 
     def check_cancel_button_clickable_in_rename_popup(self):
+        sleep(3)
         a = self.poco(name="Cancel", enabled=True).exists()
         print(a)
         return a
@@ -1050,9 +1051,12 @@ class Template_Management_Android:
         return a
 
     def get_total_count_search_results_in_common_designs(self):
-        a = self.poco(nameMatches=".*Search.*", enabled=True).get_name()
-        temp = a.split("(")
-        return int(temp[1][0])
+        try:
+            a = self.poco(nameMatches=".*Search.*", enabled=True).get_name()
+            temp = a.split("(")
+            return int(temp[1][0])
+        except:
+            raise Exception("Search count is not displayed properly")
 
     def get_total_count_categories_results_in_common_designs(self):
         a = self.poco(nameMatches=".*Categories.*").get_name()
@@ -1156,3 +1160,57 @@ class Template_Management_Android:
             self.click_on_delete_button_in_designs()
             sleep(3)
             raise Exception("No specific or error message display for delete design when device lost its network connection(SMBM-1902)")
+
+    def check_expected_message_displayed_when_searching_for_design_that_is_not_present(self):
+        if not self.check_text_for_wrong_design_name():
+            raise Exception("Proper message is not displayed for wrong design")
+
+    def check_expected_message_displayed_when_searching_for_design_that_is_present(self):
+        if self.check_text_for_wrong_design_name():
+            raise Exception("Proper message is displayed for correct design")
+
+    def check_if_suggestion_window_is_displayed_when_search_blank_value_in_common_designs(self):
+        if self.check_suggestion_window_in_common_design():
+            raise Exception("suggestion window is displayed after entering blank value")
+
+    def check_suggestion_window_displayed_even_after_clicking_search(self):
+        self.poco("Search").wait_for_appearance(timeout=20)
+        if self.check_suggestion_window_in_common_design():
+            raise Exception("suggestion window is displayed after entering search")
+
+    def check_if_recently_printed_designs_is_empty(self):
+        sleep(4)
+        total_designs = self.get_all_designs_in_recently_printed_labels()
+        if len(total_designs) != 0:
+            raise Exception("Label found in recently printed design even without printing(SMBM-1372)")
+
+    def check_if_top_of_recently_printed_designs_as_expected(self, previous, current):
+        if previous != current:
+            raise Exception("the top of recently printed label is not as expected")
+
+    def verify_if_delete_design_window_is_closed(self):
+        if self.check_cancel_button_clickable_in_rename_popup():
+            raise Exception("delete design window not closed")
+
+    def verify_if_duplicate_design_window_is_closed(self):
+        if self.check_cancel_button_clickable_in_rename_popup():
+            raise Exception("duplicate design window not closed")
+
+    def check_cancel_button_clickable(self):
+        if not self.check_cancel_button_clickable_in_rename_popup():
+            raise Exception("Cancel button is not clickable")
+
+    def check_save_button_clickable(self):
+        if not self.check_save_button_clickable_in_rename_popup():
+            raise Exception("Save button is not clickable")
+
+    def verify_if_categories_are_sorted(self, category_list):
+        for i in range(len(category_list) - 1):
+            if category_list[i] > category_list[i + 1]:
+                return False
+        return True
+
+
+
+
+

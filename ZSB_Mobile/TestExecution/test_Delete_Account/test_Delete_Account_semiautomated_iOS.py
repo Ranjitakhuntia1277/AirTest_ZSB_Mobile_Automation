@@ -40,89 +40,88 @@ template_management_page = Template_Management_Screen(poco)
 help_page = Help_Screen(poco)
 
 
-# def test_Delete_Account_TestcaseID_45765():
-#     """Add 2 printer to this account before executing
-#     username - zebra05.swdvt@gmail.com
-#     password - Zebra#123456789"""
-#     pass
-#     common_method.show_message(
-#         "Add 2 printer to this account before executing\nusername - zebra05.swdvt@gmail.com\npassword - Zebra#123456789, make sure one is oline and other is offline")
-#     """clear app data"""
-#     common_method.tearDown_iOS()
-#     """clear app data"""
-#     data_sources_page.log_out_for_current_execution_ios()
-#     """Sign in"""
-#     data_sources_page.checkIfInLoginPage()
-#     registration_page.clickSignIn()
-#     data_sources_page.signInWithEmail()
-#     registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
-#     data_sources_page.checkIfOnHomePage()
-#     "In home page 2 printer show in printer list , one is online and one is offline, click pen icon go to user setting page-pending"
-#     """Verify that there is 1 offline printer in the account"""
-#     delete_account_page.checkIfThereIs1PrinterWithOfflineStatus()
-#     delete_account_page.checkIfThereIs1PrinterWithOnlineStatus()
-#     """Click Hamburger Icon"""
-#     login_page.click_Menu_HamburgerICN()
-#     """Click on edit profile"""
-#     registration_page.click_on_profile_edit()
-#     registration_page.scroll_till_log_out()
-#     """Check If Delete Account is beside Logout button"""
-#     delete_account_page.checkIfDeleteAccountIsNextToLogOut()
-#     """Click Delete Account"""
-#     delete_account_page.clickDeleteAccount()
-#     """Check Delete Account page show up"""
-#     delete_account_page.check_if_on_delete_account_page()
-#     """Check continue disabled"""
-#     delete_account_page.check_if_continue_button_is_enabled_without_checking_three_checkboxes_in_delete_account_page()
-#     """check there are 3 items need acknowledge """
-#     delete_account_page.acknowledge_three_checkboxes_in_delete_account_page()
-#     """Click the three checkBoxes"""
-#     delete_account_page.checkThreeCheckboxesInDeleteAccountPage()
-#     """Check continue enabled"""
-#     delete_account_page.check_if_continue_button_is_disabled_even_after_checking_three_checkboxes_in_delete_account_page()
-#     """Click continue"""
-#     data_sources_page.clickContinue()
-#     """check mobile app will auto logout and show login screen with notice information:"""
-#     delete_account_page.check_notice_information_on_login_page_after_choosing_delete_account()
-#     registration_page.clickSignIn()
-#     data_sources_page.signInWithEmail()
-#     registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
-#     """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
-#     delete_account_page.check_final_delete_account_pop_up()
-#     """CLick delete in final confirmation pop up"""
-#     delete_account_page.clickDelete()
-#     """Verify Account Deleted dialog pop up"""
-#     delete_account_page.checkAccountDeletedDialog()
-#     """CLick Ok"""
-#     delete_account_page.clickOk()
-#     """Check if logged out automatically after clicking Ok"""
-#     data_sources_page.checkIfInLoginPage()
-#     common_method.show_message("Turn on the printer that is offline")
-#     """Login Again"""
-#     registration_page.clickSignIn()
-#     data_sources_page.signInWithEmail()
-#     registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
-#     data_sources_page.checkIfOnHomePage()
-#     registration_page.verify_if_on_EULA_page()
-#     """Accept EULA for future execution"""
-#     registration_page.click_accept()
-#     registration_page.clickClose()
-#     registration_page.clickExit()
-#     data_sources_page.checkIfOnHomePage()
-#     delete_account_page.verifyNoPrinterInAccount()
-#     """"click on Add printer tab"""""
-#     delete_account_page.click_Add_A_Printer()
-#     """"click on the start button"""
-#     delete_account_page.click_Start_Button()
-#     delete_account_page.Click_Next_Button()
-#     """"Verify searching for your printer text"""
-#     delete_account_page.Verify_Searching_for_your_printer_Text()
-#     """"check the target printers in available printer list"""
-#     common_method.show_message(
-#         "check the 2 printers are available printer list, select one printer, check printer can be added again")
-#     common_method.Stop_The_iOSApp()
-#
-#
+def test_Delete_Account_TestcaseID_45765():
+    """Add 2 printer to this account before executing
+    username - zebra05.swdvt@gmail.com
+    password - Zebra#123456789"""
+    pass
+    common_method.show_message(
+        "Add 2 printer to this account before executing\nusername - zebra05.swdvt@gmail.com\npassword - Zebra#123456789, make sure one is oline and other is offline")
+    """clear app data"""
+    common_method.tearDown_iOS()
+    """clear app data"""
+    data_sources_page.log_out_for_current_execution_ios()
+    """Sign in"""
+    data_sources_page.checkIfInLoginPage()
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
+    data_sources_page.checkIfOnHomePage()
+    "In home page 2 printer show in printer list , one is online and one is offline, click pen icon go to user setting page-pending"
+    """Verify that there is 1 offline printer in the account"""
+    delete_account_page.checkIfThereIs1PrinterWithOfflineStatus()
+    delete_account_page.checkIfThereIs1PrinterWithOnlineStatus()
+    """Click Hamburger Icon"""
+    login_page.click_Menu_HamburgerICN()
+    """Click on edit profile"""
+    registration_page.click_on_profile_edit()
+    registration_page.scroll_till_log_out()
+    """Check If Delete Account is beside Logout button"""
+    delete_account_page.checkIfDeleteAccountIsNextToLogOut()
+    """Click Delete Account"""
+    delete_account_page.clickDeleteAccount()
+    """Check Delete Account page show up"""
+    delete_account_page.check_if_on_delete_account_page()
+    """Check continue disabled"""
+    delete_account_page.check_if_continue_button_is_enabled_without_checking_three_checkboxes_in_delete_account_page()
+    """check there are 3 items need acknowledge """
+    delete_account_page.acknowledge_three_checkboxes_in_delete_account_page()
+    """Click the three checkBoxes"""
+    delete_account_page.checkThreeCheckboxesInDeleteAccountPage()
+    """Check continue enabled"""
+    delete_account_page.check_if_continue_button_is_disabled_even_after_checking_three_checkboxes_in_delete_account_page()
+    """Click continue"""
+    data_sources_page.clickContinue()
+    """check mobile app will auto logout and show login screen with notice information:"""
+    delete_account_page.check_notice_information_on_login_page_after_choosing_delete_account()
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    """Check If taken to user settings page after login and Delete Account Dialog pop up ask Final confirm user delete"""
+    delete_account_page.check_final_delete_account_pop_up()
+    """CLick delete in final confirmation pop up"""
+    delete_account_page.clickDelete()
+    """Verify Account Deleted dialog pop up"""
+    delete_account_page.checkAccountDeletedDialog()
+    """CLick Ok"""
+    delete_account_page.clickOk()
+    """Check if logged out automatically after clicking Ok"""
+    data_sources_page.checkIfInLoginPage()
+    common_method.show_message("Turn on the printer that is offline")
+    """Login Again"""
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789", 1, 0)
+    data_sources_page.checkIfOnHomePage()
+    registration_page.verify_if_on_EULA_page()
+    """Accept EULA for future execution"""
+    registration_page.click_accept()
+    registration_page.clickClose()
+    registration_page.clickExit()
+    data_sources_page.checkIfOnHomePage()
+    delete_account_page.verifyNoPrinterInAccount()
+    """"click on Add printer tab"""""
+    delete_account_page.click_Add_A_Printer()
+    """"click on the start button"""
+    delete_account_page.click_Start_Button()
+    delete_account_page.Click_Next_Button()
+    """"Verify searching for your printer text"""
+    delete_account_page.Verify_Searching_for_your_printer_Text()
+    """"check the target printers in available printer list"""
+    common_method.show_message(
+        "check the 2 printers are available printer list, select one printer, check printer can be added again")
+    common_method.Stop_The_iOSApp()
+
 # def test_Delete_Account_TestcaseID_45771():
 #     pass
 #     """clear app data"""
@@ -195,20 +194,20 @@ help_page = Help_Screen(poco)
 
 def test_Delete_Account_TestcaseID_45785():
     pass
-    # """clear app data"""
-    # common_method.tearDown_iOS()
-    # """clear app data"""
-    # data_sources_page.log_out_for_current_execution_ios()
-    # """Sign in"""
-    # data_sources_page.checkIfInLoginPage()
-    # registration_page.clickSignIn()
-    # data_sources_page.signInWithEmail()
-    # registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
-    # data_sources_page.checkIfOnHomePage()
-    # """Click Hamburger Icon"""
-    # login_page.click_Menu_HamburgerICN()
-    # """Click on edit profile"""
-    # registration_page.click_on_profile_edit()
+    """clear app data"""
+    common_method.tearDown_iOS()
+    """clear app data"""
+    data_sources_page.log_out_for_current_execution_ios()
+    """Sign in"""
+    data_sources_page.checkIfInLoginPage()
+    registration_page.clickSignIn()
+    data_sources_page.signInWithEmail()
+    registration_page.complete_sign_in_with_email("zebra05.swdvt@gmail.com", "Zebra#123456789")
+    data_sources_page.checkIfOnHomePage()
+    """Click Hamburger Icon"""
+    login_page.click_Menu_HamburgerICN()
+    """Click on edit profile"""
+    registration_page.click_on_profile_edit()
     """""click on upload photo"""
     delete_account_page.click_User_upload_photo()
     """click on camera option"""
@@ -405,6 +404,7 @@ def test_Delete_Account_TestcaseID_45766():
     delete_account_page.Verify_Searching_for_your_printer_Text()
     """"check the target printers in available printer list"""
     delete_account_page.checkTargetPrintersAvailable()
+    common_method.show_message("Check the printer which was removed associated with the account - zebra05.swdvt@gmail.com is present in the printer list.")
     common_method.Stop_The_iOSApp()
 
 

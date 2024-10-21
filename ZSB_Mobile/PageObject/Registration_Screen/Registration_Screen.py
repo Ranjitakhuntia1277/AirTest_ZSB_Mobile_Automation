@@ -415,7 +415,10 @@ class Registration_Screen:
 
     def click_Apple_Icon(self):
         sleep(2)
-        touch(self.Apple_Icon)
+        try:
+            self.poco("Continue with Apple").click()
+        except:
+            touch(self.Apple_Icon)
         sleep(2)
 
     def click_on_next(self):
@@ -505,14 +508,14 @@ class Registration_Screen:
 
     def login_Apple(self, password, username=False, wrong_password=False):
         if username:
-            self.poco("android.widget.EditText").wait_for_appearance(timeout=10)
-            self.poco("android.widget.EditText").set_text(username)
-            self.poco("android.widget.Button")[1].click()
+            self.poco("account_name_text_field").wait_for_appearance(timeout=10)
+            self.poco("account_name_text_field").set_text(username)
+            self.poco("sign-in").click()
             if self.poco("com.android.chrome:id/coordinator").exists():
                 self.poco("com.android.chrome:id/coordinator").click()
-        self.poco("android.widget.EditText")[1].wait_for_appearance(timeout=10)
-        self.poco("android.widget.EditText")[1].set_text(password)
-        self.poco(text="Sign In").click()  # changed during datasources test id- 45731
+        self.poco("password_text_field").wait_for_appearance(timeout=10)
+        self.poco("password_text_field").set_text(password)
+        self.poco("sign-in").click()
         if wrong_password:
             self.poco("android.widget.TextView")[7].click()
             error_message = [self.poco("android.widget.TextView")[11].get_text()][0]
@@ -524,17 +527,10 @@ class Registration_Screen:
                 print("Error message not displayed for wrong password.")
                 raise Exception("Error message not displayed for wrong password.")
         "Enter OTP manually"
-        self.show_message(f"Enter otp for AppleId received in the phone number \'9751025169\'")
-        try:
-            self.poco(text="Trust").wait_for_appearance(timeout=40)
-            self.poco(text="Trust").click()
-        except:
-            pass
-        try:
-            self.poco(text="Continue").wait_for_appearance(timeout=20)
-            self.poco(text="Continue").click()
-        except:
-            pass
+        apple_id_phone_number = "9751025169"
+        self.show_message(f"Enter otp for AppleId received in the phone number \n'{apple_id_phone_number}' if request present on device.")
+        self.show_message("Click on Trust if asked to trust device/browser displayed")
+        self.show_message(f"If 'Do you want to continue using ZSB Series with your Apple Account “{username}”?' present click 'Continue'.")
 
     def home_page_overview(self, firstname):
         self.poco(f"Hey {firstname}\nAdd a printer to get started. We’ll help you set things up.")
@@ -674,10 +670,10 @@ class Registration_Screen:
         self.poco("android.widget.EditText").set_text(resetCode)
 
     def fillNewPassword(self, password):
-        self.poco("android.widget.EditText")[1].set_text(password)
+        self.poco("password").set_text(password)
 
     def fillConfirmPassword(self, password):
-        self.poco("android.widget.EditText")[2].set_text(password)
+        self.poco("passwordConfirm").set_text(password)
 
     def checkWrongConfirmPasswordErrorMessage(self):
         if self.poco("android.widget.TextView")[1].get_text() == "Fields do not match.":

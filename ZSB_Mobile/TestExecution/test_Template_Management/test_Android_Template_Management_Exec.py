@@ -234,7 +234,7 @@ def test_Template_Management_TestcaseID_46004():
 
 def test_Template_Management_TestcaseID_45976():
     tm_a.test_Template_Management_TestcaseID_45976()
-
+"""Here 40"""
 
 def test_Template_Management_TestcaseID_45977():
     tm_a.test_Template_Management_TestcaseID_45977()
@@ -368,7 +368,7 @@ def test_Template_Management_TestcaseID_45932():
     tm_a.test_Template_Management_TestcaseID_45932()
 
 
-"""Ranjita code"""
+"""Ranjita's code"""
 
 """Recently changed"""
 def test_Smoke_Test_TestcaseID_45880():
@@ -662,10 +662,10 @@ def test_Smoke_Test_TestcaseID_45896():
 
 # hello
 
-"""JayKirans Code"""
+"""JayaKiran's Code"""
 """zebra02.swdvt@gmail.com"""
 
-
+"""Semi Automated"""
 def test_Template_Management_TestcaseID_46015():
     pass
     """Step 1-4 web portal - pending due to web in consistency"""
@@ -709,7 +709,7 @@ def test_Template_Management_TestcaseID_46015():
     template_management_page.selectChooseAnOption(1, None, False)
     poco.scroll()
     """Issue in step 7 due to bug SMBM-2202"""
-    template_management_page.select_file_update_data_connections("Local File")
+    selected_file = template_management_page.select_file_update_data_connections("Local File")
     template_management_page.wait_for_appearance_enabled("Continue")
     data_sources_page.clickContinue()
     template_management_page.selectChooseAnOption(2)
@@ -742,36 +742,41 @@ def test_Template_Management_TestcaseID_46015():
     except:
         raise Exception("Print preview not present.")
     """Remove the file from web"""
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    data_sources_page.add_new_tab_in_browser()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    sleep(2)
-    data_sources_page.clickEnter()
-    data_sources_page.lock_phone()
-    wake()
-    registration_page.wait_for_element_appearance_text("Home", 10)
-    sleep(3)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    data_sources_page.click_My_Data()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.searchName("Korea.xlsx")
-    keyevent("back")
-    sleep(3)
-    poco.scroll()
-    sleep(2)
-    data_sources_page.remove_File_Web()
-    sleep(5)
-    stop_app("com.android.chrome")
+    # start_app("com.android.chrome")
+    # sleep(2)
+    # poco("com.android.chrome:id/tab_switcher_button").click()
+    # sleep(2)
+    # data_sources_page.add_new_tab_in_browser()
+    # sleep(2)
+    # poco(text="Search or type URL").click()
+    # sleep(2)
+    # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
+    # sleep(2)
+    # data_sources_page.clickEnter()
+    # data_sources_page.lock_phone()
+    # wake()
+    # registration_page.wait_for_element_appearance_text("Home", 10)
+    # sleep(3)
+    # data_sources_page.click_Menu_HamburgerICNWeb()
+    # data_sources_page.lock_phone()
+    # wake()
+    # data_sources_page.click_My_Data()
+    # data_sources_page.click_Menu_HamburgerICNWeb()
+    # data_sources_page.searchName("Korea.xlsx")
+    # keyevent("back")
+    # sleep(3)
+    # poco.scroll()
+    # sleep(2)
+    # data_sources_page.remove_File_Web()
+    # sleep(5)
+    # stop_app("com.android.chrome")
+    message_to_display = "Login to web portal with google account-Zebra02.swdvt@gmail.com, and remove file- "+selected_file+" (Local File) from my data"
+    common_method.show_message(message_to_display)
     data_sources_page.scroll_till_print()
     data_sources_page.clickPrint()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    common_method.show_message("Re upload the local file that you removed from my data in web portal.")
+
     common_method.Stop_The_App()
 
 
@@ -868,54 +873,6 @@ def test_Template_Management_TestcaseID_46032():
 
 def test_Template_Management_TestcaseID_46016():
     pass
-
-    """Step 1-4 pending due to web inconsistency execute manually"""
-
-    # start_app("com.android.chrome")
-    # sleep(2)
-    # poco("com.android.chrome:id/tab_switcher_button").click()
-    # sleep(2)
-    # data_sources_page.add_new_tab_in_browser()
-    # sleep(2)
-    # poco(text="Search or type URL").click()
-    # sleep(2)
-    # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    # sleep(2)
-    # data_sources_page.clickEnter()
-    # data_sources_page.lock_phone()
-    # wake()
-    # registration_page.wait_for_element_appearance_text("Home", 10)
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.clickMyDesigns()
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.lock_phone()
-    # wake()
-    # data_sources_page.clickCreateDesignBtn()
-    # data_sources_page.lock_phone()
-    # wake()
-    # registration_page.wait_for_element_appearance_text("Select a label size", 10)
-    # data_sources_page.selectLabelSize()
-    # data_sources_page.clickContinueWeb()
-    # data_sources_page.lock_phone()
-    # wake()
-    # poco(text="Exit Designer").wait_for_appearance(timeout=10)
-    # common_method.swipe_screen([0.9, 0.25427350427350426], [0.08055555555555556, 0.25427350427350426], 1)
-    # sleep(3)
-    # template_management_page.click_Connect_Data_File()
-    # data_sources_page.lock_phone()
-    # wake()
-    # file_name = template_management_page.select_file_from_Connect_Data_File()
-    # template_management_page.clickAddText()
-    # template_management_page.placeText()
-    # sleep(3)
-    # keyevent("Back")
-    # """Step -3"""
-    # template_management_page.click_from_data_file()
-    # data_sources_page.clickAddBarcode()
-    # data_sources_page.placeBarcode()
-    # keyevent("Back")
-    """"""
-
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     uploaded_file = "csv_file.csv"
@@ -1005,48 +962,6 @@ def test_Template_Management_TestcaseID_46019():
 
 def test_Template_Management_TestcaseID_47791():
     pass
-
-    # start_app("com.android.chrome")
-    # sleep(2)
-    # poco("com.android.chrome:id/tab_switcher_button").click()
-    # sleep(2)
-    # data_sources_page.add_new_tab_in_browser()
-    # sleep(2)
-    # poco(text="Search or type URL").click()
-    # sleep(2)
-    # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    # sleep(2)
-    # data_sources_page.clickEnter()
-    # registration_page.wait_for_element_appearance_text("Home", 10)
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.clickMyDesigns()
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.lock_phone()
-    # wake()
-    # data_sources_page.clickCreateDesignBtn()
-    # data_sources_page.lock_phone()
-    # wake()
-    # registration_page.wait_for_element_appearance_text("Select a label size", 10)
-    # data_sources_page.selectLabelSize()
-    # data_sources_page.clickContinueWeb()
-    # poco(text="Exit Designer").wait_for_appearance(timeout=10)
-    # common_method.swipe_screen([0.9, 0.25427350427350426], [0.08055555555555556, 0.25427350427350426], 1)
-    # data_sources_page.lock_phone()
-    # wake()
-    # template_management_page.click_Connect_Data_File()
-    # data_sources_page.lock_phone()
-    # wake()
-    # file_name = template_management_page.select_file_from_Connect_Data_File()
-    # template_management_page.clickAddText()
-    # template_management_page.placeText()
-    # sleep(3)
-    # keyevent("Back")
-    # """Step -3"""
-    # template_management_page.click_from_data_file()
-    # data_sources_page.clickAddBarcode()
-    # data_sources_page.placeBarcode()
-    # keyevent("Back")
-    # """"""
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -1139,7 +1054,6 @@ def test_Template_Management_TestcaseID_47947():
 
 def test_Template_Management_TestcaseID_48548():
     pass
-
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -1928,63 +1842,8 @@ def test_Template_Management_TestcaseID_46020():
 
 def test_Template_Management_TestcaseID_46022():
     pass
-
-    # start_app("com.android.chrome")
-    # sleep(2)
-    # poco("com.android.chrome:id/tab_switcher_button").click()
-    # sleep(2)
-    # data_sources_page.add_new_tab_in_browser()
-    # sleep(2)
-    # poco(text="Search or type URL").click()
-    # sleep(2)
-    # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    # sleep(2)
-    # data_sources_page.clickEnter()
-    # data_sources_page.lock_phone()
-    # wake()
-    # registration_page.wait_for_element_appearance_text("Home", 10)
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.clickMyDesigns()
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.lock_phone()
-    # wake()
-    # data_sources_page.clickCreateDesignBtn()
-    # data_sources_page.lock_phone()
-    # wake()
-    # registration_page.wait_for_element_appearance_text("Select a label size", 10)
-    # data_sources_page.selectLabelSize()
-    # data_sources_page.clickContinueWeb()
-    # data_sources_page.lock_phone()
-    # wake()
-    # poco(text="Exit Designer").wait_for_appearance(timeout=10)
-    # common_method.swipe_screen([0.9, 0.25427350427350426], [0.08055555555555556, 0.25427350427350426], 1)
-    # sleep(3)
-    # data_sources_page.lock_phone()
-    # wake()
-    # template_management_page.click_Connect_Data_File()
-    # data_sources_page.lock_phone()
-    # wake()
-    # data_file_name = "columnWithUnequalRows.xlsx"
-    # template_management_page.select_file_from_Connect_Data_File(data_file_name)
-    # data_sources_page.clickAddBarcode()
-    # data_sources_page.placeBarcode()
-    # sleep(3)
-    # keyevent("Back")
-    # data_sources_page.lock_phone()
-    # wake()
-    # common_method.swipe_screen([0.8407407407407408, 0.5260683760683761], [0.5009259259259259, 0.5260683760683761], 1)
-    # template_management_page.click_from_data_file()
-    # common_method.swipe_screen([0.5009259259259259, 0.5260683760683761], [0.8407407407407408, 0.5260683760683761], 1)
-    # common_method.swipe_screen([0.08055555555555556, 0.25427350427350426], [0.9, 0.25427350427350426], 1)
-    # common_method.swipe_screen([0.5, 0.254], [0.5, 0.63], 1)
-    # data_sources_page.lock_phone()
-    # wake()
-    # label_name = "46022"
-    # data_sources_page.setLabelName(label_name)
-    # data_sources_page.exitDesigner()
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
-    poco("Open navigation menu").wait_for_appearance(timeout=10)
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     data_sources_page.searchMyDesigns("46022")
@@ -1994,9 +1853,8 @@ def test_Template_Management_TestcaseID_46022():
     data_sources_page.clickBackArrow()
     common_method.wait_for_element_appearance_namematches("Update Data Connections")
     template_management_page.selectChooseAnOption(1, None, False)
-    poco.scroll()
-    """Issue in step 7 due to bug SMBM-2202"""
     selected_file_name = template_management_page.select_file_update_data_connections("Google Drive")
+    print(selected_file_name)
     if poco(text="Choose an account").exists():
         data_sources_page.chooseAccToLinkFile("zebra02.swdvt@gmail.com")
     data_sources_page.clickContinue()
@@ -2038,38 +1896,6 @@ def test_Template_Management_TestcaseID_46026():
 
     """Step 1-6 web portal - pending due to web in consistency"""
     selected_file_name = "test_link.xlsx"
-    # start_app("com.android.chrome")
-    # sleep(2)
-    # poco("com.android.chrome:id/tab_switcher_button").click()
-    # sleep(2)
-    # data_sources_page.add_new_tab_in_browser()
-    # sleep(2)
-    # poco(text="Search or type URL").click()
-    # sleep(2)
-    # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    # sleep(2)
-    # data_sources_page.clickEnter()
-    # sleep(2)
-    # registration_page.wait_for_element_appearance_text("Home", 20)
-    # sleep(3)
-    # sleep(600)
-    # """2.in my design page, create a new design or edit an existing design
-    # 3. select a data source file, no matter from local or google drive or one drive
-    # 4. add text and barcode objects, select the link data source column as source type and select a column
-    # 5. exit designer = has to be done manually due to web inconsistency"""
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.lock_phone()
-    # wake()
-    # sleep(2)
-    # data_sources_page.click_My_Data()
-    # data_sources_page.click_Menu_HamburgerICNWeb()
-    # data_sources_page.searchName(selected_file_name)
-    # keyevent("back")
-    # sleep(3)
-    # poco.scroll()
-    # sleep(2)
-    # data_sources_page.remove_File_Web()
-    # stop_app("com.android.chrome")
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     common_method.wait_for_element_appearance_namematches("Open navigation menu")
@@ -2113,7 +1939,6 @@ def test_Template_Management_TestcaseID_46026():
     """Click My Data"""
     data_sources_page.click_My_Data()
     sleep(3)
-    drive_file = "test_link.xlsx"
     """Click Add file"""
     data_sources_page.click_Add_File()
     sleep(2)
@@ -2126,10 +1951,6 @@ def test_Template_Management_TestcaseID_46026():
     account = "zebra02.swdvt@gmail.com"
     if data_sources_page.checkIfAccPresentLink(account):
         help_page.chooseAcc(account)
-    #     else:
-    #         poco("com.google.android.gms:id/add_account_chip_title").click()
-    #         registration_page.sign_In_With_Google("Zebra#123456789", account)
-    #         sleep(2)
     template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(2)
@@ -2172,51 +1993,7 @@ def test_Template_Management_TestcaseID_50656():
         pass
     else:
         raise Exception("All Icons did not show up after clearing search text.")
-    # # common_method.Stop_The_App()
-    # # """Sign in same account in web portal, go to my designs, create/edit a design, add an image, set it to prompt at print needs to be executed manually due to web inconsistency """
-    # # start_app("com.android.chrome")
-    # # sleep(2)
-    # # poco("com.android.chrome:id/tab_switcher_button").click()
-    # # sleep(2)
-    # # poco("com.android.chrome:id/new_tab_view_button").click()
-    # # sleep(2)
-    # # poco(text="Search or type URL").click()
-    # # sleep(2)
-    # # poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    # # sleep(2)
-    # # data_sources_page.clickEnter()
-    # # registration_page.wait_for_element_appearance_text("Home", 10)
-    # # data_sources_page.click_Menu_HamburgerICNWeb()
-    # # data_sources_page.clickMyDesigns()
-    # # data_sources_page.lock_phone()
-    # # wake()
-    # # sleep(2)
-    # # data_sources_page.click_Menu_HamburgerICNWeb()
-    # # data_sources_page.clickCreateDesignBtn()
-    # # sleep(5)
-    # # data_sources_page.selectLabelSize()
-    # # data_sources_page.clickContinueWeb()
-    # # data_sources_page.lock_phone()
-    # # wake()
-    # # common_method.wait_for_element_appearance_text("Exit Designer")
-    # # a, b = poco(text="Undo last operation. Max of 10 undo steps are supported.").get_position()
-    # # while not poco(text="Add picture").exists():
-    # #     common_method.swipe_screen([0.9, b], [0.3, b], 1)
-    # #     data_sources_page.lock_phone()
-    # #     wake()
-    # #     sleep(3)
-    # # data_sources_page.clickAddPhoto()
-    # # data_sources_page.placePhoto()
-    # # while not poco(text="Exit Designer").exists():
-    # #     common_method.swipe_screen([0.1, b], [0.7, b], 1)
-    # #     data_sources_page.lock_phone()
-    # #     wake()
-    # #     sleep(3)
     design_name = "Pic_PromptAtPrint"
-    # # data_sources_page.setLabelName(design_name)
-    # # sleep(5)
-    # # data_sources_page.exitDesigner()
-    # """Web pending due to inconsistent behaviour"""
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -3072,14 +2849,8 @@ def test_Template_Management_TestcaseID_46010():
     template_management_page.clickCommonDesigns()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
     initial_categories_list = template_management_page.get_all_categories_in_common_designs()
-    if template_management_page.verify_search_placeholder():
-        pass
-    else:
-        raise Exception("Search design placeholder not present.")
-    if template_management_page.verifySearchIcon():
-        pass
-    else:
-        raise Exception("Search icon not present")
+    template_management_page.verify_search_placeholder()
+    template_management_page.verifySearchIcon()
     search_text = "/"
     template_management_page.search_design_common_designs(search_text)
     template_management_page_1.wait_for_element_appearance_name_matches_all("CATEGORIES", 20)
@@ -3430,7 +3201,6 @@ def test_Template_Management_TestcaseID_45966():
 
 def test_Template_Management_TestcaseID_46037():
     """with 100+ template in my design, create a template save then print out via Mobile"""
-
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
@@ -3438,36 +3208,11 @@ def test_Template_Management_TestcaseID_46037():
     data_sources_page.checkIfDesignsLoaded()
     initial_design_count = len(template_management_page.get_all_designs_in_my_designs())
     designName = "ZZZ_Test"
-    """Step 1-4 pending due to web inconsistency - has to be done manually"""
-    sleep(2)
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    data_sources_page.add_new_tab_in_browser()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    sleep(2)
-    data_sources_page.clickEnter()
-    sleep(2)
-    registration_page.wait_for_element_appearance_text("Home", 10)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
+    common_method.show_message("Create a design in account zebra04.swdvt@gmail.com-google login, password-Zebra#123456789. Name the design 'ZZZ_Test'.")
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    scroll_view = poco("android.view.View")
-    while poco(text="This is where you can access all of your saved designs.").exists():
-        scroll_view.swipe("up")
-    template_management_page.verify_My_Designs_pagination()
-    template_management_page.verify_pagination_shown_is_correct()
-    data_sources_page.clickCreateDesignBtn()
-    data_sources_page.lock_phone()
-    wake()
-    """Step 4 pending due to web inconsistency."""
-    stop_app("com.android.chrome")
     data_sources_page.checkIfDesignsLoaded()
     new_design_count = len(template_management_page.get_all_designs_in_my_designs())
     template_management_page.check_if_design_count_incremented_by_1(new_design_count, initial_design_count)
@@ -3485,6 +3230,7 @@ def test_Template_Management_TestcaseID_46037():
     data_sources_page.selectDesignCreatedAtSetUp()
     template_management_page.clickDeleteDesign()
     template_management_page.clickDeleteDesign()
+    common_method.Stop_The_App()
 
 
 def test_Template_Management_TestcaseID_46038():
@@ -3607,9 +3353,9 @@ def test_Template_Management_TestcaseID_46040():
     common_method.Stop_The_App()
 
 
+"""Semi Automated"""
 def test_Template_Management_TestcaseID_46041():
     pass
-
     common_method.tearDown()
     data_sources_page.checkIfOnHomePage()
     """Open My designs"""
@@ -3617,35 +3363,14 @@ def test_Template_Management_TestcaseID_46041():
     data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
     initial_design_count = template_management_page.get_showing_n_designs_number()
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    data_sources_page.add_new_tab_in_browser()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    sleep(2)
-    data_sources_page.clickEnter()
-    registration_page.wait_for_element_appearance_text("Home", 10)
-    sleep(2)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    sleep(2)
-    data_sources_page.clickMyDesigns()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    scroll_view = poco("android.view.View")
-    while poco(text="This is where you can access all of your saved designs.").exists():
-        scroll_view.swipe("up")
-    template_management_page.verify_My_Designs_pagination()
+    common_method.show_message("Login to web portal with account zebra04.swdvt@gmail.com and import template 'ImportedTemplate.nlbl' from local files.'")
     design_selected = "ImportedTemplate"
     downloaded_design_name = design_selected + ".nlbl"
-    template_management_page.clickImport()
-    data_sources_page.searchFileInLocalStorage(downloaded_design_name, "Downloads")
-    sleep(10)
-    stop_app("com.android.chrome")
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    """Open My designs"""
+    login_page.click_Menu_HamburgerICN()
+    data_sources_page.clickMyDesigns()
     data_sources_page.checkIfDesignsLoaded()
     new_design_count = template_management_page.get_showing_n_designs_number()
     template_management_page.check_if_design_count_incremented_by_1(new_design_count, initial_design_count)
@@ -3656,6 +3381,14 @@ def test_Template_Management_TestcaseID_46041():
     template_management_page.wait_for_appearance_enabled("Print")
     data_sources_page.clickPrint()
     template_management_page_1.wait_for_element_appearance_name_matches_all("Print complete")
+    data_sources_page.clickBackArrow()
+    data_sources_page.selectDesignCreatedAtSetUp()
+    template_management_page.clickDeleteDesign()
+    template_management_page.clickDeleteDesign()
+    try:
+        template_management_page_1.wait_for_element_appearance_name_matches_all("has been successfully removed", 20)
+    except:
+        raise Exception("Design not deleted.")
     common_method.Stop_The_App()
 
 
@@ -3680,15 +3413,8 @@ def test_Template_Management_TestcaseID_47941():
                 "Get started by adding files to be used within your workspace and your team."):
             pass
     elif template_management_page.checkIfElementIsPresent("android.widget.EditText"):
-        try:
-            template_management_page.verifySearchIcon()
-            pass
-        except:
-            raise Exception("Search Icon not present.")
-        if template_management_page.verifySearchFiles():
-            pass
-        else:
-            raise Exception("Search Files placeholder not present.")
+        template_management_page.verifySearchIcon()
+        template_management_page.verifySearchFiles()
         if template_management_page.checkIfElementIsPresent("NAME"):
             pass
         else:
@@ -3714,74 +3440,27 @@ def test_Template_Management_TestcaseID_47941():
 
 def test_Template_Management_TestcaseID_48266():
     pass
-
-    data_sources_page.clearBrowsingData()
+    common_method.show_message("Login with google account zebra04.swdvt@gmail.com account in web portal.password-Zebra#123456789")
+    common_method.show_message("1.Go to web portal and Navigate to Common Design\n2.Select the Round Category from Common Design  and Choose any one label from the round label\n3.Click on \"Copy to My Design\" and then print the same round label.")
+    copied_design_name = common_method.get_user_input("Enter the Design Name Which you copied to My designs from Round Category.(Note: Provide name without 'copy' suffix")
     common_method.tearDown()
-    start_app("com.android.chrome")
-    sleep(2)
-    poco("com.android.chrome:id/tab_switcher_button").click()
-    sleep(2)
-    data_sources_page.add_new_tab_in_browser()
-    sleep(2)
-    poco(text="Search or type URL").click()
-    sleep(2)
-    poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-    sleep(2)
-    data_sources_page.clickEnter()
-    data_sources_page.lock_phone()
-    wake()
-    try:
-        data_sources_page.signInWithGoogle("zebra03.swdvt@gmail.com", "Zebra#123456789")
-        data_sources_page.lock_phone()
-    except:
-        pass
-    wake()
-    try:
-        data_sources_page.clickGotItWeb()
-    except:
-        pass
-    registration_page.wait_for_element_appearance_text("Home", 10)
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    template_management_page.clickCommonDesigns()
-    data_sources_page.click_Menu_HamburgerICNWeb()
-    data_sources_page.lock_phone()
-    wake()
-    template_management_page.search_design_common_designs("Round")
-    keyevent("Enter")
-    keyevent("back")
-    poco.scroll()
-    data_sources_page.lock_phone()
-    wake()
-    template_management_page.select_design_common_designs_Web()
-    while poco("android.widget.EditText").exists():
-        poco.scroll()
-    template_management_page.select_label_common_designs_Web()
-    data_sources_page.lock_phone()
-    wake()
-    selected_design_name = template_management_page.get_name_of_selected_design()
-    template_management_page.click_copy_to_My_Designs()
-    copied_design_name = selected_design_name + " copy"
-    template_management_page.select_label_common_designs_Web()
-    data_sources_page.clickPrint()
-    data_sources_page.clickPrint()
-    common_method.tearDown()
-    registration_page.wait_for_element_appearance("Open navigation menu", 10)
+    data_sources_page.checkIfOnHomePage()
     login_page.click_Menu_HamburgerICN()
     data_sources_page.clickMyDesigns()
     """Search and select design created in web"""
-    data_sources_page.searchMyDesigns(copied_design_name)
+    data_sources_page.searchMyDesigns(copied_design_name+" copy")
     data_sources_page.checkIfDesignsLoaded()
     design_list = template_management_page.get_all_designs_in_my_designs(True)
-    if copied_design_name in design_list:
+    print(design_list)
+    if copied_design_name+" copy" in design_list:
         pass
     else:
         raise Exception("Copied design from web not present in app.")
     login_page.click_Menu_HamburgerICN()
     template_management_page.clickCommonDesigns()
-    template_management_page.search_design_common_designs("Round")
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Address")
+    template_management_page.search_design_common_designs(copied_design_name)
     keyevent("Enter")
-    template_management_page.waitForAppearanceOfCategories()
-    template_management_page.select_design_common_designs()
     template_management_page.verifyLabelsShown()
     data_sources_page.clickBackArrow()
     login_page.click_Menu_HamburgerICN()

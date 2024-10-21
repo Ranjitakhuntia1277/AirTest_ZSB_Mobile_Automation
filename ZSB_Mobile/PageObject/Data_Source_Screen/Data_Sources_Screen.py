@@ -1060,13 +1060,21 @@ class Data_Sources_Screen:
                 year = datetime.date.today().year
                 date = datetime.date.today().day
                 month = self.Month[datetime.date.today().month]
-                date_app = self.poco("android.widget.HorizontalScrollView").child()[3 + 4 * i].get_name()
+                # date_app = self.poco("android.widget.HorizontalScrollView").child()[3 + 4 * i].get_name()
+                # print(date_app)
+                # data_source_app = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
+                # print(data_source_app)
+                # expected_date = str(month) + " " + str(date) + ", " + str(year)
+                # print(expected_date)
+                # name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+                # print(name_app, file_name)
+                date_app = self.poco("android.widget.HorizontalScrollView").child()[-3].get_name()
                 print(date_app)
-                data_source_app = self.poco("android.widget.HorizontalScrollView").child()[4 + 4 * i].get_name()
+                data_source_app = self.poco("android.widget.HorizontalScrollView").child()[-2].get_name()
                 print(data_source_app)
                 expected_date = str(month) + " " + str(date) + ", " + str(year)
                 print(expected_date)
-                name_app = self.poco("android.widget.HorizontalScrollView").child()[2 + 4 * i].get_name()
+                name_app = self.poco("android.widget.HorizontalScrollView").child()[-4].get_name()
                 print(name_app, file_name)
                 if name_app == file_name:
                     if datasource is not None:
@@ -2033,6 +2041,14 @@ class Data_Sources_Screen:
             scroll_view.swipe("left")
         for i in range(10):
             scroll_view.swipe("left")
+
+    def return_to_my_data_page(self):
+        sleep(2)
+        keyevent("back")
+        sleep(2)
+        if not self.poco("My Data").exists():
+            keyevent("back")
+        sleep(2)
 
 
 

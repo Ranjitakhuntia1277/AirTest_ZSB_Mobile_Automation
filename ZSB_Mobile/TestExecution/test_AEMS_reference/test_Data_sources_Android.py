@@ -8,6 +8,12 @@ from ...AEMS.api_calls import start_main, insert_step, insert_stepDetails, inser
 from ...AEMS.store import execID, leftId
 # from setuptools import logging
 # from ...PageObject.Robofinger import test_robo_finger
+from ...Common_Method import Common_Method
+from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from airtest.core.api import connect_device
 
 import signal
 
@@ -62,7 +68,7 @@ delete_account_page = Delete_Account_Screen(poco)
 # ###bug id- SMBM-1456
 """zebra02.swdvt@gmail.com"""
 
-ADB_LOG, test_run_start_time = common_method.start_adb_log_capture()
+ADB_LOG, test_run_start_time, uploaded_files = common_method.start_adb_log_capture()
 
 start_execution_loop(execID)
 
@@ -1344,11 +1350,8 @@ def test_DataSources_TestcaseID_45739():
         4: [4, 'Click back button to return to mobile app\nCheck no file is uploaded'],
         5: [5, 'Click + button at bottom and select Upload File'],
         6: [6,
-            'Upload all the supported file types\nCheck Files are uploaded with correct icon, name, data source type and create date\nNote: Data files should use file icons, image files should use image icons\nCheck there is notification " has been successfully uploaded"'],
-        7: [7,
-            'Login to web portal -> Data Sources page\nCheck the uploaded files from mobile app display in the My Data page in web portal\nCheck switching to different menus or pressing F5 should refresh the file list']
+            'Upload all the supported file types\nCheck Files are uploaded with correct icon, name, data source type and create date\nNote: Data files should use file icons, image files should use image icons\nCheck there is notification " has been successfully uploaded".Remove the uploaded files.']
     }
-
     start_time_main = time.time()
     start_main(execID, leftId[test_case_id])
 
@@ -1363,7 +1366,8 @@ def test_DataSources_TestcaseID_45739():
         sleep(2)
         """Click My Data"""
         data_sources_page.click_My_Data()
-        sleep(2)
+        sleep(5)
+        initial_file_count = len(data_sources_page.fileListDisplayed())
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -1378,7 +1382,7 @@ def test_DataSources_TestcaseID_45739():
         sleep(2)
         """Click Upload File"""
         data_sources_page.click_Upload_File()
-        sleep(3)
+        sleep(5)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -1399,7 +1403,9 @@ def test_DataSources_TestcaseID_45739():
         # Step 4: Click back button to return to mobile app, Check no file is uploaded
         start_time = time.time()
 
-        data_sources_page.clickBackArrow()
+        """Check no file linked"""
+        data_sources_page.return_to_my_data_page()
+        data_sources_page.checkNoChangeInFileCount(initial_file_count)
         sleep(4)
 
         exec_time = (time.time() - start_time) / 60
@@ -1414,92 +1420,27 @@ def test_DataSources_TestcaseID_45739():
         sleep(2)
         """Click Upload File"""
         data_sources_page.click_Upload_File()
-        sleep(3)
+        sleep(5)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
 
         # Step 6: Select supported file type to upload, Check icon, name, data source, create date, and notification
         start_time = time.time()
 
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-
         data_sources_page.searchFileInLocalStorage("Supported Files", "Downloads")
-        sleep(3)
+        sleep(2)
         uploaded_file_list = ["bmp_file.bmp", "jpg_file.jpg", "png_file.png", "csv_file.csv", "text_file.txt"]
         data_sources_page.selectFilesInLocal()
-        """No notification after uploading file"""
-        keyevent("back")
-        keyevent("back")
+        data_sources_page.return_to_my_data_page()
         for name in uploaded_file_list:
             data_sources_page.searchName(name)
             sleep(7)
             data_sources_page.verifyFilePresentInList(name, "Local File", True)
-            """Remove this once web inconsistency issue is resolved"""
-            """--------------------------------------"""
+            """Remove uploaded files for next execution"""
             data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-            """--------------------------------------"""
-
-        # Step 7: Login to web portal -> Data Sources page, Check uploaded files and refresh list
-        start_time = time.time()
-
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-
-        """Login to web portal->Data Sources page Check the uploaded files from mobile app display in the my data page in web portal."""
-        start_app("com.android.chrome")
-        sleep(2)
-        poco("com.android.chrome:id/tab_switcher_button").click()
-        sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
-        sleep(2)
-        poco(text="Search or type URL").click()
-        sleep(2)
-        poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-        data_sources_page.clickEnter()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(3)
-        data_sources_page.signIn_if_on_SSO_page_web()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(3)
-        template_management_page.clickGotIt()
-        registration_page.wait_for_element_appearance_text("Home", 20)
-        sleep(3)
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        data_sources_page.click_My_Data()
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        sleep(3)
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        for name in uploaded_file_list:
-            data_sources_page.searchName(name)
-            keyevent("back")
-            sleep(2)
-            poco.scroll()
-            try:
-                common_method.wait_for_element_appearance_text("No files match your search")
-                x = 1 / 0
-            except ZeroDivisionError:
-                raise Exception("Uploaded files not displaying in my data page.")
-            except Exception as e:
-                pass
-        stop_app("com.android.chrome")
-        """Remove uploaded files for next execution"""
-        for name in uploaded_file_list:
-            data_sources_page.searchName(name)
-            data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-        common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -1704,8 +1645,7 @@ def test_DataSources_TestcaseID_45741():
         4: [4, 'Check the selected file is not been deleted'],
         5: [5,
             'Click 3 dots menu for selected file again, Click Remove, Message prompt "Remove local file" to let user to confirm, Click Delete button'],
-        6: [6, 'Check the selected file is deleted from the list (no need to refresh the page manually)'],
-        7: [7, 'Go to web portal to check if the file is removed from web portal as well.']
+        6: [6, 'Check the selected file is deleted from the list (no need to refresh the page manually)']\
     }
 
     start_time_main = time.time()
@@ -1737,7 +1677,7 @@ def test_DataSources_TestcaseID_45741():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
-        sleep(2)
+        sleep(5)
         selected_file = "ferry.jpg"
         data_sources_page.searchFileInLocalStorage(selected_file)
         sleep(10)
@@ -1797,51 +1737,6 @@ def test_DataSources_TestcaseID_45741():
             raise Exception("File present even after removing it.")
         except Exception as e:
             pass
-
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-
-        # Step 7: Go to web portal to check if the file is removed from web portal as well.
-        start_time = time.time()
-
-        start_app("com.android.chrome")
-        sleep(2)
-        poco("com.android.chrome:id/tab_switcher_button").click()
-        sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
-        sleep(2)
-        poco(text="Search or type URL").click()
-        sleep(2)
-        poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-        data_sources_page.clickEnter()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(3)
-        registration_page.wait_for_element_appearance_text("Home", 20)
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        data_sources_page.click_My_Data()
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        sleep(2)
-        data_sources_page.lock_phone()
-        wake()
-        sleep(3)
-        data_sources_page.searchName(selected_file)
-        keyevent("back")
-        sleep(2)
-        poco.scroll()
-        try:
-            common_method.wait_for_element_appearance_text("No files match your search")
-        except:
-            raise Exception("File is not removed from the web portal.")
-        stop_app("com.android.chrome")
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
@@ -1872,11 +1767,7 @@ def test_DataSources_TestcaseID_45742():
             'Click 3 dots menu for a local file, Click Remove, Message prompt "Remove local file" to let user to confirm, Click Cancel'],
         4: [4, 'Check the selected file is not been deleted'],
         5: [5,
-            'Click 3 dots menu for selected file again, Click Remove, Message prompt "Remove local file" to let user to confirm, Click Delete button\nCheck the selected file is deleted from the list (no need to refresh the page manually)'],
-        6: [6, 'Go to web portal to check if the file is removed from web portal as well.'],
-        7: [7, 'Print the template and check it should prompt user to link or input data manually.'],
-        8: [8,
-            'Try to link a new file or input data manually when printing the template\nCheck user can link a new file or input data manually and print out successfully.']
+            'Click 3 dots menu for selected file again, Click Remove, Message prompt "Remove local file" to let user to confirm, Click Delete button\nCheck the selected file is deleted from the list (no need to refresh the page manually)']
     }
 
     start_time_main = time.time()
@@ -1909,6 +1800,7 @@ def test_DataSources_TestcaseID_45742():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
+        sleep(5)
         """Select Very large File to upload"""
         data_sources_page.searchFileInLocalStorage(remove_file_name, "Downloads")
         sleep(10)
@@ -1958,89 +1850,6 @@ def test_DataSources_TestcaseID_45742():
             raise Exception("File present even after removing it.")
         except Exception as e:
             pass
-
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-
-        # Step 6: Go to web portal to check if the file is removed from web portal as well.
-        start_time = time.time()
-
-        start_app("com.android.chrome")
-        sleep(2)
-        poco("com.android.chrome:id/tab_switcher_button").click()
-        sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
-        sleep(2)
-        poco(text="Search or type URL").click()
-        sleep(2)
-        poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-        data_sources_page.clickEnter()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(3)
-        registration_page.wait_for_element_appearance_text("Home", 20)
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        data_sources_page.click_My_Data()
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        data_sources_page.searchName(remove_file_name)
-        keyevent("back")
-        sleep(2)
-        poco.scroll()
-        try:
-            common_method.wait_for_element_appearance_text("No files match your search")
-        except:
-            raise Exception("File is not removed from the web portal.")
-
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-
-        # Step 7: Print the template and check it should prompt user to link or input data manually.
-        start_time = time.time()
-
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        data_sources_page.clickMyDesigns()
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        common_method.wait_for_element_appearance_textmatches("Showing")
-        data_sources_page.searchName("45742")
-        keyevent("back")
-        common_method.wait_for_element_appearance_textmatches("Showing")
-        poco.scroll()
-        data_sources_page.selectDesignCreatedAtSetUpWeb()
-        data_sources_page.clickPrint()
-        data_sources_page.clickCheckBox()
-
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-
-        # Step 8: Try to link a new file or input data manually when printing the template\nCheck user can link a new file or input data manually and print out successfully.
-        start_time = time.time()
-
-        data_sources_page.clickContinueWeb()
-        _, b = poco("android.widget.EditText").get_position()
-        common_method.swipe_screen([0.9, b], [0.2, b], 1)
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        data_sources_page.set_text("Hello")
-        keyevent("back")
-        data_sources_page.clickPrint()
-        common_method.wait_for_element_appearance_text("Print complete", 20)
-        stop_app("com.android.chrome")
         common_method.Stop_The_App()
 
         exec_time = (time.time() - start_time) / 60
@@ -2184,7 +1993,7 @@ def test_DataSources_TestcaseID_45745():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
-        sleep(2)
+        sleep(5)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -2223,6 +2032,7 @@ def test_DataSources_TestcaseID_45745():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
+        sleep(5)
         data_sources_page.searchFileInLocalStorage(special_char_file2, "Downloads")
         sleep(7)
         for char in ignored_char:
@@ -2244,7 +2054,8 @@ def test_DataSources_TestcaseID_45745():
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
         insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
         insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
-        upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+        if screenshot_path not in uploaded_files:
+            upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time, uploaded_files)
         raise Exception(str(e))
 
     finally:
@@ -2295,6 +2106,7 @@ def test_DataSources_TestcaseID_45746():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
+        sleep(5)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -2396,6 +2208,7 @@ def test_DataSources_TestcaseID_45747():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
+        sleep(5)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -2442,6 +2255,7 @@ def test_DataSources_TestcaseID_45747():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
+        sleep(5)
         """Select File of size 28.3mb to upload"""
         data_sources_page.searchFileInLocalStorage("28.3M.png", "Downloads")
         sleep(10)
@@ -2450,6 +2264,7 @@ def test_DataSources_TestcaseID_45747():
         """Click Upload file"""
         sleep(2)
         data_sources_page.click_Upload_File()
+        sleep(5)
         """Select File of size 28.4 to upload"""
         data_sources_page.searchFileInLocalStorage("29.4M.png", "Downloads")
         sleep(10)
@@ -3190,7 +3005,7 @@ def test_DataSources_TestcaseID_47936():
 
         """Click Upload file"""
         data_sources_page.click_Upload_File()
-        sleep(2)
+        sleep(5)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -3423,6 +3238,7 @@ def test_DataSources_TestcaseID_47944():
         data_sources_page.click_Add_File()
         sleep(2)
         data_sources_page.click_Upload_File()
+        sleep(5)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -3479,9 +3295,7 @@ def test_DataSources_TestcaseID_45740():
         3: [3,
             'A page will be opened and let user select file to upload.\nSelect any of the following supported file types to upload'],
         4: [4,
-            'Upload 10 files\nCheck all files can be uploaded successfully\nCheck File is uploaded with correct icon, name, data source type, and create date\nNote: Data files should use file icons, image files should use image icons.'],
-        5: [5,
-            'Login to web portal -> Data Sources page\nCheck the uploaded files from the mobile app display in the My Data page in web portal']
+            'Upload 10 files\nCheck all files can be uploaded successfully\nCheck File is uploaded with correct icon, name, data source type, and create date\nNote: Data files should use file icons, image files should use image icons.Remove the uploaded files.']
     }
 
     start_time_main = time.time()
@@ -3531,6 +3345,7 @@ def test_DataSources_TestcaseID_45740():
         sleep(2)
         """Click Upload File"""
         data_sources_page.click_Upload_File()
+        sleep(5)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -3560,60 +3375,6 @@ def test_DataSources_TestcaseID_45740():
             data_sources_page.searchName(name)
             sleep(7)
             data_sources_page.verifyFilePresentInList(name, "Local File", True)
-            """Remove this once web inconsistency is fixed"""
-            """-------------------------------------------"""
-            data_sources_page.remove_File_Based_On_DataSource("Local File", name)
-            """-------------------------------------------"""
-
-        exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
-        stepId += 1
-
-        # Step 5: Login to web portal -> Data Sources page\nCheck the uploaded files from the mobile app display in the My Data page in web portal
-        start_time = time.time()
-
-        """Login to web portal->Data Sources page Check the uploaded files from mobile app display in the my data page in web portal. pending"""
-        start_app("com.android.chrome")
-        sleep(2)
-        poco("com.android.chrome:id/tab_switcher_button").click()
-        sleep(2)
-        try:
-            poco("com.android.chrome:id/new_tab_view_button").click()
-        except:
-            poco(text="New tab").click()
-        sleep(2)
-        poco(text="Search or type URL").click()
-        sleep(2)
-        poco(text="Search or type URL").set_text("https://zsbportal.zebra.com/")
-        data_sources_page.clickEnter()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(3)
-        registration_page.wait_for_element_appearance_text("Home", 20)
-        sleep(3)
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        data_sources_page.lock_phone()
-        wake()
-        sleep(2)
-        data_sources_page.click_My_Data()
-        data_sources_page.click_Menu_HamburgerICNWeb()
-        for name in uploaded_file_list:
-            data_sources_page.searchName(name)
-            keyevent("back")
-            sleep(2)
-            poco.scroll()
-            try:
-                common_method.wait_for_element_appearance_text("No files match your search")
-                x = 1 / 0
-            except ZeroDivisionError:
-                raise Exception("Uploaded files not displaying in my data page.")
-            except Exception as e:
-                pass
-        stop_app("com.android.chrome")
-        """Remove uploaded files for next execution"""
-        for name in uploaded_file_list:
-            data_sources_page.searchName(name)
             data_sources_page.remove_File_Based_On_DataSource("Local File", name)
         common_method.Stop_The_App()
 
@@ -3954,7 +3715,10 @@ def test_DataSources_TestcaseID_45752():
 
         template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
         data_sources_page.clickMicrosoftOneDrive()
+        """Changed on first run AEMS"""
+        data_sources_page.click_drive_sign_in_if_present()
         common_method.wait_for_element_appearance("NAME")
+        data_sources_page.clickMicrosoftOneDrive()
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",

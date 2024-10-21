@@ -1,3 +1,5 @@
+import inspect
+
 from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
@@ -10,9 +12,15 @@ from ...PageObject.Robofinger import test_robo_finger
 from ...Common_Method import Common_Method
 from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
 from ...PageObject.APS_Testcases.APS_Notification_Android import APS_Notification
+from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
 from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
 from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 from ...PageObject.Smoke_Test.Smoke_Test_Android import Smoke_Test_Android
+from ...PageObject.Device_Networks.Device_Network_Android import Device_Networks_Android
+
+from ...AEMS.api_calls import start_main, insert_step, insert_stepDetails, insert_case_results, end_main, \
+    start_execution_loop, end_execution_loop, end_execution, upload_case_files
+from ...AEMS.store import execID, leftId
 
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
@@ -29,6 +37,7 @@ connect_device("Android:///")
 """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
 login_page = Login_Screen(poco)
 app_settings_page = App_Settings_Screen(poco)
+printer_management_page = Printer_Management_Screen(poco)
 add_a_printer_screen = Add_A_Printer_Screen(poco)
 common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
@@ -36,76 +45,170 @@ registration_page = Registration_Screen(poco)
 data_sources_page = Data_Sources_Screen(poco)
 smoke_test_android = Smoke_Test_Android(poco)
 others = Others(poco)
+device_networks = Device_Networks_Android(poco)
 
 """""""""""""""""""""""Change Password part needs to be verified manually"""""""""""""""""""""""""""""
+ADB_LOG, test_run_start_time = common_method.start_adb_log_capture()
+
+start_execution_loop(execID)
 
 
 # #### bug id-SMBM-2773
 def test_AppSettings_TestcaseID_47913():
-    """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
-    #
-    common_method.tearDown()
-    # test_robo_finger()
-    # sleep(6)
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_loginBtn()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Loginwith_Google()
-    login_page.Loginwith_Added_Email_Id()
-    """"verify home text is displaying on the home screen"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on Add printer tab"""""
-    add_a_printer_screen.click_Add_A_Printer()
-    """"click on the start button"""
-    add_a_printer_screen.click_Start_Button()
-    login_page.click_Allow_ZSB_Series_Popup()
-    add_a_printer_screen.Verify_Lets_Make_Sure_Text()
-    add_a_printer_screen.Click_Next_Button()
-    """"Verify searching for your printer text"""
-    add_a_printer_screen.Verify_Searching_for_your_printer_Text()
-    """"verify select your printer text"""
-    add_a_printer_screen.Verify_Select_your_printer_Text()
-    """"select 2nd printer which you want to add"""
-    add_a_printer_screen.click_2nd_Printer_Details_To_Add()
-    """""click on select button"""
-    add_a_printer_screen.click_Select_Button_On_Select_Your_Printer_Screen()
-    """"verify pairing your printer text"""
-    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    """"verify pairing your printer text"""
-    add_a_printer_screen.Verify_Pairing_Your_Printer_Text()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    """Verify Connect Wi-fi Network Text"""
-    add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
-    """"click on connect button on connect wifi network screen"""
-    add_a_printer_screen.click_Connect_Btn_On_Connect_Wifi_Network_Screen()
-    add_a_printer_screen.click_Password_Field_On_Join_Network()
-    add_a_printer_screen.click_Submit_Button_ON_Join_Network()
-    """"verify need the printer driver text"""
-    add_a_printer_screen.Verify_Need_the_Printer_Driver_Text()
-    """""verify registering your printer text"""
-    add_a_printer_screen.Verify_Registering_your_Printer_Text()
-    """"Turn OFF the WIFI & Turn on again after some time (approx. 2 min)"""
-    aps_notification.disable_wifi()
-    sleep(120)
-    aps_notification.enable_wifi()
-    sleep(7)
-    """"click on finish setup button"""
-    add_a_printer_screen.click_Finish_Setup_Button()
-    """stop the app"""
-    common_method.Stop_The_App()
+    test_steps = {
+        1: [1, 'Install the ZSB app and log in with the user ID.'],
+        2: [2, 'Click on the "Add Printer" button.'],
+        3: [3, 'Once Bluetooth pairing is done, select the available Wi-Fi Access Point (AP).'],
+        4: [4,
+            'Once the Wi-Fi connection is established and you get the "Registering your printer" message on the mobile display, turn OFF the Wi-Fi AP.'],
+        5: [5, 'Turn ON the Wi-Fi AP after approximately 2 minutes.'],
+        6: [6,
+            'Observe the printer registration process and ensure it resumes from the point where the network connection was dropped.Remove the printer once connected.']
+    }
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
+    stepId = 1  # Initialize stepId before the try-except block
+    try:
+        # Step 1
+        start_time = time.time()
+        """Verify ZSB app doesn't stuck in Printer registration process when there is a network drop."""""
+        common_method.show_message("Have a printer in hand to register in the upcoming steps.")
+        common_method.show_message("Have a hotspot/wi-fi in hand which can be turned off when required.")
+        common_method.tearDown()
+        # test_robo_finger()
+        # sleep(6)
+        data_sources_page.log_out_of_account()
+        common_method.Clear_App()
+        common_method.Start_The_App()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_loginBtn()
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_Loginwith_Google()
+        login_page.Loginwith_Added_Email_Id()
+        """"verify home text is displaying on the home screen"""
+        app_settings_page.Home_text_is_present_on_homepage()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 2
+        start_time = time.time()
+
+        """click on the hamburger icon"""
+        login_page.click_Menu_HamburgerICN()
+        """"click on Add printer tab"""""
+        add_a_printer_screen.click_Add_A_Printer()
+        login_page.Verify_ALL_Allow_Popups()
+        """"click on the start button"""
+        add_a_printer_screen.Verify_Setup_Your_Printer_Page_Is_Displaying()
+        """""Check the moneybadger picture would appears at that page."""
+        add_a_printer_screen.Verify_MoneyBadger_Image_Is_Displaying()
+        """Click on Start setup button"""
+        add_a_printer_screen.click_Start_Button()
+        login_page.Verify_ALL_Allow_Popups()
+        """"Verify Let's make sure the printer is in Bluetooth pairing mode. Text"""
+        add_a_printer_screen.Verify_The_Printer_Is_In_Bluetooth_Paring_Mode_Text()
+        """""click on Next Button"""""
+        add_a_printer_screen.click_Next_Button()
+        """"Verify Searching For your Printer Text"""
+        add_a_printer_screen.Verify_Searching_for_your_printer_Text()
+        """"Verify Select your Printer Text"""
+        add_a_printer_screen.Verify_Select_your_printer_Text()
+        """"Verify All the unprovision moneybadgr would appear at the page """
+        add_a_printer_screen.Verify_Unprovision_Moneybadgr_On_The_Screen()
+        """Select the Printer"""
+        common_method.show_message("Select the Printer which you had prepared in the beginning.")
+        """"Click on Next Button"""
+        add_a_printer_screen.click_Next_Button()
+        """""Check the printer can be paired successfully"""
+        add_a_printer_screen.click_Bluetooth_pairing_Popup1_on_Setting_page()
+        add_a_printer_screen.click_Bluetooth_pairing_Popup2_on_Setting_page()
+        add_a_printer_screen.click_Bluetooth_pairing_Popup1()
+        add_a_printer_screen.click_Bluetooth_pairing_Popup2()
+        sleep(5)
+        """""Verify Connecting to printer Text"""
+        add_a_printer_screen.Verify_Connecting_To_Printer_Text()
+        """""Verify Printer Connected Text"""
+        add_a_printer_screen.Verify_Printer_Connected_Text()
+        """"Verify Searching for Wifi network text is displaying"""
+        add_a_printer_screen.Verify_Searching_for_wifi_networks_Text()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 3
+        start_time = time.time()
+
+        """Verify Connect Wi-fi Network Text"""
+        add_a_printer_screen.Verify_Connect_Wifi_Network_Text()
+        """Connect to wifi"""
+        network_name = common_method.get_user_input("Enter the name of the wi-fi/hotspot which you prepared in the beginning.")
+        network_password = common_method.get_user_input("Enter the password of the wi-fi/hotspot which you prepared in the beginning.")
+        device_networks.click_network_by_name(network_name)
+        device_networks.enter_the_password(network_password)
+        device_networks.click_on_connect()
+        app_settings_page.verify_connecting_to_wifi_network_page_is_displayed()
+        app_settings_page.verify_printer_successfully_connected_to_wifi_network_page_displayed()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4
+        start_time = time.time()
+
+        app_settings_page.verify_registering_printer_to_zsb_account_page_displayed()
+        common_method.show_message("Turn off the wi-fi/hotspot which is connected to the printer.")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 5
+        start_time = time.time()
+
+        sleep(120)
+        common_method.show_message("Turn on the wi-fi/hotspot which is connected to the printer.")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 6
+        start_time = time.time()
+
+        app_settings_page.verify_registering_printer_to_zsb_account_page_displayed()
+        app_settings_page.verify_printer_registration_successful_page_is_displayed()
+        app_settings_page.complete_test_printer_steps()
+        common_method.show_message("Remove the printer that was added now.")
+        common_method.Stop_The_App()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
+    except Exception as e:
+        screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+        raise Exception(str(e))
+
+    finally:
+        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
 
 
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -114,54 +217,135 @@ def test_AppSettings_TestcaseID_47913():
 ####### bug id---SMBM-2778
 def test_AppSettings_TestcaseID_50031():
     """Check the error message prompted when print test page and printer head open or offline"""
+    test_steps = {
+        1: [1, 'Test user login mobile app.'],
+        2: [2, 'Click Print Settings > printer tab > General.'],
+        3: [3,
+            'Click Test Print button. Check test label print out successfully and a toast message shows up: "Test label printed successfully to <Printer name>".'],
+        4: [4, 'Open printer header, printer current status is Cover Open.'],
+        5: [5, 'Click Test Print Button again.']
+    }
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
-    """printer should be online"""
-    """start the app"""
-    common_method.tearDown()
-    sleep(3)
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """"verify home text is displaying on the home screen"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    """"click on printer settings tab"""""
-    app_settings_page.click_Printer_Settings()
-    """"click on printer name on printer settings page"""
-    app_settings_page.click_PrinterName_On_Printersettings()
-    """verify printer name text"""
-    app_settings_page.Verify_Printer_Name_Text()
-    """click test print button"""
-    app_settings_page.click_Test_Print_Button()
-    """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_To_Verify_Printout_Manually()
-    """"Verify Printed successfully text"""
-    app_settings_page.Verify_Printed_Successfully_Text()
-    """"Open the printer cover manually"""
-    """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_To_Open_The_Printer_Cover_Manually()
-    """click test print button"""
-    app_settings_page.click_Test_Print_Button()
-    """""verify error message of cover open"""
-    app_settings_page.Verify_ErrorMessage_Text()
-    """""Cover close on the printer manually"""""
-    """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_To_Close_The_Printer_Cover_Manually()
-    """"click on test print"""
-    app_settings_page.click_Test_Print_Button()
-    """"Verify Printed successfully text"""
-    app_settings_page.Verify_Printed_Successfully_Text()
-    """stop the app"""
-    common_method.Stop_The_App()
+    stepId = 1  # Initialize stepId before the try-except block
+    try:
+        # Step 1
+        start_time = time.time()
+
+        """printer should be online"""
+        """start the app"""
+        common_method.tearDown()
+        sleep(3)
+        login_page.click_LoginAllow_Popup()
+        login_page.click_Allow_ZSB_Series_Popup()
+        """"verify home text is displaying on the home screen"""
+        app_settings_page.Home_text_is_present_on_homepage()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 2
+        start_time = time.time()
+
+        """click on the hamburger icon"""
+        login_page.click_Menu_HamburgerICN()
+        """"click on printer settings tab"""""
+        app_settings_page.click_Printer_Settings()
+        """"click on printer name on printer settings page"""
+        app_settings_page.click_PrinterName_On_Printersettings()
+        """verify printer name text"""
+        app_settings_page.Verify_Printer_Name_Text()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 3
+        start_time = time.time()
+
+        """click test print button"""
+        app_settings_page.click_Test_Print_Button()
+        """""""POP UP FOR MANUAL INTERVENTION"""""""
+        common_method.Show_popup_To_Verify_Printout_Manually()
+        """"Verify Printed successfully text"""
+        app_settings_page.Verify_Printed_Successfully_Text()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4
+        start_time = time.time()
+
+        """"Open the printer cover manually"""
+        """""""POP UP FOR MANUAL INTERVENTION"""""""
+        common_method.Show_popup_To_Open_The_Printer_Cover_Manually()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 5
+        start_time = time.time()
+
+        """click test print button"""
+        app_settings_page.click_Test_Print_Button()
+        """""verify error message of cover open"""
+        app_settings_page.Verify_ErrorMessage_Text()
+        """""Cover close on the printer manually"""""
+        """""""POP UP FOR MANUAL INTERVENTION"""""""
+        common_method.Show_popup_To_Close_The_Printer_Cover_Manually()
+        """"click on test print"""
+        app_settings_page.click_Test_Print_Button()
+        """"Verify Printed successfully text"""
+        app_settings_page.Verify_Printed_Successfully_Text()
+        """stop the app"""
+        common_method.Stop_The_App()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
+    except Exception as e:
+        screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+        raise Exception(str(e))
+
+    finally:
+        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
 
 
 ## #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 # ###bug id-SMBM-2160
-def test_AppSettings_TestcaseID_49709():
-    """Manage network- Check able to manage network with long name"""
+"""Blocked due to bug SMBM-2932"""
 
+
+def test_AppSettings_TestcaseID_49709():
+    pass
+    test_steps = {
+        1: [1, 'Sign in to the test account with a printer added, go to Printer settings > Printer name > Wi-Fi tab.'],
+        2: [2, 'Click Manage Networks option, pair Bluetooth if needed, and click the Add Network option.'],
+        3: [3,
+            'When the network list is displayed, click the "Enter Network Manually" option. Enter a long network name ("Test-EnterNetwork-Manually-NameDisplay", 38 characters), input password if needed, then submit. Check if the added network is displayed in the list and verify that the delete button is clickable (Some characters may be hidden, which is acceptable).'],
+        4: [4,
+            'Exit the manage network screen and re-enter it. Check if the added network is still displayed in the list.'],
+        5: [5, 'Attempt to sort or delete the network. Verify that all functions work as expected.']
+    }
+    """Manage network - Check able to manage network with long name"""
+    common_method.show_message("Prepare a wi-fi/hotspot network with long name(38-char)")
     """"printer should be online & wifi should be connected"""
     """start the app"""
     common_method.tearDown()
@@ -175,7 +359,8 @@ def test_AppSettings_TestcaseID_49709():
     app_settings_page.click_wifi_tab()
     app_settings_page.click_Manage_Networks_Btn()
     """""""""""""Click on continue button on the Bluetooth Connection required popup"""""""
-    app_settings_page.accept_Continue_popup()
+    common_method.show_message(
+        "Check if message'\nBluetooth Connection Required\nYou are about to connect to the printer using Bluetooth. If you have not connected to the printer from this device before, please set the printer into \"pairing mode\" by holding the power button for 3 seconds. If you have connected to this printer from another mobile device in the past, please remove this bond in the devices bluetooth settings or power off the device.'\nis displayed.\nIf so perform the actions mentioned in the pop up and click \"Continue\" button once done.")
     login_page.click_Allow_ZSB_Series_Popup()
     """"""""""verify the continue button and click on that"""""
     app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
@@ -186,25 +371,33 @@ def test_AppSettings_TestcaseID_49709():
     """""""""""""Verify Add network page is opening and verify the text"""""""
     app_settings_page.get_text_Add_Network()
     app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Long_Network_UserName()
-    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    app_settings_page.click_Continue_On_Failed_To_Connect_To_Wifi_Network()
-    app_settings_page.Verify_Long_Network_UserName()
+    long_network_name = common_method.get_user_input("Enter the Name of the long name network in the text field.")
+    common_method.show_message("Connect to 'long name network' which you prepared in the beginning.")
+    app_settings_page.Verify_Long_Network_UserName(long_network_name)
     login_page.click_Menu_HamburgerICN()
     app_settings_page.click_Printer_Settings()
     """"click on the red icon to delete the added network name"""
-    app_settings_page.click_Red_Icon_to_remove_network()
-    """stop the app"""
-    common_method.Stop_The_App()
+
+    # """stop the app"""
+    # common_method.Stop_The_App()
 
 
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 # ####bug id-SMBM-2163
+"""Update name of network which cannot resolve zebra host"""
 def test_AppSettings_TestcaseID_49711():
     """Manage networks- Check there is a prompt message when applying to the network which can't resolve Zebra host"""
-
+    test_steps = {
+        1: [1,
+            'Sign in to the test account with the printer added and the printer in Online status (connected to a valid network). Go to Printer settings > Printer name > Wi-Fi tab. Check if the current connected Wi-Fi is correct.'],
+        2: [2,
+            'Click Manage Networks option, pair Bluetooth if needed. Click Add Network option. Check if the available Wi-Fi networks are shown correctly.'],
+        3: [3, 'Select the network that cannot resolve the Zebra host. Check if the network can be added to the list.'],
+        4: [4,
+            'Sort the newly added network to the first priority and apply the changes. Check for a prompt message notifying the user that the network is invalid for the printer. If no prompt appears, verify that it connects to the second priority network within 5 minutes.']
+    }
     """start the app"""
     common_method.tearDown()
     """click on hamburger menu icon"""
@@ -217,20 +410,24 @@ def test_AppSettings_TestcaseID_49711():
     app_settings_page.click_wifi_tab()
     app_settings_page.click_Manage_Networks_Btn()
     """"verify bluetooth connection required text"""
-    app_settings_page.get_text_Bluetooth_connection_required_Txt()
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
+    common_method.handel_bluetooth_connection_required_pop_up()
     app_settings_page.click_Allow_Btn()
     app_settings_page.click_Add_Network()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Long_Network_UserName()
-    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    app_settings_page.click_Continue_On_Failed_To_Connect_To_Wifi_Network()
-    app_settings_page.Verify_Long_Network_UserName()
+    device_networks.wait_till_the_networks_list()
+    default_network = "NESTWIFI"
+    netw1 = "zebra-host"
+    netw1pass = "123456789"
+    device_networks.click_network_by_name(netw1)
+    device_networks.enter_the_password(netw1pass)
+    device_networks.click_on_connect()
+    device_networks.check_if_network_present_in_saved_networks(netw1)
     app_settings_page.click_Apply_Chnages_Button()
+    device_networks.swap_two_networks(default_network, netw1)
     """""Currently there is no error message displaying so Couldnot automate, it is blocked due to SMBM-2163"""""""""""
     """"Verify The error message manually if it is displaying"""
     """""""POP UP FOR MANUAL INTERVENTION"""""""
-    common_method.Show_popup_For_Error_Message_Manually()
+    common_method.show_message("Check for a prompt message notifying the user that the network is invalid for the printer. If no prompt appears, verify that it connects to the second priority network within 5 minutes.")
+    # common_method.Show_popup_For_Error_Message_Manually()
     ### app_settings_page.Verify_The_Invalid_Network_Error_Message()
     """stop the app"""
     common_method.Stop_The_App()
@@ -243,36 +440,181 @@ def test_AppSettings_TestcaseID_50326():
 
     """"App should be in logged in condition & printer should be added """"
     """"""connect with Another wifi Network except NESTWIFI"""
+    test_steps = {
+        1: [1, 'Sign in to the test account and navigate to Printer settings > Printer name > Wi-Fi tab.'],
+        2: [2, 'Click Manage Networks, pair Bluetooth if needed. Check that the "Add Network" option is visible.'],
+        3: [3,
+            'Click on the "Add Network" button and select a network to add. Verify that the network is added successfully to the network list.'],
+        4: [4,
+            'Delete one of the added networks. Check that the deleted network is no longer visible in the network list.'],
+        5: [5,
+            'Sort the network list, exit the Manage Networks page, and return to the home page. Verify that the printer is online and that it is possible to print a test label.'],
+        6: [6,
+            'Go to the device’s settings and disconnect the printer Bluetooth (or use another device, sign in with the same user, ensuring the printer is not paired).'],
+        7: [7,
+            'Return to the ZSB Series app and click Manage Networks, pair Bluetooth if needed. Check that the network at the top is the one sorted in step 5.'],
+        8: [8, 'Turn on the bluetooth and remove the newly added network.']
+    }
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
 
-    """"start the app"""
-    common_method.tearDown()
-    """"click on the hamburger icon"""
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Printer_Settings()
-    app_settings_page.click_PrinterName_On_Printersettings()
-    app_settings_page.click_wifi_tab()
-    app_settings_page.click_Manage_Networks_Btn()
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Required()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    """"accept Bluetooth pairing popup 1"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup1()
-    """"accept Bluetooth pairing popup 2"""
-    add_a_printer_screen.Accept_Bluetooth_pairing_Popup2()
-    app_settings_page.click_Add_Network()
-    app_settings_page.click_ZEBRA_Network()
-    app_settings_page.click_Network_Password_Field()
-    app_settings_page.click_Network_Submit_Btn()
-    app_settings_page.Verify_NestWIFI_Network_Name_In_Network_List()
-    app_settings_page.click_Red_Icon_to_remove_network()
-    app_settings_page.Verify_NestWIFI_In_Network_List()
-    login_page.click_Menu_HamburgerICN()
-    app_settings_page.click_Home_Tab()
-    app_settings_page.Verify_Printer_is_already_added()
-    """stop the app"""
-    common_method.Stop_The_App()
+    stepId = 1  # Initialize stepId before the try-except block
+    try:
+        # Step 1
+        start_time = time.time()
+
+        """"start the app"""
+        common_method.tearDown()
+        """"click on the hamburger icon"""
+        login_page.click_Menu_HamburgerICN()
+        app_settings_page.click_Printer_Settings()
+        app_settings_page.click_PrinterName_On_Printersettings()
+        app_settings_page.click_wifi_tab()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 2
+        start_time = time.time()
+
+        app_settings_page.click_Manage_Networks_Btn()
+        common_method.handel_bluetooth_connection_required_pop_up()
+        others.click_on_allow()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 3
+        start_time = time.time()
+
+        netw1 = "EVT_ArubaOpen"
+        others.click_add_network_button()
+        device_networks.wait_till_the_networks_list()
+        device_networks.click_network_by_name(netw1)
+
+        try:
+            common_method.wait_for_element_appearance_namematches("Printer")
+        except:
+            raise Exception("did not redirect to the previous page")
+        sleep(5)
+        common_method.wait_for_element_appearance("Connected", 100)
+        common_method.wait_for_element_appearance_enabled("Apply Changes")
+        device_networks.check_if_network_present_in_saved_networks(netw1)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4
+        start_time = time.time()
+
+        device_networks.delete_the_network(netw1)
+        sleep(5)
+        device_networks.check_if_network_not_present_in_saved_networks(netw1)
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 5
+        start_time = time.time()
+
+        """Add one more network"""
+        others.click_add_network_button()
+        default_network = "NESTWIFI"
+        netw2 = "EL17-Cisco-WPA-WPA2"
+        netw2_pass = "Dvttesting@123"
+        device_networks.wait_till_the_networks_list()
+        device_networks.click_network_by_name(netw2)
+        device_networks.enter_the_password(netw2_pass)
+        device_networks.click_on_connect()
+        try:
+            common_method.wait_for_element_appearance_namematches("Printer")
+        except:
+            raise Exception("did not redirect to the previous page")
+        sleep(5)
+        common_method.wait_for_element_appearance("Connected", 100)
+        common_method.wait_for_element_appearance_enabled("Apply Changes")
+        device_networks.check_if_network_present_in_saved_networks(netw2)
+        device_networks.swap_two_networks(default_network, netw2)
+        app_settings_page.click_Apply_Chnages_Button()
+        login_page.click_Menu_HamburgerICN()
+        app_settings_page.click_Home_Tab()
+        others.check_printer_online_status()
+        login_page.click_Menu_HamburgerICN()
+        """"click on printer settings tab"""""
+        app_settings_page.click_Printer_Settings()
+        """"click on printer name on printer settings page"""
+        app_settings_page.click_PrinterName_On_Printersettings()
+        """verify printer name text"""
+        app_settings_page.Verify_Printer_Name_Text()
+        """click test print button"""
+        app_settings_page.click_Test_Print_Button()
+        """"Verify Printed successfully text"""
+        app_settings_page.Verify_Printed_Successfully_Text()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 6
+        start_time = time.time()
+
+        add_a_printer_screen.disable_bluetooth()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 7
+        start_time = time.time()
+
+        app_settings_page.click_wifi_tab()
+        app_settings_page.click_Manage_Networks_Btn()
+        common_method.handel_bluetooth_connection_required_pop_up()
+        app_settings_page.click_Allow_Btn()
+        network_list = device_networks.get_network_names()
+        if network_list[0] != netw2:
+            raise Exception(
+                "Networks not in the order that we sorted before returning to the page after navigating to home page..")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 8
+        start_time = time.time()
+
+        add_a_printer_screen.enable_bluetooth()
+        device_networks.delete_the_network(netw2)
+        """stop the app"""
+        common_method.Stop_The_App()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
+    except Exception as e:
+        screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+        raise Exception(str(e))
+
+    finally:
+        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
 
 
 #
@@ -280,62 +622,149 @@ def test_AppSettings_TestcaseID_50326():
 
 def test_AppSettings_TestcaseID_45688():
     """""""""Verify Wifi Settings"""""
-
     """""Install the latest production app on the phone & printer should be added and it should be connected to wifi"""""""""
     """""""""Create the object for Login page & Common_Method page to reuse the methods"""""""""""
-    #
-    #
     """""Check whether App is installed or not"""
-    common_method.tearDown()
-    """" Allow pop up before login for the fresh installation"""""
-    login_page.click_LoginAllow_Popup()
-    """""for the first installation click on the zsb series popup"""
-    login_page.click_Allow_ZSB_Series_Popup()
-    login_page.click_Menu_HamburgerICN()
-    """""click on the printer settings tab"""
-    app_settings_page.click_Printer_Settings()
-    """""click on the printer tab"""
-    app_settings_page.click_PrinterName_On_Printersettings()
-    app_settings_page.click_General_Tab()
-    """"Verify the Test print button text & tab"""
-    app_settings_page.Test_Print_button_is_present_on_printer_settings_page()
-    """""""""" click on the wifi tab option"""""""""""
-    app_settings_page.click_wifi_tab()
-    """""""""validate the Current network text"""""
-    app_settings_page.test_CurrentNetwork_Txt_is_present_on_printer_settings_page()
-    """""""Validate the Network status text is present on the printer settings screen"""""""
-    app_settings_page.test_Network_Status_Txt_is_present_on_printer_settings_page()
-    """"validate network status result text on the printer settings screen"""
-    app_settings_page.get_text_Network_Status_Result_Txt()
-    """"""""" Verify IP address text is present on the printer settings screen"""""""""
-    app_settings_page.get_text_IPAddress_Txt()
-    """""""""Verify the message You can save upto 5 network profiles to your saved networks after Manage Networks"""
-    app_settings_page.IS_Present_Save_Network_Message_Txt()
-    """""""verify manage networks text is present & clickable"""""""
-    app_settings_page.click_Manage_Networks_Btn()
-    """""""""""""Click on continue button on the Bluetooth Connection required popup"""""""
-    app_settings_page.accept_Continue_popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """""""""Verify the Cancel button on the Bluetooth_Connection_Failed_Popup"""""
-    app_settings_page.Cancel_is_present_on_Bluetooth_Connection_Failed_Popup()
-    """"""""""verify the continue button and click on that"""""
-    app_settings_page.click_Continue_Btn_on_Bluetooth_Connection_Failed_Popup()
-    """"""""""Verify the red remove icon next to the network name"""""
-    app_settings_page.click_Red_Icon_to_remove_network()
-    sleep(5)
-    """"""""""Verify the Add Network text & button & click on that"""""""""""
-    app_settings_page.click_Add_Network()
-    sleep(3)
-    """""""""""""Verify Add network page is opening and verify the text"""""""
-    app_settings_page.get_text_Add_Network()
-    app_settings_page.click_Enter_Network_Manually()
-    app_settings_page.click_Network_UserName()
-    app_settings_page.click_Join_Btn_On_Other_Network_Popup()
-    """""test case 7 to 10 need to check on Web portal manually"""
-    """""""POP UP FOR MANUAL INTERVENTION"""""""""""""""
-    common_method.Show_popup_For_Web_Portal_Verification_Manually()
-    """stop the app"""
-    common_method.Stop_The_App()
+    test_steps = {
+        1: [1, 'Click Printer Settings > select Printer Tab (e.g., ZSB-DP12) > Select Wi-Fi tab.'],
+        2: [2,
+            'Verify that the options "Current network," "Network Status," and "IP Address" are displayed, along with the "Manage Networks" button enabled in blue and the prompt message under the button.'],
+        3: [3,
+            'Click on the "Manage Networks" button. Confirm that the "Bluetooth Connection Required" dialog pops up with the expected text.'],
+        4: [4,
+            'Complete the pairing process if necessary. After finishing, verify that the "My Saved Networks" list is retrieved and the "Add Network" button is displayed at the bottom.'],
+        5: [5,
+            'Click the red icon to remove the current network. Check that the network is removed successfully and that the "Add Network" button is enabled.'],
+        6: [6,
+            'Click the "Add Network" button to add back the previously deleted network. Verify that the network can be added back successfully.']
+    }
+    current_function_name = inspect.currentframe().f_code.co_name
+    test_case_id = current_function_name.split("_")[-1]
+    start_time_main = time.time()
+    start_main(execID, leftId[test_case_id])
+
+    stepId = 1  # Initialize stepId before the try-except block
+    try:
+        # Step 1
+        start_time = time.time()
+
+        common_method.tearDown()
+        """" Allow pop up before login for the fresh installation"""""
+        login_page.click_LoginAllow_Popup()
+        """""for the first installation click on the zsb series popup"""
+        login_page.click_Allow_ZSB_Series_Popup()
+        login_page.click_Menu_HamburgerICN()
+        """""click on the printer settings tab"""
+        app_settings_page.click_Printer_Settings()
+        """""click on the printer tab"""
+        app_settings_page.click_PrinterName_On_Printersettings()
+        app_settings_page.click_General_Tab()
+        """"Verify the Test print button text & tab"""
+        app_settings_page.Test_Print_button_is_present_on_printer_settings_page()
+        """""""""" click on the wifi tab option"""""""""""
+        app_settings_page.click_wifi_tab()
+        """""""""validate the Current network text"""""
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 2
+        start_time = time.time()
+
+        app_settings_page.test_CurrentNetwork_Txt_is_present_on_printer_settings_page()
+        common_method.show_message("Check manage networks is enabled and is blue in colour")
+        """""""Validate the Network status text is present on the printer settings screen"""""""
+        app_settings_page.test_Network_Status_Txt_is_present_on_printer_settings_page()
+        """"validate network status result text on the printer settings screen"""
+        app_settings_page.get_text_Network_Status_Result_Txt()
+        """"""""" Verify IP address text is present on the printer settings screen"""""""""
+        app_settings_page.get_text_IPAddress_Txt()
+        """""""""Verify the message You can save upto 5 network profiles to your saved networks after Manage Networks"""
+        app_settings_page.IS_Present_Save_Network_Message_Txt()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 3
+        start_time = time.time()
+
+        """""""verify manage networks text is present & clickable"""""""
+        app_settings_page.click_Manage_Networks_Btn()
+        """""""""""""Click on continue button on the Bluetooth Connection required popup"""""""
+        common_method.handel_bluetooth_connection_required_pop_up()
+        login_page.click_Allow_ZSB_Series_Popup()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4
+        start_time = time.time()
+
+        device_networks.check_if_saved_network_list_is_displayed()
+        device_networks.check_add_network_button_present()
+        common_method.show_message("Check if the printer is connected to 'NESTWIFI' else connect it to 'NESTWIFI' and remove all other networks from saved networks. Wait for 'NESTWIFI' to show connected state.")
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 5
+        start_time = time.time()
+
+        """"""""""Verify the red remove icon next to the network name"""""
+        netw1 = "NESTWIFI"
+        netw1_pass = "123456789"
+        device_networks.delete_the_network(netw1)
+        sleep(5)
+        device_networks.check_add_network_button_enabled()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 6
+        start_time = time.time()
+
+        """"""""""Verify the Add Network text & button & click on that"""""""""""
+        app_settings_page.click_Add_Network()
+        sleep(3)
+        """""""""""""Verify Add network page is opening and verify the text"""""""
+        app_settings_page.get_text_Add_Network()
+        device_networks.wait_till_the_networks_list()
+        device_networks.click_network_by_name(netw1)
+        device_networks.enter_the_password(netw1_pass)
+        device_networks.click_on_connect()
+        try:
+            common_method.wait_for_element_appearance_namematches("Printer")
+        except:
+            raise Exception("did not redirect to the previous page")
+        common_method.wait_for_element_appearance("Connected", 200)
+        device_networks.check_if_network_present_in_saved_networks(netw1)
+        """stop the app"""
+        common_method.Stop_The_App()
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+
+    except Exception as e:
+        screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
+        raise Exception(str(e))
+
+    finally:
+        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
 
 
 ##"""""""""""""""""""""""""""""END"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -758,7 +1187,7 @@ def test_Others_TestcaseID_45799():
     common_method.show_message("test this manually in android 8.0 device")
 
     start_app("com.android.documentsui")
-    t=''
+    t = ''
     others.install_the_zsb_apk_in_files_android_8()
     sleep(3)
     res = others.check_app_is_installed_on_android_8()
@@ -770,15 +1199,16 @@ def test_Others_TestcaseID_45799():
 
     poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
 
-    while(1):
+    while (1):
         if others.check_zsb_app_icon():
-            t='present'
+            t = 'present'
             break
         else:
             others.scroll_down()
 
     if t == 'present':
         raise Exception("app present")
+
 
 def test_Others_TestcaseID_51703():
     pass
@@ -804,20 +1234,20 @@ def test_Others_TestcaseID_51703():
         others.click_an_google_account("zebra850.swdvt@gmail.com")
     except:
         pass
-    common_method.wait_for_element_appearance_namematches("Home",30)
+    common_method.wait_for_element_appearance_namematches("Home", 30)
     res = others.check_home_page()
     if not res:
         raise Exception("Not in Home page")
 
     others.uninstall_and_install_zsb_series_on_google_play()
-    common_method.wait_for_element_appearance_namematches("Uninstall",30)
+    common_method.wait_for_element_appearance_namematches("Uninstall", 30)
     stop_app("com.android.vending")
 
     poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
 
-    while(1):
+    while (1):
         if others.check_zsb_app_icon():
-            t='present'
+            t = 'present'
             break
         else:
             others.scroll_down()
@@ -849,11 +1279,12 @@ def test_Others_TestcaseID_51703():
         others.click_an_google_account("zebra850.swdvt@gmail.com")
     except:
         pass
-    common_method.wait_for_element_appearance_namematches("Home",30)
+    common_method.wait_for_element_appearance_namematches("Home", 30)
 
     res = others.check_home_page()
     if not res:
         raise Exception("Not in Home page")
+
 
 def test_Others_TestcaseID_51704(self):
     pass
@@ -880,7 +1311,7 @@ def test_Others_TestcaseID_51704(self):
     common_method.wait_for_element_appearance_textmatches("Choose an account")
     try:
         others.click_an_google_account("zebra850.swdvt@gmail.com")
-        common_method.wait_for_element_appearance_namematches("Home",20)
+        common_method.wait_for_element_appearance_namematches("Home", 20)
     except:
         pass
     try:
@@ -893,7 +1324,7 @@ def test_Others_TestcaseID_51704(self):
     if not res:
         raise Exception("Not in Home page")
 
-    cmd ='adb uninstall com.zebra.soho_app'
+    cmd = 'adb uninstall com.zebra.soho_app'
     res = others.run_the_command(cmd)
     print(res)
 
@@ -901,9 +1332,9 @@ def test_Others_TestcaseID_51704(self):
     sleep(15)
     poco.swipe([0.5, 0.8], [0.5, 0.2], duration=0.01)
 
-    while(1):
+    while (1):
         if others.check_zsb_app_icon():
-            t='present'
+            t = 'present'
             break
         else:
             others.scroll_down()
@@ -926,7 +1357,7 @@ def test_Others_TestcaseID_51704(self):
     common_method.wait_for_element_appearance_textmatches("Choose an account")
     try:
         others.click_an_google_account("zebra850.swdvt@gmail.com")
-        common_method.wait_for_element_appearance_namematches("Home",20)
+        common_method.wait_for_element_appearance_namematches("Home", 20)
     except:
         pass
 
@@ -963,19 +1394,5 @@ def test_Others_TestcaseID_45874(self):
     if expected_version_no != actual_version_no:
         raise Exception("Version no did not match")
 
-
 ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ##"""""""""""""""""""""""""""""END"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-
-
-
-
-
-
-
-
-
