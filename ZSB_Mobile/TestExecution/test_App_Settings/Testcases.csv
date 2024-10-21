@@ -1,0 +1,30 @@
+Testcase_ID,Test_Description,Subarea
+47918,Verify ZSB app permission works fine,App_Settings
+49665,Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared,App_Settings
+45689,Check Change Theme Function Work,App_Settings
+45690,Update Unit of Measure in Mobile App. check it will sync to Web Portal and Printer Tools,App_Settings
+45691,Edit Workspace - upload and remove image,App_Settings
+45692,Edit Workspace - Update workspace name,App_Settings
+45705,Verify account profile update for non-Zebra user,App_Settings
+47810,Verify recently printer labels text shouldn't overlap on theme background picture,App_Settings
+47820,Verify ZSB app home page (overview page) should scroll to the bottom of the list in Recently Printed Labels,App_Settings
+47825,Verify ZSB app doesn't shows error as "Logout failed. Please try logging out again",App_Settings
+47879,Verify typo and guide message is correct on Searching For your printer page,App_Settings
+47880,Verify "Done" Button and text "LED light Behavior Support" position is correct in Printer LED Guide dialog ,App_Settings
+47911,Verify auto Label Feed On Printer Cover Close value doesn't retrieve in progress after changing darkness level,App_Settings
+47914,Android Only- Verify there is no unknown printer appeared in the Bluetooth list,App_Settings
+47915,Printer Bluetooth List displays printers which have already been added even if "Show All Printers" is not selected,App_Settings
+47917,Verify Printer’s name is too long which should not causes app get stuck and style error at Printer Settings page,App_Settings
+50333,Android only- Check it will back to manage network after clicking device’s back button,App_Settings
+47923,Verify changing password should log out all clients,App_Settings
+47956,Upload avatar via "Photo Gallery" using the default interface of Onedrive,App_Settings
+50325,Manage Network- Check able to cancel/submit network via Enter network manually option,App_Settings
+49960,Check click change password in user profile page: it added callback url. responsce_type. client_id and redirect_url parameters,App_Settings
+49961,Check after change password. click return to login will navigate to login page and user able to login with new password success,App_Settings
+51702,Check the UI of toggle buttons on Notification Settings,App_Settings
+51788,Sign in with existing Non-Zebra User Account. then sign out,App_Settings
+51705,Check clicking the photo taken by camera will not affect uploading photo as user avatar,App_Settings
+47924,Verify Should not allow same printer name in all the clients,App_Settings
+47910,Verify pull-down screen twice then the prints left value can refresh success in home page,App_Settings
+47881,Verify "How to Unpair Bluetooth" dropdown list should expend with small size screen device,App_Settings
+47928,UI warning and confirmation verification when printer is deleted before decommissioned(Android),App_Settings

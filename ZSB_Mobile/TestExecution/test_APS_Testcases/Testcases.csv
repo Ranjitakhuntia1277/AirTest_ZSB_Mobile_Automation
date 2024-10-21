@@ -1,0 +1,5 @@
+Testcase_ID,Test_Description,Subarea
+49156,Check APS would be deleted after deleting ZSB Series app,APS_Others
+49540,Check ZSB printers are fetched out in ZSB APS after keep ZSB APP idle for more than 1 day,APS_Others
+49788,Check user can disable ZSB series print service and cannot fetch any Money badger printer,APS_Others
+49789,Check user can enable ZSB series print service from off status and fetch out printers,APS_Others

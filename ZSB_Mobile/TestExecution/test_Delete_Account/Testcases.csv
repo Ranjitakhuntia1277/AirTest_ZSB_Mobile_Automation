@@ -1,0 +1,22 @@
+Testcase_ID,Test_Description,Subarea
+45760,Check X buton to close delete account process in Continue delete account page,Delete Account
+45761,Check X buton to close delete account process in Account final confirm dialog,Delete Account
+45762,Check Cancel delete account process in Continue delete account page,Delete Account
+45763,Check user process delete account and login again Final delete pop up click cancel will stop all the delete process,Delete Account
+45764,Check delete user and continue will auto logout and relogin will auto pop up Final delete dialog and click delete user will deleted success and auto logout,Delete Account
+45769,Check delete Zebra account success and relogin in Mobile app Need accept EULA and all data cleared(My Designs/My Data),Delete Account
+45780,Delete fail:User login in delete and confirm auto logout then sleep phone for 1 hour then login confrim delete,Delete Account
+45781,Delete fail:User login in delete and confirm auto logout then login another user for 1 hour then logout and login continue delete,Delete Account
+45782,Delete fail:User login in delete and confirm auto logout then force quite App for 1 hour then reopen and login continue delete,Delete Account
+45783,Delete a user fail and user can be deleted again with the same device,Delete Account
+45786,Delete Fail: User login and delete account when in poor network or network disconnect,Delete Account
+45770,Check delete accunt success and login the deleted account on Web Portal need accept EULA and all data cleared(My Designs/My Data),Delete Account
+45775,Check user process delete account and login again switch to other app within 1 hour and switch back click Delete button will delete success,Delete Account
+45776,Check user login delete and continue auto logout lock screen with 1 hour then unlock to login and continue delete,Delete Account
+45774,Check user process delete account and login again Final delete pop up force quit app and login in again within 1 hour will show Final delete dialog and delete success,Delete Account
+45777,Check user login delete and continue auto logout login with another user logout and login continue delete within 1 hour,Delete Account
+45778,Delete fail:Check user process delete account and login again Final delete pop up lock device screen for 1 hour unlock and click delete,Delete Account
+45784,Delete fail:Check user process delete account and login again Final delete pop up lock device screen for 1 hour unlock and click delete,Delete Account
+45787,Check delete user success and try register with the deleted account would fail Delete Account
+53205,[New Fonts and UI checking]Check delete an account pop up dialog display correct and then login this deleted user to check the EULA page,Delete Account
+45767,Check delete Facebook user success with an online printer and re-login,Delete Account

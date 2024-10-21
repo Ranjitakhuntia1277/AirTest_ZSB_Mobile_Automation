@@ -239,7 +239,7 @@ class Printer_Management_Screen:
 
     def Enter_Zebra_Password(self):
         password = self.poco(name="password")
-        password.set_text("Zebra#123456789")
+        password.set_text("Zebra#12345678")
 
     def click_Password_TextField(self):
         sleep(1)

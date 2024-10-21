@@ -1635,6 +1635,7 @@ class Common_Method():
         subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
 
     def start_adb_log_capture(self):
+        uploaded_files = set()
         test_run_start_time = time.time()
         self.clear_old_logs()
         LOG_DIRECTORY = "logs"
@@ -1644,7 +1645,7 @@ class Common_Method():
         os.makedirs(date_directory, exist_ok=True)
         ADB_LOG_FILE = os.path.join(date_directory, "adb_log.txt")
         subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
-        return ADB_LOG_FILE, test_run_start_time
+        return ADB_LOG_FILE, test_run_start_time, uploaded_files
 
     def stop_adb_log_capture(self):
         result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],

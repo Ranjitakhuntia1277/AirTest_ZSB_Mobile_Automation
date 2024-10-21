@@ -774,7 +774,7 @@ class App_Settings_Screen:
 
     def Verify_Updated_Name(self):
         sleep(1)
-        Updated_Workspace_Name = self.poco(text="@abcdefghijklmn!@#abcdefghijklmn")
+        Updated_Workspace_Name = self.poco(text="@abcdefghijklmn!@#abcdefg23hijklmn")
         Updated_Workspace_Name.get_text()
         sleep(1)
         return Updated_Workspace_Name

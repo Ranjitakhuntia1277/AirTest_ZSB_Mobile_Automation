@@ -1,0 +1,9 @@
+Testcase_ID,Test_Description,Subarea
+45794,check the notification can be dismissed by click 'dismiss' button at notification page,User Settings and Notifications
+45796,upload and delete the picture for the zebra account via "Photo Gallery",User Settings and Notifications
+45797,upload and delete the picture for the non-zebra account via "Camera",User Settings and Notifications
+45798,check cancel feature of uploading account picture process,User Settings and Notifications
+45795,check the notification page would display all generated notifications unless delete the app,User Settings and Notifications
+53234,[New Fonts and UI Check] Check the font and toast font displayed correctly in Notifications page,User Settings and Notifications
+53232,[New Fonts and UI Check] Check the font and dialog displayed correctly in My Designs(including seraching. printing preview. and performing print),User Settings and Notifications
+45800,Check Non Zebra User Account can update its user account profile,User Settings and Notifications

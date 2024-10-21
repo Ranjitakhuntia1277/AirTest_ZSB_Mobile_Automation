@@ -14,13 +14,14 @@
 #         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
 #                     exec_time)
 #
-#     except Exception as e:
-#         screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
-#         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-#         insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
-#         insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
-#         upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time)
-#         raise Exception(str(e))
+    # except Exception as e:
+    #     screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
+    #     insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
+    #     insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+    #     insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+    #     if screenshot_path not in uploaded_files:
+    #         upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time, uploaded_files)
+    #     raise Exception(str(e))
 #
 #     finally:
 #         end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
