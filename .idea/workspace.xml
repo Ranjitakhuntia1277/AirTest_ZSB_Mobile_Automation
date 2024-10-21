@@ -23,18 +23,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;TauqeerMT5445&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Ranjitakhuntia1277/AirTest_ZSB_Mobile_Automation.git&quot;,
-    &quot;accountId&quot;: &quot;cabb9dd6-eb0a-4477-9e73-764def9e117d&quot;
-  }
-}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -47,47 +35,96 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.pytest for TestExecution.test_App_Settings.test_iOS_App_Settings.test_AppSettings_TestcaseID_45688.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45656.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45657.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45658.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45660.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45662.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45665.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45666.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45667.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45669.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45675.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45676.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45679.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45682.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53067.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53068.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53070.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53071.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53073.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53089.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53090.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53091.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_test_case_id_53093.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45656.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45657.executor": "Run",
-    "Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45665.executor": "Run",
-    "Python tests.pytest for test_Add_A_Printer_iOS_Semi.test_Addprinter_TestcaseID_45676.executor": "Run",
-    "Python tests.pytest for test_Add_A_Printer_iOS_Semi.test_addprinter_testcase_id_45663.executor": "Run",
-    "Python tests.pytest for test_iOS_App_Settings.test_AppSettings_TestcaseID_45688.executor": "Run",
-    "Python.Android_Automated_TestSuite.executor": "Run",
-    "Python.api_calls.executor": "Run",
-    "Python.left_and_exec_id.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "tauqeer",
-    "last_opened_file_path": "C:/Users/mt5445/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/TestExecution/test_Add_A_Printer",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45729.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45734.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45737.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45739.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45741.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45742.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45743.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45745.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45752.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45757.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_45758.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_DataSources_TestcaseID_47937.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_Smoke_Test_TestcaseID_45878.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Data_Sources.test_Data_Sources_Android.test_a.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Smoke_Test_TestcaseID_45880.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45902.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45903.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45907.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45910.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45911.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45912.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45913.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45914.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45915.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45916.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45919.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45920.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45923.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45926.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45928.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45930.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45931.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45933.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45934.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45936.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45938.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45939.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45940.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45941.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45942.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45948.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45957.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45959.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45964.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45965.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45966.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45967.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45968.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45970.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45976.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45979.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45981.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45985.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45992.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_45994.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46000.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46001.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46003.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46004.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46014.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46015.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46020.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46024.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46027.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46029.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46032.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46033.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_46037.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_47791.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_47824.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_47941.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_Template_Management_TestcaseID_47947.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_adb.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for ZSB_Mobile.TestExecution.test_Template_Management.test_Android_Template_Management_Exec.test_sdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49905.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49907.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49910.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49911.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_SSO_token.test_SSO_Token_Renewal_TestcaseID_49913.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Android_Automated_TestSuite.executor&quot;: &quot;Run&quot;,
+    &quot;Python.try.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rk1277/Desktop/ZSB_Automation/ZSB_Mobile/AEMS&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ZSB_Automation" is-module-sdk="true">
@@ -98,22 +135,22 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\mt5445\PycharmProjects\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\TestExecution\test_Add_A_Printer" />
-      <recent name="C:\Users\mt5445\PycharmProjects\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\templates" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\AEMS" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\AEMS reference" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Test_Suite_Execution\test_Suite_Ranjita" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\Test_Suite_Execution\test_Suite_Ranjita\tpl1712913927236.png" />
       <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_APS_Testcases" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mt5445\PycharmProjects\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\TestExecution\test_Add_A_Printer" />
-      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_Printer_Management" />
-      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_Add_A_Printer" />
-      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution" />
-      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_Smoke_Test" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_UserSettings_And_Notifications" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_AEMS_reference" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_APS_Testcases" />
+      <recent name="C:\Users\JD4936\OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\templates" />
+      <recent name="C:\Users\rk1277\Desktop\ZSB_Automation\ZSB_Mobile\TestExecution\test_App_Settings" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.pytest for ZSB_Mobile.TestExecution.test_APS_Testcases.test_APS_Settings_And_APS_Others.test_APS_Settings_And_APS_Others_TestcaseID_49138">
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45656" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,11 +163,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45656&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45667" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -143,11 +180,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45667&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45656" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45860" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,11 +197,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45656&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45860&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45657" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45862" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -177,11 +214,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45657&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45862&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45665" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_48479" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ZSB_Automation" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,17 +231,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45665&quot;" />
+      <option name="_new_target" value="&quot;ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_48479&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45656" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45667" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45665" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_add_printer_testcase_id_45657" />
-        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Add_A_Printer.test_Add_A_Printer_iOS.test_Addprinter_TestcaseID_45656" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Delete_Account.test_Delete_Account_Android.test_Delete_Account_TestcaseID_45784" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45859" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45860" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Registration.test_Registration_Android.test_Registration_TestcaseID_45862" />
+        <item itemvalue="Python tests.pytest for ZSB_Mobile.TestExecution.test_Social_Login.test_Android_Social_Login_Exec.test_Social_Login_TtestcaseID_48479" />
       </list>
     </recent_temporary>
   </component>
@@ -226,6 +263,11 @@
     </task>
     <servers />
   </component>
+  <component name="TerminalProjectNonSharedOptionsProvider">
+    <envs>
+      <env key="Path" value="%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;%SYSTEMROOT%\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\JD4936\AppData\Local\Android\Sdk\platform-tools" />
+    </envs>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -237,66 +279,23 @@
       </map>
     </option>
   </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$/AirTest_ZSB_Mobile_Automation" />
-      <path value="$PROJECT_DIR$/WebDriverAgent" />
-    </ignored-roots>
-    <MESSAGE value="xyz" />
-    <option name="LAST_COMMIT_MESSAGE" value="xyz" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py</url>
-          <line>448</line>
-          <option name="timeStamp" value="39" />
+          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py</url>
+          <line>709</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py</url>
-          <line>462</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Data_Sources/test_Data_Sources_Android.py</url>
+          <line>862</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py</url>
-          <line>480</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS_Semi.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS_Semi.py</url>
-          <line>89</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS_Semi.py</url>
-          <line>104</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS_Semi.py</url>
-          <line>127</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py</url>
-          <line>196</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py</url>
-          <line>218</line>
+          <url>file://$PROJECT_DIR$/ZSB_Mobile/ADB_logs/try.py</url>
+          <line>26</line>
           <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ZSB_Mobile/TestExecution/test_Add_A_Printer/test_Add_A_Printer_iOS.py</url>
-          <line>93</line>
-          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
