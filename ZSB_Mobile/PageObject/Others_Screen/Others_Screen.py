@@ -12,14 +12,8 @@ from ...PageObject.Login_Screen import Login_Screen
 
 
 
-import platform
-
-if platform.system() == "Windows":
-    def Basic_path(a):
-        return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
-else:
-    def Basic_path(a):
-        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",a)
 class Others:
     pass
 
@@ -395,11 +389,6 @@ class Others:
         except:
             pass
         try:
-            image_shutter_btn = self.poco(desc="Take photo")
-            image_shutter_btn.click()
-        except:
-            pass
-        try:
             self.poco("org.codeaurora.snapcam:id/shutter_button").click()
         except:
             self.run_the_command("adb shell input keyevent KEYCODE_CAMERA")
@@ -669,9 +658,7 @@ class Others:
         first_design.click()
 
     def click_on_copy_to_my_designs(self):
-        sleep(2)
         self.poco(self.copy_to_my_designs).click()
-        sleep(3)
 
     def click_on_my_designs(self):
         self.poco(self.my_designs_button).click()

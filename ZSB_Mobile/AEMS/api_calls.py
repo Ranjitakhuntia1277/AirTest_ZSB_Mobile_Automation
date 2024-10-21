@@ -235,17 +235,14 @@ def insert_case_results(execID, leftId, result, exec_time, reportext, errormsg):
     session.post(insert_case_results_url, json=insert_case_results_json, timeout=60, verify=False)
 
 
-def upload_case_files(execID, output_directory, test_run_start_time, uploaded_files):
+def upload_case_files(execID, output_directory, test_run_start_time):
     """
     Upload the files in local, like selenium report, ATF report, etc.
-    :param uploaded_files:
-    :param test_run_start_time:
     :param execID: Execution ID for the test case.
     :param output_directory: Directory where the files are located.
     :return: None
     """
     count = 0
-
     for file in os.listdir(output_directory):
         file_path = os.path.join(output_directory, file)
         file_name, file_extension = os.path.splitext(file)
@@ -253,19 +250,17 @@ def upload_case_files(execID, output_directory, test_run_start_time, uploaded_fi
         if os.path.getmtime(file_path) < test_run_start_time:
             continue
 
-        if file_path in uploaded_files:
-            print(f"Skipping already uploaded file: {file_path}")
-            continue
-
         print(f"Found file: {file}, extension: {file_extension}")
 
         if file_extension == '.txt':
-            gz_filepath = os.path.join(output_directory, file_name)
+            gz_filepath = os.path.join(output_directory, file_name)  # Save as original name without .zip extension
             gz_filename = f"{file_name}.gz"
 
+            # Create a zip file with the original name (without double .zip)
             with open(file_path, 'rb') as f_in, gzip.open(gz_filepath, 'wb') as f_out:
                 shutil.copyfileobj(f_in, f_out)
 
+            # Upload the zip file with the correct name during the upload
             with open(gz_filepath, "rb") as logs:
                 files = {"file": logs}
                 upload_case_files_url = path + "FileSave/UploadCaseFile"
@@ -273,12 +268,10 @@ def upload_case_files(execID, output_directory, test_run_start_time, uploaded_fi
                     "executionId": execID,
                     "caseId": 1,
                     "leftID": count,
-                    "fileName": gz_filename
+                    "fileName": gz_filename  # Add .zip extension here for correct upload
                 }
                 print(f"Uploading {gz_filename} to {upload_case_files_url} with params {params}")
                 requests.post(upload_case_files_url, files=files, timeout=60, params=params, verify=False)
-
-            uploaded_files.add(file_path)
 
         else:
             # For non-txt files, upload them as they are
@@ -294,9 +287,7 @@ def upload_case_files(execID, output_directory, test_run_start_time, uploaded_fi
                 print(f"Uploading {file} to {upload_case_files_url} with params {params}")
                 requests.post(upload_case_files_url, files=files, timeout=60, params=params, verify=False)
 
-            uploaded_files.add(file_path)
-
-        count += 1
+        count += 2
 
 # def upload_case_files(execID, output_directory):
 #     """

@@ -10,17 +10,13 @@ from ...PageObject.Device_Networks.Device_Network_Android import Device_Networks
 from ...TestSuite.api_calls import *
 import inspect
 from ...TestSuite.store import *
-import pytest
+
+
 import os
 import logging
-
-
-class Android_App_Device_Networks_Semiautomated:
-    pass
-
-
 logger = logging.getLogger("airtest")
 logger.setLevel(logging.ERROR)
+
 
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
@@ -30,28 +26,14 @@ sleep(3.0)
 
 login_page = Login_Screen(poco)
 others = Others(poco)
-common_method = Common_Method(poco)
+common_method=Common_Method(poco)
 social_login = Social_Login(poco)
 device_networks = Device_Networks_Android(poco)
-
-
 #
 # """EXECID and LEFTID need to be changed"""
 # execID=0
 # leftId = {}
 
-def go_till_printer_wifi_page(self, add_network=0):
-    login_page.click_Menu_HamburgerICN()
-    others.click_Printer_Settings()
-    others.select_first_printer()
-    others.click_wifi_button()
-    if add_network:
-        others.click_manage_network_button()
-        common_method.show_message(
-            "Check if message\nBluetooth Connection Required\nYou are about to connect to the printer using Bluetooth. If you have not connected to the printer from this device before, please set the printer into \"pairing mode\" by holding the power button for 3 seconds. If you have connected to this printer from another mobile device in the past, please remove this bond in the devices bluetooth settings or power off the device.\nis displayed.\nIf so perform the actions mentioned in the pop up and click \"Continue\" button once done.")
-
-        others.click_on_allow()
-        common_method.wait_for_element_appearance_namematches("Apply Changes")
 
 
 def test_Device_Networks_TestcaseID_45695(self):
@@ -174,7 +156,7 @@ def test_Device_Networks_TestcaseID_45695(self):
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -182,19 +164,17 @@ def test_Device_Networks_TestcaseID_45695(self):
         end_main(execID, leftId[test_case_id], exec_time)
 
 
-"""Fully automated"""
 
-
-def test_Device_Networks_TestcaseID_45696():
+def test_Device_Networks_TestcaseID_45696(self):
     test_steps = {
         1: [1, 'Open the app and login the account with online Moneybadger'],
-        2: [2,
-            'Slide the left slide page to choose "Printer Settings" item. Click the Moneybadger name tab (such as "ZSB-DP12", "ZSB-DP14")'],
-        3: [3,
-            'Click the Wi-Fi tab. Check it would be spinning for a while to wait all infos appears at the page. After that, it would appear the button "Add Network" at the bottom. Check the Current Network, Network Status, IP Address and My saved Networks info all are correct. Check the list "My saved Networks" has the Name words at the left and Edit button at the right. Check those Essids would appear at the list "My saved Networks" such as: AEssid, BEssid, CEssid'],
+        2: [2, 'Slide the left slide page to choose "Printer Settings" item'],
+        3: [3, 'Click the Moneybadger name tab (such as "ZSB-DP12", "ZSB-DP14")'],
         4: [4,
-            'Click "Edit" button. Check the Essids would appear the drag button at the left and delete button at the right'],
+            'Click the Wi-Fi tab. Check it would be spinning for a while to wait all infos appears at the page. After that, it would appear the button "Add Network" at the bottom. Check the Current Network, Network Status, IP Address and My saved Networks info all are correct. Check the list "My saved Networks" has the Name words at the left and Edit button at the right. Check those Essids would appear at the list "My saved Networks" such as: AEssid, BEssid, CEssid'],
         5: [5,
+            'Click "Edit" button. Check the Essids would appear the drag button at the left and delete button at the right'],
+        6: [6,
             'Drag the BEssid to the top of the list. Check the Moneybadger would change the network to BEssid. Check the Current Network, Network Status, IP Address would be updated accordingly']
     }
 
@@ -207,7 +187,8 @@ def test_Device_Networks_TestcaseID_45696():
     try:
         # Step 1: Open the app and login the account with online Moneybadger
         start_time = time.time()
-        common_method.tearDown()
+        stop_app("com.zebra.soho_app")
+        start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Open navigation menu")
 
         exec_time = (time.time() - start_time) / 60
@@ -217,31 +198,41 @@ def test_Device_Networks_TestcaseID_45696():
 
         # Step 2: Slide the left slide page to choose "Printer Settings" item
         start_time = time.time()
-        go_till_printer_wifi_page(1)
+        self.go_till_printer_wifi_page(1)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId["45696"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
         stepId += 1
 
-        # Step 3: Click the Wi-Fi tab. Check all necessary info and elements.
+        # Step 3: Click the Moneybadger name tab (such as "ZSB-DP12", "ZSB-DP14")
+        start_time = time.time()
+        # Click the Moneybadger name tab code here
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId["45696"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
+                    exec_time)
+        stepId += 1
+
+        # Step 4: Click the Wi-Fi tab. Check all necessary info and elements.
         start_time = time.time()
         others.click_add_network_button()
-        default_network = "NESTWIFI"
-        netw1 = "EL17-Cisco-WPA-WPA2"
-        netw1_pass = "Dvttesting@123"
+        netw1 = "NESTWIFI"
+        netw1_pass = "123456789"
 
+        netw2 = common_method.get_user_input("enter name of network here which is not connected to printer")
+        netw2_pass = common_method.get_user_input("enter the password for the network")
         device_networks.wait_till_the_networks_list()
-        device_networks.click_network_by_name(netw1)
+        device_networks.click_network_by_name(netw2)
 
         exec_time = (time.time() - start_time) / 60
         insert_step(execID, leftId["45696"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
                     exec_time)
         stepId += 1
 
-        # Step 4: Click "Edit" button. Check drag and delete buttons for Essids.
+        # Step 5: Click "Edit" button. Check drag and delete buttons for Essids.
         start_time = time.time()
-        device_networks.enter_the_password(netw1_pass)
+        device_networks.enter_the_password(netw2_pass)
         device_networks.click_on_connect()
 
         try:
@@ -249,7 +240,7 @@ def test_Device_Networks_TestcaseID_45696():
         except:
             raise Exception("did not redirect to the previous page")
 
-        common_method.wait_for_element_appearance_namematches(netw1, 60)
+        common_method.wait_for_element_appearance_namematches(netw2, 60)
         name, status = device_networks.get_the_network_name_and_status()
         if name != "Not Connected" and status != "Not Connected":
             raise Exception("network and status did not get Not Connected")
@@ -259,15 +250,15 @@ def test_Device_Networks_TestcaseID_45696():
                     exec_time)
         stepId += 1
 
-        # Step 5: Drag the BEssid to the top of the list. Check network updates.
+        # Step 6: Drag the BEssid to the top of the list. Check network updates.
         start_time = time.time()
 
-        device_networks.swap_two_networks(default_network, netw1)
+        device_networks.swap_two_networks(netw1, netw2)
 
         others.click_apply_changes_button()
         common_method.wait_for_element_appearance("Connected", 100)
         name, status = device_networks.get_the_network_name_and_status()
-        if name != netw1 or status != "Connected":
+        if name != netw2 or status != "Connected":
             raise Exception(
                 "fails : Check the Current Network, Network Status, IP Address would be updated accordingly")
 
@@ -278,7 +269,7 @@ def test_Device_Networks_TestcaseID_45696():
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -286,16 +277,16 @@ def test_Device_Networks_TestcaseID_45696():
         end_main(execID, leftId[test_case_id], exec_time)
 
 
+
 def test_Device_Networks_TestcaseID_45697(self):
     test_steps = {
         1: [1, 'Open the app and login the account with online Moneybadger'],
-        2: [2, 'Slide the left slide page to choose "Printer Settings" item. Click the Moneybadger name tab (such as "ZSB-DP12", "ZSB-DP14")'],
-        3: [3,
-            'Click the Wi-Fi tab. Check it would be spinning for a while to wait all infos appears at the page. After that, it would appear the button "Add Network" at the bottom. Check the Current Network, Network Status, IP Address and My saved Networks info all are correct. Check the list "My saved Networks" has the Name words at the left and Edit button at the right'],
+        2: [2, 'Slide the left slide page to choose "Printer Settings" item'],
+        3: [3, 'Click the Moneybadger name tab (such as "ZSB-DP12", "ZSB-DP14")'],
         4: [4,
-            'Click "Add Network" button to add 5 Essids to the list "My saved Networks" (Select from network list or enter network manually). Check the button "Add Network" is dismissed or disabled'],
-        5: [5,
-            'Back to home page. Check the background picture is shown correctly (Add this step for covering SMBUI-1199)'],
+            'Click the Wi-Fi tab. Check it would be spinning for a while to wait all infos appears at the page. After that, it would appear the button "Add Network" at the bottom. Check the Current Network, Network Status, IP Address and My saved Networks info all are correct. Check the list "My saved Networks" has the Name words at the left and Edit button at the right'],
+        5: [5, 'Click "Add Network" button to add 5 Essids to the list "My saved Networks" (Select from network list or enter network manually). Check the button "Add Network" is dismissed or disabled'],
+        6: [6, 'Back to home page. Check the background picture is shown correctly (Add this step for covering SMBUI-1199)'],
     }
 
     start_time_main = time.time()
@@ -324,7 +315,15 @@ def test_Device_Networks_TestcaseID_45697(self):
         insert_step(execID, leftId["45697"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
-        # Step 3: Click the Wi-Fi tab. Check all necessary info and elements.
+        # Step 3: Click the Moneybadger name tab (such as "ZSB-DP12", "ZSB-DP14")
+        start_time = time.time()
+        # Click the Moneybadger name tab code here
+
+        exec_time = (time.time() - start_time) / 60
+        insert_step(execID, leftId["45697"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+        stepId += 1
+
+        # Step 4: Click the Wi-Fi tab. Check all necessary info and elements.
         start_time = time.time()
         name, status = device_networks.get_the_network_name_and_status()
         if status != "Connected":
@@ -334,7 +333,7 @@ def test_Device_Networks_TestcaseID_45697(self):
         insert_step(execID, leftId["45697"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
-        # Step 4: Click "Add Network" button to add 5 Essids. Check button state.
+        # Step 5: Click "Add Network" button to add 5 Essids. Check button state.
         start_time = time.time()
         others.click_add_network_button()
 
@@ -345,7 +344,7 @@ def test_Device_Networks_TestcaseID_45697(self):
         insert_step(execID, leftId["45697"], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
-        # Step 5: Back to home page. Check background picture.
+        # Step 6: Back to home page. Check background picture.
         start_time = time.time()
         common_method.show_message("Back to home page. Check background picture.")
 
@@ -358,7 +357,7 @@ def test_Device_Networks_TestcaseID_45697(self):
 
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
 
-        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+        insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
         insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
 
         raise Exception(str(e))
@@ -370,19 +369,14 @@ def test_Device_Networks_TestcaseID_45697(self):
 
         end_main(execID, leftId[test_case_id], exec_time)
 
-
 def test_Device_Networks_TestcaseID_45699(self):
     test_steps = {
         1: [1, 'Open the app. Check the printer is offline and it is not in pairing mode'],
         2: [2, 'Go to the printer Wi-Fi tab. Check all info shows "Not Connected". Click Manage Networks option'],
-        3: [3,
-            '“Bluetooth Connection Required” dialog pops up. Click Continue button. Check the “Bluetooth Connection Failed” dialog pops up since printer is not in pairing mode'],
-        4: [4,
-            'Press 3s on power button to enter pairing mode. Click Continue button on the “Bluetooth Connection Failed” dialog. Check it will try to connect Bluetooth instead of coming back to Manage network page'],
-        5: [5,
-            'Click "Add Network" button after connecting to Bluetooth. Check it would go to the page to let you choose WiFi'],
-        6: [6,
-            'Choose one Wifi to setup. Check it would go back to Wi-Fi tab, and the printer would change to online. Check all info in WiFi tab would be updated.']
+        3: [3, '“Bluetooth Connection Required” dialog pops up. Click Continue button. Check the “Bluetooth Connection Failed” dialog pops up since printer is not in pairing mode'],
+        4: [4, 'Press 3s on power button to enter pairing mode. Click Continue button on the “Bluetooth Connection Failed” dialog. Check it will try to connect Bluetooth instead of coming back to Manage network page'],
+        5: [5, 'Click "Add Network" button after connecting to Bluetooth. Check it would go to the page to let you choose WiFi'],
+        6: [6, 'Choose one Wifi to setup. Check it would go back to Wi-Fi tab, and the printer would change to online. Check all info in WiFi tab would be updated.']
     }
 
     start_time_main = time.time()
@@ -400,8 +394,7 @@ def test_Device_Networks_TestcaseID_45699(self):
         common_method.wait_for_element_appearance_namematches("Open navigation menu")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Go to the printer Wi-Fi tab. Check all info shows "Not Connected". Click Manage Networks option
@@ -412,8 +405,7 @@ def test_Device_Networks_TestcaseID_45699(self):
             raise Exception("the network shows connected")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: “Bluetooth Connection Required” dialog pops up. Click Continue button. Check the “Bluetooth Connection Failed” dialog pops up since printer is not in pairing mode
@@ -422,8 +414,7 @@ def test_Device_Networks_TestcaseID_45699(self):
         common_method.wait_for_element_appearance_namematches("Bluetooth Connection Failed")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Press 3s on power button to enter pairing mode. Click Continue button on the “Bluetooth Connection Failed” dialog. Check it will try to connect Bluetooth instead of coming back to Manage network page
@@ -432,8 +423,7 @@ def test_Device_Networks_TestcaseID_45699(self):
         common_method.show_message("turn on the printer for online mode after 30s press ok in dialogue")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Click "Add Network" button after connecting to Bluetooth. Check it would go to the page to let you choose WiFi
@@ -446,8 +436,7 @@ def test_Device_Networks_TestcaseID_45699(self):
         common_method.wait_for_element_appearance_namematches("Apply Changes")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 6: Choose one Wifi to setup. Check it would go back to Wi-Fi tab, printer would change to online. Check all info in WiFi tab would be updated
@@ -486,13 +475,12 @@ def test_Device_Networks_TestcaseID_45699(self):
                 "fails : check Current Network, Network Status, IP Address all values are updated as the Essid just choose	")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -502,14 +490,11 @@ def test_Device_Networks_TestcaseID_45699(self):
 
 def test_Device_Networks_TestcaseID_45700(self):
     test_steps = {
-        1: [1,
-            'Login to mobile app, then go to Printer Settings page, click on the printer tab, and click on Wi-Fi tab. Check it would display the correct connected Wi-Fi information.'],
+        1: [1, 'Login to mobile app, then go to Printer Settings page, click on the printer tab, and click on Wi-Fi tab. Check it would display the correct connected Wi-Fi information.'],
         2: [2, 'Click on Manage Networks button. Check it would display the saved networks list.'],
         3: [3, 'Check there are delete icons shown.'],
-        4: [4,
-            'Delete the network which is not connecting. Check the network is removed from the list. Check there is a toast message to prompt deletion is successful.'],
-        5: [5,
-            'Check the network priority is updated and the printer would connect to the highest priority network in the end. Check Wi-Fi page displays the correct connected network information.']
+        4: [4, 'Delete the network which is not connecting. Check the network is removed from the list. Check there is a toast message to prompt deletion is successful.'],
+        5: [5, 'Check the network priority is updated and the printer would connect to the highest priority network in the end. Check Wi-Fi page displays the correct connected network information.']
     }
 
     start_time_main = time.time()
@@ -530,16 +515,14 @@ def test_Device_Networks_TestcaseID_45700(self):
         name1, status = device_networks.get_the_network_name_and_status()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Click on Manage Networks button. Check it would display the saved networks list
         start_time = time.time()
         common_method.show_message("Check it displays the saved network list itself")
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Check there are delete icons shown
@@ -547,8 +530,7 @@ def test_Device_Networks_TestcaseID_45700(self):
         common_method.show_message("Check there is deleted Icon")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Delete the network which is not connecting. Check the network is removed from the list
@@ -566,8 +548,7 @@ def test_Device_Networks_TestcaseID_45700(self):
         common_method.wait_for_element_appearance("Deletion successful")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Check the network priority is updated and the printer would connect to the highest priority network in the end.
@@ -580,13 +561,12 @@ def test_Device_Networks_TestcaseID_45700(self):
                 "fails: check the network priority is updated and the printer would connect to the highest priority network ")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -596,12 +576,10 @@ def test_Device_Networks_TestcaseID_45700(self):
 
 def test_Device_Networks_TestcaseID_45701(self):
     test_steps = {
-        1: [1,
-            'Login to mobile app, then go to Printer Settings page, click on the printer tab, and click on Wi-Fi tab. Check it would display the correct connected Wi-Fi information.'],
+        1: [1, 'Login to mobile app, then go to Printer Settings page, click on the printer tab, and click on Wi-Fi tab. Check it would display the correct connected Wi-Fi information.'],
         2: [2, 'Click on Manage Networks button. Check it would display the saved networks list.'],
         3: [3, 'Click on Edit button. Check there are delete and adjust position icons shown.'],
-        4: [4,
-            'Delete the network which is connecting. Check the network is removed from the list. Check there is a toast message to prompt deletion is successful. Check the network priority is updated and the printer would connect to the highest priority network in the end. Check Wi-Fi page displays the correct connected network information.'],
+        4: [4, 'Delete the network which is connecting. Check the network is removed from the list. Check there is a toast message to prompt deletion is successful. Check the network priority is updated and the printer would connect to the highest priority network in the end. Check Wi-Fi page displays the correct connected network information.'],
     }
 
     start_time_main = time.time()
@@ -620,24 +598,21 @@ def test_Device_Networks_TestcaseID_45701(self):
         self.go_till_printer_wifi_page(1)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Click on Manage Networks button
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Click on Edit button
         start_time = time.time()
         common_method.show_message("check for edit option")
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Delete a connected network and verify
@@ -663,13 +638,12 @@ def test_Device_Networks_TestcaseID_45701(self):
         # Check Wi-Fi page displays the correct connected network information (assuming implementation)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -679,12 +653,10 @@ def test_Device_Networks_TestcaseID_45701(self):
 
 def test_Device_Networks_TestcaseID_45702(self):
     test_steps = {
-        1: [1,
-            'Login to mobile app, then go to Printer Settings page, click on the printer tab, and click on Wi-Fi tab. Check it would display the printer not connected to any network.'],
+        1: [1, 'Login to mobile app, then go to Printer Settings page, click on the printer tab, and click on Wi-Fi tab. Check it would display the printer not connected to any network.'],
         2: [2, 'Click on Manage Networks button. Check only the current connected network is shown in the list.'],
         3: [3, 'Click on Edit button. Check there are delete and adjust position icons shown.'],
-        4: [4,
-            'Delete the network. Check the network is removed from the list. Check there is a toast message to prompt deletion is successful. Check the printer is still not connected to any network.'],
+        4: [4, 'Delete the network. Check the network is removed from the list. Check there is a toast message to prompt deletion is successful. Check the printer is still not connected to any network.'],
         5: [5, 'Continue to add a network. Check the printer can connect to the newly added network.'],
     }
 
@@ -699,30 +671,26 @@ def test_Device_Networks_TestcaseID_45702(self):
         # Step 1: Login to mobile app and navigate to Wi-Fi tab
         stop_app("com.zebra.soho_app")
         start_app("com.zebra.soho_app")
-        common_method.show_message(
-            "Make Only one network is saved in the printer, but shut down the network, the printer is in offline status.")
+        common_method.show_message("Make Only one network is saved in the printer, but shut down the network, the printer is in offline status.")
         common_method.wait_for_element_appearance_namematches("Home")
         self.go_till_printer_wifi_page(1)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Click on Manage Networks button
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Click on Edit button
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Delete a network and verify
@@ -740,8 +708,7 @@ def test_Device_Networks_TestcaseID_45702(self):
         # Check if printer is still not connected to any network (assuming implementation)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Add a network and verify connection
@@ -765,17 +732,15 @@ def test_Device_Networks_TestcaseID_45702(self):
         common_method.wait_for_element_appearance("Connected", 60)
         name, status = device_networks.get_the_network_name_and_status()
         if status != "Connected":
-            raise Exception(
-                "fails : check Current Network, Network Status, IP Address all values are updated as the Essid just chosen")
+            raise Exception("fails : check Current Network, Network Status, IP Address all values are updated as the Essid just chosen")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -786,8 +751,7 @@ def test_Device_Networks_TestcaseID_45702(self):
 def test_Device_Networks_TestcaseID_45703(self):
     test_steps = {
         1: [1, 'Login to mobile app. Check the printer is displayed online.'],
-        2: [2,
-            'Turn off the current connected network, but DO NOT power cycle the printer. Check the printer would switch to connect the highest priority saved network. Check the printer would go to offline and back to online.'],
+        2: [2, 'Turn off the current connected network, but DO NOT power cycle the printer. Check the printer would switch to connect the highest priority saved network. Check the printer would go to offline and back to online.'],
     }
 
     start_time_main = time.time()
@@ -808,8 +772,7 @@ def test_Device_Networks_TestcaseID_45703(self):
             raise Exception("printer not in online state")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Turn off the current connected network and verify
@@ -822,13 +785,12 @@ def test_Device_Networks_TestcaseID_45703(self):
             raise Exception("fails : check the printer would go to offline and back to online")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -839,12 +801,9 @@ def test_Device_Networks_TestcaseID_45703(self):
 def test_Device_Networks_TestcaseID_45704(self):
     test_steps = {
         1: [1, 'Away from all saved networks (or shut down all saved networks). Check the printer is offline.'],
-        2: [2,
-            'Go to Printer settings page, click on the target printer tab, and click on Wi-Fi tab. Check it displays not connected.'],
-        3: [3,
-            'Click on Manage networks button and Add networks button. Check all available networks are listed including the hotspot network.'],
-        4: [4,
-            'Select the hotspot network to connect. Check the printer is connected to the hotspot network. Check the printer is back online. Check the current network is displayed correctly.'],
+        2: [2, 'Go to Printer settings page, click on the target printer tab, and click on Wi-Fi tab. Check it displays not connected.'],
+        3: [3, 'Click on Manage networks button and Add networks button. Check all available networks are listed including the hotspot network.'],
+        4: [4, 'Select the hotspot network to connect. Check the printer is connected to the hotspot network. Check the printer is back online. Check the current network is displayed correctly.'],
     }
 
     start_time_main = time.time()
@@ -867,8 +826,7 @@ def test_Device_Networks_TestcaseID_45704(self):
             raise Exception("fails : check the printer would go to offline")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Navigate to Wi-Fi tab and verify status
@@ -879,8 +837,7 @@ def test_Device_Networks_TestcaseID_45704(self):
             raise Exception("network and status did not get Not Connected")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Add a new network
@@ -902,8 +859,7 @@ def test_Device_Networks_TestcaseID_45704(self):
         name, status = device_networks.get_the_network_name_and_status()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Verify printer connectivity and status
@@ -912,17 +868,15 @@ def test_Device_Networks_TestcaseID_45704(self):
         sleep(2)
         name, status = device_networks.get_the_network_name_and_status()
         if name != netw2 or status != "Connected":
-            raise Exception(
-                "fails : Check the Current Network, Network Status, IP Address would be updated accordingly")
+            raise Exception("fails : Check the Current Network, Network Status, IP Address would be updated accordingly")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -934,10 +888,8 @@ def test_Device_Networks_TestcaseID_45707(self):
     test_steps = {
         1: [1, 'User log in, go to Printer settings>Printer Name, switch to Wi-Fi tab'],
         2: [2, 'Click on the Manage Networks button. (Pair bluetooth successfully)'],
-        3: [3,
-            'Select Add Wifi, and choose one network to add, input invalid password. Check the dialog of "Failed to Connect to Wifi Network" will pop up, click on Cancel button, check the network is not added in the saved network list.'],
-        4: [4,
-            'Repeat step 3, but select Continue button on the confirm dialog, check the network is added in the saved network list.'],
+        3: [3, 'Select Add Wifi, and choose one network to add, input invalid password. Check the dialog of "Failed to Connect to Wifi Network" will pop up, click on Cancel button, check the network is not added in the saved network list.'],
+        4: [4, 'Repeat step 3, but select Continue button on the confirm dialog, check the network is added in the saved network list.'],
     }
 
     start_time_main = time.time()
@@ -955,8 +907,7 @@ def test_Device_Networks_TestcaseID_45707(self):
         self.go_till_printer_wifi_page(1)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Click on Manage Networks button
@@ -965,8 +916,7 @@ def test_Device_Networks_TestcaseID_45707(self):
         common_method.wait_for_element_appearance("Apply Changes", 60)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Add a network with invalid password
@@ -990,8 +940,7 @@ def test_Device_Networks_TestcaseID_45707(self):
             raise Exception("fails: check the network is not added in the saved network list.")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Add the same network with correct password
@@ -1016,13 +965,12 @@ def test_Device_Networks_TestcaseID_45707(self):
         common_method.wait_for_element_appearance_namematches(netw2, 60)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1050,8 +998,7 @@ def test_Device_Networks_TestcaseID_45897(self):
     current_function_name = inspect.currentframe().f_code.co_name
     test_case_id = current_function_name.split("_")[-1]
     start_main(execID, leftId[test_case_id])
-    common_method.show_message(
-        "the target Moneybadger was added by the another phone (add nestwifi to same account using other phone)")
+    common_method.show_message("the target Moneybadger was added by the another phone (add nestwifi to same account using other phone)")
 
     try:
         # Step 1: open the app and login with online Monebyadger
@@ -1062,32 +1009,28 @@ def test_Device_Networks_TestcaseID_45897(self):
         self.go_till_printer_wifi_page(1)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: slide the left slide page to choose "Printer Settings" item
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: click the Moneybadger name tab
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: click the Wi-Fi tab
         start_time = time.time()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Check for Manage Network button after info load
@@ -1096,8 +1039,7 @@ def test_Device_Networks_TestcaseID_45897(self):
         self.click_manage_network_button()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 6: Click "Add Network" button and verify networks list display
@@ -1106,8 +1048,7 @@ def test_Device_Networks_TestcaseID_45897(self):
         device_networks.wait_till_the_networks_list()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 7,8: Choose and connect to a network
@@ -1138,18 +1079,16 @@ def test_Device_Networks_TestcaseID_45897(self):
                 "fails : Check the Current Network, Network Status, IP Address all values are updated as the Essid just chosen")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1178,11 +1117,11 @@ def test_Device_Networks_TestcaseID_47912(self):
         start_app("com.zebra.soho_app")
         common_method.wait_for_element_appearance_namematches("Home")
 
+
         self.go_till_printer_wifi_page(0)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Reboot printer
@@ -1190,8 +1129,7 @@ def test_Device_Networks_TestcaseID_47912(self):
         common_method.show_message("2. Reboot printer after that click ok")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Click "Manage networks" button
@@ -1200,8 +1138,7 @@ def test_Device_Networks_TestcaseID_47912(self):
         common_method.wait_for_element_appearance_namematches("Apply Changes")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Check ZSB app shows network without any error or fail
@@ -1212,12 +1149,11 @@ def test_Device_Networks_TestcaseID_47912(self):
             raise Exception("network names did not show after rebooting printer")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1228,13 +1164,10 @@ def test_Device_Networks_TestcaseID_47912(self):
 def test_Device_Networks_TestcaseID_50766(self):
     test_steps = {
         1: [1, 'Make sure test device connects to Wi-Fi network, sign in mobile app'],
-        2: [2,
-            'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        2: [2, 'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
         3: [3, 'Change to connect cellular data for the device'],
-        4: [4,
-            'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
-        5: [5,
-            'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
+        4: [4, 'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        5: [5, 'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
     }
 
     start_time_main = time.time()
@@ -1254,16 +1187,14 @@ def test_Device_Networks_TestcaseID_50766(self):
         others.turn_on_wifi()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Check the basic functions on the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Change to connect cellular data for the device
@@ -1273,16 +1204,14 @@ def test_Device_Networks_TestcaseID_50766(self):
         device_networks.turn_on_cellular_data()
         sleep(4)
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Recheck basic functions of the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Sign out and sign in again, recheck basic functions of the app
@@ -1299,12 +1228,11 @@ def test_Device_Networks_TestcaseID_50766(self):
         common_method.wait_for_element_appearance_namematches("Home")
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1315,14 +1243,10 @@ def test_Device_Networks_TestcaseID_50766(self):
 def test_Device_Networks_TestcaseID_50767(self):
     test_steps = {
         1: [1, 'Make sure test device connects to Wi-Fi network, sign in mobile app'],
-        2: [2,
-            'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
-        3: [3,
-            'Connect another hotspot for the device (not current device\'s cellular data), make sure Wi-Fi is connected'],
-        4: [4,
-            'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
-        5: [5,
-            'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
+        2: [2, 'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        3: [3, 'Connect another hotspot for the device (not current device\'s cellular data), make sure Wi-Fi is connected'],
+        4: [4, 'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        5: [5, 'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
     }
 
     start_time_main = time.time()
@@ -1341,16 +1265,14 @@ def test_Device_Networks_TestcaseID_50767(self):
         others.turn_on_wifi()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Check the basic functions on the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Connect another hotspot for the device
@@ -1363,16 +1285,14 @@ def test_Device_Networks_TestcaseID_50767(self):
         sleep(1)
         start_app("com.zebra.soho_app")
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Recheck basic functions of the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Sign out and sign in again, recheck basic functions of the app
@@ -1389,12 +1309,11 @@ def test_Device_Networks_TestcaseID_50767(self):
         common_method.wait_for_element_appearance_namematches("Home")
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1405,16 +1324,11 @@ def test_Device_Networks_TestcaseID_50767(self):
 def test_Device_Networks_TestcaseID_50768(self):
     test_steps = {
         1: [1, 'Make sure test device connects to Wi-Fi network, sign in mobile app'],
-        2: [2,
-            'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
-        3: [3,
-            'Disable device\'s Wi-Fi option, make sure Wi-Fi is disconnected. Check there is a prompt message for user the network is lost'],
-        4: [4,
-            'Enable the device\'s Wi-Fi network back, make sure network is connected, refresh the app. Check the error message disappears'],
-        5: [5,
-            'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
-        6: [6,
-            'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
+        2: [2, 'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        3: [3, 'Disable device\'s Wi-Fi option, make sure Wi-Fi is disconnected. Check there is a prompt message for user the network is lost'],
+        4: [4, 'Enable the device\'s Wi-Fi network back, make sure network is connected, refresh the app. Check the error message disappears'],
+        5: [5, 'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        6: [6, 'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
     }
 
     start_time_main = time.time()
@@ -1432,16 +1346,14 @@ def test_Device_Networks_TestcaseID_50768(self):
         others.turn_on_wifi()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Check the basic functions on the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Disable device's Wi-Fi option, make sure Wi-Fi is disconnected
@@ -1463,8 +1375,7 @@ def test_Device_Networks_TestcaseID_50768(self):
         except:
             pass
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Enable the device's Wi-Fi network back, make sure network is connected, refresh the app
@@ -1473,16 +1384,14 @@ def test_Device_Networks_TestcaseID_50768(self):
         sleep(4)
         device_networks.refresh_home_page()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Recheck basic functions of the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 6: Sign out and sign in again, recheck basic functions of the app
@@ -1499,12 +1408,11 @@ def test_Device_Networks_TestcaseID_50768(self):
         common_method.wait_for_element_appearance_namematches("Home")
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1515,15 +1423,11 @@ def test_Device_Networks_TestcaseID_50768(self):
 def test_Device_Networks_TestcaseID_50769(self):
     test_steps = {
         1: [1, 'Make sure test device connects to Wi-Fi network, sign in mobile app'],
-        2: [2,
-            'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
-        3: [3,
-            'Connect to invalid network for the device, make sure Wi-Fi is connected. Check there is a prompt message for user the network is lost'],
+        2: [2, 'Check the basic functions on the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        3: [3, 'Connect to invalid network for the device, make sure Wi-Fi is connected. Check there is a prompt message for user the network is lost'],
         4: [4, 'Connect device to the original valid network, refresh app. Check the prompt message will disappear'],
-        5: [5,
-            'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
-        6: [6,
-            'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
+        5: [5, 'Recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error'],
+        6: [6, 'Sign out and sign in again, recheck basic functions of the app, like printing test label, my design, common design, update printer settings and so on. Check all functions work well without any error']
     }
 
     start_time_main = time.time()
@@ -1541,16 +1445,14 @@ def test_Device_Networks_TestcaseID_50769(self):
         common_method.wait_for_element_appearance_namematches("Home")
         others.turn_on_wifi()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Check the basic functions on the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Connect to invalid network for the device, make sure Wi-Fi is connected
@@ -1578,8 +1480,7 @@ def test_Device_Networks_TestcaseID_50769(self):
         except:
             pass
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Connect device to the original valid network, refresh app
@@ -1596,16 +1497,14 @@ def test_Device_Networks_TestcaseID_50769(self):
 
         sleep(4)
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Recheck basic functions of the app
         start_time = time.time()
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 6: Sign out and sign in again, recheck basic functions of the app
@@ -1622,12 +1521,11 @@ def test_Device_Networks_TestcaseID_50769(self):
         common_method.wait_for_element_appearance_namematches("Home")
         self.check_basic_functionalities()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1639,8 +1537,7 @@ def test_Device_Networks_TestcaseID_50782(self):
     test_steps = {
         1: [1, 'Sign in test account with at least one printer added, keep on home page'],
         2: [2, 'Disconnect device’s network (Turn off the Wi-Fi option)'],
-        3: [3,
-            'Go to the Common Designs/My designs from the left menu. Check there is an error message showing up on Common Designs or My designs'],
+        3: [3, 'Go to the Common Designs/My designs from the left menu. Check there is an error message showing up on Common Designs or My designs'],
         4: [4, 'Back to Home page. Check the prompt message is like "The service is currently unavailable"'],
         5: [5, 'Perform same steps on Android and iOS devices. Check the prompt message is same on both devices']
     }
@@ -1659,16 +1556,14 @@ def test_Device_Networks_TestcaseID_50782(self):
         common_method.wait_for_element_appearance_namematches("Open navigation menu")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Disconnect device’s network (Turn off the Wi-Fi option)
         start_time = time.time()
         device_networks.turn_off_wifi()
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: Go to the Common Designs/My designs from the left menu
@@ -1679,8 +1574,7 @@ def test_Device_Networks_TestcaseID_50782(self):
         if not device_networks.check_the_my_designs_internet_lost_error():
             raise Exception("fails: Check there is an error message showing up on My designs")
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Back to Home page, check the prompt message is like "The service is currently unavailable"
@@ -1692,20 +1586,18 @@ def test_Device_Networks_TestcaseID_50782(self):
         if not device_networks.check_sudden_network_off_error():
             raise Exception("network disconnection error did not pop up")
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 5: Perform same steps on Android and iOS devices. Check the prompt message is same on both devices
         start_time = time.time()
         common_method.show_message("check in iOS for the same")
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1761,8 +1653,7 @@ def test_Device_Networks_TestcaseID_52289(self):
         common_method.wait_for_element_appearance_namematches("Home", 20)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 2: Go to Printer Settings/Wi-Fi tab, click Manage Networks button and Continue on the Bluetooth Connection Required dialog
@@ -1784,8 +1675,7 @@ def test_Device_Networks_TestcaseID_52289(self):
             pass
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 3: When the "Allow ZSB series to find, connect to ....nearby devices" pops up, click "Allow"
@@ -1796,8 +1686,7 @@ def test_Device_Networks_TestcaseID_52289(self):
             pass
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # Step 4: Wait for printer to pair successfully. Check the network list will be displayed correctly. Check there are no odd behaviors, like crash
@@ -1812,8 +1701,7 @@ def test_Device_Networks_TestcaseID_52289(self):
             raise Exception("network names not displayed")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         start_time = time.time()
@@ -1821,12 +1709,11 @@ def test_Device_Networks_TestcaseID_52289(self):
         common_method.show_message(" Try to add/delete/sort the network Check able to manage network successfully")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
@@ -1834,16 +1721,15 @@ def test_Device_Networks_TestcaseID_52289(self):
         end_main(execID, leftId[test_case_id], exec_time)
 
 
+
 def test_Device_Networks_TestcaseID_52292(self):
     test_steps = {
         1: [1, 'Install the latest ZSB Series version, after installing successfully, click Open'],
         2: [2, 'When the app launches, check that there is no "Allow ZSB Series... of nearby devices" popping up'],
-        3: [3,
-            'Go to Printer Settings/Wi-Fi tab, click Manage Networks button and Continue on the Bluetooth Connection Required dialog (If BT pair dialog pops up, allow it). Check that the network list will be displayed correctly'],
+        3: [3, 'Go to Printer Settings/Wi-Fi tab, click Manage Networks button and Continue on the Bluetooth Connection Required dialog (If BT pair dialog pops up, allow it). Check that the network list will be displayed correctly'],
         4: [4, 'Minimize ZSB series, open its app info, disable ZSB Nearby devices permission'],
         5: [5, 'Repeat step 3 again. Check that the "Allow ZSB Series... of nearby devices" will pop up'],
-        6: [6,
-            'Click Allow option, wait for printer pair successfully. Check that the network list will be displayed correctly. Check there are no odd behaviors, like crashes'],
+        6: [6, 'Click Allow option, wait for printer pair successfully. Check that the network list will be displayed correctly. Check there are no odd behaviors, like crashes'],
         7: [7, 'Try to add/delete/sort the network. Check that it is able to manage network successfully']
     }
 
@@ -1882,16 +1768,14 @@ def test_Device_Networks_TestcaseID_52292(self):
         common_method.wait_for_element_appearance_namematches("Home")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # step2: "When the app launches, check that there is no 'Allow ZSB Series... of nearby devices' popping up"
         start_time = time.time()
         common_method.show_message("check there is no Allow ZSB Series... of nearby devices popping up")
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # step3: "Go to Printer Settings/Wi-Fi tab, click Manage Networks button and Continue on the Bluetooth Connection Required dialog (If BT pair dialog pops up, allow it). Check that the network list will be displayed correctly"
@@ -1917,8 +1801,7 @@ def test_Device_Networks_TestcaseID_52292(self):
             raise Exception("no network is connected to the device")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # step4: "Minimize ZSB series, open its app info, disable ZSB Nearby devices permission"
@@ -1927,8 +1810,7 @@ def test_Device_Networks_TestcaseID_52292(self):
         device_networks.allow_nearby_devices_permission(0)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # step5: "Repeat step 3 again. Check that the 'Allow ZSB Series... of nearby devices' will pop up"
@@ -1951,8 +1833,7 @@ def test_Device_Networks_TestcaseID_52292(self):
         others.click_continue_in_bluetooth_connection_required()
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # step6: "Click Allow option, wait for printer pair successfully. Check that the network list will be displayed correctly. Check there are no odd behaviors, like crashes"
@@ -1966,8 +1847,7 @@ def test_Device_Networks_TestcaseID_52292(self):
             raise Exception("no network is connected to the device")
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
         # step7: "Try to add/delete/sort the network. Check that it is able to manage network successfully"
@@ -1985,15 +1865,16 @@ def test_Device_Networks_TestcaseID_52292(self):
         common_method.wait_for_element_appearance("Connected", 100)
 
         exec_time = (time.time() - start_time) / 60
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                    exec_time)
+        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
         stepId += 1
 
     except Exception as e:
         insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
+        insert_case_results(execID,leftId[test_case_id],"Fail",0,str(e), str(e))
         raise Exception(str(e))
 
     finally:
         exec_time = (time.time() - start_time_main) / 60
         end_main(execID, leftId[test_case_id], exec_time)
+
+

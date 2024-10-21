@@ -22,6 +22,10 @@ def test_Social_Login_TtestcaseID_48473():
 def test_Social_Login_TtestcaseID_48479():
     t_sl.test_Social_Login_TestcaseID_48479()
 
+
+def test_Social_Login_TtestcaseID_48481():
+    t_sl.test_Social_Login_TestcaseID_48481()
+
 def test_Social_Login_TtestcaseID_48483():
     t_sl.test_Social_Login_TestcaseID_48483()
 
@@ -48,6 +52,3 @@ def test_Social_Login_TtestcaseID_45802():
 
 def test_Social_Login_TtestcaseID_45872():
     t_sl.test_Others_TestcaseID_45872()
-
-def test_Social_Login_TtestcaseID_48481():
-    t_sl.test_Social_Login_TestcaseID_48481()

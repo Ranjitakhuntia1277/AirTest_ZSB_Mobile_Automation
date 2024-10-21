@@ -908,7 +908,7 @@ def test_DataSources_TestcaseID_45736():
         """One Drive"""
         data_sources_page.searchName("")
         data_sources_page.searchName(png_file)
-        data_sources_page.remove_File_Based_On_DataSource("OneDrive", png_file, True, True)
+        data_sources_page.remove_File_Based_On_DataSource("OneDrive", None, True, True)
         data_sources_page.searchName("")
         data_sources_page.searchName(png_file)
         data_sources_page.checkFileNotRemovedAfterClickingCancel(png_file, "OneDrive")

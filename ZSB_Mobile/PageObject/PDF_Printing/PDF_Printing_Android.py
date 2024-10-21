@@ -1,5 +1,3 @@
-import logging
-
 import requests
 import self
 from airtest.core.android import android
@@ -74,7 +72,7 @@ class PDF_Printing_Screen:
             self.poco(self.Drive_SearchBar2).click()
 
     def Verify_Print_Preview_page(self):
-        sleep(18)
+        sleep(10)
         a = self.poco(nameMatches="(?s).*Edit Label.*")
         if a.exists():
            a.get_name()
@@ -111,7 +109,6 @@ class PDF_Printing_Screen:
 
     def Verify_The_Printer_As_Online(self):
         sleep(1)
-        poco.scroll()
         printer_info = self.poco(nameMatches="(?s).*Online.*")
         if printer_info.exists():
             printer_info.get_name()
@@ -152,7 +149,7 @@ class PDF_Printing_Screen:
 
 
     def click_Print_Option_On_PDF_Printing(self):
-        sleep(2)
+        sleep(1)
         poco.scroll()
         sleep(1)
         print = self.poco(name="Print")
@@ -253,14 +250,8 @@ class PDF_Printing_Screen:
 
     def Verify_Label_Print_Range_Is_Selected_AS_All(self):
         sleep(1)
-        a = self.poco(nameMatches="(?s).*All.*")
-        if a.exists():
-           a.get_name()
-           print(a)
-        else:
-            poco.scroll()
-            a.get_name()
-            print(a)
+        a = self.poco(nameMatches="(?s).*All.*").get_name()
+        print(a)
 
     def Verify_Current_Label_Print_Option_IS_Displaying(self):
         a = self.poco(nameMatches="(?s).*Current.*").get_name()
@@ -276,10 +267,7 @@ class PDF_Printing_Screen:
         custom_label.click()
 
     def click_Start_Range_Filed(self):
-        if self.poco(name="1").exists():
-            self.poco(name="1").click()
-            sleep(1)
-
+        self.poco(name="1").click()
 
     def click_Change_Start_Range(self):
         sleep(1)
@@ -319,8 +307,6 @@ class PDF_Printing_Screen:
             self.poco(nameMatches="(?s).*Edit Label.*").click()
 
     def click_Rotation_Option(self):
-        poco.scroll()
-        sleep(2)
         self.poco("android.widget.Button")[2].click()
 
     def click_Done_Btn(self):
@@ -430,101 +416,24 @@ class PDF_Printing_Screen:
 
     def click_Default_End_Range_Filed(self):
         sleep(1)
-        # First, check if the name "1" exists and click it
-        if self.poco(name="6").exists():
-            self.poco(name="6").click()
-            sleep(1)
-        elif self.poco(name="5").exists():
-            self.poco(name="5").click()
-            sleep(1)
-        elif self.poco(name="4").exists():
-            self.poco(name="4").click()
-            sleep(1)
-        elif self.poco(name="3").exists():
-            self.poco(name="3").click()
-            sleep(1)
-        elif self.poco(name="2").exists():
-            self.poco(name="2").click()
-            sleep(1)
-        elif self.poco(name="2").exists():
-            self.poco(name="2").click()
-            sleep(1)
-        else:
-            self.poco(name="1").click()
-            sleep(1)
+        self.poco(name="1").click()
 
     def click_Change_Start_Range_To_3(self):
         sleep(1)
-        if self.poco(name="3").exists():
-           self.poco(name="3").click()
-        else:
-           self.poco(name="1").click()
-           sleep(1)
+        self.poco(name="1").click()
+        sleep(1)
+        self.poco(name="3").click()
 
     def click_Change_End_Range_To_6(self):
         sleep(1)
-        # First, check if the name "1" exists and click it
-        if self.poco(name="6").exists():
-            self.poco(name="6").click()
-            sleep(1)
-        elif self.poco(name="5").exists():
-            self.poco(name="5").click()
-            sleep(1)
-        elif self.poco(name="4").exists():
-            self.poco(name="4").click()
-            sleep(1)
-        elif self.poco(name="3").exists():
-            self.poco(name="3").click()
-            sleep(1)
-        elif self.poco(name="2").exists():
-            self.poco(name="2").click()
-            sleep(1)
-        elif self.poco(name="2").exists():
-            self.poco(name="2").click()
-            sleep(1)
-        else:
+        if self.poco(name="1").exists():
             self.poco(name="1").click()
             sleep(1)
-
-
-    # def click_Change_End_Range_To_6(self):
-    #     sleep(1)
-    #     # Define the range of names to check and click
-    #     names_to_click = ["6", "5", "4", "3", "2", "1"]
-    #
-    #     # Iterate through the names and click the first one that exists
-    #     for name in names_to_click:
-    #         if self.poco(name=name).exists():
-    #             self.poco(name=name).click()
-    #             sleep(1)
-    #             break
-
-    # def click_Change_End_Range_To_6(self, names_to_click=["6", "5", "4", "3", "2", "1"], timeout=10):
-    #     logging.info("Starting click_Change_End_Range_To_6 method.")
-    #
-    #     largest_number = None
-    #     largest_element = None
-    #
-    #     for name in names_to_click:
-    #         try:
-    #             element = self.poco(name=name)
-    #             if wait(element, timeout=timeout):
-    #                 # Convert the name to an integer to compare sizes
-    #                 number = int(name)
-    #                 if largest_number is None or number > largest_number:
-    #                     largest_number = number
-    #                     largest_element = element
-    #         except Exception as e:
-    #             logging.error(f"Error checking element '{name}': {str(e)}")
-    #
-    #     if largest_element:
-    #         try:
-    #             largest_element.click()
-    #             logging.info(f"Clicked on the largest number '{largest_number}'.")
-    #         except Exception as e:
-    #             logging.error(f"Error clicking on element '{largest_element}': {str(e)}")
-    #     else:
-    #         logging.warning("No clickable element found within the specified timeout.")
+            if self.poco(name="6").exists():
+               self.poco(name="6").click()
+            else:
+                last_item = self.poco("android.widget.ScrollView").offspring("android.view.View")[+1]
+                last_item.click()
 
     def click_Change_End_Range_To_Last(self):
         sleep(1)
@@ -566,7 +475,6 @@ class PDF_Printing_Screen:
 
     def Verify_Default_Copies_Values_Is_1(self):
         sleep(1)
-        poco.scroll()
         self.poco(name="android.widget.EditText").get_name()
 
     def Update_Copies_Value(self):
@@ -607,8 +515,6 @@ class PDF_Printing_Screen:
 
     def click_Search_Icon_On_Adobe(self):
         sleep(5)
-        poco.scroll()
-        sleep(1)
         self.poco(text="Search").click()
 
     def click_PDF_From_The_Adobe_List(self):
@@ -635,7 +541,7 @@ class PDF_Printing_Screen:
 
 
     def click_Share_On_Adobe(self):
-        sleep(9)
+        sleep(4)
         self.poco(name="com.adobe.reader:id/classic_viewer_share_file").click()
         sleep(1)
 
@@ -671,7 +577,7 @@ class PDF_Printing_Screen:
             self.poco(name="Print").click()
 
     def click_Back_Icon(self):
-        sleep(7)
+        sleep(1)
         self.poco(name="android.widget.Button").click()
 
     def click_And_Enter_Invalid_Number_In_Copies_Number_Field(self):

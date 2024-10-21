@@ -1,3 +1,1013 @@
 Testcase_ID,Test_Description,Subarea
-49665,Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared,App Settings
-47911,,
+45656,Adding the moneybadger while the mobile devices bluetooth is disabled,Add_Printer 2.0
+45657,Check the cancle button on 'bluetooth pairing request' dialog when pairing the bluetooth moneybadger,Add_Printer 2.0
+45658,Check pairing bluetooth when the printer changes to offline,Add_Printer 2.0
+45659,"Check the ""Watch Troubleshooting video"" option works when failing to connect printer",Add_Printer
+45660,Search the essids when the printer is offline,Add_Printer 2.0
+45661,"Set printer wpa psk Essid but input incorrect password, and check Help",Add_Printer
+45662,"set printer open Essid when the printer change to offline, and retry",Add_Printer 2.0
+45663,"set printer wpa psk Essid manually when the printer change to offline, and go to Help",Add_Printer 2.0
+45664,"set printer open Essid manually but input incorrect essid, and retry",Add_Printer
+45665,Check the left top corner button of each page work during adding a moneybadger.,Add_Printer 2.0
+45666,using phone B to add the unconfigured printer which was paired the bluetooth connection by phone A and not in bluetooth limited mode,Add_Printer 2.0
+45667,using the phone A to add the unconfigured printer which was paired the bluetooth connection by phone A and not in bluetooth limited mode,Add_Printer 2.0
+45668,using phone B to add the unconfigured printer which was paired the bluetooth connection by phone A and in bluetooth limited mode,Add_Printer 2.0
+45669,using phone A to add the unconfigured printer which was paired the bluetooth connection by phone A and in bluetooth limited mode.,Add_Printer 2.0
+45670,"using the phone B to pair the bluetooth Moneybadger, and don't quit the adding printer process wizard, then using the phone A to discover",Add_Printer 2.0
+45671,"using the phone B to pair the bluetooth Moneybadger, and don't quit the adding printer process wizard, and make it into bluetooth limited mode, then using the phone A to discover",Add_Printer 2.0
+45672,connect printer by using the 'Add a Printer' button at the overview page and check information card.,Add_Printer 2.0
+45673,connect printer with Open Essid by choosing it,Add_Printer
+45674,"connect printer with Open ESSID manually, then cancel.",Add_Printer
+45675,connect printer with Open Essid manually when it's status is media out,Add_Printer 2.0
+45676,connect printer with PSK WPA Essid by choosing it when it's status is head open,Add_Printer 2.0
+45677,connect printer with PSK WPA Essid manually,Add_Printer
+45678,"retrieve moneybadger when no online moenybadgers at your area, then open one, retrieve again",Add_Printer 2.0
+45679,"set wrong password of the PSK WPA Essid to printer by choosing it, then click 'Cancel'",Add_Printer 2.0
+45680,"set wrong password of the PSK WPA Essid to printer by choosing it, then re-enter correct password for it",Add_Printer
+45681,"connect printer with PSK WPA Essid by choosing it, then cancel",Add_Printer
+45682,"connect printer with PSK WPA Essid manually, then cancel",Add_Printer 2.0
+45683,add 6 printers to the portal with same network,Add_Printer 2.0
+45684,connect more than 1 printer to the portal with different network,Add_Printer 2.0
+45685,"add the moneybadger via account A, decommission it, then use account B to add it, decommission it, then use account A to re-add it",Add_Printer 2.0
+45686,"add the moneybadger via account A, decommission it, then use account A to re-add it",Add_Printer 2.0
+45687,Check there is error window prompted if it fails to register printer,Add_Printer
+45688,Verify Wifi Settings,Device_Network
+45689,Check Change Theme Function Works,App_Settings
+45690,"Update Unit of Measure in Mobile App, check it will sync to Web Portal and Printer Tools",User Settings
+45691,Edit Workspace - upload and remove image,App_Settings
+45692,Edit Workspace - Update workspace name,App_Settings
+45693,Adding New network: add open Essid to the Moneybadger (select from network list),Device_Network
+45694,Adding New network: add WPA Essid to the Moneybadger,Device_Network
+45695,Adding New network: add WPA Essid with incorrect password to the Moneybadger,Device_Network
+45696,Adding New network: proritize the Essids in My Saved Network list,Device_Network
+45697,Adding New network: Add 5 Essids in My Saved Network list,Device_Network
+45698,"adding new Essid for the Moneybadg, it would get the lowest priority",Device_Network
+45699,Check adding network works when the printer is offline and not in paring mode,Device_Network
+45700,Delete network but not connecting,Device_Network
+45701,Delete network which is connecting,Device_Network
+45702,Delete the network which is lost connection,Device_Network
+45703,"Turn off the connecting network, check it would switch to the highest priority available network",Device_Network
+45704,"Loss network connection, then add a new network (hotspot on Phone)",Device_Network
+45705,Verify account profile update for non-Zebra user,User Settings
+45706,Delete all the saved wifi,Device_Network
+45707,Add a wrong wifi-Check if it shows in the list by choosing different options,Device_Network
+45708,Add a wifi which is saved- Check the same wifi will not add to list again,Device_Network
+45709,"Banner test, user is able to see all banner messages, and new feature messages will disappear after 3 times login",Banners
+45710,New feature banner is displayed in home page for the first 3 times login,Banners
+45711,New feature banner is NOT displayed in home page when user has signed in for more then 3 times,Banners
+45712,"Switch users in the same terminal, and every user can see 'New Feature' banner message for the first 3 times login",Banners
+45713,Clicking Link in Banner Message should open a new tab in browser instead of opening it in the current window,Banners
+45714,Banner background color should also be updated once workspace theme is changed,Banners
+45715,"Within first 3 times login, Turn off '""New_Features""' banner in 'Notifications -> Messages', go back to home page, '""New_Features""' banner message is NOT displayed anymore, turn it back on, the message will be displayed agai",Banners
+45716,"After turning on/off the banner settings, do NOT go to home page directly, instead, go to other pages first, then go back to home page, the setting should also take effect.",Banners
+45717,"Turn off 'New Feature' banner message for account A, then use account B to log in in the same phone, it should NOT display 'New Feature' banner message. Then user B turn on the banner message, and user A log in with the same phone, the setting should be turned on as well, and A should be able to see the 'New Feature' banner messages",Banners
+45718,"Turn off 'New Feature' banner message for account A in phoneAA, then open phoneBB and sign in with account A, the setting should still be turned on by default and banner message should still be displayed unless you turn it off in the new terminal",Banners
+45719,Click the link in Banner after printing a label,Banners
+45720,"Turn on/off Non-'New Feature' banner message, and check if the banner messages are displayed correctly in home page.",Banners
+45721,"Non-'New Feature' banner message should always be displayed in a rotation, no limited to first 3 times login.",Banners
+45722,"Check Banner Rotation (multi banners of different types) for the first 3 times login when there are 'New Features' banner message, the order should follow 'Upcoming Features' -> 'New features' -> 'Promotion' -> 'Maintenance' -> 'Reminders'.",Banners
+45723,"Check Banner Rotation (multi banners of different types) after the first 3 times login when there are 'New Features' banner message, the order should follow 'Upcoming Features' -> 'Promotion' -> 'Maintenance' -> 'Reminders', and 'New Features' banner message should NOT be displayed any more.",Banners
+45724,"user has seen 'new feature' banner message A for 3 times, create another 'New Feature' banner message B in Console, then signs out and sign in again, user should be able to see message B for 3 times, still unable to see message A.",Banners
+45725,"there are 2 or more 'new feature' banner messages, and user only see the first 'new feature' banner message, and log out the app, repeat 3 times, and login the account at 4th time, it should can display the second 'new feature' banner message",Banners
+45726,"there are 10 banner messages defined in Console, at least 1 message for each type. User should be able to see each of the banner message when he signs into the system for the first 3 times, and still be able to see all the banner messages except 'new feature' from the 4th time login.",Banners
+45727,"Define a banner message with both English and Portuguese translations, then switch preferred language in User profile settings page, and check banner message can be displayed correctly with the preferred language settings.",Banners
+45728,"User A has seen 'New Feature' banners for 3 times, then use User B to sign in, B should be able to see banners, after signing out user B, then switch back to User A and check A is still unable to see 'New Features' banners.",Banners
+45729,User link and remove Cloud Drive files with Special character or long file name.,Data Sources
+45730,User login Zebra account and Link to Google Drive (Google account already logged in),Data Sources
+45731,User login Facebook/Google/Apple account account and Link to Google Drive (Google account logged in).,Data Sources
+45732,User login Google/Facebook/Apple account and Link to One Drive (Microsoft account logged in),Data Sources
+45733,User Link to Cloud Drive - Search function,Data Sources
+45734,Check linking unsupported file from Cloud will get the prompt message,Data Sources
+45735,User login Zebra account and link files from One Drive (Microsoft account already logged in),Data Sources
+45736,User remove linked files which linked from Google and One Drive,Data Sources
+45737,User remove linked file which is linked to a label design in LDA page,Data Sources
+45738,Update data of the linked file in Cloud Drive and print template with linked file.,Data Sources
+45739,[Local] User upload all supported files from local,Data Sources
+45740,[Local] User upload more than 20 files from local,Data Sources
+45741,[Local] User remove local files which not linked to any template,Data Sources
+45742,[Local] User remove local file which has been linked to any template,Data Sources
+45743,[Local] User upload unsupported files,Data Sources
+45744,[Local] User upload existing file,Data Sources
+45745,[Local] User upload file with special characters,Data Sources
+45746,[Local] User upload file with long name,Data Sources
+45747,[Local] User upload file with file size exceed maximum allowed size,Data Sources
+45748,Search files in Mydata list page works,Data Sources
+45749,User login Zebra account and Link to Google Drive (Google account not login),Data Sources
+45750,User login Facebook account and Link to Google Drive (Google account not login),Data Sources
+45751,User login Apple account and Link to Google Drive (Google account not login),Data Sources
+45752,User login Zebra account and link files from One Drive. (Microsoft account not login),Data Sources
+45753,User login Facebook account and link files from One Drive. (Microsoft account not login),Data Sources
+45754,User login Apple account and link files from One Drive. (Microsoft account not login),Data Sources
+45755,User login Google account and link files from One Drive. (Microsoft account not login),Data Sources
+45756,Locally stored contacts can be printed via mobile app,Data Sources
+45757,Print design with mobile Camera,Data Sources
+45758,User link to Cloud Drive (There is no file available in Cloud Drive),Data Sources
+45759,Check repeat link same file from Google Drive/One Drive on Mobile App will show validate message,Data Sources
+45760,Check X buton to close delete account process in Continue delete account page,Delete_Account
+45761,Check X buton to close delete account process in Account final confirm dialog,Delete_Account
+45762,Check Cancel delete account process in Continue delete account page,Delete_Account
+45763,Check user process delete account and login again Final delete pop up click cancel will stop all the delete process,Delete_Account
+45764,Check delete user and continue will auto logout and relogin will auto pop up Final delete dialog and click delete user will deleted success and auto logout,Delete_Account
+45765,Check delete registered user with oneline printer and offline printer succss and printers will decomission,Delete_Account
+45766,Check delete Google user with an offline printer and relogin,Delete_Account
+45767,Check delete Facebook user success with an online printer and relogin,Delete_Account
+45768,Check delete Apple user success without printer and relogin,Delete_Account
+45769,Check delete Zebra account success and relogin in Mobile app Need accept EULA and all data cleared(My Designs/My Data),Delete_Account
+45770,Check delete accunt success and login the deleted account on Web Portal need accept EULA and all data cleared(My Designs/My Data),Delete_Account
+45771,Check delete account with printer success and then login the deleted account on windows printer tools success,Delete_Account
+45772,"Check Account delete successfully, Web Portal and Printer Tools and mobile app will auto-logout",Delete_Account
+45773,"Check device A process delete account and continue, login with device B will not pop up final delete notification",Delete_Account
+45774,"Check user process delete account and login again Final delete pop up, force quit app and login in again within 1 hour will show Final delete dialog and delete success",Delete_Account
+45775,Check user process delete account and login again switch to other app within 1 hour and switch back click Delete button will delete success,Delete_Account
+45776,"Check user login delete and continue auto logout, lock screen with 1 hour then unlock to login and continue delete",Delete_Account
+45777,"Check user login delete and continue auto logout, login with another user logout and login continue delete within 1 hour",Delete_Account
+45778,"Delete fail:Check user process delete account and login again Final delete pop up, lock device screen for 1 hour, unlock and click delete",Delete_Account
+45779,"Check login same user with Phone A and Phone B, delete and confirm auto logout from A&B then re-login in with A &B, check both device pop up Final Delete dialog, confirm delete from Phone A, check Phone B auto logout",Delete_Account
+45780,Delete fail:User login in delete and confirm auto logout then sleep phone for 1 hour then login confrim delete,Delete_Account
+45781,Delete fail:User login in delete and confirm auto logout then login another user for 1 hour then logout and login continue delete,Delete_Account
+45782,Delete fail:User login in delete and confirm auto logout then force quite App for 1 hour then reopen and login continue delete,Delete_Account
+45783,Delete a user fail and user can be deleted again with the same device,Delete_Account
+45784,"Check delete a user with an offline printer then login the user in Web Portal, turn on printer check printer not show in web portal",Delete_Account
+45785,"Check Account delete and can login again, check user setting set to default except First Name/Last Name/Email",Delete_Account
+45786,Delete Fail: User login and delete account when in poor network or network disconnect,Delete_Account
+45787,Check delete user success and try register with the deleted account would fail,Delete_Account
+45788,Check delete user success and can reset the deleted account password success,Delete_Account
+45789,Verify mobile app help menu options.,Help
+45790,"Check UI for auto label feed setting , default value is enabled.",FeedOn_HeadClose
+45791,"Check when printer offline status, change Feed On Head Close value cannot be changed",FeedOn_HeadClose
+45792,"check update printer ""Feed on Cover Close"" value, delete printer but not decomission, restart printer , setting will not set to default",FeedOn_HeadClose
+45793,check the notification list should be synchronization at 3 platform,Notifications
+45794,check the notification can be dismissed by click 'dismiss' button at notification page,Notifications
+45795,check the notification page would display all generated notifications unless delete the app,Notifications
+45796,"upload and delete the picture for the zebra account via ""Photo Gallery""",User Settings
+45797,"upload and delete the picture for the non-zebra account via ""Camera""",User Settings
+45798,check cancel feature of uploading account picture process,User Settings
+45799,check mobile app not able to install in android 8.0 and 8.0- devices,App_Settings
+45800,Check Non Zebra User Account can update its user account profile,User Settings
+45801,"Check in print preview page, input value of textbox the keyboard will not auto disappear",Template_Management
+45802,check Mobile App login page will not time out within 30mins(29mins),Social_Login
+45803,"Error Handling-Check Print design with paper out printer(common design, my design, Print Test Page, Reprint Last Label)will show waring toast",Printer_ Management
+45804,"Error Handling-Check Print design with the offline printer(common design, my design,Print Test Page, Reprint Last Label)will show waring toast",Printer_ Management
+45805,"Error Handling-Check Print design with the head open printer(common design, my design, Print Test Page, Reprint Last Label)will show waring toast",Printer_ Management
+45806,"Error Handling-Check sharing pdf to ZSB app when the printer is in error status(offline, media out, paper out)will show waring toast",PDF_Printing
+45807,Check login mobile app and then switch mobile device network connection re-enter mobile app will still work without issue,Device_Network
+45808,PDF Print: User NOT login share a PDF to ZSB serial print out then share an other PDF to ZSB serial and print out,PDF_Printing
+45809,Share template PDF files to ZSB Series and print out (ZSB series in different pages),PDF_Printing
+45810,the printing preview page can be rotated on tablet,PDF_Printing
+45811,the end digit should be bigger than the begin digit when choosing Custom radio box,PDF_Printing
+45812,Check can share a big size file to ZSB Serial and display with out any issue,PDF_Printing
+45813,Check can share PDF file to ZSB Serial and can edit and print out with different printer,PDF_Printing
+45814,Check can share PDF to ZSB serial and login with social media account success,PDF_Printing
+45815,change cropper window direction for the pdf file has more than 1 label (apply to current),PDF_Printing
+45816,change cropper window direction for the pdf file has more than 1 label (apply to all),PDF_Printing
+45817,change cropper window chosen area for the pdf file has more than 1 label (apply to current),PDF_Printing
+45818,change cropper window chosen area for the pdf file has more than 1 label (apply to all),PDF_Printing
+45819,change cropper window direction and chosen area for the pdf file has more than 1 label (apply to current),PDF_Printing
+45820,change cropper window direction and chosen area for the pdf file has more than 1 label (apply to all),PDF_Printing
+45821,check cancle button on the Edit page,PDF_Printing
+45822,change cropper window direction for the pdf file only has 1 label (apply to all/Current),PDF_Printing
+45823,change cropper window chosen area for the pdf file only has 1 label (apply to all/Current),PDF_Printing
+45824,change cropper window direction and chosen area for the pdf file only has 1 label (apply to all/Current),PDF_Printing
+45825,Check printing preview page can update info when changing printer status and cartridge,PDF_Printing
+45826,"Mulit-page PDF share to ZSB Serial, select all pages, check all pages can print out success",PDF_Printing
+45827,"Mulit-page PDF share to ZSB Serial, select current page, check current page can print out success",PDF_Printing
+45828,"Mulit-page PDF share to ZSB Serial, select Custom and select a range, check selected pages can print out success",PDF_Printing
+45829,"about 500-pages PDF share to ZSB Serial, select Custom and select a range, check page number show correnct can select a valid range",PDF_Printing
+45830,"One Page PDF share to ZSB Serial,select Custom and select a range, check range show 1 to 1 and not able to change",PDF_Printing
+45831,"With no printer added, share pdf to ZSB serial, check printer preview display",PDF_Printing
+45832,"With one printer added Share PDF to ZSB Serial, check printer default selected, printer status will displayed",PDF_Printing
+45833,"With multi printers added, share PDF to ZSB Serial, check user can select different printer to print",PDF_Printing
+45834,"With ZSB mobile app installed,open Third Party App click Share button, check ""ZSB Serial"" in app list",PDF_Printing
+45835,"Opened and login in Mobile App, From Third App open PDF share to ZSB Serial will open ZSB Serial and show print preview page",PDF_Printing
+45836,"Not login Mobile App, from Third App open PDF file share to ZSB Mobile App , ZSB Mobile app will open login page after login success will show print Preview page",PDF_Printing
+45837,"ZSB Serial login but not run on back ground, from Third App open PDF file share to ZSB Mobile App , ZSB Mobile app will open login page after login success will show print Preview page",PDF_Printing
+45838,"Open PDF file share to ZSB Serial, check Print preview page display informat show correct",PDF_Printing
+45839,"Open PDF file share to ZSB Serial, check print preview page can preview different page(Preview / Next button to switch page to view)",PDF_Printing
+45840,"Open PDF file with Adobe Reader share to ZSB Serial, print Preview and print out then Open another PDF file in Adobe reader Share to ZSB Serail",PDF_Printing
+45841,"Open PDF file with Adobe Reader share to ZSB Serial, print Preview and print out then Open another PDF file from Files/Google Drive/ One Drive Share to ZSB Serial",PDF_Printing
+45842,"Open Landscape view PDF file and share to ZSB Serial, check preivew page show correct",PDF_Printing
+45843,"Open PDF file contains both portait and landscpage pages, check preivew page show correct",PDF_Printing
+45844,"Share a 4''x6 '' size pdf to ZSB Serial and print out with 4""x6"" media,check the print out label content is as expected",PDF_Printing
+45845,"Printer in Error status, Share a PDF to ZSB serial and keep default setting and print one copy will pop up error dialog",PDF_Printing
+45846,"Printer in Error status, Share a PDF to ZSB serial and click edit label will pop up error dialog",PDF_Printing
+45847,"Share a PDF to ZSB serial, check the default print copies value is 1, and can update copies to a valid value print out correct copies",PDF_Printing
+45848,"Share a PDF to ZSB serial, check in print preview page, user input invalid value it will auto change to valid value",PDF_Printing
+45849,"After updated print Copies in print preview page, the total labels would print out would auto update",PDF_Printing
+45850,"""Preview Feature"" popup as a dismissible text box",PDF_Printing
+45851,click back button on the printing preview page would navigate to the Redirect calling App,PDF_Printing
+45852,image file cannot share to ZSB serial,PDF_Printing
+45853,Check invalid PDF would fail share to ZSB serial,PDF_Printing
+45854,the cropper window is resized after switching to a printer with a different cartridge size,PDF_Printing
+45855,Verify create a brand new user with a registered user in Mobile App.,Registration
+45856,Verify user did not enter verification within 10 mins will need to re-register again in Money Badger Mobile App.,Registration 2.0
+45857,Verify registration entry field when creating a brand new user with unregistered user in Mobile App.,Registration 2.0
+45858,Verify create a brand new user with unregistered user in Mobile App,Registration 2.0
+45859,Verify sign in with invalid email using Mobile App.,Social_Login
+45860,Verify sign in as zebra user in Mobile App.,Social_Login
+45861,Verify sign in sign out with already login registered google account (Non-SMB database) with Money Badger in Mobile App.,Social_Login
+45862,Verify sign in sign out with registered google account (Non-SMB database) in Money Badger Web Portal.,Social_Login
+45863,Verify sign in sign out with registered facebook account (Non-SMB database) in Mobile App.,Social_Login
+45864,Verify user log out from 1 client shall NOT impact the sessions on other mobile devices.,Social_Login
+45865,Verify user can login with multiple different devices and different Money Badger application and each session will not affect the others.,Registration
+45866,Verify reset password for external email user in Mobile App.,Registration 2.0
+45867,Verify zebra user exceeded the number of attempt to reset password in Mobile App (Optional).,Registration 2.0
+45868,Verify reset password for zebra user in Mobile App.,Registration 2.0
+45869,Verify Order Model Labels links in Money Badger Mobile App.,Help
+45870,Verify the SSO timeout in Money Badger Mobile App (Optional).,SSO_Token_Renewal
+45871,Verify sign in sign out with registered Apple account (Non-SMB database) in Money Badger Mobile App,Social_Login
+45872,Check Mobile App login page will timeout out of 30mins(31mins).,Social_Login
+45873,PDF Print: Print a small size design then share a PDF to ZSB serial print out,PDF_Printing
+45874,Check the version number displays well on different OS,App_Settings
+45875,Fresh Install the app with apk/or from Google Store (Android) or from test flight/Apple Store (iOS),Mini Regression
+45876,Check basic functions work well after upgrading,Mini Regression
+45877,Verify create a brand new user with unregistered user in Mobile App.,Registration
+45878,"Verify sign in as zebra, check link and delete one/google drive file works well",Data Sources
+45879,"Verify sign in as non-zebra, check link and delete one/google drive file works well",Data Sources
+45880,"Verify sign in with non-zebra account, check the design linked different format file from local can be printed out successfully",Template_Management
+45881,"Verify sign in with social account, check the design linked different format file from Google Drive can be printed out successfully",Template_Management
+45882,"Verify sign in with non-Zebra account, check the design linked different format file from One Drive can be printed out successfully",Template_Management
+45883,Verify sign in sign out with registered social accounts in Mobile App.,Social_Login
+45884,Add a printer- Out of the box user experience,Add_Printer
+45885,Add a printer- use a printer which has ever been registered before and require a decommission.,Add_Printer
+45886,Check Mobile App can display correct printer status and notifications when printer status updates,Printer_ Management
+45887,User modify the printer's darkness setting and perform test print,Printer_ Management
+45888,Check user can delete a printer from Mobile App,Printer_ Management
+45889,Check user can upload or link file to My Data,Data Sources
+45890,Print template with static information in Recently Printed Template list,Template_Management
+45891,Print multiple copies of template with variable data in Workspace,Template_Management
+45892,Delete template in Workspace,Template_Management
+45893,View Zebra defined categories in Common Designs,Template_Management
+45894,View list of Zebra templates in Common Designs,Template_Management
+45895,Print Zebra templates after Copy the template which needs to upload a picture from Library to Workspace (eg: Address->AddressWithIcon; Small Multipurpose->pickImage),Template_Management
+45896,Print a label from Common Design (need to cover at least 1 template from each of the common design category).,Template_Management
+45897,Adding New network: Add Essids by using another phone,Device_Network
+45898,Print Template when Google Contacts is updated,Template_Management
+45899,Print template when Office365 Contacts is updated,Template_Management
+45900,"Update Auto label feed setting(enable), check setting sync in mobile and web portal, open and close printer cover, then print a test label",FeedOn_HeadClose
+45901,"Update Auto label feed setting(disable), check setting sync in mobile and web portal, open and close printer cover, then print a test label",FeedOn_HeadClose
+45902,View list of Recently Printed Designs when no design is printed,Template_Management
+45903,View list of Recently Printed Designs after printing in My Designs,Template_Management
+45904,View list of Recently Printed Designs after printing more than 6 different designs,Template_Management
+45905,View list of Recently Printed Designs after copying Zebra design and printing on My Designs,Template_Management
+45906,View list of Recently Printed Designs after printing Zebra design,Template_Management
+45907,Check UI of Recently Printed Designs,Template_Management
+45908,View list of Recently Printed Designs when printer is not ready for printing,Template_Management
+45909,View list of Recently Printed Designs in Web Portal after printing in Mobile App,Template_Management
+45910,View list of Recently Printed Designs when mobile device lost network connection,Template_Management
+45911,Print design with static information in My Designs and Recently Printed Designs,Template_Management
+45912,Print design with variable data without data source in My Designs,Template_Management
+45913,Print design with variable data without data source in Recently Printed Labels,Template_Management
+45914,Print multiple copies of design with static information in My Designs and Recently Printed Designs,Template_Management
+45915,Print multiple copies of design with variable data without data source in My Designs and Recently Printed Designs,Template_Management
+45916,Print design with label size smaller than the cartridge size inserted to the printer,Template_Management
+45917,Print design with label size bigger than the cartridge size inserted to the printer,Template_Management
+45918,Print design using 2 different printers,Template_Management
+45919,Print duplicated design in My Designs,Template_Management
+45920,Print design with special characters,Template_Management
+45921,Print design when printer is offline.,Template_Management
+45922,Print design with more than 10 elements to be filled at print time,Template_Management
+45923,Click Print back without printing design in My Designs,Template_Management
+45924,Click Print back without printing design in Recently Printed,Template_Management
+45925,Print copies more than the labels left in the printer,Template_Management
+45926,Rename design using unique name in My Designs.,Template_Management
+45927,Rename design using unique name in Recently Printed,Template_Management
+45928,Rename design in My Designs using same name from Zebra defined designs,Template_Management
+45929,Rename design in Recently Printed using same name from Zebra defined designs,Template_Management
+45930,Rename design in My Designs using same name from user's designs,Template_Management
+45931,Rename design in Recently Printed using same name from user's designs,Template_Management
+45932,Rename design in My Designs using the same name used by other users,Template_Management
+45933,Rename design in Recently Printed using the same name used by other users,Template_Management
+45934,Rename design using invalid names,Template_Management
+45935,Cancel renaming of design in My Designs,Template_Management
+45936,Cancel renaming of design in Recently Printed,Template_Management
+45937,Rename Zebra defined designs - NOT allowed,Template_Management
+45938,Rename design with special characters,Template_Management
+45939,Check updated name in Mobile App after renaming design via Web Portal,Template_Management
+45940,Rename design in My Designs when mobile device lost network connection,Template_Management
+45941,Rename design in Recently Printed when mobile device lost network connection,Template_Management
+45942,Duplicate design using default name in My Designs,Template_Management
+45943,Duplicate design using default name in Recently Printed,Template_Management
+45944,Duplicate design using unique name in My Designs,Template_Management
+45945,Duplicate design using unique name in Recently Printed,Template_Management
+45946,Duplicate design in My Designs using same name from user's designs,Template_Management
+45947,Duplicate design in Recently Printed using same name from user's designs,Template_Management
+45948,Duplicate design in My Designs same name from Zebra defined designs,Template_Management
+45949,Duplicate design in Recently Printed same name from Zebra defined designs,Template_Management
+45950,Duplicate a duplicated design in My Designs,Template_Management
+45951,Duplicate a duplicated design in Recently Printed,Template_Management
+45952,Duplicate design using invalid names,Template_Management
+45953,Duplicate design with special characters,Template_Management
+45954,Check duplicated design in Web Portal after duplicating design via Mobile App,Template_Management
+45955,Cancel duplicating of design in My Designs,Template_Management
+45956,Cancel duplicating of design in Recently Printed,Template_Management
+45957,Delete design in My Designs,Template_Management
+45958,Delete design in Recently Printed.,Template_Management
+45959,Delete Zebra defined designs - NOT allowed,Template_Management
+45960,Check deleted design in Web Portal after deleting design via Mobile App,Template_Management
+45961,Delete design from Copy to My Designs,Template_Management
+45962,Delete design in My Designs when mobile device lost network connection,Template_Management
+45963,Delete design in Recently Printed when mobile device lost network connection,Template_Management
+45964,View list of designs in My Designs when no design in the user account,Template_Management
+45965,Check UI of My Designs design list,Template_Management
+45966,Scroll design list in My Designs with more than 100 designs,Template_Management
+45967,View Zebra defined categories in Common Designs,Template_Management
+45968,View list of Zebra designs in Common Designs,Template_Management
+45969,Print Zebra designs after Copy to My Designs- - Address category,Template_Management
+45970,Print Zebra designs after Copy to My Designs - Barcode category.,Template_Management
+45971,Print Zebra designs after Copy to My Designs - File Folder category,Template_Management
+45972,Print Zebra designs after Copy to My Designs - Jewelry category,Template_Management
+45973,Print Zebra designs after Copy to My Designs - Multipurpose category,Template_Management
+45974,Print Zebra designs after Copy to My Designs - Multipurpose/Name tag category,Template_Management
+45975,Print Zebra designs after Copy to My Designs - Shipping category,Template_Management
+45976,Search designs in My Designs - input text that does not match any of the user's designs,Template_Management
+45977,Search designs in My Designs - input text that matches one of the user's designs,Template_Management
+45978,Search designs in My Designs - input keyword that matches more than 5 of the user's designs,Template_Management
+45979,Search designs in My Designs with more than 100 designs in the list,Template_Management
+45980,Search designs in My Designs with special characters,Template_Management
+45981,Sort designs in My Designs by Name - default,Template_Management
+45982,Sort designs in My Designs by Name (A to Z),Template_Management
+45983,Sort designs in My Designs by Name (Z to A),Template_Management
+45984,Filter designs in My Designs by Size - default,Template_Management
+45985,Filter designs in My Designs by Size - different label sizes,Template_Management
+45986,Filter designs in My Designs by Size - no design matched,Template_Management
+45987,"Sort, Filter Zebra designs in Common Designs - Address category",Template_Management
+45988,"Sort, Filter Zebra designs in Common Designs - Barcode category",Template_Management
+45989,"Sort, Filter Zebra designs in Common Designs - File Folder category",Template_Management
+45990,"Sort, Filter Zebra designs in Common Designs - Jewelry category",Template_Management
+45991,"Sort, Filter Zebra designs in Common Designs - Multipurpose category",Template_Management
+45992,"Sort, Filter Zebra designs in Common Designs - Name Badge category",Template_Management
+45993,"Sort, Filter Zebra designs in Common Designs - Shipping category",Template_Management
+45994,Filter and Search when mobile device lost network connection,Template_Management
+45995,Copy Common Design to My Designs,Template_Management
+45996,Copy to My Designs using same name from user's designs,Template_Management
+45997,Copy to My Designs using same name from Zebra defined designs,Template_Management
+45998,Copy to My Designs using invalid names,Template_Management
+45999,Copy to My Designs using name with special characters,Template_Management
+46000,Check design in Web Portal after Copy to My Designs via Mobile App,Template_Management
+46001,Rename design after Copy to My Designs,Template_Management
+46002,Duplicate design after Copy to My Designs,Template_Management
+46003,Duplicate/Copy design to My Designs 2 times,Template_Management
+46004,View design list after creating design using a different account,Template_Management
+46005,Check design in Mobile App after editing design via Web Portal.,Template_Management
+46006,Search designs in Common Designs - input text that does not match any of the Zebra categories and designs,Template_Management
+46007,Search designs in Common Designs - input text that matches Zebra category and design,Template_Management
+46008,Search designs in Common Designs - input text that matches Zebra category and NOT design,Template_Management
+46009,Search designs in Common Designs - input text that matches Zebra design and NOT category,Template_Management
+46010,Search designs in Common Designs with special characters,Template_Management
+46011,Search designs in Zebra Category - input text that does not match any of the Zebra designs,Template_Management
+46012,Search designs in Zebra Category - input text that matches one of the Zebra designs,Template_Management
+46013,Search designs in Zebra Category - input keyword that matches multiple Zebra designs,Template_Management
+46014,"Search, Filter and Sort designs in Zebra Category",Template_Management
+46015,"Delete data source file, print design cannot work",Template_Management
+46016,Check manual input data works,Template_Management
+46017,Check Select some labels to print with data source works (with empty rows selected),Template_Management
+46018,Check able to search rows on label range window to print when printing design with file connected,Template_Management
+46019,search out some labels to print2,Template_Management
+46020,Check label amount is correct,Template_Management
+46021,"Data source file modified, print design still works",Template_Management
+46022,"Switch data source file, print design works",Template_Management
+46023,Data source data is invalid,Template_Management
+46024,Print multiple copies of design with data source in My Designs,Template_Management
+46025,View list of Recently Printed Designs after printing Zebra design to My Designs,Template_Management
+46026,"Data source file removed, upload file in Update Data Connection page, print template still works",Template_Management
+46027,"Print All in template with Google Contacts without empty columns connected, no google account login yet",Template_Management
+46028,"Print selected in template with Google Contacts with empty columns connected, google account already login",Template_Management
+46029,Print template with Empty Google Contacts connected,Template_Management
+46030,"Print Template with Google Contacts, but login with different Google account",Template_Management
+46031,Print Template when Google Contacts is updated,Template_Management
+46032,"Print All in template with Office365 Contacts without empty columns connected, no 365 account login in yet",Template_Management
+46033,"Print selected in template with Office365 Contacts with empty columns connected, Microsoft account already login",Template_Management
+46034,Print template with Empty Office365 Contacts connected,Template_Management
+46035,"Print Template with Office365 Contacts, but login with a different Microsoft account",Template_Management
+46036,Print template when Office365 Contacts is updated,Template_Management
+46037,"with 100+ template in my design, create a template save then print out via Mobile",Template_Management
+46038,"With 100 + template on my Design, check can print out template in each page via mobile app",Template_Management
+46039,"With 100+ template in my Design, duplicate one template then print out the duplicate template with Copies = 2 via Mobile App",Template_Management
+46040,"With 100 + templates in my Design, copy a template from Common design, renamed the template then print out via Moible App",Template_Management
+46041,"With 100 + templates in my Design, import a template form web portal local then print out via mobile app",Template_Management
+46303,To test the ZSB Wi-Fi performance Setup,Add_Printer 2.0
+46304,"To verify the ZSB Bluetooth intro probability test- After coming back to acceptable distance, able to proceed",Add_Printer 2.0
+46305,To verify the ZSB Bluetooth intro probability test- Will get an error when far away from printer,Add_Printer 2.0
+46306,"To test ""the Internet Access blocked"" error message",Add_Printer 2.0
+46307,To verify that user is able to continue with the printer after login with the different register login,Add_Printer 2.0
+46963,"Manage Network comparison Test case: Go to manage network page, add new network , re-enter manage network, sort network then delete network",Device_Network
+46964,Comparison Test- Scenarios A: out of box golden image Need to Update FW,Add_Printer
+46965,Comparison Test- Scenario B: Manually Decommission before readding No need to update FW,Add_Printer
+46966,Comparison Test- Scenario C Test case:- Decommission the printer when readding it,Add_Printer
+47699,"Mimicking user forget to clikc ""pair"" button when the BT pairing prompt pop up",Add_Printer 2.0
+47700,Check no network search out user is able to add Wi-Fi network manually,Add_Printer
+47701,Add printer select network: Check add printer select WIFI-Network page UI,Add_Printer
+47702,Add printer select network: Check search again to refresh current Wi-Fi list multi times will works fine,Add_Printer 2.0
+47704,check during search bluetooth the page show the new UI with zoomed in view of just the LED and a message on the bottom,Add_Printer 2.0
+47705,"Check during search bluetooth the page, click the message under the searching page will pop up LED",Add_Printer
+47706,"Check during search bluetooth the page, click the message under the searching page will pop up LED and the printer already list out",Add_Printer
+47707,Verify ZSB printer can be connected to ZSB mobileApp user phone connected Open wi-fi,Add_Printer 2.0
+47708,Verify ZSB printer can be connected to ZSB mobileApp user phone connected Secure wi-fi,Add_Printer 2.0
+47709,Verify ZSB Printer will list out all available network when user phone not connect to any Wi-Fi (Connect to open wifi),Add_Printer 2.0
+47710,Verify ZSB printer can be connected via other wifi network other than user connected network.,Add_Printer
+47711,Verify ZSB printer can be connected via manually entered network.,Add_Printer
+47712,Add printer: check it will take less then 20 seconds to pair printer success,Add_Printer 2.0
+47713,"Add printer BT pair Timeout : Pair printer when printer offline, pair printer fail it will attempt a second connection in the background(Pair time about 45 seconds)",Add_Printer 2.0
+47714,"Add printer BT pair Timeout : check when printer not in pair mode, check pair time",Add_Printer 2.0
+47715,"Add printer BT pair Timeout : check cancel Bluetooth Pairing request, check pair time",Add_Printer 2.0
+47716,Android only: Decomission success and auto remove bonding success will continue go select network page,Add_Printer
+47717,Android only: Decomission printer fail will show error dialog and bonding will not removed.,Add_Printer
+47783,Verify 'Internet access blocked' error appeared at the last page of printer registration even if the printer has been registered successfully.,Add_Printer 2.0
+47785,Check user can delete printer before decommissioned,Printer_ Management
+47786,"Verify Sign into the ZSB App, after reinstalling the same app again and uninstall the app without logging out",SSO_Token_Renewal
+47788,Verify incorrect live chat hours displayed when chat is offline.,Help
+47789,Verify ZSB app should not crash when user quit Add_printer and app.,Add_Printer 2.0
+47790,Verify token refresh doesn't log app out.,App_Settings
+47791,Verify there is no duplicate Previous and Next Button when there are multiple page in the print preview page,Template_Management
+47792,Verify user can't backspace the number when the Initial value is negative number for the Currency field.,Template_Management
+47793,Verify User cannot exit current page by click X button or click Enter Network Manually in Searching Network Page.,Add_Printer 2.0
+47794,Verify mobile app should show home page after user re-open app with mobile phone network interrupted.,Device_Network
+47795,Verify Location turn on reminder dialog should navigate user to the correct page and user can't proceed to add printer without enabling location.,Add_Printer 2.0
+47810,Verify recently printer labels text shouldn't overlap on theme background picture.,App_Settings
+47812,Android Only-Verify search title and the result label should not overlap each other when searching in Common Design some of the results are with large title,Template_Management
+47820,Verify ZSB app home page (overview page) should scroll to the bottom of the list in Recently Printed Labels,App_Settings
+47824,"Verify ZSB app doesn't shows ""Print Complete"" popup for empty label printing or printer is in error/offline status",Template_Management
+47825,"Verify ZSB app doesn't shows error as ""Logout failed. Please try logging out again"".",App_Settings
+47830,Verify screen pull-down to refresh/update on My Design/My File Page works.,Data Sources
+47879,Verify typo and guide message is correct on Searching For your printer page.,App_Settings
+47880,"Verify ""Done"" Button and text ""LED light Behavior Support"" position is correct in Printer LED Guide dialog.",App_Settings
+47881,"Verify ""How to Unpair Bluetooth"" dropdown list should expend with small size screen device.",App_Settings
+47882,"Printer Mac address should show in ""How to Un Pair Bluetooth"" drop down list details.",Printer_ Management
+47910,Verify pull-down screen twice then the prints left value can refresh success in home page.,App_Settings
+47911,Verify auto Label Feed On Printer Cover Close value doesn't retrieve in progress after changing darkness level.,App_Settings
+47912,Verify manage network does not fail when printer rebooted.,Device_Network
+47913,Verify ZSB app doesn't stuck in Printer registration process when there is a network drop.,App_Settings
+47914,Android Only- Verify there is no unknown printer appeared in the Bluetooth list.,App_Settings
+47915,"Printer Bluetooth List displays printers which have already been added even if ""Show All Printers"" is not selected.",App_Settings
+47917,Verify Printer’s name is too long which should not causes app get stuck and style error at Printer Settings page.,App_Settings
+47918,Verify ZSB app permission works fine.,App_Settings
+47919,Verify Chat bubble should not appear on Chat page.,Help
+47920,Verify user rename 2 printers with same printer name won't pop up incorrect error dialog.,Printer_ Management
+47921,Verify ZSB app should discover only zsb printers.,Add_Printer 2.0
+47923,Verify changing password should log out all clients.,User Settings
+47924,Verify Should not allow same printer name in all the clients.,App_Settings
+47927,To Verify the LED reflection on Mobile App,Add_Printer
+47928,UI warning and confirmation verification when printer is deleted before decommissioned(Android),App_Settings
+47929,Android-only-UI warning and confirmation verification when printer is deleted before decommissioned,Printer_ Management
+47930,Registration verification when user pairs late,Add_Printer 2.0
+47931,Adding Printer by configuring Wifi Without Internet first followed by normal Wifi,Add_Printer
+47932,"Adding a printer by first configuring the wifi that is not connected to the Internet and then configure the wifi that is connected to the Internet,",Add_Printer 2.0
+47933,newly added support article when the are BT errors,Add_Printer
+47934,newly added support article when the are w-fi connection errors,Add_Printer 2.0
+47935,newly added support article when the are internal/captive portal connection errors,Add_Printer 2.0
+47936,Notification for deleting or uploading files from Data Source,Data Sources
+47937,Zebra account user required to enroll the device to be managed by Zebra Technologies after sign in Microsoft account to access Zebra OneDrive,Data Sources
+47938,Colored logos Printing,PDF_Printing
+47939,User is able to resize the PDF and other images before printing,PDF_Printing
+47940,User is not able to enter non-number to the Copies field in the print page,PDF_Printing
+47941,Verify the Layout of My Data Page,Template_Management
+47942,To verify the indicator when uploading and removing the file to the data sources,Data Sources
+47943,"Update the ""Current Network"" on screen after adding a network successfully",Device_Network
+47944,To verify the functionality while uploading the file which is broken,Data Sources
+47945,To verify the Printer name does not accept Blank value,Printer_ Management
+47946,To verify auto-updation of Pages,Printer_ Management
+47947,To verify the behaviour of deleting My Designs Template under condition of No Network,Template_Management
+47948,To verify the notification and behaviour overnight idleness,Notifications
+47949,To verify the updation on Print Preview Page/ Notification on change in Printer State,PDF_Printing
+47950,To verify the timing behaviour on giving Multiple prints,PDF_Printing
+47951,To verify the selection box on selecting a PDF File,PDF_Printing
+47952,To verify the pdf settings would change to the original when waking up the screen,PDF_Printing
+47953,To verify the print post Edit Label on Print Preview,PDF_Printing
+47954,To verify the scalability for rotated and unrotated PDF Pages,PDF_Printing
+47955,To verify the functionality when printer name is duplicated or provided unsuppoted characters,Printer_ Management
+47956,"Upload avatar via ""Photo Gallery"" using the default interface of Onedrive",App_Settings
+47972,Verify the Label Alignment Demo feature,FeedOn_HeadClose
+48107,"Scenario C :Re-add online printer to the same account, check add successful with no need decommissioning or BT bond removal",Add_Printer
+48108,To check the printer can be re-added without decommission by another account,Add_Printer 2.0
+48109,"Delete the printer from account A in mobile A, and add printer to account B in mobile B",Add_Printer 2.0
+48153,"At ""Firmware Updated Error"" page when adding a printer and failed to update firmware,check check it can navigate to support article page via clicking specify link",Add_Printer
+48154,"At ""Internet Access Blocked"" page when adding a printer and choose an network have no internet,check check it can navigate to support article page via clicking specify link",Add_Printer 2.0
+48155,"At ""Failed to connect"" page when adding a printer and choose an network with wrong password,check check it can navigate to support article page via clicking ""Help"" button",Add_Printer
+48156,"At ""Unable to pair your printer"" page(cancel to pair when pair dialog prompt), check it can navigate to support article page via clicking ""Get help"" button",Add_Printer
+48197,Certificate Expired- Check the notification pops up on each client if printer is offline and certificate expired (Turn off or unplug power wire),Printer Certificate Renewal
+48198,Certificate Expired- Check the content of notification on each client (word/link/buttons),Printer Certificate Renewal
+48199,Certificate Expired- Check dismissal of the notification on multiple active clients shall be client specific,Printer Certificate Renewal
+48200,"Certificate Expired- Check after dismissal of the notification without registering printer, the notification will pop up again when sign in",Printer Certificate Renewal
+48201,"Certificate Expired- Check turning on printer but not connect to Internet or not re-registered, still get the notification",Printer Certificate Renewal
+48202,Certificate Expired- Check only registered one printer when there are several expired printers,Printer Certificate Renewal
+48203,"Certificate Expired- Check removing the registered printer, user will not get the notification when sign in",Printer Certificate Renewal
+48204,"Certificate Expired- Check there is Update Printer popping up when sign in (One printer online, one printer offline and expired)",Printer Certificate Renewal
+48205,Certificate hasn't expired- Check Update Printer Notification will pop up 30 days in advance on all clients,Printer Certificate Renewal
+48206,Certificate hasn't expired- Check the content of notification on each client (word/link/buttons),Printer Certificate Renewal
+48207,Certificate hasn't expired- Check dismissal of the notification on multiple active clients shall be client specific and will pop up again without connecting printer back,Printer Certificate Renewal
+48208,"Certificate hasn't expired- Check turning on printer but not connect to Internet, still get the notification",Printer Certificate Renewal
+48209,Certificate hasn't expired- Check recovering one printer when there are several offline printers will still get the notification when sign in,Printer Certificate Renewal
+48210,"Certificate hasn't expired- Check removing the registered printer, user will not get the notification when sign in",Printer Certificate Renewal
+48211,"Certificate hasn't expired- Check there is Update Printer Notification popping up when sign in (One printer online, one printer offline and is going to expire)",Printer Certificate Renewal
+48212,Certificate hasn't expired- Check the notification will not pop up 31 days before expired,Printer Certificate Renewal
+48213,Check notification pops up when sign in user with printers are going to expire with different offline days,Printer Certificate Renewal
+48214,"Check cert expiring notification pops up first when sign in user with one printer expired, one printer is going to expire",Printer Certificate Renewal
+48266,Check the round label and category can be displayed and printed,Template_Management
+48395,Verify ZSB printer can be connected to ZSB App user phone is connected Open wifi,Add_Printer
+48396,Verify ZSB printer can be connected to ZSB App when phone is connected to Secure wi-fi,Add_Printer
+48397,Verify ZSB Printer will list out all available network when user phone is not connected to any Wi-Fi network (connect to network with pw),Add_Printer 2.0
+48398,Verify ZSB printer can be connected to some other wifi network apart from the currently connected network,Add_Printer
+48399,Verify ZSB printer can be connected via network selected manually,Add_Printer
+48436,"Verify the Cancel button functionality on ""Join Network Page"" while connceting to already connected / newly connected network",Add_Printer 2.0
+48437,Verify the functionality with only Mobile Data enabled(Wi-fi disabled),Add_Printer
+48438,Verify the timeout scenario when user enters the password and does not Continue,Add_Printer 2.0
+48439,Verify the functionality once the user switches the Wifi connection once current Wifi network is detected,Add_Printer 2.0
+48440,"Verify the behaviour when user clicks on X on ""Connect Wifi network"" page",Add_Printer
+48441,Certificate Expired- Check user will get the notification when the first time refreshing page after signing multiple days,Printer Certificate Renewal
+48442,Certificate Expired- Check at most three expired printers will be shown on the notification dialog,Printer Certificate Renewal
+48443,Certificate Expired- Check after recovering one printer the additional expired printers will be shown,Printer Certificate Renewal
+48444,Certificate Expired- Check after removing one printer the additional expired printers will be shown,Printer Certificate Renewal
+48445,Certificate hasn't expired- Check user will get the notification when the first time refreshing page after signing multiple days,Printer Certificate Renewal
+48446,Certificate hasn't expired- Check at most three printers which are about to expire will be shown on the notification dialog,Printer Certificate Renewal
+48447,Certificate hasn't expired- Check after recovering one printer the additional expiring printers will be shown,Printer Certificate Renewal
+48448,Certificate hasn't expired- Check after removing one printer the additional expiring printers will be shown,Printer Certificate Renewal
+48449,"Certificate hasn't expired- Check without clicking ok button then recovering printer, the printer list will be update after refreshing page",Printer Certificate Renewal
+48450,Certificate hasn't expired- Check the color of the cert notification is same as the theme of workspace,Printer Certificate Renewal
+48451,"Certificate expired- Check without clicking ok button then recovering printer, the printer list will be update after refreshing page",Printer Certificate Renewal
+48452,Certificate expired- Check the color of the cert notification is same as the theme of workspace,Printer Certificate Renewal
+48453,Check the cert expiring notification will still pop up before the cert expired notification after recovering one of expiring printers,Printer Certificate Renewal
+48464,"Check the login UI is updated as the Figma (Social login is the first preference, on top ZSB login page )",Social_Login
+48465,"Check the ""Benefits of Creating a ZSB Account"" can be clicked and the content is correct",Social_Login
+48466,Check the three links at the page of bottom can be clicked and open correct page,Social_Login
+48467,"Check clicking sign in with Google will open the Google sign in page, inputting existing and valid user credentials, sign in successfully",Social_Login
+48468,"Check clicking sign in with Apple will open the Apple sign in page, inputting existing and valid user credentials, sign in successfully",Social_Login
+48469,"Check clicking sign in with Facebook will open the Facebook sign in page, inputting existing and valid user credentials, sign in successfully",Social_Login
+48470,Check only the first time signing in Google social account user will see the EULA and need to accept,Social_Login
+48471,Check only the first time signing in Apple social account user will see the EULA and need to accept,Social_Login
+48472,Check only the first time signing in Facebook social account user will see the EULA and need to accept,Social_Login
+48473,Check the UI of zebra account login page after clicking sign with your email,Social_Login
+48474,"Check the ""Register Your Email Now"" option works",Social_Login
+48475,"Check the ""Reset Password"" option works",Social_Login
+48476,Check printer can be added or removed successfully when signing in Google social account,Social_Login
+48477,Check printer can be added or removed successfully when signing in Apple social account,Social_Login
+48478,Check printer can be added or removed successfully when signing in Facebook social account,Social_Login
+48479,"Check clicking sign in with Google will open the Google sign in page, inputting invalid user credentials will get correct message",Social_Login
+48480,"Check clicking sign in with Apple will open the Apple sign in page, inputting invalid user credentials will get correct message",Social_Login
+48481,"Check clicking sign in with Facebook will open the Facebook sign in page, inputting invalid user credentials will get correct message",Social_Login
+48482,Check only the first time signing in new registered zebra account user will see the EULA and need to accept,Social_Login
+48483,Check signing with your email with valid user credentials can sign in successfully (zebra account),Social_Login
+48484,Check signing in zebra account then log out to sign in social account works,Social_Login
+48485,"Check clicking sign in with email will open the zebra sign in page, inputting invalid user credentials will get correct message",Social_Login
+48486,Check clicking sign in button on zebra login page without inputting user credentials will get prompt message,Social_Login
+48547,Check newly created/edited Round label can be printed in My designs and Recently Printed Labels,Template_Management
+48548,Check Rename/Duplicate/Delete Round label works,Template_Management
+48690,Verify the Signal Strength UI for WiFi with No connectivity,Add_Printer
+48691,Verify the Signal Strength UI for WiFi with Low connectivity,Add_Printer
+48692,Verify the Signal Strength UI for WiFi with Ok connectivity,Add_Printer
+48693,Verify the Signal Strength UI for WiFi with Average connectivity,Add_Printer 2.0
+48694,Verify the Signal Strength UI for WiFi with Excellent connectivity,Add_Printer
+49124,"iOS version less than15:verify connection to ZSB mobile App when user phone is connected to Open wi-fi( leave password as blank), connection is successful",Add_Printer 2.0
+49125,"iOS version less than 15:verify connection to ZSB mobile App user phone connected Secure wi-fi(Leave password as blank), connection is failed",Add_Printer 2.0
+49126,"iOS less than 15:Verify connection to ZSB mobile App when user phone connected to Secure wi-fi( input correct password), connection is successful",Add_Printer 2.0
+49135,Check the printer should be discoverable by APS which are associated with the currectly login account in the mobile app,APS Printer Discover
+49136,Check the UI of the Add printer page in APS,APS Printer Discover
+49137,Check the UI of the Settings page in APS,APS Settings
+49138,Check the APS can be turn on/off,APS Settings
+49139,Check the documentation shall be updated to notify users of the Android Print Service,APS Others
+49140,"Check the ""About"" screen in the APS settings",APS Others
+49141,Check the print options in the printing page when sharing a file to print and selecting the ZSB printer,APS Print Preview Options
+49142,Check it works that APS can print 1 copy 1 page of the supported shared file with default settings,APS Print Preview Options
+49143,Check the UI of the darkness setting in APS settings page,APS Settings
+49144,Check all supported formats files or infomations can be printed by the printer service,APS Printing
+49145,Check changing the darkness works for the APS printing,APS Settings
+49146,Check the multiple copies can be printed in APS,APS Print Preview Options
+49147,Check the user can set the printing range in the preview page in APS,APS Print Preview Options
+49148,Check the cropped option works when printing in APS,APS Print Preview Options
+49149,Check the Rotation option works when printing in APS,APS Print Preview Options
+49150,Check the Print in Color vs. Print in Black and White printing option,APS Print Preview Options
+49151,Check the Single or Double Sided printing option,APS Print Preview Options
+49152,Check the Scaling Percentage option disabled in printing for APS,APS Print Preview Options
+49153,Check the printer dropdown list works and can change the printer to print,APS Print Preview Options
+49154,Check the paper size in print options displayed currectly and can be updated,APS Print Preview Options
+49155,Check user shall be notified if user has not logged in at least once,APS Notification
+49156,Check APS would be deleted after deleting ZSB Series app,APS Others
+49157,Check printer print queue can be opened and cancel/delete the print jobs,APS Printing
+49158,Check the ZSB printer should also be discoverable if the printer in error statues(offline/head open/paper out),APS Printer Discover
+49159,Check it works that APS can print 1 copy with multiple pages of the supported shared file with default settings,APS Print Preview Options
+49160,Check the new added printer can be discovered in APS,APS Printer Discover
+49161,Check the paper size is different from the print formats,APS Printing
+49162,Check can not discover the ZSB printers if interrupted the network of Android device when sharing the printed files in APS,APS Printer Discover
+49163,Check it can not perform the printing in the preview page when disconnect the Android or the selected ZSB printers,APS Printing
+49164,Check the printers should not be discoverable when it is not register in the current mobile app login(even though printer is online),APS Printer Discover
+49165,Check inputting the invalid copies in print option,APS Print Preview Options
+49166,"check printing around 50 pages and click cancel, the print job is paused",APS Printing
+49167,Check the paper size in Android device to the user when printer is on the error statues(wrong media/head is open/no media),APS Notification
+49168,Check it can restart the print job in the Android notifications Message list if the error is cleared,APS Notification
+49169,Check the error messages can be cleared in real time if the error status in printer is fixed,APS Notification
+49170,Check it can not print when the printer offline,APS Printing
+49171,Check the non-ZSB printers should not be discoverable in APS,APS Printer Discover
+49172,Check it can not search out the printer after log out from the mobile app,APS Printer Discover
+49173,Check it can not print when inputting out of page range in the printing page,APS Print Preview Options
+49174,Check it can print when selecting the custom range in the printing page,APS Print Preview Options
+49175,Check it would ask to turn on the WIFI to search for wireless printer when the Android without connecting WIFI,APS Printer Discover
+49176,"Check the target printer is use to print via Android device A, then use Android device B to discover this printer and perform the printing(first come first service)",APS Printer Discover
+49177,Check APS can also search out the associated printers after force quit the mobile app once have logined,APS Printer Discover
+49178,"Check switch login the account in mobile app , new associated printers searched out, can not search the printers associated with the previous account",APS Printer Discover
+49179,Check the printer can not be discovered after deleting the printer in the ZSB mobile app,APS Printer Discover
+49180,"Update printer name to a long name ,click refresh, check printer name display correct in APS available devices list",APS Printer Discover
+49181,Check no printer fetched by APS login in ZSB account with no printer added,APS Printer Discover
+49182,Check no printer fetched by APS if user never logged in ZSB APP,APS Printer Discover
+49183,Check no printer fetched by APS if user never install ZSB APP,APS Printer Discover
+49184,Check ZSB series print service setting is related with app not base on ZSB account (change ZSB account to check),APS Settings
+49185,"Check turn off APS then update install ZSB app, it’s still turn off",APS Settings
+49186,Check APS queue job will be cleared when go to ZSB app to Clear Print Queue,APS Printing
+49187,"Check there is a dialog ""Use ZSB series"" pop up when printing for the first time on APS and click OK will print success",APS Printing
+49188,"Check dialog ""Use ZSB series"" would not pop up when printing for NOT the first time on APS",APS Printing
+49189,"Check it would not print when click Cancel on the dialog ""Use ZSB series""",APS Printing
+49190,"Check ""Use ZSB series"" dialog would pop up when cancel first time then print via APS again",APS Printing
+49191,Printer field is displayed the last selected printer name on print preview page when ever selected a printer,APS Print Preview Options
+49203,Check the UI of deleting printer dialog,Printer_ Management
+49204,Check APS can be turn on before selecting printer if it is turn off,APS Printing
+49216,"Printer already added(Online and delete from web portal), re-add again with the same account",Add_Printer 2.0
+49219,"iOS version less than 15:verify when ZSB mobile App is connected to Open wi-fi(input any value for password then submit),connection is failed",Add_Printer 2.0
+49220,"Printer already added(Offline due to network disconnect and not delete from web portal/Mobile App), re-add again,check readd successful",Add_Printer 2.0
+49221,"Failed to add a new printer due to choose a WIFI without network, re-add printer to this account again with has network WIFI,check readd successful",Add_Printer 2.0
+49222,"Failed to add an online printer due to choose a WIFI without network, re-add printer to this account again with has network WIFI,check readd successful",Add_Printer 2.0
+49225,Scenario B: Manually Decommission before re-adding No need to update FW,Add_Printer
+49226,Scenarios A: out of box – golden image Need to Update FW,Add_Printer
+49227,"Delete the printer(Online) from account A, and add printer to account B within the same device",Add_Printer 2.0
+49540,Check ZSB printers are fetched out in ZSB APS after keep ZSB APP idle for more than 1 day,APS Others
+49665,Manage network- Check Bluetooth Connection failed dialog will pop up after BT Paring Request dialog disappeared,Device_Network
+49709,Manage network- Check able to manage network with long name,Device_Network
+49710,Check printer still can be registered successfully when user leaves registering page and comes back,Add_Printer 2.0
+49711,Manage networks- Check there is a prompt message when applying to the network which can't resolve Zebra host,Device_Network
+49725,Verify the Print Preview layout gets updated as per the Orientation set,APS Print Preview Options
+49726,"User A log in ZSB and log out then login with user B, check printers in user B displayed in APS available devices list",APS Printer Discover
+49778,"Check print service shall support all printable forms and can print out success from Google Drive (image,pdf)",APS Printing
+49779,"Check print service shall support all printable forms and can print out success from One Drive (image,pdf)",APS Printing
+49780,Verify user is able to print when trying to print a ppt/csv/xls/xlsx/word file from MS mobile apps,APS Printing
+49783,Check only associated ZSB printers is displayed in APS available devices list via share file to ZSB flow,APS Printer Discover
+49784,"After print a test label , check printer labels left is correct in APS available devices list",APS Settings
+49785,"User login in then log out, check printers associated user can NOT be fetched in APS available devices list",APS Printer Discover
+49786,"Printer field is displayed ""Select a Printer"" when have not select a printer ever on print preview page",APS Print Preview Options
+49787,Check ZSB series print service is turned on default and printers is fetched out from ZSB workspace,APS Printer Discover
+49788,Check user can disable ZSB series print service and cannot fetch any Money badger printer,APS Others
+49789,Check user can enable ZSB series print service from off status and fetch out printers,APS Others
+49790,Check print failed when turn off APS ZSB series at print preview page,APS Print Preview Options
+49791,"Check the measure unit can be updated after change a different unit via change ZSB workspace settings - change to inch ,cm,mm",APS Settings
+49905,log in Non-Zebra/Zebra account and check the token is valid and logout then login to check token renew a new one,SSO_Token_Renewal
+49906,log in social login account and check the token is valid and logout then login to check token renew a new one,SSO_Token_Renewal
+49907,[Active]Check that there is no any log out issues and error promtped within 52 minutes of app activity,SSO_Token_Renewal
+49908,[Active]Check that there is no any log out issues and error promtped at 52 minutes,SSO_Token_Renewal
+49909,[Active]Check should be successful to adding a printer and without any error at 52 minutes,SSO_Token_Renewal
+49910,[idle]Check that there is no any log out issues and error promtped keep the app idle status within 52 minutes,SSO_Token_Renewal
+49911,[idle]Check that there is no any log out issues and error promtped after idle the ZSB app 52 minutes,SSO_Token_Renewal
+49912,[Idle]Check it would be successful to add a printer after hourly token refresh,SSO_Token_Renewal
+49913,[Idle]Check the login status of the account after it has been idle for 1 day,SSO_Token_Renewal
+49914,Force quit:Check it would be login status without any issue when re-open app after force quit app between 52 and 60 minutes,SSO_Token_Renewal
+49915,Force quit:Check that it would be login status without any issue prompted when re-open app after force quit app exceeding 60 minutes,SSO_Token_Renewal
+49916,Check that log in account A and log out then log in account B check a new token will be generated,SSO_Token_Renewal
+49917,Check unable to log out in the event of a network disconnection exception.,SSO_Token_Renewal
+49918,Check token renew a new one when disconnect the network and recover the network at 52 minutes,SSO_Token_Renewal
+49919,"Check signing same user on different devices, both work after 52 minutes",SSO_Token_Renewal
+49960,"Check click change password in user profile page: it added callback url, responsce_type, client_id and redirect_url parameters",User Settings
+49961,"Check after change password, click return to login will navigate to login page and user able to login with new password success",App_Settings
+50030,Check ZSB printers can be fetched out in ZSB APS after keep ZSB APP idle for more than 1h,APS Printer Discover
+50031,Check the error message prompted when print test page and printer head open or offline,App_Settings
+50205,Check the printers in APS can be fetched out after log out and log in again in mobile app,APS Printer Discover
+50206,Check the printers can be updated to the new account B added after switch logging from account A which its printer selected before in APS printing preview page,APS Printer Discover
+50223,Check only the same user will see the EULA again when the user declines the EULA and sign in again,Social_Login
+50267,Check user will get notification when user is logged out from the ZSB app and tried to use APS,APS Notification
+50268,"User A logs-in ZSB app and logs out then login with user B, check printers in user B displayed in APS available devices list",APS Printer Discover
+50287,Verify that the EULA screen appears only for the new user and not the existing user.,Registration 2.0
+50325,Manage Network- Check able to cancel/submit network via Enter network manually option,Device_Network
+50326,Manage Network- Check able to add/delete/sort network when printer bt paired/unpaired in device,Device_Network
+50333,Android only- Check it will back to manage network after clicking device’s back button,App_Settings
+50498,Check it will notify user need login when share a file on APS if user not login ZSB series,APS Notification
+50499,"Check user can receive the notification also even previously had received once, if the user is not logged into the ZSB series when sharing a file to print in APS",APS Notification
+50500,Check it will notify user need login to search printers when share another file via APS if user not login ZSB series and a print preview has been opened,APS Notification
+50501,Check user would not receive the login notifications if the user remains logged in to the ZSB series during the operation in APS,APS Notification
+50502,Check the notification will dismiss when user click on the login notification and login successful,APS Notification
+50503,Check that the notification would not be dismissed after force quit the ZSB printer service or the print preview via APS,APS Notification
+50508,"Put the Media low cartridge to the printer, check the status would be media low in APS",APS Printer Discover
+50514,Check the printer status correct after turn off and then turn on APS,APS Printer Discover
+50612,Password should display properly after enable the eye icon,Social_Login
+50613,Check it should not login when input the non Google email during sign in with Google,Social_Login
+50643,Check it should navigate to the social login page after signing out from the social account and re-login,Social_Login
+50646,"Check It would auto focus on password input box after click ""Sign In with your email""",Social_Login
+50656,Check able to search in Zebra Gallery with/without inputting characters,Template_Management
+50713,"Check changing device's network to another Wi-Fi network, app is still usable",Device_Network
+50766,"Check changing device's network to cellular data, app is still usable",Device_Network
+50767,"Check changing device's network to another hotspot, app is still usable",Device_Network
+50768,"Check disconnecting device's network then recovering, app is still usable",Device_Network
+50769,"Check changing device's network to invalid network, app is still usable",Device_Network
+50773,"Set Region to UK, system language to English, check able to add printer and basic functions work",Add_Printer 2.0
+50774,"Set Region to US, system language to English, check able to add printer and basic functions work",Add_Printer 2.0
+50775,"Set Region to Germany, system language to Deutsch, check able to add printer and basic functions work",Add_Printer 2.0
+50776,"Set Region to China, system language to Chinese, check able to add printer and basic functions work",Add_Printer 2.0
+50782,Check the prompt message is same on Android and IOS when disabling device network,Device_Network
+50919,Check the registration printer can not discovered in add printer page,Add_Printer
+50920,Check the Finish Setup page can be displayed after reset the network during the printer registration,Add_Printer 2.0
+50921,[Idle]Check the Finish Setup page can be displayed after idle the app to background during the printer registration,Add_Printer 2.0
+50928,Check user can Exit the adding printer process in registration page,Add_Printer 2.0
+51379,"Check the first-time print PDF, then second time print it by another printer and cancel the print job",APS Printing
+51380,Check print PDF once then cancel it when the second time print it with the same online printer,APS Printing
+51383,Check cancel different print jobs (image/pdf/txt) when printer is media out/cover open,APS Printing
+51384,Check cancel same print job at least two times when printer status is cover open,APS Printing
+51614,"Send multiple jobs but only cancel the first job, check the rest of jobs can be printed out",APS Printing
+51618,Verify forcing quit app will not affect the printing job,APS Printing
+51702,Check the UI of toggle buttons on Notification Settings,App_Settings
+51703,New install- open app directly after installation finished or by clicking app icon,App_Settings
+51704,Upgrade- open app directly after installation finished or by clicking app icon,App_Settings
+51705,Check clicking the photo taken by camera will not affect uploading photo as user avatar,App_Settings
+51788,"Sign in with existing Non-Zebra User Account, then sign out",App_Settings
+52289,(Android only) Manage Network- Check able to manage network when first time granting access for nearby devices (new install),Device_Network
+52290,(Android ony) Manage Network- Check able to manage network after disabling access for nearby devices then allowing (new install),Device_Network
+52291,(Android ony) Manage Network- Check able to manage network when first time granting access for nearby devices (not granted before upgrade),Device_Network
+52292,(Android ony) Manage Network- Check able to manage network after disabling access for nearby devices then allowing (granted before upgrade),Device_Network
+52293,Check the outage advisory will pop up again after closing it and still not get response from backend without any operation in 15 secs- Google account,Advisory Dialog
+52294,Check the outage advisory will pop up again after closing it and still not get response from backend with doing other operations in 15 secs- Non-Zebra account,Advisory Dialog
+52295,Check the UI of outage advisory dialog is correct- Apple account,Advisory Dialog
+52296,Check the close button works on outage advisory dialog- Facebook account,Advisory Dialog
+52297,Check the OK button works on outage advisory dialog,Advisory Dialog
+52298,Check the outage advisory dialog would not popped up if force quit the app and relaunch it,Advisory Dialog
+52299,Check the outage advisory will not pop up again after closing it and there is no error from backend,Advisory Dialog
+52300,Check the outage advisory dialog would still popped up switch to other app in mobile device,Advisory Dialog
+52301,Check the outage advisory will not pop up again after logging out the login again,Advisory Dialog
+52302,Check the outage advisory will not pop up again after logging out the login another account,Advisory Dialog
+52303,Check outage dialog would not pop up when device network is disconnected,Advisory Dialog
+52304,Check outage dialog would not pop up when the user token would be refreshed(52 mins),Advisory Dialog
+52305,"User idle 30 minutes, Check the prompt message will be dismissed and user can update user info after backing to App and clicking the OK button on prompt message when SSO only throws the 500 error once",Advisory Dialog
+52306,"User idle, Check user can print test label after idle 1 day and clicking the OK button on prompt message when SSO continuously throws the 500 error for 15 seconds",Advisory Dialog
+52352,Check the description for different types notifications,Notifications
+52427,Check the Google Contacts in mobile app still works after disconnecting the Google account in user profile page in Web Portal,Data Sources
+52615,Check whether user is able to download using setup QR code on the label on the bottom of a ZSB printer,App_Settings
+52617,Check the functionality on Cancel Button when Facebook reset password skipped in middle,Social_Login
+52618,Check it should navigate to the social login page after cancelling from the social account and re-login with another account,Social_Login
+52636,Check it would return to the login page with a validation message after logging in thrice with a mismatched password,Social_Login
+52640,Check the registration page would be displayed correctly when resizing the browser,Social_Login
+52642,Check the Android and IOS download icon showing in the Zebra download page After scan with the QR code on the bottom of zsb printer,Social_Login
+52676,Check banner pop up works fine when clicking more info,Banners
+52677,"Check able to see the ""Watch Setup Video"" option on the default ""Let's setup you printer"" page",Add_Printer
+52953,Verify the newly registered user account will see the EULA,Registration 2.0
+52954,Verify the newly registered user can login successfully after accepting EULA (Zebra external account),Registration 2.0
+52955,"Verify the newly registered user will get logged out by clicking on the ""Exit"" option on the Exit application dialog",Registration 2.0
+52956,"Verify the newly registered user will remain in the ""Welcome Screen"" of the ZSB app after clicking on ""Cancel "" in the ""Decline EULA"" dialog.",Registration 2.0
+52957,"Verify the newly registered user after exiting EULA, and logging in to the ZSB series app again needs to accept the EULA to proceed to the ZSB Home page",Registration 2.0
+52958,"Verify the ""Welcome screen"" is displayed to the newly registered user, force quit the app /minimize and reopen the app can still see the welcome screen is displayed",Registration 2.0
+52959,"Verify the newly registered user login shows the ""welcome to ZSB series"" page in Phone B, if not accepting EULA in Phone A",Registration 2.0
+52960,"Verify the newly registered Google account can login to the ZSB app using ""Continue with Google"" option will display the ""Welcome to ZSB series"" page and need to accept EULA to log in successfully",Registration 2.0
+52961,"Verify the newly registered Apple account can log in to the ZSB app using the ""Continue with Apple"" option will display the ""Welcome to ZSB series"" page and need to accept EULA to log in successfully",Registration 2.0
+52962,"Verify the newly registered Facebook account can log in to the ZSB app using the ""Continue with Facebook"" option will display the ""Welcome to ZSB series"" page and need to accept EULA to log in successfully",Registration 2.0
+52963,"Verify by deleting an existing user and then login with the deleted user will show the ""Welcome to ZSB series"" page, and need to accept EULA and then can log in successfully",Registration 2.0
+52994,"Verify that ""Welcome screen"" will not be displayed again to the user in Phone B, after accepting the EULA from Phone A",Registration 2.0
+53045,"iOS-Check User can dismiss the ""Unpair Bluetooth From Printer"" dialog box",Add_Printer 2.0
+53046,iOS-Check user is notified about the location permission if not before deleting a printer,Add_Printer
+53047,"iOS-Once printer is deleted from Device A , Check the same should be added from Device B",Add_Printer
+53048,iOS - Re-add the printer after unpairing the same from the device during new connection creation,Add_Printer
+53049,"iOS - Once new connection creation is successful, the printer can be re-added without pairing process",Add_Printer
+53050,"iOS - During deletion of one printer, once another printer is added, check the first printer should be added successfully",Add_Printer
+53067,Printer Setup Screen- Check the UI of Printer Setup screen,Add_Printer 2.0
+53068,Printer Setup Screen- Check the UI of Exit Printer Setup dialog,Add_Printer 2.0
+53069,Printer Setup Screen- Check clicking the exit/cancel button on Exit Printer Setup dialog,Add_Printer 2.0
+53070,"Printer Setup Screen -Verify the functionality, when the user clicks on ""Start setup"" option in ""Setup your printer page.",Add_Printer 2.0
+53071,"[Printer Setup Screen]: Verify the ""Setup your printer"" page displayed same for all Social login accounts",Add_Printer 2.0
+53072,[Login-Splash Screen]:'Install the ZSB series app (.apk file) and check the Login Screen UI and Contents,Add_Printer 2.0
+53073,[Login-Splash Screen]: Install the lower version of the ZSB series app and upgrade to the latest version (.apk file) and check the Login Screen UI and Contents,Add_Printer 2.0
+53086,"[Bluetooth Discovery Process]: Verify the contents of ""Search your printer"" page and its animations are as per the figma design.",Add_Printer 2.0
+53087,"[Bluetooth Discovery Process]: Verify the ""Unable to find Printer(s)"" screen is displayed, if the printers are not discovered during the Bluetooth search.",Add_Printer 2.0
+53088,[Discovered Printer Selection]: Verify the behavior by selecting the printer from the list which is not registered with the account.,Add_Printer 2.0
+53089,"[Discovered Printer Selection]: Verify ""Select Your Printer screen"" screen UI, contents and buttons are proper as per the Figma design.",Add_Printer 2.0
+53090,[Discovered Printer Selection]: Verify the behavior by selecting the printer from the list which is already registered with the same account.,Add_Printer 2.0
+53091,[Wi-Fi Network Connection]- Check the UI of Wi-Fi searching screen is same as Figma design,Add_Printer 2.0
+53092,[Wi-Fi Network Connection]- Check able to connect a secure Wi-fi with correct pw and proceed (From Known network),Add_Printer 2.0
+53093,[Wi-Fi Network Connection]- Check able to connect a secure Wi-fi with correct pw and proceed (From Discovered networks),Add_Printer 2.0
+53094,[Wi-Fi Network Connection]- Check able to connect an open Wi-Fi and proceed (From Known network),Add_Printer 2.0
+53095,[Wi-Fi Network Connection]- Check able to connect an open Wi-Fi and proceed (From Discovered networks),Add_Printer 2.0
+53096,"[Wi-Fi_ Enter Network manually.]: Verify ""Enter Network Manually Dialog "" UI and contents are proper as per the Figma Design",Add_Printer 2.0
+53097,[Wi-Fi Network Connection]- Check the Known Network section will not be displayed if there is no Known network (Discovered list is available),Add_Printer 2.0
+53098,[Wi-Fi- Enter Network Manually]: Verify the printer can connect to the Open SSID by entering the details manually during the Wi-Fi Setup.,Add_Printer 2.0
+53099,[Wi-Fi- Enter Network Manually]: Verify the printer can connect to the WPA-PSK SSID by entering the details manually during the Wi-Fi Setup.,Add_Printer 2.0
+53100,"[Wi-Fi Network Connection]- Check clicking the exit option on ""Exit Printer Setup"" on ""Connect to a Wi-Fi network"" page",Add_Printer 2.0
+53101,"[Wi-Fi- Enter Network Manually]: Verify the behavior by entering the invalid details in the ""Enter Network Manually"" dialog.",Add_Printer 2.0
+53110,"iOS-While creating new connection, user should be able to Cancel the Pairing Request",Add_Printer
+53205,[New Fonts and UI checking]Check delete an account pop up dialog display correct and then login this deleted user to check the EULA page,Delete_Account
+53206,"[New Fonts and UI checking]Check the pop up notification at the top display correct(Print Complete, cover open, paper out etc..)",App_Settings
+53207,"[New Fonts and UI checking]Check pop up dialog display correct with only one button, go to printer settings click manage network ,Bluetooth Connection Required dialog pop up",App_Settings
+53208,"[New Fonts and UI checking]Check pop up dialog display correct with two buttons, go to printer settings turn on/off auto feed",App_Settings
+53209,[New Fonts and UI checking]Perform the Add printer process and check all the page/toast font and dialogs and buttons displayed correctly,Add_Printer 2.0
+53210,"[New Fonts and UI checking]Perform the Add printer process and check error message dialog display correct when adding printer,example Firmware update Error, internet access blocked",Add_Printer 2.0
+53211,[New Fonts and UI checking]Perform the Add printer process and check paired failed page display correct,Add_Printer 2.0
+53212,[New Fonts and UI checking]Perform the Add printer process and check Unable to connect the printer page display correct when adding a printer searching wifi step with turn off device bluetooth,Add_Printer 2.0
+53213,[New Fonts and UI checking]Perform the Add printer process and check Failed to connect page dislay correct when adding a printer with input wrong password,Add_Printer 2.0
+53214,"[New Fonts and UI checking]Check the permission dialog display correct, remove all the permission and turn off device Bluetooth, then click add printer",Add_Printer 2.0
+53215,"[New Fonts and UI checking]Go to printer settings manage network, check bluetooth connection failed dialog display correct",App_Settings
+53216,"[New Fonts and UI checking]Go to printer settings manage network, check error dialog display correct if failed to get availabel network",App_Settings
+53227,"[New Fonts and UI Check]Check the homepage and the left side hamburger menu, font display correctly",App_Settings
+53228,[New Fonts and UI Check] Check the font and dialog displayed correctly in change avatar and email/password,App_Settings
+53229,[New Fonts and UI Check] Check the fonts and style correctly in change Theme,App_Settings
+53230,"[New Fonts and UI Check] Check the Banners at the top display correct--""Banners""",Banners
+53231,"[New Fonts and UI Check] Check the font and dialog displayed correctly Common Designs(including seraching, printing preview, and performing print)",Template_Management
+53232,"[New Fonts and UI Check] Check the font and dialog displayed correctly in My Designs(including seraching, printing preview, and performing print)",Template_Management
+53233,"[New Fonts and UI Check] Check the font and dialog displayed correctly in My Data(including seraching, deleting, uploading)",Data Sources
+53234,[New Fonts and UI Check] Check the font and toast font displayed correctly in Notifications page,Notifications
+53235,[New Fonts and UI Check] Check the page/toast font and dialogs and buttons displayed correctly in Printer Settings page,App_Settings
+53291,"Verify the "" ZSB Terms of Use and License Agreement"" hyperlink works fine",Registration 2.0
+53292,"Verify the ""Zebra's Privacy Statement"" hyperlink works fine",Registration 2.0
+53293,Location permission- Check the UI of Location permission dialog,Add_Printer 2.0
+53294,Location permission- Check the Location permission dialog will not pop up if already granted in settings,Add_Printer 2.0
+53295,Location permission- Check clicking Cancel button will back to home page,Add_Printer 2.0
+53296,"Location permission- Check clicking settings button without granting permission, the dialog will pop up again",Add_Printer 2.0
+53297,BT permission- Check the UI of BT permission dialog,Add_Printer 2.0
+53298,BT permission- Check the BT permission dialog will not pop up if BT is already turned on from settings,Add_Printer 2.0
+53299,BT permission- Check clicking Cancel button will back to home page,Add_Printer 2.0
+53300,"BT permission- Check clicking settings button without turning on BT, the dialog will pop up again",Add_Printer 2.0
+53301,BT permission- Check the BT permission dialog will pop up in any add printer page if it is turned off,Add_Printer 2.0
+53302,Printer Setup Readiness screen- Check the UI of Printer Setup Readiness screen,Add_Printer 2.0
+53303,Printer Setup Readiness screen- Check the next button works after clicking the LED guide option,Add_Printer 2.0
+53304,Printer Setup Readiness screen- Check the UI of LED Guide pop up,Add_Printer 2.0
+53305,Printer Setup Readiness screen- Check LED Light Indicator link works,Add_Printer 2.0
+53306,Printer Setup Readiness screen- Check the details of Blue or Red LED details,Add_Printer 2.0
+53307,Printer Setup Readiness screen- Check clicking dismiss button will close the LED Guide pop up,Add_Printer 2.0
+53521,"[Bluetooth Discovery Process]: Verify the contents and the buttons on ""Unable to search your printer(s) screen"" during the bluetooth discovery process.",Add_Printer 2.0
+53522,"[Bluetooth Discovery Process]: Verify the behavior by clicking on ""X"" button in the ""Unable to find your printer(s) page.",Add_Printer 2.0
+53523,"[Discovered Printer selection]: Verify the ""Setup a Registered printer ?"" dialog is diplayed and contents are proper as per the figma design.",Add_Printer 2.0
+53524,"[Discovered Printer Selection]: Verify the behaviour by clicking on continue in the ""Setup a Registered printer ?"" dialog",Add_Printer 2.0
+53525,"[Discovered Printer Selection]: Verify the behavior by clicking on cancel in the ""Setup a Registered printer?"" dialog.",Add_Printer 2.0
+53526,"[Discovered Printer Selection]: Verify the UI and contents of ""Printer connected"" screen are as per figma design",Add_Printer 2.0
+53527,"[Discovered Printer Selection] Verify the UI and contents of ""Unable to connect to printer"" screen are as per figma design",Add_Printer 2.0
+53528,"[Discovered Printer Selection]: Verify able to hide or expand the details of each issue type by the + and - button on ""Unable to connect to printer"" page (Turn off printer)",Add_Printer 2.0
+53529,"[Discovered Printer Selection]: Verify clicking the contact support on ""Unable to connect to printer"" page will open correct page (Printer was previously paired to your device)",Add_Printer 2.0
+53531,"[Discovered Printer Selection]: Verify clicking Try Again on ""Unable to connect to printer"" page will pop up the BT pairing request dialog (Poor or no signal)",Add_Printer 2.0
+53532,"[Discovered Printer Selection]: Verify clicking ""Select A Different Printer"" on ""Unable to connect to printer"" page will open select a printer page (Wrong printer selected)",Add_Printer 2.0
+53533,"[Discovered Printer Selection]: Verify clicking x button on ""Unable to connect to printer"" page works fine (Printer is not in pairing mode)",Add_Printer 2.0
+53548,[Firmware Updates Screen]: UI check for Printer connecting to Cloud Screen,Add_Printer 2.0
+53549,[Firmware Updates Screen]: UI check for Firmware Downloading Screen,Add_Printer 2.0
+53550,[Firmware Updates Screen]: UI check for Firmware Download Fail Screen and proceed to the Registration screen,Add_Printer 2.0
+53551,[Firmware Updates Screen]: UI check for Firmware Updating Screen,Add_Printer 2.0
+53552,[Firmware Updates Screen]: UI check for Firmware Update Succeed Screen,Add_Printer 2.0
+53553,[Firmware Updates Screen]: UI check for Firmware Update Succeed Screen,Add_Printer 2.0
+53554,[Firmware Updates Screen]: UI check for Firmware Update Fail Screen,Add_Printer 2.0
+53555,[Firmware Updates Screen]: Check the Contact Support dialog and Link for Support when FW update fail,Add_Printer 2.0
+53556,[Printer Registration Screen]: Check the Contact Support dialog and Link for Support when Printer Registration Failed,Add_Printer 2.0
+53557,[Printer Registration Screen]: Check the exit warning dialog during registering printer,Add_Printer 2.0
+53558,[Firmware Updates Screen]: Check the exit warning dialog after downloading FW,Add_Printer 2.0
+53559,[Firmware Updates Screen]: Check the exit warning dialog after updating FW,Add_Printer 2.0
+53560,[Printer Registration Screen]: Check the UI of printer Registering screen,Add_Printer 2.0
+53561,[Printer Registration Screen]: Check the UI of printer Registration Succeeded screen,Add_Printer 2.0
+53562,[Printer Registration Screen]: Check the UI of printer Registration Failed screen,Add_Printer 2.0
+53563,[Printer Registration Screen]: Check the Registration Succeeded screen would be prompted after app receives a response from the cloud that the registration has completed(No FW update needed),Add_Printer 2.0
+53564,[Printer Registration Screen]: Check the Registration Succeeded screen would be prompted after app receives a response from the cloud that the registration has completed(FW update needed),Add_Printer 2.0
+53565,[Printer Registration Screen]: Check the Registration Failed screen would be prompted and provide the list of common issues and troubleshooting steps,Add_Printer 2.0
+53566,[Printer Registration Screen]: Check the Contact Support dialog and Link for Support when Printer Registration Failed,Add_Printer 2.0
+53567,[Printer Registration Screen]: Check the exit warning dialog during registering printer,Add_Printer 2.0
+53568,[Printer Registration Screen]: Check force quit the app when in Registration screen,Add_Printer 2.0
+53569,[Printer Registration Screen]: Check switch to the other app in the device when Registration screen,Add_Printer 2.0
+53570,[Printer Registration Screen]: Check disconnect the network of the device when in Registration screen,Add_Printer 2.0
+53571,Progress Bar-Verify the layout of the Setup Step Flow during printer addition,Add_Printer 2.0
+53572,[Firmware Download]Check the firmware download is initiated and Firmware download screen displays correctly.,Add_Printer 2.0
+53573,Progress Bar-Verify the design when the process is in Printer connect via BT phase,Add_Printer 2.0
+53574,Progress Bar-Verify the design when the process is in Wi-Fi connect phase,Add_Printer 2.0
+53575,[Firmware Download] Check the firmware download screen displays activity indicator which shows the download progress.,Add_Printer 2.0
+53576,[Firmware Download] Check the firmware download completed successfully and screen should display a success message.,Add_Printer 2.0
+53577,Progress Bar-Verify the design when the process is in Register Printer(FW update if applicable) phase,Add_Printer 2.0
+53578,Progress Bar-Verify the design when the process is in Test Printer Phase,Add_Printer 2.0
+53579,Progress Bar-Verify the design when the Printer setup is complete,Add_Printer 2.0
+53581,"[Wi-Fi Network Connection]- Check the UI of ""Connect to a Wi-Fi network"" page is same as Figma design",Add_Printer 2.0
+53582,[Wi-Fi Network Connection]- Check the UI of page when there is no network in Discovered Network list (Known network is availble),Add_Printer 2.0
+53583,[Wi-Fi Network Connection]- Check the UI of page when Known network and Discovered Network are both unavailable,Add_Printer 2.0
+53584,[Wi-Fi Network Connection]- Check able to scroll down or up to see all the networks in the discovered networks list,Add_Printer 2.0
+53585,[Wi-Fi Network Connection]- Check the network name can be displayed correctly if the network name is long (More than 20 characters),Add_Printer 2.0
+53586,[Wi-Fi Network Connection]- Check the icon which represent the strength of Wi-Fi will be updated according to the strength of the netowk,Add_Printer 2.0
+53587,[Wi-Fi Network Connection]- Check the UI of connecting to security network pop up,Add_Printer 2.0
+53588,[Wi-Fi Network Connection]- Check the eye toggle works on connecting to secure Wi-fi dialog,Add_Printer 2.0
+53589,[Wi-Fi Network Connection]-Check allowable characters of pw field on connecting to secure Wi-fi dialog,Add_Printer 2.0
+53590,[Wi-Fi Network Connection]- Check cancelling on the connecting to security network pop up works (with pw inputting),Add_Printer 2.0
+53591,[Wi-Fi Network Connection]- Check cancelling on the connecting to security network pop up works (without pw inputting),Add_Printer 2.0
+53592,[Wi-Fi Network Connection]- Check clicking the Search Again will search networks again and the list is correct,Add_Printer 2.0
+53593,[Wi-Fi Network Connection]- Check able to connect to an open network after clicking Search Again,Add_Printer 2.0
+53594,[Wi-Fi Network Connection]- Check able to connect to a secure network after clicking Search Again,Add_Printer 2.0
+53595,"[Wi-Fi Network Connection]- Check the UI of ""Exit Printer Setup"" on ""Connect to a Wi-Fi network"" page",Add_Printer 2.0
+53596,"[Wi-Fi Network Connection]- Check clicking the cancel option on ""Exit Printer Setup"" on ""Connect to a Wi-Fi network"" page",Add_Printer 2.0
+53597,"[Wi-Fi Network Connection]- Check the UI of ""Connecting printer to Wi-Fi network"" page is same as Figma design",Add_Printer 2.0
+53598,"[Wi-Fi Network Connection]- Check the UI of ""Successfully connected printer to Wi-Fi network"" page is same as Figma design",Add_Printer 2.0
+53599,"[Wi-Fi Network Connection]- Check the UI of ""Unable to connect printer to Wi-Fi network"" page is same as Figma design (Input wrong pw)",Add_Printer 2.0
+53600,"[Wi-Fi Network Connection]- Check able to expand or hide the details of each issue type on ""Unable to connect printer to Wi-Fi network"" page via the + and - button (Incorrect Wi-Fi network selected)",Add_Printer 2.0
+53601,"[Wi-Fi Network Connection]- Check the Contact Support on ""Unable to connect printer to Wi-Fi network"" page works (Poor or no signal)",Add_Printer 2.0
+53602,"[Wi-Fi Network Connection]- Check the Dismiss button works on ""Contact Support"" dialog",Add_Printer 2.0
+53603,"[Wi-Fi Network Connection]- Check the Try Again on ""Unable to connect printer to Wi-Fi network"" page works (Incorrect network name entered)",Add_Printer 2.0
+53604,"[Wi-Fi Network Connection]- Check clicking the exit button on ""Unable to connect printer to Wi-Fi network"" page (Connection Blocked)",Add_Printer 2.0
+53605,"[Wi-Fi Network Connection]- Check the UI of ""Unable to connect to Printer"" dialog is same as Figma design (Printer is turned off)",Add_Printer 2.0
+53606,"[Wi-Fi Network Connection]- Check the Try again button on ""Unable to connect to Printer"" dialog (Printer is in sleep mode)",Add_Printer 2.0
+53607,"[Wi-Fi Network Connection]- Check clicking the Exit button on ""Unable to connect to Printer"" dialog will back to home page",Add_Printer 2.0
+53608,"[Wi-Fi Network Connection]- Check the ""Unable to connect to Printer Moda"" dialog will pop up again if still can’t connect to printer after trying again",Add_Printer 2.0
+53609,[Wi-Fi Network Connection]- Check the UI of Open Network Waring modal,Add_Printer 2.0
+53610,"[Wi-Fi Network Connection]- Check after clicking Cancel button on Open Network Waring modal, able to connect a secure network",Add_Printer 2.0
+53611,"[Wi-Fi Network Connection]- Check after clicking Cancel button on Open Network Waring modal, able to connect a same open network",Add_Printer 2.0
+53612,"[Wi-Fi Network Connection]- Check after clicking Cancel button on Open Network Waring modal, able to connect a different open network",Add_Printer 2.0
+53621,Test Printer - Verify the layout once the Printer Registration is successful during Add Printer process,Add_Printer 2.0
+53622,"Test Printer - Verify the functionality once user click on Next Step on ""Press Release Bar"" step",Add_Printer 2.0
+53623,"Test Printer - Verify the functionality once user click on Next Step on ""Open Printer Cover"" step",Add_Printer 2.0
+53624,"Test Printer - Verify the functionality once user click on Back on ""Open Printer Cover"" step",Add_Printer 2.0
+53625,"Test Printer - Verify the functionality once user click on Next Step on ""Remove cartridge Cover"" step",Add_Printer 2.0
+53626,"Test Printer - Verify the functionality once user click on Back Step on ""Remove cartridge Cover"" step",Add_Printer 2.0
+53627,"Test Printer - Verify the functionality once user click on Next Step on ""Align label"" step",Add_Printer 2.0
+53628,"Test Printer - Verify the functionality once user click on Back Step on ""Align label"" step",Add_Printer 2.0
+53629,"Test Printer - Verify the functionality once user click on Next on ""Close Printer cover"" step",Add_Printer 2.0
+53630,"Test Printer - Verify the functionality once user click on Back on ""Close Printer cover"" step",Add_Printer 2.0
+53631,"Test Printer - Verify the functionality once the user selects Skip button on ""Print a test label"" screen",Add_Printer 2.0
+53632,"Test Printer - Verify the functionality once the user selects Print button on ""Print a test label"" screen",Add_Printer 2.0
+53633,Test Printer - Verify the functionality when the User confirms the printing on Test Label,Add_Printer 2.0
+53634,Test Printer - Verify the functionality when the User DOES NOT confirm the printing on Test Label,Add_Printer 2.0
+53635,"Test Printer - Verify the functionality when the User clicks on X on page labelled ""Failed to print test label""",Add_Printer 2.0
+53636,"Test Printer - Verify the functionality when the User clicks on Contact support on page labelled ""Failed to print test label""",Add_Printer 2.0
+53637,"Test Printer - Verify the functionality when the User clicks onTry again on page labelled ""Failed to print test label""",Add_Printer 2.0
+53638,Test Printer - Verify the layout once the Printer Setup is complete,Add_Printer 2.0
+53640,"[Firmware Download] Check If the firmware download fails, the screen should display an error message indicating the failure.",Add_Printer 2.0
+53641,[Firmware Download] Check if the user is able to exit printer setup after firmware download failed error.,Add_Printer 2.0
+53642,[Firmware Update] Check the firmware update process start automatically once firmware download completes.,Add_Printer 2.0
+53643,[Firmware Update] Check the firmware update screen displays activity indicator which shows the update progress.,Add_Printer 2.0
+53644,"[Firmware Update] Check the ""firmware update successful"" screen display once the firmare update is completed.",Add_Printer 2.0
+53645,"[Firmware Update] Check If the firmware update fails, the screen should display an error message indicating the failure.",Add_Printer 2.0
+53646,"[Firmware Update] Check ""Firmware Update Failed"" screen should also have a ""Contact Support"" button to allow users to reach out for further assistance.",Add_Printer 2.0
+53647,[Firmware Update] Check if the user is able to exit printer setup after firmware update failed.,Add_Printer 2.0
+53659,[Finish setup page]: Check that the finish setup page appears when adding a printer need to update firmware and printer is already in this account,Add_Printer 2.0
+53660,[Finish setup page]: Check that the finish setup page appears when adding an  printer need to update firmware while disconnecting the Bluetooth pairing by forgetting the pairing at the registration page,Add_Printer 2.0
+53661,[Finish setup page]: Check that the finish setup page appears when adding a printer by turn off the device Bluetooth at the registration page,Add_Printer 2.0
+53662,[Finish setup page]: Check that the finish setup page appears when adding a printer  while disconnecting the Bluetooth pairing by blocking the printer's Bluetooth(take mobile device out of the range of printer Bluetooth)  at the registration page,Add_Printer 2.0
+53663,[Finish setup page]: Check that the finish setup page appears when adding a printer while locking the screen and unlocking it at the registration page,Add_Printer 2.0
+53664,[Finish setup page]: Check that the finish setup page appears when adding a printer with firmware update while switching to another app and back at the registration page,Add_Printer 2.0
+53665,[Finish setup page]: Check that the finish setup page appears when adding a printer with firmware update while changing the mobile device network at the registration page,Add_Printer 2.0
+53666,"[Finish setup page]: check when failed to update printer Firmware, ""Firmware update error"" dialog pop up and printer FW would not be updated",Add_Printer 2.0
+53690,"[Wi-Fi- Enter Network Manually]: Verify the status of ""Connect"" button when the user did not enter the username or password in Enter Network Manually dialog.",Add_Printer 2.0
+53698,[Lock screen]Check the Finish Setup page can be displayed after locking screen during the printer registration,Add_Printer
+53777,Check emoji is not allowed to be input to object (which is prompt at print type),Template_Management
+53778,Check the maximum of copies field is 1000 and there is a prompt message for user,Template_Management
+53779,Check print preview will be loaded successfully after clicking next button to check the preview while the first label's preview is still in loading status,Template_Management
+53780,Check there is a prompt message popping up when selecting an empty file in “Update Data Connections” dialog,Template_Management
+53781,Check there is a prompt message popping up after clicking “Clear Queue” button to clear print queue,Printer_ Management
+54168,"[Upgrade FW test]Turn off an online printer with elder version FW , then turn on the printer, check printer FW update successful and print a label success",Add_Printer 2.0
+54169,"[Upgrade FW test]Turn off a media out/cover open printer with elder version FW, than turn on the printer, check printer FW update successful and print a label success",Add_Printer 2.0
+54170,[Upgrade FW test]Scenarios A: out of box golden image Need to Update FW(elder version to latest version),Add_Printer 2.0
+54171,[Upgrade FW test]Scenarios A: out of box golden image Need to Update FW(middle version to latest version),Add_Printer 2.0
+54172,[Upgrade FW test]Scenarios A: out of box golden image Need to Update FW(latest version to latest version),Add_Printer 2.0
+54173,[Upgrade FW test]Scenario B: Manually Decommission before readding No need to update FW(elder version to latest version),Add_Printer 2.0
+54174,[Upgrade FW test]Scenario B: Manually Decommission before readding No need to update FW(middle version to latest version),Add_Printer 2.0
+54175,[Upgrade FW test]Scenario B: Manually Decommission before readding No need to update FW(latest version to latest version),Add_Printer 2.0
+54176,[Upgrade FW test]Scenario C Test case:Add an online printer successful when readding it(older version to latest version),Add_Printer 2.0
+54177,[Upgrade FW test]Scenario C Test case:Add an online printer successful when readding it(middle version to latest version),Add_Printer 2.0
+54178,[Upgrade FW test]Scenario C Test case:Add an online printer successful when readding it(latest version to latest version),Add_Printer 2.0
+54251,Install the ZSB series app(.apk file) and check the Login Screen UI and Contents,Mini Regression
+54252,Check the UI of zebra account login page after clicking sign with your email,Mini Regression
+54253,Verify new user registration using Mobile application,Mini Regression
+54254,Verify the functionality user performs on EULA Screen during registration,Mini Regression
+54255,"Verify the newly registered Google account can login to the ZSB app using ""Continue with Google"" option will display the ""Welcome to ZSB series"" page and need to accept EULA to log in successfully",Mini Regression
+54256,"Verify the newly registered Apple account can log in to the ZSB app using the ""Continue with Apple"" option will display the ""Welcome to ZSB series"" page and need to accept EULA to log in successfully",Mini Regression
+54257,"Verify the newly registered Facebook account can log in to the ZSB app using the ""Continue with Facebook"" option will display the ""Welcome to ZSB series"" page and need to accept EULA to log in successfully",Mini Regression
+54258,Verify the functionality once user provides both Location and Bluetooth access post Registration,Mini Regression
+54259,"Verifly the functionality once user clicks on Start Setup from ""Set up your printer"" page",Mini Regression
+54260,Verifly the functionality once user selects LED GUIDE link on Setup step page,Mini Regression
+54261,Verify the functionality once the user selects Next in order to search for Printers,Mini Regression
+54262,Verify the functionality when no Printer is detected,Mini Regression
+54263,Verify the printers are listed out successfully after the Bluetooth search,Mini Regression
+54264,"Verify the functionality, when the target printer or no Printer is not detected in the BT search",Mini Regression
+54265,Verify the functionality once user selects Exit after Printers are searched out,Mini Regression
+54266,Verify the functionality once user selects already registered printer after Printers are searched out,Mini Regression
+54267,Verify the functionality once user selects a printer searched out in BT process,Mini Regression
+54268,Verify the functionlaity once BT Pairing is successful and user navigates to Wifi selection process,Mini Regression
+54269,Verify the functionality once Wi-fi networks are shown to user,Mini Regression
+54270,Verify the functionality once Wi-fi selected is an Unsecured one,Mini Regression
+54271,Verify the printer is able to connect to the Known Wi - Fi Network (Secured) by entering the password manually without using the share password option,Mini Regression
+54272,Verify the behaviour by connecting the printer to Wi- Fi using Enter Network Manually option,Mini Regression
+54273,Verify the behaviour by connecting the printer to Wi- Fi having No Internet access,Mini Regression
+54274,Verify the functionality during Firmware Download,Mini Regression
+54275,Verify the functionality during Firmware Update,Mini Regression
+54276,Verify the functionality when the there is some printer certificate issue,Mini Regression
+54277,Verify the functionality once the Printer registration is successful,Mini Regression
+54278,"Update Unit of Measure in Mobile App, check it will sync to Web Portal and Printer Tools",Mini Regression
+54279,Edit Workspace - upload and remove image,Mini Regression
+54280,Manage Network- Check able to add/delete/sort network when printer bt paired/unpaired in device,Mini Regression
+54281,Verify the functionality once a file is shared via APS,Mini Regression
+54282,User upload all supported files from local,Mini Regression
+54283,To check User login Google/zebra/apple/facebook account and can Link to One Drive (Microsoft account not login),Mini Regression
+54284,Check delete registered user with online printer and offline printer succss and printers will decomission,Mini Regression
+54285,To check delete user success and can reset the deleted account password success,Mini Regression
+54286,Adding New network: add WPA Essid to the Moneybadger (Cancel and Submit),Mini Regression
+54287,To Verify mobile app help menu options works.,Mini Regression
+54288,"Upload and delete the picture for the zebra account via ""Photo Gallery""",Mini Regression
+54289,To verify auto-updation of Pages,Mini Regression
+54290,"Error Handling-Check sharing pdf to ZSB app when the printer is in error status(offline, media out, paper out)will show waring toast",Mini Regression
+54291,Share template PDF files to ZSB Series and print out,Mini Regression
+54292,To check invalid PDF would fail share to ZSB serial,Mini Regression
+54293,Check the notification pops up on each client if printer is offline and certificate expired,Mini Regression
+54294,Check the notification pops up on each client if printer is offline and certificate about to expire,Mini Regression
+54295,"Check the login UI is updated as the Figma (Social login is the first preference, on top ZSB login page )",Mini Regression
+54296,log in Non-Zebra/Zebra account and check the token is valid and logout then login to check token renew a new one,Mini Regression
+54297,View list of Recently Printed Designs,Mini Regression
+54298,View the list of Common Designs,Mini Regression
+54299,View list of My Designs,Mini Regression
+55469,Check try again button works after turn off the printer during searching WIFI,Add_Printer 2.0
+55479,"Connect Wi-Fi from discovered list- Select secure network and input correct pw, check the pw will not be saved in logs",Add_Printer 2.0
+55480,"Connect Wi-Fi from discovered list- Select open network but click cancel button, select secure network and input pw, check the pw will not be saved in logs",Add_Printer 2.0
+55481,"Enter network manually- Enter secure network and input correct pw, check the pw will not be saved in logs",Add_Printer 2.0
+55482,"Enter network manually- Enter open network but click cancel, input secure network and input pw, check the pw will not be saved in logs",Add_Printer 2.0
+55483,"Connect Wi-Fi from discovered list- Select secure network but input wrong pw, select same secure network and input correct pw, check connection will be successful and the pw wil be saved in logs (Different pw)",Add_Printer 2.0
+55484,"Connect Wi-Fi from discovered list- Select secure network but input wrong pw, select another secure network and input correct pw, check connection will be successful and the pw wil be saved in logs (Same pw)",Add_Printer 2.0
+55485,"Connect Wi-Fi from discovered list- Select open network but cancel it, select a secure network and input wrong pw, select same network and input correct pw, check connection will be successful and the pw wil be saved in logs",Add_Printer 2.0
+55486,"Enter network manually- Input a secure network but input wrong pw, select same network and input correct pw, check connection will be successful and the pw will be saved in logs",Add_Printer 2.0
+55487,"Enter network manually- Input a secure netwok but input wrong pw, input another netwrork and input correct pw, check connection will be successful and the pw will be saved in logs",Add_Printer 2.0
+55488,"Enter network manually- Input an open netwok but also input pw, input secure netwrork and input correct pw, check connection will be successful and the pw will be saved in logs",Add_Printer 2.0
+55489,"Enter network manually- Input an open netwok but also input pw, input secure netwrork and input wrong pw, input open network and connect, check connection will be successful and the pw will be saved in logs",Add_Printer 2.0
+55530,Check the suggestion list is correct after inputting any keyword to the search input box on the Zebra Gallery,Template_Management
+55531,[Discovered Printer Selection]- Check the ‘Printer Not Listed’ works correctly,Add_Printer 2.0
+55733,Check the printer's operations will be sent to correct printer when there are multiple printers,Printer_ Management

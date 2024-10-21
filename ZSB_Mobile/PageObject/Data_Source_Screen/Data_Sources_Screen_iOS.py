@@ -53,7 +53,7 @@ class Data_Sources_Screen:
         self.Search_Files = Template(r"tpl1705645360605.png", record_pos=(-0.261, -0.571), resolution=(1080, 2340))
         self.expectedSearchList = ["Tes1.jpg", "Test2.png", "Test3.bmp"]
         self.Sign_In_With_Microsoft = "Sign in with Microsoft"
-        self.Sign_In_With_Microsoft_Template = Template(r"Microsoft_Icon11.png", record_pos=(0.002, 0.183),
+        self.Sign_In_With_Microsoft_Template = Template(r"Microsoft_Icon.png", record_pos=(0.002, 0.183),
                                                         resolution=(1080, 2340))
         self.test_45738 = Template(r"tpl1706683702494.png", record_pos=(0.0, -0.264), resolution=(1080, 2340))
         self.Sign_In_With_Google = "Sign in with Google"
@@ -69,7 +69,6 @@ class Data_Sources_Screen:
                                                    resolution=(1080, 2340))
 
     def click_My_Data(self):
-        sleep(3)
         my_data = self.poco(self.My_Data)
         my_data.wait_for_appearance(timeout=10)
         my_data.click()
@@ -116,7 +115,6 @@ class Data_Sources_Screen:
         self.verifyFilePresentInList(file_name, data_source, True, True)
 
     def clickMyDesigns(self):
-        sleep(3)
         my_designs = self.poco(self.My_Designs)
         my_designs.wait_for_appearance(timeout=10)
         my_designs.click()
@@ -184,9 +182,7 @@ class Data_Sources_Screen:
         keyevent("Enter")
 
     def click_Menu_HamburgerICNWeb(self):
-        sleep(3)
-        self.poco("Zebra Small Office Home Office").child("Other").child("Link").click()
-        sleep(3)
+        self.poco("Link").click()
 
     def clickCreateDesignBtn(self):
         if self.poco(self.Create_Btn).exists():
@@ -202,7 +198,7 @@ class Data_Sources_Screen:
 
     def clickContinue(self):
         try:
-            self.poco(self.Continue).wait_for_appearance(timeout=20)
+            self.poco(self.Continue, enabled=True).wait_for_appearance(timeout=20)
             self.poco(self.Continue).click()
         except:
             self.poco("CONTINUE", enabled=True).wait_for_appearance(timeout=20)
@@ -257,13 +253,10 @@ class Data_Sources_Screen:
             raise Exception("List not empty")
 
     def log_out_for_current_execution_ios(self):
-        sleep(8)
-        if self.poco("Open navigation menu").exists():
-            self.poco("Open navigation menu").click()
-            self.poco("Button").click()
-            self.poco.scroll()
-            self.poco("Log Out").click()
-        sleep(2)
+        self.poco("Open navigation menu").click()
+        self.poco("Button").click()
+        self.poco.scroll()
+        self.poco("Log Out").click()
 
     def verifyIfPreviewIsPresent(self):
         if self.poco("Image").exists():
@@ -384,20 +377,19 @@ class Data_Sources_Screen:
 
     def signInWithEmail(self):
         try:
-            self.poco("Sign In with your email").wait_for_appearance(timeout=20)
+            self.poco("Sign In with your email").wait_for_appearance(timeout=10)
             self.poco("Sign In with your email").click()
             print("Successfully clicked Sign In With Email")
         except PocoNoSuchNodeException:
             print("Sign In with Email option not found!\n Test Continues...")
             raise Exception("Sign In with Email option not found!\n Test Failed")
         except Exception as e:
-            self.poco(text="Sign In with your email").wait_for_appearance(timeout=20)
+            self.poco(text="Sign In with your email").wait_for_appearance(timeout=10)
             self.poco(text="Sign In with your email").click()
             print("Successfully clicked Sign In With Email")
 
     def clickBackArrow(self):
-        sleep(3)
-        back_arrow = self.poco(name="Button")
+        back_arrow = self.poco(name="Button", enabled=True)
         back_arrow.wait_for_appearance(timeout=20)
         back_arrow.click()
         sleep(4)
@@ -764,9 +756,6 @@ class Data_Sources_Screen:
             raise Exception("Not in Login page")
 
     def checkIfOnHomePage(self):
-        sleep(10)
-        if self.poco("Continue").exists():
-            self.poco("Continue").click()
         try:
             self.poco("Home").wait_for_appearance(timeout=20)
         except:
@@ -788,23 +777,3 @@ class Data_Sources_Screen:
                 raise Exception("Did not navigate to Sign In with google page")
             account = "zebra02.swdvt@gmail.com"
             self.sign_In_With_Google("Zebra#123456789", account)
-
-    def scroll_till_log_out(self):
-        while not self.poco("Log Out").exists():
-            self.poco.scroll()
-        self.poco.scroll()
-
-    def open_chrome(self):
-        sleep(2)
-        start_app("com.google.chrome.ios")
-        sleep(5)
-
-    def close_chrome(self):
-        sleep(2)
-        self.poco("kToolbarStackButtonIdentifier").click()
-        sleep(2)
-        self.poco("Close")[-1].click()
-        sleep(2)
-        self.poco("TabGridRegularTabsPageButtonIdentifier").click()
-        sleep(2)
-        stop_app("com.google.chrome.ios")

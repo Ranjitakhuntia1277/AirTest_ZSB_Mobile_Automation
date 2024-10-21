@@ -1,7 +1,6 @@
 # LoginFunction.py
 from platform import platform
 
-import pytz
 # import pytest
 from airtest.core.android import Android
 from airtest.core.api import exists, sleep
@@ -195,34 +194,11 @@ class Help_Screen:
         else:
             raise Exception("URL not matching")
 
-    def clickContinueWeb(self):
-        self.poco(text="Continue").wait_for_appearance(timeout=10)
-        self.poco(text="Continue").click()
-
     def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
-        sleep(7)
         account = self.poco(text=Acc_Name)
-        count = 0
-        while not account.exists() and count <= 2:
-            sleep(2)
+        while not account.exists():
             self.poco.scroll()
-            count += 1
         account.click()
-        sleep(4)
-        if self.poco(textMatches="(?s).*By continuing, Google will share your name, email address, language preference, and profile picture with ZSB Series. See ZSB Series’s.*").exists():
-            self.clickContinueWeb()
-            sleep(4)
-        if self.poco(textMatches= "(?s).*Sign in to ZSB Series.*").exists():
-            self.clickContinueWeb()
-            sleep(4)
-        if self.poco(textMatches="(?s).*ZSB Series wants access to your Google Account.*").exists():
-            if self.poco(text="Select all", checked=False).exists():
-                self.poco(text="Select all", type="android.widget.CheckBox").click()
-                sleep(2)
-            while not self.poco(text="Continue").exists():
-                self.poco.scroll()
-                self.clickContinueWeb()
-        sleep(5)
 
     def swipeLeft(self):
         disp = current_device().display_info
@@ -285,5 +261,3 @@ class Help_Screen:
             self.poco("Sign In").wait_for_appearance(timeout=20)
         except:
             raise Exception("Did not reach \"Sign In\" page.")
-
-

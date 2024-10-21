@@ -4,7 +4,7 @@ from airtest.core.api import *
 from compose import errors
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
-# from ...PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
+# from ZSB_Mobile.PageObject.PDF_Printing.PDF_Printing_Android import PDF_Printing_Screen
 # from setuptools import logging
 # from ...PageObject.Robofinger import test_robo_finger
 import pytest
@@ -35,7 +35,7 @@ common_method = Common_Method(poco)
 aps_notification = APS_Notification(poco)
 pdf_printing = PDF_Printing_Screen(poco)
 """"""""""Printer should be added in Google account-zebra21.dvt@gmail.com
-Password: Swdvt@#123"""
+Password: Swdvt@#123""""""
 # delete_account.switch_to_different_app()
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -64,8 +64,8 @@ def test_Android_PDF_Printing_TestcaseID_45808():
     aps_notification.click_Google_Drive_SearchBar2()
     aps_notification.click_PDF_File_From_The_Google_DriveList()
     aps_notification.click_Suggestion_PDF_File_From_Drive()
-    aps_notification.click_On_Share_Option()
-    ## pdf_printing.click_Send_Copy_For_Google_Drive_Files()
+    aps_notification.click_ON_Three_Dot_To_Print()
+    pdf_printing.click_Send_Copy_For_Google_Drive_Files()
     pdf_printing.Select_ZSB_App()
     login_page.click_LoginAllow_Popup()
     login_page.click_Allow_ZSB_Series_Popup()
@@ -247,8 +247,8 @@ def test_Android_PDF_Printing_TestcaseID_45812():
     pdf_printing.Verify_The_Printer_As_Online()
     pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
-    ###pdf_printing.click_Edit_Option()
-    #### pdf_printing.click_OK_Button_On_Popup()
+    # pdf_printing.click_Edit_Option()
+    pdf_printing.click_OK_Button_On_Popup()
     pdf_printing.Select_Text_Area_To_Edit()
     pdf_printing.click_Done_Btn()
     pdf_printing.click_Print_Option_On_PDF_Printing()
@@ -330,7 +330,7 @@ def test_Android_PDF_Printing_TestcaseID_45814():
 
 # #####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-#### bug id-SMBM-922(but in step it is not there so in automation it will pass)
+#### bug id-SMBM-922
 def test_Android_PDF_Printing_TestcaseID_45815():
     """change cropper window direction for the pdf file has more than 1 label (apply to current)"""
 
@@ -536,7 +536,7 @@ def test_Android_PDF_Printing_TestcaseID_45827():
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-# ###Bug id- SMBM-1936-on iOS
+# ###Bug id- SMBM-1936
 def test_Android_PDF_Printing_TestcaseID_45828():
     """Mulit-page PDF share to ZSB Serial, select Custom and select a range, check selected pages can print out success"""
 
@@ -564,8 +564,8 @@ def test_Android_PDF_Printing_TestcaseID_45828():
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
     pdf_printing.click_Change_Start_Range_To_3()
-    pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Default_End_Range_Filed()
+    pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Print_Option_On_PDF_Printing()
 
 
@@ -597,9 +597,8 @@ def test_Android_PDF_Printing_TestcaseID_45829():
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
-    pdf_printing.click_End_Range_Filed()
-    pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Default_End_Range_Filed()
+    pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Print_Option_On_PDF_Printing()
 
 
@@ -631,9 +630,7 @@ def test_Android_PDF_Printing_TestcaseID_45830():
     pdf_printing.click_Custom_Label_Range_Option()
     pdf_printing.Verify_Range_1_Is_Displaying()
     pdf_printing.click_Start_Range_Filed()
-    pdf_printing.click_Change_Start_Range_To_3()
     pdf_printing.click_Default_End_Range_Filed()
-    pdf_printing.click_Change_End_Range_To_6()
     pdf_printing.click_Print_Option_On_PDF_Printing()
     pdf_printing.Verify_Print_Complete_Popup()
     # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -795,6 +792,13 @@ def test_Android_PDF_Printing_TestcaseID_45837():
     # ###""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+#
+def test_Android_PDF_Printing_TestcaseID_45838():
+    """	ZSB Serial login but not run on back ground, from Third App open PDF """""
+
+    """Blocked due to SMBM-640 SMBM-681 SMBM-792 & SMBM-2808"""
+
+
 def test_Android_PDF_Printing_TestcaseID_45840():
     """	Open PDF file with Adobe Reader share to ZSB Serial, print Preview and print out then Open another PDF file in Adobe reader Share to ZSB Serail"""
 
@@ -872,8 +876,9 @@ def test_Android_PDF_Printing_TestcaseID_45841():
     aps_notification.click_Drive_Searchbar2()
     aps_notification.click_PDF_File_From_The_List()
     aps_notification.click_Suggestion_PDF_File()
-    aps_notification.click_Google_Drive_PDF_On_Result()
-    aps_notification.click_On_Share_Option()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    pdf_printing.click_Send_File_For_Files()
     pdf_printing.Select_ZSB_App()
     pdf_printing.Verify_Print_Preview_page()
     pdf_printing.Verify_The_Printer_As_Online()
@@ -1039,7 +1044,7 @@ def test_Android_PDF_Printing_TestcaseID_45850():
     pdf_printing.Select_The_Online_Printer()
     pdf_printing.click_Edit_Label()
     # pdf_printing.click_Edit_Option()
-    # pdf_printing.click_OK_Button_On_Popup()
+    pdf_printing.click_OK_Button_On_Popup()
     pdf_printing.click_Rotation_Option()
     """""Close icon is not displaying on the popup"""
 
@@ -1365,7 +1370,7 @@ def test_Android_PDF_Printing_TestcaseID_47952():
     common_method.Turn_Off_The_Phone()
     sleep(2)
     common_method.Turn_ON_The_Phone()
-    sleep(2)
+    poco.scroll()
     pdf_printing.Verify_Print_Preview_page()
 
 #     ####""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -10,15 +10,10 @@ from ...Common_Method import Common_Method
 from airtest.core.api import *
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
-import platform
 
-if platform.system() == "Windows":
-    def Basic_path(a):
-        return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
-else:
-    def Basic_path(a):
-        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
-common_method = Common_Method(poco)
+
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Smoke_Test", a)
 
 
 class Smoke_Test_Android:
@@ -221,7 +216,7 @@ class Smoke_Test_Android:
         sleep(4)
         Print_Button = self.poco(self.Print_Button)
         Print_Button.click()
-        sleep(10)
+        sleep(8)
 
     def Add_Multiple_Copies_Number(self):
         sleep(5)
@@ -232,13 +227,12 @@ class Smoke_Test_Android:
     def click_And_Enter_Copies_Number_Field(self):
         sleep(1)
         poco.scroll()
-        Copies_Number_Field = self.poco(name="android.widget.EditText")[-1]
+        Copies_Number_Field = self.poco(name="android.widget.EditText")
         Copies_Number_Field.click()
         sleep(1)
         Copies_Number_Field.set_text(" ")
         sleep(1)
         Copies_Number_Field.set_text("3")
-        keyevent("Enter")
 
     def click_On_Copies_Filed(self):
         sleep(8)
@@ -497,7 +491,7 @@ class Smoke_Test_Android:
 
     def Upload_First_Image(self):
         sleep(4)
-        self.poco(name="com.google.android.documentsui:id/item_root").click()
+        self.poco(name="com.google.android.documentsui:id/icon_thumb").click()
         sleep(4)
 
     def click_Microsoft_Email_Field(self):

@@ -1,3 +1,4 @@
+from platform import platform
 import datetime
 import re
 import pytest
@@ -8,29 +9,19 @@ from poco import poco
 from ...Common_Method import Common_Method
 from airtest.core.api import device as current_device
 import os
-from ...PageObject.Login_Screen import Login_Screen_Android
+from ZSB_Mobile.PageObject.Login_Screen import Login_Screen_Android
 import subprocess
-import platform
-
-if platform.system() == "Windows":
-    def Basic_path(a):
-        return os.path.join(os.path.expanduser('~'),
-                            "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
-                            a)
-
-else:
-    def Basic_path(a):
-        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
 
 
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\templates",a)
 
 common_method = Common_Method(poco)
-
 
 class Template_Management_Android:
     pass
 
-    def __init__(self, poco):
+    def __init__(self,poco):
         self.poco = poco
         self.my_designs_button = "My Designs"
         self.print_button = "Print"
@@ -38,10 +29,8 @@ class Template_Management_Android:
         self.home_button = "Home"
         self.common_designs_button = "Common Designs"
         self.copy_to_my_designs = "Copy to My Designs"
-        self.search_icon = Template(Basic_path(r"tpl1708320351770.png"), record_pos=(-0.408, -0.55),
-                                    resolution=(720, 1280))
-        self.zebra_icon_in_common_design = Template(Basic_path(r"tpl1709729567307.png"), record_pos=(-0.338, -0.332),
-                                                    resolution=(720, 1280))
+        self.search_icon = Template(Basic_path(r"tpl1708320351770.png"), record_pos=(-0.408, -0.55), resolution=(720, 1280))
+        self.zebra_icon_in_common_design = Template(Basic_path(r"tpl1709729567307.png"), record_pos=(-0.338, -0.332), resolution=(720, 1280))
 
     def click_my_designs_button(self):
         self.poco(self.my_designs_button).click()
@@ -54,14 +43,13 @@ class Template_Management_Android:
             self.poco("My Designs").click()
         except:
             self.poco(text="My Designs").click()
-
     def click_first_design_in_my_designs(self):
         self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
 
     def click_first_design_in_common_design(self):
         self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
 
-    def click_design_in_my_designs_by_full_name(self, design):
+    def click_design_in_my_designs_by_full_name(self,design):
 
         try:
             self.poco(design).click()
@@ -69,18 +57,18 @@ class Template_Management_Android:
             self.poco.scroll()
             self.poco(design).click()
 
-    def select_design_in_my_design_by_name_and_return(self, name, click=1):
+    def select_design_in_my_design_by_name_and_return(self,name,click=1):
         total = self.get_all_designs_in_my_designs()
-        temp = {}
+        temp={}
 
         for i in range(len(total)):
             a = total[i].split("\n")
             temp[a[0]] = total[i]
 
-        count = 0
-        while (not self.poco(temp[name]).exists()) and count < 30:
+        count=0
+        while(not self.poco(temp[name]).exists()) and count<30:
             self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
-            count += 1
+            count+=1
 
         if click:
             try:
@@ -91,24 +79,20 @@ class Template_Management_Android:
 
         return temp[name]
 
-    def get_the_full_name_of_design_and_click_in_my_design(self, name, click=1):
-        sleep(2)
+    def get_the_full_name_of_design_and_click_in_my_design(self,name,click=1):
+
         escaped_name = re.escape(name)
-        regex_pattern = "(?s).*" + escaped_name + ".*"
-        print("regex_pattern", regex_pattern)
+        regex_pattern = "(?s).*"+escaped_name+".*"
 
         temp = []
         prev = []
         while 1:
             curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
             a = self.poco(nameMatches=regex_pattern).exists()
-            print("a->", a)
             if a:
                 p = self.poco(nameMatches=regex_pattern).get_name()
                 temp.append(p)
                 break
-            print("curr->", curr)
-            print("prev->", prev)
             if curr == prev:
                 break
             prev = curr
@@ -119,42 +103,33 @@ class Template_Management_Android:
             while 1:
                 curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
                 a = self.poco(nameMatches=regex_pattern).exists()
-                print("a1->", a)
                 if a:
                     p = self.poco(nameMatches=regex_pattern).get_name()
                     temp.append(p)
                     break
-                print("curr1->", curr)
-                print("prev1->", prev)
                 if curr == prev:
                     break
                 prev = curr
                 self.poco.swipe([0.5, 0.9], [0.5, 0.4], duration=0.5)
-        print(temp)
+        # print(temp)
         if click:
             self.poco(temp[0]).click()
 
         return temp[0]
 
-    def get_the_full_name_of_design_and_click_in_common_design_search(self, name, click=1):
+    def get_the_full_name_of_design_and_click_in_common_design_search(self,name,click=1):
         escaped_name = re.escape(name)
         regex_pattern = "(?s).*" + escaped_name + ".*"
-        a = self.poco(type="android.widget.ImageView", nameMatches=regex_pattern).get_name()
+        a=self.poco(type="android.widget.ImageView",nameMatches=regex_pattern).get_name()
 
         if click:
-            self.poco(type="android.widget.ImageView", nameMatches=regex_pattern).click()
+            self.poco(type="android.widget.ImageView",nameMatches=regex_pattern).click()
 
         return a
 
-    def check_if_search_results_appear(self):
-        sleep(10)
-        if not self.poco(nameMatches="(?s).*1 result.*").exists():
-            raise Exception("Search results not loaded in drop down")
-
-    def get_the_full_name_of_design_and_click_in_recently_printed_design(self, name, click=1):
+    def get_the_full_name_of_design_and_click_in_recently_printed_design(self,name,click=1):
 
         escaped_name = re.escape(name)
-        print(escaped_name)
         regex_pattern = "(?s).*" + escaped_name + ".*"
         temp = []
         while 1:
@@ -162,9 +137,7 @@ class Template_Management_Android:
 
             a = self.poco(nameMatches=regex_pattern).exists()
             if a:
-                print("if")
                 p = self.poco(nameMatches=regex_pattern).get_name()
-                print("p", p)
                 temp.append(p)
                 break
 
@@ -175,14 +148,11 @@ class Template_Management_Android:
         if len(temp) == 0:
             prev = []
             while 1:
-                curr = [child.get_name() for child in
-                        self.poco("android.view.View").child(type="android.widget.ImageView")]
+                curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
 
                 a = self.poco(nameMatches=regex_pattern).exists()
                 if a:
-                    print("if1")
                     p = self.poco(nameMatches=regex_pattern).get_name()
-                    print(p,"p")
                     temp.append(p)
                     break
 
@@ -190,31 +160,30 @@ class Template_Management_Android:
                     break
                 prev = curr
                 self.poco.scroll()
-        print("temp", temp)
 
         if click:
             self.poco(temp[0]).click()
 
         return temp[0]
 
-    def scroll_till_element(self, elem, up=0):
-        prev = []
+    def scroll_till_element(self,elem,up=0):
+        prev=[]
         while 1:
-            curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
+            curr=[child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
             if self.poco(elem).exists():
                 break
 
-            if prev == curr:
+            if prev==curr:
                 break
-            prev = curr
+            prev=curr
             if up:
-                self.poco.swipe([0.5, 0.4], [0.5, 0.9], duration=0.2)
+                self.poco.swipe([0.5,0.4],[0.5,0.9],duration=0.2)
             else:
                 self.poco.scroll()
 
-    def click_on_the_element_in_categories(self, elem, search_up=0):
+    def click_on_the_element_in_categories(self,elem,search_up=0):
         try:
-            self.poco(nameMatches=".*" + elem + ".*").click()
+            self.poco(nameMatches=".*"+elem+".*").click()
         except:
             if search_up:
                 self.poco.swipe([0.5, 0.4], [0.5, 0.9], duration=0.2)
@@ -223,18 +192,18 @@ class Template_Management_Android:
                 self.poco.scroll()
                 self.poco(nameMatches=".*" + elem + ".*").click()
 
-    def select_design_in_recetly_printed_design_by_name_and_return(self, name, click=1):
+    def select_design_in_recetly_printed_design_by_name_and_return(self,name,click=1):
         total = self.get_all_designs_in_recently_printed_labels()
-        temp = {}
+        temp={}
 
         for i in range(len(total)):
             a = total[i].split("\n")
             temp[a[0]] = total[i]
 
-        count = 0
-        while (not self.poco(temp[name]).exists() and count < 20):
+        count=0
+        while(not self.poco(temp[name]).exists() and count<20):
             self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
-            count += 1
+            count+=1
 
         if click:
             try:
@@ -245,15 +214,15 @@ class Template_Management_Android:
 
         return temp[name]
 
-    def make_everything_lower_case(self, arr):
-        temp = []
+    def make_everything_lower_case(self,arr):
+        temp=[]
         for i in arr:
             temp.append(i.lower())
         return temp
 
-    def check_element_exists(self, element, order=0):
+    def check_element_exists(self,element,order=0):
         try:
-            a = self.poco(element)[order].exists()
+            a=self.poco(element)[order].exists()
             return a
         except:
             a = self.poco(text=element)[order].exists()
@@ -261,33 +230,32 @@ class Template_Management_Android:
 
     def check_element_exists_enabled(self, element):
         try:
-            a = self.poco(element, enabled=True).exists()
+            a=self.poco(element,enabled=True).exists()
             return a
         except:
-            a = self.poco(text=element, enabled=True).exists()
+            a = self.poco(text=element,enabled=True).exists()
             return a
 
-    def click_element_by_name_or_text(self, element, order=0):
+    def click_element_by_name_or_text(self,element,order=0):
         try:
             self.poco(element)[order].click()
         except:
             self.poco(text=element)[order].click()
 
-    def click_element_by_namematches(self, elem):
-        self.poco(nameMatches="(?s).*" + elem + ".*").click()
+    def click_element_by_namematches(self,elem):
+        self.poco(nameMatches="(?s).*"+elem+".*").click()
 
-    def click_element_name_matches_all(self, elem, order=0):
-        self.poco(nameMatches="(?s).*" + elem + ".*")[order].click()
+    def click_element_name_matches_all(self,elem,order=0):
+        self.poco(nameMatches="(?s).*"+elem+".*")[order].click()
 
     def wait_until_designs_load_after_clicking_categories(self):
         self.poco("android.view.View").child(type="android.widget.ImageView").wait_for_appearance(timeout=10)
-
     def get_the_date_from_print_page(self):
         a = self.poco("android.widget.EditText")[0].parent().child("android.view.View").get_text()
         return a
 
-    def set_new_date_in_print_page(self, date):
-        date = str(date)
+    def set_new_date_in_print_page(self,date):
+        date=str(date)
         self.poco("android.widget.EditText")[0].parent().child("android.view.View").click()
         # self.poco(nameMatches=".*" +date+ ".*").click()
         self.poco("OK").click()
@@ -317,7 +285,7 @@ class Template_Management_Android:
     def select_photo_gallery(self):
         self.poco(textMatches=".*Photos.*").click()
 
-    def get_text_from_element(self, element, order):
+    def get_text_from_element(self,element,order):
         try:
             a = self.poco(element)[order].get_text()
             return a
@@ -326,14 +294,14 @@ class Template_Management_Android:
             return a
 
     def scroll_till_print_enabled_button(self):
-        count = 0
-        while (not self.poco(name="Print", enabled=True).exists()) and (count < 10):
+        count=0
+        while (not self.poco(name="Print",enabled=True).exists()) and (count<10):
             self.poco.scroll()
-            count += 1
+            count+=1
 
-    def select_the_printer_in_print_preview_page_by_index(self, no, get_printers_list=0):
+    def select_the_printer_in_print_preview_page_by_index(self,no,get_printers_list=0):
         count = 0
-        while (not self.poco(nameMatches=".*Total of 1 label.*").exists()) and (count < 10):
+        while (not self.poco(nameMatches=".*Total of 1 label.*").exists()) and (count<10):
             self.poco.scroll()
             count += 1
 
@@ -357,33 +325,33 @@ class Template_Management_Android:
         if get_printers_list:
             return temp
 
-    def check_element_exists_name_or_text_matches(self, element, order=0):
+    def check_element_exists_name_or_text_matches(self,element,order=0):
         try:
-            a = self.poco(nameMatches=".*" + element + ".*")[order].exists()
+            a=self.poco(nameMatches=".*"+element+".*")[order].exists()
             return a
         except:
-            a = self.poco(textMatches=".*" + element + ".*")[order].exists()
+            a = self.poco(textMatches=".*"+element+".*")[order].exists()
             return a
 
     def check_print_button_clickable(self):
-        return self.poco("Print", enabled=True)
+        return self.poco("Print",enabled=True)
 
     def get_first_design_in_my_designs(self):
         a = self.poco("android.view.View").child(type="android.widget.ImageView")[0].get_name()
         return a
 
-    def get_ith_design_by_index_in_my_designs(self, i):
+    def get_ith_design_by_index_in_my_designs(self,i):
         temp = []
         prev = []
-        while len(temp) != i:
+        while len(temp)!=i:
             curr = [child.get_name() for child in self.poco("android.view.View").child(type="android.widget.ImageView")]
             for j in curr:
                 if j not in temp:
                     temp.append(j)
-                    if len(temp) >= i:
+                    if len(temp)>=i:
                         break
 
-            if prev == curr:
+            if prev==curr:
                 break
 
             self.poco.scroll()
@@ -403,8 +371,7 @@ class Template_Management_Android:
         except:
             self.poco.scroll()
             self.poco("Copies").parent().child("android.widget.EditText").click()
-
-    def enter_no_of_copies(self, no):
+    def enter_no_of_copies(self,no):
         try:
             self.poco("Copies").parent().child("android.widget.EditText").set_text(no)
         except:
@@ -412,14 +379,13 @@ class Template_Management_Android:
             self.poco("Copies").parent().child("android.widget.EditText").set_text(no)
 
     def check_copies_focused(self):
-        return self.poco("Copies").parent().child(name="android.widget.EditText", focused=True).exists()
-
+        return self.poco("Copies").parent().child(name="android.widget.EditText",focused=True).exists()
     def click_print_button(self):
         self.poco(self.print_button).click()
 
     def click_print_button_enabled(self):
         try:
-            self.poco(name=self.print_button, enabled=True).click()
+            self.poco(name=self.print_button,enabled=True).click()
         except:
             self.poco.scroll()
             self.poco(name=self.print_button, enabled=True).click()
@@ -428,11 +394,8 @@ class Template_Management_Android:
         self.poco("android.view.View").child(type="android.widget.ImageView").wait_for_appearance(timeout=30)
 
     def get_all_designs_in_my_designs(self):
-        sleep(3)
         total = []
         prev = []
-        if self.poco(nameMatches="(?s).*There are currently no designs saved to your workspace..*").exists():
-            return total
         while 1:
             curr = [child.get_name() for child in self.poco(nameMatches='(?s).*" x .*')]
             if curr != prev:
@@ -448,7 +411,7 @@ class Template_Management_Android:
 
         return total
 
-    def search_design_in_google_present(self, name):
+    def search_design_in_google_present(self,name):
         total = []
         prev = []
         present = 0
@@ -468,20 +431,19 @@ class Template_Management_Android:
 
         return present
 
-    def select_and_click_an_google_account(self, account):
+    def select_and_click_an_google_account(self,account):
         try:
             self.poco(text=account).click()
         except:
             self.poco.scroll()
             self.poco(text=account).click()
 
-    def get_size_and_lastprint_of_design_in_google(self, elem):
-        a = [child.get_text() for child in self.poco(text=elem).parent().parent().child()]
+    def get_size_and_lastprint_of_design_in_google(self,elem):
+        a = [child.get_text() for child in self.poco(text = elem).parent().parent().child()]
         try:
-            return a[2], a[3]
+            return a[2],a[3]
         except:
-            return a[2], 0
-
+            return a[2],0
     def click_first_design_in_recently_printed_labels(self):
         self.poco("android.view.View").child(type="android.widget.ImageView")[1].click()
 
@@ -523,11 +485,11 @@ class Template_Management_Android:
                 temp.append(i)
         return temp[1]
 
-    def get_all_designs_in_recently_printed_labels(self, index=6):
+    def get_all_designs_in_recently_printed_labels(self,index=6):
         try:
             self.check_element_exists_name_or_text_matches("Recently")
             arr = self.get_all_designs_in_my_designs()
-            temp = []
+            temp=[]
             for i in arr:
                 if "prints left" not in i:
                     temp.append(i)
@@ -543,9 +505,7 @@ class Template_Management_Android:
         self.poco(self.delete_button).click()
 
     def click_left_arrow(self):
-        sleep(2)
         self.poco("android.widget.Button").click()
-        sleep(2)
 
     def check_left_arrow_exists(self):
         return self.poco("android.widget.Button").exists()
@@ -558,13 +518,13 @@ class Template_Management_Android:
         current_month = current_date.strftime("%B")  # %B gives the full month name
         current_day = current_date.day
 
-        return current_month[:3], current_day, current_year
+        return current_month[:3],current_day,current_year
 
     def get_current_date_in_mm_dd_yy_format(self):
         current_date = datetime.datetime.now()
 
         # Format date as "mm/dd/yyyy" without leading zeros for month and day
-        formatted_date = f"{current_date.month}/{current_date.day}/{current_date.year}"
+        formatted_date = current_date.strftime("%#m/%#d/%Y")
 
         return formatted_date
 
@@ -574,7 +534,6 @@ class Template_Management_Android:
         # Format date as "mm/dd/yyyy" with leading zeros for month and day
         formatted_date = current_date.strftime("%m/%d/%Y")
         return formatted_date
-
     def get_printer_date_in_google(self):
         a = self.poco(textMatches=".*Last print:.*")[0].get_text()
         temp = a.split(" ")
@@ -582,22 +541,17 @@ class Template_Management_Android:
         return temp[-1]
 
     def get_first_design_in_recently_printed_design_in_google(self):
-        a = \
-        self.poco(textMatches=".*Last print.*").parent().child("android.view.View").child("android.widget.TextView")[
+        a = self.poco(textMatches=".*Last print.*").parent().child("android.view.View").child("android.widget.TextView")[
             0].get_text()
 
         return a
-
-    def get_design_last_print_date(self, design):
+    def get_design_last_print_date(self,design):
         a = design.split("Last print:")
-        print("a->", a, "\ndesign->",  design)
         temp = a[-1]
         temp = temp.replace(",", "")
-        print(temp)
         temp = temp.split(" ")
-        print("final", temp)
 
-        return temp[1], int(temp[2]), int(temp[3])
+        return temp[1],int(temp[2]),int(temp[3])
 
     def verify_print_notification(self):
         a = self.poco(nameMatches=".*Print complete.*").exists()
@@ -605,7 +559,6 @@ class Template_Management_Android:
         return a
 
     def get_no_of_left_cartridge(self):
-        sleep(5)
         child_names = [child.get_name() for child in
                        self.poco("android.widget.FrameLayout").offspring("android.widget.FrameLayout").child(
                            "android.view.View").child("android.view.View").child("android.view.View").offspring(
@@ -619,8 +572,8 @@ class Template_Management_Android:
 
     def get_no_of_cartridge_left_in_all_printer(self):
 
-        prev = []
-        temp = []
+        prev=[]
+        temp=[]
         while 1:
             curr = [child.get_name() for child in self.poco(nameMatches="(?s).*prints left.*")]
             for i in curr:
@@ -640,13 +593,10 @@ class Template_Management_Android:
         return res
 
     def turn_on_wifi(self):
-        sleep(3)
         cmd = "adb shell svc wifi enable"
         common_method.run_the_command(cmd)
-        sleep(5)
 
     def turn_off_wifi(self):
-        sleep(2)
         command = "adb shell svc wifi disable"
 
         # Run the command
@@ -655,7 +605,6 @@ class Template_Management_Android:
         # Print the result
         print("Command output:")
         print(result.stdout)
-        sleep(5)
 
     def get_no_of_labels_left_in_print_page(self):
         try:
@@ -693,14 +642,13 @@ class Template_Management_Android:
         a = self.poco("android.widget.EditText").get_text()
         return a
 
-    def enter_name_in_duplicate_designs(self, name):
-        self.poco("android.widget.EditText").focus([0.5, 0.44]).click()
+    def enter_name_in_duplicate_designs(self,name):
+        self.poco("android.widget.EditText").focus([0.5,0.44]).click()
         self.poco("android.widget.EditText").set_text(name)
 
     def check_for_invalid_character_error_in_duplicate_design(self):
         a = self.poco("These characters are not valid.").exists()
         return a
-
     def check_for_blank_value_error_in_duplicate_design(self):
         a = self.poco("Name must be at least 1 character long").exists()
         return a
@@ -708,14 +656,14 @@ class Template_Management_Android:
     def click_common_designs_button(self):
         self.poco(self.common_designs_button).click()
 
-    def click_namematches_element(self, element):
+    def click_namematches_element(self,element):
         try:
-            self.poco(nameMatches=".*" + element + ".*").click()
+            self.poco(nameMatches=".*"+element+".*").click()
         except:
             self.poco.scroll()
             self.poco(nameMatches=".*" + element + ".*").click()
 
-    def search_designs(self, str, enter=1):
+    def search_designs(self, str,enter=1):
         design = self.poco("android.widget.EditText")
         design.click()
         design.set_text(str)
@@ -737,7 +685,7 @@ class Template_Management_Android:
         print(temp[0])
         return temp[0]
 
-    def verify_element_exists_by_name(self, elem):
+    def verify_element_exists_by_name(self,elem):
         a = self.poco(elem).exists()
         return a
 
@@ -752,7 +700,7 @@ class Template_Management_Android:
 
         return a and b and c and d
 
-    def click_and_close_menu_designs_in_home(self, arr):
+    def click_and_close_menu_designs_in_home(self,arr):
 
         for i in arr:
             try:
@@ -766,17 +714,17 @@ class Template_Management_Android:
     def close_menu_of_design_in_home(self):
         self.poco("Scrim").click()
 
-    def check_the_dates_of_last_print_in_recent_print_labels(self, arr):
+    def check_the_dates_of_last_print_in_recent_print_labels(self,arr):
 
-        curr_mon, curr_date, curr_year = self.get_current_date()
+        curr_mon,curr_date,curr_year = self.get_current_date()
 
         for i in arr:
             des_mon, des_date, des_year = self.get_design_last_print_date(i)
 
-            if curr_mon != des_mon or curr_date != des_date or curr_year != des_year:
+            if curr_mon!=des_mon or curr_date!=des_date or curr_year!=des_year:
                 raise Exception("dates not matching")
 
-    def get_names_and_sizes_in_recently_printed_labels(self, arr):
+    def get_names_and_sizes_in_recently_printed_labels(self,arr):
 
         names = []
         sizes = []
@@ -787,7 +735,7 @@ class Template_Management_Android:
 
         return names, sizes
 
-    def click_on_design_which_is_not_printed_yet(self, total):
+    def click_on_design_which_is_not_printed_yet(self,total):
         for i in total[::-1]:
             if "Last Print" not in i:
 
@@ -802,10 +750,10 @@ class Template_Management_Android:
                 continue
 
     def refresh_the_home_page_till_you_see_error(self):
-        count = 0
-        while not self.poco("Continue").exists() and count < 10:
-            self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
-            count += 1
+        count=0
+        while not self.poco("Continue").exists() and count<10:
+            self.poco.swipe([0.5,0.5], [0.5,1.0], duration=0.5)
+            count+=1
 
     def refresh_the_home_page_(self):
         self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
@@ -813,8 +761,9 @@ class Template_Management_Android:
         self.poco.swipe([0.5, 0.5], [0.5, 1.0], duration=0.5)
 
     def check_the_error_msg_of_turning_off_wifi(self):
-        a = self.poco("Continue").parent().child("android.view.View").child().get_name()
-        assert_equal(a, "The service is currently unavailable.", "ok")
+        a = self.poco("Continue").parent().get_name()
+        temp = a.split("\n")
+        assert_equal(temp[1],"The service is currently unavailable.","ok")
 
     def click_on_continue(self):
         try:
@@ -825,7 +774,7 @@ class Template_Management_Android:
             except:
                 self.poco("Continue").click()
 
-    def input_text_in_element_by_name(self, element, text, order=0):
+    def input_text_in_element_by_name(self,element,text,order=0):
         self.poco(element)[order].set_text(text)
 
     def check_prompt_for_smaller_label_than_current(self):
@@ -836,7 +785,7 @@ class Template_Management_Android:
 
         return a and b
 
-    def enter_the_special_characters_in_print_page(self, text):
+    def enter_the_special_characters_in_print_page(self,text):
         self.poco("android.widget.EditText")[0].set_text(text)
 
     def click_on_rename_button(self):
@@ -847,7 +796,6 @@ class Template_Management_Android:
         return a
 
     def check_cancel_button_clickable_in_rename_popup(self):
-        sleep(3)
         a = self.poco(name="Cancel", enabled=True).exists()
         print(a)
         return a
@@ -876,31 +824,25 @@ class Template_Management_Android:
         except:
             self.poco(text="Save").click()
 
-    def check_save_is_disabled(self):
-        try:
-            self.poco("Save", enabled=False).wait_for_appearance(timeout=20)
-        except:
-            raise Exception("Blocked due to bug SMBM-2206")
-
     def check_for_the_popup_for_rename_design_after_save(self):
-        common_method.wait_for_element_appearance_namematches("Design has been successfully rename", 15)
+        common_method.wait_for_element_appearance_namematches("Design has been successfully rename",15)
 
-    def get_the_size_and_lastprint_of_design(self, design):
+    def get_the_size_and_lastprint_of_design(self,design):
         a = design.split("\n")
         try:
             return a[1], a[2]
         except:
             return a[1], 0
 
-    def get_the_name_size_and_lastprint_of_design(self, design):
+    def get_the_name_size_and_lastprint_of_design(self,design):
         a = design.split("\n")
         try:
-            return a[0], a[1], a[2]
+            return a[0],a[1], a[2]
         except:
-            return a[0], a[1], 0
+            return a[0],a[1],0
 
-    def enter_text_in_rename_design(self, text):
-        self.poco("android.widget.EditText").focus([0.5, 0.45]).click()
+    def enter_text_in_rename_design(self,text):
+        self.poco("android.widget.EditText").focus([0.5,0.45]).click()
         self.poco("android.widget.EditText").set_text(text)
 
     def check_error_for_blank_value_in_rename_design(self):
@@ -910,8 +852,7 @@ class Template_Management_Android:
         try:
             assert_exists(self.search_icon)
         except:
-            assert_exists(
-                Template(Basic_path(r"tpl1710843682843.png"), record_pos=(-0.385, -0.757), resolution=(1080, 2340)))
+            assert_exists(Template(Basic_path(r"tpl1710843682843.png"), record_pos=(-0.385, -0.757), resolution=(1080, 2340)))
 
     def check_search_designs_text(self):
         try:
@@ -932,19 +873,18 @@ class Template_Management_Android:
         self.poco(nameMatches="(?s).*result.*").wait_for_appearance(timeout=10)
 
     def check_text_for_wrong_design_name(self):
-        a = self.poco(
-            "No results found.\nSearch tips: try typing exactly what you’re looking for. It may help to simply type 1 word, and search for results then.").exists()
+        a=self.poco("No results found.\nSearch tips: try typing exactly what you’re looking for. It may help to simply type 1 word, and search for results then.").exists()
         return a
 
     def get_showing_n_designs_number(self):
-        a = self.poco(nameMatches=".*Showing.*").get_name()
-        a = a.split(" ")
+        a=self.poco(nameMatches=".*Showing.*").get_name()
+        a=a.split(" ")
         return a[1]
 
     def get_all_search_results_in_search_designs(self):
         a = len(self.poco(nameMatches="(?s).*result.*"))
-        temp = []
-        if a < 5:
+        temp=[]
+        if a<5:
             for i in range(a):
                 temp.append(self.poco(nameMatches="(?s).*result.*")[i].get_name())
         else:
@@ -962,16 +902,16 @@ class Template_Management_Android:
                 if curr == prev:
                     break
 
-                self.poco.swipe([0.5, 0.4], [0.5, 0.2], duration=0.2)
+                self.poco.swipe([0.5, 0.4], [0.5, 0.2],duration=0.2)
                 prev = curr
 
             return total
         return temp
 
-    def get_names_of_design_in_search_designs(self, arr):
-        temp = []
+    def get_names_of_design_in_search_designs(self,arr):
+        temp=[]
         for i in arr:
-            a = i.split("\n")
+            a=i.split("\n")
             temp.append(a[0])
         return temp
 
@@ -979,10 +919,10 @@ class Template_Management_Android:
         self.poco(nameMatches="(?s).*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def scroll_till_print_enabled(self):
-        count = 0
-        while not self.check_element_exists_enabled("Print") and count < 5:
+        count=0
+        while not self.check_element_exists_enabled("Print") and count<5:
             self.poco.scroll()
-            count += 1
+            count+=1
 
         if not self.check_element_exists_enabled("Print"):
             raise Exception("Print button not visible")
@@ -997,15 +937,13 @@ class Template_Management_Android:
         return a or b
 
     def wait_in_common_designs_until_load(self):
-        if self.poco("android.widget.EditText").get_text() is not None:
-            self.poco("android.widget.EditText").child("android.widget.Button").click()
         regex_pattern = "(?s).*Address.*"
 
         self.poco(nameMatches=regex_pattern).wait_for_appearance(timeout=20)
 
     def verify_duplicate_design_window(self):
-        t1 = Template(Basic_path(r"tpl1708428872115.png"), record_pos=(-0.106, -0.289), resolution=(1080, 2340))
-        t2 = Template(Basic_path(r"tpl1708428886221.png"), record_pos=(-0.007, -0.158), resolution=(1080, 2340))
+        t1=Template(Basic_path(r"tpl1708428872115.png"), record_pos=(-0.106, -0.289), resolution=(1080, 2340))
+        t2=Template(Basic_path(r"tpl1708428886221.png"), record_pos=(-0.007, -0.158), resolution=(1080, 2340))
         try:
             assert_exists(t1)
             try:
@@ -1016,22 +954,19 @@ class Template_Management_Android:
             raise Exception("duplicate_design_window is not displayed properly")
 
     def check_delete_design_window_message(self):
-        a = self.poco("Cancel").parent()
-        temp = a.child("android.view.View").child().get_name()
+        a=self.poco("Cancel").parent().get_name()
+        temp=a.split("\n")
 
         print(temp[1])
         print("Deleting a design will permanently remove it from your workspace. Are you sure you want to delete?")
-        assert_equal("Delete Design", a.get_name())
-        assert_equal(
-            "Deleting a Design will permanently remove it from your workspace. Are you sure you want to delete?",
-            temp)
+        assert_equal("Delete Design",temp[0])
+        assert_equal("Deleting a Design will permanently remove it from your workspace. Are you sure you want to delete?",temp[1])
 
     def click_on_delete_button_in_designs(self):
         self.poco("Delete").click()
 
     def check_no_designs_present_text(self):
-        a = self.poco(
-            "There are currently no designs saved to your workspace. To get started go to our Common Designs to see some premade designs.").exists()
+        a = self.poco("There are currently no designs saved to your workspace. To get started go to our Common Designs to see some premade designs.").exists()
         return a
 
     def check_categories_subarea_in_suggestion_window_and_check_clickable(self):
@@ -1039,10 +974,10 @@ class Template_Management_Android:
         return a
 
     def check_designs_subarea_in_suggestion_window_and_check_clickable(self):
-        count = 0
-        while count < 5 and not self.poco(nameMatches="(?s).*DESIGNS.*").exists():
+        count=0
+        while count<5 and not self.poco(nameMatches="(?s).*DESIGNS.*").exists():
             self.poco.swipe([0.5, 0.5], [0.5, 0.2])
-            count += 1
+            count+=1
         a = self.poco(nameMatches="(?s).*DESIGNS.*", enabled=True).exists()
         return a
 
@@ -1051,12 +986,9 @@ class Template_Management_Android:
         return a
 
     def get_total_count_search_results_in_common_designs(self):
-        try:
-            a = self.poco(nameMatches=".*Search.*", enabled=True).get_name()
-            temp = a.split("(")
-            return int(temp[1][0])
-        except:
-            raise Exception("Search count is not displayed properly")
+        a = self.poco(nameMatches=".*Search.*", enabled=True).get_name()
+        temp=a.split("(")
+        return int(temp[1][0])
 
     def get_total_count_categories_results_in_common_designs(self):
         a = self.poco(nameMatches=".*Categories.*").get_name()
@@ -1064,10 +996,10 @@ class Template_Management_Android:
         return int(temp[1][0])
 
     def get_total_count_designs_results_in_common_designs(self):
-        count = 0
-        while (count < 10 and (not self.poco(nameMatches=".*Designs .*", enabled=True).exists())):
+        count=0
+        while(count<10 and (not self.poco(nameMatches=".*Designs .*", enabled=True).exists())):
             self.poco.scroll()
-            count += 1
+            count+=1
         a = self.poco(nameMatches=".*Designs .*", enabled=True).get_name()
         temp = a.split("(")
         return int(temp[1][0])
@@ -1075,14 +1007,14 @@ class Template_Management_Android:
     def get_all_categories_in_search_designs(self):
         temp = []
         self.poco(nameMatches="(?s).*For use with Label Cartridges: .*")
-        count = 0
-        while count < 10 and not self.poco(nameMatches=".*Designs .*", enabled=True).exists():
+        count=0
+        while count<10 and not self.poco(nameMatches=".*Designs .*", enabled=True).exists():
             curr = [child.get_name() for child in self.poco(nameMatches="(?s).*For use with Label Cartridges:.*")]
             for i in curr:
                 if i not in temp:
                     temp.append(i)
             self.poco.scroll()
-            count += 1
+            count+=1
         try:
             curr = [child.get_name() for child in self.poco(nameMatches="(?s).*For use with Label Cartridges:.*")]
             for i in curr:
@@ -1095,16 +1027,16 @@ class Template_Management_Android:
 
     def get_all_categories_in_common_designs(self):
         temp = []
-        prev = []
+        prev=[]
         self.poco(nameMatches="(?s).*For use with Label Cartridges: .*")
         while 1:
             curr = [child.get_name() for child in self.poco(nameMatches="(?s).*For use with Label Cartridges:.*")]
             for i in curr:
                 if i not in temp:
                     temp.append(i)
-            if prev == curr:
+            if prev==curr:
                 break
-            prev = curr
+            prev=curr
             self.poco.scroll()
 
         return temp
@@ -1115,100 +1047,72 @@ class Template_Management_Android:
         return a
 
     def get_all_designs_in_search_designs(self):
-        count = 0
-        while count < 10 and (not self.poco(nameMatches=".*Designs .*", enabled=True).exists()):
-            self.poco.scroll()
-            count += 1
+        count=0
+        while count<10 and (not self.poco(nameMatches=".*Designs .*", enabled=True).exists()):
 
-        temp = self.get_all_designs_in_my_designs()
+            self.poco.scroll()
+            count+=1
+
+        temp=self.get_all_designs_in_my_designs()
         return temp
 
-    def check_element_present_in_array(self, elem, arr):
+    def check_element_present_in_array(self,elem,arr):
         for i in arr:
             if elem not in i:
                 return 0
         return 1
 
-    def verify_zebra_icon_in_the_categories(self, arr):
+    def verify_zebra_icon_in_the_categories(self,arr):
         for i in arr:
             if self.poco(i).exists():
                 assert_exists(self.zebra_icon_in_common_design)
             else:
                 try:
-                    assert_exists(Template(Basic_path(r"tpl1711433827849.png"), record_pos=(-0.318, -0.053),
-                                           resolution=(1080, 2412)))
+                    assert_exists(Template(Basic_path(r"tpl1711433827849.png"), record_pos=(-0.318, -0.053), resolution=(1080, 2412)))
                 except:
                     self.poco.scroll()
 
-    def verify_description_present_in_the_categories(self, arr):
+    def verify_description_present_in_the_categories(self,arr):
         for i in arr:
-            temp = i.split("\n")
+            temp=i.split("\n")
             try:
-                a, b, c = temp[0], temp[1], temp[2]
+                a,b,c = temp[0],temp[1],temp[2]
                 if "For use with Label" not in c:
                     return 0
             except:
                 return 0
         return 1
 
-    def check_error_when_trying_to_delete_design_when_offline(self):
-        try:
-            self.poco(nameMatches="(?s).*wasn't deleted successfully.*").wait_for_appearance(timeout=20)
-        except:
-            self.turn_on_wifi()
-            sleep(5)
-            self.click_on_delete_button_in_designs()
-            sleep(3)
-            raise Exception("No specific or error message display for delete design when device lost its network connection(SMBM-1902)")
 
-    def check_expected_message_displayed_when_searching_for_design_that_is_not_present(self):
-        if not self.check_text_for_wrong_design_name():
-            raise Exception("Proper message is not displayed for wrong design")
 
-    def check_expected_message_displayed_when_searching_for_design_that_is_present(self):
-        if self.check_text_for_wrong_design_name():
-            raise Exception("Proper message is displayed for correct design")
 
-    def check_if_suggestion_window_is_displayed_when_search_blank_value_in_common_designs(self):
-        if self.check_suggestion_window_in_common_design():
-            raise Exception("suggestion window is displayed after entering blank value")
 
-    def check_suggestion_window_displayed_even_after_clicking_search(self):
-        self.poco("Search").wait_for_appearance(timeout=20)
-        if self.check_suggestion_window_in_common_design():
-            raise Exception("suggestion window is displayed after entering search")
 
-    def check_if_recently_printed_designs_is_empty(self):
-        sleep(4)
-        total_designs = self.get_all_designs_in_recently_printed_labels()
-        if len(total_designs) != 0:
-            raise Exception("Label found in recently printed design even without printing(SMBM-1372)")
 
-    def check_if_top_of_recently_printed_designs_as_expected(self, previous, current):
-        if previous != current:
-            raise Exception("the top of recently printed label is not as expected")
 
-    def verify_if_delete_design_window_is_closed(self):
-        if self.check_cancel_button_clickable_in_rename_popup():
-            raise Exception("delete design window not closed")
 
-    def verify_if_duplicate_design_window_is_closed(self):
-        if self.check_cancel_button_clickable_in_rename_popup():
-            raise Exception("duplicate design window not closed")
 
-    def check_cancel_button_clickable(self):
-        if not self.check_cancel_button_clickable_in_rename_popup():
-            raise Exception("Cancel button is not clickable")
 
-    def check_save_button_clickable(self):
-        if not self.check_save_button_clickable_in_rename_popup():
-            raise Exception("Save button is not clickable")
 
-    def verify_if_categories_are_sorted(self, category_list):
-        for i in range(len(category_list) - 1):
-            if category_list[i] > category_list[i + 1]:
-                return False
-        return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

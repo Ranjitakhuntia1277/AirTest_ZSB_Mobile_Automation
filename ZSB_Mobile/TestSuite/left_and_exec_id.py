@@ -4,10 +4,6 @@ import pandas as pd
 import sys
 import json
 from time import sleep
-import sys
-import logging
-import requests
-
 
 file_path = 'execution.xlsx'  # Replace with the path to your Excel file
 df = pd.read_excel(file_path)

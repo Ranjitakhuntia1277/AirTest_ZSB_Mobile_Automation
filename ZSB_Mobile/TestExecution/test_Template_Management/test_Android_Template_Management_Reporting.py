@@ -17,6 +17,7 @@ import os
 from ...TestSuite.api_calls import *
 from ...TestSuite.store import *
 
+
 poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
 connect_device("Android:///")
@@ -33,13 +34,13 @@ from tkinter import messagebox
 from tkinter import simpledialog
 
 
+
 def show_message(msg):
     root = tk.Tk()
     root.withdraw()  # Hide the root window
     root.attributes('-topmost', True)  # Ensure the root window is on top
     messagebox.showinfo("Information", msg)
     root.destroy()
-
 
 def get_user_input(msg):
     root = tk.Tk()
@@ -66,6 +67,7 @@ class test_Android_Template_Management_Reporting:
         current_function_name = inspect.currentframe().f_code.co_name
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
+        
 
         try:
             # Step 1: Login to Mobile App
@@ -96,8 +98,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Recently")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -108,20 +109,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Label found in recently printed design even without printing")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45903(self):
         test_steps = {
@@ -140,6 +142,7 @@ class test_Android_Template_Management_Reporting:
         current_function_name = inspect.currentframe().f_code.co_name
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
+
 
         try:
             # Step 1: Login to Mobile App
@@ -167,8 +170,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -178,8 +180,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -188,8 +189,7 @@ class test_Android_Template_Management_Reporting:
             prev = template_management.get_first_design_in_my_designs()
             template_management.click_first_design_in_my_designs()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -202,8 +202,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("print page not displayed properly")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -213,8 +212,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all("Print complete")
             sleep(2)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -234,20 +232,21 @@ class test_Android_Template_Management_Reporting:
             if curr_mon != des_mon or curr_date != des_date or curr_year != des_year:
                 raise Exception("dates not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45904(self):
         test_steps = {
@@ -262,6 +261,7 @@ class test_Android_Template_Management_Reporting:
             8: [8,
                 'Delete one of the designs in the Recently Printed Designs.\n-Verify design is removed from the list.\n-Verify the 6th most recently printed design is added at the bottom of the list. Total of 6 designs are displayed']
         }
+
 
         start_time_main = time.time()
 
@@ -295,8 +295,7 @@ class test_Android_Template_Management_Reporting:
             others.choose_google_account(email)
             common_method.wait_for_element_appearance_namematches("Home")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -381,10 +380,10 @@ class test_Android_Template_Management_Reporting:
                 exec_time = (time.time() - start_time) / 60
                 insert_step(execID, leftId["45904"], test_steps[8][0], stepId, test_steps[8][1], "Pass", exec_time)
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -392,7 +391,9 @@ class test_Android_Template_Management_Reporting:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
 
-    def logout_and_login(self, email, password):
+
+
+    def logout_and_login(self,email,password):
         try:
             common_method.wait_for_element_appearance_namematches("Home")
             login_page.click_Menu_HamburgerICN()
@@ -412,7 +413,7 @@ class test_Android_Template_Management_Reporting:
         password = password
         common_method.wait_for_element_appearance_textmatches("Choose an account")
         others.choose_google_account(email)
-        common_method.wait_for_element_appearance_namematches("Home", 20)
+        common_method.wait_for_element_appearance_namematches("Home",20)
 
     def test_Template_Management_TestcaseID_45905(self):
         test_steps = {
@@ -427,6 +428,7 @@ class test_Android_Template_Management_Reporting:
             8: [8,
                 'Click Print "Back" button. Go to Home > Recently Printed Designs.\na. Verify the design is displayed at the top of the list.\nb. Verify the design has "Last Print" information which is equal to the current date']
         }
+
 
         start_time_main = time.time()
 
@@ -446,8 +448,7 @@ class test_Android_Template_Management_Reporting:
             """Copy design from common design to my design"""
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -458,8 +459,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -468,8 +468,7 @@ class test_Android_Template_Management_Reporting:
             text = "Address"
             template_management.search_designs(text, 1)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -487,8 +486,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.click_on_copy_to_my_designs()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -505,8 +503,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Showing", 20)
             template_management.click_first_design_in_my_designs()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -515,8 +512,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_print_button()
             common_method.wait_for_element_appearance_enabled("Print", 30)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -525,8 +521,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_print_button_enabled()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -548,20 +543,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("dates not matching")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45906(self):
         test_steps = {
@@ -574,6 +570,7 @@ class test_Android_Template_Management_Reporting:
             6: [6,
                 'Click Print "Back" button. Go to Home > Recently Printed Designs.\na. Verify the design is displayed at the top of the list.\nb. Verify the design has "Last Print" information which is equal to the current date']
         }
+
 
         start_time_main = time.time()
 
@@ -590,8 +587,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance("Home", 10)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -603,8 +599,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_common_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -616,8 +611,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.wait_for_designs_in_comm_design()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -633,8 +627,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("print page not displayed properly")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -644,8 +637,7 @@ class test_Android_Template_Management_Reporting:
 
             """Will fail if the first design is not updated with the recently printed label"""
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -666,20 +658,21 @@ class test_Android_Template_Management_Reporting:
             if curr_mon != des_mon or curr_date != des_date or curr_year != des_year:
                 raise Exception("dates not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45907(self):
         test_steps = {
@@ -697,6 +690,7 @@ class test_Android_Template_Management_Reporting:
             11: [11, 'Scroll up and down the list and verify the designs are displayed properly']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -711,8 +705,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -721,8 +714,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.verify_element_exists_by_name("Recently Printed Labels"):
                 raise Exception("no recently printed label text")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -734,8 +726,7 @@ class test_Android_Template_Management_Reporting:
             names, sizes = template_management.get_names_and_sizes_in_recently_printed_labels(all_designs)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -746,8 +737,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_home_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -755,8 +745,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             common_method.wait_for_element_appearance("Recently Printed Labels")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -765,8 +754,7 @@ class test_Android_Template_Management_Reporting:
             template_management.check_the_dates_of_last_print_in_recent_print_labels(all_designs)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -778,8 +766,7 @@ class test_Android_Template_Management_Reporting:
             if not a:
                 raise Exception("some options are not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -787,8 +774,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             template_management.close_menu_of_design_in_home()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -796,8 +782,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             template_management.click_and_close_menu_designs_in_home(all_designs)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -808,8 +793,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_home_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -817,20 +801,21 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             common_method.wait_for_element_appearance("Recently Printed Labels")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45908(self):
         test_steps = {
@@ -845,6 +830,7 @@ class test_Android_Template_Management_Reporting:
             7: [7,
                 'Refresh the page. Verify the design is still displayed in Recently Printed Designs. Verify the number of prints left is updated']
         }
+
 
         show_message("2. Set printer to offline or error status(Media low/Media out/Cover open)\n3. There is an "
                      "existing design in My Designs but hasn't been printed yet")
@@ -865,8 +851,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -881,8 +866,7 @@ class test_Android_Template_Management_Reporting:
 
             sleep(2)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -894,8 +878,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.scroll_till_print_enabled()
                 template_management.click_print_button_enabled()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -908,8 +891,7 @@ class test_Android_Template_Management_Reporting:
             if prev != curr:
                 raise Exception("number of prints left is updated after printer being turned off")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -918,8 +900,7 @@ class test_Android_Template_Management_Reporting:
             show_message("Turn on Printer to be online , wait for 30sec and press ok")
             common_method.swipe_by_positions([0.5, 0.5], [0.5, 1.0])
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -927,8 +908,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             common_method.show_message("Verify label is printed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -939,20 +919,21 @@ class test_Android_Template_Management_Reporting:
             if after - 1 != curr:
                 raise Exception("number of prints left is not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45910(self):
         test_steps = {
@@ -963,6 +944,7 @@ class test_Android_Template_Management_Reporting:
             4: [4, 'Turn on the WiFi connection on the mobile device settings'],
             5: [5, 'Go back to the Mobile App. Verify there are designs shown in Recently Printed Designs']
         }
+
 
         start_time_main = time.time()
 
@@ -977,8 +959,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -987,8 +968,7 @@ class test_Android_Template_Management_Reporting:
             prev_designs = template_management.get_all_designs_in_recently_printed_labels()
             template_management.turn_off_wifi()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1010,8 +990,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("designs are displayed after turning off the wifi  ")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1021,8 +1000,7 @@ class test_Android_Template_Management_Reporting:
             sleep(5)
             template_management.refresh_the_home_page_()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1036,14 +1014,13 @@ class test_Android_Template_Management_Reporting:
             if prev_designs != after_designs:
                 raise Exception("designs are not matching before and after turning on wifi")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -1051,12 +1028,15 @@ class test_Android_Template_Management_Reporting:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
 
+
+
     def test_Template_Management_TestcaseID_45909(self):
         test_steps = {
             1: [1, 'Go to web portal and sign in the same account'],
             2: [2,
                 'Go to Home > Recently Printed Designs. Verify the design in the precondition is displayed at the top of the list. Verify the design has "Last Print" information which is equal to the current date, and the date is shown completely']
         }
+
 
         start_time_main = time.time()
 
@@ -1101,8 +1081,7 @@ class test_Android_Template_Management_Reporting:
             others.wait_for_element_appearance_text("Home", 20)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1122,20 +1101,21 @@ class test_Android_Template_Management_Reporting:
                 print(print_date)
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45911(self):
         test_steps = {
@@ -1154,6 +1134,7 @@ class test_Android_Template_Management_Reporting:
                 'Go to Home > Recently Printed Designs. Verify the total number of labels left (x of x prints left) is updated in the Printer information']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -1168,8 +1149,7 @@ class test_Android_Template_Management_Reporting:
 
             self.logout_and_login("zebra850.swdvt@gmail.com", "Zebra#123456789")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1179,8 +1159,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1198,8 +1177,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("print page not displayed properly")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1241,8 +1219,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("print option is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1257,8 +1234,7 @@ class test_Android_Template_Management_Reporting:
             curr_count = template_management.get_no_of_labels_left_in_print_page()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1267,8 +1243,7 @@ class test_Android_Template_Management_Reporting:
             if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1295,8 +1270,7 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1310,20 +1284,21 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_count):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45995(self):
         test_steps = {
@@ -1341,6 +1316,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -1348,8 +1324,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Home")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1359,8 +1334,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_common_designs_button()
             template_management.wait_in_common_designs_until_load()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1370,8 +1344,7 @@ class test_Android_Template_Management_Reporting:
             template_management.search_designs(text, 1)
             template_management.wait_for_element_appearance_name_matches_all(text)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1384,8 +1357,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.click_element_by_name_or_text(all_designs_in_categories[-1])
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1398,21 +1370,22 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("design copied successfully is not displayed. is not displayed")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45996(self):
         test_steps = {
@@ -1439,6 +1412,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -1446,8 +1420,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Home")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1464,8 +1437,7 @@ class test_Android_Template_Management_Reporting:
                 login_page.click_Menu_HamburgerICN()
                 template_management.click_common_designs_button()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1477,8 +1449,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.wait_for_element_appearance_name_matches_all(text)
                 template_management.click_element_name_matches_all(text, 0)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1490,8 +1461,7 @@ class test_Android_Template_Management_Reporting:
                 names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
                 name = names[0]
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1504,8 +1474,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("design copied successfully is not displayed. is not displayed")
                 sleep(2)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1526,8 +1495,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("copied name not found")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1543,8 +1511,7 @@ class test_Android_Template_Management_Reporting:
                         raise Exception("copied name not found")
                     template_management.click_the_duplicate_button()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1559,8 +1526,7 @@ class test_Android_Template_Management_Reporting:
 
                 duplicate_name = template_management.get_the_default_duplicate_name()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1588,21 +1554,22 @@ class test_Android_Template_Management_Reporting:
                 common_method.wait_for_element_appearance_namematches("successfully removed")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45997(self):
         test_steps = {
@@ -1624,6 +1591,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -1634,8 +1602,7 @@ class test_Android_Template_Management_Reporting:
                     "Shipping", "Small Multipurpose"]
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1672,8 +1639,7 @@ class test_Android_Template_Management_Reporting:
 
                 template_management.click_my_designs_button()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1689,8 +1655,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_the_duplicate_button()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1698,8 +1663,7 @@ class test_Android_Template_Management_Reporting:
                 start_time = time.time()
                 template_management.verify_duplicate_design_window()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1712,8 +1676,7 @@ class test_Android_Template_Management_Reporting:
 
                 duplicate_name = enter_name + " (1)"
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1739,21 +1702,22 @@ class test_Android_Template_Management_Reporting:
                                     "c. Verify the Duplicate Design is displayed with correct name (Name used in step 6 appended with number (1)).")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45998(self):
         test_steps = {
@@ -1775,6 +1739,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -1784,8 +1749,7 @@ class test_Android_Template_Management_Reporting:
             temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                     "Shipping", "Small Multipurpose"]
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1822,8 +1786,7 @@ class test_Android_Template_Management_Reporting:
 
                 template_management.click_my_designs_button()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1835,8 +1798,7 @@ class test_Android_Template_Management_Reporting:
 
                 full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1852,8 +1814,7 @@ class test_Android_Template_Management_Reporting:
                 enter_name = "ab12c3!#"
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1861,8 +1822,7 @@ class test_Android_Template_Management_Reporting:
                 start_time = time.time()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -1875,8 +1835,8 @@ class test_Android_Template_Management_Reporting:
                     if not template_management.check_for_invalid_character_error_in_duplicate_design():
                         raise Exception("error not displayed for invalid name")
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
+
 
                 stepId += 1
 
@@ -1894,21 +1854,22 @@ class test_Android_Template_Management_Reporting:
                 except:
                     pass
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45999(self):
         test_steps = {
@@ -1931,6 +1892,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -1940,8 +1902,7 @@ class test_Android_Template_Management_Reporting:
             temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                     "Shipping", "Small Multipurpose"]
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -1983,8 +1944,7 @@ class test_Android_Template_Management_Reporting:
 
                 template_management.click_my_designs_button()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2000,8 +1960,7 @@ class test_Android_Template_Management_Reporting:
                 full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
                 original_size, original_date = template_management.get_the_size_and_lastprint_of_design(full_name)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2015,8 +1974,7 @@ class test_Android_Template_Management_Reporting:
                 if original_copy + " copy" != duplicate_name:
                     raise Exception("default duplicate name is not matching as expected")
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2028,8 +1986,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("error displayed for valid name")
                 duplicate_name = template_management.get_the_default_duplicate_name()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2041,8 +1998,7 @@ class test_Android_Template_Management_Reporting:
                 except:
                     raise Exception("Design has been successfully duplicated. is not displayed")
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2072,21 +2028,22 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_on_delete_button_in_designs()
                 sleep(2)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_46001(self):
         test_steps = {
@@ -2111,6 +2068,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -2120,8 +2078,7 @@ class test_Android_Template_Management_Reporting:
             temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                     "Shipping", "Small Multipurpose"]
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2137,8 +2094,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_common_designs_button()
                 template_management.wait_in_common_designs_until_load()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2148,8 +2104,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.wait_for_element_appearance_name_matches_all(text)
                 template_management.click_element_name_matches_all(text, 0)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2161,8 +2116,7 @@ class test_Android_Template_Management_Reporting:
                 names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
                 name = names[0]
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2170,8 +2124,7 @@ class test_Android_Template_Management_Reporting:
                 start_time = time.time()
                 template_management.click_on_copy_to_my_designs()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2183,8 +2136,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("design copied successfully is not displayed. is not displayed")
                 sleep(2)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2205,8 +2157,7 @@ class test_Android_Template_Management_Reporting:
                 full_name = template_management.select_design_in_my_design_by_name_and_return(original_copy, 1)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2221,8 +2172,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("default value not matches the design's name")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2234,8 +2184,7 @@ class test_Android_Template_Management_Reporting:
                 if template_management.check_error_for_invalid_characters_in_rename_design():
                     raise Exception("error displayed for valid characters")
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2263,20 +2212,21 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("size is not matching after renaming the design")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_46002(self):
         test_steps = {
@@ -2301,6 +2251,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -2310,8 +2261,7 @@ class test_Android_Template_Management_Reporting:
             temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
                     "Shipping", "Small Multipurpose"]
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2327,8 +2277,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_common_designs_button()
                 template_management.wait_in_common_designs_until_load()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2338,8 +2287,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.wait_for_element_appearance_name_matches_all(text)
                 template_management.click_element_name_matches_all(text, 0)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2351,8 +2299,7 @@ class test_Android_Template_Management_Reporting:
                 names, size = template_management.get_names_and_sizes_in_recently_printed_labels([t])
                 name = names[0]
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2361,8 +2308,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_on_copy_to_my_designs()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2374,8 +2320,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("design copied successfully is not displayed. is not displayed")
                 sleep(2)
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2398,8 +2343,7 @@ class test_Android_Template_Management_Reporting:
                 prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2409,8 +2353,7 @@ class test_Android_Template_Management_Reporting:
 
                 template_management.verify_duplicate_design_window()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2425,8 +2368,7 @@ class test_Android_Template_Management_Reporting:
 
                 duplicate_name = unique_name
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2474,20 +2416,21 @@ class test_Android_Template_Management_Reporting:
                 sleep(2)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_46003(self):
         test_steps = {
@@ -2518,6 +2461,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Login to Mobile App
             start_time = time.time()
@@ -2525,8 +2469,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Home")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2536,8 +2479,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2564,8 +2506,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("cancel button not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2604,8 +2545,7 @@ class test_Android_Template_Management_Reporting:
             if int(n_curr) != int(n_prev) + 1:
                 raise Exception("Showing designs count not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2627,8 +2567,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("cancel button not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2652,8 +2591,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("duplicate name not found after duplicating again")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2715,8 +2653,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("cancel button not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2744,8 +2681,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("duplicate copy and original copy sizes not matching", duplicate_size, prev_size)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2779,8 +2715,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("cancel button not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2804,20 +2739,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("duplicate name not found after duplicating again")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45969(self):
         test_steps = {
@@ -2858,8 +2794,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2871,8 +2806,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all(text)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -2906,8 +2840,7 @@ class test_Android_Template_Management_Reporting:
                 original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2916,8 +2849,7 @@ class test_Android_Template_Management_Reporting:
                 """4. Type in unique name for the design. Click "Save"
                            this step is not applicable """
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2952,8 +2884,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last printed date displayed for copied design without printing")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2972,8 +2903,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("print option is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -2998,8 +2928,7 @@ class test_Android_Template_Management_Reporting:
                 sleep(3)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3027,8 +2956,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("dates are not matching")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3044,15 +2972,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("labels left not updated")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -3099,8 +3026,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3112,8 +3038,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all(text)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3147,8 +3072,7 @@ class test_Android_Template_Management_Reporting:
                 original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3157,8 +3081,7 @@ class test_Android_Template_Management_Reporting:
                 """4. Type in unique name for the design. Click "Save"
                            this step is not applicable """
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3193,8 +3116,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last printed date displayed for copied design without printing")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3213,8 +3135,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("print option is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3239,8 +3160,7 @@ class test_Android_Template_Management_Reporting:
                 sleep(3)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3268,8 +3188,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("dates are not matching")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3285,15 +3204,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("labels left not updated")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -3340,8 +3258,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3353,8 +3270,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all(text)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3388,8 +3304,7 @@ class test_Android_Template_Management_Reporting:
                 original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3398,8 +3313,7 @@ class test_Android_Template_Management_Reporting:
                 """4. Type in unique name for the design. Click "Save"
                            this step is not applicable """
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3434,8 +3348,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last printed date displayed for copied design without printing")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3454,8 +3367,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("print option is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3480,8 +3392,7 @@ class test_Android_Template_Management_Reporting:
                 sleep(3)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3509,8 +3420,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("dates are not matching")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3526,15 +3436,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("labels left not updated")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -3581,8 +3490,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3594,8 +3502,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all(text)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3629,8 +3536,7 @@ class test_Android_Template_Management_Reporting:
                 original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3639,8 +3545,7 @@ class test_Android_Template_Management_Reporting:
                 """4. Type in unique name for the design. Click "Save"
                            this step is not applicable """
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3675,8 +3580,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last printed date displayed for copied design without printing")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3695,8 +3599,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("print option is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3721,8 +3624,7 @@ class test_Android_Template_Management_Reporting:
                 sleep(3)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3750,8 +3652,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("dates are not matching")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3767,15 +3668,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("labels left not updated")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -3822,8 +3722,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3835,8 +3734,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all(text)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -3870,8 +3768,7 @@ class test_Android_Template_Management_Reporting:
                 original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3880,8 +3777,7 @@ class test_Android_Template_Management_Reporting:
                 """4. Type in unique name for the design. Click "Save"
                            this step is not applicable """
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3916,8 +3812,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last printed date displayed for copied design without printing")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3936,8 +3831,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("print option is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3962,8 +3856,7 @@ class test_Android_Template_Management_Reporting:
                 sleep(3)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -3991,8 +3884,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("dates are not matching")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4008,15 +3900,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("labels left not updated")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -4063,8 +3954,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4076,8 +3966,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all(text)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4111,8 +4000,7 @@ class test_Android_Template_Management_Reporting:
                 original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4121,8 +4009,7 @@ class test_Android_Template_Management_Reporting:
                 """4. Type in unique name for the design. Click "Save"
                            this step is not applicable """
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4157,8 +4044,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last printed date displayed for copied design without printing")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4177,8 +4063,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("print option is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4203,8 +4088,7 @@ class test_Android_Template_Management_Reporting:
                 sleep(3)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4232,8 +4116,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("dates are not matching")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4249,15 +4132,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("labels left not updated")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -4304,8 +4186,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4317,8 +4198,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_for_element_appearance_name_matches_all(text)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4352,8 +4232,7 @@ class test_Android_Template_Management_Reporting:
                 original_size, original_lastdate = template_management.get_the_size_and_lastprint_of_design(full_name)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4362,8 +4241,7 @@ class test_Android_Template_Management_Reporting:
                 """4. Type in unique name for the design. Click "Save"
                            this step is not applicable """
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4398,8 +4276,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last printed date displayed for copied design without printing")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4418,8 +4295,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("print option is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4444,8 +4320,7 @@ class test_Android_Template_Management_Reporting:
                 sleep(3)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4473,8 +4348,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("dates are not matching")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -4490,15 +4364,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("labels left not updated")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -4533,6 +4406,7 @@ class test_Android_Template_Management_Reporting:
                  'Go to Home > Recently Printed Designs. Verify the total number of labels left (x of x prints left) is updated on Printer information']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -4547,8 +4421,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4557,8 +4430,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4575,8 +4447,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("print page not displayed properly")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4589,8 +4460,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("initial text not matching")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4601,8 +4471,7 @@ class test_Android_Template_Management_Reporting:
             if curr_text != "":
                 raise Exception("text did not change")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4620,8 +4489,7 @@ class test_Android_Template_Management_Reporting:
             template_management.input_text_in_element_by_name("android.widget.EditText", new_text, 0)
             others.go_back()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4631,8 +4499,7 @@ class test_Android_Template_Management_Reporting:
             if curr_date != "11/11/2021":
                 raise Exception("initial date is not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4642,8 +4509,7 @@ class test_Android_Template_Management_Reporting:
             cur_d = now_date.split("/")
             print(cur_d)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4657,8 +4523,7 @@ class test_Android_Template_Management_Reporting:
                 pass
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4669,16 +4534,14 @@ class test_Android_Template_Management_Reporting:
             if curr_date != changing_date:
                 raise Exception("changed date is not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
             # Step 11: Check only registered printers are displayed in Printer's list
             start_time = time.time()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4696,8 +4559,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 pass
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4708,8 +4570,7 @@ class test_Android_Template_Management_Reporting:
             if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4735,8 +4596,7 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4750,20 +4610,21 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_count):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45913(self):
         test_steps = {
@@ -4788,6 +4649,7 @@ class test_Android_Template_Management_Reporting:
                  'Click Print "Back" button. Verify Recently Printed Labels view is visible. Verify the design\'s "Last Print" information is updated to the current date']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -4801,8 +4663,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4810,8 +4671,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4835,8 +4695,7 @@ class test_Android_Template_Management_Reporting:
             template_management.check_element_exists("Picture\nicon\nChoose an option", 0)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4846,8 +4705,7 @@ class test_Android_Template_Management_Reporting:
             if initial_text != "123":
                 raise Exception("initial_text not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4859,8 +4717,7 @@ class test_Android_Template_Management_Reporting:
             if curr_text:
                 raise Exception("blank value not accepted")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4873,8 +4730,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("new text not updated")
             others.go_back()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4884,8 +4740,7 @@ class test_Android_Template_Management_Reporting:
             if initial_text != "123456789012":
                 raise Exception("initial_text not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4897,8 +4752,7 @@ class test_Android_Template_Management_Reporting:
             if curr_text:
                 raise Exception("blank value not accepted")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4911,8 +4765,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("new text not updated")
             others.go_back()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4920,8 +4773,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             template_management.click_on_image_input_in_print_page()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4937,8 +4789,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_print_button_clickable:
                 raise Exception("print option is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4956,8 +4807,7 @@ class test_Android_Template_Management_Reporting:
             if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -4984,20 +4834,21 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45914(self):
         test_steps = {
@@ -5015,6 +4866,7 @@ class test_Android_Template_Management_Reporting:
                 'Go to Home > Recently Printed Designs. Verify the total number of labels left (x of x prints left) is updated in the Printer information (same count in step 5).']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -5031,8 +4883,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5049,8 +4900,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("print page not displayed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5072,8 +4922,7 @@ class test_Android_Template_Management_Reporting:
             if str(curr_copies) != '2':
                 raise Exception("curr copies not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5085,8 +4934,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 pass
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5098,8 +4946,7 @@ class test_Android_Template_Management_Reporting:
             if int(prev_labels) != int(curr_labels) + 2:
                 raise Exception("no of labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5127,8 +4974,7 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5151,8 +4997,7 @@ class test_Android_Template_Management_Reporting:
             if curr_labels != temp:
                 raise Exception("count not same after re selecting the design")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5178,20 +5023,21 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_labels):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45915(self):
         test_steps = {
@@ -5209,8 +5055,9 @@ class test_Android_Template_Management_Reporting:
                 'Select again the design and click print option. Verify the number of labels left (x labels left) (same count in step 6).'],
             9: [9,
                 'Go to Home > Recently Printed Designs. Verify the total number of labels left (x of x prints left) is updated in the Printer information (same count in step 6).'],
-            10: [10, 'Repeat steps for design in Recently Printed Designs section']
+            10:[10,'Repeat steps for design in Recently Printed Designs section']
         }
+
 
         start_time_main = time.time()
 
@@ -5228,8 +5075,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5246,8 +5092,7 @@ class test_Android_Template_Management_Reporting:
                 pass
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5270,8 +5115,7 @@ class test_Android_Template_Management_Reporting:
             sleep(8)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5290,8 +5134,7 @@ class test_Android_Template_Management_Reporting:
             if str(curr_copies) != '3':
                 raise Exception("curr copies not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5306,8 +5149,7 @@ class test_Android_Template_Management_Reporting:
 
             common_method.wait_for_element_appearance_enabled("Print")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5318,8 +5160,7 @@ class test_Android_Template_Management_Reporting:
             if int(prev_labels) != int(curr_labels) + 3:
                 raise Exception("no of labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5346,8 +5187,7 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5369,8 +5209,7 @@ class test_Android_Template_Management_Reporting:
             if curr_labels != temp:
                 raise Exception("count not same after reselecting the design")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5391,8 +5230,7 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_labels):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5500,22 +5338,23 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("labels left not updated")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45916(self):
         test_steps = {
@@ -5535,6 +5374,7 @@ class test_Android_Template_Management_Reporting:
             9: [9, 'Click Print option. Check the label printed out correctly.']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -5551,8 +5391,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5566,15 +5405,15 @@ class test_Android_Template_Management_Reporting:
             try:
                 common_method.wait_for_element_appearance_enabled("Print", 15)
             except:
-                raise Exception("print page not displayed")
+                raise Exception("print page not displayed")\
+
             if not template_management.check_prompt_for_smaller_label_than_current():
                 raise Exception("Prompt for smaller page is not displayed or may have wrong words")
 
             prev_labels = template_management.get_no_of_labels_left_in_print_page()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5585,8 +5424,7 @@ class test_Android_Template_Management_Reporting:
             template_management.enter_no_of_copies(1)
             others.go_back()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5599,8 +5437,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("current copies are not one")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5613,8 +5450,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("no of labels left not updated")
             sleep(5)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5639,8 +5475,7 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5655,8 +5490,7 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_labels):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5675,8 +5509,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Prompt for smaller page is  displayed or may have wrong words")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -5686,20 +5519,21 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_enabled("Print")
             template_management.click_print_button_enabled()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45917(self):
         current_function_name = inspect.currentframe().f_code.co_name
@@ -5883,12 +5717,13 @@ class test_Android_Template_Management_Reporting:
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_45918(self):
         current_function_name = inspect.currentframe().f_code.co_name
@@ -6151,7 +5986,7 @@ class test_Android_Template_Management_Reporting:
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -6175,6 +6010,7 @@ class test_Android_Template_Management_Reporting:
                 'Go to Home > Recently Printed Designs. Verify the total number of labels left (x of x prints left) is updated in the Printer information']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -6192,8 +6028,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6205,8 +6040,7 @@ class test_Android_Template_Management_Reporting:
 
             duplicate_name = template_management.duplicate_the_design_and_get_the_name()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6216,8 +6050,7 @@ class test_Android_Template_Management_Reporting:
             if original_name + " copy" != duplicate_name:
                 raise Exception("default duplicate name is not changing")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6248,8 +6081,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_print_button_clickable:
                 raise Exception("print option is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6277,9 +6109,9 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_print_button_clickable:
                 raise Exception("print option is not clickable")
 
+
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6297,8 +6129,7 @@ class test_Android_Template_Management_Reporting:
             if not int(prev_count) == int(curr_count) + 1:
                 raise Exception("no of labels not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6326,8 +6157,7 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6342,20 +6172,21 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_count):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45920(self):
         test_steps = {
@@ -6371,6 +6202,7 @@ class test_Android_Template_Management_Reporting:
             7: [7,
                 'Go to Home > Recently Printed Designs. Verify the total number of labels left (x of x prints left) is updated in the Printer information']
         }
+
 
         start_time_main = time.time()
 
@@ -6388,8 +6220,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6406,8 +6237,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("print page not displayed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6441,8 +6271,7 @@ class test_Android_Template_Management_Reporting:
                 pass
             template_management.check_element_exists("Total of 1 label")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6450,8 +6279,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             prev_count = template_management.get_no_of_labels_left_in_print_page()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6473,8 +6301,7 @@ class test_Android_Template_Management_Reporting:
 
             sleep(1)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6502,8 +6329,7 @@ class test_Android_Template_Management_Reporting:
             if pd != cd or pm != cm or py != cy:
                 raise Exception("dates are not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6518,20 +6344,21 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_count):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45923(self):
         test_steps = {
@@ -6545,6 +6372,7 @@ class test_Android_Template_Management_Reporting:
             6: [6,
                 'Go to Home page. Verify the total number of labels left (x of x prints left) is NOT updated in the Printer information']
         }
+
 
         start_time_main = time.time()
 
@@ -6562,8 +6390,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6583,8 +6410,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("print page not displayed")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6592,8 +6418,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             prev_count = template_management.get_no_of_labels_left_in_print_page()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6613,8 +6438,7 @@ class test_Android_Template_Management_Reporting:
             except ZeroDivisionError:
                 pass
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6639,8 +6463,7 @@ class test_Android_Template_Management_Reporting:
 
             sleep(5)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6661,20 +6484,21 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_count):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45924(self):
         test_steps = {
@@ -6688,6 +6512,7 @@ class test_Android_Template_Management_Reporting:
             6: [6,
                 'Go to Home page. Verify the total number of labels left (x of x prints left) is NOT updated in the Printer information']
         }
+
 
         start_time_main = time.time()
 
@@ -6703,8 +6528,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6721,8 +6545,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("print page not displayed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6731,8 +6554,7 @@ class test_Android_Template_Management_Reporting:
             prev_count = template_management.get_no_of_labels_left_in_print_page()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6752,8 +6574,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 pass
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6778,8 +6599,7 @@ class test_Android_Template_Management_Reporting:
 
             curr_count = template_management.get_no_of_labels_left_in_print_page()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6801,20 +6621,21 @@ class test_Android_Template_Management_Reporting:
             if str(labels_left) != str(curr_count):
                 raise Exception("labels left not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45926(self):
         test_steps = {
@@ -6846,8 +6667,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6880,8 +6700,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error not displayed for invalid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6894,8 +6713,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_error_for_invalid_characters_in_rename_design():
                 raise Exception("error displayed for valid characters")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6924,23 +6742,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("size or date is not matching after renaming the design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
             # step5: 'Also check entering special characters \\ / can\'t work for rename feature in My design'
             start_time = time.time()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -6973,8 +6789,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Recently", 20)
             sleep(2)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -6998,8 +6813,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7013,8 +6827,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error displayed for valid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7042,15 +6855,14 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("size or date is not matching after renaming the design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -7087,8 +6899,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7102,8 +6913,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.click_on_rename_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7116,8 +6926,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error displayed for valid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7140,8 +6949,7 @@ class test_Android_Template_Management_Reporting:
             template_management.select_design_in_my_design_by_name_and_return(new_name + " (1)", 1)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7161,15 +6969,14 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_cancel_button_in_rename_popup()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -7204,8 +7011,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Recently")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7218,8 +7024,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_rename_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7231,8 +7036,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_error_for_invalid_characters_in_rename_design():
                 raise Exception("error displayed for valid characters")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7256,8 +7060,7 @@ class test_Android_Template_Management_Reporting:
             template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(new_name + " (1)", 1)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7277,15 +7080,14 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_cancel_button_in_rename_popup()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -7322,8 +7124,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7340,8 +7141,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_rename_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7352,8 +7152,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error displayed for valid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7375,8 +7174,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("design not found after updating")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7398,15 +7196,14 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_cancel_button_in_rename_popup()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -7442,8 +7239,7 @@ class test_Android_Template_Management_Reporting:
             sleep(2)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7455,8 +7251,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_rename_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7464,8 +7259,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7488,8 +7282,7 @@ class test_Android_Template_Management_Reporting:
             template_management.get_the_full_name_of_design_and_click_in_recently_printed_design(name + " (1)", 1)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7509,15 +7302,14 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_cancel_button_in_rename_popup()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -7536,6 +7328,7 @@ class test_Android_Template_Management_Reporting:
             5: [5,
                 'Verify design\'s name is updated. Verify design\'s information (Size, Thumbnail, Last Print) are NOT updated']
         }
+
 
         start_time_main = time.time()
 
@@ -7579,8 +7372,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Recently")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7597,8 +7389,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.click_on_rename_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7617,8 +7408,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_error_for_invalid_characters_in_rename_design():
                 raise Exception("error displayed for valid characters")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7635,8 +7425,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("rename popup not closed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7652,20 +7441,21 @@ class test_Android_Template_Management_Reporting:
             if curr_size != prev_size or curr_date != prev_date:
                 raise Exception("size or date is not matching after renaming the design")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45933(self):
         test_steps = {
@@ -7696,8 +7486,7 @@ class test_Android_Template_Management_Reporting:
             """Note: the design should be printed if not design rename will not be shown in recently printed labels"""
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7721,8 +7510,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7736,8 +7524,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error displayed for valid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7768,8 +7555,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("size or date is not matching after renaming the design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7784,8 +7570,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error not  displayed for invalid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7794,21 +7579,19 @@ class test_Android_Template_Management_Reporting:
 
             template_management.click_on_cancel_button_in_rename_popup()
             try:
-                full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(user2_name,
-                                                                                                           0)
+                full_name = template_management.select_design_in_recetly_printed_design_by_name_and_return(user2_name,0)
             except:
                 raise Exception("design not found after canceling rename")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -7850,8 +7633,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Recently")
             sleep(2)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7865,8 +7647,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_rename_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7877,8 +7658,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_error_for_blank_value_in_rename_design():
                 raise Exception("error not displayed for blank field")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7896,8 +7676,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("design name not found after blank value cancellation")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7914,8 +7693,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7928,8 +7706,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error  displayed for valid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7953,8 +7730,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("size or date is not matching after renaming the design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -7971,13 +7747,13 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is enabled for invalid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
             # step9: 'Input only one or several spaces\nCheck spaces should be auto cleared and provide the message "Name must be at least 1 character…"'
             start_time = time.time()
+
 
             """. Input only one or several spaces
             Check spaces should be auto cleared and provide the message "Name must be at least 1 character…”  fails"""
@@ -7986,15 +7762,14 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_error_for_blank_value_in_rename_design():
                 raise Exception("error not displayed for blank field")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -8012,7 +7787,7 @@ class test_Android_Template_Management_Reporting:
                 'Select again the design and click Rename option\na. Verify default value matches the design\'s name\nb. Verify "Cancel" button is clickable and "Save" button is NOT clickable']
         }
 
-        start_main(execID, leftId["45935"])
+        start_main(execID,leftId["45935"])
 
         start_time_main = time.time()
 
@@ -8031,8 +7806,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8046,8 +7820,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_rename_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8068,8 +7841,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("design not found after cancelling")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8088,21 +7860,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_45936(self):
         test_steps = {
@@ -8130,8 +7902,7 @@ class test_Android_Template_Management_Reporting:
             sleep(1)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8143,8 +7914,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_rename_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8166,8 +7936,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("design not found after cancelling")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8186,15 +7955,14 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -8222,6 +7990,8 @@ class test_Android_Template_Management_Reporting:
             "Name Badge", "Return Address", "Shipping", "Small Multipurpose"
         ]
 
+
+
         try:
             for text in categories_to_check[4:5]:
                 # step1: "Go to Common Designs"
@@ -8237,8 +8007,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.wait_in_common_designs_until_load()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -8271,21 +8040,21 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_left_arrow()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_45938(self):
         test_steps = {
@@ -8305,6 +8074,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # step1: "Go to My Designs"
             start_time = time.time()
@@ -8315,8 +8085,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8337,8 +8106,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("default value not matches with original name")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8366,9 +8134,9 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_save_button_clickable_in_rename_popup():
                 raise Exception("save button is disabled for valid special characters")
 
+
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8395,20 +8163,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("size or date is not matching after renaming the design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45940(self):
         test_steps = {
@@ -8430,6 +8199,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # step1: 'Go to My Designs'
             start_time = time.time()
@@ -8439,8 +8209,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8459,8 +8228,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_rename_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8472,8 +8240,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error not displayed for allowed special characters ")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8482,8 +8249,7 @@ class test_Android_Template_Management_Reporting:
             template_management.turn_off_wifi()
             sleep(3)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8492,8 +8258,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_save_button_in_rename_design()
             """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error  SMBM-1771"""
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8502,8 +8267,7 @@ class test_Android_Template_Management_Reporting:
             template_management.turn_on_wifi()
             sleep(5)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8526,21 +8290,22 @@ class test_Android_Template_Management_Reporting:
             if curr_size != prev_size or curr_date != prev_date:
                 raise Exception("size or date is not matching after renaming the design")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45941(self):
         test_steps = {
@@ -8562,6 +8327,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # step1: 'Go to Recently Printed Labels'
             start_time = time.time()
@@ -8570,8 +8336,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
             """Give the name of existing design here"""
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8583,8 +8348,7 @@ class test_Android_Template_Management_Reporting:
             prev_size, prev_date = template_management.get_the_size_and_lastprint_of_design(full_name)
             template_management.click_on_rename_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8596,8 +8360,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_error_for_invalid_characters_in_rename_design():
                 raise Exception("error not displayed for allowed special characters ")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8606,8 +8369,7 @@ class test_Android_Template_Management_Reporting:
             template_management.turn_off_wifi()
             sleep(2)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8617,8 +8379,7 @@ class test_Android_Template_Management_Reporting:
             """Verify connection lost alert "Error communicating with server" with "Cancel" and "Save" buttons is displayed this step has error"""
             common_method.wait_for_element_appearance_namematches("Error communicating with server")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8627,8 +8388,7 @@ class test_Android_Template_Management_Reporting:
             template_management.turn_on_wifi()
             sleep(5)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8650,21 +8410,22 @@ class test_Android_Template_Management_Reporting:
             if curr_size != prev_size or curr_date != prev_date:
                 raise Exception("size or date is not matching after renaming the design")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45976(self):
         test_steps = {
@@ -8683,6 +8444,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -8692,8 +8454,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8706,8 +8467,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_search_design()
             """input value that does not match with our current designs"""
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8720,8 +8480,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Proper message is not displayed for wrong design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8740,20 +8499,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("total number of designs present , and showing n designs are not same count")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45977(self):
         test_steps = {
@@ -8774,6 +8534,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -8784,8 +8545,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8798,8 +8558,7 @@ class test_Android_Template_Management_Reporting:
             template_management.check_search_designs_text()
             template_management.click_on_search_design()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8821,8 +8580,7 @@ class test_Android_Template_Management_Reporting:
             sleep(2)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8842,8 +8600,7 @@ class test_Android_Template_Management_Reporting:
             if int(n) != 1:
                 raise Exception("showing more than one design")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -8862,20 +8619,22 @@ class test_Android_Template_Management_Reporting:
             if str(len(my_designs_curr)) != str(n_designs):
                 raise Exception("total number of designs present , and showing n designs are not same count")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
+
 
     def test_Template_Management_TestcaseID_45978(self):
         current_function_name = inspect.currentframe().f_code.co_name
@@ -8994,12 +8753,14 @@ class test_Android_Template_Management_Reporting:
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45980(self):
         current_function_name = inspect.currentframe().f_code.co_name
@@ -9146,16 +8907,16 @@ class test_Android_Template_Management_Reporting:
 
             # Step 7: Clear the text in the "Search" box. Verify all designs are displayed in My Designs. Verify the count in the "Showing x designs" is correct.
             start_time = time.time()
-            template_management.search_designs(text, 1)
+            template_management.search_designs(text,1)
             common_method.wait_for_element_appearance_namematches("Showing")
 
-            curr_all_designs = template_management.get_all_designs_in_my_designs()
+            curr_all_designs=template_management.get_all_designs_in_my_designs()
 
-            if prev_all_designs != curr_all_designs:
+            if prev_all_designs!=curr_all_designs:
                 raise Exception("prev all designs and curr all designs are not same")
 
-            n_curr = template_management.get_showing_n_designs_number()
-            if int(n_curr) != int(n_prev):
+            n_curr=template_management.get_showing_n_designs_number()
+            if int(n_curr)!=int(n_prev):
                 raise Exception("Showing designs count changed")
             exec_time = (time.time() - start_time) / 60
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
@@ -9163,12 +8924,13 @@ class test_Android_Template_Management_Reporting:
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_46006(self):
         test_steps = {
@@ -9200,8 +8962,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9212,8 +8973,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_common_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9225,8 +8985,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_search_design()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9241,8 +9000,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Proper message is not displayed for wrong design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9255,8 +9013,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("suggestion window is displayed after entering blank value")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9272,15 +9029,14 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Proper message is not displayed for wrong design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -9294,9 +9050,9 @@ class test_Android_Template_Management_Reporting:
             2: [2, 'Go to Common Designs'],
             3: [3, 'Go to the "Search" box.\nVerify "Search common designs" prompt text and Search icon are displayed'],
             4: [4,
-                'Enter text matching Zebra category or design. Verify that the dropdown displays two sections: Categories and Designs. Ensure the matched text is in blue, both categories and designs are clickable, and the number of matching designs is shown on the right'],
+                'Type in text that matches Zebra category and design (i.e., Address)\nVerify Suggestions dropdown displayed the results in 2 sections: Categories and designs\nVerify the matched text is in blue font\nVerify the category and designs are clickable\nVerify on the designs section, the number of designs that matches is displayed on the right side (i.e., Address 1 result)'],
             5: [5,
-                'Press \'Search\'. Verify the Suggestions dropdown disappears and \'Search results (x)\' is shown, where (x) is the total matches. Check \'Categories (x)\' and \'Designs (x)\' are displayed with their respective counts, and ensure matching categories and designs are listed.'],
+                'Press keyboard "Search"\nVerify Suggestions dropdown is no longer displayed\nVerify "Search results (x)" text is displayed. Count (x) is the total number of categories and designs that match the searched text\nVerify "Categories (x)" text is displayed. Count (x) is the total number of categories that match the searched text\nVerify the categories that match the searched text are displayed\nVerify "Designs (x)" text is displayed. Count (x) is the total number of designs that match the searched text\nVerify the designs that match the searched text are displayed'],
             6: [6, 'Clear the text in the "Search" box.\nVerify all categories are displayed in Common Designs']
         }
 
@@ -9312,11 +9068,12 @@ class test_Android_Template_Management_Reporting:
             # step1: "Login to Mobile App"
             start_time = time.time()
 
-            common_method.tearDown()
+            stop_app("com.zebra.soho_app")
+            start_app("com.zebra.soho_app")
+            common_method.wait_for_element_appearance_namematches("Home")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9327,8 +9084,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_common_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9339,8 +9095,7 @@ class test_Android_Template_Management_Reporting:
             template_management.check_search_designs_text()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9365,8 +9120,7 @@ class test_Android_Template_Management_Reporting:
             others.click_enter()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9404,8 +9158,7 @@ class test_Android_Template_Management_Reporting:
             text = ""
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9418,15 +9171,14 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("suggestion window is displayed after entering blank value")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -9464,8 +9216,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9476,8 +9227,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_common_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9488,8 +9238,7 @@ class test_Android_Template_Management_Reporting:
             template_management.check_search_designs_text()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9510,8 +9259,7 @@ class test_Android_Template_Management_Reporting:
             others.click_enter()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9541,8 +9289,7 @@ class test_Android_Template_Management_Reporting:
             this step cannt be done"""
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9559,15 +9306,14 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("search designs text bar is not empty")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -9604,8 +9350,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9616,8 +9361,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_common_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9628,8 +9372,7 @@ class test_Android_Template_Management_Reporting:
             template_management.check_search_designs_text()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9650,8 +9393,7 @@ class test_Android_Template_Management_Reporting:
             others.click_enter()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9681,30 +9423,28 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("categories displayed which is not matching to search value")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
             # step6: "Clear the text in the 'Search' box\n-Verify all categories are displayed in Common Designs"
             start_time = time.time()
 
-            text = ""
-            template_management.search_designs(text, 1)
+            text=""
+            template_management.search_designs(text,1)
 
             if template_management.check_suggestion_window_in_common_design():
                 raise Exception("suggestion window is displayed after entering blank value")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -9741,8 +9481,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9753,8 +9492,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_common_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9765,8 +9503,7 @@ class test_Android_Template_Management_Reporting:
             prev = template_management.get_all_categories_in_common_designs()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9778,8 +9515,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_search_design()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9793,8 +9529,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Proper message is not displayed for wrong design")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9810,15 +9545,14 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("all categories are not displayed after and before search")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -9855,8 +9589,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -9873,8 +9606,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_common_designs_button()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -9889,8 +9621,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.wait_until_designs_load_after_clicking_categories()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -9905,8 +9636,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.check_search_designs_text()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -9922,8 +9652,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("design name is not clickable")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -9937,8 +9666,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.check_element_present_in_array(t, searched_elements)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -9953,15 +9681,14 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_left_arrow()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -9997,8 +9724,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Home")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
             temp = ["Address", "Barcode", "File Folder", "Jewelry", "Multipurpose", "Name Tag", "Return Address",
@@ -10014,8 +9740,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.wait_in_common_designs_until_load()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -10026,16 +9751,14 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_element_name_matches_all(text, 0)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
                 # step4: "Go to 'Search' box\n-Verify 'Search common designs' prompt text and Search icon are displayed"
                 start_time = time.time()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -10061,8 +9784,7 @@ class test_Android_Template_Management_Reporting:
                 others.click_enter()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -10081,8 +9803,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("suggestion designs and results designs are not same")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -10097,15 +9818,14 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_left_arrow()
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -10126,6 +9846,7 @@ class test_Android_Template_Management_Reporting:
         current_function_name = inspect.currentframe().f_code.co_name
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
+
 
         try:
             # Step 1: Login to Mobile App
@@ -10197,8 +9918,7 @@ class test_Android_Template_Management_Reporting:
                 social_login.wait_for_element_appearance("Home", 15)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -10211,8 +9931,7 @@ class test_Android_Template_Management_Reporting:
                     pass
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -10227,20 +9946,21 @@ class test_Android_Template_Management_Reporting:
                 except:
                     pass
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45942(self):
         test_steps = {
@@ -10259,6 +9979,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -10269,8 +9990,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10301,8 +10021,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10342,8 +10061,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Showing designs count not updated")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10357,20 +10075,21 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_delete_button_in_designs()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45943(self):
         test_steps = {
@@ -10393,6 +10112,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to Recently Printed Labels
             start_time = time.time()
@@ -10402,8 +10122,7 @@ class test_Android_Template_Management_Reporting:
             """f. Verify the count in the "Showing x designs" is correct will not be present in home page"""
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10432,8 +10151,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10470,8 +10188,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("original copy date or size has been changed")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10482,8 +10199,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("some options are not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10491,8 +10207,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10500,20 +10215,21 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45944(self):
         test_steps = {
@@ -10534,6 +10250,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -10543,8 +10260,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10566,8 +10282,7 @@ class test_Android_Template_Management_Reporting:
             template_management.verify_duplicate_design_window()
             """Enter unique name here"""
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10579,8 +10294,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error displayed for proper unique name")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10620,8 +10334,7 @@ class test_Android_Template_Management_Reporting:
             if int(n_curr) != int(n_prev) + 1:
                 raise Exception("Showing designs count not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10634,20 +10347,21 @@ class test_Android_Template_Management_Reporting:
             sleep(1)
             template_management.click_on_delete_button_in_designs()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45945(self):
         test_steps = {
@@ -10671,6 +10385,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to Recently Printed Labels
             start_time = time.time()
@@ -10678,8 +10393,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10696,8 +10410,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.verify_duplicate_design_window()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10710,8 +10423,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for proper unique name")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10749,8 +10461,7 @@ class test_Android_Template_Management_Reporting:
             if original_date != curr_date or original_size != curr_size:
                 raise Exception("original copy date or size has been changed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10763,8 +10474,7 @@ class test_Android_Template_Management_Reporting:
             sleep(1)
             template_management.click_on_delete_button_in_designs()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10772,8 +10482,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10781,20 +10490,21 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45946(self):
         test_steps = {
@@ -10815,6 +10525,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -10824,8 +10535,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10845,8 +10555,7 @@ class test_Android_Template_Management_Reporting:
             template_management.verify_duplicate_design_window()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10858,8 +10567,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for proper unique name")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10884,8 +10592,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("duplicate name not found")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10904,20 +10611,21 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_save_button_clickable_in_rename_popup():
                 raise Exception("cancel button is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45947(self):
         test_steps = {
@@ -10939,6 +10647,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to Recently Printed
             start_time = time.time()
@@ -10946,8 +10655,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently", 30)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10965,8 +10673,7 @@ class test_Android_Template_Management_Reporting:
             template_management.verify_duplicate_design_window()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -10978,8 +10685,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for proper unique name")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11018,8 +10724,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_save_button_clickable_in_rename_popup():
                 raise Exception("cancel button is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11027,20 +10732,21 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             # Insert code to go to My Designs and verify the duplicated design is displayed
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45948(self):
         test_steps = {
@@ -11062,6 +10768,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -11071,8 +10778,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11090,8 +10796,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.verify_duplicate_design_window()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11105,8 +10810,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error displayed for proper unique name")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11131,8 +10835,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("duplicate name not found")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11151,20 +10854,21 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_save_button_clickable_in_rename_popup():
                 raise Exception("save button is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45949(self):
         test_steps = {
@@ -11186,6 +10890,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to Recently Printed
             start_time = time.time()
@@ -11193,8 +10898,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11211,8 +10915,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.verify_duplicate_design_window()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11225,8 +10928,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error displayed for proper unique name")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11252,8 +10954,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("duplicate name not found")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11272,8 +10973,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("cancel button is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11295,20 +10995,21 @@ class test_Android_Template_Management_Reporting:
             template_management.click_the_duplicate_button()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45950(self):
         test_steps = {
@@ -11326,6 +11027,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -11336,8 +11038,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_my_designs_button()
             common_method.wait_for_element_appearance_namematches("Showing")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11357,8 +11058,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.verify_duplicate_design_window()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11401,20 +11101,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Showing designs count not updated")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45951(self):
         test_steps = {
@@ -11433,6 +11134,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to Recently Printed
             start_time = time.time()
@@ -11441,8 +11143,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Recently")
             """f. Verify the count in the "Showing x designs" is correct will not be present in home page"""
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11467,8 +11168,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.verify_duplicate_design_window()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11515,8 +11215,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("original copy date or size has been changed")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11532,20 +11231,21 @@ class test_Android_Template_Management_Reporting:
             if duplicate_size != my_design_dup_size or duplicate_date != my_design_dup_date:
                 raise Exception("duplicate copy and original copy dates or sizes not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45952(self):
         test_steps = {
@@ -11573,6 +11273,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to Recently Printed
             start_time = time.time()
@@ -11580,8 +11281,7 @@ class test_Android_Template_Management_Reporting:
             start_app("com.zebra.soho_app")
             common_method.wait_for_element_appearance_namematches("Recently")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11599,8 +11299,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.verify_duplicate_design_window()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11617,8 +11316,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("error not displayed for blank name")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11630,8 +11328,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_for_invalid_character_error_in_duplicate_design():
                 raise Exception("error  displayed for valid  name")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11648,8 +11345,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("original name not found")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11667,8 +11363,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_save_button_clickable_in_rename_popup():
                 raise Exception("save button is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11704,8 +11399,7 @@ class test_Android_Template_Management_Reporting:
             if curr_size != original_size or curr_date != original_date:
                 raise Exception("duplicate copy and original copy dates or sizes not matching")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11723,20 +11417,21 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable for invalid characters")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45953(self):
         current_function_name = inspect.currentframe().f_code.co_name
@@ -11755,6 +11450,7 @@ class test_Android_Template_Management_Reporting:
             6: [6,
                 'Select the duplicate design. Verify the following options are clickable: Print, Rename, Duplicate, Delete.']
         }
+
 
         start_time_main = time.time()
 
@@ -11868,12 +11564,13 @@ class test_Android_Template_Management_Reporting:
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_45955(self):
         test_steps = {
@@ -11893,6 +11590,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to My Designs
             start_time = time.time()
@@ -11904,8 +11602,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Showing")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11920,8 +11617,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.verify_duplicate_design_window()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11946,8 +11642,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("original name not found")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -11965,20 +11660,21 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_save_button_clickable_in_rename_popup():
                 raise Exception("save button is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45956(self):
         test_steps = {
@@ -11999,6 +11695,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # Step 1: Go to Recently Printed
             start_time = time.time()
@@ -12007,8 +11704,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Recently")
             sleep(2)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12024,8 +11720,7 @@ class test_Android_Template_Management_Reporting:
             template_management.verify_duplicate_design_window()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12052,8 +11747,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("original name not found")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12072,28 +11766,28 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("save button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
             # Step 5: Go to My Designs and check the design is not duplicated
             start_time = time.time()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45957(self):
         test_steps = {
@@ -12115,6 +11809,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # step1: 'Go to My Designs'
             start_time = time.time()
@@ -12124,8 +11819,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_my_designs_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12151,8 +11845,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("delete button is not clickable")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12163,8 +11856,7 @@ class test_Android_Template_Management_Reporting:
             if template_management.check_cancel_button_clickable_in_rename_popup():
                 raise Exception("delete design window not closed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12177,8 +11869,7 @@ class test_Android_Template_Management_Reporting:
 
             template_management.click_on_delete_button_in_designs()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12205,8 +11896,7 @@ class test_Android_Template_Management_Reporting:
             if int(n_curr) != int(n_prev) - 1:
                 raise Exception("Showing designs count not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12221,15 +11911,14 @@ class test_Android_Template_Management_Reporting:
             except:
                 pass
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -12237,17 +11926,16 @@ class test_Android_Template_Management_Reporting:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
 
+
+
     def test_Template_Management_TestcaseID_45958(self):
         test_steps = {
             1: [0, 'Go to Recently Printed Labels'],
-            2: [1,
-                'Select the design in the precondition and click Delete option a. Verify "Delete design" window is displayed b. Verify "Deleting a design will permanently remove it from your workspace. Are you sure you want to delete?" text is displayed'],
+            2: [1, 'Select the design in the precondition and click Delete option a. Verify "Delete design" window is displayed b. Verify "Deleting a design will permanently remove it from your workspace. Are you sure you want to delete?" text is displayed'],
             3: [2, 'Click "Cancel" button \a. Verify "Delete design" window is closed b. Verify design is NOT removed'],
             4: [3, 'Select again the design and click Delete option'],
-            5: [4,
-                'Click "Delete" then confirm deletion a. Verify "Delete design" window is closedb. Verify toast alert "design ("Name") has been successfully removed." is displayed c. Verify the design is NO longer displayed'],
-            6: [5,
-                'Go to My Designs and verify the design is not displayed and the count is correct Verify the design is NOT displayed Verify the count in the "Showing x designs" is correct']
+            5: [4, 'Click "Delete" then confirm deletion a. Verify "Delete design" window is closedb. Verify toast alert "design ("Name") has been successfully removed." is displayed c. Verify the design is NO longer displayed'],
+            6: [5, 'Go to My Designs and verify the design is not displayed and the count is correct Verify the design is NOT displayed Verify the count in the "Showing x designs" is correct' ]
         }
 
         start_time_main = time.time()
@@ -12256,6 +11944,7 @@ class test_Android_Template_Management_Reporting:
         current_function_name = inspect.currentframe().f_code.co_name
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
+
 
         try:
             # Step 1: Go to Recently Printed Labels
@@ -12268,8 +11957,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Showing")
             n_prev = template_management.get_showing_n_designs_number()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12289,8 +11977,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_delete_button_clickable_in_design_window():
                 raise Exception("Delete button is not clickable")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12305,8 +11992,7 @@ class test_Android_Template_Management_Reporting:
             except:
                 raise Exception("Original name not found")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12315,8 +12001,7 @@ class test_Android_Template_Management_Reporting:
             template_management.click_on_delete_button_in_designs()
             template_management.click_on_delete_button_in_designs()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12345,8 +12030,7 @@ class test_Android_Template_Management_Reporting:
             if int(n_curr) != int(n_prev) - 1:
                 raise Exception("Showing designs count not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12364,20 +12048,20 @@ class test_Android_Template_Management_Reporting:
             if int(n_curr) != int(n_prev) - 1:
                 raise Exception("Showing designs count not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_45959(self):
         test_steps = {
@@ -12392,6 +12076,7 @@ class test_Android_Template_Management_Reporting:
         current_function_name = inspect.currentframe().f_code.co_name
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
+
 
         try:
             # step1: 'Go to Common Designs'
@@ -12409,8 +12094,7 @@ class test_Android_Template_Management_Reporting:
                 login_page.click_Menu_HamburgerICN()
                 template_management.click_common_designs_button()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -12427,8 +12111,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_element_by_name_or_text(t)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -12444,15 +12127,14 @@ class test_Android_Template_Management_Reporting:
                 sleep(1)
                 template_management.click_left_arrow()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -12460,13 +12142,13 @@ class test_Android_Template_Management_Reporting:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
 
+
+
     def test_Template_Management_TestcaseID_45961(self):
         test_steps = {
             1: [0, 'Go to My Designs'],
-            2: [1,
-                'Select the design in the precondition and click Delete option a. Verify "Delete design" window is displayed'],
-            3: [2,
-                'Click "Delete" button a. Verify "Delete design" window is closed b. Verify notification alert "design ("Name") has been successfully removed." is displayed. Click "x" button c. Verify the design is NO longer displayed d. Verify the count in the "Showing x designs" is correct'],
+            2: [1, 'Select the design in the precondition and click Delete option a. Verify "Delete design" window is displayed'],
+            3: [2, 'Click "Delete" button a. Verify "Delete design" window is closed b. Verify notification alert "design ("Name") has been successfully removed." is displayed. Click "x" button c. Verify the design is NO longer displayed d. Verify the count in the "Showing x designs" is correct'],
             4: [3, 'Go to Home > Recently Printed Designs Verify the design is NOT displayed']
         }
 
@@ -12488,8 +12170,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Showing")
             n_prev = template_management.get_showing_n_designs_number()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12502,8 +12183,7 @@ class test_Android_Template_Management_Reporting:
             if not template_management.check_delete_design_window_message():
                 raise Exception("Delete design window message not displayed")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12525,8 +12205,7 @@ class test_Android_Template_Management_Reporting:
             if int(n_curr) != int(n_prev) - 1:
                 raise Exception("Showing designs count not updated")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12540,19 +12219,19 @@ class test_Android_Template_Management_Reporting:
             except:
                 pass
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_45962(self):
         current_function_name = inspect.currentframe().f_code.co_name
@@ -12684,13 +12363,14 @@ class test_Android_Template_Management_Reporting:
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
 
     def test_Template_Management_TestcaseID_45963(self):
         current_function_name = inspect.currentframe().f_code.co_name
@@ -12828,13 +12508,15 @@ class test_Android_Template_Management_Reporting:
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45964(self):
         test_steps = {
@@ -12860,8 +12542,7 @@ class test_Android_Template_Management_Reporting:
             sleep(1)
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12878,15 +12559,14 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("proper message not displayed for empty designs in my designs")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -12922,8 +12602,7 @@ class test_Android_Template_Management_Reporting:
             template_management.wait_in_common_designs_until_load()
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -12952,14 +12631,13 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("description not present for some category")
 
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -13000,8 +12678,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.click_common_designs_button()
                 template_management.wait_in_common_designs_until_load()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -13021,8 +12698,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("left arrow is not present")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -13046,8 +12722,7 @@ class test_Android_Template_Management_Reporting:
                 template_management.scroll_till_element(all_designs[0], 1)
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -13066,8 +12741,7 @@ class test_Android_Template_Management_Reporting:
 
                     template_management.click_left_arrow()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -13079,15 +12753,14 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("common designs page is not displayed after clicking left arrow")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
@@ -13109,6 +12782,7 @@ class test_Android_Template_Management_Reporting:
         current_function_name = inspect.currentframe().f_code.co_name
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
+
 
         try:
             # Step 1: Login to Web Portal
@@ -13166,8 +12840,7 @@ class test_Android_Template_Management_Reporting:
                 common_method.wait_for_element_appearance_text("Home", 20)
                 others.click_hamburger_button_in_Google()
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -13190,8 +12863,7 @@ class test_Android_Template_Management_Reporting:
                     raise Exception("last print date displayed without printing for the copy")
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
@@ -13213,21 +12885,22 @@ class test_Android_Template_Management_Reporting:
                     pass
 
                 exec_time = (time.time() - start_time) / 60
-                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                            exec_time)
+                insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
                 stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Template_Management_TestcaseID_45939(self):
         test_steps = {
@@ -13245,6 +12918,7 @@ class test_Android_Template_Management_Reporting:
         test_case_id = current_function_name.split("_")[-1]
         start_main(execID, leftId[test_case_id])
 
+
         try:
             # step1: 'Login to Web Portal with same account'
             start_time = time.time()
@@ -13253,8 +12927,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("Home")
             login_page.click_Menu_HamburgerICN()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13287,8 +12960,7 @@ class test_Android_Template_Management_Reporting:
             login_page.click_Menu_HamburgerICN()
             template_management.click_home_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13339,21 +13011,22 @@ class test_Android_Template_Management_Reporting:
             if curr_size != prev_size or curr_date != prev_date:
                 raise Exception("size or date is not matching after renaming the design")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+
 
     def test_Others_TestcaseID_45801(self):
         test_steps = {
@@ -13368,6 +13041,7 @@ class test_Android_Template_Management_Reporting:
             8: [8, 'Click print, check the template print out with updated value successfully']
         }
 
+
         start_time_main = time.time()
 
         stepId = 1
@@ -13380,8 +13054,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             common_method.tearDown()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13389,8 +13062,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             login_page.click_Menu_HamburgerICN()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13410,8 +13082,7 @@ class test_Android_Template_Management_Reporting:
             common_method.wait_for_element_appearance_namematches("successfully")
             sleep(2)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13427,8 +13098,7 @@ class test_Android_Template_Management_Reporting:
             others.click_print_button()
             sleep(4)
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13436,8 +13106,7 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             others.click_enter_data_for_design()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13450,8 +13119,7 @@ class test_Android_Template_Management_Reporting:
             if not res:
                 raise Exception("Keyboard not found")
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13470,8 +13138,7 @@ class test_Android_Template_Management_Reporting:
                 raise Exception("Keyboard not found")
             others.go_back()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
             stepId += 1
 
@@ -13479,17 +13146,18 @@ class test_Android_Template_Management_Reporting:
             start_time = time.time()
             others.click_print_button()
             exec_time = (time.time() - start_time) / 60
-            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass",
-                        exec_time)
+            insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Pass", exec_time)
 
 
-
+        
         except Exception as e:
             insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-            insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
+            insert_stepDetails(execID, leftId[test_case_id],test_steps[stepId][0] ,str(e) , "")
             insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
             raise Exception(str(e))
 
         finally:
             exec_time = (time.time() - start_time_main) / 60
             end_main(execID, leftId[test_case_id], exec_time)
+
+

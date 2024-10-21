@@ -38,16 +38,37 @@ others_page = Others(poco)
 def test_DataSources_TestcaseID_45731():
     pass
     common_method.tearDown()
-    data_sources_page.log_out_of_account()
-    data_sources_page.clearAppData()
-    data_sources_page.allowPermissions()
+    try:
+        common_method.wait_for_element_appearance("Sign In", 20)
+    except:
+        login_page.click_Menu_HamburgerICN()
+        registration_page.click_on_profile_edit()
+        poco.scroll()
+        registration_page.click_log_out_button()
+        registration_page.wait_for_element_appearance("Sign In", 10)
+    """Google Login"""
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
-    registration_page.check_if_user_navigated_to_sign_in_page()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
     account = "zebra02.swdvt@gmail.com"
-    help_page.chooseAcc(account)
-    registration_page.BugFix_For_Google(account)
-    data_sources_page.checkIfOnHomePage()
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        while not poco(text="Add account to device").exists():
+            poco.scroll()
+        registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
+    """Click hamburger icon to expand menu"""
+    try:
+        registration_page.wait_for_element_appearance("Home", 30)
+    except:
+        raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Data"""
@@ -60,14 +81,10 @@ def test_DataSources_TestcaseID_45731():
     sleep(2)
     """Click Link File"""
     data_sources_page.click_Link_File()
-    sleep(5)
-    registration_page.click_Google_Icon()
-    account = "zebra03.swdvt@gmail.com"
-    help_page.chooseAcc(account)
     """Google Drive"""
     common_method.wait_for_element_appearance_namematches("NAME", 20)
     sleep(3)
-    # data_sources_page.checkFilesShownAreSupported()
+    data_sources_page.checkFilesShownAreSupported()
     sleep(3)
     data_sources_page.clickBackArrow()
     """Check no file linked"""
@@ -168,7 +185,10 @@ def test_DataSources_TestcaseID_45731():
     data_sources_page.searchName("")
     data_sources_page.searchName(csv_file)
     data_sources_page.remove_File_Based_On_DataSource("Google Drive", csv_file)
-    data_sources_page.log_out_of_account()
+    login_page.click_Menu_HamburgerICN()
+    registration_page.click_on_profile_edit()
+    poco.scroll()
+    registration_page.click_log_out_button()
     registration_page.wait_for_element_appearance("Sign In", 10)
 
     """Apple Login"""
@@ -177,10 +197,12 @@ def test_DataSources_TestcaseID_45731():
     registration_page.wait_for_element_appearance("Sign In", 10)
     registration_page.clickSignIn()
     registration_page.click_Apple_Icon()
-    username = ("zebra03"
-                ".swdvt@gmail.com")
+    username = "zebra03.swdvt@gmail.com"
     registration_page.login_Apple("Zebra#123456789", username)
-    data_sources_page.checkIfOnHomePage()
+    try:
+        registration_page.wait_for_element_appearance("Home", 30)
+    except:
+        raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
     sleep(2)
     """Click My Data"""
@@ -843,18 +865,74 @@ def test_DataSources_TestcaseID_45732():
 
 
 def test_DataSources_TestcaseID_45738():
-    pass
-    common_method.tearDown()
-    data_sources_page.log_out_of_account()
+    """""""""test"""""
+
     data_sources_page.clearAppData()
+    common_method.tearDown()
     data_sources_page.allowPermissions()
     registration_page.clickSignIn()
     registration_page.click_Google_Icon()
-    registration_page.check_if_user_navigated_to_sign_in_page()
+    try:
+        registration_page.wait_for_element_appearance_text("Sign in with Google", 20)
+    except:
+        raise Exception("Did not navigate to Sign In with google page")
     account = "zebra02.swdvt@gmail.com"
-    help_page.chooseAcc(account)
-    data_sources_page.checkIfOnHomePage()
+    if template_management_page.checkIfAccPresent(account):
+        help_page.chooseAcc(account)
+    else:
+        while not poco(text="Use another account").exists():
+            poco.scroll()
+        login_page.click_GooglemailId()
+        while not poco(text="Add account to device").exists():
+            poco.scroll()
+        registration_page.addAccountToDevice()
+        registration_page.sign_In_With_Google("Zebra#123456789", "zebra02.swdvt@gmail.com")
+    try:
+        registration_page.wait_for_element_appearance("Home", 20)
+    except:
+        raise Exception("home page dint show up")
     login_page.click_Menu_HamburgerICN()
+    sleep(2)
+    """Click My Data"""
+    data_sources_page.click_My_Data()
+    sleep(5)
+    """Google Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    sleep(2)
+    """ google drive """
+    if data_sources_page.verifySignInWithGoogle():
+        registration_page.click_Google_Icon()
+    account = "zebra03.swdvt@gmail.com"
+    if data_sources_page.checkIfAccPresentLink(account):
+        help_page.chooseAcc(account)
+    else:
+        poco("com.google.android.gms:id/add_account_chip_title").click()
+        registration_page.sign_In_With_Google("Zebra#123456789", account)
+        sleep(2)
+    common_method.wait_for_element_appearance_namematches("NAME", 20)
+    data_sources_page.clickBackArrow()
+    sleep(2)
+    """One Drive"""
+    """Click Add file"""
+    data_sources_page.click_Add_File()
+    sleep(2)
+    """Click Link File"""
+    data_sources_page.click_Link_File()
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    """ One drive """
+    data_sources_page.clickMicrosoftOneDrive()
+    sleep(3)
+    data_sources_page.signInWithMicrosoft("zebra03.swdvt@gmail.com", "Zebra#123456789")
+    template_management_page_1.wait_for_element_appearance_name_matches_all("Microsoft OneDrive", 20)
+    data_sources_page.clickMicrosoftOneDrive()
+    data_sources_page.clickBackArrow()
+    sleep(3)
+    login_page.click_Menu_HamburgerICN()
+    sleep(2)
     data_sources_page.clickMyDesigns()
     common_method.wait_for_element_appearance_namematches("Showing", 15)
     """Google Drive"""
@@ -870,10 +948,10 @@ def test_DataSources_TestcaseID_45738():
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     sleep(2)
+    sleep(600)
+    """Cannot automate - 5. Go to Google Drive and update the file, add or remove the data entry has to be done manually."""
     data_sources_page.clickBackArrow()
     common_method.wait_for_element_appearance_namematches("Showing")
-    """Cannot automate - 5. Go to Google Drive and update the file, add or remove the data entry has to be done manually."""
-    common_method.show_message("Go to google drive download file 45730.xlsx from zebra03.swdvt@gmail.com account and modify the column and row values and add additional rows if needed. Remove the file from my data in account logged in through google login account-zebra02.swdvt@gmail.com")
     data_sources_page.selectDesignCreatedAtSetUp()
     sleep(2)
     data_sources_page.clickPrint()
@@ -884,7 +962,8 @@ def test_DataSources_TestcaseID_45738():
     sleep(10)
     data_sources_page.verifyIfPreviewIsPresent()
     sleep(2)
-    data_sources_page.scroll_till_print()
+    while not poco("Print").exists():
+        poco.scroll()
     """Check the print preview, the data has been  added or removed-has to be done manually"""
     data_sources_page.labelRangeSelection(4)
     data_sources_page.clickPrint()

@@ -13,9 +13,7 @@ import platform
 
 if platform.system() == "Windows":
     def Basic_path(a):
-        return os.path.join(os.path.expanduser('~'),
-                            "OneDrive - Zebra Technologies\Documents\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
-                            a)
+        return os.path.join("Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
 
 else:
     def Basic_path(a):
@@ -37,13 +35,9 @@ class Template_Management_Screen:
         self.poco = poco
         self.Search_place_holder = Template(Basic_path(r"search_design_placeholder.png"), record_pos=(-0.192, -0.609),
                                             resolution=(1080, 2280))
-        self.Search_icon = Template(Basic_path(r"search_Icon.png"), record_pos=(-0.398, -0.605),
-                                    resolution=(1080, 2280))
-        self.Search_files_place_holder = Template(Basic_path(r"search_files_place_holder.png"),
-                                                  record_pos=(-0.203, -0.584),
+        self.Search_icon = Template(Basic_path(r"search_Icon.png"), record_pos=(-0.398, -0.605), resolution=(1080, 2280))
+        self.Search_files_place_holder = Template(Basic_path(r"search_files_place_holder.png"), record_pos=(-0.203, -0.584),
                                                   resolution=(1080, 2340))
-        self.search_icons_text_box = Template(Basic_path(r"search_Icons_text_box.png"), record_pos=(-0.233, -0.736),
-                                              resolution=(1080, 2400))
 
     def turn_on_wifi(self):
         cmd = "adb shell svc wifi enable"
@@ -55,21 +49,11 @@ class Template_Management_Screen:
         a = a.split(" ")
         return a[1]
 
-    def Turn_Off_wifi(self):
-        sleep(2)
+    def turn_off_wifi(self):
         command = "adb shell svc wifi disable"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print("Command output:")
         print(result.stdout)
-        sleep(5)
-
-    def Turn_ON_wifi(self):
-        sleep(2)
-        command = "adb shell svc wifi enable"
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        print("Command output:")
-        print(result.stdout)
-        sleep(5)
 
     def verify_default_sort_my_designs(self):
         return self.poco("Name (A to Z)").exists()
@@ -90,35 +74,20 @@ class Template_Management_Screen:
             raise Exception(f"There are {len(self.poco("android.view.View")[6].child())} options present.")
 
     def verify_default_filter_my_designs(self):
-        sleep(2)
-        if not self.poco("All sizes").exists():
-            raise Exception("Default filter is not \"All sizes\"")
-        sleep(2)
-
-    def verify_default_sort_order_back_to_normal(self):
-        sleep(2)
-        if self.poco("Name (A to Z)").exists():
-            pass
-        else:
-            raise Exception("Sorting order is not back to default sort order - \"Name (A to Z)\" in my designs.")
-        sleep(2)
+        return self.poco("All sizes").exists()
 
     def verify_sort_order_my_designs(self, sort_order):
-        sleep(2)
         if sort_order == "A-Z":
             return self.poco("Name (A to Z)").exists()
         elif sort_order == "Z-A":
             return self.poco("Name (Z to A)").exists()
-        sleep(2)
 
     def click_filter_my_designs(self, name=None):
-        sleep(2)
         if name is not None:
             if name == "All sizes":
                 self.poco("All sizes").click()
         else:
-            self.poco(nameMatches="Name(.*)").parent().child()[3].click()
-        sleep(3)
+            self.poco(nameMatches="Name(.*)").parent.child()[3].click()
 
     def waitForAppearanceOfCategories(self):
         sleep(10)
@@ -156,7 +125,6 @@ class Template_Management_Screen:
         self.poco("android.view.View").child(type="android.widget.ImageView").wait_for_appearance(timeout=10)
 
     def get_all_designs_in_my_designs(self, name=False):
-        sleep(5)
         first_design = self.poco("android.view.View").child(type="android.widget.ImageView").get_name()
         total = []
         prev = []
@@ -201,19 +169,6 @@ class Template_Management_Screen:
         while not self.poco(first_design).exists():
             self.poco.swipe([0.5, 0.5], [0.5, 0.9])
         return label_sizes
-
-    def check_there_are_less_than_100_designs(self, design_list):
-        if len(design_list) <= 100:
-            pass
-        else:
-            raise Exception("There are more than 100 designs.")
-
-    def check_if_design_count_incremented_by_1(self, new_design_count, initial_design_count):
-        if new_design_count == initial_design_count + 1:
-            pass
-        else:
-            error = f"{new_design_count} is not equal to {initial_design_count}+1"
-            raise Exception(error)
 
     def filter_options(self, length=False):
 
@@ -302,7 +257,6 @@ class Template_Management_Screen:
             parent = self.poco(nameMatches=".*Add another account.*").parent()
 
     def checkIfAccPresent(self, account):
-        sleep(7)
         start = 0
         end = 1
         while True:
@@ -315,7 +269,6 @@ class Template_Management_Screen:
             start = 1
             end = 0
             self.poco.scroll()
-            sleep(2)
 
     def search_design_common_designs(self, design_name):
         self.poco("android.widget.EditText").click()
@@ -405,17 +358,12 @@ class Template_Management_Screen:
             return True
 
     def select_label_size(self):
-        sleep(2)
         size = self.poco("android.view.View")[6].child()[1].get_name()
         self.poco("android.view.View")[6].child()[1].click()
         return size
 
     def verify_search_placeholder(self):
-        sleep(3)
-        try:
-            assert_exists(self.Search_place_holder, "Search design place holder present.")
-        except:
-            raise Exception("Search design place holder doesnt have 'Search designs'.")
+        return assert_exists(self.Search_place_holder, "Search design place holder present.")
 
     def verify_search_drop_down_results(self, search_text):
         for i in range(len(self.poco("android.view.View")[3].child())):
@@ -467,9 +415,8 @@ class Template_Management_Screen:
             self.poco("android.widget.CheckBox").click()
 
     def verify_print_preview(self, preview_name):
-        assert_exists(
-            Template(Basic_path(rf"{preview_name}.png"), record_pos=(-0.001, -0.045), resolution=(1080, 2340)),
-            "Preview is present.")
+        assert_exists(Template(Basic_path(rf"{preview_name}.png"), record_pos=(-0.001, -0.045), resolution=(1080, 2340)),
+                      "Preview is present.")
 
     def verify_label_range_navigation_unavailable(self):
         return self.poco("Label 1 of 1").exists()
@@ -483,9 +430,7 @@ class Template_Management_Screen:
         self.poco("android.widget.EditText")[1].set_text(index)
 
     def verify_if_on_relink_data_source_page(self):
-        sleep(3)
         return self.poco(nameMatches=".*Relink.*").exists()
-        sleep(2)
 
     def verify_if_on_update_connections_page(self):
         return self.poco(nameMatches="Update Data Connections").exists()
@@ -563,7 +508,6 @@ class Template_Management_Screen:
         return self.poco(nameMatches=".*Label.*").exists()
 
     def selectChooseAnOption(self, option_count=1, option_name=None, click=True):
-        sleep(2)
         choice_name = False
         try:
             self.poco(nameMatches="(?s).*Choose an option.*").wait_for_appearance(timeout=20)
@@ -592,7 +536,6 @@ class Template_Management_Screen:
         raise Exception("Label Range is not 'All'")
 
     def verify_label_navigation(self):
-        sleep(2)
         scroll_view = self.poco("android.widget.ScrollView")
         while not self.poco(nameMatches=".*Label . of .*").exists():
             scroll_view.swipe("down")
@@ -610,7 +553,6 @@ class Template_Management_Screen:
             if navigated_previous == initial:
                 return
         raise Exception("'Previous' and 'Next' navigation buttons are not functioning.")
-    sleep(2)
 
     def check_total_label_for_print_count(self, n):
         return self.poco(f"Total of {n} labels").exists()
@@ -663,11 +605,7 @@ class Template_Management_Screen:
         return assert_exists(self.Search_place_holder, "Search placeholder is present")
 
     def verifySearchIcon(self):
-        sleep(3)
-        try:
-            assert_exists(self.Search_icon, "Search icon is present")
-        except:
-            raise Exception("Search icon not present")
+        return assert_exists(self.Search_icon, "Search icon is present")
 
     def checkIfElementIsPresent(self, element):
         try:
@@ -678,13 +616,10 @@ class Template_Management_Screen:
             return a
 
     def verifySearchFiles(self):
-        try:
-            assert_exists(self.Search_files_place_holder, "Search placeholder is present")
-        except:
-            raise Exception("Search Files placeholder not present.")
+        return assert_exists(self.Search_files_place_holder, "Search placeholder is present")
 
     def clickSearchIconTextBox(self):
-        touch(self.search_icons_text_box)
+        touch(Template(Basic_path(r"search_icon.png"), record_pos=(-0.218, -0.723), resolution=(1080, 2280)))
 
     def clickSearchIcon(self):
         touch(self.Search_icon)
@@ -777,14 +712,6 @@ class Template_Management_Screen:
             return total
         return temp
 
-    def check_if_drop_down_list_contains_results_that_include_search_keyword(self, search_keyword):
-        drop_down_list = self.get_all_search_results_in_search_designs()
-        for result in drop_down_list:
-            if search_keyword in result:
-                pass
-            else:
-                raise Exception("Drop down list contains results that do not include the search keyword")
-
     def click_scrim(self):
         self.poco("Scrim").click()
 
@@ -805,20 +732,6 @@ class Template_Management_Screen:
         d = self.poco(nameMatches=regex_pattern).exists()
 
         return a or b or c or d
-
-    def check_if_drop_down_list_open(self):
-        sleep(2)
-        if self.check_suggestion_window_in_common_design():
-            pass
-        else:
-            raise Exception("Drop down list did not appear.")
-        sleep(2)
-
-    def check_if_drop_down_list_close(self):
-        if self.check_suggestion_window_in_common_design():
-            raise Exception("Drop down list did not close.")
-        else:
-            pass
 
     def get_all_fields_print_page(self):
         elements = set()
@@ -861,12 +774,10 @@ class Template_Management_Screen:
 
     def getLastPrintFromFirstDesignInRecentlyPrintedDesigns(self):
         return \
-            self.poco("android.view.View").child(type="android.widget.ImageView")[1].get_name().split("\n")[-1].split(
-                ":")[
-                -1].strip()
+        self.poco("android.view.View").child(type="android.widget.ImageView")[1].get_name().split("\n")[-1].split(":")[
+            -1].strip()
 
     def get_remaining_label_count(self):
-        sleep(4)
         labels_left = int(self.poco(nameMatches=".*Printer.*").get_name().split(" ")[1][1:])
         return labels_left
 
@@ -913,19 +824,6 @@ class Template_Management_Screen:
         else:
             raise Exception("Delete option not present")
 
-    def verify_design_manipulation_options_in_design_menu(self):
-        try:
-            self.verify_design_manipulation_options()
-        except:
-            raise Exception("Design manipulation options \"Print, Rename, Duplicate, Delete\" not present.")
-
-    def check_design_menu_closed(self):
-        try:
-            self.verify_design_manipulation_options()
-            raise Exception("Design menu still open after clicking outside design menu.")
-        except:
-            pass
-
     def scroll_my_designs(self, direction="up"):
         total = []
         prev = []
@@ -962,11 +860,7 @@ class Template_Management_Screen:
         touch(Template(Basic_path(r"close_notification.png"), record_pos=(0.415, -0.896), resolution=(1080, 2280)))
 
     def clickAccept(self):
-        try:
-            self.poco("Accept").wait_for_appearance(timeout=20)
-            self.poco("Accept").click()
-        except:
-            pass
+        self.poco("Accept").click()
 
     def check_if_on_print_preview_page(self):
         return self.poco(nameMatches=".*Label.*").exists()
@@ -985,10 +879,7 @@ class Template_Management_Screen:
             raise Exception("rows displayed on the label range field not matching with the selected number of rows")
 
     def verify_My_Designs_pagination(self):
-        if self.poco("android.widget.ListView").exists():
-            pass
-        else:
-            raise Exception("All templates did not show up with pagination")
+        return self.poco("android.widget.ListView").exists()
 
     def verify_pagination_shown_is_correct(self):
         total_designs = int(self.poco(textMatches=".*Showing.*").get_text().split(" ")[3])
@@ -1039,9 +930,8 @@ class Template_Management_Screen:
             previous = current.copy()
             self.poco.scroll()
         scroll_view = self.poco("android.widget.ScrollView")
-        if scroll_view.exists():
-            while not self.poco(type="android.view.View", name="Alert").exists():
-                scroll_view.swipe("down")
+        while not self.poco(type="android.view.View", name="Alert").exists():
+            scroll_view.swipe("down")
         return elements
 
     def search_Icons(self, icon_name):
@@ -1051,22 +941,10 @@ class Template_Management_Screen:
 
     def select_file_update_data_connections(self, filename):
         selected_file_name = self.poco(nameMatches=f"(?s).*{filename}.*").get_name().split("(")[0].strip()
-        file_to_select = self.poco(nameMatches=f"(?s).*{filename}.*")
-        max_scrolls = 3
-        while not file_to_select.exists() and max_scrolls>0:
-            self.poco.scroll()
-            max_scrolls -= 1
-        file_to_select.click()
-        try:
-            self.poco(nameMatches="(?s).*could not be read.*").wait_for_appearance(timeout=10)
-            x = 1 / 0
-        except ZeroDivisionError:
-            raise Exception("File could not be read pops up while trying to link google drive file.")
-        except Exception as e:
-            return selected_file_name
+        self.poco(nameMatches=f"(?s).*{filename}.*").click()
+        return selected_file_name
 
     def verify_update_data_connections_dialog(self):
-        sleep(2)
         try:
             self.poco(
                 nameMatches="The below data sources are missing for the .* label. They must be updated in order to print.")
@@ -1385,14 +1263,5 @@ class Template_Management_Screen:
         if count_displayed == expected_count:
             pass
         else:
-            error = f"Displayed count({count_displayed}) does not match expected count({expected_count})"
-            raise Exception(error)
-            # raise Exception("Design not loaded properly.")
-
-    def scroll_up_to_print_preview(self):
-        sleep(3)
-        scroll_view = self.poco("android.widget.ScrollView")
-        while self.poco(nameMatches=".*Label . of .*").exists():
-            scroll_view.swipe("up")
-        for i in range(5):
-            scroll_view.swipe("up")
+            # error = f"Displayed count({count_displayed}) does not match expected count({expected_count})"
+            raise Exception("Design not loaded properly.")

@@ -12,7 +12,8 @@ from ...Common_Method import Common_Method
 from poco.exceptions import PocoNoSuchNodeException
 from pocoui_lib.android.kotoComponent import poco
 
-# def Basic_path(a): # return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings", a)
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_App_Settings", a)
 
 class App_Settings_Screen:
     pass
@@ -28,8 +29,8 @@ class App_Settings_Screen:
         self.Current_Network_Txt = "Current Networks"
         self.Network_Name_Txt = "NESTWIFI"
         self.ZEBRA_Network = "Zebra"
-        # # self.Network_Password_Field = Template(Basic_path("tpl1706704195474.png"), record_pos=(0.009, 0.083),
-        #                                        resolution=(1080, 2400))
+        self.Network_Password_Field = Template(Basic_path("tpl1706704195474.png"), record_pos=(0.009, 0.083),
+                                               resolution=(1080, 2400))
         self.Network_Status_Txt = "Network Status"
         self.Network_Status_Result_Txt = "Connected"
         self.IPAddress_Txt = "IP Address"
@@ -39,8 +40,8 @@ class App_Settings_Screen:
         self.Test_Print_Btn = "Test Print"
         self.Continue_Btn_on_Bluetooth_Connection_Failed_popup = "Continue"
         self.Cancel_Btn_n_Bluetooth_Connection_Failed_Popup = "Cancel"
-        # self.Red_Icon_to_remove_network = Template(Basic_path("tpl1704879780106.png"), record_pos=(0.424, 0.164),
-        #                                            resolution=(1080, 2400))
+        self.Red_Icon_to_remove_network = Template(Basic_path("tpl1704879780106.png"), record_pos=(0.424, 0.164),
+                                                   resolution=(1080, 2400))
         self.Add_Network = "Add Network"
         self.Add_Network_Txt = "Add Network"
         self.Deleted_Network = "Zebra"
@@ -92,12 +93,16 @@ class App_Settings_Screen:
         self.Security_Message_Txt = "For your security, you must immediately sign back in one last time to finalize and confirm the deletion of your account. Select ‘Continue’ to sign out."
         self.Important_Message_In_Login_Page = "Important:For security purposes, please login one last time to finalize the deletion of your account. Failure to do so will result in your account still being active."
         self.Delete_Account_Popup = "Delete"
+
         self.Cancel_on_Delete_Account_Popup = "Cancel"
+
+        self.ThreeDot_On_Added_Printer_On_HomePage = Template(Basic_path("tpl1705915293017.png"), record_pos=(0.402, -0.553),
+                                                              resolution=(1080, 2400))
         self.Delete_Printer_Button = "Delete"
 
         self.Yes_Delete_Button = "Yes, Delete"
-        # self.Unpair_Bluetooth_dropdown_list = Template(Basic_path("tpl1706788194403.png"), record_pos=(0.329, 0.09),
-        #                                                resolution=(1080, 2400))
+        self.Unpair_Bluetooth_dropdown_list = Template(Basic_path("tpl1706788194403.png"), record_pos=(0.329, 0.09),
+                                                       resolution=(1080, 2400))
 
         self.Printer_Name_Text = "Printer Name"
         self.Darkness_Level_Bar = "64%"
@@ -134,7 +139,7 @@ class App_Settings_Screen:
         self.Continue_On_Failed_To_Connect_To_Wifi_Network = "Continue"
         self.Apply_Changes = "Apply Changes"
         self.Invalid_Network_Error_Message = ""
-        self.Email_TextField_On_Password_Recovery_Screen = "email"
+        self.Email_TextField_On_Password_Recovery_Screen = "android.widget.EditText"
         self.Cancel_Button = "Cancel"
 
     # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -474,7 +479,7 @@ class App_Settings_Screen:
         save_exit.click()
 
     def Home_text_is_present_on_homepage(self):
-        sleep(9)
+        sleep(6)
         home_text = self.poco(self.Home_text_on_homepage)
         home_text.get_text()
         print("Home Text is present on home page:", home_text)
@@ -774,7 +779,7 @@ class App_Settings_Screen:
 
     def Verify_Updated_Name(self):
         sleep(1)
-        Updated_Workspace_Name = self.poco(text="@abcdefghijklmn!@#abcdefg23hijklmn")
+        Updated_Workspace_Name = self.poco(text="@abcdefghijklmn!@#abcdefghijklmn")
         Updated_Workspace_Name.get_text()
         sleep(1)
         return Updated_Workspace_Name
@@ -1079,14 +1084,7 @@ class App_Settings_Screen:
 
     def click_Three_Dot_On_Added_Printer_On_HomePage(self):
         sleep(3)
-        element = self.poco(nameMatches=".*\s.*\s.*\s.*\s.*\s.*prints left.*|.*\s.*\s.*\s.*\s.*prints left.*")
-        size = element.attr("size")
-        pos = element.attr("pos")
-        x = pos[0] + size[0] * 0.46
-        y = pos[1] - size[1] * 0.46
-        self.poco.click([x, y])
-
-
+        touch(self.ThreeDot_On_Added_Printer_On_HomePage)
 
     def click_Delete_Printer_Button(self):
         Delete_printer = self.poco(self.Delete_Printer_Button)
@@ -1543,10 +1541,9 @@ class App_Settings_Screen:
         enter_network_username.set_text("Test-EnterNetwork-Manually-NameDisplay")
         sleep(2)
 
-    """Changed"""
-    def Verify_Long_Network_UserName(self, name="Test-EnterNetwork-Manually-NameDisplay"):
+    def Verify_Long_Network_UserName(self):
         sleep(3)
-        a = self.poco(nameMatches=f"(?s).*{name}.*").get_name()
+        a = self.poco(nameMatches="(?s).*Test-EnterNetwork-Manually-NameDisplay.*").get_name()
         a = a.split("\n")
         print(a)
 
@@ -1578,11 +1575,10 @@ class App_Settings_Screen:
 
     def click_Change_Password_Btn(self):
         sleep(3)
-        # poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
-        #     "android.view.View").child("android.view.View").child("android.view.View")[1].child(
-        #     "android.view.View").child("android.view.View")[2].child("Change").click()
+        poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
+            "android.view.View").child("android.view.View").child("android.view.View")[1].child(
+            "android.view.View").child("android.view.View")[2].child("Change").click()
 
-        self.poco(name="Change")[1].click()
         sleep(20)
 
     def Verify_The_Change_Password_URL(self):
@@ -1736,130 +1732,16 @@ class App_Settings_Screen:
             a.get_name()
             print(a)
 
-    def restart_adb_server(self):
-        try:
-            # Kill the existing adb server
-            subprocess.run(['adb', 'kill-server'], check=True)
-            # Start a new adb server
-            subprocess.run(['adb', 'start-server'], check=True)
-            print("ADB server restarted successfully.")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to restart ADB server: {e.stderr.decode()}")
-
-    # def disable_bluetooth(self):
-    #     time.sleep(2)  # Sleep for 2 seconds
-    #     self.restart_adb_server()  # Restart the adb server to fix version mismatch issue
-    #
-    #     try:
-    #         # Send the intent to disable Bluetooth
-    #         result = subprocess.run(
-    #             ['adb', 'shell', 'am', 'broadcast', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
-    #             check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    #         )
-    #
-    #         # Check the result
-    #         if result.returncode == 0:
-    #             print("Bluetooth disable request sent successfully.")
-    #         else:
-    #             print("Failed to send Bluetooth disable request.")
-    #
-    #     except subprocess.CalledProcessError as e:
-    #         print(f"An error occurred: {e.stderr.decode()}")
-
     def Disable_Bluetooth(self):
-        sleep(1)
-        cmd = "adb shell cmd bluetooth_manager disable"
-        subprocess.run(cmd, shell=True)
+        sleep(2)
+        subprocess.run(
+            ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def Enable_Bluetooth(self):
-        sleep(1)
-        cmd = "adb shell cmd bluetooth_manager enable"
-        subprocess.run(cmd, shell=True)
-
-    def scroll_down(self, count):
-
-        for i in range(count):
-            self.poco.scroll()
-
-    def Disable_And_Enable_Toggle_Buttons(self):
-        sleep(3)
-        self.poco(name="Upcoming Feature").click()
-        sleep(1)
-        self.poco(name="New Feature").click()
         sleep(2)
-
-    def Verify_Generated_Notification(self):
-        sleep(2)
-        self.poco(nameMatches="(?s).*Below is the historical view of the notifications you have received..*").get_name()
-        sleep(1)
-
-    def Expand_And_Verify_Printername_AndType(self):
-        sleep(2)
-        self.poco(name="Expand").click()
-        sleep(1)
-        self.poco(name="ZSP-DP").get_name()
-        sleep(1)
-
-    def Enter_Password(self):
-        sleep(2)
-        a=self.poco(name="Password")
-        poco.text("Password@123")
-
-    def verify_connecting_to_wifi_network_page_is_displayed(self):
-        try:
-            self.poco(nameMatches="(?s).*Connecting printer to Wi-Fi network.*").wait_for_appearance(timeout=25)
-        except:
-            raise Exception("'Connecting printer to Wi-Fi network' page not displayed")
-
-    def verify_printer_successfully_connected_to_wifi_network_page_displayed(self):
-        try:
-            self.poco(nameMatches="(?s).*Successfully connected printer to Wi-Fi network.*").wait_for_appearance(timeout=45)
-        except:
-            raise Exception("'Successfully connected printer to Wi-Fi network' page not displayed")
-
-    def verify_registering_printer_to_zsb_account_page_displayed(self):
-        try:
-            self.poco(nameMatches="(?s).*Registering printer to your ZSB Series account.*").wait_for_appearance(timeout=25)
-        except:
-            raise Exception("'Registering printer to your ZSB Series account' page not displayed")
-
-    def verify_printer_registration_successful_page_is_displayed(self):
-        try:
-            self.poco(nameMatches="(?s).*Printer registration was successful.*").wait_for_appearance(timeout=120)
-        except:
-            raise Exception("'Printer registration was successful' page not displayed")
-
-    def click_on_next_step(self):
-        sleep(2)
-        self.poco("Next Step").click()
-        sleep(3)
-
-    def click_on_next(self):
-        sleep(2)
-        self.poco("Next").click()
-        sleep(3)
-
-    def click_on_skip_button(self):
-        sleep(2)
-        self.poco("Skip").click()
-        sleep(3)
-
-    def click_on_finish_button(self):
-        sleep(2)
-        self.poco("Finish").click()
-        sleep(3)
-
-    def complete_test_printer_steps(self):
-        self.poco("Test printer").wait_for_appearance(timeout=25)
-        self.click_on_next_step()
-        self.click_on_next_step()
-        self.click_on_next_step()
-        self.click_on_next_step()
-        self.click_on_next()
-        self.click_on_skip_button()
-        self.click_on_next()
-        self.click_on_finish_button()
-
-
+        subprocess.run(
+            ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
+            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 

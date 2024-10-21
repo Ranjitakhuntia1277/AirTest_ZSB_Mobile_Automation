@@ -1,19 +1,19 @@
-from...PageObject.SSO_Token_Renewal_Screen.SSO_Token_Renewal_Screen_Android import SSO_Token_Renewal_Screen
+from ZSB_Mobile.PageObject.SSO_Token_Renewal_Screen.SSO_Token_Renewal_Screen_Android import SSO_Token_Renewal_Screen
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from airtest.core.api import *
-from ...PageObject.Help_Screen.Help_Screen import Help_Screen
-from ...Common_Method import Common_Method
-from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
-from ...PageObject.Others_Screen.Others_Screen import Others
-from ...PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
-from ...PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
-from ...PageObject.Registration_Screen.Registration_Screen import Registration_Screen
-from ...PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
-from ...PageObject.Template_Management.Template_Management_Android import Template_Management_Android
-from ...PageObject.Delete_Account.Delete_Account_Screen import Delete_Account_Screen
-from ...PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
-from ...PageObject.Device_Networks.Device_Network_Android import Device_Networks_Android
-from ...PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
+from ZSB_Mobile.PageObject.Help_Screen.Help_Screen import Help_Screen
+from ZSB_Mobile.Common_Method import Common_Method
+from ZSB_Mobile.PageObject.Login_Screen.Login_Screen_Android import Login_Screen
+from ZSB_Mobile.PageObject.Others_Screen.Others_Screen import Others
+from ZSB_Mobile.PageObject.Add_A_Printer_Screen.Add_A_Printer_Screen_Android import Add_A_Printer_Screen
+from ZSB_Mobile.PageObject.Printer_Management_Screen.Printer_Management_Screen import Printer_Management_Screen
+from ZSB_Mobile.PageObject.Registration_Screen.Registration_Screen import Registration_Screen
+from ZSB_Mobile.PageObject.Template_Management_Screen_JK.Template_Management_Screen_JK import Template_Management_Screen
+from ZSB_Mobile.PageObject.Template_Management.Template_Management_Android import Template_Management_Android
+from ZSB_Mobile.PageObject.Delete_Account.Delete_Account_Screen import Delete_Account_Screen
+from ZSB_Mobile.PageObject.APP_Settings.APP_Settings_Screen_Android import App_Settings_Screen
+from ZSB_Mobile.PageObject.Device_Networks.Device_Network_Android import Device_Networks_Android
+from ZSB_Mobile.PageObject.Data_Source_Screen.Data_Sources_Screen import Data_Sources_Screen
 from poco.exceptions import PocoNoSuchNodeException
 import pytest
 

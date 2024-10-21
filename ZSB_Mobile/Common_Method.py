@@ -8,6 +8,7 @@ import subprocess
 import ipaddress
 import random
 import time
+from datetime import datetime
 import traceback
 from pipes import Template
 from platform import platform
@@ -22,7 +23,6 @@ from airtest.report.report import LogToHtml
 from poco.exceptions import PocoNoSuchNodeException
 # from pocoui_lib.android.kotoComponent import poco
 # from shell import Shell
-from datetime import datetime
 from smb.SMBConnection import SMBConnection
 # from airtest.report.report import LogToHtml
 # from common.baseValue import *
@@ -36,8 +36,6 @@ from poco import poco
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
-from datetime import datetime
-from ZSB_Mobile.login_information import *
 
 
 # from test.body import poco
@@ -58,6 +56,22 @@ class Common_Method():
         for i in pocoElemnt:
             e = e + 1
         return e
+
+    def wait_for_element(self, locator, timeout=70):
+        """
+        Waits for an element to exist within the given timeout period.
+
+        :param locator: The locator of the element to wait for.
+        :param timeout: The maximum time to wait for the element in seconds. Default is 50 seconds.
+        :raises Exception: If the element does not exist within the timeout period.
+        """
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            if self.poco(locator).exists():
+                return True
+            time.sleep(1)  # wait for 1 second before checking again
+
+        raise Exception(f"Error: Element '{locator}' not present after {timeout} seconds")
 
     def run_the_command(self, command):
         cmd = command
@@ -159,7 +173,6 @@ class Common_Method():
         self.poco(textMatches=".*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def swipe_by_positions(self, start_point, end_point):
-
         self.poco.swipe(start_point, end_point, duration=0.5)
 
     def swipe_screen(self, point1, point2, number_of_swipes):
@@ -171,6 +184,23 @@ class Common_Method():
         w2, h2 = x2 * w, y2 * h
         for i in range(number_of_swipes):
             swipe([w1, h1], [w2, h2])
+
+    def swipe_back_to_app_ios(self):
+        # Get the current display information
+        disp = current_device().display_info
+        w, h = [disp['width'], disp['height']]
+
+        # Define swipe start and end points as fractions of the screen size
+        x1, y1 = 0.5, 1  # Start near the bottom of the screen
+        x2, y2 = 0.5, 0.5  # End near the top of the screen
+
+        # Convert the fractions to absolute pixel coordinates
+        w1, h1 = x1 * w, y1 * h
+        w2, h2 = x2 * w, y2 * h
+
+        # Perform the swipe action
+        swipe([w1, h1], [w2, h2], duration=3)
+        touch((0.5, 0.5), 1)
 
     def wait_for_element_appearance_text(self, element, time_out=15):
         self.poco(text=element).wait_for_appearance(timeout=time_out)
@@ -1104,10 +1134,6 @@ class Common_Method():
             sleep(1)
             start_app(packagename)
             sleep(1)
-        sleep(4)
-        if self.poco("OK").exists():
-            self.poco("OK").click()
-        sleep(3)
 
     def Clear_App(self):
         packagename = "com.zebra.soho_app"
@@ -1143,14 +1169,16 @@ class Common_Method():
                 raise Exception(error_array)
 
     def disable_wifi(self):
-        sleep(2)
-        cmd = "adb shell svc wifi disable"
-        subprocess.run(cmd, shell=True)
+        try:
+            os.system('adb shell svc wifi disable')  # turn off Wi-Fi
+        except Exception as e:
+            pass
 
     def enable_wifi(self):
-        sleep(2)
-        cmd = "adb shell svc wifi enable"
-        subprocess.run(cmd, shell=True)
+        try:
+            os.system('adb shell svc wifi enable')  # turn off Wi-Fi
+        except Exception as e:
+            pass
 
     def Display_Popup_On_The_Screen(self):
         toast_message = "Cover Open"
@@ -1163,14 +1191,11 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         messagebox.showinfo("Notification", "Cover Open")
 
-    """Changed"""
-
     def Show_popup_To_Verify_Printout_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification",
-                            "Verify Printout printed in the printer associated with account Zebra21.swdvt@gmail.com")
+        messagebox.showinfo("Notification", "Verify Printout")
         root.destroy()
 
     def Turn_Off_The_Phone(self):
@@ -1180,14 +1205,13 @@ class Common_Method():
     def Turn_ON_The_Phone(self):
         keyevent("KEYCODE_POWER")
         sleep(1)
-        ### swipe((540, 1600), (540, 400))
+        swipe((540, 1600), (540, 400))
 
     def Show_popup_To_Open_The_Printer_Cover_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification",
-                            "Open the Printer Cover associated with the account - zebra21.swdvt@gmail.com")
+        messagebox.showinfo("Notification", "Open the Printer Cover")
         root.destroy()
 
     def Show_popup_To_Close_The_Printer_Cover_Manually(self):
@@ -1215,14 +1239,14 @@ class Common_Method():
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Turn Off The Printer and click the refresh button in APS")
+        messagebox.showinfo("Notification", "Turn Off The Printer")
         root.destroy()
 
     def Show_popup_To_Open_The_Printer_Head_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Open The Printer Head And click the refresh button in APS")
+        messagebox.showinfo("Notification", "Open The Printer Head")
         root.destroy()
 
     def Show_popup_To_Remove_The_Cartridge_Manually(self):
@@ -1230,14 +1254,6 @@ class Common_Method():
         root.withdraw()  # Hide the root window
         root.attributes('-topmost', True)
         messagebox.showinfo("Notification", "Remove The cartridge")
-        root.destroy()
-
-    def Show_popup_To_Remove_The_Cartridge_And_Close_ThePrinter_Head_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        messagebox.showinfo("Notification",
-                            "Remove The cartridge and Close the Printer head and then click the APS refresh button")
         root.destroy()
 
     def Show_popup_To_Make_The_Status_AS_LowMedia_Manually(self):
@@ -1499,13 +1515,6 @@ class Common_Method():
         messagebox.showinfo("Notification", "Verify The Font And Style Of Select Your Printerpage Manually")
         root.destroy()
 
-    def Show_popup_To_Change_The_Cartridge_To_Medialow_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        messagebox.showinfo("Notification",
-                            "Change The Cartridge To Medialow Manually and click turn off and then turn on APS to refresh the status")
-        root.destroy()
-
     def Show_popup_To_Verify_Bluetoothpairing_your_printer_page_with_new_fonts_and_Style(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
@@ -1551,13 +1560,6 @@ class Common_Method():
         messagebox.showinfo("Notification", "Add The Cartridge Without Paper Manually")
         root.destroy()
 
-    def Show_popup_To_Turn_ON_PrinterA_And_CoverOpen_And_PaperOut_To_PrinterB_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "To Turn ON PrinterA And CoverOpen And PaperOut To PrinterB Manually")
-        root.destroy()
-
     def Show_popup_To_Put_The_Media_Back_Into_The_printer_Manually(self):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
@@ -1573,43 +1575,6 @@ class Common_Method():
                             "Verify Manually the view of pdf screens for 1st one it will be different and for rest it will be different")
         root.destroy()
 
-    def Show_popup_To_Add_2_Printer_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Add 2 Printer in to zebra21.dvt@gmail.com account Manually")
-        root.destroy()
-
-    def Show_popup_To_Select_Printer_A_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Select Printer A Manually which is online")
-        root.destroy()
-
-    def Show_popup_To_Select_Printer_B_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Select Printer B Manually which is online")
-        root.destroy()
-
-    def Show_popup_To_Trigger_Some_Printer_Notification_Manually(self):
-        sleep(3)
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        messagebox.showinfo("Notification",
-                            "Idle mobile app 30 to 1 h, back to the app, trigger some printer notification (cover open/close/media out)  and Check the notification pops up correctly")
-        root.destroy()
-
-    def Show_popup_To_Select_The_Printer_Manually(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the root window
-        root.attributes('-topmost', True)
-        messagebox.showinfo("Notification", "Select The Printer which has medialow status")
-        root.destroy()
-
     def get_user_Details(self, msg):
         root = tk.Tk()
         root.withdraw()  # Hide the root window
@@ -1617,37 +1582,21 @@ class Common_Method():
         user_details = simpledialog.askstring("Input", msg)
         return user_details
 
-    # def del_printer(self, function_fixture):
-    #     poco, dev, width, height, Bonding, initialBaseValue, emulator, sns = function_fixture
-    #     PrinterUtilities(poco, dev, width, height, Bonding).deletePrinter()
-
-    def Refresh_The_Page(self):
-        sleep(1)
-        start_x, start_y = 540, 400
-        end_x, end_y = 540, 1200
-        swipe((start_x, start_y), (end_x, end_y), duration=0.5)
-        self.poco.swipe((500, 200), (500, 1000))
-
-    # ##-------------------------------------------------------------------------------------------------
-
-    # Common.py
-
     def clear_old_logs(self):
         # Clear any existing logcat processes
         subprocess.run(["adb", "logcat", "-c"], shell=False, check=True)
 
     def start_adb_log_capture(self):
-        uploaded_files = set()
         test_run_start_time = time.time()
-        self.clear_old_logs()
+        # self.clear_old_logs()
         LOG_DIRECTORY = "logs"
         os.makedirs(LOG_DIRECTORY, exist_ok=True)
         current_date = datetime.now().strftime("%d-%m-%Y")
         date_directory = os.path.join(LOG_DIRECTORY, current_date)
         os.makedirs(date_directory, exist_ok=True)
         ADB_LOG_FILE = os.path.join(date_directory, "adb_log.txt")
-        subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
-        return ADB_LOG_FILE, test_run_start_time, uploaded_files
+        # subprocess.Popen(f"adb logcat -v time > {ADB_LOG_FILE}", shell=True)
+        return ADB_LOG_FILE, test_run_start_time
 
     def stop_adb_log_capture(self):
         result = subprocess.run(["adb", "shell", "killall", "-2", "logcat"],
@@ -1735,12 +1684,5 @@ class Common_Method():
             shutil.rmtree(SCREENSHOT_DIRECTORY)
         os.makedirs(SCREENSHOT_DIRECTORY, exist_ok=True)
 
-    """Changed"""
-    "newly added"
 
-    def handel_bluetooth_connection_required_pop_up(self):
-        self.show_message(
-            "Check if message'\nBluetooth Connection Required\nYou are about to connect to the printer using Bluetooth. If you have not connected to the printer from this device before, please set the printer into \"pairing mode\" by holding the power button for 3 seconds. If you have connected to this printer from another mobile device in the past, please remove this bond in the devices bluetooth settings or power off the device.'\nis displayed.\nIf so perform the actions mentioned in the pop up and click \"Continue\" button once done.")
 
-    def get_credentials_from_user(self, user):
-        return user[0], user[1]

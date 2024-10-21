@@ -12,11 +12,21 @@ import subprocess
 from time import sleep
 
 
-# def Basic_path(a):
-#     return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Add_A_Printer", a)
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Desktop\ZSB_Automation\ZSB_Mobile\\TestExecution\\test_Add_A_Printer", a)
 
 
+def disable_bluetooth():
+    os.system('adb shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE> nul 2>&1')
+    # os.system(f"adb -s {device_id} shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE")
 
+    shell_element = poco(text="Allow")
+    try:
+        shell_element.exists()
+        shell_element.click()
+        sleep(1)
+    except Exception as e:
+        print(f"An error occurred: {e}. Skipping.")
 
 
 class Add_A_Printer_Screen:
@@ -52,17 +62,18 @@ class Add_A_Printer_Screen:
         self.Connect_Wifi_Network_Text = "Connect to Wi-Fi"
         self.Select_Button_on_Select_Your_Printer = "Next"
         self.Connect_Btn_On_Connect_Wifi_Network_Screen = "Connect"
-        self.Password_Field_On_Join_Network = Template("tpl1712913927236.png", record_pos=(-0.048, -0.44),
+        self.Password_Field_On_Join_Network = Template(Basic_path("tpl1712913927236.png"), record_pos=(-0.048, -0.44),
                                                        resolution=(1080, 2400))
         self.Submit_Button_ON_Join_Network = "Connect"
         self.Registering_your_Printer_Text = "Registering your Printer"
         self.Finish_Setup_Button = "Finish Setup"
-        self.ZSB_Printer_images = Template("tpl1706510933463.png", record_pos=(-0.334, -0.229),
+        self.ZSB_Printer_images = Template(Basic_path("tpl1706510933463.png"), record_pos=(-0.334, -0.229),
                                            resolution=(1080, 2400))
 
         self.Connect_Wifi_Network_Text = "Connect to Wi-Fi"
+        self.UI_Of_The_Slideleft_Page = Template(Basic_path("tpl1718627231606.png"), record_pos=(-0.096, 0.12), resolution=(1080, 2400))
 
-        self.The_ESSID_Next_To_Lock_Icon= Template("tpl1718963731096.png", record_pos=(0.393, -0.006), resolution=(1080, 2400))
+        self.The_ESSID_Next_To_Lock_Icon= Template(Basic_path("tpl1718963731096.png"), record_pos=(0.393, -0.006), resolution=(1080, 2400))
 
 
         # ##""""""""""""""""""""""""""""""""""""""""""""""""smoke test-need to add""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,42 +82,53 @@ class Add_A_Printer_Screen:
         self.Print_Button = "Print"
         self.Back_Icon_Of_Print_Review_Screen = "android.widget.Button"
         self.Common_Design_Tab = "Common Designs"
-        self.Design_Preview_With_Details = Template("tpl1707902210476.png", record_pos=(0.047, 0.202),
+        self.Design_Preview_With_Details = Template(Basic_path("tpl1707902210476.png"), record_pos=(0.047, 0.202),
                                                     resolution=(1170, 2532))
         self.SecondOne_In_MyDesign = ""
 
         self.FirstOne_In_MyDesign = ""
 
     ### """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    def disable_bluetooth(self):
+        try:
+            # Disable Bluetooth using ADB
+            subprocess.run(
+                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+            # Check for the 'Allow' element using poco
+            shell_element = self.poco(text="Allow")
+            if shell_element.exists():
+                shell_element.click()
+                sleep(1)
+            else:
+                print("No 'Allow' element found. Skipping.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"ADB command failed with error: {e}. Skipping.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}. Skipping.")
 
     def enable_bluetooth(self):
-        sleep(1)
-        cmd = "adb shell cmd bluetooth_manager enable"
-        subprocess.run(cmd, shell=True)
-        sleep(4)
+        try:
+            subprocess.run(
+                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
+                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+            # Check for the 'Allow' element using poco
+            shell_element = self.poco(text="Allow")
+            if shell_element.exists():
+                shell_element.click()
+                sleep(1)
+            else:
+                print("No 'Allow' element found. Skipping.")
 
-        # try:
-        #     subprocess.run(
-        #         ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
-        #         check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        #
-        #     # Check for the 'Allow' element using poco
-        #     shell_element = self.poco(text="Allow")
-        #     if shell_element.exists():
-        #         shell_element.click()
-        #         sleep(1)
-        #     else:
-        #         print("No 'Allow' element found. Skipping.")
-        #
-        # except subprocess.CalledProcessError as e:
-        #     print(f"ADB command failed with error: {e}. Skipping.")
-        # except Exception as e:
-        #     print(f"An unexpected error occurred: {e}. Skipping.")
+        except subprocess.CalledProcessError as e:
+            print(f"ADB command failed with error: {e}. Skipping.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}. Skipping.")
 
     def click_Add_A_Printer(self):
-        sleep(4)
         add_a_printer_btn = self.poco(self.Add_A_Printer_Btn)
         add_a_printer_btn.click()
 
@@ -416,7 +438,7 @@ class Add_A_Printer_Screen:
         back_button.click()
 
     def click_SecondOne_In_MyDesign(self):
-        sleep(3)
+        sleep(2)
         self.poco("android.view.View").child(type="android.widget.ImageView")[1].click()
         sleep(1)
 
@@ -430,10 +452,7 @@ class Add_A_Printer_Screen:
 
     def click_FirstOne_In_Common_Design(self):
         sleep(5)
-        design_name = self.poco("android.view.View").child(type="android.widget.ImageView")[0].get_name().split("\n")[0]
         self.poco("android.view.View").child(type="android.widget.ImageView")[0].click()
-        sleep(3)
-        return design_name
 
     def Click_Next_Button(self):
         sleep(1)
@@ -462,11 +481,57 @@ class Add_A_Printer_Screen:
 
     # ---------------------------------------------------------------------------
 
+    def Disable_Bluetooth(self):
+        os.system('adb shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE> nul 2>&1')
+        # os.system(f"adb -s {device_id} shell am start -a android.bluetooth.adapter.action.REQUEST_DISABLE")
+
+        shell_element = poco(text="Allow")
+        try:
+            shell_element.exists()
+            shell_element.click()
+            sleep(1)
+        except Exception as e:
+            print(f"An error occurred: {e}. Skipping.")
+
     # ####
     def disable_bluetooth(self):
-        sleep(1)
-        cmd = "adb shell cmd bluetooth_manager disable"
-        subprocess.run(cmd, shell=True)
+        try:
+            # Disable Bluetooth using ADB
+            subprocess.run(
+                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_DISABLE'],
+                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            # Check for the 'Allow' element using poco
+            shell_element = poco(text="Allow")
+            if shell_element.exists():
+                shell_element.click()
+                sleep(1)
+            else:
+                print("No 'Allow' element found. Skipping.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"ADB command failed with error: {e}. Skipping.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}. Skipping.")
+
+    def enable_bluetooth(self):
+        try:
+            subprocess.run(
+                ['adb', 'shell', 'am', 'start', '-a', 'android.bluetooth.adapter.action.REQUEST_ENABLE'],
+                check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            # Check for the 'Allow' element using poco
+            shell_element = poco(text="Allow")
+            if shell_element.exists():
+                shell_element.click()
+                sleep(1)
+            else:
+                print("No 'Allow' element found. Skipping.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"ADB command failed with error: {e}. Skipping.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}. Skipping.")
 
 
     # def Verify_same_ZSB_image_for_all_items(self):
@@ -477,21 +542,15 @@ class Add_A_Printer_Screen:
     #     else:
     #         print("ZSB Printers are not present for all items.")
 
-    # def Verify_same_ZSB_image_for_all_items(self):
-    #     if self.ZSB_Printer_images.exists():
-    #         print("ZSB Printers are present for all items.")
-    #     else:
-    #         print("ZSB Printers arem present for all items.")
+    def Verify_same_ZSB_image_for_all_items(self):
+        if self.ZSB_Printer_images.exists():
+            print("ZSB Printers are present for all items.")
+        else:
+            print("ZSB Printers arem present for all items.")
 
     def Verify_UI_Of_The_Slideleft_Page_Is_Correct(self):
         sleep(3)
-        if poco(name="Common Designs").exists():
-            print("Common design is present")
-        if poco(name="My Data").exists():
-            print("My Data is present")
-        if poco(name="Printer Settings").exists():
-            print("Printer Settings is present")
-
+        assert_exists(self.UI_Of_The_Slideleft_Page, "UI Of The Slideleft Page is Correct")
 
     def Verify_Setup_Your_Printer_Page_Is_Displaying(self):
         sleep(1)
@@ -525,16 +584,16 @@ class Add_A_Printer_Screen:
     #         assert_false()
 
     def Verify_Slideleft_Page_Is_Present(self):
-            sleep(5)
-            if self.poco(name="Common Designs").exists():
+            sleep(3)
+            if self.poco(name="Common Designs").wait_for_appearance(timeout=3):
                 print("Add Printer Tab is displaying")
             else:
                 raise AssertionError("Add Printer Tab is not displaying")
 
 
     def Verify_Unable_To_Find_Printers_Text_Is_Displaying(self):
-        sleep(6)
-        a = self.poco(name="Unable to find printer(s)")
+        sleep(3)
+        a = self.poco(nameMatches="(?s).*Unable to find printer(s).*")
         a.get_name()
         print(a)
     def click_ON_Settings_Back_Icon(self):
@@ -554,13 +613,8 @@ class Add_A_Printer_Screen:
         print(a)
 
     def Select_Printer(self):
-        sleep(3)
-        if self.poco(nameMatches="(?s).*C710B9.*").exists():
-           self.poco(nameMatches="(?s).*C710B9.*").click()
-        else:
-            poco.scroll()
-            sleep(2)
-            self.poco(nameMatches="(?s).*C710B9.*").click()
+        sleep(1)
+        self.poco(nameMatches="(?s).*ZSB-DP.*").click()
 
     def click_Allow_For_Disable_Enable_Bluetooth(self):
         if self.poco(name="android:id/button1").exists():
@@ -588,7 +642,7 @@ class Add_A_Printer_Screen:
 
     def click_NESTWIFI_NETWORK(self):
         sleep(2)
-        a=self.poco(name="iPhone")
+        a=self.poco(name="NESTWIFI")
         if a.exists():
             a.click()
         else:
@@ -647,13 +701,10 @@ class Add_A_Printer_Screen:
         print(a)
 
     def Click_The_Printer_Name_To_Select(self):
-        sleep(3)
-        if self.poco(nameMatches="(?s).*C710B9.*").exists():
-            self.poco(nameMatches="(?s).*C710B9.*").click()
-        else:
-            poco.scroll()
-            sleep(2)
-            self.poco(nameMatches="(?s).*C710B9.*").click()
+        sleep(1)
+        a = self.poco(nameMatches="(?s).*ZSB-DP.*")
+        a.click()
+        print(a)
 
     def click_Cancel_On_Bluetooth_Paring_Popup(self):
         cancel_on_popup = self.poco(text="Cancel")
@@ -824,16 +875,7 @@ class Add_A_Printer_Screen:
         a=self.poco(name="Internet Access Blocked")
         a.get_name()
 
-    def Loginwith_Added_Email_Id(self):
-        sleep(9)
-        added_email = self.poco(text="sohoswdvt7.idc@gmail.com")
-        if added_email.exists():
-            added_email.click()
-            sleep(15)
-        else:
-            poco.scroll()
-            added_email.click()
-            sleep(15)
+
 
 
 

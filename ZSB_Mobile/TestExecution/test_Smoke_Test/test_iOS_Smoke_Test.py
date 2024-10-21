@@ -293,10 +293,10 @@ def test_Smoke_Test_TestcaseID_45884():
     login_screen_ios.click_Menu_HamburgerICN()
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_Start_Button()
+    add_a_printer_page_ios.click_start_setup()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
-    add_a_printer_page_ios.Click_Next_Button()
+    add_a_printer_page_ios.click_next_button()
     """"Verify searching for your printer text"""
     add_a_printer_page_ios.Verify_Searching_for_your_printer_Text()
     """"verify select your printer text"""
@@ -352,10 +352,10 @@ def test_Smoke_Test_TestcaseID_45885():
     login_screen_ios.click_Menu_HamburgerICN()
     add_a_printer_page_ios.click_Add_A_Printer()
     """"click on the start button"""
-    add_a_printer_page_ios.click_Start_Button()
+    add_a_printer_page_ios.click_start_setup()
     login_screen_ios.click_Allow_Login_Popup()
     add_a_printer_page_ios.Verify_Lets_Make_Sure_Text()
-    add_a_printer_page_ios.Click_Next_Button()
+    add_a_printer_page_ios.click_next_button()
     """"Verify searching for your printer text"""
     add_a_printer_page_ios.Verify_Searching_for_your_printer_Text()
     """"verify select your printer text"""

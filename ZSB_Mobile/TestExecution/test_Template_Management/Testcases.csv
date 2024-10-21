@@ -1,6 +1,0 @@
-Testcase_ID,Test_Description,Subarea
-46006,Search designs in Common Designs - input text that matches Zebra category and design,Template Management
-46007,Check linking unsupported file from Cloud will get the prompt message,Template Management
-46008,Search designs in Common Designs - input text that matches Zebra category and NOT design,Template Management
-46009,Search designs in Common Designs - input text that matches Zebra design and NOT category,Template Management
-46011,Search designs in Zebra Category - input text that does not match any of the Zebra designs,Template Management

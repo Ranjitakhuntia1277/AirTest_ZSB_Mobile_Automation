@@ -80,8 +80,8 @@ def test_APS_Printing_TestcaseID_49166():
     aps_notification.click_Expand_Icon()
     aps_notification.click_Print_Icon_Option()
     """""""need to execute"""""""
-    # aps_notification.Verify_Print_job_IS_IN_Progress_Message()
-    # aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
+    aps_notification.Verify_Print_job_IS_IN_Progress_Message()
+    aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
     # """"""""""Check Manually that the printer would pause the printing and the print job have been cancelled"""""""""""
     ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -147,7 +147,7 @@ def test_APS_Printing_TestcaseID_49186():
     aps_notification.click_Print_Icon_Option()
     """""""Check Manually that the file would not be printed"""
     common_method.Start_The_App()
-    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
+    aps_notification.click_Three_Dot_On_Added_Printer_On_HomePage()
     aps_notification.click_On_Clear_Print_Queue()
     aps_notification.click_Clear_Queue_Button()
     common_method.Stop_The_App()
@@ -454,8 +454,8 @@ def test_APS_Printing_TestcaseID_51380():
     aps_notification.click_And_Enter_50_Copies_Number_Field()
     aps_notification.click_Expand_Icon()
     aps_notification.click_Print_Icon_Option()
-    # aps_notification.click_On_Cancel_Btn_On_The_Popup()
-    # aps_notification.Verify_Job_Is_Cancelled()
+    aps_notification.click_On_Cancel_Btn_On_The_Popup()
+    aps_notification.Verify_Job_Is_Cancelled()
 
     ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -531,8 +531,8 @@ def test_APS_Printing_TestcaseID_51384():
     aps_notification.click_ON_Three_Dot()
     aps_notification.click_Print_Option()
     aps_notification.click_Print_Icon_Option()
-    # aps_notification.click_On_Cancel_Btn_On_The_Popup()
-    # aps_notification.Verify_Job_Is_Cancelled()
+    aps_notification.click_On_Cancel_Btn_On_The_Popup()
+    aps_notification.Verify_Job_Is_Cancelled()
     # ##""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -664,8 +664,8 @@ def test_APS_Printing_TestcaseID_49157():
     aps_notification.click_Expand_Icon()
     aps_notification.click_Print_Icon_Option()
     aps_notification.Verify_Print_job_sent_successfully_Message()
-    # aps_notification.Verify_Print_job_IS_IN_Progress_Message()
-    # aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
+    aps_notification.Verify_Print_job_IS_IN_Progress_Message()
+    aps_notification.click_Cancel_Button_On_The_Printing_InProgress_Notification()
     ###"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

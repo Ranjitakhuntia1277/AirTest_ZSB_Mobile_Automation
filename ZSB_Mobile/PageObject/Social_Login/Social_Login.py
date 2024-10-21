@@ -10,21 +10,13 @@ from airtest.core.api import device as current_device
 import os
 import subprocess
 
-from ...PageObject.Login_Screen import Login_Screen_Android
+from ZSB_Mobile.PageObject.Login_Screen import Login_Screen_Android
 
 common_method = Common_Method(poco)
 
-import platform
 
-if platform.system() == "Windows":
-    def Basic_path(a):
-        return os.path.join(os.path.expanduser('~'),
-                            "OneDrive - Zebra Technologies\Documents\ZSB\AirTest_ZSB_Mobile_Automation\ZSB_Mobile\\templates",
-                            a)
-
-else:
-    def Basic_path(a):
-        return os.path.join("/Users/symbol/PycharmProjects/AirTest_ZSB_Mobile_Automation/ZSB_Mobile/templates", a)
+def Basic_path(a):
+    return os.path.join(os.path.expanduser('~'), "Documents\\New_ZSB_Automation\ZSB_Mobile\\templates", a)
 
 
 class Social_Login:
@@ -113,13 +105,12 @@ class Social_Login:
         self.poco(text=self.apple_login).click()
 
     def check_sign_in_with_email(self):
-        sleep(10)
         temp = self.poco(text=self.sign_in_with_email).exists()
         return temp
 
     def check_zebra_logo(self):
         sleep(2)
-        a = self.poco(text="Zebra Logo").exists()
+        a = self.poco(type="android.widget.Image", text="Zebra Logo").exists()
         return a
 
     def check_text_of_free_benifits(self):
@@ -198,30 +189,27 @@ class Social_Login:
 
     def check_both_images_in_benefits_of_free_account_page(self):
 
-        if self.poco("android.widget.Image").exists():
-            return True
-        if self.poco("android.widget.Image")[1].exists():
-            return True
-        else:
+        image_1 = Template(Basic_path("tpl1706352005910.png"), record_pos=(-0.281, -0.23), resolution=(1080, 2340))
+
+        image_2 = Template(Basic_path("tpl1706352031764.png"), record_pos=(-0.281, 0.43), resolution=(1080, 2340))
+
+        assert_exists(image_1)
+        try:
+            assert_exists(image_2)
+        except:
             self.poco.scroll()
-            self.poco("android.widget.Image")[1].get_name()
+            assert_exists(image_2)
 
     def click_on_zebra_link(self):
         sleep(2)
-        self.poco.scroll()
-        sleep(1)
         self.poco("Zebra.com").click()
 
     def click_on_legal_notice_link(self):
         sleep(2)
-        self.poco.scroll()
-        sleep(1)
-        self.poco(name="Legal Notice").click()
+        self.poco("Legal Notice").click()
 
     def click_on_privacy_statement_link(self):
         sleep(2)
-        self.poco.scroll()
-        sleep(1)
         self.poco("Privacy Statement").click()
 
     def complete_sign_in_with_email(self, user_name, password, click_on_sign_in=1, click_back=1):
@@ -230,10 +218,10 @@ class Social_Login:
             keyevent("back")
         try:
 
-            self.poco("username").set_text(user_name)
+            self.poco("android.widget.EditText")[0].set_text(user_name)
             if self.poco(nameMatches=".*keyboard.*").exists():
                 self.go_back()
-            self.poco("password").set_text(password)
+            self.poco("android.widget.EditText")[1].set_text(password)
         except:
             self.poco("username").set_text(user_name)
             if self.poco(nameMatches=".*keyboard.*").exists():
@@ -287,56 +275,8 @@ class Social_Login:
     def return_to_login_page(self):
         self.poco("RETURN TO LOGIN").click()
 
-    def allowPermissions(self):
-        try:
-            self.poco(text="While using the app").wait_for_appearance(timeout=15)
-            self.poco(text="While using the app").click()
-        except:
-            pass
-    def clickSignIn(self):
-        sleep(2)
-        signInBtn = self.poco("Sign In")
-        signInBtn.click()
-        if self.poco("Allow").exists():
-            self.poco("Allow").click()
-        elif self.poco(text="Allow").exists():
-            self.poco(text="Allow").click()
-        sleep(4)
-
-    def close_app_reopen_and_click_sign_in(self):
-        packagename = "com.zebra.soho_app"
-        stop_app(packagename)
-        sleep(1)
-        start_app(packagename)
-        sleep(5)
-        self.allowPermissions()
-        self.clickSignIn()
-
-    def signInWithEmail(self):
-        pocoEle = self.poco(text="Sign In with your email")
-        if pocoEle.exists():
-            pocoEle.click()
-        else:
-            self.close_app_reopen_and_click_sign_in()
-            pocoEle.click()
-        print("Successfully clicked Sign In With Email")
-        sleep(2)
-        if self.poco("com.android.chrome:id/coordinator").exists():
-            self.poco("com.android.chrome:id/coordinator").click()
-        keyevent("Enter")
-        sleep(2)
-
-
-
     def click_on_sign_in_with_email(self):
-        sleep(10)
-        if self.poco(text="Sign In with your email").exists():
-            self.poco(text="Sign In with your email").click()
-        else:
-            sleep(3)
-            self.close_app_reopen_and_click_sign_in()
-            sleep(10)
-            self.poco(text="Sign In with your email").click()
+        self.poco(text=self.sign_in_with_email).click()
 
     def check_element_present_name_matches(self, elem):
         a = self.poco(nameMatches="(?s).*" + elem + ".*").exists()
@@ -352,20 +292,16 @@ class Social_Login:
         self.poco(nameMatches="(?s).*" + element + ".*").wait_for_appearance(timeout=time_out)
 
     def check_username_and_password_feilds(self):
-        sleep(5)
+        sleep(2)
         a = self.poco(text="Username*").exists()
         b = self.poco(text="Password*").exists()
         return a & b
 
     def check_sign_in_button(self):
-        sleep(1)
-        self.poco.scroll()
-        sleep(2)
         c = self.poco(text="Sign In", enabled=True).exists()
         return c
 
     def check_close_button(self):
-        sleep(3)
         a = self.poco(text="Close", enabled=True).exists()
         return a
 
@@ -501,19 +437,18 @@ class Social_Login:
         self.poco(text=a).click()
 
     def click_on_profile_edit(self):
-        sleep(2)
+
         self.poco("android.widget.Button").click()
 
     def click_log_out_button(self):
-        sleep(2)
         log_out_btn = self.poco(self.log_out_button)
         log_out_btn.click()
 
     def validate_the_details_of_account(self, v_f, v_l, v_e=None):
         first_name = \
-            self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
-                "android.view.View").child("android.view.View").child("android.view.View")[1].child(
-                "android.view.View").child()[0].child("android.widget.EditText")[0].get_text()
+        self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
+            "android.view.View").child("android.view.View").child("android.view.View")[1].child(
+            "android.view.View").child()[0].child("android.widget.EditText")[0].get_text()
 
         last_name = self.poco("android.widget.FrameLayout").child("android.view.View").child("android.view.View").child(
             "android.view.View").child("android.view.View").child("android.view.View")[1].child(
@@ -530,16 +465,15 @@ class Social_Login:
         return res
 
     def check_focused_of_user_name(self):
-        a = self.poco(name="username")
-        if a.exists():
-           return a
+
+        a = self.poco("android.widget.EditText", focused=True).exists()
+        return a
 
     def check_key_board(self):
         a = self.poco(nameMatches=".*keyboard.*").exists()
         return a
 
     def choose_a_google_account(self, gmail):
-        sleep(10)
         count = 0
         while not self.poco(text=gmail).exists() and count < 7:
             self.poco.scroll()
@@ -578,9 +512,9 @@ class Social_Login:
         keyevent("KEYCODE_APP_SWITCH")
 
     def get_the_password(self):
-        self.poco("username").click()
+        self.poco("android.widget.EditText")[1].click()
         self.go_back()
-        a = self.poco("password").get_text()
+        a = self.poco("android.widget.EditText")[1].get_text()
         return a
 
     def show_the_password(self):
@@ -589,7 +523,7 @@ class Social_Login:
     def check_for_blank_value_error_of_both(self):
         a = self.poco(text="Please fill out username field.").exists()
 
-        self.poco("username").click()
+        self.poco("android.widget.EditText").click()
         self.go_back()
         b = self.poco(text="Please fill out password field.").exists()
 
@@ -649,8 +583,8 @@ class Social_Login:
 
     def enter_username_and_password_in_facebook(self, user_name, password):
         sleep(2)
-        self.poco("username").set_text(user_name)
-        self.poco("android.widget.EditText").set_text(password)
+        self.poco("android.widget.EditText")[0].set_text(user_name)
+        self.poco("android.widget.EditText")[1].set_text(password)
 
     def enter_apple_id_and_password(self, apple_id, password):
 
@@ -762,55 +696,3 @@ class Social_Login:
     def click_Bluetooth_pairing_Popup2(self):
         bluetooth_pairing_popup2 = self.poco(self.Bluetooth_pairing_Popup2)
         bluetooth_pairing_popup2.click()
-
-    def Verify_Zebra_URL(self):
-        sleep(10)
-        a = self.poco(text="zebra.com")
-        if a.exists():
-            a.get_name()
-            sleep(1)
-
-    def click_Browser_Close_Icon(self):
-        sleep(2)
-        self.poco(name="com.android.chrome:id/close_button").click()
-        sleep(7)
-
-    def Verify_Legal_Notice_Page(self):
-        sleep(7)
-        a = self.poco(text="Terms of Use")
-        if a.exists():
-            a.get_name()
-
-    def loginwith_Sociallogin_EmailID(self):
-        sleep(9)
-        added_email = self.poco(text="zebra850.swdvt@gmail.com")
-        if added_email.exists():
-            added_email.click()
-            sleep(15)
-        else:
-            self.poco.scroll()
-            added_email.click()
-            sleep(15)
-
-    def verify_Zebraaccount_page(self):
-        sleep(10)
-        self.poco(text="Sign In").get_name()
-
-    def Verify_Email(self):
-        sleep(7)
-        email = self.poco(text="zebra850.swdvt@gmail.com")
-        if email.exists():
-            return True
-
-    def sign_in_with_new_google(self):
-        sleep(4)
-        a=self.poco(text="Use another account")
-        if a.exists():
-            a.click()
-        else:
-            self.poco.scroll()
-            a.click()
-
-    def check_if_no_results_displayed_when_searching_for_design(self):
-        self.wait_for_element_appearance_namematches_all("No results")
-

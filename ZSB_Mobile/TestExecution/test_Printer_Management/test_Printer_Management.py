@@ -41,137 +41,6 @@ smoke_test_android = Smoke_Test_Android(poco)
 aps_notification = APS_Notification(poco)
 
 
-
-def test_PrinterManagement_TestcaseID_47785():
-    pass
-    """clear app data"""
-    common_method.tearDown()
-    common_method.Clear_App()
-    common_method.Start_The_App()
-    login_page.click_loginBtn()
-    login_page.Verify_ALL_Allow_Popups()
-    login_page.click_Loginwith_Google()
-    printer_management_page.Loginwith_Google_Email_Id()
-    data_sources_page.checkIfOnHomePage()
-    """Click three dot menu of target printer"""
-    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
-    """Click on delete printer"""
-    printer_management_page.clickDelete()
-    """Verify first Delete dialog pop up window"""
-    printer_management_page.checkDeletePopUp(1)
-    """Choose delete option"""
-    printer_management_page.clickDelete()
-    """Verify second Delete dialog pop up window"""
-    printer_management_page.checkDeletePopUp(2)
-    """Click Yes Delete option"""
-    printer_management_page.clickYesDelete()
-    """Verify Message box prompt appears "Unpair Bluetooth From Printer" along printer MAC address"""
-    printer_management_page.checkUnpairBluetoothPopUp()
-    """Message box Does not contain MAC address"""
-    """Click Drop Down option"""
-    printer_management_page.clickDropDownMenuIcon()
-    """Check if Done option is greyed out"""
-    printer_management_page.checkElementIsGreyedOut("Done")
-    """Unpair device in bluetooth settings"""
-    printer_management_page.unpair_bluetooth_device()
-    """Click Done"""
-    printer_management_page.clickDoneOption()
-    common_method.wait_for_element_appearance("Home", 15)
-    """Check if printer is decommissioned"""
-    app_settings_page.Verify_Printer_Is_Not_Displaying()
-    common_method.Stop_The_App()
-
-
-def test_PrinterManagement_TestcaseID_47882():
-    pass
-    common_method.tearDown()
-    login_page.Verify_ALL_Allow_Popups()
-    login_page.click_Loginwith_Google()
-    printer_management_page.Loginwith_Google_Email_Id()
-    """Click three dot menu of target printer"""
-    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
-    sleep(5)
-    """Click on delete printer"""
-    printer_management_page.clickDelete()
-    sleep(2)
-    """Verify first Delete dialog pop up window"""
-    printer_management_page.checkDeletePopUp(1)
-    sleep(2)
-    """Choose delete option"""
-    printer_management_page.clickDelete()
-    sleep(2)
-    """Verify second Delete dialog pop up window"""
-    printer_management_page.checkDeletePopUp(2)
-    sleep(2)
-    """Click Yes Delete option"""
-    printer_management_page.clickYesDelete()
-    sleep(2)
-    """Verify if there is a pop up: Unpair Printer From Bluetooth"""
-    printer_management_page.checkUnpairBluetoothPopUp()
-    sleep(2)
-    """Verify if the pop up has Drop Down option"""
-    printer_management_page.checkDropDownMenuIconIsPresent()
-    sleep(2)
-    """Click Drop Down option"""
-    printer_management_page.clickDropDownMenuIcon()
-    sleep(2)
-    """Verify if the info in the Drop Down matches with the expected info"""
-    printer_management_page.checkDropDownMenuInfo()
-    sleep(2)
-    """Close the pop up"""
-    common_method.Stop_The_App()
-
-# ####"""""""""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-def test_PrinterManagement_TestcaseID_45888():
-    """	Check user can delete a printer from Mobile App"""
-
-    common_method.tearDown()
-    login_page.Verify_ALL_Allow_Popups()
-    login_page.click_Loginwith_Google()
-    printer_management_page.Loginwith_Google_Email_Id()
-    """"verify home text is displaying on the home screen"""
-    app_settings_page.Home_text_is_present_on_homepage()
-    """click on three dot on added printer on home page"""
-    app_settings_page.Verify_Printer_Text()
-    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
-    """""click on delete printer button"""
-    app_settings_page.click_Delete_Printer_Button()
-    """verify delete printer page"""
-    app_settings_page.Verify_Delete_Printer_Page()
-    app_settings_page.Click_Cancel_On_Delete_Printer_Page()
-    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
-    """"click delete printer button"""
-    app_settings_page.click_Delete_Printer_Button()
-    """"click yes delete button"""
-    app_settings_page.click_Yes_Delete_Button()
-    login_page.click_LoginAllow_Popup()
-    login_page.click_Allow_ZSB_Series_Popup()
-    """"verify UI of unpair bluetooth dropdown list """
-    app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
-    """click on unpair bluetooth dropdown list"""""
-    app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
-    common_method.Stop_The_App()
-    aps_notification.Stop_Android_App()
-    aps_notification.click_Mobile_SearchBar()
-    aps_notification.click_On_Searchbar2()
-    aps_notification.Enter_Settings_Text_On_SearchBar()
-    aps_notification.click_Settings()
-    aps_notification.click_Connected_Devices()
-    app_settings_page.click_Unpair_Icon()
-    app_settings_page.click_On_Unpair()
-    app_settings_page.click_Confirm_Delete_Popup()
-    aps_notification.Stop_Android_App()
-    common_method.Start_The_App()
-    app_settings_page.click_Done_Btn()
-    app_settings_page.Verify_Printer_Is_Not_Displaying()
-    """stop the app"""
-    common_method.Stop_The_App()
-    """"10. Check printer is also being deleted in web portal and printer tool Manually"""
-# # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 # ###bug id-SMBM-1127
 def test_PrinterManagement_TestcaseID_47920():
     pass
@@ -213,4 +82,138 @@ def test_PrinterManagement_TestcaseID_47920():
     """Unable to verify due to BUG"""
     printer_management_page.verifyPrinterNameAfterRenaming(printer_2_name)
     common_method.Stop_The_App()
-# ######"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_PrinterManagement_TestcaseID_47785():
+    pass
+    """clear app data"""
+    common_method.tearDown()
+    data_sources_page.checkIfOnHomePage()
+    """Click three dot menu of target printer"""
+    deletingPrinterName = printer_management_page.clickThreeDotMenu()
+    """Click on delete printer"""
+    printer_management_page.clickDelete()
+    """Verify first Delete dialog pop up window"""
+    printer_management_page.checkDeletePopUp(1)
+    """Choose delete option"""
+    printer_management_page.clickDelete()
+    """Verify second Delete dialog pop up window"""
+    printer_management_page.checkDeletePopUp(2)
+    """Click Yes Delete option"""
+    printer_management_page.clickYesDelete()
+    """Verify Message box prompt appears "Unpair Bluetooth From Printer" along printer MAC address"""
+    printer_management_page.checkUnpairBluetoothPopUp()
+    """Message box Does not contain MAC address"""
+    """Click Drop Down option"""
+    printer_management_page.clickDropDownMenuIcon()
+    """Check if Done option is greyed out"""
+    printer_management_page.checkElementIsGreyedOut("Done")
+    """Unpair device in bluetooth settings"""
+    printer_management_page.unpair_bluetooth_device()
+    """Click Done"""
+    printer_management_page.clickDoneOption()
+    common_method.wait_for_element_appearance("Home", 15)
+    """Check if printer is decommissioned"""
+    printer_management_page.checkIfPrinterIsDecommissioned(deletingPrinterName)
+    common_method.Stop_The_App()
+
+
+def test_PrinterManagement_TestcaseID_47882():
+    pass
+    # common_method.tearDown()
+    # common_method.Clear_App()
+    # common_method.Start_The_App()
+    # login_page.click_loginBtn()
+    # login_page.click_LoginAllow_Popup()
+    # login_page.click_Allow_ZSB_Series_Popup()
+    # login_page.click_Loginwith_Google()
+    # login_page.Loginwith_Added_Email_Id()
+    """Click three dot menu of target printer"""
+    printer_management_page.clickThreeDotMenu()
+    sleep(5)
+    """Click on delete printer"""
+    printer_management_page.clickDelete()
+    sleep(2)
+    """Verify first Delete dialog pop up window"""
+    printer_management_page.checkDeletePopUp(1)
+    sleep(2)
+    """Choose delete option"""
+    printer_management_page.clickDelete()
+    sleep(2)
+    """Verify second Delete dialog pop up window"""
+    printer_management_page.checkDeletePopUp(2)
+    sleep(2)
+    """Click Yes Delete option"""
+    printer_management_page.clickYesDelete()
+    sleep(2)
+    """Verify if there is a pop up: Unpair Printer From Bluetooth"""
+    printer_management_page.checkUnpairBluetoothPopUp()
+    sleep(2)
+    """Verify if the pop up has Drop Down option"""
+    printer_management_page.checkDropDownMenuIconIsPresent()
+    sleep(2)
+    """Click Drop Down option"""
+    printer_management_page.clickDropDownMenuIcon()
+    sleep(2)
+    """Verify if the info in the Drop Down matches with the expected info"""
+    printer_management_page.checkDropDownMenuInfo()
+    sleep(2)
+    """Close the pop up"""
+    common_method.Stop_The_App()
+
+# ####"""""""""""""""""""""""""""""""""End"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+def test_PrinterManagement_TestcaseID_45888():
+    """	Check user can delete a printer from Mobile App"""
+
+    common_method.tearDown()
+    common_method.Clear_App()
+    common_method.Start_The_App()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_loginBtn()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    login_page.click_Loginwith_Google()
+    login_page.Loginwith_Added_Email_Id()
+    sleep(5)
+    """"verify home text is displaying on the home screen"""
+    app_settings_page.Home_text_is_present_on_homepage()
+    """click on three dot on added printer on home page"""
+    app_settings_page.Verify_Printer_Text()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
+    """""click on delete printer button"""
+    app_settings_page.click_Delete_Printer_Button()
+    """verify delete printer page"""
+    app_settings_page.Verify_Delete_Printer_Page()
+    app_settings_page.Click_Cancel_On_Delete_Printer_Page()
+    app_settings_page.click_Three_Dot_On_Added_Printer_On_HomePage()
+    """"click delete printer button"""
+    app_settings_page.click_Delete_Printer_Button()
+    """"click yes delete button"""
+    app_settings_page.click_Yes_Delete_Button()
+    login_page.click_LoginAllow_Popup()
+    login_page.click_Allow_ZSB_Series_Popup()
+    """"verify UI of unpair bluetooth dropdown list """
+    app_settings_page.Verify_UI_Of_Unpair_Bluetooth_dropdown_list()
+    """click on unpair bluetooth dropdown list"""""
+    app_settings_page.Verify_And_click_Unpair_Bluetooth_dropdown_list()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Settings_Text_On_SearchBar()
+    aps_notification.click_Settings()
+    aps_notification.click_Connected_Devices()
+    app_settings_page.click_Unpair_Icon()
+    app_settings_page.click_On_Unpair()
+    app_settings_page.click_Confirm_Delete_Popup()
+    aps_notification.Stop_Android_App()
+    common_method.Start_The_App()
+    app_settings_page.click_Done_Btn()
+    app_settings_page.Verify_Printer_Is_Not_Displaying()
+    """stop the app"""
+    common_method.Stop_The_App()
+    """"10. Check printer is also being deleted in web portal and printer tool Manually"""
+# # ## """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

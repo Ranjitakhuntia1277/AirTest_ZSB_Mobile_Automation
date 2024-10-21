@@ -14,12 +14,8 @@ from ...PageObject.Login_Screen.Login_Screen_Android import Login_Screen
 
 # logging.getLogger("airtest").setLevel(logging.ERROR)
 # logging.getLogger("adb").setLevel(logging.ERROR)
-from ...AEMS.api_calls import start_main, insert_step, insert_stepDetails, insert_case_results, end_main, \
-    start_execution_loop, end_execution_loop, end_execution, upload_case_files
-from ...TestExecution.test_APS_Testcases.store import execID, leftId
-import inspect
 
-class Android_APS_Print_Preview_Options:
+class Android_APS_Printer_Discover:
     pass
 
 
@@ -37,69 +33,42 @@ aps_notification = APS_Notification(poco)
 """"""""""Printer should be added in Google account-:zebra21.dvt@gmail.com
 Password: Swdvt@#123""""""
 # ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-ADB_LOG, test_run_start_time, uploaded_files = common_method.start_adb_log_capture()
-start_execution_loop(execID)
+
 
 def test_Android_APS_Print_Preview_TestcaseID_49141():
     """Check the print options in the printing page when sharing a file to print and selecting the ZSB printer"""
-    current_function_name = inspect.currentframe().f_code.co_name
-    test_case_id = current_function_name.split("_")[-1]
 
-    test_steps = {
-        1: [1, "Delete ZSB app from the Android device."],
-        2: [2,
-            "Go to Settings -> Connection & sharing -> More connection settings -> Printing in Android device. Check APS has been removed."]
-    }
-
-    start_time_main = time.time()
-    start_main(execID, leftId[test_case_id])
-
-    stepId = 1  # Initialize stepId before the try-except block
-    try:
-        start_time = time.time()
-
-        common_method.tearDown()
-        common_method.Stop_The_App()
-        aps_notification.Stop_Android_App()
-        ##### common_method.show_popup()
-        aps_notification.click_Mobile_SearchBar()
-        aps_notification.click_On_Searchbar2()
-        aps_notification.Enter_Files_Text_On_SearchBar()
-        aps_notification.click_Files_Folder()
-        aps_notification.click_Mobile_back_icon()
-        aps_notification.click_Mobile_back_icon()
-        aps_notification.click_Drive_Searchbar()
-        aps_notification.click_Drive_Searchbar2()
-        aps_notification.click_PDF_File_From_The_List()
-        aps_notification.click_Suggestion_PDF_File()
-        aps_notification.click_PDF_ON_Result()
-        aps_notification.click_ON_Three_Dot()
-        aps_notification.click_Print_Option()
-        aps_notification.Verify_Print_Review_Page()
-        aps_notification.click_Save_AS_PDF()
-        aps_notification.click_All_Printers()
-        aps_notification.click_Available_Printer_To_Print()
-        aps_notification.click_Expand_Icon()
-        aps_notification.click_And_Enter_Copies_Number_Field()
-        aps_notification.Verify_PaperSize()
-        aps_notification.Verify_Pages_Number()
-        aps_notification.Verify_Black_And_White_Text()
-        aps_notification.Verify_Orientation_Text()
-        aps_notification.click_Expand_Icon()
-        aps_notification.click_Print_Icon_Option()
-        aps_notification.click_OK_On_Confirmation_Popup()
-        aps_notification.Verify_Print_job_sent_successfully_Message()
-    except Exception as e:
-        screenshot_path, _ = common_method.capture_screenshot(stepId, test_case_id)
-        insert_step(execID, leftId[test_case_id], test_steps[stepId][0], stepId, test_steps[stepId][1], "Fail", 0)
-        insert_stepDetails(execID, leftId[test_case_id], test_steps[stepId][0], str(e), "")
-        insert_case_results(execID, leftId[test_case_id], "Fail", 0, str(e), str(e))
-        if screenshot_path not in uploaded_files:
-            upload_case_files(execID, os.path.dirname(screenshot_path), test_run_start_time, uploaded_files)
-        raise Exception(str(e))
-
-    finally:
-        end_main(execID, leftId[test_case_id], (time.time() - start_time_main) / 60)
+    common_method.tearDown()
+    common_method.Stop_The_App()
+    aps_notification.Stop_Android_App()
+    ##### common_method.show_popup()
+    aps_notification.click_Mobile_SearchBar()
+    aps_notification.click_On_Searchbar2()
+    aps_notification.Enter_Files_Text_On_SearchBar()
+    aps_notification.click_Files_Folder()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Mobile_back_icon()
+    aps_notification.click_Drive_Searchbar()
+    aps_notification.click_Drive_Searchbar2()
+    aps_notification.click_PDF_File_From_The_List()
+    aps_notification.click_Suggestion_PDF_File()
+    aps_notification.click_PDF_ON_Result()
+    aps_notification.click_ON_Three_Dot()
+    aps_notification.click_Print_Option()
+    aps_notification.Verify_Print_Review_Page()
+    aps_notification.click_Save_AS_PDF()
+    aps_notification.click_All_Printers()
+    aps_notification.click_Available_Printer_To_Print()
+    aps_notification.click_Expand_Icon()
+    aps_notification.click_And_Enter_Copies_Number_Field()
+    aps_notification.Verify_PaperSize()
+    aps_notification.Verify_Pages_Number()
+    aps_notification.Verify_Black_And_White_Text()
+    aps_notification.Verify_Orientation_Text()
+    aps_notification.click_Expand_Icon()
+    aps_notification.click_Print_Icon_Option()
+    aps_notification.click_OK_On_Confirmation_Popup()
+    aps_notification.Verify_Print_job_sent_successfully_Message()
 
 
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

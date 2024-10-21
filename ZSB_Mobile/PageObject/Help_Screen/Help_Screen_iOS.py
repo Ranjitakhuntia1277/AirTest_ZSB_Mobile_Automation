@@ -26,23 +26,6 @@ class Help_Screen:
         self.poco = poco
 
     def chooseAcc(self, Acc_Name="zebra03.swdvt@gmail.com"):
-        sleep(7)
         account = self.poco(Acc_Name)
-        count = 0
-        while not account.exists() and count <= 2:
-            sleep(2)
-            start_point = (0.57, 0.47)
-            vector = (0.297, 0.211)
-            count += 1
-            swipe(start_point, vector)
-            sleep(2)
-            count += 1
         account.click()
-        sleep(4)
-
-    def checkIfOnSignInPage(self):
-        try:
-            self.poco("Sign In").wait_for_appearance(timeout=20)
-        except:
-            raise Exception("Did not reach \"Sign In\" page.")
 

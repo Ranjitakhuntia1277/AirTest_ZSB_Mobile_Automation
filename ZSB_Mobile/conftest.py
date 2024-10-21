@@ -61,7 +61,7 @@ from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # def pytest_addoption(parser):
 #     parser.addoption("--platform", action="store", default=None, help="Specify the platform (android/ios)")
 #
-# import openpyxl
+import openpyxl
 
 class Conftest():
     pass
